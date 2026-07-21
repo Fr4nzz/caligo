@@ -81,7 +81,10 @@ export const PRINCIPLES: { title: Bilingual; body: Bilingual }[] = [
     },
   },
   {
-    title: { en: 'Nagoya and beyond', es: 'Nagoya y más allá' },
+    title: {
+      en: 'Respect permits, national laws and fair benefit sharing',
+      es: 'Respetar los permisos, las leyes nacionales y la distribución justa de beneficios',
+    },
     body: {
       en: 'Address Access and Benefit-Sharing, Digital Sequence Information, Indigenous Peoples’ rights, and requirements beyond the legal minimum.',
       es: 'Atender el Acceso y Reparto de Beneficios, la Información Digital de Secuencias, los derechos de los pueblos indígenas y requisitos que van más allá del mínimo legal.',

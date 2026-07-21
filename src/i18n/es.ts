@@ -614,7 +614,7 @@ export const es: Dict = {
         "Demostrar a los financiadores que la red puede generar genomas en América Latina y analizarlos de forma colaborativa.",
         "Desarrollar flujos de trabajo desde el muestreo hasta el depósito de datos.",
         "Formar a la red regional y estandarizar protocolos.",
-        "Navegar permisos, Nagoya y los requisitos de reparto de beneficios.",
+        "Respetar los permisos, las leyes nacionales y los requisitos de distribución justa de beneficios.",
         "Establecer estándares de datos y calidad desde temprano.",
         "Construir estimaciones de costo realistas para la región.",
         "Entregar primeros resultados científicos para generar impulso."

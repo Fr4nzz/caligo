@@ -617,7 +617,7 @@ export const en = {
         "Demonstrate to funders that the network can generate genomes in Latin America and analyse them collaboratively.",
         "Develop workflows from sampling to data deposit.",
         "Train the regional network and standardise protocols.",
-        "Navigate permits, Nagoya and benefit-sharing requirements.",
+        "Respect permits, national laws and fair benefit-sharing requirements.",
         "Establish data and quality standards early.",
         "Build realistic cost estimates for the region.",
         "Deliver first scientific results to build momentum."
