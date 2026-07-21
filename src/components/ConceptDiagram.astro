@@ -431,20 +431,20 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-diagram.is-playing .join-mark { animation: event-pop 620ms 3.28s var(--ease-settle) both; }
   .concept-diagram.is-playing .fusion-result { animation: result-pop 900ms 3.58s var(--ease-settle) both; }
 
-  .concept-diagram.is-playing .connectivity-scene .patch--one { animation: habitat-pop 800ms 0s var(--ease-settle) both; }
+  .concept-diagram.is-playing .connectivity-scene .patch--one { animation: group-focus 800ms 0s var(--ease-settle) both; }
   .concept-diagram.is-playing .connectivity-scene .relation--one { animation: route-flow 1.1s 550ms linear both; }
-  .concept-diagram.is-playing .connectivity-scene .patch--two { animation: habitat-pop 800ms 1.15s var(--ease-settle) both; }
+  .concept-diagram.is-playing .connectivity-scene .patch--two { animation: group-focus 800ms 1.15s var(--ease-settle) both; }
   .concept-diagram.is-playing .connectivity-scene .relation--two { animation: route-flow 1.1s 1.65s linear both; }
   .concept-diagram.is-playing .connectivity-scene .relation--three { animation: route-flow 1.1s 2.35s linear both; }
-  .concept-diagram.is-playing .connectivity-scene .patch--three { animation: habitat-pop 800ms 3s var(--ease-settle) both; }
+  .concept-diagram.is-playing .connectivity-scene .patch--three { animation: group-focus 800ms 3s var(--ease-settle) both; }
 
-  .concept-diagram.is-playing .workflow-stage--one { animation: stage-focus 720ms 0s var(--ease-settle) both; }
+  .concept-diagram.is-playing .workflow-stage--one { animation: group-focus 720ms 0s var(--ease-settle) both; }
   .concept-diagram.is-playing .workflow-link--one { animation: draw-link 650ms 620ms ease-out both; }
-  .concept-diagram.is-playing .workflow-stage--two { animation: stage-focus 720ms 1.05s var(--ease-settle) both; }
+  .concept-diagram.is-playing .workflow-stage--two { animation: group-focus 720ms 1.05s var(--ease-settle) both; }
   .concept-diagram.is-playing .workflow-link--two { animation: draw-link 650ms 1.65s ease-out both; }
-  .concept-diagram.is-playing .workflow-stage--three { animation: stage-focus 720ms 2.1s var(--ease-settle) both; }
+  .concept-diagram.is-playing .workflow-stage--three { animation: group-focus 720ms 2.1s var(--ease-settle) both; }
   .concept-diagram.is-playing .workflow-link--three { animation: draw-link 650ms 2.75s ease-out both; }
-  .concept-diagram.is-playing .workflow-stage--four { animation: stage-focus 820ms 3.2s var(--ease-settle) both; }
+  .concept-diagram.is-playing .workflow-stage--four { animation: group-focus 820ms 3.2s var(--ease-settle) both; }
 
   .concept-diagram.is-playing .migration-sample--one { animation: stage-focus 720ms 0s var(--ease-settle) both; }
   .concept-diagram.is-playing .migration-sample--two { animation: stage-focus 720ms 280ms var(--ease-settle) both; }
@@ -485,10 +485,10 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   @keyframes event-pop { 0% { opacity: 0; transform: scale(0.25); } 65% { opacity: 1; transform: scale(1.25); } 100% { opacity: 0.85; transform: scale(1); } }
   @keyframes split-top { from { opacity: 0; transform: translateY(16px) scaleX(0.45); } to { opacity: 1; transform: translateY(0) scaleX(1); } }
   @keyframes split-bottom { from { opacity: 0; transform: translateY(-16px) scaleX(0.45); } to { opacity: 1; transform: translateY(0) scaleX(1); } }
-  @keyframes merge-top { 0%, 25% { opacity: 1; transform: translateY(0); } 100% { opacity: 0.16; transform: translateY(16px) scaleX(0.58); } }
-  @keyframes merge-bottom { 0%, 25% { opacity: 1; transform: translateY(0); } 100% { opacity: 0.16; transform: translateY(-16px) scaleX(0.58); } }
+  @keyframes merge-top { 0% { opacity: 0; transform: translateY(0); } 12%, 25% { opacity: 1; transform: translateY(0); } 100% { opacity: 0.16; transform: translateY(16px) scaleX(0.58); } }
+  @keyframes merge-bottom { 0% { opacity: 0; transform: translateY(0); } 12%, 25% { opacity: 1; transform: translateY(0); } 100% { opacity: 0.16; transform: translateY(-16px) scaleX(0.58); } }
   @keyframes result-pop { from { opacity: 0; transform: scale(0.25); } 70% { opacity: 1; transform: scale(1.28); } to { opacity: 1; transform: scale(1); } }
-  @keyframes habitat-pop { from { opacity: 0.12; transform: scale(0.62); } 70% { opacity: 1; transform: scale(1.1); } to { opacity: 1; transform: scale(1); } }
+  @keyframes group-focus { from { opacity: 0.12; filter: saturate(0.45) brightness(0.72); } 70% { opacity: 1; filter: saturate(1.25) brightness(1.12); } to { opacity: 1; filter: none; } }
   @keyframes route-flow { from { opacity: 0.15; stroke-dashoffset: 72; } to { opacity: 1; stroke-dashoffset: 0; } }
   @keyframes stage-focus { from { opacity: 0.16; transform: scale(0.72); } 65% { opacity: 1; transform: scale(1.08); } to { opacity: 1; transform: scale(1); } }
   @keyframes question-focus { from { opacity: 0.18; transform: scale(0.5) rotate(-12deg); } 70% { opacity: 1; transform: scale(1.15) rotate(4deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
@@ -500,8 +500,6 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .event-ring,
   .split-mark,
   .join-mark,
-  .patch,
-  .workflow-stage,
   .migration-sample,
   .migration-question,
   .migration-result {

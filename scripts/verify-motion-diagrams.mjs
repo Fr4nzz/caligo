@@ -24,6 +24,11 @@ const viewer = read('src/components/MediaCandidateViewer.astro');
 const science = read('src/components/pages/SciencePage.astro');
 const projects = read('src/components/pages/ProjectsPage.astro');
 const concepts = read('src/components/ConceptDiagram.astro');
+const groupFocusStart = concepts.indexOf('@keyframes group-focus');
+const groupFocusEnd = concepts.indexOf('@keyframes route-flow', groupFocusStart);
+const groupFocus = groupFocusStart >= 0 && groupFocusEnd > groupFocusStart
+  ? concepts.slice(groupFocusStart, groupFocusEnd)
+  : '';
 
 console.log('Motion and scientific-diagram contract checks\n');
 ok(!/data-reveal(?:-bar)?\b|classList\.add\(['"]js-motion/.test(allSource), 'no generic scroll-reveal machinery or consumers');
@@ -46,6 +51,8 @@ ok(/fission-source/.test(concepts) && /connectivity-scene/.test(concepts) && /wo
 ok(/prefers-reduced-motion:\s*reduce/.test(concepts) && /animation:\s*none\s*!important/.test(concepts), 'concept-diagram motion has an instant reduced-motion path');
 ok(!/setInterval|autoplay/.test(concepts), 'concept diagrams never autoplay or loop without user input');
 ok(/@media \(max-width: 34rem\)[\s\S]*?\.concept-svg\s*\{[\s\S]*?display:\s*block/.test(concepts), 'mobile keeps the illustrated SVG visible');
+ok(groupFocus.length > 0 && !/transform\s*:/.test(groupFocus), 'animations preserve positioned SVG group transforms');
+ok(/@keyframes merge-top\s*\{\s*0%\s*\{\s*opacity:\s*0/.test(concepts), 'fusion inputs stay hidden until the fusion stage begins');
 
 if (fail.length) {
   console.error(`\nFAIL: ${fail.length} motion/diagram contract check(s) failed.`);
