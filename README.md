@@ -13,7 +13,7 @@ Caligo connects regional expertise, biological collections, genomic infrastructu
 
 ## Local development
 
-Requires Node.js 22.12+ and pnpm 11.
+Requires Node.js 24+ and pnpm 11.
 
 ```bash
 pnpm install --frozen-lockfile

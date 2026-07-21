@@ -34,9 +34,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          # Astro 7 requires Node >= 22.12. Keep this in step with .nvmrc
-          # and the `engines.node` field in package.json.
-          node-version: '22.12.0'
+          # pnpm 11 and Astro 7 are tested here on the current Node LTS/current
+          # line. Keep this in step with .nvmrc and package.json.
+          node-version: '24'
           cache: pnpm
 
       - name: Install dependencies
@@ -50,6 +50,9 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      - name: Post-build navigation checks
+        run: pnpm test:nav
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
