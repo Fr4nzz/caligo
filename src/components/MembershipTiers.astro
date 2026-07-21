@@ -1,6 +1,7 @@
 ---
 import { MEMBERSHIP_TIERS, MEMBER_BENEFITS, pick } from '../data/initiative';
 import type { Locale } from '../i18n';
+import CardIcon from './CardIcon.astro';
 
 interface Props {
   readonly locale: Locale;
@@ -16,9 +17,12 @@ const benefitsHeading: Record<typeof locale, string> = {
 
 <div class="membership-layout">
   <div class="membership-tiers">
-    {MEMBERSHIP_TIERS.map((tier) => (
+    {MEMBERSHIP_TIERS.map((tier, index) => (
       <div class="membership-card">
-        <h3 class="membership-card-name">{pick(tier.name, locale)}</h3>
+        <div class="membership-card-heading">
+          <h3 class="membership-card-name">{pick(tier.name, locale)}</h3>
+          <CardIcon name={index === 0 ? 'core' : 'affiliate'} />
+        </div>
         <p class="membership-card-summary">{pick(tier.summary, locale)}</p>
         <p class="membership-card-details">{pick(tier.details, locale)}</p>
       </div>
@@ -50,12 +54,18 @@ const benefitsHeading: Record<typeof locale, string> = {
   }
   .membership-card {
     padding: var(--space-m);
-    background: var(--bg-panel);
+    background: linear-gradient(145deg, var(--bg-panel), var(--bg-inset));
     border: 1px solid var(--hairline);
-    border-left: 2px solid var(--accent);
+    border-left: 3px solid var(--accent);
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
+    gap: var(--space-s);
+  }
+  .membership-card-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
     gap: var(--space-s);
   }
   .membership-card-name {

@@ -1,0 +1,148 @@
+---
+export type CardIconName =
+  | 'people'
+  | 'facility'
+  | 'globe'
+  | 'project'
+  | 'leadership'
+  | 'taxonomy'
+  | 'inclusive'
+  | 'open'
+  | 'practical'
+  | 'rights'
+  | 'community'
+  | 'culture'
+  | 'person'
+  | 'core'
+  | 'affiliate';
+
+interface Props {
+  readonly name: CardIconName;
+  readonly class?: string;
+}
+
+const { name, class: className } = Astro.props;
+---
+
+<span class:list={['card-icon', className]} aria-hidden="true">
+  <svg viewBox="0 0 24 24" focusable="false">
+    {name === 'people' && (
+      <>
+        <circle cx="8" cy="8" r="3" />
+        <circle cx="17" cy="9" r="2.5" />
+        <path d="M3 19c.6-3.3 2.3-5 5-5s4.4 1.7 5 5M13 16c.8-1.6 2.1-2.4 4-2.4 2.2 0 3.6 1.3 4 3.9" />
+      </>
+    )}
+    {name === 'facility' && <path d="M5 20V7h14v13M8 7V4h8v3M4 20h16M9 11h2M13 11h2M9 15h2M13 15h2" />}
+    {name === 'globe' && (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18M12 3c3 3 4 6 4 9s-1 6-4 9c-3-3-4-6-4-9s1-6 4-9" />
+      </>
+    )}
+    {name === 'project' && <path d="M5 19V5h14v14H5zM9 9h6M9 13h6M9 17h3" />}
+    {name === 'leadership' && (
+      <>
+        <path d="M5 20v-3.5c0-2.5 1.8-4.5 4.2-4.5h1.6c2.4 0 4.2 2 4.2 4.5V20" />
+        <circle cx="10" cy="7" r="3" />
+        <path d="M17 4v6M14 7h6" />
+      </>
+    )}
+    {name === 'taxonomy' && (
+      <>
+        <path d="M12 6v13M12 9C8 3 3 4 4 9c.6 3 4.8 3.5 8 1M12 9c4-6 9-5 8 0-.6 3-4.8 3.5-8 1M12 14c-3.4-3-7-1.7-6.4 1.8.5 2.5 3.6 2.7 6.4.7M12 14c3.4-3 7-1.7 6.4 1.8-.5 2.5-3.6 2.7-6.4.7" />
+      </>
+    )}
+    {name === 'inclusive' && (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="9" cy="10" r="2" />
+        <circle cx="15.5" cy="10.5" r="1.5" />
+        <path d="M5.5 17c.5-2.4 1.7-3.6 3.5-3.6s3 1.2 3.5 3.6M13 15.5c.6-1.4 1.5-2.1 2.8-2.1 1.5 0 2.4.9 2.7 2.7" />
+      </>
+    )}
+    {name === 'open' && (
+      <>
+        <circle cx="6" cy="12" r="2.5" />
+        <circle cx="18" cy="6" r="2.5" />
+        <circle cx="18" cy="18" r="2.5" />
+        <path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6" />
+      </>
+    )}
+    {name === 'practical' && <path d="M14.5 5.5a4 4 0 0 0-5 5L4 16l4 4 5.5-5.5a4 4 0 0 0 5-5l-3 3-4-4 3-3z" />}
+    {name === 'rights' && (
+      <>
+        <path d="M12 3l7 3v5c0 4.6-2.6 8-7 10-4.4-2-7-5.4-7-10V6l7-3z" />
+        <path d="M8.5 12l2.2 2.2 4.8-5" />
+      </>
+    )}
+    {name === 'community' && (
+      <>
+        <path d="M12 20c-4-2.3-7-5.5-7-9 0-3.2 2.4-5 5-3.4C11 8.2 12 9.5 12 11c0-1.5 1-2.8 2-3.4 2.6-1.6 5 .2 5 3.4 0 3.5-3 6.7-7 9z" />
+        <path d="M12 11v8M9 14l3 2 3-2" />
+      </>
+    )}
+    {name === 'culture' && (
+      <>
+        <path d="M12 3a9 9 0 1 0 0 18h1.5a2 2 0 0 0 0-4H12a1.5 1.5 0 0 1 0-3h3a6 6 0 0 0 0-12h-3z" />
+        <circle cx="7.5" cy="10" r="1" />
+        <circle cx="9" cy="6.5" r="1" />
+        <circle cx="14" cy="6" r="1" />
+      </>
+    )}
+    {name === 'person' && (
+      <>
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4.5 21c.8-4.5 3.3-6.8 7.5-6.8s6.7 2.3 7.5 6.8" />
+      </>
+    )}
+    {name === 'core' && (
+      <>
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 3v5M12 16v5M3 12h5M16 12h5" />
+      </>
+    )}
+    {name === 'affiliate' && (
+      <>
+        <circle cx="7" cy="12" r="3" />
+        <circle cx="17" cy="12" r="3" />
+        <path d="M10 12h4M12 9v6" />
+      </>
+    )}
+  </svg>
+</span>
+
+<style>
+  .card-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.125rem;
+    height: 2.125rem;
+    border: 1px solid color-mix(in oklab, var(--accent) 32%, var(--hairline));
+    border-radius: 0.625rem;
+    background: color-mix(in oklab, var(--accent) 12%, var(--bg-panel));
+    color: var(--accent-strong);
+  }
+  .card-icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  @media (max-width: 50rem) {
+    .card-icon {
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 0.5rem;
+    }
+    .card-icon svg {
+      width: 1.05rem;
+      height: 1.05rem;
+    }
+  }
+</style>

@@ -1,4 +1,6 @@
 ---
+import CardIcon, { type CardIconName } from './CardIcon.astro';
+
 type MetricKind = 'participants' | 'facilities' | 'countries' | 'pilots';
 
 interface Metric {
@@ -14,6 +16,12 @@ interface Props {
 }
 
 const { metrics, variant = 'bar' } = Astro.props;
+const iconByKind: Record<MetricKind, CardIconName> = {
+  participants: 'people',
+  facilities: 'facility',
+  countries: 'globe',
+  pilots: 'project',
+};
 ---
 
 {metrics.length >= 2 && variant === 'community-cards' && (
@@ -25,31 +33,7 @@ const { metrics, variant = 'bar' } = Astro.props;
           <span class="metric-card__label">{metric.label}</span>
           {metric.asOf && <span class="metric-card__asof">{metric.asOf}</span>}
         </span>
-        <span class="metric-card__icon" aria-hidden="true">
-          {metric.kind === 'participants' && (
-            <svg viewBox="0 0 24 24">
-              <circle cx="8" cy="8" r="3" />
-              <circle cx="17" cy="9" r="2.5" />
-              <path d="M3 19c.6-3.3 2.3-5 5-5s4.4 1.7 5 5M13 16c.8-1.6 2.1-2.4 4-2.4 2.2 0 3.6 1.3 4 3.9" />
-            </svg>
-          )}
-          {metric.kind === 'facilities' && (
-            <svg viewBox="0 0 24 24">
-              <path d="M5 20V7h14v13M8 7V4h8v3M4 20h16M9 11h2M13 11h2M9 15h2M13 15h2" />
-            </svg>
-          )}
-          {metric.kind === 'countries' && (
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M3 12h18M12 3c3 3 4 6 4 9s-1 6-4 9c-3-3-4-6-4-9s1-6 4-9" />
-            </svg>
-          )}
-          {metric.kind === 'pilots' && (
-            <svg viewBox="0 0 24 24">
-              <path d="M5 19V5h14v14H5zM9 9h6M9 13h6M9 17h3" />
-            </svg>
-          )}
-        </span>
+        {metric.kind && <CardIcon name={iconByKind[metric.kind]} class="metric-card__icon" />}
       </li>
     ))}
   </ul>
@@ -137,25 +121,7 @@ const { metrics, variant = 'bar' } = Astro.props;
     letter-spacing: 0.03em;
     line-height: 1.25;
   }
-  .metric-card__icon {
-    display: grid;
-    place-items: center;
-    width: 2.125rem;
-    height: 2.125rem;
-    border: 1px solid color-mix(in oklab, var(--accent) 32%, var(--hairline));
-    border-radius: 0.625rem;
-    background: color-mix(in oklab, var(--accent) 12%, var(--bg-panel));
-    color: var(--accent-strong);
-  }
-  .metric-card__icon svg {
-    width: 1.2rem;
-    height: 1.2rem;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
+
 
   .stat-bar {
     display: flex;
@@ -226,15 +192,7 @@ const { metrics, variant = 'bar' } = Astro.props;
       font-size: 0.5rem;
       white-space: nowrap;
     }
-    .metric-card__icon {
-      width: 1.7rem;
-      height: 1.7rem;
-      border-radius: 0.5rem;
-    }
-    .metric-card__icon svg {
-      width: 1rem;
-      height: 1rem;
-    }
+
   }
 
   @media (max-width: 22rem) {

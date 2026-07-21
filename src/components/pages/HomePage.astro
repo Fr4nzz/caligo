@@ -718,7 +718,12 @@ const homeMetrics = [
     border: 1px solid var(--hairline);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    background: var(--bg-panel);
+    background: linear-gradient(145deg, var(--bg-panel), var(--bg-inset));
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .pilot-card:focus-within {
+    border-color: color-mix(in oklab, var(--accent) 48%, var(--hairline));
+    box-shadow: inset 3px 0 0 var(--accent);
   }
   .pilot-card-media { flex: none; }
   .pilot-card-content {
@@ -839,7 +844,7 @@ const homeMetrics = [
   .close-namesake {
     min-width: 0;
     padding: var(--space-l);
-    background: var(--bg-panel);
+    background: linear-gradient(145deg, var(--bg-panel), var(--bg-inset));
     border: 1px solid var(--hairline);
     border-left: 2px solid var(--accent);
     border-radius: var(--radius-lg);
