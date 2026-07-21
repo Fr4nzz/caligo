@@ -10,7 +10,7 @@ import sitemap from '@astrojs/sitemap';
 //
 // Override without editing this file via environment variables, e.g.:
 //   SITE_URL=https://caligo.org BASE_PATH=/ pnpm build
-const SITE = process.env.SITE_URL ?? 'https://caligo.github.io';
+const SITE = process.env.SITE_URL ?? 'https://fr4nzz.github.io';
 const BASE = process.env.BASE_PATH ?? '/caligo/';
 
 // Extra hostnames allowed by the local `pnpm dev` / `pnpm preview` servers,
