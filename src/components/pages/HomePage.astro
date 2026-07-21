@@ -80,11 +80,11 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
 
 const { facilities, countries } = facilityStats();
 const homeMetrics = [
-  { value: PARTICIPANTS.value, label: h.stats.participants, asOf: h.stats.asOf },
-  { value: facilities, label: h.stats.facilities },
-  { value: countries, label: h.stats.countries },
-  { value: PROJECTS.length, label: h.stats.pilots },
-];
+  { kind: 'participants', value: PARTICIPANTS.value, label: h.stats.participants, asOf: h.stats.asOf },
+  { kind: 'facilities', value: facilities, label: h.stats.facilities },
+  { kind: 'countries', value: countries, label: h.stats.countries },
+  { kind: 'pilots', value: PROJECTS.length, label: h.stats.pilots },
+] as const;
 ---
 
 <Base locale={locale} title={h.metaTitle} description={h.metaDescription} page="/">
@@ -131,7 +131,7 @@ const homeMetrics = [
   <!-- ==================== STAT BAR — network metrics ==================== -->
   <section class="section stat-bar-section">
     <div class="container-wide">
-      <StatBar metrics={homeMetrics}/>
+      <StatBar metrics={homeMetrics} variant="community-cards" />
     </div>
   </section>
 
