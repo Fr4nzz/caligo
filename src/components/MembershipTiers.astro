@@ -1,0 +1,117 @@
+---
+import { MEMBERSHIP_TIERS, MEMBER_BENEFITS, pick } from '../data/initiative';
+import type { Locale } from '../i18n';
+
+interface Props {
+  readonly locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const benefitsHeading: Record<typeof locale, string> = {
+  en: 'Member benefits',
+  es: 'Beneficios para miembros',
+};
+---
+
+<div class="membership-layout">
+  <div class="membership-tiers">
+    {MEMBERSHIP_TIERS.map((tier) => (
+      <div class="membership-card">
+        <h3 class="membership-card-name">{pick(tier.name, locale)}</h3>
+        <p class="membership-card-summary">{pick(tier.summary, locale)}</p>
+        <p class="membership-card-details">{pick(tier.details, locale)}</p>
+      </div>
+    ))}
+  </div>
+  <div class="membership-benefits">
+    <h3 class="benefits-heading mono">{benefitsHeading[locale]}</h3>
+    <ul class="benefits-list">
+      {MEMBER_BENEFITS.map((benefit) => (
+        <li class="benefits-item">{pick(benefit, locale)}</li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .membership-layout {
+    display: grid;
+    gap: var(--space-l);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 56rem) {
+    .membership-layout { grid-template-columns: 1fr 1fr; }
+  }
+  .membership-tiers {
+    display: grid;
+    gap: var(--space-m);
+    align-content: start;
+  }
+  .membership-card {
+    padding: var(--space-m);
+    background: var(--bg-panel);
+    border: 1px solid var(--hairline);
+    border-left: 2px solid var(--accent);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+  .membership-card-name {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    font-weight: 620;
+    color: var(--text-strong);
+    letter-spacing: -0.006em;
+  }
+  .membership-card-summary {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .membership-card-details {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .membership-benefits {
+    min-width: 0;
+  }
+  .benefits-heading {
+    margin: 0 0 var(--space-s);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .benefits-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--hairline-strong);
+  }
+  .benefits-item {
+    position: relative;
+    padding-block: var(--space-s);
+    padding-left: var(--space-m);
+    border-bottom: 1px solid var(--hairline);
+    font-size: var(--step-0);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .benefits-item::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: var(--font-mono);
+  }
+  .benefits-item:last-child {
+    border-bottom: none;
+  }
+</style>

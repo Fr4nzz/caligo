@@ -1,0 +1,322 @@
+---
+/**
+ * ParticipatePage — expanded layout with membership, form fields and language
+ * policy sections, plus the existing contact and JoinCTA blocks.
+ *
+ * Section order:
+ *   P1  PageHeader — title + intro.
+ *   P2  Ways to contribute — audience types.
+ *   P-Membership — two membership tiers + seven member benefits.
+ *   P-FormFields — eleven registration form fields.
+ *   P-LangPolicy — working-languages policy.
+ *   P-Join — JoinCTA full block (primary CTA).
+ *   P3  Email CTA + safe-sharing advisory.
+ *
+ * DiscordCTA is intentionally hidden — re-enable when a permanent invite
+ * exists (owner decision, plan Q5).
+ */
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../PageHeader.astro';
+import Icon from '../Icon.astro';
+import JoinCTA from '../JoinCTA.astro';
+import MembershipTiers from '../MembershipTiers.astro';
+import { getDict, type Locale } from '../../i18n';
+import { FORM_FIELDS } from '../../data/initiative';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const p = t.participate;
+---
+
+<Base locale={locale} title={p.metaTitle} description={p.metaDescription} page="/participate">
+
+  <!-- P1 — Header -->
+  <PageHeader eyebrow={t.nav.participate} title={p.title} intro={p.intro} />
+
+  <!-- P2 — Ways to contribute (audience types) -->
+  <section class="section section--tight section--panel" aria-labelledby="ways-heading">
+    <div class="container-wide">
+      <h2 id="ways-heading">{p.audiences.heading}</h2>
+      <ol class="ways-list" role="list">
+        {p.audiences.items.map((item, i) => (
+          <li class="way">
+            <span class="way-index mono" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span class="way-text">{item}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- P-Membership — Two membership tiers + seven benefits -->
+  <section class="section section--tight" aria-labelledby="membership-heading">
+    <div class="container-wide">
+      <h2 id="membership-heading">{p.membership.heading}</h2>
+      <p class="section-intro muted">{p.membership.intro}</p>
+      <MembershipTiers locale={locale} />
+    </div>
+  </section>
+
+  <!-- P-FormFields — Eleven registration form fields -->
+  <section class="section section--tight section--panel" aria-labelledby="form-fields-heading">
+    <div class="container-wide">
+      <h2 id="form-fields-heading">{p.formFields.heading}</h2>
+      <p class="section-intro muted">{p.formFields.intro}</p>
+      <ol class="fields-list" role="list">
+        {FORM_FIELDS.map((field, i) => (
+          <li class="field-item">
+            <span class="field-index mono" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span class="field-text">{field[locale]}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- P-LangPolicy — Working languages -->
+  <section class="section section--tight" aria-labelledby="lang-policy-heading">
+    <div class="container-wide lang-policy-layout">
+      <h2 id="lang-policy-heading" class="lang-policy-heading">{p.languagePolicy.heading}</h2>
+      <p class="lang-policy-body">{p.languagePolicy.body}</p>
+    </div>
+  </section>
+
+  <!-- P-Join — Registration form CTA (primary, full block) -->
+  <section class="section section--tight">
+    <div class="container-wide">
+      <JoinCTA variant="full" locale={locale} />
+    </div>
+  </section>
+
+  <!-- P3 — Email CTA + safe-sharing advisory -->
+  <section class="section section--tight" aria-labelledby="contact">
+    <div class="container-wide contact-layout">
+      <header class="contact-head">
+        <span class="tick" aria-hidden="true"></span>
+        <h2 id="contact">{p.contact.heading}</h2>
+      </header>
+      <div class="contact-body">
+        <p class="contact-lede">{p.contact.body}</p>
+        <a class="contact-mail" href={`mailto:${p.contact.email}`}>
+          <Icon name="mail" />
+          <span class="contact-mail-addr mono">{p.contact.email}</span>
+        </a>
+
+        <!-- Safe-sharing advisory inline below the email CTA -->
+        <div class="advisory">
+          <header class="advisory-head">
+            <span class="tick tick--ochre" aria-hidden="true"></span>
+            <h3 class="advisory-title">{p.beforeSubmitting.heading}</h3>
+          </header>
+          <p class="advisory-body">{p.beforeSubmitting.body}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* DiscordCTA hidden — re-enable when a permanent invite exists (owner decision, plan Q5) */}
+
+</Base>
+
+<style>
+  /* ---- Section rhythm ---- */
+  .section { padding-block: var(--space-xl); }
+  .section--tight { padding-block: var(--space-l); }
+  .section--panel {
+    background: var(--bg-raised);
+    border-block: 1px solid var(--hairline);
+  }
+  .section-intro {
+    max-width: var(--measure);
+    margin-bottom: var(--space-m);
+  }
+
+  /* ---- P2 Ways list ---- */
+  .ways-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-l) 0 0;
+    border-top: 1px solid var(--hairline-strong);
+  }
+  .way {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--space-s);
+    align-items: baseline;
+    padding-block: var(--space-m);
+    border-bottom: 1px solid var(--hairline);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .way-index {
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--accent-strong);
+  }
+  .way-text { max-width: var(--measure); }
+
+  /* ---- P-FormFields list ---- */
+  .fields-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--hairline-strong);
+  }
+  .field-item {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--space-s);
+    align-items: baseline;
+    padding-block: var(--space-s);
+    border-bottom: 1px solid var(--hairline);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .field-index {
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--text-faint);
+  }
+  .field-text { max-width: var(--measure); }
+
+  /* ---- P-LangPolicy ---- */
+  .lang-policy-layout {
+    display: grid;
+    gap: var(--space-s);
+    max-width: var(--measure);
+  }
+  .lang-policy-heading {
+    margin: 0;
+  }
+  .lang-policy-body {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ---- P3 Contact layout — two-col on wide screens; sticky heading ---- */
+  .contact-layout {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  @media (min-width: 52rem) {
+    .contact-layout {
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: var(--space-xl);
+    }
+    .contact-head { position: sticky; top: 5.5rem; }
+  }
+  .contact-head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+  .contact-head h2 {
+    margin: 0;
+    max-width: 20ch;
+  }
+  .tick {
+    display: block;
+    width: 2.2rem;
+    height: 2px;
+    background: var(--accent);
+  }
+  .tick--ochre { background: var(--highlight); }
+  .contact-body { min-width: 0; }
+  .contact-lede {
+    color: var(--text);
+    max-width: var(--measure);
+  }
+
+  /* Email chip */
+  .contact-mail {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: var(--space-m);
+    padding: 0.7rem 0.9rem;
+    max-width: 100%;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    background: var(--bg-inset);
+    color: var(--text);
+    text-decoration: none;
+    transition:
+      background var(--transition),
+      border-color var(--transition),
+      color var(--transition);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .contact-mail:hover,
+  .contact-mail:focus-visible {
+    background: var(--bg-panel-hover);
+    border-color: var(--accent);
+    color: var(--text-strong);
+  }
+  .contact-mail :global(svg) {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+    color: var(--accent);
+  }
+  .contact-mail-addr {
+    font-size: var(--step--1);
+    letter-spacing: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Advisory callout — inline below email CTA */
+  .advisory {
+    margin-top: var(--space-l);
+    padding: var(--space-m);
+    background: var(--bg-inset);
+    border: 1px solid var(--hairline);
+    border-left-width: 2px;
+    border-left-color: var(--highlight);
+    border-radius: var(--radius);
+    max-width: var(--measure);
+  }
+  .advisory-head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: var(--space-s);
+  }
+  .advisory-title {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    font-weight: 620;
+    color: var(--text-strong);
+    letter-spacing: -0.006em;
+    max-width: 24ch;
+  }
+  .advisory-body {
+    color: var(--text);
+    max-width: var(--measure);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* Mobile safety */
+  @media (max-width: 26rem) {
+    .contact-mail { align-items: flex-start; }
+    .contact-mail :global(svg) { margin-top: 0.15rem; }
+  }
+</style>

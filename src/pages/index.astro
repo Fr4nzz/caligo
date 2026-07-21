@@ -1,0 +1,20 @@
+---
+// Root path: send visitors to the default-locale home. Kept as a static page
+// with both a meta refresh and a link so it works without JavaScript.
+import { DEFAULT_LOCALE, localePath } from '../i18n';
+const target = localePath(DEFAULT_LOCALE, '/');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>Caligo — Genomes of Neotropical butterflies and moths</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <p>Redirecting to <a href={target}>Caligo</a>.</p>
+  </body>
+</html>

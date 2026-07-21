@@ -1,0 +1,125 @@
+---
+import { FACILITIES, facilityStats, pick } from '../data/initiative';
+import type { Locale } from '../i18n';
+
+interface Props {
+  readonly locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const stats = facilityStats();
+
+const facilityLabel: Record<typeof locale, string> = { en: 'facilities', es: 'instalaciones' };
+const countryLabel: Record<typeof locale, string> = { en: 'countries', es: 'países' };
+
+const labels = {
+  caption:     { en: 'Partner facilities', es: 'Instalaciones asociadas' },
+  institution: { en: 'Institution', es: 'Institución' },
+  country:     { en: 'Country', es: 'País' },
+  platforms:   { en: 'Platforms', es: 'Plataformas' },
+  total:       { en: 'Total', es: 'Total' },
+} as const;
+---
+
+<div class="facility-table-wrapper">
+  <table class="facility-table">
+    <caption class="facility-caption">{labels.caption[locale]}</caption>
+    <thead>
+      <tr>
+        <th scope="col" class="col-institution">{labels.institution[locale]}</th>
+        <th scope="col" class="col-country">{labels.country[locale]}</th>
+        <th scope="col" class="col-platforms">{labels.platforms[locale]}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {FACILITIES.map((facility) => (
+        <tr>
+          <td class="cell-institution">{facility.institution}</td>
+          <td class="cell-country">{pick(facility.country, locale)}</td>
+          <td class="cell-platforms">{facility.platforms}</td>
+        </tr>
+      ))}
+    </tbody>
+    <tfoot>
+      <tr class="tfoot-row">
+        <td class="tfoot-agg mono" colspan="3">
+          {labels.total[locale]}: {stats.facilities} {facilityLabel[locale]} · {stats.countries} {countryLabel[locale]}
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<style>
+  .facility-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+  }
+  .facility-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+    font-size: var(--step--1);
+  }
+  .facility-caption {
+    caption-side: top;
+    text-align: left;
+    padding: var(--space-s) var(--space-m);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    border-bottom: 1px solid var(--hairline);
+    background: var(--bg-inset);
+  }
+  thead th {
+    padding: var(--space-s) var(--space-m);
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    background: var(--bg-inset);
+    border-bottom: 1px solid var(--hairline-strong);
+    white-space: nowrap;
+  }
+  tbody tr {
+    border-bottom: 1px solid var(--hairline);
+  }
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+  tbody td {
+    padding: var(--space-s) var(--space-m);
+    color: var(--text);
+    line-height: 1.4;
+    vertical-align: top;
+  }
+  .cell-institution {
+    font-weight: 560;
+    color: var(--text-strong);
+  }
+  .cell-country {
+    white-space: nowrap;
+  }
+  .tfoot-row {
+    background: var(--bg-inset);
+    border-top: 1px solid var(--hairline-strong);
+  }
+  .tfoot-agg {
+    padding: var(--space-s) var(--space-m);
+    font-size: var(--step--2);
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+  .col-institution { width: 40%; }
+  .col-country     { width: 25%; }
+  .col-platforms   { width: 35%; }
+</style>

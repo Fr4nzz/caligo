@@ -1,0 +1,395 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/global.css';
+import '../styles/disclosure.css';
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getDict, LOCALE_LANG, switchLocalePath, type Locale } from '../i18n';
+import {
+  ALLOWED_PALETTES,
+  MODES,
+  MODE_COLORS,
+  DEFAULT_PALETTE,
+  DEFAULT_MODE,
+} from '../config/palettes';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  /** Current logical page path without locale, e.g. '/science'. */
+  page?: string;
+  /** Emit <meta name="robots" content="noindex, nofollow">. For internal preview pages. */
+  noindex?: boolean;
+}
+
+const { locale, title, description, page = '/', noindex = false } = Astro.props;
+const t = getDict(locale);
+const lang = LOCALE_LANG[locale];
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const altEn = new URL(switchLocalePath(Astro.url.pathname, 'en'), Astro.site).href;
+const altEs = new URL(switchLocalePath(Astro.url.pathname, 'es'), Astro.site).href;
+
+// The pre-paint script needs a minimal, safe payload — palette + mode
+// whitelists and the theme-color hex map. Serialise here (frontmatter runs
+// at build time); the inline script cannot import at runtime.
+const enginePayload = JSON.stringify({
+  palettes: ALLOWED_PALETTES,
+  modes: MODES,
+  colors: MODE_COLORS,
+  defaults: { palette: DEFAULT_PALETTE, mode: DEFAULT_MODE },
+});
+
+// Pre-paint engine. Runs BEFORE first paint. All operations try/catch so a
+// broken storage / matchMedia / URL never blocks rendering. Order:
+//   (1) migrate legacy 'caligo-theme' → 'caligo-mode' (+ default palette)
+//   (2) parse ?palette / ?mode from URL, whitelist each independently
+//   (3) resolve: URL || localStorage || system-preference || default
+//   (4) apply data-palette + data-mode to <html>
+//   (5) persist any valid URL overrides to localStorage
+//   (6) update <meta name="theme-color"> to MODE_COLORS[palette][mode]
+const themeInit = `
+(function(){
+  var E=${enginePayload};
+  var d=document.documentElement;
+  function has(list, v){ return v && list.indexOf(v) !== -1; }
+
+  // (1) legacy migration
+  try {
+    if (!localStorage.getItem('caligo-palette') && !localStorage.getItem('caligo-mode')) {
+      var legacy = localStorage.getItem('caligo-theme');
+      if (legacy === 'dark' || legacy === 'light') {
+        localStorage.setItem('caligo-mode', legacy);
+        localStorage.setItem('caligo-palette', E.defaults.palette);
+      }
+      if (legacy !== null) { try { localStorage.removeItem('caligo-theme'); } catch(_){} }
+    }
+  } catch(_){ /* storage unavailable */ }
+
+  // (2) URL params (whitelist-validated independently)
+  var urlPalette=null, urlMode=null;
+  try {
+    var qs = new URLSearchParams(location.search);
+    var p = qs.get('palette'); if (has(E.palettes, p)) urlPalette = p;
+    var m = qs.get('mode');    if (has(E.modes,    m)) urlMode    = m;
+  } catch(_){}
+
+  // (3) resolve per-axis
+  var storedPalette=null, storedMode=null;
+  try { storedPalette = localStorage.getItem('caligo-palette'); if(!has(E.palettes,storedPalette)) storedPalette=null; } catch(_){}
+  try { storedMode    = localStorage.getItem('caligo-mode');    if(!has(E.modes,   storedMode))    storedMode   =null; } catch(_){}
+  var sysMode = E.defaults.mode;
+  try { if (window.matchMedia('(prefers-color-scheme: light)').matches) sysMode='light'; } catch(_){}
+
+  var palette = urlPalette || storedPalette || E.defaults.palette;
+  var mode    = urlMode    || storedMode    || sysMode;
+
+  // (4) apply
+  d.setAttribute('data-palette', palette);
+  d.setAttribute('data-mode',    mode);
+
+  // (5) persist valid URL overrides only (independently per axis)
+  try {
+    if (urlPalette) localStorage.setItem('caligo-palette', urlPalette);
+    if (urlMode)    localStorage.setItem('caligo-mode',    urlMode);
+  } catch(_){}
+
+  // (6) theme-color meta
+  try {
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','theme-color'); document.head.appendChild(meta); }
+    var c = (E.colors[palette] && E.colors[palette][mode]) || E.colors[E.defaults.palette][E.defaults.mode];
+    meta.setAttribute('content', c);
+  } catch(_){}
+})();
+`;
+
+// SSR default matches the pre-paint script's fallback: zero FOUC when the
+// user has no stored preference and the URL carries no override.
+const ssrThemeColor = MODE_COLORS[DEFAULT_PALETTE][DEFAULT_MODE];
+---
+
+<!doctype html>
+<html lang={lang} data-palette={DEFAULT_PALETTE} data-mode={DEFAULT_MODE}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}favicon-32.png`} />
+    <link rel="icon" type="image/png" sizes="16x16" href={`${import.meta.env.BASE_URL}favicon-16.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${import.meta.env.BASE_URL}apple-touch-icon.png`} />
+    {!noindex && (
+      <>
+        <link rel="canonical" href={canonical} />
+        <link rel="alternate" hreflang="en" href={altEn} />
+        <link rel="alternate" hreflang="es" href={altEs} />
+        <link rel="alternate" hreflang="x-default" href={altEn} />
+      </>
+    )}
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content={ssrThemeColor} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Caligo" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={locale === 'es' ? 'es_ES' : 'en_GB'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="generator" content={Astro.generator} />
+    <ClientRouter />
+    <script is:inline set:html={themeInit} />
+    <script is:inline>
+      /*
+        ClientRouter navigation handler. Two responsibilities:
+
+        1. Theme rehydration. <ClientRouter /> swaps <html>+<head>+<body>
+           on navigation; the incoming document carries the SSR default
+           palette/mode. On astro:before-swap we re-apply the visitor's
+           stored preference to the new document BEFORE first paint so
+           palette/mode do not flash to default. Auto-respects
+           reduced-motion via ClientRouter's built-in gate.
+
+        2. Scroll preservation across language switches AND flash-free
+           scroll restoration. Astro's ClientRouter calls
+           scrollTo({top:0, behavior:'instant'}) inside moveToLocation()
+           BEFORE astro:after-swap fires (see withastro/astro#10615,
+           node_modules/astro/dist/transitions/router.js:130-132), so
+           restoring in astro:page-load would happen AFTER the browser
+           painted the top-frame — a visible flash. The correct sequence:
+
+             astro:before-swap
+               - capture scrollY (and nearest section-id anchor above
+                 the viewport for language swaps, so the equivalent
+                 section on the translated page can hold position).
+               - set event.newDocument.documentElement.style.minHeight
+                 so the incoming page can hold the y position even if
+                 it is shorter than the outgoing page.
+             astro:after-swap
+               - scrollTo({top: capturedY, behavior:'instant'}) — runs
+                 RIGHT AFTER Astro's own scrollTo(0,0), synchronously,
+                 before the browser paints. No visible top-frame.
+             astro:page-load
+               - clear the minHeight shim so subsequent navigations do
+                 not carry ghost whitespace.
+
+        Sections use language-neutral IDs (overview, questions,
+        proposed-pilots, …) so the anchor exists on both EN and ES.
+      */
+      (function () {
+        if (window.__caligoBeforeSwapRegistered) return;
+        window.__caligoBeforeSwapRegistered = true;
+
+        var savedX = 0;
+        var savedY = 0;
+        var savedSuffix = '';
+        var savedSectionId = '';
+        var savedSectionOffset = 0;
+        var restoreQueued = false;
+
+        function localePathSuffix(pathname) {
+          return pathname.replace(/^\/caligo\/(en|es)\//, '/');
+        }
+
+        function nearestSectionAbove() {
+          var candidates = document.querySelectorAll('section[id], article[id], main [id]');
+          var vpTop = window.scrollY;
+          var pick = null;
+          for (var i = 0; i < candidates.length; i++) {
+            var el = candidates[i];
+            if (!el.id) continue;
+            var rect = el.getBoundingClientRect();
+
+            // Hidden compatibility anchors (for example Home's legacy
+            // `h1`…`h6` spans) have a zero-sized rect whose `top` is 0.
+            // Adding scrollY makes them appear to sit exactly at the current
+            // viewport position, so they used to win as the "nearest" anchor.
+            // On the translated page the same hidden element resolves to
+            // document position 0, incorrectly restoring the visitor to the
+            // top. Only rendered boxes are valid semantic scroll anchors.
+            if (
+              el.hidden ||
+              el.getAttribute('aria-hidden') === 'true' ||
+              (rect.width === 0 && rect.height === 0)
+            ) continue;
+
+            var elTop = rect.top + window.scrollY;
+            if (elTop <= vpTop + 8) {
+              if (!pick || elTop > pick.top) pick = { id: el.id, top: elTop };
+            }
+          }
+          return pick;
+        }
+
+        function persistCurrentScroll() {
+          try {
+            var scrolls = JSON.parse(sessionStorage.getItem('caligoPageScrolls') || '{}');
+            scrolls[location.pathname] = { x: window.scrollX, y: window.scrollY };
+            sessionStorage.setItem('caligoPageScrolls', JSON.stringify(scrolls));
+          } catch (_) { /* storage unavailable */ }
+        }
+        function lookupPersistedScroll(pathname) {
+          try {
+            var scrolls = JSON.parse(sessionStorage.getItem('caligoPageScrolls') || '{}');
+            return scrolls[pathname] || null;
+          } catch (_) { return null; }
+        }
+
+        document.addEventListener('astro:before-swap', function (event) {
+          try {
+            var p = localStorage.getItem('caligo-palette');
+            var m = localStorage.getItem('caligo-mode');
+            var el = event.newDocument.documentElement;
+            if (p) el.setAttribute('data-palette', p);
+            if (m) el.setAttribute('data-mode', m);
+          } catch (_) { /* storage unavailable */ }
+
+          // Persist current scroll for Back/Forward restoration.
+          persistCurrentScroll();
+
+          savedX = window.scrollX;
+          savedY = window.scrollY;
+          savedSuffix = localePathSuffix(location.pathname);
+          var pick = nearestSectionAbove();
+          savedSectionId = pick ? pick.id : '';
+          savedSectionOffset = pick ? Math.max(0, savedY - pick.top) : 0;
+          restoreQueued = true;
+
+          // Shim min-height on the incoming document so the restored scroll
+          // position is representable even if the new page is shorter than
+          // the outgoing page. Cleared in astro:page-load below.
+          try {
+            event.newDocument.documentElement.style.minHeight =
+              (savedY + window.innerHeight) + 'px';
+          } catch (_) { /* ignore */ }
+        });
+
+        document.addEventListener('astro:after-swap', function () {
+          if (!restoreQueued) return;
+          var newSuffix = localePathSuffix(location.pathname);
+          // Same-suffix locale swap: restore captured scroll (with section anchoring).
+          if (savedSuffix === newSuffix) {
+            if (savedSectionId) {
+              var target = document.getElementById(savedSectionId);
+              if (target) {
+                var rect = target.getBoundingClientRect();
+                var elTop = rect.top + window.scrollY;
+                window.scrollTo({
+                  left: 0,
+                  top: elTop + savedSectionOffset,
+                  behavior: 'instant',
+                });
+                return;
+              }
+            }
+            window.scrollTo({ left: savedX, top: savedY, behavior: 'instant' });
+            return;
+          }
+          // Cross-page nav (Back/Forward or fresh nav): check per-URL persisted
+          // scroll so Home → Science → Back returns to Home's previous position.
+          // Applied on both current and next rAF because Astro's historyState
+          // scroll (router.js L134-135) can override the first call.
+          var persisted = lookupPersistedScroll(location.pathname);
+          if (persisted) {
+            window.scrollTo({ left: persisted.x || 0, top: persisted.y || 0, behavior: 'instant' });
+            requestAnimationFrame(function () {
+              window.scrollTo({ left: persisted.x || 0, top: persisted.y || 0, behavior: 'instant' });
+            });
+          }
+        });
+
+        document.addEventListener('astro:page-load', function () {
+          try {
+            document.documentElement.style.minHeight = '';
+          } catch (_) { /* ignore */ }
+          restoreQueued = false;
+        });
+      })();
+    </script>
+    <script is:inline>
+      /* Cross-browser enhancement for native disclosures. The `open`
+         attribute remains the source of truth; JS only keeps it present long
+         enough to animate a close in engines without ::details-content. */
+      (function () {
+        function setupDisclosures() {
+          var reduce = false;
+          try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (_) {}
+          if (reduce || !Element.prototype.animate) return;
+
+          var details = document.querySelectorAll('.disclosure, .section-rail-disclosure');
+          details.forEach(function (detail) {
+            if (detail.getAttribute('data-disclosure-enhanced') === 'true') return;
+            var summary = detail.querySelector(':scope > summary');
+            var body = detail.querySelector(':scope > .disclosure-body, :scope > .section-rail-content');
+            if (!summary || !body) return;
+            detail.setAttribute('data-disclosure-enhanced', 'true');
+
+            summary.addEventListener('click', function (event) {
+              if (detail.getAttribute('data-disclosure-animating') === 'true') {
+                event.preventDefault();
+                return;
+              }
+
+              if (!detail.hasAttribute('open')) {
+                // Let the native click toggle `open`, then animate the body.
+                requestAnimationFrame(function () {
+                  if (!detail.hasAttribute('open') || detail.getAttribute('data-disclosure-animating') === 'true') return;
+                  detail.setAttribute('data-disclosure-animating', 'true');
+                  var height = body.scrollHeight;
+                  var animation = body.animate(
+                    [
+                      { height: '0px', opacity: 0, overflow: 'hidden' },
+                      { height: height + 'px', opacity: 1, overflow: 'hidden' }
+                    ],
+                    { duration: 200, easing: 'ease-out' }
+                  );
+                  animation.addEventListener('finish', function () {
+                    detail.removeAttribute('data-disclosure-animating');
+                  }, { once: true });
+                });
+                return;
+              }
+
+              // Keep native content exposed during the close animation, then
+              // remove `open` so focusability and accessibility semantics are
+              // restored by the browser in the normal way.
+              event.preventDefault();
+              detail.setAttribute('data-disclosure-animating', 'true');
+              var height = body.getBoundingClientRect().height;
+              var animation = body.animate(
+                [
+                  { height: height + 'px', opacity: 1, overflow: 'hidden' },
+                  { height: '0px', opacity: 0, overflow: 'hidden' }
+                ],
+                { duration: 200, easing: 'ease-in' }
+              );
+              animation.addEventListener('finish', function () {
+                detail.removeAttribute('open');
+                detail.removeAttribute('data-disclosure-animating');
+              }, { once: true });
+            });
+          });
+        }
+
+        document.addEventListener('astro:page-load', setupDisclosures);
+        if (document.readyState !== 'loading') setupDisclosures();
+        else document.addEventListener('DOMContentLoaded', setupDisclosures);
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t.common.skipToContent}</a>
+    <Header locale={locale} page={page} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>

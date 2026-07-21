@@ -1,0 +1,67 @@
+---
+import { getDict, switchLocalePath, LOCALES, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+
+const SHORT: Record<Locale, string> = { en: 'EN', es: 'ES' };
+const FULL: Record<Locale, string> = { en: 'English', es: 'Español' };
+---
+
+<div class="lang" role="group" aria-label={t.common.chooseLanguage}>
+  {
+    LOCALES.map((code) =>
+      code === locale ? (
+        <span class="lang-item is-active" aria-current="true" lang={code}>
+          <span aria-hidden="true">{SHORT[code]}</span>
+          <span class="sr-only">{FULL[code]}</span>
+        </span>
+      ) : (
+        <a
+          class="lang-item"
+          href={switchLocalePath(Astro.url.pathname, code)}
+          lang={code}
+          hreflang={code}
+        >
+          <span aria-hidden="true">{SHORT[code]}</span>
+          <span class="sr-only">{FULL[code]}</span>
+        </a>
+      )
+    )
+  }
+</div>
+
+<style>
+  .lang {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px;
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius);
+    background: color-mix(in oklab, var(--bg-panel) 55%, transparent);
+  }
+  .lang-item {
+    display: inline-grid;
+    place-items: center;
+    min-width: 2rem;
+    height: 1.9rem;
+    padding-inline: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: calc(var(--radius) - 3px);
+    transition: color var(--transition), background var(--transition);
+  }
+  .lang-item:hover {
+    color: var(--text-strong);
+  }
+  .lang-item.is-active {
+    color: var(--accent-contrast);
+    background: var(--accent);
+  }
+</style>

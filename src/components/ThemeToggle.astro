@@ -1,0 +1,92 @@
+---
+/*
+  ThemeToggle — one-click MODE toggle (light ↔ dark).
+  Palette-axis lives in PaletteSelector; this button only flips data-mode
+  and writes the 'caligo-mode' key. Migration from the legacy 'caligo-theme'
+  key is handled centrally by the pre-paint script in src/layouts/Base.astro.
+*/
+import { getDict, type Locale } from '../i18n';
+import Icon from './Icon.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+---
+
+<button class="theme-toggle" type="button" data-mode-toggle aria-label={t.common.toggleTheme}>
+  <Icon name="sun" class="icon-sun" />
+  <Icon name="moon" class="icon-moon" />
+  <span class="sr-only">{t.common.toggleTheme}</span>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    background: transparent;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    color: var(--text);
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition), color var(--transition);
+  }
+  .theme-toggle:hover {
+    background: var(--bg-panel-hover);
+    border-color: var(--accent);
+    color: var(--text-strong);
+  }
+  .theme-toggle :global(svg) {
+    width: 1.2rem;
+    height: 1.2rem;
+    grid-area: 1 / 1;
+  }
+  /* Dark shows the sun (click to go light); light shows the moon. */
+  :global([data-mode='dark']) .theme-toggle :global(.icon-moon) {
+    display: none;
+  }
+  :global([data-mode='light']) .theme-toggle :global(.icon-sun) {
+    display: none;
+  }
+</style>
+
+<script>
+  /*
+    Wrapped in an initializer bound to `astro:page-load` so the click
+    listener re-attaches after every <ClientRouter /> navigation (each
+    swap replaces the toggle DOM node). The guard on
+    btn.dataset.themeToggleInit prevents duplicate listeners on the
+    same node.
+  */
+  function initThemeToggle() {
+    const KEY = 'caligo-mode';
+    const btn = document.querySelector<HTMLButtonElement>('[data-mode-toggle]');
+    if (!btn) return;
+    if (btn.dataset.themeToggleInit === '1') return;
+    btn.dataset.themeToggleInit = '1';
+    btn.addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-mode') === 'light' ? 'light' : 'dark';
+      const next: 'dark' | 'light' = cur === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-mode', next);
+      try {
+        localStorage.setItem(KEY, next);
+      } catch (e) {
+        /* storage unavailable; mode still applies for this page */
+      }
+      const palette = document.documentElement.getAttribute('data-palette') ?? 'caligo';
+      const map: Record<string, Record<string, string>> = {
+        caligo: { dark: '#171310', light: '#F6F7F3' },
+        canopy: { dark: '#07100D', light: '#EEF4F0' },
+        morpho: { dark: '#0A101B', light: '#EEF1F7' },
+      };
+      const meta = document.querySelector('meta[name="theme-color"]');
+      const c = map[palette]?.[next] ?? map.caligo[next];
+      if (meta) meta.setAttribute('content', c);
+    });
+  }
+  document.addEventListener('astro:page-load', initThemeToggle);
+  initThemeToggle();
+</script>

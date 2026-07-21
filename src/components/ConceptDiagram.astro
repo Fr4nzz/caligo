@@ -1,0 +1,369 @@
+---
+import type { Locale } from '../i18n';
+
+type DiagramKind = 'chromosome' | 'connectivity' | 'monitoring' | 'migration';
+
+interface Props {
+  readonly locale: Locale;
+  readonly kind: DiagramKind;
+  readonly context?: 'science' | 'pilot';
+}
+
+const { locale, kind, context = 'science' } = Astro.props;
+const id = `concept-${context}-${kind}`;
+
+const copy = {
+  en: {
+    conceptual: 'Conceptual schematic — not results or data',
+    chromosome: {
+      title: 'Chromosome fission and fusion',
+      desc: 'A generic schematic showing that one chromosome can split into two through fission, while two chromosomes can join through fusion. It does not depict a particular species, chromosome, or result.',
+      one: 'one chromosome',
+      two: 'two chromosomes',
+      fission: 'fission',
+      fusion: 'fusion',
+      question: 'compare chromosome-scale assemblies',
+    },
+    connectivity: {
+      title: 'Population connectivity and gene flow',
+      desc: 'A generic schematic of habitat patches connected by possible gene flow. Dashed paths represent relationships to test, not measured routes, locations, or results.',
+      patches: 'sampled habitat patches',
+      test: 'gene flow to test',
+      compare: 'compare inherited variation',
+    },
+    monitoring: {
+      title: 'Movement and resistance monitoring',
+      desc: 'A conceptual workflow linking repeated field sampling, confirmed species identification, tests of movement and candidate resistance-associated variants, and validated monitoring. It contains no observations or results.',
+      sample: 'repeat sampling',
+      identify: 'confirm species',
+      movement: 'test movement',
+      candidates: 'candidate variants',
+      validate: 'validate monitoring',
+    },
+    migration: {
+      title: 'Testing seasonal origins and routes',
+      desc: 'A conceptual schematic in which samples across places and seasons are compared to test possible origins and connections, then interpreted with independent movement and environmental evidence. It is not a geographic map or a reconstructed route.',
+      sampling: 'places + seasons',
+      origins: 'possible origins?',
+      routes: 'connections?',
+      evidence: 'independent evidence',
+    },
+  },
+  es: {
+    conceptual: 'Esquema conceptual — no son resultados ni datos',
+    chromosome: {
+      title: 'Fisión y fusión cromosómica',
+      desc: 'Esquema genérico que muestra que un cromosoma puede dividirse en dos por fisión, mientras dos cromosomas pueden unirse por fusión. No representa una especie, un cromosoma ni un resultado particulares.',
+      one: 'un cromosoma',
+      two: 'dos cromosomas',
+      fission: 'fisión',
+      fusion: 'fusión',
+      question: 'comparar ensamblajes a escala cromosómica',
+    },
+    connectivity: {
+      title: 'Conectividad poblacional y flujo génico',
+      desc: 'Esquema genérico de parches de hábitat conectados por un posible flujo génico. Las rutas discontinuas representan relaciones por estudiar, no rutas, localidades ni resultados medidos.',
+      patches: 'parches de hábitat muestreados',
+      test: 'flujo génico por estudiar',
+      compare: 'comparar variación heredada',
+    },
+    monitoring: {
+      title: 'Monitoreo de movimiento y resistencia',
+      desc: 'Flujo conceptual que vincula muestreo de campo repetido, identificación confirmada de especies, pruebas de movimiento y variantes candidatas asociadas con resistencia, y monitoreo validado. No contiene observaciones ni resultados.',
+      sample: 'repetir muestreo',
+      identify: 'confirmar especie',
+      movement: 'estudiar movimiento',
+      candidates: 'variantes candidatas',
+      validate: 'validar monitoreo',
+    },
+    migration: {
+      title: 'Estudiar orígenes y rutas estacionales',
+      desc: 'Esquema conceptual donde se comparan muestras de distintos lugares y temporadas para estudiar posibles orígenes y conexiones, y luego se interpretan con evidencia ambiental y de movimiento independiente. No es un mapa geográfico ni una ruta reconstruida.',
+      sampling: 'lugares + temporadas',
+      origins: '¿orígenes posibles?',
+      routes: '¿conexiones?',
+      evidence: 'evidencia independiente',
+    },
+  },
+} as const;
+
+const c = copy[locale];
+const k = c[kind];
+const mobileSteps: readonly string[] = kind === 'chromosome'
+  ? [
+      `${c.chromosome.one} → ${c.chromosome.fission} → ${c.chromosome.two}`,
+      `${c.chromosome.two} → ${c.chromosome.fusion} → ${c.chromosome.one}`,
+      c.chromosome.question,
+    ]
+  : kind === 'connectivity'
+    ? [c.connectivity.patches, c.connectivity.test, c.connectivity.compare]
+    : kind === 'monitoring'
+      ? [c.monitoring.sample, c.monitoring.identify, c.monitoring.movement, c.monitoring.candidates, c.monitoring.validate]
+      : [c.migration.sampling, c.migration.origins, c.migration.routes, c.migration.evidence];
+---
+
+<figure class="concept-diagram" data-kind={kind} data-context={context}>
+  <figcaption class="concept-heading">
+    <span class="concept-kicker">{c.conceptual}</span>
+    <strong>{k.title}</strong>
+  </figcaption>
+
+  <svg class="concept-svg" viewBox="0 0 600 190" role="img" aria-labelledby={`${id}-title ${id}-desc`}>
+    <title id={`${id}-title`}>{k.title}</title>
+    <desc id={`${id}-desc`}>{k.desc}</desc>
+    <defs>
+      <marker id={`${id}-arrow`} viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 8 4 L 0 8 z" class="arrowhead" />
+      </marker>
+    </defs>
+
+    {kind === 'chromosome' && (
+      <g>
+        <text x="145" y="22" class="group-label">{c.chromosome.fission}</text>
+        <rect x="40" y="56" width="132" height="22" rx="11" class="chromosome chromosome--whole" />
+        <path d="M190 67 H250" class="flow" marker-end={`url(#${id}-arrow)`} />
+        <rect x="275" y="42" width="94" height="18" rx="9" class="chromosome" />
+        <rect x="275" y="75" width="94" height="18" rx="9" class="chromosome chromosome--alt" />
+        <text x="106" y="111" class="node-label">{c.chromosome.one}</text>
+        <text x="322" y="111" class="node-label">{c.chromosome.two}</text>
+
+        <text x="448" y="22" class="group-label">{c.chromosome.fusion}</text>
+        <rect x="414" y="42" width="62" height="18" rx="9" class="chromosome" />
+        <rect x="414" y="75" width="62" height="18" rx="9" class="chromosome chromosome--alt" />
+        <path d="M489 67 H525" class="flow" marker-end={`url(#${id}-arrow)`} />
+        <rect x="538" y="56" width="38" height="22" rx="11" class="chromosome chromosome--joined" />
+        <path d="M300 146 H300" />
+        <text x="300" y="161" class="footer-label">{c.chromosome.question}</text>
+      </g>
+    )}
+
+    {kind === 'connectivity' && (
+      <g>
+        <text x="300" y="22" class="group-label">{c.connectivity.patches}</text>
+        <path d="M145 79 C220 38 270 38 340 79" class="relation" marker-end={`url(#${id}-arrow)`} />
+        <path d="M340 98 C270 142 220 142 145 98" class="relation" marker-end={`url(#${id}-arrow)`} />
+        <path d="M365 88 C430 88 470 88 518 88" class="relation" marker-end={`url(#${id}-arrow)`} />
+        <g class="patch" transform="translate(82 56)">
+          <path d="M8 31 C12 7 46 0 67 14 C87 28 74 59 43 62 C18 65 1 53 8 31 Z" />
+          <circle cx="31" cy="30" r="4" /><circle cx="49" cy="42" r="4" />
+        </g>
+        <g class="patch" transform="translate(296 56)">
+          <path d="M8 31 C12 7 46 0 67 14 C87 28 74 59 43 62 C18 65 1 53 8 31 Z" />
+          <circle cx="31" cy="30" r="4" /><circle cx="49" cy="42" r="4" />
+        </g>
+        <g class="patch" transform="translate(500 56)">
+          <path d="M8 31 C12 7 46 0 67 14 C87 28 74 59 43 62 C18 65 1 53 8 31 Z" />
+          <circle cx="31" cy="30" r="4" /><circle cx="49" cy="42" r="4" />
+        </g>
+        <text x="245" y="139" class="node-label">{c.connectivity.test}</text>
+        <text x="300" y="165" class="footer-label">{c.connectivity.compare}</text>
+      </g>
+    )}
+
+    {kind === 'monitoring' && (
+      <g>
+        <path d="M125 86 H170 M275 86 H320 M435 86 H478" class="flow" marker-end={`url(#${id}-arrow)`} />
+        <g transform="translate(32 50)">
+          <rect width="92" height="72" rx="12" class="workflow-node" />
+          <path d="M25 48 V25 M25 36 L16 29 M25 36 L34 29 M52 48 V20 M52 30 L43 23 M52 30 L61 23 M72 48 V29" class="icon-line" />
+        </g>
+        <g transform="translate(172 50)">
+          <rect width="104" height="72" rx="12" class="workflow-node" />
+          <circle cx="47" cy="34" r="17" class="icon-line" />
+          <path d="M60 47 L75 60 M39 34 H55 M47 26 V42" class="icon-line" />
+        </g>
+        <g transform="translate(322 50)">
+          <rect width="114" height="72" rx="12" class="workflow-node workflow-node--focus" />
+          <path d="M22 48 C38 17 53 17 69 48 S100 79 106 38" class="icon-line" />
+          <circle cx="36" cy="30" r="4" class="signal-dot" /><circle cx="86" cy="51" r="4" class="signal-dot" />
+        </g>
+        <g transform="translate(480 50)">
+          <rect width="88" height="72" rx="12" class="workflow-node" />
+          <path d="M24 38 L39 53 L66 22" class="icon-line icon-line--strong" />
+        </g>
+        <text x="78" y="143" class="node-label">{c.monitoring.sample}</text>
+        <text x="224" y="143" class="node-label">{c.monitoring.identify}</text>
+        <text x="379" y="139" class="node-label">
+          <tspan x="379">{c.monitoring.movement}</tspan>
+          <tspan x="379" dy="13">{c.monitoring.candidates}</tspan>
+        </text>
+        <text x="524" y="143" class="node-label">{c.monitoring.validate}</text>
+      </g>
+    )}
+
+    {kind === 'migration' && (
+      <g>
+        <text x="78" y="26" class="group-label">{c.migration.sampling}</text>
+        <circle cx="76" cy="70" r="22" class="sample-node" />
+        <circle cx="76" cy="121" r="22" class="sample-node sample-node--alt" />
+        <path d="M103 70 C180 18 243 29 292 75" class="relation" marker-end={`url(#${id}-arrow)`} />
+        <path d="M103 121 C180 170 242 150 292 98" class="relation" marker-end={`url(#${id}-arrow)`} />
+        <circle cx="325" cy="86" r="36" class="question-node" />
+        <text x="325" y="92" class="question-mark">?</text>
+        <path d="M363 86 C414 47 460 49 505 72" class="relation" marker-end={`url(#${id}-arrow)`} />
+        <path d="M363 92 C414 132 460 129 505 108" class="relation" marker-end={`url(#${id}-arrow)`} />
+        <circle cx="530" cy="70" r="20" class="sample-node" />
+        <circle cx="530" cy="112" r="20" class="sample-node sample-node--alt" />
+        <text x="325" y="142" class="node-label">{c.migration.origins}</text>
+        <text x="455" y="153" class="node-label">{c.migration.routes}</text>
+        <text x="300" y="178" class="footer-label">{c.migration.evidence}</text>
+      </g>
+    )}
+  </svg>
+
+  <ol class="concept-mobile-flow" aria-label={k.title}>
+    {mobileSteps.map((step, index) => (
+      <li>
+        <span class="mobile-step-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+        <span>{step}</span>
+      </li>
+    ))}
+  </ol>
+</figure>
+
+<style>
+  .concept-diagram {
+    margin: 0;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    background: var(--bg-inset);
+  }
+  .concept-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem var(--space-s);
+    padding: var(--space-s) var(--space-m) 0;
+    color: var(--text-strong);
+    font-size: var(--step--1);
+  }
+  .concept-kicker {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .concept-heading strong {
+    font-weight: 620;
+  }
+  .concept-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 12.5rem;
+    color: var(--text-muted);
+  }
+  .group-label,
+  .footer-label,
+  .node-label {
+    font-family: var(--font-mono);
+    fill: var(--text-muted);
+    text-anchor: middle;
+  }
+  .group-label { font-size: 12px; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--accent-strong); }
+  .node-label { font-size: 10.5px; }
+  .footer-label { font-size: 11px; fill: var(--text-faint); }
+  .flow,
+  .relation,
+  .icon-line {
+    fill: none;
+    stroke: var(--text-muted);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .relation { stroke-dasharray: 5 5; stroke: var(--accent); }
+  .arrowhead { fill: var(--accent); }
+  .chromosome { fill: var(--accent); opacity: 0.92; }
+  .chromosome--alt { fill: var(--highlight); }
+  .chromosome--whole { fill: color-mix(in oklab, var(--accent) 72%, var(--highlight)); }
+  .chromosome--joined { fill: var(--accent-strong); }
+  .patch path {
+    fill: color-mix(in oklab, var(--accent) 13%, transparent);
+    stroke: var(--accent);
+    stroke-width: 1.5;
+  }
+  .patch circle,
+  .signal-dot { fill: var(--highlight); }
+  .workflow-node {
+    fill: var(--bg-panel);
+    stroke: var(--hairline-strong);
+    stroke-width: 1.5;
+  }
+  .workflow-node--focus { stroke: var(--accent); }
+  .icon-line--strong { stroke: var(--accent-strong); stroke-width: 3; }
+  .sample-node {
+    fill: color-mix(in oklab, var(--accent) 16%, var(--bg-panel));
+    stroke: var(--accent);
+    stroke-width: 2;
+  }
+  .sample-node--alt {
+    fill: color-mix(in oklab, var(--highlight) 18%, var(--bg-panel));
+    stroke: var(--highlight-strong);
+  }
+  .question-node {
+    fill: var(--bg-panel);
+    stroke: var(--accent);
+    stroke-width: 2;
+  }
+  .question-mark {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 650;
+    fill: var(--accent-strong);
+    text-anchor: middle;
+  }
+  [data-context='pilot'] .concept-heading { padding-block-start: var(--space-xs); }
+  [data-context='pilot'] .concept-svg { max-height: 10.75rem; }
+  .concept-mobile-flow { display: none; }
+  @media (max-width: 34rem) {
+    .concept-heading { display: grid; }
+    .concept-svg { display: none; }
+    .concept-mobile-flow {
+      display: grid;
+      list-style: none;
+      margin: 0;
+      padding: var(--space-s) var(--space-m) var(--space-m);
+    }
+    .concept-mobile-flow li {
+      position: relative;
+      display: grid;
+      grid-template-columns: 2.35rem minmax(0, 1fr);
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 3.25rem;
+      color: var(--text);
+      font-size: var(--step--1);
+      line-height: 1.4;
+    }
+    .concept-mobile-flow li:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 1.08rem;
+      top: 2.6rem;
+      bottom: -0.65rem;
+      width: 1px;
+      background: var(--hairline-strong);
+    }
+    .mobile-step-number {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 2.2rem;
+      height: 2.2rem;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      background: var(--bg-panel);
+      color: var(--accent-strong);
+      font-family: var(--font-mono);
+      font-size: var(--step--2);
+      font-weight: 650;
+    }
+  }
+</style>

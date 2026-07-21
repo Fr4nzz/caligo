@@ -1,0 +1,193 @@
+/*
+ * disclosure.css — shared <details>/<summary> disclosure contract.
+ *
+ * Applied to Home scientific questions, Science scientific questions, and
+ * Projects per-pilot "Evidence / genome contribution / limits" so all three
+ * surfaces share one interaction and motion language.
+ *
+ * Design contract:
+ *   • Closed state visibly looks interactive: bordered inset surface, hairline
+ *     accent, chevron indicator, hover ink shift, strong focus-visible ring.
+ *   • Chevron rotates 180° on open (via CSS transform).
+ *   • Content animates open/close in ~200ms using ::details-content where
+ *     available and a dependency-free Web Animations enhancement elsewhere.
+ *   • Respects prefers-reduced-motion: reduce (disables ONLY the transition,
+ *     never the state — a11y semantics still work under RM).
+ *   • Native keyboard + screen-reader semantics preserved (no ARIA overrides).
+ *   • No layout jumps at end of closing (interpolate-size handles the auto
+ *     interpolation cleanly on supporting engines).
+ *
+ * Class contract:
+ *   .disclosure              → the <details> element
+ *   .disclosure-summary      → the <summary> element (bordered surface)
+ *   .disclosure-summary-inner→ the flex row inside <summary> (title + chevron)
+ *   .disclosure-body         → the wrapper that Astro auto-animates via
+ *                              ::details-content on Chromium/Edge
+ *   .disclosure--boxed       → optional variant with a fully-boxed surface
+ *                              (used by Projects "Show details / Hide details")
+ *   .disclosure--compact     → optional variant for caption/credit meta
+ *                              disclosures inside MediaCandidateViewer
+ */
+
+/* ────────────────────────────────────────────────────────────────────
+   Base
+   ──────────────────────────────────────────────────────────────────── */
+.disclosure {
+  --disclosure-border: var(--hairline);
+  --disclosure-radius: var(--radius-sm, 6px);
+  --disclosure-pad-y: var(--space-xs);
+  --disclosure-pad-x: var(--space-s);
+  --disclosure-motion-duration: 200ms;
+}
+
+/* Remove the default marker across every engine. */
+.disclosure > .disclosure-summary::-webkit-details-marker {
+  display: none;
+}
+.disclosure > .disclosure-summary::marker {
+  content: '';
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Summary — the interactive surface
+   ──────────────────────────────────────────────────────────────────── */
+.disclosure-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: var(--disclosure-pad-y) var(--disclosure-pad-x);
+  border-block: 1px solid var(--disclosure-border);
+  color: var(--text-strong);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: 500;
+  line-height: 1.4;
+  transition: background-color var(--disclosure-motion-duration) ease,
+              color var(--disclosure-motion-duration) ease;
+}
+
+.disclosure-summary:hover {
+  background: var(--surface-hover, color-mix(in oklab, currentColor 4%, transparent));
+  color: var(--text-strong);
+}
+
+.disclosure-summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  border-radius: var(--disclosure-radius);
+}
+
+/* Inner flex layout: title left, chevron right */
+.disclosure-summary-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  width: 100%;
+}
+
+/* Chevron — pure CSS, rotates on open */
+.disclosure-summary-inner::after {
+  content: '';
+  flex: 0 0 auto;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-inline-start: auto;
+  border-right: 1.75px solid currentColor;
+  border-bottom: 1.75px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -1px);
+  transition: transform var(--disclosure-motion-duration) ease;
+}
+
+.disclosure[open] > .disclosure-summary .disclosure-summary-inner::after {
+  transform: rotate(-135deg) translate(-1px, -1px);
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Body — content animation via ::details-content
+   ──────────────────────────────────────────────────────────────────── */
+.disclosure-body {
+  padding: var(--space-s) var(--disclosure-pad-x) var(--space-m);
+  color: var(--text-body);
+}
+
+/*
+   ::details-content animation (Chromium 131+ / Edge 131+).
+   Firefox and Safari fall back to an instant open/close, still functional.
+   Per user brief §disclosure: "with a functional instant fallback elsewhere".
+*/
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+}
+
+.disclosure::details-content {
+  block-size: 0;
+  overflow: clip;
+  opacity: 0;
+  transition:
+    content-visibility var(--disclosure-motion-duration) allow-discrete,
+    block-size var(--disclosure-motion-duration) ease,
+    opacity calc(var(--disclosure-motion-duration) * 0.9) ease;
+  transition-behavior: allow-discrete;
+}
+
+.disclosure[open]::details-content {
+  block-size: auto;
+  opacity: 1;
+}
+
+/* Base.astro's fallback animates .disclosure-body directly. Disable the
+   pseudo-element transition in that mode so engines never run both paths. */
+.disclosure[data-disclosure-enhanced='true']::details-content {
+  transition: none;
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Variants
+   ──────────────────────────────────────────────────────────────────── */
+
+/* Boxed — used by Projects for a stronger interactive surface. */
+.disclosure--boxed {
+  border: 1px solid var(--disclosure-border);
+  border-radius: var(--disclosure-radius);
+  background: var(--surface-elev, transparent);
+}
+.disclosure--boxed > .disclosure-summary {
+  border-block: 0;
+  border-radius: var(--disclosure-radius);
+}
+.disclosure--boxed[open] > .disclosure-summary {
+  border-bottom: 1px solid var(--disclosure-border);
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+}
+
+/* Compact — used inside MediaCandidateViewer for image credit meta. */
+.disclosure--compact {
+  --disclosure-pad-y: 0.25rem;
+  --disclosure-pad-x: 0.5rem;
+  font-size: var(--step--1);
+}
+.disclosure--compact > .disclosure-summary {
+  border-block: 0;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding-inline: 0;
+}
+.disclosure--compact .disclosure-body {
+  padding: 0.4rem 0 0.2rem;
+  color: var(--text-muted);
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Reduced motion — disable the transitions ONLY.
+   State machinery (open/close) remains fully functional.
+   ──────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .disclosure-summary,
+  .disclosure-summary-inner::after,
+  .disclosure::details-content {
+    transition: none !important;
+  }
+}

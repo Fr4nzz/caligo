@@ -1,0 +1,451 @@
+---
+/**
+ * MediaCandidateViewer — reusable data-driven media candidate comparison.
+ *
+ * Reads from `MODULES` in src/data/records.ts. Renders every candidate in a
+ * stacked absolute-positioned <picture> stage locked to a fixed aspect ratio
+ * (no layout shift). Candidates use canonical ordering — documentary →
+ * ai-concept → code-native. Modules can opt into another initial candidate
+ * when an explanatory schematic is the intended primary visual; documentary
+ * media remains adjacent and user-selectable.
+ *
+ * When candidates.length >= 2 the component overlays previous/next buttons on
+ * the image, an aria-live "Image N of M" counter in the caption chip row, and
+ * a single client-side controller that swaps the active slide + updates the
+ * caption/credit/licence together. A candidate viewer with only one candidate
+ * hides its controls entirely (the brief's single-candidate contract).
+ *
+ * Motion: opacity fade tied to `--transition` (180 ms). `prefers-reduced-motion:
+ * reduce` disables the transition. No autoplay, no interval, no cycling — every
+ * slide change is user-initiated (click, keyboard arrow, or focus + key).
+ *
+ * Contract points:
+ *   - alt / caption / credit are three distinct bilingual strings per candidate.
+ *   - AI candidates are labelled explicitly ("AI concept illustration /
+ *     Ilustración conceptual generada con IA") and carry a mandatory
+ *     conceptCaveat in their credit line — never presented as documentary.
+ *   - Documentary candidates render licence + link back to the original file page.
+ *   - Every rendered <img> gets `width`/`height` from records so intrinsic size
+ *     is known before the file loads.
+ *   - Initial slide gets `loading="eager"` OR the caller-supplied loading value;
+ *     non-initial slides are always `loading="lazy"` — only the visible slide
+ *     enters LCP, hidden slides load on user request.
+ */
+import { getDict, type Locale } from '../i18n';
+import { getMediaModule, type MediaCandidate } from '../data/records';
+import Icon from './Icon.astro';
+
+interface Props {
+  readonly moduleId: string;
+  readonly locale: Locale;
+  readonly aspectRatio?: string;
+  readonly class?: string;
+  readonly loading?: 'eager' | 'lazy';
+}
+
+const {
+  moduleId,
+  locale,
+  aspectRatio = '16 / 9',
+  class: className = '',
+  loading = 'lazy',
+} = Astro.props;
+
+const module_ = getMediaModule(moduleId);
+if (module_ === undefined) {
+  throw new Error(`MediaCandidateViewer: module '${moduleId}' not found in MODULES (src/data/records.ts).`);
+}
+if (!module_.publish) {
+  throw new Error(`MediaCandidateViewer: module '${moduleId}' has publish=false — nothing to render publicly.`);
+}
+if (module_.candidates.length === 0) {
+  throw new Error(`MediaCandidateViewer: module '${moduleId}' has no candidates.`);
+}
+
+const t = getDict(locale);
+const labels = t.mediaViewer;
+const base = import.meta.env.BASE_URL;
+
+const KIND_ORDER: Readonly<Record<MediaCandidate['kind'], number>> = {
+  documentary: 0,
+  'ai-concept': 1,
+  'code-native': 2,
+};
+const sorted: readonly MediaCandidate[] = [...module_.candidates].sort(
+  (a, b) => KIND_ORDER[a.kind] - KIND_ORDER[b.kind],
+);
+
+const initialIndex = Math.max(
+  0,
+  Math.min(sorted.length - 1, module_.initialIndex ?? 0),
+);
+const initial = sorted[initialIndex];
+const total = sorted.length;
+const hasControls = total >= 2;
+
+const kindLabelFor = (kind: MediaCandidate['kind']): string => {
+  if (kind === 'documentary') return labels.documentaryType;
+  if (kind === 'ai-concept') return labels.aiConceptType;
+  return labels.codeNativeType;
+};
+
+// Presentation resolution: candidate → module → kind-default.
+const kindDefaultFit = (kind: MediaCandidate['kind']): 'cover' | 'contain' =>
+  kind === 'documentary' ? 'cover' : 'contain';
+const resolveFit = (c: MediaCandidate): 'cover' | 'contain' =>
+  c.fit ?? module_.fit ?? kindDefaultFit(c.kind);
+const resolveBackground = (c: MediaCandidate): string | undefined =>
+  c.background ?? module_.background;
+const stageAspectRatio = module_.aspectRatio ?? aspectRatio;
+
+const initialIndexLabel = labels.imageOfLabel
+  .replace('{n}', String(initialIndex + 1))
+  .replace('{total}', String(total));
+
+// "Image details and credit" disclosure summary is localized inline so the
+// component does not depend on a dictionary key that may not exist in older
+// bilingual payloads.
+const creditDisclosureLabel = locale === 'es'
+  ? 'Detalles y créditos de la imagen'
+  : 'Image details and credit';
+
+const clientCandidates = sorted.map((c) => ({
+  kind: c.kind,
+  alt: c.alt[locale],
+  caption: c.caption[locale],
+  credit: c.credit[locale],
+  licence: c.licence ?? '',
+  licenceUrl: c.licenceUrl ?? '',
+  sourceItemPage: c.sourceItemPage ?? '',
+  kindLabel: kindLabelFor(c.kind),
+}));
+---
+
+<figure
+  class:list={['media-candidate-viewer', className]}
+  data-media-viewer
+  data-module-id={moduleId}
+  data-count={total}
+  role="group"
+  aria-label={initial.caption[locale]}
+>
+  <div class="mcv-stage" style={`aspect-ratio: ${stageAspectRatio};`}>
+    {
+      sorted.map((c, i) => {
+        const fit = resolveFit(c);
+        const bg = resolveBackground(c);
+        const slideStyle = bg ? `background: ${bg};` : undefined;
+        const imgStyleParts = [`object-fit: ${fit};`];
+        if (c.objectPosition) imgStyleParts.push(`object-position: ${c.objectPosition};`);
+        const imgStyle = imgStyleParts.join(' ');
+        return (
+          <picture
+            class:list={['mcv-slide', { 'is-active': i === initialIndex }]}
+            aria-hidden={i === initialIndex ? 'false' : 'true'}
+            data-slide-index={i}
+            data-kind={c.kind}
+            data-fit={fit}
+            style={slideStyle}
+          >
+            {c.path && (
+              <img
+                src={`${base}${c.path}`}
+                alt={c.alt[locale]}
+                width={c.width}
+                height={c.height}
+                loading={i === initialIndex ? loading : 'lazy'}
+                decoding="async"
+                style={imgStyle}
+              />
+            )}
+          </picture>
+        );
+      })
+    }
+
+    {hasControls && (
+      <>
+        <button
+          type="button"
+          class="mcv-btn mcv-prev"
+          aria-label={labels.previousImage}
+          aria-controls={`${moduleId}-caption`}
+          data-mcv-prev
+        >
+          <Icon name="arrow-left" />
+        </button>
+        <button
+          type="button"
+          class="mcv-btn mcv-next"
+          aria-label={labels.nextImage}
+          aria-controls={`${moduleId}-caption`}
+          data-mcv-next
+        >
+          <Icon name="arrow-right" />
+        </button>
+      </>
+    )}
+  </div>
+
+  <figcaption id={`${moduleId}-caption`} class="mcv-caption">
+    <div class="mcv-chips">
+      <span class="mcv-type mono" data-mcv-type>
+        {kindLabelFor(initial.kind)}
+      </span>
+      {hasControls && (
+        <span class="mcv-index mono" aria-live="polite" data-mcv-index>
+          {initialIndexLabel}
+        </span>
+      )}
+    </div>
+    <p class="mcv-caption-text" data-mcv-caption>{initial.caption[locale]}</p>
+    <details class="disclosure disclosure--compact mcv-credit-disclosure">
+      <summary class="disclosure-summary">
+        <span class="disclosure-summary-inner">
+          <span>{creditDisclosureLabel}</span>
+        </span>
+      </summary>
+      <div class="disclosure-body">
+        <p class="mcv-credit mono">
+          <span data-mcv-credit>{initial.credit[locale]}</span>
+          <span data-mcv-licence-wrap>
+            {initial.licence && initial.licenceUrl && (
+              <>
+                {' · '}
+                <a href={initial.licenceUrl} rel="license external noopener" data-mcv-licence-link>
+                  <span data-mcv-licence-text>{initial.licence}</span>
+                </a>
+              </>
+            )}
+          </span>
+        </p>
+      </div>
+    </details>
+  </figcaption>
+</figure>
+
+{
+  hasControls && (
+    <script is:inline define:vars={{ moduleId, candidates: clientCandidates, imageOfLabel: labels.imageOfLabel }}>
+      /*
+        Named `initMcv(root)` guarded by `root.dataset.mcvInit`, registered
+        on `astro:page-load` AND invoked immediately. Mirrors the pattern
+        in Header.astro / ThemeToggle.astro / SectionRail.astro so arrows
+        survive initial load, ClientRouter navigation, language change,
+        browser Back/Forward, theme change and resize.
+
+        The per-root guard (dataset.mcvInit === '1') ensures multiple
+        viewer instances on the same page each initialise once — needed
+        by the pilot cards below the journey on Home.
+      */
+      function initMcv(root) {
+        if (!root || root.dataset.mcvInit === '1') return;
+        root.dataset.mcvInit = '1';
+
+        const slides = Array.from(root.querySelectorAll('.mcv-slide'));
+        const btnPrev = root.querySelector('[data-mcv-prev]');
+        const btnNext = root.querySelector('[data-mcv-next]');
+        const idxEl = root.querySelector('[data-mcv-index]');
+        const typeEl = root.querySelector('[data-mcv-type]');
+        const capEl = root.querySelector('[data-mcv-caption]');
+        const credEl = root.querySelector('[data-mcv-credit]');
+        const licenceWrap = root.querySelector('[data-mcv-licence-wrap]');
+        const licenceLink = root.querySelector('[data-mcv-licence-link]');
+        const licenceTextEl = root.querySelector('[data-mcv-licence-text]');
+
+        const total = candidates.length;
+        let current = slides.findIndex((s) => s.classList.contains('is-active'));
+        if (current < 0) current = 0;
+
+        const setSlide = (n) => {
+          current = ((n % total) + total) % total;
+          slides.forEach((s, i) => {
+            const active = i === current;
+            s.classList.toggle('is-active', active);
+            s.setAttribute('aria-hidden', String(!active));
+          });
+          const c = candidates[current];
+
+          if (idxEl) {
+            idxEl.textContent = imageOfLabel
+              .replace('{n}', String(current + 1))
+              .replace('{total}', String(total));
+          }
+          if (typeEl) typeEl.textContent = c.kindLabel;
+          if (capEl) capEl.textContent = c.caption;
+          if (credEl) credEl.textContent = c.credit;
+
+          if (licenceWrap) {
+            if (c.licence && c.licenceUrl && licenceLink && licenceTextEl) {
+              licenceLink.setAttribute('href', c.licenceUrl);
+              licenceTextEl.textContent = c.licence;
+              licenceWrap.textContent = '';
+              licenceWrap.appendChild(document.createTextNode(' · '));
+              licenceWrap.appendChild(licenceLink);
+            } else if (licenceWrap) {
+              licenceWrap.textContent = '';
+            }
+          }
+
+          root.setAttribute('aria-label', c.caption);
+        };
+
+        if (btnPrev) btnPrev.addEventListener('click', () => setSlide(current - 1));
+        if (btnNext) btnNext.addEventListener('click', () => setSlide(current + 1));
+
+        root.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            setSlide(current - 1);
+          } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            setSlide(current + 1);
+          }
+        });
+      }
+
+      function initMcvForModule() {
+        // Query by moduleId so define:vars scope stays per-instance while the
+        // dataset guard prevents duplicate binding when the same node persists.
+        const root = document.querySelector(
+          `figure[data-media-viewer][data-module-id="${moduleId}"]`,
+        );
+        initMcv(root);
+      }
+
+      // Re-init after every ClientRouter navigation.
+      document.addEventListener('astro:page-load', initMcvForModule);
+      // Also run immediately for initial script execution (page-load may have
+      // already fired before this per-instance inline script executes).
+      initMcvForModule();
+    </script>
+  )
+}
+
+<style>
+  .media-candidate-viewer {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+
+  .mcv-stage {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-inset);
+    border: 1px solid var(--hairline);
+  }
+
+  .mcv-slide {
+    position: absolute;
+    inset: 0;
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition);
+  }
+  .mcv-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .mcv-slide img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* object-fit is set inline per-candidate. Defaults resolve in the
+       frontmatter: documentary → cover, ai-concept & code-native →
+       contain, module.fit overrides both. */
+  }
+
+  /* External SVGs do not inherit `currentColor` through <img>. The
+     code-native diagrams intentionally use black/currentColor ink, so invert
+     only those assets in semantic dark mode. Documentary media is untouched. */
+  :global(html[data-mode='dark']) .mcv-slide[data-kind='code-native'] img {
+    filter: invert(1) brightness(0.94);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mcv-slide { transition: none; }
+  }
+
+  .mcv-btn {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    transform: translateY(-50%);
+    display: inline-grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0;
+    border: 1px solid color-mix(in oklab, #000 25%, transparent);
+    border-radius: var(--radius);
+    background: color-mix(in oklab, #F6F7F3 88%, transparent);
+    color: #262524;
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    backdrop-filter: blur(6px);
+  }
+  .mcv-btn:hover {
+    background: #F6F7F3;
+    border-color: var(--accent);
+  }
+  .mcv-btn:focus-visible {
+    background: #F6F7F3;
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .mcv-btn :global(svg) {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .mcv-prev { left: 0.6rem; }
+  .mcv-next { right: 0.6rem; }
+
+  .mcv-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin: 0;
+  }
+  .mcv-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    align-items: center;
+    font-size: var(--step--2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .mcv-type {
+    color: var(--accent-strong);
+    font-weight: 500;
+  }
+  .mcv-index { color: var(--text-faint); }
+  .mcv-caption-text {
+    margin: 0;
+    color: var(--text);
+    max-width: var(--measure);
+    line-height: 1.55;
+  }
+  .mcv-credit {
+    margin: 0;
+    font-size: var(--step--2);
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: var(--text-faint);
+    max-width: var(--measure);
+  }
+  .mcv-credit a {
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .mcv-credit a:hover,
+  .mcv-credit a:focus-visible {
+    color: var(--link-hover);
+  }
+</style>

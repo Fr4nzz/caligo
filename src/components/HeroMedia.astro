@@ -1,0 +1,279 @@
+---
+/**
+ * HeroMedia — launch-safe hero media block.
+ *
+ * Contract (see brief §§7.4 / 7.5 / 8.3 and Wave 3 rebuild spec):
+ *
+ *  • Photo (primary near-term use) renders a `<picture>` with mobile
+ *    portrait + desktop widescreen art-direction. Intrinsic width/height
+ *    are emitted on <img> and each <source> to reserve layout and
+ *    prevent CLS.
+ *  • Video (future muted loop) renders a `<video>` that NEVER carries
+ *    the `autoplay` attribute in initial HTML. A small script promotes
+ *    it to autoplay ONLY when `prefers-reduced-motion` is not reduced
+ *    AND `navigator.connection.saveData` is not true. Reduced-motion
+ *    and Save-Data are honoured BEFORE playback ever starts.
+ *  • Poster is REQUIRED when kind='video'. The build fails loudly
+ *    rather than ship a poster-less video contract.
+ *  • Alt, caption, and credit are DISTINCT bilingual strings pulled
+ *    from the Media record via `getMedia(mediaId)`. Alt is never
+ *    reused as caption; caption is never reused as alt.
+ *  • Informative media is NEVER placed inside `aria-hidden`.
+ *    `decorative={true}` produces empty alt and drops the figcaption;
+ *    the figure itself remains semantic and reachable.
+ *  • No overlay black tint; no wrapper that would set aria-hidden.
+ *    Callers that need overlay text position it SEPARATELY from this
+ *    figure.
+ *
+ * Extension notes (documented, minimal):
+ *  • `SrcsetEntry` requires `height` alongside `width` so intrinsic
+ *    dimensions can be emitted on both mobile and desktop <source>s
+ *    and on the <img> fallback. This is the only clean way to keep
+ *    CLS = 0 across an art-directed picture whose mobile crop has a
+ *    different aspect ratio (portrait) than the desktop crop (16:9).
+ */
+import { getMedia } from '../data/records';
+
+interface SrcsetEntry {
+  readonly width: number;
+  readonly height: number;
+  readonly path: string;
+}
+
+interface VideoSource {
+  readonly src: string;
+  readonly type: string;
+}
+
+interface Props {
+  /** Which media record to render. Must exist in src/data/records.ts MEDIA[]. */
+  readonly mediaId: string;
+  /** Which locale's bilingual strings to render. */
+  readonly locale: 'en' | 'es';
+  /** Media kind gate. 'photo' renders <picture>; 'video' renders <video>. */
+  readonly kind: 'photo' | 'video';
+  /** For kind='photo': required desktop widescreen sources (widths + heights in px). */
+  readonly desktopSrcset?: readonly SrcsetEntry[];
+  /** For kind='photo': optional mobile portrait sources. Used at max-width 60rem. */
+  readonly mobileSrcset?: readonly SrcsetEntry[];
+  /** For kind='video': required poster image path (must exist under /public). */
+  readonly poster?: string;
+  /** For kind='video': required non-empty list of <source> descriptors. */
+  readonly videoSources?: readonly VideoSource[];
+  /** Mark as decorative — empty alt, no figcaption. Default false. */
+  readonly decorative?: boolean;
+  /**
+   * Suppress the built-in figcaption (caption + credit + source link) while
+   * keeping the alt text and semantic <figure> intact. Callers that render
+   * their own external attribution — e.g. a cinematic hero overlay with a
+   * compact bottom-corner credit — set this to true to avoid a duplicated
+   * caption below the picture. Default false.
+   */
+  readonly hideCaption?: boolean;
+  /** Optional class on the outermost <figure>. */
+  readonly class?: string;
+}
+
+const {
+  mediaId,
+  locale,
+  kind,
+  desktopSrcset,
+  mobileSrcset,
+  poster,
+  videoSources,
+  decorative = false,
+  hideCaption = false,
+  class: className = '',
+} = Astro.props;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Build-time validation. Fail loud rather than ship a broken contract.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+const media = getMedia(mediaId);
+if (media === undefined) {
+  throw new Error(
+    `HeroMedia: no media record with id '${mediaId}' in MEDIA[] (src/data/records.ts).`
+  );
+}
+
+interface PhotoInputs {
+  readonly desktopSrcset: readonly SrcsetEntry[];
+  readonly mobileSrcset: readonly SrcsetEntry[] | undefined;
+}
+interface VideoInputs {
+  readonly poster: string;
+  readonly videoSources: readonly VideoSource[];
+}
+
+let photoInputs: PhotoInputs | null = null;
+let videoInputs: VideoInputs | null = null;
+
+if (kind === 'photo') {
+  if (desktopSrcset === undefined || desktopSrcset.length === 0) {
+    throw new Error(
+      `HeroMedia: kind='photo' requires a non-empty desktopSrcset (mediaId='${mediaId}').`
+    );
+  }
+  photoInputs = { desktopSrcset, mobileSrcset };
+} else {
+  if (poster === undefined || poster === '') {
+    throw new Error(
+      `HeroMedia: kind='video' requires a non-empty poster path (mediaId='${mediaId}').`
+    );
+  }
+  if (videoSources === undefined || videoSources.length === 0) {
+    throw new Error(
+      `HeroMedia: kind='video' requires a non-empty videoSources array (mediaId='${mediaId}').`
+    );
+  }
+  videoInputs = { poster, videoSources };
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Render helpers.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+const formatSrcset = (entries: readonly SrcsetEntry[]): string =>
+  entries.map((e) => `${e.path} ${e.width}w`).join(', ');
+
+const largestByWidth = (entries: readonly SrcsetEntry[]): SrcsetEntry =>
+  entries.reduce((a, b) => (b.width > a.width ? b : a));
+
+const desktopSrcsetStr: string =
+  photoInputs !== null ? formatSrcset(photoInputs.desktopSrcset) : '';
+const largestDesktop: SrcsetEntry | null =
+  photoInputs !== null ? largestByWidth(photoInputs.desktopSrcset) : null;
+const mobileSrcsetStr: string =
+  photoInputs !== null && photoInputs.mobileSrcset !== undefined && photoInputs.mobileSrcset.length > 0
+    ? formatSrcset(photoInputs.mobileSrcset)
+    : '';
+const largestMobile: SrcsetEntry | null =
+  photoInputs !== null && photoInputs.mobileSrcset !== undefined && photoInputs.mobileSrcset.length > 0
+    ? largestByWidth(photoInputs.mobileSrcset)
+    : null;
+
+const SOURCE_LABEL: Readonly<Record<'en' | 'es', string>> = {
+  en: 'Source',
+  es: 'Fuente',
+};
+
+const altText: string = decorative ? '' : media.alt[locale];
+---
+
+<figure
+  class:list={['hero-media', className]}
+  data-hero-media
+  data-kind={kind}
+>
+  {kind === 'photo' && largestDesktop !== null && (
+    <picture>
+      {largestMobile !== null && (
+        <source
+          media="(max-width: 60rem)"
+          srcset={mobileSrcsetStr}
+          width={largestMobile.width}
+          height={largestMobile.height}
+        />
+      )}
+      <source
+        srcset={desktopSrcsetStr}
+        width={largestDesktop.width}
+        height={largestDesktop.height}
+      />
+      <img
+        src={largestDesktop.path}
+        alt={altText}
+        width={largestDesktop.width}
+        height={largestDesktop.height}
+        loading="eager"
+        decoding="async"
+      />
+    </picture>
+  )}
+
+  {kind === 'video' && videoInputs !== null && (
+    <video
+      controls
+      preload="metadata"
+      poster={videoInputs.poster}
+      data-autoplay-if-allowed
+      playsinline
+      muted
+      loop
+      aria-label={decorative ? undefined : media.alt[locale]}
+    >
+      {videoInputs.videoSources.map((s) => (
+        <source src={s.src} type={s.type} />
+      ))}
+    </video>
+  )}
+
+  {!decorative && !hideCaption && (
+    <figcaption class="hero-media-caption">
+      <span class="hero-media-alt-visible">{media.caption[locale]}</span>
+      <span class="hero-media-credit">
+        {media.credit[locale]}
+        {' '}
+        <a href={media.licenceUrl} rel="license external noopener">{media.licence}</a>
+        {' · '}
+        <a href={media.sourceItemPage} rel="external noopener">{SOURCE_LABEL[locale]}</a>
+      </span>
+    </figcaption>
+  )}
+
+  {!decorative && (
+    <noscript>
+      <p>{media.alt[locale]}</p>
+    </noscript>
+  )}
+</figure>
+
+{kind === 'video' && (
+  <script is:inline>
+    (() => {
+      const els = document.querySelectorAll('[data-hero-media] video[data-autoplay-if-allowed]');
+      if (els.length === 0) return;
+      const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const conn = navigator.connection;
+      const saveData = conn && conn.saveData === true;
+      if (rm || saveData) return;
+      for (const v of els) {
+        v.autoplay = true;
+        v.play().catch(() => {});
+      }
+    })();
+  </script>
+)}
+
+<style>
+  .hero-media {
+    margin: 0;
+    display: block;
+  }
+  .hero-media img,
+  .hero-media video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .hero-media-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .hero-media-alt-visible {
+    color: var(--text);
+  }
+  .hero-media-credit a {
+    color: var(--link);
+  }
+  .hero-media-credit a:hover,
+  .hero-media-credit a:focus-visible {
+    color: var(--link-hover);
+  }
+</style>

@@ -1,0 +1,57 @@
+---
+import { pick, type Person } from '../data/initiative';
+import type { Locale } from '../i18n';
+
+interface Props {
+  readonly person: Person;
+  readonly locale: Locale;
+}
+
+const { person, locale } = Astro.props;
+---
+
+<article class="person-card">
+  <strong class="person-name">{person.name}</strong>
+  <p class="person-role">{pick(person.role, locale)}</p>
+  <p class="person-affil mono">{person.affiliation}</p>
+  <p class="person-country mono">{pick(person.country, locale)}</p>
+</article>
+
+<style>
+  .person-card {
+    padding: var(--space-m);
+    background: var(--bg-panel);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .person-name {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 560;
+    color: var(--text-strong);
+    letter-spacing: -0.008em;
+    line-height: 1.2;
+  }
+  .person-role {
+    margin: 0;
+    font-size: var(--step-0);
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .person-affil {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    letter-spacing: 0.01em;
+  }
+  .person-country {
+    margin: 0;
+    font-size: var(--step--2);
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
+  }
+</style>

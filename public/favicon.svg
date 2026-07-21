@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Caligo">
+  <defs>
+    <linearGradient id="w" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="52%" stop-color="#12855f"/>
+      <stop offset="70%" stop-color="#d99a3a"/>
+      <stop offset="100%" stop-color="#0b4a39"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="#07100d"/>
+  <!-- forewings + hindwings: a butterfly seen from above -->
+  <g fill="url(#w)">
+    <path d="M16 8 C12 4 6 4 4.5 8 C3.4 11 5 14 9 15 C12 15.6 15 13 16 10 Z"/>
+    <path d="M16 8 C20 4 26 4 27.5 8 C28.6 11 27 14 23 15 C20 15.6 17 13 16 10 Z"/>
+    <path d="M16 15 C13 15 9.5 17 9 21 C8.7 24 11 26 14 25 C15.6 24.4 16 21 16 18 Z"/>
+    <path d="M16 15 C19 15 22.5 17 23 21 C23.3 24 21 26 18 25 C16.4 24.4 16 21 16 18 Z"/>
+  </g>
+  <!-- thorax + antennae -->
+  <rect x="15.1" y="7.5" width="1.8" height="18" rx="0.9" fill="#0a1c16"/>
+  <path d="M15.4 8 C14.4 6 13.6 5.2 12.8 4.8" fill="none" stroke="#34d399" stroke-width="0.9" stroke-linecap="round"/>
+  <path d="M16.6 8 C17.6 6 18.4 5.2 19.2 4.8" fill="none" stroke="#34d399" stroke-width="0.9" stroke-linecap="round"/>
+</svg>

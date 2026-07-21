@@ -1,0 +1,304 @@
+---
+/**
+ * NamesakePage — Discover Caligo (compact editorial).
+ *
+ * Four sections:
+ *   N1  PageHeader — meet the namesake (caligo.meetTheNamesake).
+ *   N2  Eye or eyespot — compound eye photo + caligo.compoundEye copy.
+ *       Uses MediaCandidateViewer moduleId="namesake-compound-eye".
+ *       Falls back gracefully if the module is absent.
+ *   N3  Field experiment — competing hypotheses ledger (caligo.hypotheses)
+ *       plus the narrow 2024 C. martia result paragraph. The scales
+ *       nanostructure evidence (caligo.scales) is folded in here as a
+ *       supporting paragraph.
+ *   N4  Genomics — what genomics could add (caligo.genomicsCould).
+ *
+ * All strings flow from t.caligo.*. No hardcoded EN/ES text anywhere.
+ */
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../PageHeader.astro';
+import MediaCandidateViewer from '../MediaCandidateViewer.astro';
+import { getDict, type Locale } from '../../i18n';
+import { getMediaModule } from '../../data/records';
+import SourceList from '../SourceList.astro';
+import { renderCitations } from '../../lib/citations';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const c = t.caligo;
+
+// Graceful fallback: render MediaCandidateViewer only if the module exists.
+const hasCompoundEyeModule = getMediaModule('namesake-compound-eye') !== undefined;
+---
+
+<Base locale={locale} title={c.metaTitle} description={c.metaDescription} page="/caligo">
+
+  <!-- N1 — Header -->
+  <PageHeader
+    eyebrow={t.nav.caligoStory}
+    title={c.meetTheNamesake.heading}
+    intro={c.meetTheNamesake.body}
+  />
+
+  <!-- N2 — Eye or eyespot (compound eye photo + distinction copy) -->
+  <section class="section section--tight" aria-labelledby="compound-eye">
+    <div class="container-wide eye-layout">
+      <div class="eye-head">
+        <p class="eye-eyebrow mono">{c.compoundEye.eyebrow}</p>
+        <h2 id="compound-eye" class="eye-heading">{c.compoundEye.heading}</h2>
+        <p class="eye-body">{c.compoundEye.body}</p>
+      </div>
+      {hasCompoundEyeModule && (
+        <div class="eye-media">
+          <MediaCandidateViewer
+            moduleId="namesake-compound-eye"
+            locale={locale}
+            aspectRatio="16 / 9"
+          />
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- N3 — Field experiment: hypotheses ledger + scales note -->
+  <section class="section section--tight section--panel" aria-labelledby="hypotheses">
+    <div class="container-wide">
+      <header class="section-head">
+        <h2 id="hypotheses">{c.hypotheses.heading}</h2>
+        <p class="section-lede">{c.hypotheses.intro}</p>
+      </header>
+
+      <ol class="hyp-list" role="list">
+        {c.hypotheses.rows.map((row, i) => (
+          <li class="hyp-row">
+            <div class="hyp-code" aria-hidden="true">H{i + 1}</div>
+            <div class="hyp-content">
+              <h3 class="hyp-title">{row.hypothesis}</h3>
+              <p class="hyp-prediction">{row.prediction}</p>
+              <p class="hyp-limitation">{row.limitation}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <p class="hyp-result" set:html={renderCitations(c.hypotheses.resultNarrow)}/>
+
+      <!-- Scales note — optical architecture supporting paragraph -->
+      <div class="scales-note">
+        <h3 class="scales-heading">{c.scales.heading}</h3>
+        <p class="scales-body" set:html={renderCitations(c.scales.body)}/>
+      </div>
+    </div>
+  </section>
+
+  <!-- N4 — Genomics: from the visible butterfly to inherited information -->
+  <section class="section section--tight" aria-labelledby="genomics">
+    <div class="container-wide two-col">
+      <div class="two-col-head">
+        <h2 id="genomics">{c.genomicsCould.heading}</h2>
+      </div>
+      <div class="prose">
+        <p class="prose-body" set:html={renderCitations(c.genomicsCould.body)}/>
+      </div>
+    </div>
+  </section>
+
+  <SourceList ids={['iserhard-2024', 'sackey-2018', 'pomerantz-2021']} locale={locale}/>
+
+</Base>
+
+<style>
+  /* ---- Common section rhythm ---- */
+  .section { padding-block: var(--space-xl); }
+  .section--tight { padding-block: var(--space-l); }
+  .section--panel {
+    background: var(--bg-raised);
+    border-block: 1px solid var(--hairline);
+  }
+
+  /* ---- N2 Eye layout: text left (sticky on wide), media right ---- */
+  .eye-layout {
+    display: grid;
+    gap: var(--space-l);
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  @media (min-width: 60rem) {
+    .eye-layout {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    .eye-head { position: sticky; top: 5.5rem; }
+  }
+  .eye-head { min-width: 0; }
+  .eye-eyebrow {
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin: 0 0 var(--space-s);
+  }
+  .eye-heading {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 560;
+    line-height: 1.2;
+    letter-spacing: -0.008em;
+    color: var(--text-strong);
+    max-width: 26ch;
+    margin: 0 0 var(--space-s);
+  }
+  .eye-body {
+    color: var(--text);
+    line-height: 1.6;
+    max-width: var(--measure);
+    margin: 0;
+  }
+  .eye-media { min-width: 0; }
+
+  /* ---- N3 Section head ---- */
+  .section-head {
+    max-width: var(--container-narrow);
+    margin-bottom: var(--space-l);
+  }
+  .section-head h2 + p { margin-top: var(--space-s); }
+  .section-lede {
+    max-width: var(--measure);
+    color: var(--text-muted);
+  }
+
+  /* ---- Hypotheses ledger (H1..H4) ---- */
+  .hyp-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--hairline-strong);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .hyp-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    padding-block: var(--space-m);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .hyp-row:last-child { border-bottom: 0; }
+  .hyp-code {
+    font-family: var(--font-mono);
+    font-size: var(--step-1);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .hyp-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-width: 0;
+  }
+  .hyp-title {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 560;
+    line-height: 1.2;
+    letter-spacing: -0.008em;
+    color: var(--text-strong);
+    margin: 0 0 0.2rem;
+  }
+  .hyp-prediction {
+    color: var(--text);
+    line-height: 1.55;
+    max-width: var(--measure);
+    margin: 0;
+  }
+  .hyp-limitation {
+    color: var(--text-muted);
+    font-size: var(--step--1);
+    line-height: 1.55;
+    max-width: var(--measure);
+    margin: 0;
+    padding-top: 0.6rem;
+    border-top: 1px dashed var(--hairline);
+  }
+  @media (min-width: 46rem) {
+    .hyp-row {
+      grid-template-columns: 4.5rem 1fr;
+      gap: var(--space-l);
+      align-items: baseline;
+    }
+  }
+  @media (min-width: 68rem) {
+    .hyp-row {
+      grid-template-columns: 5.5rem 1fr;
+      gap: var(--space-xl);
+    }
+  }
+
+  /* Result summary — narrow 2024 C. martia result */
+  .hyp-result {
+    margin-top: var(--space-l);
+    max-width: var(--container-narrow);
+    padding: var(--space-m);
+    background: var(--bg-inset);
+    border: 1px solid var(--hairline);
+    border-left-width: 2px;
+    border-left-color: var(--accent);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-size: var(--step-0);
+    line-height: 1.55;
+  }
+
+  /* ---- Scales note ---- */
+  .scales-note {
+    margin-top: var(--space-xl);
+    max-width: var(--container-narrow);
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--hairline);
+  }
+  .scales-heading {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    font-weight: 620;
+    color: var(--text-strong);
+    letter-spacing: -0.006em;
+    margin: 0 0 var(--space-s);
+  }
+  .scales-body {
+    color: var(--text);
+    line-height: 1.55;
+    max-width: var(--measure);
+    margin: 0;
+  }
+
+  /* ---- N4 Two-col: sticky heading + prose ---- */
+  .two-col {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .two-col-head h2 {
+    margin-top: 0;
+    max-width: 22ch;
+  }
+  @media (min-width: 52rem) {
+    .two-col {
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: var(--space-xl);
+    }
+    .two-col-head { position: sticky; top: 5.5rem; }
+  }
+  .prose { min-width: 0; }
+  .prose-body {
+    color: var(--text);
+    max-width: var(--measure);
+    margin: 0;
+  }
+</style>

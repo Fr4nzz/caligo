@@ -1,0 +1,595 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../PageHeader.astro';
+import MediaCandidateViewer from '../MediaCandidateViewer.astro';
+import ConceptDiagram from '../ConceptDiagram.astro';
+import SectionRail from '../SectionRail.astro';
+import SourceList from '../SourceList.astro';
+import { getDict, type Locale } from '../../i18n';
+import { PILOTS, getSource, getMediaModule } from '../../data/records';
+import { PROJECTS } from '../../data/content';
+import { renderCitations } from '../../lib/citations';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+
+const proj = t.projects as Record<string, unknown>;
+const pageTitle =
+  (proj.header && typeof (proj.header as Record<string, unknown>).title === 'string'
+    ? (proj.header as Record<string, unknown>).title
+    : proj.title) as string;
+const metaTitle = proj.metaTitle as string;
+const metaDescription = proj.metaDescription as string;
+
+const p = t.pilots;
+const pp = t.projects.pilotProposal;
+const motives = t.projects.motives;
+
+const publishedPilots = PILOTS.filter((pilot) => pilot.publish);
+
+const railSections = [
+  { id: 'overview',            label: t.projects.rail.overview },
+  { id: 'heliconius',          label: t.projects.rail.heliconius },
+  { id: 'parides-ascanius',    label: t.projects.rail.parides },
+  { id: 'soybean-lepidoptera', label: t.projects.rail.soybean },
+  { id: 'panacea-prola',       label: t.projects.rail.panacea },
+];
+
+// Bilingual labels for the structured card disclosure
+const label = locale === 'es'
+  ? {
+      statusPill:    'Proyecto piloto propuesto',
+      detailsToggle: 'Evidencia, aportes y límites',
+      sourcesToggle:  'Contexto y fuentes publicados',
+    }
+  : {
+      statusPill:    'Proposed pilot project',
+      detailsToggle: 'Evidence, contributions and boundaries',
+      sourcesToggle:  'Published context and sources',
+    };
+
+// Map from PILOTS.id to PROJECTS.id for the Nicol block lookup.
+const pilotToProjectId: Record<string, string> = {
+  'pilot-heliconius': 'heliconius',
+  'pilot-parides':    'parides',
+  'pilot-soybean':    'soybean-pests',
+  'pilot-panacea':    'panacea',
+};
+const pilotDiagramKind = {
+  'pilot-heliconius': 'chromosome',
+  'pilot-parides': 'connectivity',
+  'pilot-soybean': 'monitoring',
+  'pilot-panacea': 'migration',
+} as const;
+const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
+
+// Local bilingual labels for per-pilot extra lists (no i18n key exists).
+const heliconiusQuestionsLabel = locale === 'es'
+  ? 'Preguntas de investigación del piloto'
+  : 'Pilot research questions';
+const soyObjectivesLabel = locale === 'es'
+  ? 'Objetivos del estudio'
+  : 'Study objectives';
+
+// All source IDs referenced on this page (pilot sourceIds arrays).
+const pageSourceIds = [
+  'rueda-2024',
+  'mackay-smith-2026',
+  'seraphim-2016',
+  'iucn-parides-2018',
+  'icmbio-parides-2021',
+  'horikoshi-2021',
+  'braga-2024',
+  'ukri-soybean',
+  'gallice-2020',
+];
+---
+
+<Base locale={locale} title={metaTitle} description={metaDescription} page="/projects">
+  <div id="overview">
+    <PageHeader title={pageTitle} intro={p.opening} />
+  </div>
+
+  <!-- Why pilots: motives block (F1–F7 from doc 01 §F) -->
+  <section class="section section--tight section--panel" aria-labelledby="motives-heading">
+    <div class="container-wide">
+      <h2 id="motives-heading">{motives.heading}</h2>
+      <p class="section-intro muted">{motives.intro}</p>
+      <ol class="motives-list" role="list">
+        {motives.items.map((item: string, i: number) => (
+          <li class="motive-item">
+            <span class="motive-index mono" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span class="motive-text">{item}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <div class="projects-layout section-rail-layout section-rail-layout--wide section--tight">
+    <SectionRail locale={locale} sections={railSections} />
+
+    <ol class="pilots" aria-label={pageTitle}>
+      {
+        publishedPilots.map((pilot) => {
+          const project = projectById.get(pilotToProjectId[pilot.id]);
+          const diagramKind = pilotDiagramKind[pilot.id as keyof typeof pilotDiagramKind];
+          return (
+            <li id={pilot.slug} class="pilot">
+            <!-- Media: 5-column slot on desktop -->
+            <div class="pilot-media">
+              {getMediaModule(pilot.id) && (
+                <MediaCandidateViewer moduleId={pilot.id} locale={locale} aspectRatio="4 / 3" />
+              )}
+            </div>
+
+            <!-- Text: 7-column slot on desktop -->
+            <div class="pilot-text">
+              <!-- Status pill (once per card) -->
+              <p class="pilot-status-pill">
+                <span class="pilot-status-dot" aria-hidden="true" />
+                {label.statusPill}
+              </p>
+
+              <h2 class="pilot-heading">{pilot.heading[locale]}</h2>
+
+              {pilot.taxon && (
+                <p class="pilot-taxon">
+                  <em>{pilot.taxon}</em>
+                </p>
+              )}
+
+              <!-- One-sentence research question -->
+              <p class="pilot-hook" set:html={renderCitations(pilot.hook[locale])} />
+
+              <!-- ~120–180 word summary body (published context) -->
+              <p class="pilot-body-text" set:html={renderCitations(pilot.publishedContext[locale])} />
+
+              {diagramKind && (
+                <ConceptDiagram locale={locale} kind={diagramKind} context="pilot" />
+              )}
+
+              <!-- Proposed Caligo pilot question -->
+              <div class="pilot-field">
+                <p class="pilot-field-label">{p.fieldLabels.proposedQuestion}</p>
+                <p class="pilot-field-value" set:html={renderCitations(pilot.proposedQuestion[locale])} />
+              </div>
+
+              <!-- Closing thought -->
+              {pilot.closing && (
+                <p class="pilot-closing">{pilot.closing[locale]}</p>
+              )}
+
+              <!-- Boxed disclosure: Evidence, contributions and boundaries -->
+              <details class="disclosure disclosure--boxed pilot-details">
+                <summary class="disclosure-summary">
+                  <span class="disclosure-summary-inner">{label.detailsToggle}</span>
+                </summary>
+                <div class="disclosure-body pilot-details-body">
+                  <div class="pilot-field">
+                    <p class="pilot-field-label">{p.fieldLabels.evidenceNeeded}</p>
+                    <p class="pilot-field-value" set:html={renderCitations(pilot.evidenceNeeded[locale])} />
+                  </div>
+                  <div class="pilot-field">
+                    <p class="pilot-field-label">{p.fieldLabels.genomesCan}</p>
+                    <p class="pilot-field-value" set:html={renderCitations(pilot.genomesCan[locale])} />
+                  </div>
+                  <div class="pilot-field">
+                    <p class="pilot-field-label">{p.fieldLabels.limits}</p>
+                    <p class="pilot-field-value" set:html={renderCitations(pilot.limits[locale])} />
+                  </div>
+
+                  <!-- Inner compact sub-disclosure: Published context and sources -->
+                  <details class="disclosure disclosure--compact pilot-sources-disclosure">
+                    <summary class="disclosure-summary">
+                      <span class="disclosure-summary-inner">{label.sourcesToggle}</span>
+                    </summary>
+                    <div class="disclosure-body pilot-sources-body">
+                      <p class="pilot-source-note" set:html={renderCitations(pilot.sourceNote[locale])} />
+                      <ul class="pilot-sources">
+                        {pilot.sourceIds.map((sid) => {
+                          const src = getSource(sid);
+                          return src ? (
+                            <li class="pilot-source">
+                              <a href={src.url} rel="external noopener">
+                                {src.citation}
+                              </a>
+                            </li>
+                          ) : null;
+                        })}
+                      </ul>
+                    </div>
+                  </details>
+                </div>
+              </details>
+
+              <!-- Nicol block: The proposed Caligo pilot -->
+              {project && (
+                <details class="disclosure disclosure--boxed pilot-proposal">
+                  <summary class="disclosure-summary">
+                    <span class="disclosure-summary-inner">{pp.heading}</span>
+                  </summary>
+                  <div class="disclosure-body pilot-proposal-body">
+                    <div class="pilot-field">
+                      <p class="pilot-field-label">{pp.leadsLabel}</p>
+                      <p class="pilot-field-value">
+                        {project.leads}
+                        {project.leadsNote && (
+                          <span class="pilot-leads-note"> — {project.leadsNote[locale]}</span>
+                        )}
+                      </p>
+                    </div>
+                    <div class="pilot-field">
+                      <p class="pilot-field-label">{pp.goalLabel}</p>
+                      <p class="pilot-field-value">{project.goal[locale]}</p>
+                    </div>
+                    {project.resources && (
+                      <div class="pilot-field">
+                        <p class="pilot-field-label">{pp.resourcesLabel}</p>
+                        <p class="pilot-field-value">{project.resources[locale]}</p>
+                      </div>
+                    )}
+                    <p class="pilot-open-status pilot-field-label">
+                      {project.openToCollaborators ? pp.openLabel : pp.closedLabel}
+                    </p>
+
+                    {/* Heliconius: 8 research questions (doc 01 §G1) */}
+                    {project.heliconiusQuestions && project.heliconiusQuestions.length > 0 && (
+                      <div class="pilot-field">
+                        <p class="pilot-field-label">{heliconiusQuestionsLabel}</p>
+                        <ol class="pilot-extra-list">
+                          {project.heliconiusQuestions.map((q) => (
+                            <li class="pilot-extra-item">{q[locale]}</li>
+                          ))}
+                        </ol>
+                      </div>
+                    )}
+
+                    {/* Soybean: 4 study objectives (doc 01 §G8) */}
+                    {project.soyObjectives && project.soyObjectives.length > 0 && (
+                      <div class="pilot-field">
+                        <p class="pilot-field-label">{soyObjectivesLabel}</p>
+                        <ol class="pilot-extra-list">
+                          {project.soyObjectives.map((obj) => (
+                            <li class="pilot-extra-item">{obj[locale]}</li>
+                          ))}
+                        </ol>
+                      </div>
+                    )}
+                  </div>
+                </details>
+              )}
+            </div>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+
+  <div class="container-wide">
+    <SourceList ids={pageSourceIds} locale={locale} />
+  </div>
+</Base>
+
+<style>
+  /* ============================================================
+     Motives section
+     ============================================================ */
+  .section { padding-block: var(--space-xl); }
+  .section--tight { padding-block: var(--space-l); }
+  .section--panel {
+    background: var(--bg-raised);
+    border-block: 1px solid var(--hairline);
+  }
+  .section-intro {
+    max-width: var(--measure);
+    margin-bottom: var(--space-m);
+  }
+  .motives-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--hairline-strong);
+  }
+  .motive-item {
+    display: grid;
+    grid-template-columns: 2.75rem 1fr;
+    gap: var(--space-s);
+    align-items: baseline;
+    padding: var(--space-s) 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .motive-index {
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+  }
+  .motive-text {
+    color: var(--text);
+    line-height: 1.55;
+    max-width: var(--measure);
+    font-size: var(--step--1);
+  }
+
+  /* ============================================================
+     Pilot list
+     ============================================================ */
+  .pilots {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-bottom: var(--space-2xl);
+    display: grid;
+    gap: 0;
+    min-width: 0;
+  }
+
+  .pilot {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-m);
+    padding-block: var(--space-l);
+    border-top: 1px solid var(--hairline);
+    scroll-margin-top: var(--scroll-margin-top);
+  }
+  .pilot:last-child {
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  /* Desktop: 5 media / 7 text grid */
+  @media (min-width: 68rem) {
+    .pilot {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      column-gap: var(--space-xl);
+      row-gap: 0;
+      align-items: start;
+    }
+    .pilot-media :global(.mcv-stage) { max-height: 24rem; }
+  }
+
+  /* ============================================================
+     Media slot
+     ============================================================ */
+  .pilot-media {
+    min-width: 0;
+  }
+  .pilot-media :global(.mcv-stage) {
+    max-height: min(60vh, 26rem);
+  }
+  .pilot-media :global(img),
+  .pilot-media :global(picture) {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* ============================================================
+     Text slot
+     ============================================================ */
+  .pilot-text {
+    min-width: 0;
+    display: grid;
+    gap: var(--space-s);
+    align-content: start;
+  }
+
+  /* Status pill */
+  .pilot-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    line-height: 1.4;
+  }
+  .pilot-status-dot {
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--highlight);
+    box-shadow: 0 0 0 3px var(--highlight-dim);
+    flex: none;
+  }
+
+  /* Heading */
+  .pilot-heading {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    line-height: 1.18;
+    color: var(--text-strong);
+    max-width: 26ch;
+  }
+
+  /* Taxon */
+  .pilot-taxon {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    letter-spacing: 0.01em;
+  }
+  .pilot-taxon em {
+    color: var(--highlight-strong);
+    font-style: italic;
+  }
+
+  /* One-sentence hook */
+  .pilot-hook {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    font-weight: 500;
+    color: var(--text-strong);
+    line-height: 1.45;
+    max-width: var(--measure);
+  }
+
+  /* Summary body */
+  .pilot-body-text {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.6;
+    font-size: var(--step--1);
+    max-width: var(--measure);
+  }
+  .pilot-text :global(.concept-diagram) {
+    margin-block: var(--space-xs);
+  }
+
+  /* Closing thought */
+  .pilot-closing {
+    margin: 0;
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: var(--step--1);
+    line-height: 1.55;
+    max-width: var(--measure);
+  }
+
+  /* ============================================================
+     Evidence, contributions and boundaries — boxed disclosure
+     ============================================================ */
+  .pilot-details {
+    margin-top: var(--space-2xs);
+  }
+  .pilot-details-body {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  /* Field rows inside the disclosure */
+  .pilot-field {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .pilot-field-label {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    line-height: 1.5;
+  }
+  .pilot-field-value {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.6;
+    font-size: var(--step--1);
+    max-width: var(--measure);
+  }
+
+  /* ============================================================
+     Published context and sources — compact inner sub-disclosure
+     ============================================================ */
+  .pilot-sources-disclosure {
+    margin-top: var(--space-2xs);
+  }
+  .pilot-sources-body {
+    display: grid;
+    gap: var(--space-xs);
+  }
+  .pilot-source-note {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: var(--measure);
+  }
+  .pilot-sources {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .pilot-source {
+    padding-block: 0.25rem;
+    border-top: 1px solid var(--hairline);
+    font-size: var(--step--1);
+    line-height: 1.5;
+  }
+  .pilot-source:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .pilot-source a {
+    color: var(--link);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--link) 45%, transparent);
+    text-underline-offset: 0.2em;
+    transition: color var(--transition), text-decoration-color var(--transition);
+  }
+  .pilot-source a:hover,
+  .pilot-source a:focus-visible {
+    color: var(--link-hover);
+    text-decoration-color: currentColor;
+  }
+
+  /* ============================================================
+     Nicol block — proposed Caligo pilot disclosure
+     ============================================================ */
+  .pilot-proposal {
+    margin-top: var(--space-2xs);
+  }
+  .pilot-proposal-body {
+    display: grid;
+    gap: var(--space-s);
+  }
+  .pilot-leads-note {
+    color: var(--text-muted);
+    font-size: var(--step--2);
+  }
+  .pilot-open-status {
+    margin: 0;
+    padding: var(--space-2xs) var(--space-s);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    background: var(--bg-inset);
+    display: inline-block;
+    align-self: start;
+  }
+
+  /* Extra per-pilot lists (questions, objectives) */
+  .pilot-extra-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-2xs) 0 0;
+    display: grid;
+    gap: 0.25rem;
+  }
+  .pilot-extra-item {
+    color: var(--text);
+    font-size: var(--step--1);
+    line-height: 1.55;
+    padding-left: var(--space-m);
+    position: relative;
+  }
+  .pilot-extra-item::before {
+    content: counter(list-item) '.';
+    counter-increment: list-item;
+    position: absolute;
+    left: 0;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    top: 0.1em;
+  }
+  .pilot-extra-list {
+    counter-reset: list-item;
+  }
+</style>

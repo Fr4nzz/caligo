@@ -1,0 +1,314 @@
+---
+/*
+  Theme review — internal preview surface.
+
+  Env-gated: only renders the full six-combo palette review when
+  ENABLE_THEME_REVIEW=true is set at build time. Otherwise the route
+  still exists (so dev links don't 404 unexpectedly) but renders a
+  minimal stub with noindex — no palette machinery, no design-system
+  preview material.
+
+  Also excluded from the sitemap in astro.config.mjs.
+*/
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Callout from '../components/Callout.astro';
+import { ALLOWED_PALETTES, MODES, PALETTES, MODE_COLORS, type PaletteId, type ModeId } from '../config/palettes';
+import { DEFAULT_LOCALE } from '../i18n';
+
+const ENABLED = import.meta.env.ENABLE_THEME_REVIEW === 'true';
+
+// Every panel renders the SAME representative slice of the design system.
+// Fixed English copy: this is an internal preview, not a public page.
+const combos: ReadonlyArray<{ palette: PaletteId; mode: ModeId }> = (
+  ALLOWED_PALETTES.flatMap((p) => MODES.map((m) => ({ palette: p, mode: m })))
+);
+---
+
+<Base
+  locale={DEFAULT_LOCALE}
+  title="Caligo — theme review"
+  description="Internal review of the three palette families in both light and dark modes."
+  page="/theme-review"
+  noindex
+>
+  {!ENABLED && (
+    <section class="review-intro container-wide" style="padding-block: var(--space-xl);">
+      <p class="eyebrow">Internal · disabled</p>
+      <h1>Theme review is disabled in this build</h1>
+      <p class="lead">
+        This preview surface is env-gated. Set <code>ENABLE_THEME_REVIEW=true</code>
+        and rebuild to see the six-combo palette review.
+      </p>
+      <p class="muted review-meta">
+        Excluded from the production sitemap and marked <code>noindex</code>.
+      </p>
+    </section>
+  )}
+  {ENABLED && (<Fragment>
+  <section class="review-intro container-wide">
+    <p class="eyebrow">Internal · noindex</p>
+    <h1>Theme review</h1>
+    <p class="lead">
+      Three palette families in light and dark. Each panel below carries its own
+      <code>data-palette</code> and <code>data-mode</code> so it renders in that
+      combo regardless of the surrounding chrome. Change the surrounding chrome
+      via the header selector or with a URL query, e.g.
+      <code>?palette=canopy&amp;mode=dark</code>.
+    </p>
+    <p class="muted review-meta">
+      caligo · canopy · morpho × dark · light — six combinations. Body text ≥ 4.5:1
+      and accent ≥ 3.0:1 against background in every combo, verified in
+      <code>scripts/verify-contrast.mjs</code>.
+    </p>
+  </section>
+
+  <section class="review-grid container-wide">
+    {
+      combos.map(({ palette, mode }) => (
+        <article
+          class="review-panel"
+          data-palette={palette}
+          data-mode={mode}
+          aria-label={`${palette} ${mode}`}
+        >
+          <header class="review-panel-head">
+            <p class="review-panel-code">
+              {palette} · {mode}
+            </p>
+            <p class="review-panel-name">{PALETTES[palette].nameEn}</p>
+          </header>
+
+          <div class="review-panel-body">
+            <h2 class="review-h">Genomes of Neotropical butterflies and moths</h2>
+            <p class="review-p">
+              Caligo is a Latin American-led network generating genomic resources for
+              the butterflies and moths of the Neotropics. This paragraph is real
+              body copy at the site's default measure and line height.
+            </p>
+            <p class="review-p muted">
+              A muted line reads at reduced emphasis without dropping under the
+              4.5:1 contrast threshold in any combo.
+            </p>
+
+            <p class="review-actions">
+              <a class="btn" href="#">Primary action <Icon name="arrow-right" /></a>
+              <a class="btn btn--ghost" href="#">Secondary</a>
+            </p>
+
+            <p class="review-p">
+              Inline <a href="#">accent link</a> and a taxonomic name in italic:
+              <em>Heliconius melpomene</em>. Chromosome count <span class="mono">n&nbsp;=&nbsp;21</span>
+              rendered in the mono face, and a genome accession
+              <span class="mono">GCA_009832395.2</span>.
+            </p>
+
+            <Callout label="Provisional" variant="note">
+              A short callout in the note style, used for scientific caveats and
+              draft status.
+            </Callout>
+
+            <dl class="review-swatches" aria-hidden="true">
+              <div class="review-swatch" style="background: var(--bg);"><dt>bg</dt><dd class="mono">--bg</dd></div>
+              <div class="review-swatch" style="background: var(--bg-panel); color: var(--text);"><dt>panel</dt><dd class="mono">--bg-panel</dd></div>
+              <div class="review-swatch" style="background: var(--accent); color: var(--accent-contrast);"><dt>accent</dt><dd class="mono">--accent</dd></div>
+              <div class="review-swatch" style="background: var(--highlight-dim); color: var(--highlight-strong);"><dt>highlight</dt><dd class="mono">--highlight</dd></div>
+              <div class="review-swatch" style="background: var(--bg-inset); color: var(--text-muted);"><dt>inset</dt><dd class="mono">--bg-inset</dd></div>
+              <div class="review-swatch" style="background: var(--bg); color: var(--text); border: 1px solid var(--hairline);"><dt>hairline</dt><dd class="mono">--hairline</dd></div>
+            </dl>
+
+            <p class="review-meta mono">
+              theme-color: {MODE_COLORS[palette][mode]}
+            </p>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="review-notes container-wide">
+    <h2>Notes for the review</h2>
+    <ul class="review-note-list">
+      <li>
+        The provisional Caligo logo (<code>design-references/Caligo logo.jpeg</code>)
+        is not shown in these panels because it is an ivory JPEG and only reads
+        correctly on ivory backgrounds. See DESIGN.md for the list of missing
+        brand assets that would need to exist before a real header lockup lands.
+      </li>
+      <li>
+        The wing artwork on the homepage is a hand-authored SVG fallback flagged
+        via <code>&lt;HeroMedia kind="fallback"&gt;</code> and is not a final asset.
+      </li>
+      <li>
+        The Caligo palette accent (<code>#B45621</code> on ivory / <code>#E38249</code>
+        on warm charcoal) is verified against WCAG AA at normal text sizes on its
+        own backgrounds. On non-Caligo backgrounds, use the palette's native accent
+        instead.
+      </li>
+      <li>
+        This page is <code>noindex</code> and env-gated by
+        <code>ENABLE_THEME_REVIEW</code>. It is not linked from the site
+        navigation and is excluded from the sitemap.
+      </li>
+    </ul>
+  </section>
+  </Fragment>)}
+</Base>
+
+<style>
+  .review-intro {
+    padding-top: var(--space-l);
+    padding-bottom: var(--space-m);
+  }
+  .review-intro h1 {
+    margin-top: 0.55rem;
+    max-width: 22ch;
+  }
+  .review-intro .lead {
+    margin-top: var(--space-s);
+    max-width: 60ch;
+  }
+  .review-meta {
+    margin-top: var(--space-s);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+  }
+  .review-intro code,
+  .review-notes code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    padding: 0.05em 0.35em;
+    background: var(--bg-inset);
+    border: 1px solid var(--hairline);
+    border-radius: 3px;
+    color: var(--accent-strong);
+  }
+
+  .review-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-m);
+    padding-bottom: var(--space-xl);
+  }
+  @media (min-width: 62rem) {
+    .review-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .review-panel {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+  }
+  .review-panel-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding: 0.65rem var(--space-m);
+    background: var(--bg-inset);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .review-panel-code {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .review-panel-name {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 570;
+    color: var(--text-strong);
+    letter-spacing: -0.018em;
+  }
+  .review-panel-body {
+    padding: var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+  .review-h {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 550;
+    line-height: 1.1;
+    letter-spacing: -0.018em;
+    color: var(--text-strong);
+  }
+  .review-p {
+    font-size: var(--step-0);
+    line-height: 1.55;
+  }
+  .review-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 0.15rem;
+  }
+
+  .review-swatches {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 0;
+  }
+  @media (min-width: 34rem) {
+    .review-swatches { grid-template-columns: repeat(6, 1fr); }
+  }
+  .review-swatch {
+    padding: 0.65rem 0.55rem;
+    border-right: 1px solid var(--hairline);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-height: 3.6rem;
+    justify-content: flex-end;
+  }
+  .review-swatch:last-child { border-right: 0; }
+  .review-swatch dt {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: -0.006em;
+  }
+  .review-swatch dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    opacity: 0.7;
+  }
+
+  .review-notes {
+    padding-bottom: var(--space-2xl);
+  }
+  .review-notes h2 {
+    font-size: var(--step-2);
+    margin-bottom: var(--space-s);
+  }
+  .review-note-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    max-width: 78ch;
+  }
+  .review-note-list li {
+    padding: var(--space-s) var(--space-m);
+    background: var(--bg-inset);
+    border: 1px solid var(--hairline);
+    border-left: 2px solid var(--accent);
+    border-radius: var(--radius);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+</style>

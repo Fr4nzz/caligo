@@ -1,0 +1,68 @@
+name: Deploy to GitHub Pages
+
+# Builds the Astro static site and deploys it to GitHub Pages.
+# The site is a project site served under /<repository>/ (astro.config.mjs
+# sets base: '/caligo/'). When a custom domain is adopted later, override the
+# base and site via the SITE_URL / BASE_PATH env vars documented in the config.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow one concurrent deployment; don't cancel an in-progress run.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+# Least-privilege permissions required by the Pages deploy action.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          # Astro 7 requires Node >= 22.12. Keep this in step with .nvmrc
+          # and the `engines.node` field in package.json.
+          node-version: '22.12.0'
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Content integrity checks
+        run: pnpm test
+
+      - name: Type & content check
+        run: pnpm check
+
+      - name: Build
+        run: pnpm build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

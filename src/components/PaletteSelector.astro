@@ -1,0 +1,366 @@
+---
+/*
+  PaletteSelector — the runtime UI for the palette + mode engine.
+
+  Behaviour is the mirror of the pre-paint script in Base.astro:
+  • palette axis  → data-palette + localStorage['caligo-palette']
+  • mode    axis  → data-mode    + localStorage['caligo-mode']
+  • both updates  → <meta name="theme-color"> via MODE_COLORS[palette][mode]
+
+  The UI is a native <details>/<summary> disclosure (no ARIA menu widget
+  needed — keyboard-operable for free). Palette values are radio inputs;
+  mode is a paired button that reflects and toggles data-mode.
+
+  Swatches show four representative CSS-variable colours per palette,
+  matched to the CURRENT mode so users see what they would actually get.
+*/
+import { PALETTES, ALLOWED_PALETTES, MODE_COLORS, type PaletteId } from '../config/palettes';
+import { type Locale } from '../i18n';
+import Icon from './Icon.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const label = locale === 'es' ? 'Tema' : 'Theme';
+const paletteHeading = locale === 'es' ? 'Paleta' : 'Palette';
+const modeHeading = locale === 'es' ? 'Modo' : 'Mode';
+const modeDark = locale === 'es' ? 'Oscuro' : 'Dark';
+const modeLight = locale === 'es' ? 'Claro' : 'Light';
+
+const nameOf = (id: PaletteId) => (locale === 'es' ? PALETTES[id].nameEs : PALETTES[id].nameEn);
+const descOf = (id: PaletteId) => (locale === 'es' ? PALETTES[id].descEs : PALETTES[id].descEn);
+
+// Serialise the MODE_COLORS map for the runtime script — same pattern as
+// Base.astro. The whitelist arrays are inferred from PALETTES keys client-side.
+const selectorPayload = JSON.stringify({
+  palettes: ALLOWED_PALETTES,
+  colors: MODE_COLORS,
+  previews: Object.fromEntries(
+    (ALLOWED_PALETTES as readonly PaletteId[]).map((id) => [id, PALETTES[id].preview])
+  ),
+});
+---
+
+<details class="palette-selector" data-palette-selector>
+  <summary aria-label={label}>
+    <Icon name="leaf" />
+    <span class="palette-selector-caret" aria-hidden="true">▾</span>
+  </summary>
+
+  <div class="palette-selector-panel" role="group" aria-label={label}>
+    <fieldset class="palette-selector-fieldset">
+      <legend>{paletteHeading}</legend>
+      <ul class="palette-selector-list">
+        {
+          (ALLOWED_PALETTES as readonly PaletteId[]).map((id) => (
+            <li>
+              <label class="palette-selector-item" data-palette-option={id}>
+                <input
+                  type="radio"
+                  name="caligo-palette"
+                  value={id}
+                  data-palette-radio
+                />
+                <span class="palette-selector-swatches" aria-hidden="true">
+                  {PALETTES[id].preview.dark.map((hex) => (
+                    <span
+                      class="palette-selector-swatch"
+                      data-swatch-mode="dark"
+                      data-swatch-palette={id}
+                      style={`background:${hex}`}
+                    />
+                  ))}
+                  {PALETTES[id].preview.light.map((hex) => (
+                    <span
+                      class="palette-selector-swatch"
+                      data-swatch-mode="light"
+                      data-swatch-palette={id}
+                      style={`background:${hex}`}
+                    />
+                  ))}
+                </span>
+                <span class="palette-selector-labels">
+                  <span class="palette-selector-name">{nameOf(id)}</span>
+                  <span class="palette-selector-desc">{descOf(id)}</span>
+                </span>
+              </label>
+            </li>
+          ))
+        }
+      </ul>
+    </fieldset>
+
+    <div class="palette-selector-mode">
+      <span class="palette-selector-mode-heading">{modeHeading}</span>
+      <button type="button" data-mode-button class="palette-selector-mode-btn" aria-pressed="false">
+        <Icon name="sun" class="mode-btn-icon mode-btn-sun" />
+        <Icon name="moon" class="mode-btn-icon mode-btn-moon" />
+        <span data-mode-label>{modeDark}</span>
+      </button>
+    </div>
+  </div>
+</details>
+
+<style>
+  .palette-selector {
+    position: relative;
+  }
+  .palette-selector > summary {
+    display: inline-grid;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: 0.15rem;
+    width: auto;
+    min-width: 2.4rem;
+    height: 2.4rem;
+    padding-inline: 0.55rem;
+    background: transparent;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    color: var(--text);
+    cursor: pointer;
+    list-style: none;
+    transition: background var(--transition), border-color var(--transition), color var(--transition);
+  }
+  .palette-selector > summary::-webkit-details-marker { display: none; }
+  .palette-selector > summary:hover {
+    background: var(--bg-panel-hover);
+    border-color: var(--accent);
+    color: var(--text-strong);
+  }
+  .palette-selector > summary :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+  .palette-selector-caret {
+    font-size: 0.7rem;
+    line-height: 1;
+    color: var(--text-faint);
+    transition: transform var(--transition);
+  }
+  .palette-selector[open] > summary .palette-selector-caret {
+    transform: rotate(180deg);
+    color: var(--accent);
+  }
+
+  .palette-selector-panel {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    z-index: 120;
+    width: min(22rem, calc(100vw - 1.6rem));
+    padding: var(--space-s);
+    background: var(--bg-panel);
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+
+  .palette-selector-fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .palette-selector-fieldset > legend {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding: 0;
+    margin-bottom: 0.35rem;
+  }
+  .palette-selector-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .palette-selector-item {
+    display: grid;
+    grid-template-columns: 1.15rem auto 1fr;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.55rem 0.6rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition);
+  }
+  .palette-selector-item:hover {
+    background: var(--bg-panel-hover);
+    border-color: var(--hairline);
+  }
+  .palette-selector-item:has(input:checked) {
+    background: var(--accent-dim);
+    border-color: color-mix(in oklab, var(--accent) 50%, transparent);
+  }
+
+  .palette-selector-item > input {
+    accent-color: var(--accent);
+  }
+
+  .palette-selector-swatches {
+    display: inline-grid;
+    grid-template-columns: repeat(4, 0.55rem);
+    grid-template-rows: 1.1rem;
+    gap: 2px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-xs);
+    overflow: hidden;
+    padding: 2px;
+    background: var(--bg-inset);
+  }
+  .palette-selector-swatch {
+    display: block;
+    width: 0.55rem;
+    height: 1.1rem;
+  }
+  /* Show only the swatches matching the CURRENT mode. */
+  [data-mode='dark']  .palette-selector-swatch[data-swatch-mode='light'] { display: none; }
+  [data-mode='light'] .palette-selector-swatch[data-swatch-mode='dark']  { display: none; }
+  [data-mode='dark']  .palette-selector-swatches { grid-template-columns: repeat(4, 0.55rem); }
+  [data-mode='light'] .palette-selector-swatches { grid-template-columns: repeat(4, 0.55rem); }
+
+  .palette-selector-labels {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .palette-selector-name {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 620;
+    color: var(--text-strong);
+    letter-spacing: -0.005em;
+  }
+  .palette-selector-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.35;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .palette-selector-mode {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: var(--space-s);
+    border-top: 1px solid var(--hairline);
+  }
+  .palette-selector-mode-heading {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .palette-selector-mode-btn {
+    display: inline-grid;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.42em 0.75em;
+    background: transparent;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 560;
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition), color var(--transition);
+  }
+  .palette-selector-mode-btn:hover {
+    color: var(--text-strong);
+    border-color: var(--accent);
+    background: var(--bg-panel-hover);
+  }
+  .mode-btn-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  /* Sun for dark→light, Moon for light→dark. */
+  :global([data-mode='dark']) .mode-btn-moon { display: none; }
+  :global([data-mode='light']) .mode-btn-sun { display: none; }
+</style>
+
+<script is:inline set:html={`
+(function(){
+  var S=${selectorPayload};
+  var d=document.documentElement;
+  var root=document.querySelector('[data-palette-selector]');
+  if(!root) return;
+
+  function setThemeColor(palette,mode){
+    try{
+      var meta=document.querySelector('meta[name="theme-color"]');
+      if(!meta){ meta=document.createElement('meta'); meta.setAttribute('name','theme-color'); document.head.appendChild(meta); }
+      var c=(S.colors[palette]&&S.colors[palette][mode])||S.colors[S.palettes[0]].dark;
+      meta.setAttribute('content',c);
+    }catch(_){}
+  }
+
+  function currentPalette(){ var v=d.getAttribute('data-palette'); return S.palettes.indexOf(v)!==-1?v:S.palettes[0]; }
+  function currentMode(){    var v=d.getAttribute('data-mode');    return (v==='light'||v==='dark')?v:'dark'; }
+
+  function syncUI(){
+    var p=currentPalette(), m=currentMode();
+    // radios
+    root.querySelectorAll('[data-palette-radio]').forEach(function(r){ r.checked = (r.value===p); });
+    // mode button
+    var btn=root.querySelector('[data-mode-button]');
+    if(btn){
+      btn.setAttribute('aria-pressed', m==='dark' ? 'true' : 'false');
+      var lbl=root.querySelector('[data-mode-label]');
+      if(lbl) lbl.textContent = m==='dark' ? (${JSON.stringify(modeDark)}) : (${JSON.stringify(modeLight)});
+    }
+  }
+
+  root.addEventListener('change', function(e){
+    var t=e.target;
+    if(t && t.matches && t.matches('[data-palette-radio]')){
+      var v=t.value;
+      if(S.palettes.indexOf(v)===-1) return;
+      d.setAttribute('data-palette', v);
+      try{ localStorage.setItem('caligo-palette', v); }catch(_){}
+      setThemeColor(v, currentMode());
+    }
+  });
+
+  root.addEventListener('click', function(e){
+    var b=e.target && e.target.closest && e.target.closest('[data-mode-button]');
+    if(!b) return;
+    var next = currentMode()==='dark' ? 'light' : 'dark';
+    d.setAttribute('data-mode', next);
+    try{ localStorage.setItem('caligo-mode', next); }catch(_){}
+    setThemeColor(currentPalette(), next);
+    syncUI();
+  });
+
+  // Initial sync — Base.astro's pre-paint script already set data-* on <html>.
+  syncUI();
+
+  // Sync when ANY other control (ThemeToggle, URL, JS) changes the
+  // documentElement attrs, so the popover label + swatches stay accurate.
+  try {
+    var mo = new MutationObserver(function(){ syncUI(); });
+    mo.observe(d, { attributes: true, attributeFilter: ['data-palette','data-mode'] });
+  } catch(_){}
+})();
+`} />

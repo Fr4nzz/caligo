@@ -1,0 +1,48 @@
+---
+/** A labelled note used for draft / provisional / privacy caveats. */
+interface Props {
+  variant?: 'draft' | 'note';
+  label?: string;
+  class?: string;
+}
+const { variant = 'note', label, class: className } = Astro.props;
+---
+
+<aside class:list={['callout', `callout--${variant}`, className]}>
+  {label && <p class="callout-label">{label}</p>}
+  <p class="callout-body"><slot /></p>
+</aside>
+
+<style>
+  .callout {
+    border: 1px solid var(--hairline);
+    border-left-width: 2px;
+    border-radius: var(--radius);
+    background: var(--bg-inset);
+    padding: var(--space-s) var(--space-m);
+  }
+  .callout--draft {
+    border-left-color: var(--highlight);
+  }
+  .callout--note {
+    border-left-color: var(--accent);
+  }
+  .callout-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--highlight-strong);
+    margin-bottom: 0.4rem;
+  }
+  .callout--note .callout-label {
+    color: var(--accent-strong);
+  }
+  .callout-body {
+    font-size: var(--step--1);
+    line-height: 1.55;
+    color: var(--text-muted);
+    margin: 0;
+  }
+</style>

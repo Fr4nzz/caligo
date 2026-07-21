@@ -1,0 +1,397 @@
+---
+/*
+  SectionRail — "On this page" chapter navigation.
+
+  Progressive enhancement:
+    • JS off  → the <a href="#…"> anchors work as ordinary in-page links, and
+                the mobile <details> disclosure still opens/closes natively.
+    • JS on   → an IntersectionObserver marks the section in view with
+                aria-current="location" and syncs the URL hash via a debounced
+                history.replaceState (no history spam on scroll).
+
+  The rail is palette-agnostic: it consumes only semantic tokens from
+  src/styles/tokens.css. scroll-margin-top on the section headings is the
+  caller's responsibility, not this component's.
+*/
+
+type Section = { readonly id: string; readonly label: string };
+
+interface Props {
+  locale: 'en' | 'es';
+  sections: ReadonlyArray<Section>;
+  heading?: string;
+}
+
+const { locale, sections, heading } = Astro.props;
+
+const defaultHeading = locale === 'es' ? 'En esta página' : 'On this page';
+const resolvedHeading = heading ?? defaultHeading;
+---
+
+<aside class="section-rail" aria-labelledby="section-rail-heading">
+  <details class="section-rail-disclosure" open>
+    <summary class="section-rail-heading" id="section-rail-heading">
+      {resolvedHeading}
+    </summary>
+    <div class="section-rail-content">
+      <ol class="section-rail-list">
+        {
+          sections.map((section) => (
+            <li>
+              <a href={`#${section.id}`} data-rail-anchor={section.id}>
+                {section.label}
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </details>
+</aside>
+
+<style>
+  /* ────────────────────────────────────────────────────────────────────
+     Base: shared visual language across mobile disclosure + desktop rail.
+     ──────────────────────────────────────────────────────────────────── */
+  .section-rail {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+  }
+
+  .section-rail-disclosure {
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    padding-block: var(--space-xs);
+  }
+
+  .section-rail-heading {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    cursor: pointer;
+    padding-block: var(--space-2xs);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+
+  /* Remove the default marker in every engine */
+  .section-rail-heading::-webkit-details-marker {
+    display: none;
+  }
+  .section-rail-heading::marker {
+    content: '';
+  }
+
+  /* Disclosure chevron — visible on mobile only. On desktop the rail is
+     always open and we hide the chevron. */
+  .section-rail-heading::after {
+    content: '';
+    margin-left: auto;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translate(-1px, -1px);
+    transition: transform var(--transition);
+  }
+  .section-rail-disclosure[open] > .section-rail-heading::after {
+    transform: rotate(-135deg) translate(-1px, -1px);
+  }
+
+  .section-rail-disclosure::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    transition:
+      content-visibility 200ms allow-discrete,
+      block-size 200ms ease,
+      opacity 180ms ease;
+    transition-behavior: allow-discrete;
+  }
+  .section-rail-disclosure[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+  .section-rail-disclosure[data-disclosure-enhanced='true']::details-content {
+    transition: none;
+  }
+
+  .section-rail-heading:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  .section-rail-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-xs) 0 var(--space-2xs);
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+  }
+
+  .section-rail-list li {
+    position: relative;
+    /* Border-left indicator lives on the <li> so weight change on <a> is
+       reserved as the primary a11y-visible signal. */
+    border-left: 2px solid transparent;
+    transition: border-color var(--transition);
+  }
+
+  .section-rail-list a {
+    display: block;
+    padding: 0.42rem 0.8rem;
+    font-size: var(--step--1);
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: var(--radius-xs);
+    transition: color var(--transition), font-weight var(--transition);
+  }
+
+  /* Hover: bring the ink up, keep background flat (no chip fill). */
+  .section-rail-list a:hover {
+    color: var(--text-strong);
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+  }
+
+  .section-rail-list a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* Active state — non-colour signals: font-weight bump + ocellus ring marker. */
+  .section-rail-list li:has(a[aria-current='location']) {
+    border-left-color: var(--accent);
+  }
+  .section-rail-list a {
+    position: relative;
+  }
+  .section-rail-list a[aria-current='location'] {
+    color: var(--text-strong);
+    font-weight: 600;
+  }
+  .section-rail-list a[aria-current='location']::before {
+    content: '';
+    position: absolute;
+    left: -0.52rem;
+    top: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: -0.25rem;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 1px var(--bg);
+    animation: rail-ocellus var(--dur-base) var(--ease-settle) both;
+  }
+  @keyframes rail-ocellus {
+    from {
+      opacity: 0;
+      transform: scale(0.4);
+    }
+  }
+
+  /* ────────────────────────────────────────────────────────────────────
+     Desktop (≥ 60rem): sticky rail, always open, no chevron.
+     ──────────────────────────────────────────────────────────────────── */
+  @media (min-width: 68rem) {
+    .section-rail {
+      position: sticky;
+      top: calc(4rem + var(--space-m));
+      width: 100%;
+      max-height: calc(100vh - 4rem - var(--space-l));
+      overflow-y: auto;
+      padding-right: var(--space-xs);
+    }
+
+    .section-rail-disclosure {
+      border-top: none;
+      border-bottom: none;
+      padding-block: 0;
+    }
+
+    /* Force-open the disclosure on desktop even if the user closed it on a
+       narrow viewport before resizing up. `open` is a boolean attribute but
+       CSS content-visibility isn't the mechanism — we sidestep by revealing
+       the list unconditionally at this breakpoint. */
+    .section-rail-disclosure > .section-rail-list {
+      display: flex !important;
+    }
+    .section-rail-heading {
+      cursor: default;
+      pointer-events: none;
+      padding-bottom: var(--space-2xs);
+      border-bottom: 1px solid var(--hairline);
+      margin-bottom: var(--space-2xs);
+    }
+    .section-rail-heading::after {
+      display: none;
+    }
+
+    .section-rail-list a {
+      padding: 0.36rem 0.65rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .section-rail-heading::after,
+    .section-rail-disclosure::details-content {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  /*
+    Progressive enhancement: mark the section in view via
+    IntersectionObserver + aria-current="location".
+
+    Reduced-motion note: this observer is a non-animated STATE update, not
+    a visual transition. It must keep running under
+    prefers-reduced-motion: reduce so keyboard/screen-reader/sighted users
+    on that preference still see which section they are in. Only animated
+    behaviours (smooth scrolling, CSS transitions on the rail) should be
+    disabled by the media query — that is handled in CSS below.
+
+    Wrapped in an initializer bound to `astro:page-load` so the observer
+    re-attaches after every <ClientRouter /> navigation. The guard on
+    rail.dataset.railInit prevents duplicate observers when the element
+    persists (e.g. on Home ↔ Home hash swaps).
+  */
+  function initSectionRail() {
+    if (typeof window === 'undefined') return;
+
+    const rail = document.querySelector<HTMLElement>('.section-rail');
+    if (!rail) return;
+    if (rail.dataset.railInit === '1') return;
+    rail.dataset.railInit = '1';
+
+    const disclosure = rail.querySelector<HTMLDetailsElement>('.section-rail-disclosure');
+    const desktop = window.matchMedia('(min-width: 68rem)');
+    const keepDesktopOpen = (event?: MediaQueryListEvent) => {
+      if ((event?.matches ?? desktop.matches) && disclosure) disclosure.open = true;
+    };
+    keepDesktopOpen();
+    desktop.addEventListener('change', keepDesktopOpen);
+
+    const anchors = Array.from(
+      rail.querySelectorAll<HTMLAnchorElement>('a[data-rail-anchor]'),
+    );
+    if (anchors.length === 0) return;
+
+    type Entry = {
+      readonly id: string;
+      readonly anchor: HTMLAnchorElement;
+      readonly target: HTMLElement;
+      readonly domIndex: number;
+    };
+
+    const entries: Entry[] = [];
+    anchors.forEach((anchor, domIndex) => {
+      const id = anchor.dataset.railAnchor;
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      entries.push({ id, anchor, target, domIndex });
+    });
+    if (entries.length === 0) return;
+
+    // Measure the sticky header so the observer treats "cleared the header"
+    // as the moment a section becomes current.
+    const header = document.querySelector<HTMLElement>('.site-header');
+    const headerHeight = header ? Math.round(header.getBoundingClientRect().height) : 64;
+
+    const visibleRatios = new Map<string, number>();
+
+    let current: string | null = null;
+    let replaceTimer: number | null = null;
+
+    const setActive = (id: string | null) => {
+      if (id === current) return;
+      current = id;
+      for (const entry of entries) {
+        if (entry.id === id) {
+          entry.anchor.setAttribute('aria-current', 'location');
+        } else {
+          entry.anchor.removeAttribute('aria-current');
+        }
+      }
+
+      // Debounce URL sync so history.replaceState isn't hammered on scroll.
+      if (replaceTimer !== null) window.clearTimeout(replaceTimer);
+      replaceTimer = window.setTimeout(() => {
+        replaceTimer = null;
+        if (id === null) return;
+        const url = new URL(window.location.href);
+        if (url.hash === `#${id}`) return;
+        url.hash = id;
+        window.history.replaceState(null, '', url.toString());
+      }, 180);
+    };
+
+    const pickCurrent = () => {
+      let best: Entry | null = null;
+      let bestRatio = -1;
+      for (const entry of entries) {
+        const ratio = visibleRatios.get(entry.id) ?? 0;
+        if (ratio <= 0) continue;
+        if (
+          ratio > bestRatio ||
+          (ratio === bestRatio && best !== null && entry.domIndex < best.domIndex)
+        ) {
+          best = entry;
+          bestRatio = ratio;
+        }
+      }
+      setActive(best?.id ?? null);
+    };
+
+    const observer = new IntersectionObserver(
+      (records) => {
+        for (const record of records) {
+          const id = record.target.id;
+          if (!id) continue;
+          visibleRatios.set(
+            id,
+            record.isIntersecting ? record.intersectionRatio : 0,
+          );
+        }
+        pickCurrent();
+      },
+      {
+        rootMargin: `-${headerHeight}px 0px -60% 0px`,
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      },
+    );
+
+    for (const entry of entries) observer.observe(entry.target);
+
+    // If none intersect on initial paint, pre-select the first section whose
+    // heading has already scrolled above the header — a sensible default when
+    // the user lands mid-page via hash or reload.
+    const initial = () => {
+      let fallback: Entry | null = null;
+      for (const entry of entries) {
+        const rect = entry.target.getBoundingClientRect();
+        if (rect.top - headerHeight <= 0) fallback = entry;
+      }
+      if (fallback && current === null) setActive(fallback.id);
+    };
+    initial();
+  }
+
+  // Re-init after every ClientRouter navigation, and immediately for the
+  // initial page load in case the script executed after DOMContentLoaded.
+  document.addEventListener('astro:page-load', initSectionRail);
+  initSectionRail();
+</script>

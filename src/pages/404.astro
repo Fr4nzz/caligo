@@ -1,0 +1,113 @@
+---
+/*
+  Bilingual 404 page.
+
+  Shows both EN and ES so visitors see useful content regardless of which
+  language they expected. EN is the primary (HTML lang="en"); ES section is
+  explicitly marked lang="es". Both sections link back to their respective
+  home routes — no meta-refresh or JavaScript redirect (WCAG 2.2.1).
+
+  noindex — an error page should not be indexed, and it has no locale-specific
+  route, so it emits no canonical/hreflang alternates (those would point at
+  non-existent /en/404/ and /es/404/ URLs).
+*/
+import Base from '../layouts/Base.astro';
+import { getDict, localePath } from '../i18n';
+
+const dictEn = getDict('en');
+const dictEs = getDict('es');
+const nEn = dictEn.notFound;
+const nEs = dictEs.notFound;
+---
+
+<Base
+  locale="en"
+  title={`${nEn.title} — Caligo`}
+  description={nEn.body}
+  noindex={true}
+>
+  <section class="not-found container-narrow">
+
+    <!-- English -->
+    <div class="not-found-block" lang="en">
+      <p class="not-found-eyebrow mono">404</p>
+      <h1 class="not-found-heading">{nEn.title}</h1>
+      <p class="not-found-body">{nEn.body}</p>
+      <p class="not-found-cta">
+        <a class="btn" href={localePath('en', '/')}>{nEn.homeLink}</a>
+      </p>
+    </div>
+
+    <!-- Español -->
+    <div class="not-found-block" lang="es">
+      <h2 class="not-found-heading-es">{nEs.title}</h2>
+      <p class="not-found-body">{nEs.body}</p>
+      <p class="not-found-cta">
+        <a class="btn" href={localePath('es', '/')}>{nEs.homeLink}</a>
+      </p>
+    </div>
+
+  </section>
+</Base>
+
+<style>
+  .container-narrow {
+    max-width: var(--measure);
+    margin-inline: auto;
+    padding-inline: var(--space-m);
+  }
+  @media (min-width: 40rem) {
+    .container-narrow { padding-inline: var(--space-l); }
+  }
+
+  .not-found {
+    padding-block: var(--space-xl);
+  }
+
+  .not-found-block + .not-found-block {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-l);
+    border-top: 1px solid var(--hairline);
+  }
+
+  .not-found-eyebrow {
+    margin: 0 0 var(--space-s);
+    font-size: var(--step--2);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .not-found-heading {
+    margin: 0 0 var(--space-s);
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: 560;
+    letter-spacing: -0.018em;
+    line-height: 1.1;
+    color: var(--text-strong);
+    max-width: 18ch;
+  }
+
+  .not-found-heading-es {
+    margin: 0 0 var(--space-s);
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 560;
+    letter-spacing: -0.012em;
+    line-height: 1.15;
+    color: var(--text-strong);
+    max-width: 22ch;
+  }
+
+  .not-found-body {
+    margin: 0 0 var(--space-l);
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: var(--measure);
+  }
+
+  .not-found-cta {
+    margin: 0;
+  }
+</style>

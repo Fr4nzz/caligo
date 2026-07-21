@@ -1,0 +1,455 @@
+/*
+  Caligo design tokens.  See DESIGN.md for the rationale.
+
+  Three palette families × two modes:
+
+    Caligo (provisional default) — warm ivory / warm charcoal with a burnt
+      orange primary and ochre highlight. Derived from the provisional Caligo
+      logo (design-references/Caligo logo.jpeg).
+
+    Canopy — the continuation of the previous design: deep-forest near-black
+      with a crisp scientific emerald primary and owl-butterfly ochre highlight.
+
+    Morpho — a professional cool alternative: deep indigo blue-black surfaces
+      with a restrained iridescent blue and warm ochre secondary. No neon.
+
+  Component CSS consumes only the SEMANTIC variables (--bg, --text, --accent,
+  --hairline, …). Raw ramps live under :root once, so palettes retune values
+  in one place. `data-palette` selects family, `data-mode` selects light/dark,
+  independently.
+*/
+
+:root {
+  /* ═══════════════════════════════════════════════════════════════════════
+     Raw ramps — every colour any palette may need. Never referenced directly
+     by components; palette blocks below map them to semantic tokens.
+     ═══════════════════════════════════════════════════════════════════════ */
+
+  /* Forest / near-black surfaces (Canopy dark base + shared cool neutrals) */
+  --c-ink-950: #07100d;
+  --c-ink-900: #0a1613;
+  --c-ink-850: #0e1c18;
+  --c-ink-800: #12241f;
+  --c-ink-700: #1a2f28;
+  --c-ink-600: #274037;
+  --c-ink-500: #3a564b;
+  --c-ink-400: #5c7a6d;
+  --c-ink-300: #88a599;
+  --c-ink-200: #b6cdc2;
+  --c-ink-100: #dae8e1;
+  --c-ink-050: #eef4f0;
+  --c-white:   #f7faf8;
+
+  /* Emerald — Canopy primary */
+  --c-emerald-300: #6ee7b7;
+  --c-emerald-400: #34d399;
+  --c-emerald-500: #10b981;
+  --c-emerald-600: #059669;
+  --c-emerald-700: #04795f;
+  --c-emerald-800: #0a5745;
+
+  /* Ochre — owl-butterfly warm, used across palettes as highlight/secondary */
+  --c-ochre-300: #f3d494;
+  --c-ochre-400: #e7b95f;
+  --c-ochre-500: #d29a37;
+  --c-ochre-600: #ad7620;
+  --c-ochre-700: #855912;
+
+  /* Warm — Caligo palette (from logo): ivory / charcoal / burnt orange / taupe */
+  --c-warm-050: #f6f7f3; /* logo ivory */
+  --c-warm-100: #f2ece1; /* warm off-white */
+  --c-warm-200: #e0d5c2; /* soft warm */
+  --c-warm-300: #b9ac9a; /* taupe */
+  --c-warm-400: #8b7f6f; /* muted warm */
+  --c-warm-500: #595148; /* logo warm charcoal */
+  --c-warm-600: #3d3733; /* deep warm */
+  --c-warm-700: #2b2528; /* deeper warm */
+  --c-warm-800: #201a16; /* warm surface dark */
+  --c-warm-850: #1a1512; /* warm panel dark */
+  --c-warm-900: #171310; /* warm background dark */
+  --c-warm-950: #100c0a; /* warm inset dark */
+  --c-burnt-800: #7d3a10;
+  --c-burnt-700: #9a4a16;
+  --c-burnt-600: #b45621; /* accessible orange on ivory (WCAG AA) */
+  --c-burnt-500: #c2591f; /* logo orange */
+  --c-burnt-400: #d76b2c;
+  --c-burnt-300: #e38249; /* lightened for dark backgrounds */
+  --c-burnt-200: #f19f6f;
+
+  /* Morpho — cool indigo alternative, plus iridescent blue accents */
+  --c-indigo-950: #06091a;
+  --c-indigo-900: #0a101b;
+  --c-indigo-850: #101828;
+  --c-indigo-800: #131a28;
+  --c-indigo-700: #1b2540;
+  --c-indigo-600: #263457;
+  --c-indigo-500: #3b5075;
+  --c-indigo-400: #536b95;
+  --c-indigo-300: #8b9bb8;
+  --c-indigo-200: #bcc6d8;
+  --c-indigo-100: #dde4f2;
+  --c-indigo-050: #eef1f7;
+
+  --c-morpho-200: #bcd0f4;
+  --c-morpho-300: #93b3ee;
+  --c-morpho-400: #7ba6ee; /* iridescent blue on dark */
+  --c-morpho-500: #4a72c8;
+  --c-morpho-600: #3b5db0;
+  --c-morpho-700: #2e4e9e; /* AA on ivory */
+  --c-morpho-800: #23386f;
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     Typography
+     ═══════════════════════════════════════════════════════════════════════ */
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* Fluid type scale — compact, instrument-like, with a readable microtext floor */
+  --step--2: clamp(0.78rem, 0.76rem + 0.08vw, 0.84rem);
+  --step--1: clamp(0.82rem, 0.79rem + 0.13vw, 0.9rem);
+  --step-0:  clamp(0.98rem, 0.95rem + 0.2vw, 1.08rem);
+  --step-1:  clamp(1.15rem, 1.07rem + 0.4vw, 1.4rem);
+  --step-2:  clamp(1.42rem, 1.28rem + 0.7vw, 1.95rem);
+  --step-3:  clamp(1.8rem, 1.55rem + 1.25vw, 2.7rem);
+  --step-4:  clamp(2.3rem, 1.85rem + 2.3vw, 4rem);
+  --step-5:  clamp(2.9rem, 2.1rem + 3.6vw, 5.2rem);
+
+  /* Spacing */
+  --space-2xs: 0.375rem;
+  --space-xs: 0.625rem;
+  --space-s: 0.95rem;
+  --space-m: 1.5rem;
+  --space-l: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Layout */
+  --measure: 66ch;
+  --container: 75rem;
+  --container-wide: 82rem;
+  --container-narrow: 44rem;
+  --radius-xs: 4px;
+  --radius: 7px;
+  --radius-lg: 12px;
+  --border-w: 1px;
+
+  /* Scroll offset for :target, hash navigation and rail active-section
+     scrolling. Matches the sticky-header stack so headings clear the header
+     when jumped to. */
+  --scroll-margin-top: 6rem;
+
+  --transition: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 320ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Motion system. Displacements capped low; reduced-motion degrades each
+     animation to its finished frame via the blackout in global.css. */
+  --dur-instant: 90ms;
+  --dur-quick: 180ms;
+  --dur-base: 320ms;
+  --dur-reveal: 460ms;
+  --dur-stage: 720ms;
+  --ease-glide: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-unfold: cubic-bezier(0.65, 0, 0.2, 1);
+  --stagger: 70ms;
+  --shift-s: 6px;
+  --shift-m: 12px;
+  --shift-l: 20px;
+
+  --focus-ring: 2px;
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     :root fallback = Caligo/dark. Defence in depth: if data-palette or
+     data-mode ever fail to apply (JS disabled + no attrs, or transient
+     hydration), tokens are still fully defined.
+     ═══════════════════════════════════════════════════════════════════════ */
+  color-scheme: dark;
+
+  --bg: var(--c-warm-900);
+  --bg-raised: var(--c-warm-850);
+  --bg-panel: var(--c-warm-800);
+  --bg-panel-hover: #2a221c;
+  --bg-inset: var(--c-warm-950);
+
+  --hairline: color-mix(in oklab, var(--c-warm-400) 26%, transparent);
+  --hairline-strong: color-mix(in oklab, var(--c-burnt-400) 30%, transparent);
+  --surface-border: var(--hairline);
+  --surface-border-strong: color-mix(in oklab, var(--c-warm-400) 46%, transparent);
+
+  --text: var(--c-warm-100);
+  --text-strong: #fbf6ec;
+  --text-muted: var(--c-warm-300);
+  --text-faint: var(--c-warm-400);
+
+  --accent: var(--c-burnt-300);
+  --accent-strong: var(--c-burnt-200);
+  --accent-dim: color-mix(in oklab, var(--c-burnt-400) 16%, transparent);
+  --accent-contrast: #1a0f07;
+  --link: var(--c-burnt-300);
+  --link-hover: var(--c-warm-100);
+
+  --highlight: var(--c-ochre-400);
+  --highlight-strong: var(--c-ochre-300);
+  --highlight-dim: color-mix(in oklab, var(--c-ochre-400) 15%, transparent);
+
+  --signal: var(--c-morpho-400);
+
+  --canopy-0: #0f0b09;
+  --canopy-1: #16110d;
+  --canopy-2: #1e1712;
+  --canopy-glow: color-mix(in oklab, var(--c-burnt-500) 22%, transparent);
+
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.02), 0 18px 44px -28px rgba(0, 0, 0, 0.75);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PALETTE × MODE — six explicit blocks. Components consume the semantic
+   tokens only, so swapping palette or mode never requires component edits.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Caligo / Dark ────────────────────────────────────────────────────── */
+[data-palette='caligo'][data-mode='dark'] {
+  color-scheme: dark;
+
+  --bg: var(--c-warm-900);
+  --bg-raised: var(--c-warm-850);
+  --bg-panel: var(--c-warm-800);
+  --bg-panel-hover: #2a221c;
+  --bg-inset: var(--c-warm-950);
+
+  --hairline: color-mix(in oklab, var(--c-warm-400) 26%, transparent);
+  --hairline-strong: color-mix(in oklab, var(--c-burnt-400) 30%, transparent);
+  --surface-border: var(--hairline);
+  --surface-border-strong: color-mix(in oklab, var(--c-warm-400) 46%, transparent);
+
+  --text: var(--c-warm-100);
+  --text-strong: #fbf6ec;
+  --text-muted: var(--c-warm-300);
+  --text-faint: var(--c-warm-400);
+
+  --accent: var(--c-burnt-300);
+  --accent-strong: var(--c-burnt-200);
+  --accent-dim: color-mix(in oklab, var(--c-burnt-400) 16%, transparent);
+  --accent-contrast: #1a0f07;
+  --link: var(--c-burnt-300);
+  --link-hover: var(--c-warm-100);
+
+  --highlight: var(--c-ochre-400);
+  --highlight-strong: var(--c-ochre-300);
+  --highlight-dim: color-mix(in oklab, var(--c-ochre-400) 15%, transparent);
+
+  --signal: var(--c-morpho-400);
+
+  --canopy-0: #0f0b09;
+  --canopy-1: #16110d;
+  --canopy-2: #1e1712;
+  --canopy-glow: color-mix(in oklab, var(--c-burnt-500) 22%, transparent);
+
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.02), 0 18px 44px -28px rgba(0, 0, 0, 0.75);
+}
+
+/* ─── Caligo / Light ───────────────────────────────────────────────────── */
+[data-palette='caligo'][data-mode='light'] {
+  color-scheme: light;
+
+  --bg: var(--c-warm-050);
+  --bg-raised: #ffffff;
+  --bg-panel: #ffffff;
+  --bg-panel-hover: #ecece6;
+  --bg-inset: #e8e6de;
+
+  --hairline: color-mix(in oklab, var(--c-warm-500) 22%, transparent);
+  --hairline-strong: color-mix(in oklab, var(--c-burnt-600) 34%, transparent);
+  --surface-border: var(--hairline);
+  --surface-border-strong: color-mix(in oklab, var(--c-warm-500) 42%, transparent);
+
+  --text: #2b2a2c;
+  --text-strong: #16151a;
+  --text-muted: var(--c-warm-500);
+  --text-faint: #6e665c; /* was #77706a = 4.47:1 (AA fail); #6e665c = 5.18:1 on --bg */
+
+  --accent: var(--c-burnt-600);
+  --accent-strong: var(--c-burnt-700);
+  --accent-dim: color-mix(in oklab, var(--c-burnt-500) 12%, transparent);
+  --accent-contrast: #ffffff;
+  --link: var(--c-burnt-600);
+  --link-hover: var(--c-burnt-700);
+
+  --highlight: var(--c-ochre-600);
+  --highlight-strong: var(--c-ochre-700);
+  --highlight-dim: color-mix(in oklab, var(--c-ochre-500) 16%, transparent);
+
+  --signal: var(--c-morpho-700);
+
+  --canopy-0: #e8e6de;
+  --canopy-1: #ddd8cc;
+  --canopy-2: #d0c9bb;
+  --canopy-glow: color-mix(in oklab, var(--c-burnt-400) 18%, transparent);
+
+  --shadow: 0 1px 2px rgba(70, 55, 35, 0.05), 0 16px 34px -22px rgba(70, 55, 35, 0.22);
+}
+
+/* ─── Canopy / Dark ────────────────────────────────────────────────────── */
+[data-palette='canopy'][data-mode='dark'] {
+  color-scheme: dark;
+
+  --bg: var(--c-ink-950);
+  --bg-raised: var(--c-ink-900);
+  --bg-panel: var(--c-ink-850);
+  --bg-panel-hover: var(--c-ink-800);
+  --bg-inset: #050b09;
+
+  --hairline: color-mix(in oklab, var(--c-ink-400) 26%, transparent);
+  --hairline-strong: color-mix(in oklab, var(--c-emerald-400) 30%, transparent);
+  --surface-border: var(--hairline);
+  --surface-border-strong: color-mix(in oklab, var(--c-ink-400) 46%, transparent);
+
+  --text: var(--c-ink-100);
+  --text-strong: var(--c-white);
+  --text-muted: var(--c-ink-300);
+  --text-faint: var(--c-ink-400);
+
+  --accent: var(--c-emerald-400);
+  --accent-strong: var(--c-emerald-300);
+  --accent-dim: color-mix(in oklab, var(--c-emerald-400) 16%, transparent);
+  --accent-contrast: #04140f;
+  --link: var(--c-emerald-300);
+  --link-hover: var(--c-white);
+
+  --highlight: var(--c-ochre-400);
+  --highlight-strong: var(--c-ochre-300);
+  --highlight-dim: color-mix(in oklab, var(--c-ochre-400) 15%, transparent);
+
+  --signal: var(--c-morpho-400);
+
+  --canopy-0: #050d0a;
+  --canopy-1: #081511;
+  --canopy-2: #0b1e18;
+  --canopy-glow: color-mix(in oklab, var(--c-emerald-600) 24%, transparent);
+
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.02), 0 18px 44px -28px rgba(0, 0, 0, 0.85);
+}
+
+/* ─── Canopy / Light ───────────────────────────────────────────────────── */
+[data-palette='canopy'][data-mode='light'] {
+  color-scheme: light;
+
+  --bg: var(--c-ink-050);
+  --bg-raised: var(--c-white);
+  --bg-panel: var(--c-white);
+  --bg-panel-hover: #e6efe9;
+  --bg-inset: #e3ece6;
+
+  --hairline: color-mix(in oklab, var(--c-ink-500) 22%, transparent);
+  --hairline-strong: color-mix(in oklab, var(--c-emerald-700) 34%, transparent);
+  --surface-border: var(--hairline);
+  --surface-border-strong: color-mix(in oklab, var(--c-ink-500) 42%, transparent);
+
+  --text: #17231d;
+  --text-strong: #0a140f;
+  --text-muted: #40564c;
+  --text-faint: #62786d;
+
+  --accent: var(--c-emerald-700);
+  --accent-strong: var(--c-emerald-800);
+  --accent-dim: color-mix(in oklab, var(--c-emerald-600) 12%, transparent);
+  --accent-contrast: var(--c-white);
+  --link: var(--c-emerald-700);
+  --link-hover: var(--c-emerald-800);
+
+  --highlight: var(--c-ochre-700);
+  --highlight-strong: var(--c-ochre-600);
+  --highlight-dim: color-mix(in oklab, var(--c-ochre-500) 16%, transparent);
+
+  --signal: var(--c-morpho-700);
+
+  --canopy-0: #d7e4dc;
+  --canopy-1: #cadecf;
+  --canopy-2: #bcd6c6;
+  --canopy-glow: color-mix(in oklab, var(--c-emerald-500) 20%, transparent);
+
+  --shadow: 0 1px 2px rgba(18, 34, 27, 0.05), 0 16px 34px -22px rgba(18, 34, 27, 0.22);
+}
+
+/* ─── Morpho / Dark ────────────────────────────────────────────────────── */
+[data-palette='morpho'][data-mode='dark'] {
+  color-scheme: dark;
+
+  --bg: var(--c-indigo-900);
+  --bg-raised: var(--c-indigo-850);
+  --bg-panel: var(--c-indigo-800);
+  --bg-panel-hover: var(--c-indigo-700);
+  --bg-inset: var(--c-indigo-950);
+
+  --hairline: color-mix(in oklab, var(--c-indigo-400) 26%, transparent);
+  --hairline-strong: color-mix(in oklab, var(--c-morpho-400) 32%, transparent);
+  --surface-border: var(--hairline);
+  --surface-border-strong: color-mix(in oklab, var(--c-indigo-400) 46%, transparent);
+
+  --text: var(--c-indigo-100);
+  --text-strong: #f0f4fb;
+  --text-muted: var(--c-indigo-300);
+  --text-faint: var(--c-indigo-400);
+
+  --accent: var(--c-morpho-400);
+  --accent-strong: var(--c-morpho-300);
+  --accent-dim: color-mix(in oklab, var(--c-morpho-400) 16%, transparent);
+  --accent-contrast: #050a14;
+  --link: var(--c-morpho-300);
+  --link-hover: #f0f4fb;
+
+  --highlight: var(--c-ochre-400);
+  --highlight-strong: var(--c-ochre-300);
+  --highlight-dim: color-mix(in oklab, var(--c-ochre-400) 15%, transparent);
+
+  --signal: var(--c-emerald-400);
+
+  --canopy-0: #05091a;
+  --canopy-1: #0a1122;
+  --canopy-2: #101a2f;
+  --canopy-glow: color-mix(in oklab, var(--c-morpho-600) 24%, transparent);
+
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.02), 0 18px 44px -28px rgba(0, 0, 0, 0.85);
+}
+
+/* ─── Morpho / Light ───────────────────────────────────────────────────── */
+[data-palette='morpho'][data-mode='light'] {
+  color-scheme: light;
+
+  --bg: var(--c-indigo-050);
+  --bg-raised: var(--c-white);
+  --bg-panel: var(--c-white);
+  --bg-panel-hover: #e2e7f2;
+  --bg-inset: #dfe4ef;
+
+  --hairline: color-mix(in oklab, var(--c-indigo-500) 22%, transparent);
+  --hairline-strong: color-mix(in oklab, var(--c-morpho-700) 34%, transparent);
+  --surface-border: var(--hairline);
+  --surface-border-strong: color-mix(in oklab, var(--c-indigo-500) 42%, transparent);
+
+  --text: #161d2c;
+  --text-strong: #0a0f1c;
+  --text-muted: #3a4966;
+  --text-faint: #5a6a86;
+
+  --accent: var(--c-morpho-700);
+  --accent-strong: var(--c-morpho-800);
+  --accent-dim: color-mix(in oklab, var(--c-morpho-600) 12%, transparent);
+  --accent-contrast: var(--c-white);
+  --link: var(--c-morpho-700);
+  --link-hover: var(--c-morpho-800);
+
+  --highlight: var(--c-ochre-700);
+  --highlight-strong: var(--c-ochre-600);
+  --highlight-dim: color-mix(in oklab, var(--c-ochre-500) 16%, transparent);
+
+  --signal: var(--c-emerald-700);
+
+  --canopy-0: #dee4f0;
+  --canopy-1: #ced6e6;
+  --canopy-2: #bcc7dc;
+  --canopy-glow: color-mix(in oklab, var(--c-morpho-500) 18%, transparent);
+
+  --shadow: 0 1px 2px rgba(22, 30, 60, 0.05), 0 16px 34px -22px rgba(22, 30, 60, 0.22);
+}

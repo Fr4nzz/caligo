@@ -1,0 +1,436 @@
+---
+/*
+  Site header.
+
+  Primary nav — five items:
+    Home · Science · Proposed pilots · About · Participate
+  (Network + Capacity are removed from primary nav; the /network/ and
+   /capacity/ URLs still resolve as small compat pages.)
+
+  Brand: emblem + text wordmark. The provisional Caligo JPEG is unsuitable
+  for the compact header (see DESIGN.md).
+
+  Controls: language switcher + mode toggle (light/dark). The palette
+  selector lives only on the internal /theme-review/ route.
+*/
+import { getDict, localePath, type Locale } from '../i18n';
+import Icon from './Icon.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  locale: Locale;
+  page: string;
+}
+const { locale, page } = Astro.props;
+const t = getDict(locale);
+const base = import.meta.env.BASE_URL;
+
+const items = [
+  { path: '/', label: t.nav.home },
+  { path: '/science', label: t.nav.science },
+  { path: '/projects', label: t.nav.proposedPilots },
+  { path: '/network', label: t.nav.network },
+  { path: '/about', label: t.nav.about },
+  { path: '/participate', label: t.nav.participate },
+];
+
+const isCurrent = (path: string) => path === page;
+---
+
+<header class="site-header">
+  <div class="container-wide header-inner">
+    <a class="brand" href={localePath(locale, '/')} aria-label="Caligo">
+      <span class="brand-mark" aria-hidden="true">
+        <img
+          src={`${base}media/brand/caligo-emblem-square-144.png`}
+          alt=""
+          width="40"
+          height="40"
+          loading="eager"
+          decoding="async"
+        />
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">Caligo</span>
+        <span class="brand-sub">{t.site.descriptor}</span>
+      </span>
+    </a>
+
+    <nav class="primary-nav" aria-label={t.common.menu}>
+      <ul>
+        {
+          items.map((item) => (
+            <li>
+              <a
+                href={localePath(locale, item.path)}
+                aria-current={isCurrent(item.path) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a class="nav-join-btn" href={localePath(locale, '/participate') + '#join'}>
+      {t.nav.join}
+    </a>
+
+    <div class="header-tools">
+      <LanguageSwitcher locale={locale} />
+      <ThemeToggle locale={locale} />
+      <button
+        class="menu-btn"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        data-menu-toggle
+      >
+        <Icon name="menu" class="icon-menu" />
+        <Icon name="close" class="icon-close" />
+        <span class="sr-only">{t.common.menu}</span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label={t.common.menu} data-mobile-nav hidden>
+    <ul class="container-wide">
+      {
+        items.map((item) => (
+          <li>
+            <a
+              href={localePath(locale, item.path)}
+              aria-current={isCurrent(item.path) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="mobile-join-item">
+        <a href={localePath(locale, '/participate') + '#join'}>
+          {t.nav.join}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: color-mix(in oklab, var(--bg) 84%, transparent);
+    backdrop-filter: saturate(140%) blur(12px);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    min-height: 4rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--text-strong);
+    flex: none;
+  }
+
+  /*
+    Emblem clarity: larger source (144px) rendered with object-fit:contain
+    so the mark reads fully instead of being cropped by the square frame.
+  */
+  .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.15rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-inset);
+    border: 1px solid var(--hairline-strong);
+    flex: none;
+  }
+  .brand-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+  }
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 570;
+    letter-spacing: -0.024em;
+    color: var(--text-strong);
+  }
+  @media (min-width: 62rem) {
+    .brand-name { font-size: 1.55rem; }
+  }
+  .brand-sub {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    max-width: 28ch;
+    margin-top: 2px;
+  }
+
+  .primary-nav {
+    display: none;
+    margin-inline: auto;
+  }
+  .primary-nav ul {
+    display: flex;
+    gap: clamp(0.5rem, 1.5vw, 1.4rem);
+    list-style: none;
+    padding: 0;
+  }
+  .primary-nav a {
+    display: inline-block;
+    padding: 0.4rem 0.15rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color var(--transition), border-color var(--transition);
+  }
+  .primary-nav a:hover {
+    color: var(--text-strong);
+  }
+  .primary-nav a[aria-current='page'] {
+    color: var(--text-strong);
+    border-bottom-color: var(--accent);
+  }
+
+  .header-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex: none;
+  }
+
+  @media (max-width: 30rem) {
+    .brand-sub {
+      display: none;
+    }
+    .brand-name {
+      font-size: 1.18rem;
+    }
+  }
+
+  .menu-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    background: transparent;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    color: var(--text);
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition);
+  }
+  .menu-btn:hover {
+    background: var(--bg-panel-hover);
+    border-color: var(--accent);
+  }
+  .menu-btn :global(svg) {
+    width: 1.3rem;
+    height: 1.3rem;
+    grid-area: 1 / 1;
+  }
+  .menu-btn :global(.icon-close) {
+    display: none;
+  }
+  .menu-btn[aria-expanded='true'] :global(.icon-menu) {
+    display: none;
+  }
+  .menu-btn[aria-expanded='true'] :global(.icon-close) {
+    display: block;
+  }
+
+  .mobile-nav {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    overflow: clip;
+    border-top: 1px solid var(--hairline);
+    background: var(--bg-raised);
+    transition:
+      grid-template-rows 220ms var(--ease-glide),
+      opacity 180ms ease-out;
+  }
+  .mobile-nav.is-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+  .mobile-nav[hidden] {
+    display: none;
+  }
+  .mobile-nav ul {
+    list-style: none;
+    padding-block: var(--space-xs);
+    min-height: 0;
+    overflow: hidden;
+  }
+  .mobile-nav li + li {
+    border-top: 1px solid var(--hairline);
+  }
+  .mobile-nav a {
+    display: block;
+    padding: 0.85rem 0.2rem;
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .mobile-nav a[aria-current='page'] {
+    color: var(--accent-strong);
+  }
+
+  @media (min-width: 62rem) {
+    .primary-nav {
+      display: block;
+    }
+    .menu-btn {
+      display: none;
+    }
+    .mobile-nav {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-nav {
+      transition: none;
+    }
+  }
+
+  /* ---- Join button (visually distinct from nav links) ---- */
+  .nav-join-btn {
+    display: none;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.875rem;
+    font-weight: 560;
+    color: var(--accent-strong);
+    background: transparent;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    text-decoration: none;
+    white-space: nowrap;
+    flex: none;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+  }
+  .nav-join-btn:hover,
+  .nav-join-btn:focus-visible {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  @media (min-width: 62rem) {
+    .nav-join-btn { display: inline-block; }
+  }
+
+  /* ---- Mobile Join item — accented separator ---- */
+  .mobile-join-item {
+    border-top: 2px solid var(--accent) !important;
+  }
+  .mobile-join-item a {
+    color: var(--accent-strong);
+    font-weight: 560;
+  }
+</style>
+
+<script>
+  /*
+    Wrapped in an initializer bound to `astro:page-load` so the mobile
+    menu re-binds after every <ClientRouter /> navigation. The guard on
+    btn.dataset.menuInit prevents duplicate listeners when the same
+    header element survives a swap.
+  */
+  function initHeaderMenu() {
+    const btn = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+    const nav = document.querySelector<HTMLElement>('[data-mobile-nav]');
+    if (!btn || !nav) return;
+    if (btn.dataset.menuInit === '1') return;
+    btn.dataset.menuInit = '1';
+    let hideTimer: number | undefined;
+    let openFrame: number | undefined;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const finishClose = () => {
+      window.clearTimeout(hideTimer);
+      nav.hidden = true;
+      nav.classList.remove('is-open');
+    };
+
+    const closeMenu = (restoreFocus = false) => {
+      if (btn.getAttribute('aria-expanded') !== 'true' && nav.hidden) return;
+      if (openFrame !== undefined) window.cancelAnimationFrame(openFrame);
+      openFrame = undefined;
+      btn.setAttribute('aria-expanded', 'false');
+      nav.inert = true;
+      nav.classList.remove('is-open');
+      if (restoreFocus) btn.focus();
+      if (reducedMotion.matches) {
+        finishClose();
+      } else {
+        window.clearTimeout(hideTimer);
+        hideTimer = window.setTimeout(finishClose, 240);
+      }
+    };
+
+    const openMenu = () => {
+      window.clearTimeout(hideTimer);
+      nav.hidden = false;
+      nav.inert = false;
+      btn.setAttribute('aria-expanded', 'true');
+      if (reducedMotion.matches) {
+        nav.classList.add('is-open');
+      } else {
+        openFrame = requestAnimationFrame(() => {
+          openFrame = undefined;
+          if (btn.getAttribute('aria-expanded') === 'true') nav.classList.add('is-open');
+        });
+      }
+    };
+
+    nav.inert = true;
+    btn.addEventListener('click', () => {
+      if (btn.getAttribute('aria-expanded') === 'true') closeMenu();
+      else openMenu();
+    });
+    nav.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) closeMenu();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        closeMenu(true);
+      }
+    });
+    window.matchMedia('(min-width: 62rem)').addEventListener('change', (e) => {
+      if (e.matches) closeMenu();
+    });
+  }
+  document.addEventListener('astro:page-load', initHeaderMenu);
+  initHeaderMenu();
+</script>

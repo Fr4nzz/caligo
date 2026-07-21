@@ -1,0 +1,203 @@
+---
+import { getDict, localePath, switchLocalePath, LOCALES, LOCALE_LABELS, type Locale } from '../i18n';
+import { LINKS } from '../data/content';
+import Icon from './Icon.astro';
+import JoinCTA from './JoinCTA.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const base = import.meta.env.BASE_URL;
+
+// Footer nav mirrors the 5-item primary nav — Home / Science / Proposed
+// pilots / About / Participate. Network + Capacity are removed (the
+// noindex compat pages at /network and /capacity remain reachable via
+// external links but are not surfaced in navigation).
+const items = [
+  { path: '/', label: t.nav.home },
+  { path: '/science', label: t.nav.science },
+  { path: '/projects', label: t.nav.proposedPilots },
+  { path: '/about', label: t.nav.about },
+  { path: '/participate', label: t.nav.participate },
+];
+---
+
+<footer class="site-footer">
+  <div class="container-wide footer-grid">
+    <div class="footer-brand">
+      <img
+        class="footer-emblem"
+        src={`${base}media/brand/caligo-emblem-192.png`}
+        alt=""
+        aria-hidden="true"
+        width="96"
+        height="96"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="footer-brand-text">
+        <span class="footer-name">Caligo</span>
+        <p class="footer-tagline">{t.footer.tagline}</p>
+      </div>
+    </div>
+
+    <nav class="footer-col" aria-label={t.footer.navHeading}>
+      <h2 class="footer-heading">{t.footer.navHeading}</h2>
+      <ul>
+        {items.map((item) => <li><a href={localePath(locale, item.path)}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">{t.footer.contact}</h2>
+      <ul>
+        <li>
+          <a href={`mailto:${LINKS.contactEmail}`} class="footer-mail">
+            <Icon name="mail" />{LINKS.contactEmail}
+          </a>
+        </li>
+      </ul>
+      <JoinCTA variant="compact" locale={locale} />
+      <h2 class="footer-heading footer-heading--spaced">{t.footer.languageHeading}</h2>
+      <ul>
+        {
+          LOCALES.map((code) => (
+            <li>
+              <a href={switchLocalePath(Astro.url.pathname, code)} lang={code} hreflang={code}>
+                {LOCALE_LABELS[code]}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="container-wide footer-base">
+    <p class="muted">© {new Date().getFullYear()} {t.footer.rights}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-2xl);
+    border-top: 1px solid var(--hairline);
+    background: var(--bg-raised);
+    padding-block: var(--space-l) var(--space-m);
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: var(--space-l);
+    grid-template-columns: 1fr;
+  }
+
+  /*
+    Footer brand — horizontal lockup: emblem sits at the left, name and
+    tagline stack on the right beside it (72–96 px mark, wordmark and
+    descriptor beside emblem, not underneath). aria-hidden on the emblem
+    keeps screen readers from double-announcing "Caligo".
+  */
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+    flex-wrap: wrap;
+  }
+  .footer-emblem {
+    display: block;
+    width: clamp(72px, 8vw, 96px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-inset);
+    border: 1px solid var(--hairline-strong);
+    padding: 0.35rem;
+    object-fit: contain;
+    flex: 0 0 auto;
+  }
+  .footer-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+    flex: 1 1 12rem;
+  }
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 560;
+    letter-spacing: -0.02em;
+    color: var(--text-strong);
+    line-height: 1.1;
+  }
+  .footer-tagline {
+    margin: 0;
+    color: var(--text);
+    max-width: 42ch;
+    line-height: 1.4;
+  }
+
+  .footer-heading {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 0.75rem;
+  }
+  .footer-heading--spaced {
+    margin-top: var(--space-m);
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .footer-col a {
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+  .footer-col a:hover {
+    color: var(--link-hover);
+  }
+  .footer-mail {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-wrap: anywhere;
+  }
+  .footer-mail :global(svg) {
+    width: 1.05rem;
+    height: 1.05rem;
+    flex: none;
+    color: var(--accent);
+  }
+
+  .footer-base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-xs);
+    margin-top: var(--space-l);
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--hairline);
+    font-size: var(--step--1);
+  }
+  .footer-base p {
+    max-width: 62ch;
+  }
+
+  @media (min-width: 46rem) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1.2fr;
+    }
+  }
+</style>

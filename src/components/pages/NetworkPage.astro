@@ -1,0 +1,141 @@
+---
+/**
+ * NetworkPage — Nicol's network material in full.
+ *
+ * Six sections:
+ *   N1  PageHeader — title + intro (network.title / network.intro).
+ *   N2  StatBar — participants / facilities / countries / pilots,
+ *       derived from initiative.ts exactly like HomePage (no hardcoded digits).
+ *   N3  Facilities — heading + FacilityTable (7 institutions).
+ *   N4  Leadership — 3 LEADERS as PersonCards (reuses about.leadership.*).
+ *   N5  Events — Timeline of the 2 events (network.events.*).
+ *   N6  Positioning — short EBP-LatAm / Genotropics factual note.
+ *
+ * Layout mirrors AboutPage: single column, container-narrow, section classes.
+ */
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../PageHeader.astro';
+import StatBar from '../StatBar.astro';
+import FacilityTable from '../FacilityTable.astro';
+import PersonCard from '../PersonCard.astro';
+import Timeline from '../Timeline.astro';
+import { getDict, type Locale } from '../../i18n';
+import { LEADERS, PARTICIPANTS, PROJECTS, facilityStats } from '../../data/initiative';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const n = t.network;
+const h = t.home;
+const a = t.about;
+
+const { facilities, countries } = facilityStats();
+const networkMetrics = [
+  { value: PARTICIPANTS.value, label: h.stats.participants, asOf: h.stats.asOf },
+  { value: facilities,         label: h.stats.facilities },
+  { value: countries,          label: h.stats.countries },
+  { value: PROJECTS.length,    label: h.stats.pilots },
+];
+---
+
+<Base locale={locale} title={n.metaTitle} description={n.metaDescription} page="/network">
+
+  <!-- N1 — Header -->
+  <PageHeader eyebrow={t.nav.network} title={n.title} intro={n.intro} />
+
+  <!-- N2 — Network metrics StatBar -->
+  <section class="section section--tight">
+    <div class="container-narrow">
+      <StatBar metrics={networkMetrics} />
+    </div>
+  </section>
+
+  <!-- N3 — Partner facilities -->
+  <section class="section section--tight section--panel" aria-labelledby="network-facilities">
+    <div class="container-narrow">
+      <h2 id="network-facilities" class="section-heading">{n.facilities.heading}</h2>
+      <p class="prose-para">{n.facilities.intro}</p>
+      <FacilityTable locale={locale} />
+    </div>
+  </section>
+
+  <!-- N4 — Leadership (reuses about.leadership.* keys) -->
+  <section class="section section--tight" aria-labelledby="network-leadership">
+    <div class="container-narrow">
+      <h2 id="network-leadership" class="section-heading">{a.leadership.heading}</h2>
+      <p class="prose-para">{a.leadership.intro}</p>
+      <div class="leadership-grid">
+        {LEADERS.map((person) => (
+          <PersonCard person={person} locale={locale} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- N5 — Events timeline -->
+  <section class="section section--tight section--panel" aria-labelledby="network-events">
+    <div class="container-narrow">
+      <h2 id="network-events" class="section-heading">{n.events.heading}</h2>
+      <p class="prose-para">{n.events.intro}</p>
+      <Timeline locale={locale} />
+    </div>
+  </section>
+
+  <!-- N6 — Positioning: EBP Latin America / Genotropics note -->
+  <section class="section section--tight" aria-labelledby="network-positioning">
+    <div class="container-narrow">
+      <h2 id="network-positioning" class="section-heading">{n.positioning.heading}</h2>
+      <p class="prose-para">{n.positioning.body}</p>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* ---- Single-column narrow layout (mirrors AboutPage) ---- */
+  .container-narrow {
+    max-width: var(--measure);
+    margin-inline: auto;
+    padding-inline: var(--space-m);
+  }
+  @media (min-width: 40rem) {
+    .container-narrow { padding-inline: var(--space-l); }
+  }
+
+  /* ---- Section rhythm ---- */
+  .section { padding-block: var(--space-xl); }
+  .section--tight { padding-block: var(--space-l); }
+  .section--panel {
+    background: var(--bg-raised);
+    border-block: 1px solid var(--hairline);
+  }
+
+  .section-heading {
+    margin: 0 0 var(--space-m);
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 560;
+    line-height: 1.15;
+    letter-spacing: -0.012em;
+    color: var(--text-strong);
+  }
+
+  .prose-para {
+    margin: 0 0 var(--space-m);
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  /* ---- N4 Leadership grid ---- */
+  .leadership-grid {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: 1fr;
+    margin-top: var(--space-m);
+  }
+  @media (min-width: 40rem) {
+    .leadership-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+</style>

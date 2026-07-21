@@ -1,0 +1,66 @@
+---
+interface Metric {
+  readonly value: number | string;
+  readonly label: string;
+  readonly asOf?: string;
+}
+
+interface Props {
+  readonly metrics: Metric[];
+}
+
+const { metrics } = Astro.props;
+---
+
+{metrics.length >= 2 && (
+  <ul class="stat-bar" role="list">
+    {metrics.map((m) => (
+      <li class="stat-item">
+        <span class="stat-value">{m.value}</span>
+        <span class="stat-label mono">{m.label}</span>
+        {m.asOf && <span class="stat-asof mono">{m.asOf}</span>}
+      </li>
+    ))}
+  </ul>
+)}
+
+<style>
+  .stat-bar {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-m);
+    background: var(--bg-panel);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-m) var(--space-l);
+  }
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: 560;
+    color: var(--text-strong);
+    line-height: 1;
+    letter-spacing: -0.018em;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-size: var(--step--2);
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .stat-asof {
+    font-size: var(--step--2);
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+</style>

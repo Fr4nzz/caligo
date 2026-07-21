@@ -1,0 +1,49 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# environment / editor
+.env
+.env.production
+.DS_Store
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+
+# local AI/tool state
+.codegraph
+.omo/
+.omx/
+.omc/
+.playwright-mcp/
+.work/
+memory/
+*.bak
+
+# private/internal research and source-workspace material
+context/
+design-references/
+DESIGN.md
+website-source-brief.md
+
+# local review artifacts and upload bundles
+audit-before/
+audit-mid/
+audit-after/
+audit-final/
+audit-v5/
+audit-v6/
+audit-wave4/
+gpt_pro_*_pack_*/
+gpt_pro_*_pack_*.zip
