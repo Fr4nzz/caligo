@@ -23,6 +23,7 @@ const records = read('src/data/records.ts');
 const viewer = read('src/components/MediaCandidateViewer.astro');
 const science = read('src/components/pages/SciencePage.astro');
 const projects = read('src/components/pages/ProjectsPage.astro');
+const concepts = read('src/components/ConceptDiagram.astro');
 
 console.log('Motion and scientific-diagram contract checks\n');
 ok(!/data-reveal(?:-bar)?\b|classList\.add\(['"]js-motion/.test(allSource), 'no generic scroll-reveal machinery or consumers');
@@ -40,6 +41,11 @@ const nativeSvgs = fs.readdirSync(nativeDir).filter((name) => name.endsWith('.sv
 ok(nativeSvgs.length >= 3, 'at least three code-native SVG explainers exist');
 ok(/Diagram|diagram|<svg/.test(science), 'Science renders dedicated educational diagrams');
 ok(/Diagram|diagram|<svg/.test(projects), 'Pilots render dedicated conceptual diagrams');
+ok(/data-concept-play/.test(concepts) && /is-playing/.test(concepts), 'concept diagrams expose user-controlled playback');
+ok(/fission-source/.test(concepts) && /connectivity-scene/.test(concepts) && /workflow-stage/.test(concepts) && /migration-link/.test(concepts), 'all four concept-diagram families have didactic animation stages');
+ok(/prefers-reduced-motion:\s*reduce/.test(concepts) && /animation:\s*none\s*!important/.test(concepts), 'concept-diagram motion has an instant reduced-motion path');
+ok(!/setInterval|autoplay/.test(concepts), 'concept diagrams never autoplay or loop without user input');
+ok(/@media \(max-width: 34rem\)[\s\S]*?\.concept-svg\s*\{[\s\S]*?display:\s*block/.test(concepts), 'mobile keeps the illustrated SVG visible');
 
 if (fail.length) {
   console.error(`\nFAIL: ${fail.length} motion/diagram contract check(s) failed.`);

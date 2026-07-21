@@ -14,7 +14,12 @@ const id = `concept-${context}-${kind}`;
 
 const copy = {
   en: {
-    conceptual: 'Conceptual schematic — not results or data',
+    conceptual: 'Educational animation — conceptual, not data',
+    play: 'Play the explanation',
+    replay: 'Replay',
+    ready: 'Ready to animate',
+    playing: 'Explanation playing',
+    finished: 'Explanation complete',
     chromosome: {
       title: 'Chromosome fission and fusion',
       desc: 'A generic schematic showing that one chromosome can split into two through fission, while two chromosomes can join through fusion. It does not depict a particular species, chromosome, or result.',
@@ -50,7 +55,12 @@ const copy = {
     },
   },
   es: {
-    conceptual: 'Esquema conceptual — no son resultados ni datos',
+    conceptual: 'Animación educativa — conceptual, no son datos',
+    play: 'Reproducir la explicación',
+    replay: 'Repetir',
+    ready: 'Listo para animar',
+    playing: 'Explicación en curso',
+    finished: 'Explicación completa',
     chromosome: {
       title: 'Fisión y fusión cromosómica',
       desc: 'Esquema genérico que muestra que un cromosoma puede dividirse en dos por fisión, mientras dos cromosomas pueden unirse por fusión. No representa una especie, un cromosoma ni un resultado particulares.',
@@ -102,10 +112,25 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
       : [c.migration.sampling, c.migration.origins, c.migration.routes, c.migration.evidence];
 ---
 
-<figure class="concept-diagram" data-kind={kind} data-context={context}>
+<figure
+  class="concept-diagram"
+  data-kind={kind}
+  data-context={context}
+  data-concept-diagram
+  data-label-play={c.play}
+  data-label-replay={c.replay}
+  data-label-playing={c.playing}
+  data-label-finished={c.finished}
+>
   <figcaption class="concept-heading">
-    <span class="concept-kicker">{c.conceptual}</span>
-    <strong>{k.title}</strong>
+    <span class="concept-title-group">
+      <span class="concept-kicker">{c.conceptual}</span>
+      <strong>{k.title}</strong>
+    </span>
+    <button type="button" class="concept-play" data-concept-play aria-describedby={`${id}-status`}>
+      <span class="play-icon" aria-hidden="true">▶</span>
+      <span data-concept-play-label>{c.play}</span>
+    </button>
   </figcaption>
 
   <svg class="concept-svg" viewBox="0 0 600 190" role="img" aria-labelledby={`${id}-title ${id}-desc`}>
@@ -118,40 +143,44 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     </defs>
 
     {kind === 'chromosome' && (
-      <g>
+      <g class="diagram-scene chromosome-scene">
         <text x="145" y="22" class="group-label">{c.chromosome.fission}</text>
-        <rect x="40" y="56" width="132" height="22" rx="11" class="chromosome chromosome--whole" />
-        <path d="M190 67 H250" class="flow" marker-end={`url(#${id}-arrow)`} />
-        <rect x="275" y="42" width="94" height="18" rx="9" class="chromosome" />
-        <rect x="275" y="75" width="94" height="18" rx="9" class="chromosome chromosome--alt" />
+        <rect x="40" y="56" width="132" height="22" rx="11" class="chromosome chromosome--whole fission-source" />
+        <path d="M190 67 H250" class="flow process-line process-line--one" marker-end={`url(#${id}-arrow)`} />
+        <circle cx="226" cy="67" r="13" class="event-ring event-ring--one" />
+        <path d="M221 59 L226 64 L231 59 M221 75 L226 70 L231 75" class="split-mark" />
+        <rect x="275" y="42" width="94" height="18" rx="9" class="chromosome fission-result fission-result--top" />
+        <rect x="275" y="75" width="94" height="18" rx="9" class="chromosome chromosome--alt fission-result fission-result--bottom" />
         <text x="106" y="111" class="node-label">{c.chromosome.one}</text>
         <text x="322" y="111" class="node-label">{c.chromosome.two}</text>
 
         <text x="448" y="22" class="group-label">{c.chromosome.fusion}</text>
-        <rect x="414" y="42" width="62" height="18" rx="9" class="chromosome" />
-        <rect x="414" y="75" width="62" height="18" rx="9" class="chromosome chromosome--alt" />
-        <path d="M489 67 H525" class="flow" marker-end={`url(#${id}-arrow)`} />
-        <rect x="538" y="56" width="38" height="22" rx="11" class="chromosome chromosome--joined" />
+        <rect x="414" y="42" width="62" height="18" rx="9" class="chromosome fusion-source fusion-source--top" />
+        <rect x="414" y="75" width="62" height="18" rx="9" class="chromosome chromosome--alt fusion-source fusion-source--bottom" />
+        <path d="M489 67 H525" class="flow process-line process-line--two" marker-end={`url(#${id}-arrow)`} />
+        <circle cx="509" cy="67" r="13" class="event-ring event-ring--two" />
+        <path d="M503 61 L509 67 L515 61 M503 73 L509 67 L515 73" class="join-mark" />
+        <rect x="538" y="56" width="38" height="22" rx="11" class="chromosome chromosome--joined fusion-result" />
         <path d="M300 146 H300" />
         <text x="300" y="161" class="footer-label">{c.chromosome.question}</text>
       </g>
     )}
 
     {kind === 'connectivity' && (
-      <g>
+      <g class="diagram-scene connectivity-scene">
         <text x="300" y="22" class="group-label">{c.connectivity.patches}</text>
-        <path d="M145 79 C220 38 270 38 340 79" class="relation" marker-end={`url(#${id}-arrow)`} />
-        <path d="M340 98 C270 142 220 142 145 98" class="relation" marker-end={`url(#${id}-arrow)`} />
-        <path d="M365 88 C430 88 470 88 518 88" class="relation" marker-end={`url(#${id}-arrow)`} />
-        <g class="patch" transform="translate(82 56)">
+        <path d="M145 79 C220 38 270 38 340 79" class="relation relation--one" marker-end={`url(#${id}-arrow)`} />
+        <path d="M340 98 C270 142 220 142 145 98" class="relation relation--two" marker-end={`url(#${id}-arrow)`} />
+        <path d="M365 88 C430 88 470 88 518 88" class="relation relation--three" marker-end={`url(#${id}-arrow)`} />
+        <g class="patch patch--one" transform="translate(82 56)">
           <path d="M8 31 C12 7 46 0 67 14 C87 28 74 59 43 62 C18 65 1 53 8 31 Z" />
           <circle cx="31" cy="30" r="4" /><circle cx="49" cy="42" r="4" />
         </g>
-        <g class="patch" transform="translate(296 56)">
+        <g class="patch patch--two" transform="translate(296 56)">
           <path d="M8 31 C12 7 46 0 67 14 C87 28 74 59 43 62 C18 65 1 53 8 31 Z" />
           <circle cx="31" cy="30" r="4" /><circle cx="49" cy="42" r="4" />
         </g>
-        <g class="patch" transform="translate(500 56)">
+        <g class="patch patch--three" transform="translate(500 56)">
           <path d="M8 31 C12 7 46 0 67 14 C87 28 74 59 43 62 C18 65 1 53 8 31 Z" />
           <circle cx="31" cy="30" r="4" /><circle cx="49" cy="42" r="4" />
         </g>
@@ -161,23 +190,25 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     )}
 
     {kind === 'monitoring' && (
-      <g>
-        <path d="M125 86 H170 M275 86 H320 M435 86 H478" class="flow" marker-end={`url(#${id}-arrow)`} />
-        <g transform="translate(32 50)">
+      <g class="diagram-scene monitoring-scene">
+        <path d="M125 86 H170" class="flow workflow-link workflow-link--one" marker-end={`url(#${id}-arrow)`} />
+        <path d="M275 86 H320" class="flow workflow-link workflow-link--two" marker-end={`url(#${id}-arrow)`} />
+        <path d="M435 86 H478" class="flow workflow-link workflow-link--three" marker-end={`url(#${id}-arrow)`} />
+        <g transform="translate(32 50)" class="workflow-stage workflow-stage--one">
           <rect width="92" height="72" rx="12" class="workflow-node" />
           <path d="M25 48 V25 M25 36 L16 29 M25 36 L34 29 M52 48 V20 M52 30 L43 23 M52 30 L61 23 M72 48 V29" class="icon-line" />
         </g>
-        <g transform="translate(172 50)">
+        <g transform="translate(172 50)" class="workflow-stage workflow-stage--two">
           <rect width="104" height="72" rx="12" class="workflow-node" />
           <circle cx="47" cy="34" r="17" class="icon-line" />
           <path d="M60 47 L75 60 M39 34 H55 M47 26 V42" class="icon-line" />
         </g>
-        <g transform="translate(322 50)">
+        <g transform="translate(322 50)" class="workflow-stage workflow-stage--three">
           <rect width="114" height="72" rx="12" class="workflow-node workflow-node--focus" />
           <path d="M22 48 C38 17 53 17 69 48 S100 79 106 38" class="icon-line" />
           <circle cx="36" cy="30" r="4" class="signal-dot" /><circle cx="86" cy="51" r="4" class="signal-dot" />
         </g>
-        <g transform="translate(480 50)">
+        <g transform="translate(480 50)" class="workflow-stage workflow-stage--four">
           <rect width="88" height="72" rx="12" class="workflow-node" />
           <path d="M24 38 L39 53 L66 22" class="icon-line icon-line--strong" />
         </g>
@@ -192,18 +223,18 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     )}
 
     {kind === 'migration' && (
-      <g>
+      <g class="diagram-scene migration-scene">
         <text x="78" y="26" class="group-label">{c.migration.sampling}</text>
-        <circle cx="76" cy="70" r="22" class="sample-node" />
-        <circle cx="76" cy="121" r="22" class="sample-node sample-node--alt" />
-        <path d="M103 70 C180 18 243 29 292 75" class="relation" marker-end={`url(#${id}-arrow)`} />
-        <path d="M103 121 C180 170 242 150 292 98" class="relation" marker-end={`url(#${id}-arrow)`} />
-        <circle cx="325" cy="86" r="36" class="question-node" />
+        <circle cx="76" cy="70" r="22" class="sample-node migration-sample migration-sample--one" />
+        <circle cx="76" cy="121" r="22" class="sample-node sample-node--alt migration-sample migration-sample--two" />
+        <path d="M103 70 C180 18 243 29 292 75" class="relation migration-link migration-link--one" marker-end={`url(#${id}-arrow)`} />
+        <path d="M103 121 C180 170 242 150 292 98" class="relation migration-link migration-link--two" marker-end={`url(#${id}-arrow)`} />
+        <circle cx="325" cy="86" r="36" class="question-node migration-question" />
         <text x="325" y="92" class="question-mark">?</text>
-        <path d="M363 86 C414 47 460 49 505 72" class="relation" marker-end={`url(#${id}-arrow)`} />
-        <path d="M363 92 C414 132 460 129 505 108" class="relation" marker-end={`url(#${id}-arrow)`} />
-        <circle cx="530" cy="70" r="20" class="sample-node" />
-        <circle cx="530" cy="112" r="20" class="sample-node sample-node--alt" />
+        <path d="M363 86 C414 47 460 49 505 72" class="relation migration-link migration-link--three" marker-end={`url(#${id}-arrow)`} />
+        <path d="M363 92 C414 132 460 129 505 108" class="relation migration-link migration-link--four" marker-end={`url(#${id}-arrow)`} />
+        <circle cx="530" cy="70" r="20" class="sample-node migration-result migration-result--one" />
+        <circle cx="530" cy="112" r="20" class="sample-node sample-node--alt migration-result migration-result--two" />
         <text x="325" y="142" class="node-label">{c.migration.origins}</text>
         <text x="455" y="153" class="node-label">{c.migration.routes}</text>
         <text x="300" y="178" class="footer-label">{c.migration.evidence}</text>
@@ -213,12 +244,13 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
 
   <ol class="concept-mobile-flow" aria-label={k.title}>
     {mobileSteps.map((step, index) => (
-      <li>
+      <li data-mobile-step>
         <span class="mobile-step-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
         <span>{step}</span>
       </li>
     ))}
   </ol>
+  <p class="concept-status" id={`${id}-status`} data-concept-status aria-live="polite">{c.ready}</p>
 </figure>
 
 <style>
@@ -233,12 +265,19 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-heading {
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
-    gap: 0.25rem var(--space-s);
-    padding: var(--space-s) var(--space-m) 0;
+    gap: var(--space-xs) var(--space-s);
+    padding: var(--space-s) var(--space-m);
     color: var(--text-strong);
     font-size: var(--step--1);
+    border-bottom: 1px solid var(--hairline);
+    background: color-mix(in oklab, var(--bg-panel) 76%, transparent);
+  }
+  .concept-title-group {
+    display: grid;
+    gap: 0.18rem;
+    min-width: min(100%, 15rem);
   }
   .concept-kicker {
     font-family: var(--font-mono);
@@ -249,7 +288,46 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     color: var(--text-faint);
   }
   .concept-heading strong {
+    display: block;
     font-weight: 620;
+    font-size: var(--step-0);
+    line-height: 1.25;
+  }
+  .concept-play {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.45rem;
+    padding: 0.52rem 0.82rem;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--accent) 12%, var(--bg-panel));
+    color: var(--accent-strong);
+    font: 650 var(--step--1)/1.1 var(--font-body);
+    cursor: pointer;
+    transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+  .concept-play:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+  }
+  .concept-play:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .play-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg-panel);
+    font-size: 0.55rem;
+    line-height: 1;
+    text-indent: 0.08rem;
   }
   .concept-svg {
     display: block;
@@ -257,6 +335,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     height: auto;
     max-height: 12.5rem;
     color: var(--text-muted);
+    padding-inline: var(--space-xs);
   }
   .group-label,
   .footer-label,
@@ -318,12 +397,132 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     fill: var(--accent-strong);
     text-anchor: middle;
   }
+  .event-ring {
+    fill: color-mix(in oklab, var(--highlight) 12%, transparent);
+    stroke: var(--highlight-strong);
+    stroke-width: 1.5;
+    opacity: 0.6;
+  }
+  .split-mark,
+  .join-mark {
+    fill: none;
+    stroke: var(--highlight-strong);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* The final scientific state is visible before and after playback. Motion
+     appears only after the visitor explicitly presses the play control. */
+  .concept-diagram.is-playing .play-icon { animation: play-orbit 900ms ease-in-out infinite; }
+  .concept-diagram.is-playing .process-line,
+  .concept-diagram.is-playing .workflow-link,
+  .concept-diagram.is-playing .relation { stroke-dasharray: 10 8; }
+  .concept-diagram.is-playing .fission-source { animation: source-pulse 850ms ease-out both; }
+  .concept-diagram.is-playing .process-line--one { animation: draw-link 700ms 520ms ease-out both; }
+  .concept-diagram.is-playing .event-ring--one,
+  .concept-diagram.is-playing .split-mark { animation: event-pop 620ms 920ms var(--ease-settle) both; }
+  .concept-diagram.is-playing .fission-result--top { animation: split-top 900ms 1.25s var(--ease-settle) both; }
+  .concept-diagram.is-playing .fission-result--bottom { animation: split-bottom 900ms 1.25s var(--ease-settle) both; }
+  .concept-diagram.is-playing .fusion-source--top { animation: merge-top 1s 2.45s ease-in both; }
+  .concept-diagram.is-playing .fusion-source--bottom { animation: merge-bottom 1s 2.45s ease-in both; }
+  .concept-diagram.is-playing .process-line--two { animation: draw-link 650ms 3.05s ease-out both; }
+  .concept-diagram.is-playing .event-ring--two,
+  .concept-diagram.is-playing .join-mark { animation: event-pop 620ms 3.28s var(--ease-settle) both; }
+  .concept-diagram.is-playing .fusion-result { animation: result-pop 900ms 3.58s var(--ease-settle) both; }
+
+  .concept-diagram.is-playing .connectivity-scene .patch--one { animation: habitat-pop 800ms 0s var(--ease-settle) both; }
+  .concept-diagram.is-playing .connectivity-scene .relation--one { animation: route-flow 1.1s 550ms linear both; }
+  .concept-diagram.is-playing .connectivity-scene .patch--two { animation: habitat-pop 800ms 1.15s var(--ease-settle) both; }
+  .concept-diagram.is-playing .connectivity-scene .relation--two { animation: route-flow 1.1s 1.65s linear both; }
+  .concept-diagram.is-playing .connectivity-scene .relation--three { animation: route-flow 1.1s 2.35s linear both; }
+  .concept-diagram.is-playing .connectivity-scene .patch--three { animation: habitat-pop 800ms 3s var(--ease-settle) both; }
+
+  .concept-diagram.is-playing .workflow-stage--one { animation: stage-focus 720ms 0s var(--ease-settle) both; }
+  .concept-diagram.is-playing .workflow-link--one { animation: draw-link 650ms 620ms ease-out both; }
+  .concept-diagram.is-playing .workflow-stage--two { animation: stage-focus 720ms 1.05s var(--ease-settle) both; }
+  .concept-diagram.is-playing .workflow-link--two { animation: draw-link 650ms 1.65s ease-out both; }
+  .concept-diagram.is-playing .workflow-stage--three { animation: stage-focus 720ms 2.1s var(--ease-settle) both; }
+  .concept-diagram.is-playing .workflow-link--three { animation: draw-link 650ms 2.75s ease-out both; }
+  .concept-diagram.is-playing .workflow-stage--four { animation: stage-focus 820ms 3.2s var(--ease-settle) both; }
+
+  .concept-diagram.is-playing .migration-sample--one { animation: stage-focus 720ms 0s var(--ease-settle) both; }
+  .concept-diagram.is-playing .migration-sample--two { animation: stage-focus 720ms 280ms var(--ease-settle) both; }
+  .concept-diagram.is-playing .migration-link--one,
+  .concept-diagram.is-playing .migration-link--two { animation: route-flow 1.1s 820ms linear both; }
+  .concept-diagram.is-playing .migration-question { animation: question-focus 900ms 1.7s var(--ease-settle) both; }
+  .concept-diagram.is-playing .migration-link--three,
+  .concept-diagram.is-playing .migration-link--four { animation: route-flow 1.1s 2.35s linear both; }
+  .concept-diagram.is-playing .migration-result--one { animation: stage-focus 720ms 3.15s var(--ease-settle) both; }
+  .concept-diagram.is-playing .migration-result--two { animation: stage-focus 720ms 3.45s var(--ease-settle) both; }
+
+  .concept-status {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0 var(--space-m) var(--space-s);
+    color: var(--text-faint);
+    font: 500 var(--step--2)/1.3 var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+  .concept-status::before {
+    content: '';
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 50%;
+    background: var(--hairline-strong);
+  }
+  .concept-diagram.is-playing .concept-status::before {
+    background: var(--highlight);
+    box-shadow: 0 0 0 0.28rem color-mix(in oklab, var(--highlight) 18%, transparent);
+  }
+  .concept-diagram.is-finished .concept-status::before { background: var(--accent); }
+
+  @keyframes play-orbit { 50% { transform: rotate(180deg) scale(1.08); } 100% { transform: rotate(360deg); } }
+  @keyframes source-pulse { 0% { opacity: 0.25; transform: scaleX(0.6); } 65% { opacity: 1; transform: scaleX(1.08); } 100% { opacity: 1; transform: scaleX(1); } }
+  @keyframes draw-link { from { opacity: 0; stroke-dashoffset: 48; } to { opacity: 1; stroke-dashoffset: 0; } }
+  @keyframes event-pop { 0% { opacity: 0; transform: scale(0.25); } 65% { opacity: 1; transform: scale(1.25); } 100% { opacity: 0.85; transform: scale(1); } }
+  @keyframes split-top { from { opacity: 0; transform: translateY(16px) scaleX(0.45); } to { opacity: 1; transform: translateY(0) scaleX(1); } }
+  @keyframes split-bottom { from { opacity: 0; transform: translateY(-16px) scaleX(0.45); } to { opacity: 1; transform: translateY(0) scaleX(1); } }
+  @keyframes merge-top { 0%, 25% { opacity: 1; transform: translateY(0); } 100% { opacity: 0.16; transform: translateY(16px) scaleX(0.58); } }
+  @keyframes merge-bottom { 0%, 25% { opacity: 1; transform: translateY(0); } 100% { opacity: 0.16; transform: translateY(-16px) scaleX(0.58); } }
+  @keyframes result-pop { from { opacity: 0; transform: scale(0.25); } 70% { opacity: 1; transform: scale(1.28); } to { opacity: 1; transform: scale(1); } }
+  @keyframes habitat-pop { from { opacity: 0.12; transform: scale(0.62); } 70% { opacity: 1; transform: scale(1.1); } to { opacity: 1; transform: scale(1); } }
+  @keyframes route-flow { from { opacity: 0.15; stroke-dashoffset: 72; } to { opacity: 1; stroke-dashoffset: 0; } }
+  @keyframes stage-focus { from { opacity: 0.16; transform: scale(0.72); } 65% { opacity: 1; transform: scale(1.08); } to { opacity: 1; transform: scale(1); } }
+  @keyframes question-focus { from { opacity: 0.18; transform: scale(0.5) rotate(-12deg); } 70% { opacity: 1; transform: scale(1.15) rotate(4deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+
+  .fission-source,
+  .fission-result,
+  .fusion-source,
+  .fusion-result,
+  .event-ring,
+  .split-mark,
+  .join-mark,
+  .patch,
+  .workflow-stage,
+  .migration-sample,
+  .migration-question,
+  .migration-result {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
   [data-context='pilot'] .concept-heading { padding-block-start: var(--space-xs); }
   [data-context='pilot'] .concept-svg { max-height: 10.75rem; }
   .concept-mobile-flow { display: none; }
   @media (max-width: 34rem) {
     .concept-heading { display: grid; }
-    .concept-svg { display: none; }
+    .concept-play { width: 100%; }
+    .concept-svg {
+      display: block;
+      width: 100%;
+      max-height: none;
+      padding: var(--space-xs) 0 0;
+    }
+    .concept-svg .group-label,
+    .concept-svg .node-label,
+    .concept-svg .footer-label { display: none; }
     .concept-mobile-flow {
       display: grid;
       list-style: none;
@@ -365,5 +564,75 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
       font-size: var(--step--2);
       font-weight: 650;
     }
+    .concept-diagram.is-playing .concept-mobile-flow li {
+      animation: mobile-step 620ms var(--ease-settle) both;
+    }
+    .concept-diagram.is-playing .concept-mobile-flow li:nth-child(2) { animation-delay: 900ms; }
+    .concept-diagram.is-playing .concept-mobile-flow li:nth-child(3) { animation-delay: 1.8s; }
+    .concept-diagram.is-playing .concept-mobile-flow li:nth-child(4) { animation-delay: 2.7s; }
+    .concept-diagram.is-playing .concept-mobile-flow li:nth-child(5) { animation-delay: 3.5s; }
+    @keyframes mobile-step {
+      from { opacity: 0.28; transform: translateX(-0.6rem); }
+      70% { opacity: 1; transform: translateX(0.18rem); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .concept-play,
+    .concept-play:hover { transition: none; transform: none; }
+    .concept-diagram *,
+    .concept-diagram *::before,
+    .concept-diagram *::after { animation: none !important; }
   }
 </style>
+
+<script>
+  const conceptTimers = new WeakMap<HTMLElement, number>();
+
+  function initConceptDiagrams() {
+    document.querySelectorAll<HTMLElement>('[data-concept-diagram]').forEach((diagram) => {
+      if (diagram.dataset.conceptInit === '1') return;
+      diagram.dataset.conceptInit = '1';
+
+      const button = diagram.querySelector<HTMLButtonElement>('[data-concept-play]');
+      const label = diagram.querySelector<HTMLElement>('[data-concept-play-label]');
+      const status = diagram.querySelector<HTMLElement>('[data-concept-status]');
+      if (!button || !label || !status) return;
+
+      button.addEventListener('click', () => {
+        const runningTimer = conceptTimers.get(diagram);
+        if (runningTimer !== undefined) window.clearTimeout(runningTimer);
+
+        diagram.classList.remove('is-playing', 'is-finished');
+        // Restart the keyframe timeline when Replay is pressed.
+        void diagram.offsetWidth;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          diagram.classList.add('is-finished');
+          status.textContent = diagram.dataset.labelFinished ?? '';
+          label.textContent = diagram.dataset.labelReplay ?? '';
+          return;
+        }
+
+        diagram.classList.add('is-playing');
+        diagram.setAttribute('aria-busy', 'true');
+        status.textContent = diagram.dataset.labelPlaying ?? '';
+        label.textContent = diagram.dataset.labelReplay ?? '';
+
+        const timer = window.setTimeout(() => {
+          diagram.classList.remove('is-playing');
+          diagram.classList.add('is-finished');
+          diagram.setAttribute('aria-busy', 'false');
+          status.textContent = diagram.dataset.labelFinished ?? '';
+          label.textContent = diagram.dataset.labelReplay ?? '';
+          conceptTimers.delete(diagram);
+        }, 4700);
+        conceptTimers.set(diagram, timer);
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initConceptDiagrams);
+  initConceptDiagrams();
+</script>
