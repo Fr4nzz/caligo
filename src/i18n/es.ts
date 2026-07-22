@@ -171,19 +171,13 @@ export const es: Dict = {
         "description": "Esquema genérico. La mano de quien colecta baja una red sobre una mariposa; la pulsera usa el marcador COLECTOR, nunca el nombre de una persona real. Ese marcador pasa a una fila de registro abreviada. Las alas se cortan y se guardan en un sobre etiquetado (su CAMID), mientras el cuerpo va a un tubo (su ID de tubo). La fila muestra primero CAMID, luego ID de tubo, colector y puntos suspensivos para otros campos, como ID de mariposa y lugar de colecta. No muestra una persona, un ejemplar, un identificador ni el esquema completo de una base de datos reales."
       },
       "depositDiagram": {
-        "conceptual": "Animación educativa — conceptual, no son datos",
-        "title": "Tres vínculos, un recurso rastreable",
-        "play": "Reproducir la explicación",
-        "replay": "Repetir",
-        "ready": "Listo para animar",
-        "playing": "Conectando la cadena de evidencia",
-        "finished": "Cadena de evidencia conectada",
-        "reduced": "Diagrama completo mostrado sin movimiento",
+        "conceptual": "Vínculo conceptual — no son datos",
+        "title": "Mantener intacta la cadena de evidencia",
         "voucher": "ejemplar",
         "genome": "genoma",
         "contributors": "contribuciones",
-        "outcome": "público · reutilizable · reconocido",
-        "description": "Cadena conceptual genérica con tres nodos grandes: ejemplar, genoma y contribuciones. Una sola línea conecta los tres y luego aparece el resultado: público, reutilizable y reconocido. La línea representa vínculos rastreables, no que todos los registros estén en un solo repositorio. No muestra repositorios, accesiones, personas, identificadores ni políticas de Caligo reales.",
+        "outcome": "vinculado · citable · reutilizable",
+        "description": "Cadena conceptual genérica con tres nodos grandes: ejemplar, genoma y contribuciones. Una sola línea mantiene los tres conectados. Un pequeño símbolo de enlace identifica el resultado como vinculado, citable y reutilizable; no representa un identificador específico. La línea representa vínculos rastreables, no que todos los registros estén en un solo repositorio. No muestra repositorios, accesiones, personas, identificadores ni políticas de Caligo reales.",
         "disclaimer": "Vínculos conceptuales — los registros pueden permanecer en hogares duraderos distintos"
       }
     },

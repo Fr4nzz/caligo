@@ -8,104 +8,263 @@ const c = getDict(locale).home.journey.depositDiagram;
 const id = `deposit-chain-${locale}`;
 ---
 
-<figure class="deposit-chain" data-deposit-chain data-label-replay={c.replay} data-label-playing={c.playing} data-label-finished={c.finished} data-label-reduced={c.reduced} aria-labelledby={`${id}-title`} aria-describedby={`${id}-desc ${id}-disclaimer`} aria-busy="false">
-  <figcaption class="chain-heading">
-    <span class="chain-title-group"><span class="chain-kicker">{c.conceptual}</span><strong id={`${id}-title`}>{c.title}</strong></span>
-    <button type="button" class="chain-play" data-chain-play aria-describedby={`${id}-status`}><span aria-hidden="true">▶</span><span data-chain-play-label>{c.play}</span></button>
+<figure class="deposit-chain" aria-labelledby={`${id}-title`} aria-describedby={`${id}-desc ${id}-disclaimer`}>
+  <figcaption class="chain-caption">
+    <span class="chain-kicker">{c.conceptual}</span>
+    <strong id={`${id}-title`} class="visually-hidden">{c.title}</strong>
   </figcaption>
 
   <div class="chain-canvas" aria-hidden="true">
     <span class="chain-line"></span>
+
     <div class="chain-node chain-node--voucher">
-      <span class="node-icon node-icon--voucher"><i></i></span><b>{c.voucher}</b>
+      <span class="node-icon node-icon--voucher">
+        <svg viewBox="-56 -48 112 96" focusable="false">
+          <rect x="-3" y="-24" width="6" height="48" rx="3" class="voucher-body" />
+          <path d="M-2 -24 C-8 -38 -15 -42 -20 -44 M2 -24 C8 -38 15 -42 20 -44" class="voucher-antenna" />
+          <path d="M-4 -14 C-40 -34 -54 -18 -46 3 C-40 15 -17 12 -4 2 Z" class="voucher-wing" />
+          <path d="M-4 6 C-30 6 -40 20 -31 32 C-22 41 -8 32 -4 20 Z" class="voucher-wing voucher-wing--hind" />
+          <path d="M4 -14 C40 -34 54 -18 46 3 C40 15 17 12 4 2 Z" class="voucher-wing" />
+          <path d="M4 6 C30 6 40 20 31 32 C22 41 8 32 4 20 Z" class="voucher-wing voucher-wing--hind" />
+          <circle cx="-27" cy="-6" r="4.5" class="voucher-ocellus" />
+          <circle cx="27" cy="-6" r="4.5" class="voucher-ocellus" />
+        </svg>
+      </span>
+      <b>{c.voucher}</b>
     </div>
+
     <div class="chain-node chain-node--genome">
-      <span class="node-icon node-icon--genome"><i></i><i></i><i></i></span><b>{c.genome}</b>
+      <span class="node-icon node-icon--genome">
+        <svg viewBox="0 0 64 64" focusable="false">
+          <path d="M20 6 C20 18 44 18 44 32 C44 46 20 46 20 58" />
+          <path d="M44 6 C44 18 20 18 20 32 C20 46 44 46 44 58" />
+          <path class="genome-rungs" d="M22 10 H42 M27 18 H37 M22 27 H42 M22 37 H42 M27 46 H37 M22 54 H42" />
+        </svg>
+      </span>
+      <b>{c.genome}</b>
     </div>
+
     <div class="chain-node chain-node--contributors">
-      <span class="node-icon node-icon--contributors"><i></i><i></i></span><b>{c.contributors}</b>
+      <span class="node-icon node-icon--contributors">
+        <svg viewBox="0 0 64 64" focusable="false">
+          <circle class="person person--left" cx="17" cy="25" r="7" />
+          <path class="person-body person-body--left" d="M6 49 C7 37 27 37 28 49 Z" />
+          <circle class="person person--right" cx="47" cy="25" r="7" />
+          <path class="person-body person-body--right" d="M36 49 C37 37 57 37 58 49 Z" />
+          <circle class="person person--centre" cx="32" cy="19" r="8" />
+          <path class="person-body person-body--centre" d="M18 51 C19 34 45 34 46 51 Z" />
+        </svg>
+      </span>
+      <b>{c.contributors}</b>
     </div>
-    <strong class="chain-outcome">{c.outcome}</strong>
+
+    <strong class="chain-outcome">
+      <svg viewBox="0 0 34 20" aria-hidden="true" focusable="false">
+        <path d="M13 5 H9 A5 5 0 0 0 9 15 H13 M21 5 H25 A5 5 0 0 1 25 15 H21 M11 10 H23" />
+      </svg>
+      <span>{c.outcome}</span>
+    </strong>
   </div>
 
   <p class="chain-disclaimer" id={`${id}-disclaimer`}>{c.disclaimer}</p>
   <p class="chain-description" id={`${id}-desc`}>{c.description}</p>
-  <p class="chain-status" id={`${id}-status`} data-chain-status aria-live="polite">{c.ready}</p>
 </figure>
 
 <style>
-  .deposit-chain { margin: 0; overflow: hidden; border: 1px solid var(--hairline-strong); border-radius: var(--radius); background: var(--bg-panel); color: var(--text); }
-  .chain-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--space-s); padding: var(--space-s) var(--space-m); border-bottom: 1px solid var(--hairline); }
-  .chain-title-group { display: grid; gap: .2rem; }
-  .chain-title-group strong { font-size: var(--step-0); color: var(--text-strong); }
-  .chain-kicker, .chain-disclaimer, .chain-status { font-family: var(--font-mono); }
-  .chain-kicker { color: var(--text-faint); font-size: var(--step--2); letter-spacing: .11em; text-transform: uppercase; }
-  .chain-play { display: inline-flex; align-items: center; gap: .45rem; min-height: 2.45rem; padding: .45rem .8rem; border: 1px solid var(--accent-strong); border-radius: 999px; background: color-mix(in oklab, var(--highlight) 12%, var(--bg-panel)); color: var(--accent-strong); font: 650 var(--step--1)/1 var(--font-body); cursor: pointer; }
-  .chain-play:focus-visible { outline: 3px solid color-mix(in oklab, var(--accent) 45%, transparent); outline-offset: 3px; }
-  .chain-canvas { position: relative; min-height: 225px; display: grid; grid-template-columns: repeat(3, 1fr); align-items: start; gap: 1rem; padding: 2.2rem 2rem 1rem; background: var(--bg-inset); }
-  .chain-line { position: absolute; left: 17%; right: 17%; top: 78px; height: 2px; background: var(--accent-strong); transform-origin: left; opacity: .24; }
-  .chain-line::before, .chain-line::after { content: ''; position: absolute; top: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-strong); }
-  .chain-line::before { left: 0; } .chain-line::after { right: 0; }
-  .chain-node { position: relative; z-index: 1; display: grid; justify-items: center; gap: .7rem; color: var(--text-strong); font-size: var(--step--1); text-align: center; text-transform: uppercase; letter-spacing: .045em; opacity: .38; }
-  .node-icon { display: grid; place-items: center; width: 4.8rem; height: 4.8rem; border: 1.5px solid var(--accent-strong); border-radius: 50%; background: var(--bg-panel); }
-  .node-icon--voucher { position: relative; }
-  .node-icon--voucher::before, .node-icon--voucher::after { content: ''; position: absolute; width: 1.35rem; height: 2.1rem; border: 1.5px solid var(--accent-strong); border-radius: 70% 35% 70% 35%; }
-  .node-icon--voucher::before { transform: translateX(-.75rem) rotate(-18deg); } .node-icon--voucher::after { transform: translateX(.75rem) scaleX(-1) rotate(-18deg); }
-  .node-icon--voucher i { width: 1px; height: 2.5rem; background: var(--accent-strong); }
-  .node-icon--genome { gap: .36rem; }
-  .node-icon--genome i { display: block; width: 2.5rem; height: .32rem; border-radius: 999px; background: var(--accent-strong); }
-  .node-icon--contributors { position: relative; }
-  .node-icon--contributors i { position: absolute; width: 1.2rem; height: 1.2rem; border: 1.5px solid var(--accent-strong); border-radius: 50%; top: 1rem; }
-  .node-icon--contributors i:first-child { left: 1rem; } .node-icon--contributors i:last-child { right: 1rem; }
-  .node-icon--contributors::after { content: ''; position: absolute; left: 1rem; right: 1rem; bottom: 1rem; height: 1.1rem; border: 1.5px solid var(--accent-strong); border-bottom: 0; border-radius: 1.2rem 1.2rem 0 0; }
-  .chain-outcome { grid-column: 1 / -1; justify-self: center; margin-top: .75rem; padding: .48rem 1rem; border: 1px solid var(--accent-strong); border-radius: 999px; color: var(--accent-strong); font: 650 var(--step--2)/1.2 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; opacity: .2; }
-  .chain-disclaimer { margin: 0; padding: .65rem var(--space-m); color: var(--text-faint); font-size: var(--step--2); }
-  .chain-description { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .chain-status { margin: 0; padding: .6rem var(--space-m); border-top: 1px solid var(--hairline); color: var(--text-faint); font-size: var(--step--2); }
+  .deposit-chain {
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius);
+    background: var(--bg-panel);
+    color: var(--text);
+  }
 
-  .is-playing .chain-line { animation: chain-draw 900ms ease .2s both; }
-  .is-playing .chain-node--voucher { animation: chain-node 420ms var(--ease-settle) .25s both; }
-  .is-playing .chain-node--genome { animation: chain-node 420ms var(--ease-settle) 1.15s both; }
-  .is-playing .chain-node--contributors { animation: chain-node 420ms var(--ease-settle) 2.05s both; }
-  .is-playing .chain-outcome { animation: chain-node 480ms var(--ease-settle) 2.75s both; }
-  .is-complete .chain-line, .is-complete .chain-node, .is-complete .chain-outcome { opacity: 1; }
-  @keyframes chain-draw { from { transform: scaleX(0); opacity: .24; } to { transform: scaleX(1); opacity: 1; } }
-  @keyframes chain-node { from { opacity: .38; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+  .chain-caption {
+    padding: .8rem var(--space-m);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .chain-kicker,
+  .chain-disclaimer {
+    font-family: var(--font-mono);
+  }
+
+  .chain-kicker {
+    color: var(--text-faint);
+    font-size: var(--step--2);
+    letter-spacing: .11em;
+    text-transform: uppercase;
+  }
+
+  .visually-hidden,
+  .chain-description {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .chain-canvas {
+    position: relative;
+    min-height: 235px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: 1rem;
+    padding: 2.15rem 2rem 1rem;
+    background: var(--bg-inset);
+  }
+
+  .chain-line {
+    position: absolute;
+    left: 17%;
+    right: 17%;
+    top: 76px;
+    height: 2px;
+    background: var(--accent-strong);
+  }
+
+  .chain-line::before,
+  .chain-line::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-strong);
+  }
+
+  .chain-line::before { left: 0; }
+  .chain-line::after { right: 0; }
+
+  .chain-node {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: .7rem;
+    color: var(--text-strong);
+    font-size: var(--step--1);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .045em;
+  }
+
+  .node-icon {
+    display: grid;
+    place-items: center;
+    width: 4.8rem;
+    height: 4.8rem;
+    border: 1.5px solid var(--accent-strong);
+    border-radius: 50%;
+    background: var(--bg-panel);
+  }
+
+  .node-icon svg {
+    width: 3.7rem;
+    height: 3.7rem;
+    overflow: visible;
+  }
+
+  .node-icon--voucher .voucher-body { fill: var(--text-muted); }
+
+  .node-icon--voucher .voucher-antenna {
+    fill: none;
+    stroke: var(--text-muted);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  .node-icon--voucher .voucher-wing {
+    fill: color-mix(in oklab, var(--accent) 22%, var(--bg-panel));
+    stroke: var(--accent);
+    stroke-width: 1.5;
+  }
+
+  .node-icon--voucher .voucher-wing--hind {
+    fill: color-mix(in oklab, var(--accent) 14%, var(--bg-panel));
+  }
+
+  .node-icon--voucher .voucher-ocellus {
+    fill: var(--highlight);
+    stroke: var(--accent-strong);
+    stroke-width: 1.5;
+  }
+
+  .node-icon--genome path {
+    fill: none;
+    stroke: var(--accent-strong);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  .node-icon--genome .genome-rungs {
+    stroke-width: 1.1;
+    opacity: .72;
+  }
+
+  .node-icon--contributors .person {
+    stroke: var(--text-strong);
+    stroke-width: 1.6;
+  }
+
+  .node-icon--contributors .person-body { stroke: none; }
+  .person--left, .person-body--left { fill: color-mix(in oklab, var(--accent) 72%, var(--bg-panel)); }
+  .person--centre, .person-body--centre { fill: color-mix(in oklab, var(--signal) 62%, var(--bg-panel)); }
+  .person--right, .person-body--right { fill: color-mix(in oklab, var(--highlight) 64%, var(--bg-panel)); }
+
+  .chain-outcome {
+    grid-column: 1 / -1;
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    margin-top: .7rem;
+    padding: .48rem .85rem;
+    border: 1px solid var(--accent-strong);
+    border-radius: 999px;
+    color: var(--accent-strong);
+    font: 650 var(--step--2)/1.2 var(--font-mono);
+    letter-spacing: .055em;
+    text-transform: uppercase;
+  }
+
+  .chain-outcome svg {
+    width: 1.3rem;
+    height: .9rem;
+    flex: none;
+  }
+
+  .chain-outcome path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .chain-disclaimer {
+    margin: 0;
+    padding: .65rem var(--space-m);
+    color: var(--text-faint);
+    font-size: var(--step--2);
+  }
 
   @media (max-width: 620px) {
-    .chain-heading { align-items: stretch; flex-direction: column; }
-    .chain-play { justify-content: center; }
-    .chain-canvas { min-height: 205px; gap: .35rem; padding: 2rem .6rem .8rem; }
-    .chain-line { left: 18%; right: 18%; top: 68px; }
+    .chain-canvas {
+      min-height: 215px;
+      gap: .3rem;
+      padding: 2rem .55rem .8rem;
+    }
+
+    .chain-line { left: 18%; right: 18%; top: 67px; }
     .node-icon { width: 4rem; height: 4rem; }
-    .chain-node { font-size: .65rem; }
-    .chain-outcome { font-size: .6rem; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .deposit-chain *, .deposit-chain *::before, .deposit-chain *::after { animation: none !important; transition: none !important; }
-    .chain-line, .chain-node, .chain-outcome { opacity: 1; }
+    .node-icon svg { width: 3.15rem; height: 3.15rem; }
+    .chain-node { font-size: .62rem; }
+    .chain-outcome { gap: .35rem; font-size: .55rem; letter-spacing: .035em; }
   }
 </style>
-
-<script>
-  const setupDepositChain = () => {
-    document.querySelectorAll<HTMLElement>('[data-deposit-chain]').forEach((diagram) => {
-      if (diagram.dataset.ready === 'true') return;
-      diagram.dataset.ready = 'true';
-      const button = diagram.querySelector<HTMLButtonElement>('[data-chain-play]');
-      const label = diagram.querySelector<HTMLElement>('[data-chain-play-label]');
-      const status = diagram.querySelector<HTMLElement>('[data-chain-status]');
-      if (!button || !label || !status) return;
-      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduced) { diagram.classList.add('is-complete'); label.textContent = diagram.dataset.labelReplay ?? label.textContent; status.textContent = diagram.dataset.labelReduced ?? status.textContent; }
-      let timer = 0;
-      button.addEventListener('click', () => {
-        window.clearTimeout(timer); diagram.classList.remove('is-playing', 'is-complete'); void diagram.offsetWidth;
-        if (reduced) { diagram.classList.add('is-complete'); status.textContent = diagram.dataset.labelReduced ?? status.textContent; return; }
-        diagram.classList.add('is-playing'); diagram.setAttribute('aria-busy', 'true'); label.textContent = diagram.dataset.labelReplay ?? label.textContent; status.textContent = diagram.dataset.labelPlaying ?? status.textContent;
-        timer = window.setTimeout(() => { diagram.classList.remove('is-playing'); diagram.classList.add('is-complete'); diagram.setAttribute('aria-busy', 'false'); status.textContent = diagram.dataset.labelFinished ?? status.textContent; }, 3400);
-      });
-    });
-  };
-  setupDepositChain(); document.addEventListener('astro:page-load', setupDepositChain);
-</script>
