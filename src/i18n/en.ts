@@ -168,7 +168,11 @@ export const en = {
           "title": "Deposit and credit",
           "body": "Connect sequence, metadata, voucher, methods and contributor credit in durable repositories."
         }
-      ]
+      ],
+      "voucherDiagram": {
+        "collector": "COLLECTOR",
+        "description": "A generic schematic. A collector's hand lowers a net over a butterfly; the wristband uses the placeholder COLLECTOR, never a real person's name. That placeholder moves into the record row. The wings are cut and stored in a labelled envelope (its CAMID), while the body goes into a tube (its tube ID). The row holds collector, CAMID and tube ID together. It shows no real person, specimen, identifier or database."
+      }
     },
     "uses": {
       "heading": "One reference genome, four different investigations",

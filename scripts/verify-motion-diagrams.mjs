@@ -99,6 +99,12 @@ ok(/long-read-stack/.test(tiers) && /overlap-guides/.test(tiers) && /assembly-re
 ok(/role="img"/.test(tiers) && /<title id=/.test(tiers) && /<desc id=/.test(tiers) && /not a Caligo result/.test(en) && /no es un resultado de Caligo/.test(es), 'all evidence-tier SVGs have localised semantic titles, descriptions and a conceptual disclaimer');
 ok(/stage-targeted-selection[\s\S]*?180ms[\s\S]*?stage-targeted-outcome[\s\S]*?1\.05s[\s\S]*?stage-short-reads[\s\S]*?2s[\s\S]*?stage-short-outcome[\s\S]*?2\.95s[\s\S]*?stage-long-reads[\s\S]*?3\.65s[\s\S]*?stage-assembly-result[\s\S]*?4\.62s/.test(tiers), 'evidence-tier playback pauses through targeted, distributed-read and assembly stages');
 ok(/prefers-reduced-motion:\s*reduce/.test(tiers) && /animation:\s*none\s*!important/.test(tiers) && /all three outcomes are visible/.test(en), 'evidence-tier reduced motion preserves the complete static comparison');
+ok(/vch-net-head/.test(concepts) && /vch-hand/.test(concepts) && /vch-wristband/.test(concepts), 'voucher capture includes a net, hand and collector wristband');
+ok(/@keyframes net-catch[\s\S]*?translateY\(-18px\)[\s\S]*?translateY\(0\)/.test(concepts) && !/@keyframes net-catch[\s\S]*?translate\(-64px/.test(concepts), 'voucher net descends onto the specimen instead of entering from outside the frame');
+ok(/vch-collector-token/.test(concepts) && /@keyframes collector-to-record[\s\S]*?translate\(437px, -60px\)/.test(concepts), 'collector placeholder travels from the wristband into the record row');
+ok(/vch-record-collector/.test(concepts) && /c\.voucher\.collector[\s\S]*?c\.voucher\.camid[\s\S]*?c\.voucher\.tubeid/.test(concepts), 'voucher record row holds collector, CAMID and tube ID together');
+ok(/"collector": "COLLECTOR"/.test(en) && /"collector": "COLECTOR"/.test(es), 'collector placeholder has matching English and Spanish dictionary keys');
+ok(/never a real person's name/.test(en) && /nunca el nombre de una persona real/.test(es), 'voucher description keeps the collector placeholder explicitly conceptual');
 
 if (fail.length) {
   console.error(`\nFAIL: ${fail.length} motion/diagram contract check(s) failed.`);

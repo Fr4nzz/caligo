@@ -1,5 +1,5 @@
 ---
-import type { Locale } from '../i18n';
+import { getDict, type Locale } from '../i18n';
 
 type DiagramKind = 'chromosome' | 'connectivity' | 'monitoring' | 'migration' | 'voucher';
 
@@ -11,6 +11,7 @@ interface Props {
 
 const { locale, kind, context = 'science' } = Astro.props;
 const id = `concept-${context}-${kind}`;
+const t = getDict(locale);
 
 const copy = {
   en: {
@@ -81,11 +82,12 @@ const copy = {
     },
     voucher: {
       title: 'Voucher: specimen, sample, record',
-      desc: 'A generic schematic. The wings are cut and stored in a labelled envelope (its CAMID); the body goes into a tube (its tube ID); one record row holds both identifiers. It shows no real specimen, identifier or database.',
+      desc: t.home.journey.voucherDiagram.description,
       specimen: 'specimen',
       envelope: 'wings → envelope',
       tube: 'body → tube',
       record: 'record row',
+      collector: t.home.journey.voucherDiagram.collector,
       camid: 'CAMID',
       tubeid: 'TUBE ID',
       link: 'one CAMID links all three',
@@ -159,11 +161,12 @@ const copy = {
     },
     voucher: {
       title: 'Voucher: ejemplar, muestra, registro',
-      desc: 'Esquema genérico. Las alas se cortan y se guardan en un sobre etiquetado (su CAMID); el cuerpo va a un tubo (su ID de tubo); una fila de registro reúne ambos identificadores. No muestra un ejemplar, un identificador ni una base de datos reales.',
+      desc: t.home.journey.voucherDiagram.description,
       specimen: 'ejemplar',
       envelope: 'alas → sobre',
       tube: 'cuerpo → tubo',
       record: 'fila de registro',
+      collector: t.home.journey.voucherDiagram.collector,
       camid: 'CAMID',
       tubeid: 'ID DE TUBO',
       link: 'un CAMID une los tres',
@@ -202,10 +205,10 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
       : kind === 'migration'
         ? [c.migration.sampling, c.migration.origins, c.migration.routes, c.migration.evidence]
         : [
-            c.voucher.specimen,
+            `${c.voucher.collector} → ${c.voucher.specimen}`,
             `${c.voucher.envelope} (${c.voucher.camid})`,
             `${c.voucher.tube} (${c.voucher.tubeid})`,
-            `${c.voucher.record}: ${c.voucher.camid} + ${c.voucher.tubeid}`,
+            `${c.voucher.record}: ${c.voucher.collector} + ${c.voucher.camid} + ${c.voucher.tubeid}`,
           ];
 ---
 
@@ -473,14 +476,31 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
           <rect x="-2.5" y="-12" width="5" height="24" rx="2.5" class="vch-body vch-ghost-body" />
         </g>
 
-        {/* Collector: a hand net that catches the specimen, then fades. */}
+        {/* Collector: the net, hand and placeholder wristband remain entirely in frame. */}
         <g class="vch-net" transform="translate(86 90)">
-          <ellipse cx="0" cy="-2" rx="46" ry="48" class="vch-net-bag" />
-          <path d="M-46 -12 A46 48 0 0 1 46 -12" class="vch-net-mesh" />
-          <path d="M-40 -30 A46 48 0 0 1 40 -30 M-44 6 A46 48 0 0 0 44 6 M-30 -44 A46 48 0 0 1 30 -44" class="vch-net-mesh" />
-          <path d="M-24 -46 V44 M0 -48 V48 M24 -46 V44" class="vch-net-mesh" />
-          <ellipse cx="0" cy="-2" rx="46" ry="48" class="vch-net-hoop" />
-          <path d="M32 40 L64 92" class="vch-net-handle" />
+          <g class="vch-net-head">
+            <ellipse cx="0" cy="-4" rx="47" ry="43" class="vch-net-bag" />
+            <path d="M-47 -12 A47 43 0 0 1 47 -12" class="vch-net-mesh" />
+            <path d="M-40 -28 A47 43 0 0 1 40 -28 M-44 4 A47 43 0 0 0 44 4 M-28 -40 A47 43 0 0 1 28 -40" class="vch-net-mesh" />
+            <path d="M-24 -44 V36 M0 -47 V39 M24 -44 V36" class="vch-net-mesh" />
+            <ellipse cx="0" cy="-4" rx="47" ry="43" class="vch-net-hoop" />
+          </g>
+          <g class="vch-collector">
+            <path d="M-34 28 L-50 58" class="vch-net-handle" />
+            <path d="M-86 55 H-65 C-59 55 -54 58 -50 63 L-57 77 H-86 Z" class="vch-forearm" />
+            <path d="M-59 55 C-53 51 -46 53 -43 59 L-37 68 C-34 73 -37 79 -43 80 C-49 80 -54 76 -57 72 L-65 63 Z" class="vch-hand" />
+            <path d="M-57 59 C-52 59 -48 63 -47 68 M-52 56 C-47 57 -43 61 -41 66" class="vch-hand-detail" />
+            <rect x="-83" y="57" width="28" height="18" rx="3" class="vch-wristband" />
+            <text x="-69" y="68.5" class="vch-wristband-label">{c.voucher.collector}</text>
+          </g>
+        </g>
+
+        {/* A duplicate of the wristband label travels into the record. */}
+        <g transform="translate(17 159)">
+          <g class="vch-collector-token">
+            <rect x="-16" y="-7" width="32" height="14" rx="3" class="vch-token-card" />
+            <text x="0" y="2" class="vch-token-label">{c.voucher.collector}</text>
+          </g>
         </g>
 
         {/* Wings stored in a labelled envelope carrying the CAMID. */}
@@ -506,21 +526,22 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
           <rect x="-3" y="16" width="6" height="14" rx="3" class="vch-body-inside" />
         </g>
 
-        {/* Record: one row holds the CAMID and the tube ID together. */}
+        {/* Record: one row holds collector, CAMID and tube ID together. */}
         <g class="vch-sheet-group" transform="translate(498 90)">
-          <rect x="-46" y="-33" width="92" height="66" rx="6" class="vch-sheet" />
-          <rect x="-46" y="-33" width="92" height="15" class="vch-sheet-head" />
-          <rect x="-46" y="-3" width="92" height="16" class="vch-row-hit" />
-          <path d="M0 -33V33 M-46 -18H46 M-46 -3H46 M-46 13H46" class="vch-grid" />
-          <text x="-23" y="-22" class="vch-idtag">{c.voucher.camid}</text>
-          <text x="23" y="-22" class="vch-idtag vch-idtag--sm">{c.voucher.tubeid}</text>
-          <g class="vch-row-wing">
-            <path d="M-25 5 C -33 -1 -37 3 -35 8 C -33 11 -28 10 -25 7 Z" class="vch-wing" />
-            <path d="M-21 5 C -13 -1 -9 3 -11 8 C -13 11 -18 10 -21 7 Z" class="vch-wing" />
+          <rect x="-66" y="-33" width="132" height="66" rx="6" class="vch-sheet" />
+          <rect x="-66" y="-33" width="132" height="15" class="vch-sheet-head" />
+          <rect x="-66" y="-3" width="132" height="18" class="vch-row-hit" />
+          <path d="M-22 -33V33 M22 -33V33 M-66 -18H66 M-66 -3H66 M-66 15H66" class="vch-grid" />
+          <text x="-44" y="-22" class="vch-field-head">{c.voucher.collector}</text>
+          <text x="0" y="-22" class="vch-field-head">{c.voucher.camid}</text>
+          <text x="44" y="-22" class="vch-field-head">{c.voucher.tubeid}</text>
+          <g class="vch-record-values">
+            <text x="-44" y="9" class="vch-record-value vch-record-collector">{c.voucher.collector}</text>
+            <text x="0" y="9" class="vch-record-value">{c.voucher.camid}</text>
+            <text x="44" y="9" class="vch-record-value">{c.voucher.tubeid}</text>
           </g>
-          <path d="M13 1v8 M16 1v8 M19 1v8 M22 1v8 M26 1v8 M30 1v8" class="vch-barcode--row" />
-          <path d="M-30 -11h20 M8 -11h12 M26 -11h14" class="vch-cell" />
-          <path d="M-30 24h18 M6 24h16 M28 24h12" class="vch-cell" />
+          <path d="M-57 -11h19 M-12 -11h18 M33 -11h20" class="vch-cell" />
+          <path d="M-57 25h18 M-12 25h16 M33 25h20" class="vch-cell" />
         </g>
 
         <text x="86" y="152" class="node-label">{c.voucher.specimen}</text>
@@ -1015,11 +1036,33 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .vch-ocellus { fill: var(--highlight); stroke: var(--accent-strong); stroke-width: 1.5; }
   .vch-ghost-wings,
   .vch-ghost-body,
-  .vch-net { opacity: 0; }
+  .vch-net-head,
+  .vch-collector,
+  .vch-collector-token { opacity: 0; }
   .vch-net-hoop { fill: none; stroke: var(--text-strong); stroke-width: 2.5; }
   .vch-net-bag { fill: color-mix(in oklab, var(--text-muted) 8%, transparent); stroke: none; }
   .vch-net-mesh { fill: none; stroke: var(--hairline-strong); stroke-width: 0.8; opacity: 0.7; }
   .vch-net-handle { fill: none; stroke: var(--accent-strong); stroke-width: 4; stroke-linecap: round; }
+  .vch-forearm,
+  .vch-hand {
+    fill: color-mix(in oklab, var(--text-muted) 24%, var(--bg-panel));
+    stroke: var(--text-strong);
+    stroke-width: 1.6;
+    stroke-linejoin: round;
+  }
+  .vch-hand-detail { fill: none; stroke: var(--text-muted); stroke-width: 1.1; stroke-linecap: round; }
+  .vch-wristband,
+  .vch-token-card { fill: var(--accent-strong); stroke: var(--bg-panel); stroke-width: 0.8; }
+  .vch-wristband-label,
+  .vch-token-label {
+    font-family: var(--font-mono);
+    font-size: 4.7px;
+    font-weight: 750;
+    letter-spacing: 0.02em;
+    fill: var(--bg-panel);
+    text-anchor: middle;
+  }
+  .vch-token-label { font-size: 5.2px; }
   .vch-env { fill: color-mix(in oklab, var(--accent) 6%, var(--bg-panel)); stroke: var(--hairline-strong); stroke-width: 1.5; }
   .vch-env-flap { fill: none; stroke: var(--hairline-strong); stroke-width: 1.2; }
   .vch-env-wings { fill: color-mix(in oklab, var(--accent) 30%, var(--bg-panel)); }
@@ -1034,8 +1077,16 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .vch-sheet { fill: var(--bg-panel); stroke: var(--hairline-strong); stroke-width: 1.5; }
   .vch-sheet-head { fill: color-mix(in oklab, var(--accent) 14%, transparent); }
   .vch-row-hit { fill: color-mix(in oklab, var(--accent) 20%, transparent); }
-  .vch-row-wing { fill: color-mix(in oklab, var(--accent) 34%, var(--bg-panel)); }
   .vch-grid { fill: none; stroke: var(--hairline-strong); stroke-width: 1; opacity: 0.5; }
+  .vch-field-head,
+  .vch-record-value {
+    font-family: var(--font-mono);
+    font-weight: 650;
+    fill: var(--accent-strong);
+    text-anchor: middle;
+  }
+  .vch-field-head { font-size: 5.2px; letter-spacing: 0.02em; }
+  .vch-record-value { font-size: 6.4px; }
   .vch-cell { fill: none; stroke: var(--text-faint); stroke-width: 3; stroke-linecap: round; }
   .vch-flow { fill: none; stroke: var(--text-muted); stroke-width: 2; stroke-linecap: round; }
   .vch-flow--split { stroke: var(--hairline-strong); stroke-width: 1.5; stroke-dasharray: 3 4; opacity: 0.75; }
@@ -1048,18 +1099,20 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .vch-env-wings,
   .vch-body-inside,
   .vch-row-hit,
-  .vch-row-wing,
-  .vch-barcode--row,
-  .vch-net { transform-box: fill-box; transform-origin: center; }
+  .vch-record-values,
+  .vch-net-head,
+  .vch-collector,
+  .vch-collector-token { transform-box: fill-box; transform-origin: center; }
   .vch-wings-l { transform-origin: right center; }
   .vch-wings-r { transform-origin: left center; }
   .vch-row-hit { transform-origin: left center; }
-  .vch-net { transform-origin: 72% 92%; }
 
   .concept-diagram.is-playing .vch-flow--env,
   .concept-diagram.is-playing .vch-flow--tube { stroke-dasharray: 48; }
-  /* 1. A collector's net swoops in and catches the specimen, then fades. */
-  .concept-diagram.is-playing .vch-net { animation: net-catch 1.35s 0s ease-in-out both; }
+  /* 1. The collector lowers the fully visible net onto the specimen. */
+  .concept-diagram.is-playing .vch-net-head { animation: net-catch 1.45s 0s ease-in-out both; }
+  .concept-diagram.is-playing .vch-collector { animation: collector-catch 2.15s 0s ease-in-out both; }
+  .concept-diagram.is-playing .vch-collector-token { animation: collector-to-record 3.2s 700ms ease-in-out both; }
   /* 2. The specimen is opened and filed: wings → envelope, body → tube. */
   .concept-diagram.is-playing .voucher-scene .vch-wings-l { animation: wing-open 600ms 1.05s var(--ease-settle) both; }
   .concept-diagram.is-playing .voucher-scene .vch-wings-r { animation: wing-open 600ms 1.15s var(--ease-settle) both; }
@@ -1075,15 +1128,27 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-diagram.is-playing .vch-flow--tube { animation: draw-link 650ms 3.2s ease-out both; }
   .concept-diagram.is-playing .vch-sheet-group { animation: group-focus 720ms 3.55s var(--ease-settle) both; }
   .concept-diagram.is-playing .voucher-scene .vch-row-hit { animation: row-mark 760ms 3.8s var(--ease-settle) both; }
-  .concept-diagram.is-playing .voucher-scene .vch-row-wing,
-  .concept-diagram.is-playing .voucher-scene .vch-barcode--row { animation: event-pop 620ms 4.05s var(--ease-settle) both; }
+  .concept-diagram.is-playing .voucher-scene .vch-record-values { animation: event-pop 620ms 4.05s var(--ease-settle) both; }
 
   @keyframes net-catch {
-    0% { opacity: 0; transform: translate(-64px, -52px) rotate(-34deg); }
-    22% { opacity: 0.95; }
-    46% { opacity: 0.95; transform: translate(0, 0) rotate(0deg); }
-    70% { opacity: 0.95; transform: translate(0, 0) rotate(0deg); }
-    100% { opacity: 0; transform: translate(10px, -6px) rotate(6deg); }
+    0% { opacity: 0; transform: translateY(-18px); }
+    14% { opacity: 0.95; }
+    55% { opacity: 0.95; transform: translateY(0); }
+    76% { opacity: 0.95; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-4px); }
+  }
+  @keyframes collector-catch {
+    0% { opacity: 0; transform: translateY(-18px); }
+    10% { opacity: 1; }
+    38%, 78% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes collector-to-record {
+    0% { opacity: 0; transform: translate(0, 0) scale(1); }
+    12% { opacity: 1; transform: translate(0, 0) scale(1); }
+    22% { opacity: 1; transform: translate(18px, -5px) scale(0.96); }
+    52%, 84% { opacity: 1; transform: translate(437px, -60px) scale(0.72); }
+    100% { opacity: 0; transform: translate(437px, -60px) scale(0.72); }
   }
   @keyframes wing-open { from { opacity: 0.2; transform: scaleX(0.12); } 70% { opacity: 1; transform: scaleX(1.06); } to { opacity: 1; transform: scaleX(1); } }
   @keyframes fly-wings { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 18% { opacity: 0.9; } 82% { opacity: 0.9; } 100% { opacity: 0; transform: translate(204px, -42px) scale(0.42); } }
