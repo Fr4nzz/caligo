@@ -36,10 +36,18 @@ const copy = {
     },
     connectivity: {
       title: 'Population connectivity and gene flow',
-      desc: 'A generic schematic of habitat patches connected by possible gene flow. Dashed paths represent relationships to test, not measured routes, locations, or results.',
-      patches: 'sampled habitat patches',
-      test: 'gene flow to test',
-      compare: 'compare inherited variation',
+      desc: 'A simplified one-locus example. Each large circle is an individual; its two inner symbols are two inherited allele copies. Population B begins without the solid orange allele. An orange-carrying individual moves from population A and reproduces with a resident. Their offspring inherits one allele from each parent, introducing the orange allele into population B. Movement without successful reproduction would be migration, but not gene flow in this example. Colours and positions are conceptual, not measured populations, allele frequencies, routes, or results.',
+      populationA: 'population A',
+      populationB: 'population B',
+      orangeAllele: 'solid orange allele',
+      blueAllele: 'blue ring allele',
+      absent: 'orange allele absent at start',
+      moves: 'migrant carries orange allele',
+      parents: 'migrant + resident',
+      offspring: 'offspring',
+      inheritance: 'one allele from each parent',
+      enters: 'orange allele enters population B',
+      legend: 'one circle = one individual · two inner symbols = two allele copies at one simplified locus',
     },
     monitoring: {
       title: 'Movement and resistance monitoring',
@@ -93,10 +101,18 @@ const copy = {
     },
     connectivity: {
       title: 'Conectividad poblacional y flujo génico',
-      desc: 'Esquema genérico de parches de hábitat conectados por un posible flujo génico. Las rutas discontinuas representan relaciones por estudiar, no rutas, localidades ni resultados medidos.',
-      patches: 'parches de hábitat muestreados',
-      test: 'flujo génico por estudiar',
-      compare: 'comparar variación heredada',
+      desc: 'Ejemplo simplificado de un locus. Cada círculo grande es un individuo; sus dos símbolos internos son dos copias heredadas de un alelo. La población B comienza sin el alelo naranja sólido. Un individuo que porta el alelo naranja se desplaza desde la población A y se reproduce con un residente. Su descendiente hereda un alelo de cada progenitor e introduce el alelo naranja en la población B. El movimiento sin reproducción exitosa sería migración, pero no flujo génico en este ejemplo. Los colores y posiciones son conceptuales; no son poblaciones, frecuencias alélicas, rutas ni resultados medidos.',
+      populationA: 'población A',
+      populationB: 'población B',
+      orangeAllele: 'alelo naranja sólido',
+      blueAllele: 'alelo azul con contorno',
+      absent: 'alelo naranja ausente al inicio',
+      moves: 'migrante porta el alelo naranja',
+      parents: 'migrante + residente',
+      offspring: 'descendiente',
+      inheritance: 'un alelo de cada progenitor',
+      enters: 'el alelo naranja entra en la población B',
+      legend: 'un círculo = un individuo · dos símbolos internos = dos copias alélicas en un locus simplificado',
     },
     monitoring: {
       title: 'Monitoreo de movimiento y resistencia',
@@ -140,7 +156,14 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
       c.chromosome.holocentric,
     ]
   : kind === 'connectivity'
-    ? [c.connectivity.patches, c.connectivity.test, c.connectivity.compare]
+    ? [
+        `${c.connectivity.populationA}: ${c.connectivity.orangeAllele}`,
+        `${c.connectivity.populationB}: ${c.connectivity.absent}`,
+        c.connectivity.moves,
+        `${c.connectivity.parents} → ${c.connectivity.offspring}: ${c.connectivity.inheritance}`,
+        c.connectivity.enters,
+        c.connectivity.legend,
+      ]
     : kind === 'monitoring'
       ? [c.monitoring.sample, c.monitoring.identify, c.monitoring.movement, c.monitoring.candidates, c.monitoring.validate]
       : kind === 'migration'
@@ -174,7 +197,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     </button>
   </figcaption>
 
-  <svg class="concept-svg" viewBox={kind === 'chromosome' ? '0 0 600 220' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
+  <svg class="concept-svg" viewBox={kind === 'chromosome' || kind === 'connectivity' ? '0 0 600 220' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
     <title id={`${id}-title`}>{k.title}</title>
     <desc id={`${id}-desc`}>{k.desc}</desc>
     <defs>
@@ -235,24 +258,88 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
 
     {kind === 'connectivity' && (
       <g class="diagram-scene connectivity-scene">
-        <text x="300" y="22" class="group-label">{c.connectivity.patches}</text>
-        <path d="M145 79 C220 38 270 38 340 79" class="relation relation--one" marker-end={`url(#${id}-arrow)`} />
-        <path d="M340 98 C270 142 220 142 145 98" class="relation relation--two" marker-end={`url(#${id}-arrow)`} />
-        <path d="M365 88 C430 88 470 88 518 88" class="relation relation--three" marker-end={`url(#${id}-arrow)`} />
-        <g class="patch patch--one" transform="translate(82 56)">
-          <path d="M8 31 C12 7 46 0 67 14 C87 28 74 59 43 62 C18 65 1 53 8 31 Z" />
-          <circle cx="31" cy="30" r="4" /><circle cx="49" cy="42" r="4" />
+        <text x="115" y="18" class="group-label">{c.connectivity.populationA}</text>
+        <text x="485" y="18" class="group-label">{c.connectivity.populationB}</text>
+
+        <path d="M25 62 C28 31 67 23 108 27 C151 20 194 32 207 62 C218 91 187 116 146 115 C103 126 50 117 31 94 C21 83 20 72 25 62 Z" class="gene-patch gene-patch--a" />
+        <path d="M393 62 C398 30 437 23 478 27 C521 20 564 33 576 62 C587 91 557 116 516 115 C473 126 420 117 401 94 C391 83 388 72 393 62 Z" class="gene-patch gene-patch--b" />
+
+        {/* Population A contains the solid orange allele; population B initially contains only blue ring alleles. */}
+        <g class="gene-population gene-population--a">
+          <g class="gene-individual-wrap" transform="translate(66 57)">
+            <circle r="14" class="gene-individual" /><circle cx="-5" r="3.5" class="allele-token allele-token--orange" /><circle cx="5" r="3.5" class="allele-token allele-token--orange" />
+          </g>
+          <g class="gene-individual-wrap" transform="translate(116 50)">
+            <circle r="14" class="gene-individual" /><circle cx="-5" r="3.5" class="allele-token allele-token--orange" /><circle cx="5" r="3.5" class="allele-token allele-token--blue" />
+          </g>
+          <g class="gene-individual-wrap" transform="translate(164 66)">
+            <circle r="14" class="gene-individual" /><circle cx="-5" r="3.5" class="allele-token allele-token--orange" /><circle cx="5" r="3.5" class="allele-token allele-token--orange" />
+          </g>
+          <g class="gene-individual-wrap" transform="translate(91 94)">
+            <circle r="14" class="gene-individual" /><circle cx="-5" r="3.5" class="allele-token allele-token--blue" /><circle cx="5" r="3.5" class="allele-token allele-token--orange" />
+          </g>
+          <g class="gene-individual-wrap" transform="translate(148 99)">
+            <circle r="14" class="gene-individual" /><circle cx="-5" r="3.5" class="allele-token allele-token--orange" /><circle cx="5" r="3.5" class="allele-token allele-token--blue" />
+          </g>
         </g>
-        <g class="patch patch--two" transform="translate(296 56)">
-          <path d="M8 31 C12 7 46 0 67 14 C87 28 74 59 43 62 C18 65 1 53 8 31 Z" />
-          <circle cx="31" cy="30" r="4" /><circle cx="49" cy="42" r="4" />
+        <g class="gene-population gene-population--b">
+          <g class="gene-individual-wrap" transform="translate(430 55)">
+            <circle r="14" class="gene-individual" /><circle cx="-5" r="3.5" class="allele-token allele-token--blue" /><circle cx="5" r="3.5" class="allele-token allele-token--blue" />
+          </g>
+          <g class="gene-individual-wrap" transform="translate(480 48)">
+            <circle r="14" class="gene-individual" /><circle cx="-5" r="3.5" class="allele-token allele-token--blue" /><circle cx="5" r="3.5" class="allele-token allele-token--blue" />
+          </g>
+          <g class="gene-individual-wrap" transform="translate(533 62)">
+            <circle r="14" class="gene-individual" /><circle cx="-5" r="3.5" class="allele-token allele-token--blue" /><circle cx="5" r="3.5" class="allele-token allele-token--blue" />
+          </g>
+          <g class="gene-individual-wrap" transform="translate(446 96)">
+            <circle r="14" class="gene-individual" /><circle cx="-5" r="3.5" class="allele-token allele-token--blue" /><circle cx="5" r="3.5" class="allele-token allele-token--blue" />
+          </g>
+          <g class="gene-individual-wrap" transform="translate(497 95)">
+            <circle r="14" class="gene-individual" /><circle cx="-5" r="3.5" class="allele-token allele-token--blue" /><circle cx="5" r="3.5" class="allele-token allele-token--blue" />
+          </g>
+          <g class="gene-individual-wrap" transform="translate(548 98)">
+            <g class="recipient-offspring">
+              <circle r="15" class="gene-individual gene-individual--offspring" /><circle cx="-5" r="3.5" class="allele-token allele-token--orange" /><circle cx="5" r="3.5" class="allele-token allele-token--blue" />
+            </g>
+          </g>
         </g>
-        <g class="patch patch--three" transform="translate(500 56)">
-          <path d="M8 31 C12 7 46 0 67 14 C87 28 74 59 43 62 C18 65 1 53 8 31 Z" />
-          <circle cx="31" cy="30" r="4" /><circle cx="49" cy="42" r="4" />
+
+        {/* One individual moves; movement alone is not yet successful gene flow in this example. */}
+        <path d="M188 55 C247 23 330 25 398 56" class="gene-route" marker-end={`url(#${id}-arrow)`} />
+        <g class="gene-migrant-motion">
+          <circle cx="294" cy="38" r="15" class="gene-individual gene-individual--migrant" />
+          <circle cx="289" cy="38" r="3.5" class="allele-token allele-token--orange" />
+          <circle cx="299" cy="38" r="3.5" class="allele-token allele-token--orange" />
         </g>
-        <text x="245" y="139" class="node-label">{c.connectivity.test}</text>
-        <text x="300" y="165" class="footer-label">{c.connectivity.compare}</text>
+        <text x="294" y="76" class="micro-label gene-move-label">{c.connectivity.moves}</text>
+
+        {/* Reproduction: the offspring receives one allele copy from each parent, not a blended colour. */}
+        <g class="mating-parent mating-parent--migrant" transform="translate(238 153)">
+          <g class="mating-parent-motion">
+            <circle r="15" class="gene-individual" /><circle cx="-5" r="3.5" class="allele-token allele-token--orange" /><circle cx="5" r="3.5" class="allele-token allele-token--orange" />
+          </g>
+        </g>
+        <text x="279" y="158" class="mating-plus">+</text>
+        <g class="mating-parent mating-parent--resident" transform="translate(320 153)">
+          <g class="mating-parent-motion">
+            <circle r="15" class="gene-individual" /><circle cx="-5" r="3.5" class="allele-token allele-token--blue" /><circle cx="5" r="3.5" class="allele-token allele-token--blue" />
+          </g>
+        </g>
+        <path d="M345 153 H386" class="gene-inheritance-arrow" marker-end={`url(#${id}-arrow)`} />
+        <g class="gene-offspring-vignette" transform="translate(414 153)">
+          <g class="gene-offspring-motion">
+            <circle r="16" class="gene-individual gene-individual--offspring" /><circle cx="-5" r="3.5" class="allele-token allele-token--orange" /><circle cx="5" r="3.5" class="allele-token allele-token--blue" />
+          </g>
+        </g>
+        <path d="M435 145 C474 124 505 117 535 111" class="gene-entry-route" marker-end={`url(#${id}-arrow)`} />
+        <text x="279" y="187" class="micro-label gene-parent-label">{c.connectivity.parents}</text>
+        <text x="435" y="178" class="micro-label gene-offspring-label">
+          <tspan x="435">{c.connectivity.offspring}</tspan>
+          <tspan x="435" dy="11">{c.connectivity.inheritance}</tspan>
+        </text>
+        <text x="500" y="130" class="micro-label gene-entry-label">{c.connectivity.enters}</text>
+        <text x="300" y="213" class="footer-label gene-legend">{c.connectivity.legend}</text>
       </g>
     )}
 
@@ -542,12 +629,57 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     stroke-width: 2.5;
     stroke-linecap: round;
   }
-  .patch path {
-    fill: color-mix(in oklab, var(--accent) 13%, transparent);
-    stroke: var(--accent);
+  .gene-patch {
     stroke-width: 1.5;
   }
-  .patch circle,
+  .gene-patch--a {
+    fill: color-mix(in oklab, var(--c-burnt-500) 10%, transparent);
+    stroke: color-mix(in oklab, var(--c-burnt-500) 74%, var(--text-muted));
+  }
+  .gene-patch--b {
+    fill: color-mix(in oklab, var(--signal) 10%, transparent);
+    stroke: color-mix(in oklab, var(--signal) 72%, var(--text-muted));
+  }
+  .gene-individual {
+    fill: var(--bg-panel);
+    stroke: var(--text-muted);
+    stroke-width: 1.5;
+  }
+  .gene-individual--migrant,
+  .gene-individual--offspring {
+    stroke: var(--c-burnt-500);
+    stroke-width: 2.2;
+  }
+  .allele-token { stroke-width: 1.6; }
+  .allele-token--orange {
+    fill: var(--c-burnt-500);
+    stroke: var(--c-burnt-700);
+  }
+  .allele-token--blue {
+    fill: var(--bg-panel);
+    stroke: var(--signal);
+    stroke-width: 2.2;
+  }
+  :global([data-mode='dark']) .allele-token--orange { fill: var(--c-burnt-300); stroke: var(--c-burnt-200); }
+  :global([data-mode='light']) .allele-token--orange { fill: var(--c-burnt-700); stroke: var(--c-burnt-800); }
+  .gene-route,
+  .gene-inheritance-arrow,
+  .gene-entry-route {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  .gene-route { stroke-dasharray: 7 6; }
+  .gene-entry-route { stroke: var(--c-burnt-500); stroke-dasharray: 4 5; }
+  .mating-plus {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 650;
+    fill: var(--text-muted);
+    text-anchor: middle;
+  }
+  .gene-entry-label { fill: color-mix(in oklab, var(--c-burnt-500) 75%, var(--text-muted)); }
   .signal-dot { fill: var(--highlight); }
   .workflow-node {
     fill: var(--bg-panel);
@@ -616,12 +748,21 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-diagram.is-playing .fusion-result .chromosome-outline { animation: joined-outline 600ms 3.82s ease-out both; }
   .concept-diagram.is-playing .fusion-junction { animation: junction-flash 720ms 3.92s var(--ease-settle) both; }
 
-  .concept-diagram.is-playing .connectivity-scene .patch--one { animation: group-focus 800ms 0s var(--ease-settle) both; }
-  .concept-diagram.is-playing .connectivity-scene .relation--one { animation: route-flow 1.1s 550ms linear both; }
-  .concept-diagram.is-playing .connectivity-scene .patch--two { animation: group-focus 800ms 1.15s var(--ease-settle) both; }
-  .concept-diagram.is-playing .connectivity-scene .relation--two { animation: route-flow 1.1s 1.65s linear both; }
-  .concept-diagram.is-playing .connectivity-scene .relation--three { animation: route-flow 1.1s 2.35s linear both; }
-  .concept-diagram.is-playing .connectivity-scene .patch--three { animation: group-focus 800ms 3s var(--ease-settle) both; }
+  .concept-diagram.is-playing .gene-population--a { animation: population-focus 700ms 0s ease-out both; }
+  .concept-diagram.is-playing .gene-population--b { animation: population-focus 700ms 240ms ease-out both; }
+  .concept-diagram.is-playing .gene-route { animation: gene-route-draw 700ms 520ms ease-out both; }
+  .concept-diagram.is-playing .gene-migrant-motion { animation: gene-migrate 1.4s 760ms ease-in-out both; }
+  .concept-diagram.is-playing .gene-move-label { animation: label-focus 760ms 1.1s ease-out both; }
+  .concept-diagram.is-playing .mating-parent--migrant .mating-parent-motion { animation: parent-migrant 1.05s 2.12s ease-in-out both; }
+  .concept-diagram.is-playing .mating-parent--resident .mating-parent-motion { animation: parent-resident 1.05s 2.12s ease-in-out both; }
+  .concept-diagram.is-playing .gene-parent-label { animation: stage-label-focus 700ms 2.18s ease-out both; }
+  .concept-diagram.is-playing .mating-plus { animation: event-pop 620ms 2.58s var(--ease-settle) both; }
+  .concept-diagram.is-playing .gene-inheritance-arrow { animation: gene-route-draw 620ms 2.84s ease-out both; }
+  .concept-diagram.is-playing .gene-offspring-motion { animation: offspring-inherit 820ms 3.22s var(--ease-settle) both; }
+  .concept-diagram.is-playing .gene-offspring-label { animation: stage-label-focus 700ms 3.28s ease-out both; }
+  .concept-diagram.is-playing .gene-entry-route { animation: gene-route-draw 620ms 3.72s ease-out both; }
+  .concept-diagram.is-playing .recipient-offspring { animation: recipient-allele 780ms 4.08s var(--ease-settle) both; }
+  .concept-diagram.is-playing .gene-entry-label { animation: stage-label-focus 700ms 4.15s ease-out both; }
 
   .concept-diagram.is-playing .workflow-stage--one { animation: group-focus 720ms 0s var(--ease-settle) both; }
   .concept-diagram.is-playing .workflow-link--one { animation: draw-link 650ms 620ms ease-out both; }
@@ -680,6 +821,15 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   @keyframes junction-flash { from { opacity: 0; stroke-width: 1; } 55% { opacity: 1; stroke-width: 5; } to { opacity: 1; stroke-width: 2.5; } }
   @keyframes group-focus { from { opacity: 0.12; filter: saturate(0.45) brightness(0.72); } 70% { opacity: 1; filter: saturate(1.25) brightness(1.12); } to { opacity: 1; filter: none; } }
   @keyframes route-flow { from { opacity: 0.15; stroke-dashoffset: 72; } to { opacity: 1; stroke-dashoffset: 0; } }
+  @keyframes population-focus { from { opacity: 0.18; filter: saturate(0.5) brightness(0.75); } 70% { opacity: 1; filter: saturate(1.25) brightness(1.08); } to { opacity: 1; filter: none; } }
+  @keyframes gene-route-draw { from { opacity: 0; stroke-dasharray: 64; stroke-dashoffset: 64; } to { opacity: 1; stroke-dasharray: 7 6; stroke-dashoffset: 0; } }
+  @keyframes gene-migrate { 0% { opacity: 0; transform: translateX(-110px); } 12% { opacity: 1; } 82% { opacity: 1; transform: translateX(110px); } 100% { opacity: 0.22; transform: translateX(110px); } }
+  @keyframes label-focus { from { opacity: 0.15; } to { opacity: 1; } }
+  @keyframes stage-label-focus { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes parent-migrant { 0% { opacity: 0; transform: translateX(-18px); } 62% { opacity: 1; transform: translateX(10px); } 100% { opacity: 0.42; transform: translateX(10px); } }
+  @keyframes parent-resident { 0% { opacity: 0; transform: translateX(18px); } 62% { opacity: 1; transform: translateX(-10px); } 100% { opacity: 0.42; transform: translateX(-10px); } }
+  @keyframes offspring-inherit { from { opacity: 0; transform: scale(0.25); } 70% { opacity: 1; transform: scale(1.18); } to { opacity: 1; transform: scale(1); } }
+  @keyframes recipient-allele { from { opacity: 0; transform: scale(0.2); filter: brightness(1.4); } 70% { opacity: 1; transform: scale(1.22); filter: brightness(1.25); } to { opacity: 1; transform: scale(1); filter: none; } }
   @keyframes stage-focus { from { opacity: 0.16; transform: scale(0.72); } 65% { opacity: 1; transform: scale(1.08); } to { opacity: 1; transform: scale(1); } }
   @keyframes question-focus { from { opacity: 0.18; transform: scale(0.5) rotate(-12deg); } 70% { opacity: 1; transform: scale(1.15) rotate(4deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
 
@@ -694,6 +844,11 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .event-ring,
   .split-mark,
   .join-mark,
+  .gene-migrant-motion,
+  .mating-parent-motion,
+  .gene-offspring-motion,
+  .recipient-offspring,
+  .mating-plus,
   .migration-sample,
   .migration-question,
   .migration-result {

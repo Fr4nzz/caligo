@@ -59,6 +59,13 @@ ok(/fusion-result-segment--orange/.test(concepts) && /fusion-result-segment--yel
 ok(/@keyframes fission-left[\s\S]*?translateX\(14px\)/.test(concepts) && /@keyframes fission-right[\s\S]*?translateX\(-14px\)/.test(concepts), 'fission fragments visibly separate in opposite directions');
 ok(/@keyframes fuse-orange[\s\S]*?translateX\(-18px\)/.test(concepts) && /@keyframes fuse-yellow[\s\S]*?translateX\(18px\)/.test(concepts), 'fusion segments visibly converge toward the junction');
 ok(/holocentric/.test(concepts) && /no single localised centromere/.test(concepts), 'the diagram states the Lepidoptera holocentric context without inventing a centromere position');
+ok(/Each large circle is an individual/.test(concepts) && /two inherited allele copies/.test(concepts), 'connectivity explains individuals and two allele copies at one simplified locus');
+ok(/Movement without successful reproduction would be migration, but not gene flow/.test(concepts), 'connectivity distinguishes migration from successful gene flow in this example');
+ok(/allele-token--orange/.test(concepts) && /allele-token--blue/.test(concepts), 'alleles use both colour and solid-versus-ring shape encoding');
+ok(/gene-migrant-motion/.test(concepts) && /@keyframes gene-migrate[\s\S]*?translateX\(-110px\)[\s\S]*?translateX\(110px\)/.test(concepts), 'an orange-allele carrier visibly migrates between populations');
+ok(/mating-parent--migrant[\s\S]*?allele-token--orange[\s\S]*?mating-parent--resident[\s\S]*?allele-token--blue/.test(concepts), 'migrant and resident parents carry distinct allele states');
+ok(/gene-offspring-motion[\s\S]*?allele-token--orange[\s\S]*?allele-token--blue/.test(concepts), 'offspring inherits one visible allele copy from each parent without colour blending');
+ok(/recipient-offspring[\s\S]*?allele-token--orange[\s\S]*?allele-token--blue/.test(concepts), 'the inherited orange allele appears in the recipient population only after reproduction');
 
 if (fail.length) {
   console.error(`\nFAIL: ${fail.length} motion/diagram contract check(s) failed.`);
