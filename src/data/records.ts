@@ -266,6 +266,16 @@ export const SOURCES: readonly Source[] = [
     doi: '10.1038/s41586-024-07263-w',
   },
   {
+    id: 'vanderheijden-2025',
+    kind: 'paper',
+    citation:
+      'van der Heijden et al. 2025. Genomics of Neotropical biodiversity indicators: Two butterfly radiations with rampant chromosomal rearrangements and hybridization. PNAS 122:e2410939122.',
+    url: 'https://doi.org/10.1073/pnas.2410939122',
+    publicationDate: '2025-07-28',
+    checkedDate: '2026-07-21',
+    doi: '10.1073/pnas.2410939122',
+  },
+  {
     id: 'seraphim-2016',
     kind: 'paper',
     citation:

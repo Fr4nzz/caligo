@@ -36,16 +36,29 @@ const copy = {
     },
     connectivity: {
       title: 'Population connectivity and gene flow',
-      desc: 'A generic phylogenetic schematic. One ancestral butterfly lineage splits into two lineages that diverge, shown as dark red and pale orange branches. A discrete wing-mark allele crosses laterally from one branch to the other, illustrating gene flow through introgression; the receiving lineage keeps its own colour rather than showing blended inheritance. Gene flow between diverging lineages can transfer adaptive variation and, in some cases, contribute to speciation through hybridisation. Colours, traits, branches and timing are conceptual; this is not a species claim, measured phylogeny or Caligo result.',
-      ancestor: 'ancestral lineage',
-      divergence: 'lineages diverge',
-      darkLineage: 'dark lineage',
-      paleLineage: 'pale lineage',
-      geneFlow: 'gene flow',
-      introgression: 'discrete allele crosses between branches · introgression',
-      outcome: 'Gene flow between lineages can transfer adaptive variation (introgression) and, in some cases, contribute to speciation through hybridisation.',
-      outcomeLead: 'Gene flow between lineages can transfer adaptive variation (introgression)',
-      outcomeTail: 'and, in some cases, contribute to speciation through hybridisation.',
+      desc: 'A generic two-panel phylogenetic schematic. In the first panel, one ancestral butterfly lineage begins to split into two incipient lineages; early, sustained gene flow homogenises them and the branches rejoin, showing that they do not remain distinct. In the second panel, two more divergent lineages remain separate; a discrete wing-mark allele crosses from a donor into a recipient-derived branch, and an independently evolving hybrid lineage persists. The second outcome is rare and does not imply equal genomic contributions or colour blending. Colours, traits, branches and timing are conceptual; this is not a species claim, measured phylogeny or Caligo result.',
+      earlyTitle: 'early, sustained gene flow',
+      incipientLineages: 'incipient lineages',
+      earlyFlow: 'gene flow homogenises differences',
+      collapseOutcome: 'Divergence collapses · one lineage remains',
+      lateTitle: 'introgression after divergence',
+      divergentLineages: 'more divergent lineages',
+      recipientLineage: 'recipient lineage',
+      donorLineage: 'donor lineage',
+      hybridLineage: 'hybrid lineage',
+      introgression: 'discrete adaptive allele · introgression',
+      rareOutcomeLead: 'Rare outcome · an independently evolving',
+      rareOutcomeTail: 'hybrid lineage persists',
+      evidenceLead: 'Evidence context: ',
+      rosserPrefix: 'hybrid speciation in',
+      rosserTaxon: 'Heliconius elevatus',
+      rosserTail: ' (Heliconiini)',
+      evidenceJoin: '; ',
+      ithomiiniPrefix: 'putative hybrid origins in Ithomiini (',
+      ithomiiniTaxonOne: 'Melinaea',
+      ithomiiniAnd: ' and ',
+      ithomiiniTaxonTwo: 'Mechanitis',
+      evidenceTail: ').',
     },
     monitoring: {
       title: 'Movement and resistance monitoring',
@@ -99,16 +112,29 @@ const copy = {
     },
     connectivity: {
       title: 'Conectividad poblacional y flujo génico',
-      desc: 'Esquema filogenético genérico. Un linaje ancestral de mariposas se divide en dos linajes que divergen, representados por ramas rojo oscuro y naranja pálido. Un alelo discreto con patrón de puntos cruza lateralmente de una rama a la otra y muestra flujo génico por introgresión; el linaje receptor conserva su propio color, sin herencia por mezcla. El flujo génico entre linajes divergentes puede transferir variación adaptativa y, en algunos casos, contribuir a la especiación por hibridación. Los colores, rasgos, ramas y tiempos son conceptuales; no representan una especie, una filogenia medida ni un resultado de Caligo.',
-      ancestor: 'linaje ancestral',
-      divergence: 'los linajes divergen',
-      darkLineage: 'linaje oscuro',
-      paleLineage: 'linaje pálido',
-      geneFlow: 'flujo génico',
-      introgression: 'un alelo discreto cruza entre ramas · introgresión',
-      outcome: 'El flujo génico entre linajes puede transferir variación adaptativa (introgresión) y, en algunos casos, contribuir a la especiación por hibridación.',
-      outcomeLead: 'El flujo génico entre linajes puede transferir variación adaptativa (introgresión)',
-      outcomeTail: 'y, en algunos casos, contribuir a la especiación por hibridación.',
+      desc: 'Esquema filogenético genérico en dos paneles. En el primero, un linaje ancestral de mariposas empieza a dividirse en dos linajes incipientes; el flujo génico temprano y sostenido los homogeneiza y las ramas vuelven a unirse, lo que muestra que no permanecen separados. En el segundo, dos linajes más divergentes siguen separados; un alelo discreto con patrón alar cruza desde un donante hacia una rama derivada del receptor y persiste un linaje híbrido que evoluciona de forma independiente. El segundo desenlace es raro y no implica aportes genómicos iguales ni herencia por mezcla de colores. Los colores, rasgos, ramas y tiempos son conceptuales; no representan una especie, una filogenia medida ni un resultado de Caligo.',
+      earlyTitle: 'flujo génico temprano y sostenido',
+      incipientLineages: 'linajes incipientes',
+      earlyFlow: 'el flujo génico homogeneiza las diferencias',
+      collapseOutcome: 'La divergencia colapsa · permanece un linaje',
+      lateTitle: 'introgresión después de la divergencia',
+      divergentLineages: 'linajes más divergentes',
+      recipientLineage: 'linaje receptor',
+      donorLineage: 'linaje donante',
+      hybridLineage: 'linaje híbrido',
+      introgression: 'alelo adaptativo discreto · introgresión',
+      rareOutcomeLead: 'Desenlace raro · persiste un linaje híbrido',
+      rareOutcomeTail: 'que evoluciona de forma independiente',
+      evidenceLead: 'Contexto de evidencia: ',
+      rosserPrefix: 'especiación híbrida en',
+      rosserTaxon: 'Heliconius elevatus',
+      rosserTail: ' (Heliconiini)',
+      evidenceJoin: '; ',
+      ithomiiniPrefix: 'orígenes híbridos putativos en Ithomiini (',
+      ithomiiniTaxonOne: 'Melinaea',
+      ithomiiniAnd: ' y ',
+      ithomiiniTaxonTwo: 'Mechanitis',
+      evidenceTail: ').',
     },
     monitoring: {
       title: 'Monitoreo de movimiento y resistencia',
@@ -153,10 +179,10 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     ]
   : kind === 'connectivity'
     ? [
-        c.connectivity.ancestor,
-        `${c.connectivity.divergence}: ${c.connectivity.darkLineage} + ${c.connectivity.paleLineage}`,
-        c.connectivity.introgression,
-        c.connectivity.outcome,
+        `${c.connectivity.earlyTitle}: ${c.connectivity.incipientLineages}`,
+        `${c.connectivity.earlyFlow} → ${c.connectivity.collapseOutcome}`,
+        `${c.connectivity.lateTitle}: ${c.connectivity.divergentLineages}`,
+        `${c.connectivity.introgression} → ${c.connectivity.rareOutcomeLead} ${c.connectivity.rareOutcomeTail}`,
       ]
     : kind === 'monitoring'
       ? [c.monitoring.sample, c.monitoring.identify, c.monitoring.movement, c.monitoring.candidates, c.monitoring.validate]
@@ -192,7 +218,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     </button>
   </figcaption>
 
-  <svg class="concept-svg" viewBox={kind === 'connectivity' ? '0 0 600 235' : kind === 'chromosome' ? '0 0 600 220' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
+  <svg class="concept-svg" viewBox={kind === 'connectivity' ? '0 0 720 255' : kind === 'chromosome' ? '0 0 600 220' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
     <title id={`${id}-title`}>{k.title}</title>
     <desc id={`${id}-desc`}>{k.desc}</desc>
     <defs>
@@ -263,54 +289,77 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
 
     {kind === 'connectivity' && (
       <g class="diagram-scene connectivity-scene">
-        <text x="165" y="18" class="group-label phylo-lineage-label phylo-lineage-label--dark">{c.connectivity.darkLineage}</text>
-        <text x="435" y="18" class="group-label phylo-lineage-label phylo-lineage-label--pale">{c.connectivity.paleLineage}</text>
+        <path d="M360 18 V238" class="gene-flow-divider" />
 
-        {/* A clean Y-shaped phylogeny: one ancestor, one split, two diverging lineages. */}
-        <path d="M300 166 V132" class="phylo-tree phylo-trunk" />
-        <path d="M300 132 C278 111 233 78 178 45" class="phylo-tree phylo-branch phylo-branch--dark" />
-        <path d="M300 132 C322 111 367 78 422 45" class="phylo-tree phylo-branch phylo-branch--pale" />
-        <circle cx="300" cy="132" r="5" class="phylo-divergence-node" />
-        <text x="300" y="148" class="micro-label phylo-divergence-label">{c.connectivity.divergence}</text>
+        {/* Outcome 1: sustained exchange homogenises incipient lineages before they remain distinct. */}
+        <g class="gene-flow-panel gene-flow-panel--homogenisation">
+          <text x="180" y="18" class="group-label gene-flow-panel-title">{c.connectivity.earlyTitle}</text>
+          <path d="M180 198 V168" class="lineage-path lineage-trunk early-lineage-trunk" />
+          <path d="M180 168 C156 151 129 131 118 105 C130 86 151 69 180 57" class="lineage-path incipient-branch incipient-branch--dark" />
+          <path d="M180 168 C204 151 231 131 242 105 C230 86 209 69 180 57" class="lineage-path incipient-branch incipient-branch--pale" />
+          <path d="M180 57 V38" class="lineage-path homogenised-lineage" />
+          <circle cx="180" cy="168" r="4.5" class="lineage-node early-divergence-node" />
+          <circle cx="180" cy="57" r="4.5" class="lineage-node homogenisation-node" />
 
-        <g class="phylo-butterfly phylo-butterfly--ancestor" transform="translate(300 171) scale(.78)">
-          <use href={`#${id}-butterfly`} />
+          <g class="lineage-butterfly lineage-butterfly--ancestor early-ancestor" transform="translate(180 204) scale(.7)">
+            <use href={`#${id}-butterfly`} />
+          </g>
+          <g class="early-lineage-glyphs">
+            <g class="lineage-butterfly lineage-butterfly--dark" transform="translate(126 113) scale(.68)">
+              <use href={`#${id}-butterfly`} />
+            </g>
+            <g class="lineage-butterfly lineage-butterfly--pale" transform="translate(234 113) scale(.68)">
+              <use href={`#${id}-butterfly`} />
+            </g>
+          </g>
+          <g class="lineage-butterfly lineage-butterfly--ancestor homogenised-butterfly" transform="translate(180 39) scale(.86)">
+            <use href={`#${id}-butterfly`} />
+          </g>
+
+          <path d="M143 133 H217" class="gene-flow-link early-gene-flow" marker-start={`url(#${id}-phylo-arrow)`} marker-end={`url(#${id}-phylo-arrow)`} />
+          <text x="180" y="127" class="micro-label gene-flow-label">{c.connectivity.earlyFlow}</text>
+          <text x="180" y="92" class="micro-label incipient-label">{c.connectivity.incipientLineages}</text>
+          <text x="180" y="224" class="footer-label panel-outcome panel-outcome--collapse">{c.connectivity.collapseOutcome}</text>
         </g>
-        <text x="300" y="191" class="node-label phylo-ancestor-label">{c.connectivity.ancestor}</text>
 
-        <g class="phylo-lineage-stage phylo-lineage-stage--dark">
-          <g class="phylo-butterfly phylo-butterfly--dark phylo-butterfly--dark-mid" transform="translate(248 92) scale(.7)">
-            <use href={`#${id}-butterfly`} />
-          </g>
-          <g class="phylo-butterfly phylo-butterfly--dark phylo-butterfly--recipient" transform="translate(173 41) scale(1.02)">
-            <use href={`#${id}-butterfly`} />
-            <path d="M-11 -1 L-7 -5 L-3 -1 L-7 3 Z" class="trait-mark trait-mark--introgressed" />
-          </g>
-        </g>
+        {/* Outcome 2: a discrete allele enters a recipient-derived branch; the new lineage is not a 50/50 blend. */}
+        <g class="gene-flow-panel gene-flow-panel--hybrid-speciation">
+          <text x="540" y="18" class="group-label gene-flow-panel-title">{c.connectivity.lateTitle}</text>
+          <path d="M540 198 V169" class="lineage-path lineage-trunk late-lineage-trunk" />
+          <path d="M540 169 C514 146 476 111 435 53" class="lineage-path recipient-branch" />
+          <path d="M540 169 C568 143 611 105 653 53" class="lineage-path donor-branch" />
+          <path d="M481 111 C500 94 522 72 548 50" class="lineage-path hybrid-lineage-branch" />
+          <circle cx="540" cy="169" r="4.5" class="lineage-node late-divergence-node" />
+          <circle cx="481" cy="111" r="4.5" class="lineage-node hybrid-origin-node" />
 
-        <g class="phylo-lineage-stage phylo-lineage-stage--pale">
-          <g class="phylo-butterfly phylo-butterfly--pale phylo-butterfly--pale-mid" transform="translate(352 92) scale(.7)">
+          <g class="lineage-butterfly lineage-butterfly--ancestor late-ancestor" transform="translate(540 204) scale(.7)">
             <use href={`#${id}-butterfly`} />
           </g>
-          <g class="phylo-butterfly phylo-butterfly--pale phylo-butterfly--donor" transform="translate(427 41) scale(1.02)">
+          <g class="lineage-butterfly lineage-butterfly--dark recipient-butterfly" transform="translate(432 48) scale(.86)">
+            <use href={`#${id}-butterfly`} />
+          </g>
+          <g class="lineage-butterfly lineage-butterfly--pale donor-butterfly" transform="translate(660 48) scale(.86)">
             <use href={`#${id}-butterfly`} />
             <path d="M3 -1 L7 -5 L11 -1 L7 3 Z" class="trait-mark trait-mark--source" />
           </g>
-        </g>
+          <g class="lineage-butterfly lineage-butterfly--dark hybrid-butterfly" transform="translate(548 43) scale(.92)">
+            <use href={`#${id}-butterfly`} />
+            <path d="M-11 -1 L-7 -5 L-3 -1 L-7 3 Z" class="trait-mark trait-mark--hybrid" />
+          </g>
 
-        {/* Lateral arrows show exchange while branches diverge; the diamond is one discrete allele, not colour mixing. */}
-        <path d="M263 111 H337" class="introgression-link introgression-link--exchange" marker-start={`url(#${id}-phylo-arrow)`} marker-end={`url(#${id}-phylo-arrow)`} />
-        <text x="300" y="105" class="micro-label introgression-label">{c.connectivity.geneFlow}</text>
-        <path d="M386 72 H214" class="introgression-link introgression-link--transfer" marker-end={`url(#${id}-phylo-arrow)`} />
-        <g class="introgression-token">
-          <path d="M375 66 L381 72 L375 78 L369 72 Z" class="trait-token-shape" />
+          <path d="M621 91 C590 87 560 78 530 68" class="gene-flow-link late-introgression-link" marker-end={`url(#${id}-phylo-arrow)`} />
+          <g class="late-introgression-token">
+            <path d="M614 84 L620 90 L614 96 L608 90 Z" class="trait-token-shape" />
+          </g>
+          <text x="575" y="110" class="micro-label introgression-note">{c.connectivity.introgression}</text>
+          <text x="432" y="77" class="micro-label lineage-tip-label">{c.connectivity.recipientLineage}</text>
+          <text x="548" y="71" class="micro-label lineage-tip-label">{c.connectivity.hybridLineage}</text>
+          <text x="660" y="77" class="micro-label lineage-tip-label">{c.connectivity.donorLineage}</text>
+          <text x="540" y="218" class="footer-label panel-outcome panel-outcome--hybrid">
+            <tspan x="540">{c.connectivity.rareOutcomeLead}</tspan>
+            <tspan x="540" dy="11">{c.connectivity.rareOutcomeTail}</tspan>
+          </text>
         </g>
-        <text x="300" y="62" class="micro-label introgression-note">{c.connectivity.introgression}</text>
-
-        <text x="300" y="207" class="footer-label phylo-outcome">
-          <tspan x="300">{c.connectivity.outcomeLead}</tspan>
-          <tspan x="300" dy="12">{` ${c.connectivity.outcomeTail}`}</tspan>
-        </text>
       </g>
     )}
 
@@ -465,6 +514,18 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     ))}
   </ol>
   <p class="concept-status" id={`${id}-status`} data-concept-status aria-live="polite">{c.ready}</p>
+  {kind === 'connectivity' && (
+    <p class="concept-evidence">
+      <span>{c.connectivity.evidenceLead}</span>
+      <a href="https://doi.org/10.1038/s41586-024-07263-w" target="_blank" rel="noopener noreferrer external">
+        {c.connectivity.rosserPrefix} <i lang="la">{c.connectivity.rosserTaxon}</i>{c.connectivity.rosserTail}
+      </a>
+      <span>{c.connectivity.evidenceJoin}</span>
+      <a href="https://doi.org/10.1073/pnas.2410939122" target="_blank" rel="noopener noreferrer external">
+        {c.connectivity.ithomiiniPrefix}<i lang="la">{c.connectivity.ithomiiniTaxonOne}</i>{c.connectivity.ithomiiniAnd}<i lang="la">{c.connectivity.ithomiiniTaxonTwo}</i>{c.connectivity.evidenceTail}
+      </a>
+    </p>
+  )}
 </figure>
 
 <style>
@@ -601,16 +662,26 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     stroke-width: 2.5;
     stroke-linecap: round;
   }
-  .phylo-tree {
+  .gene-flow-divider {
+    fill: none;
+    stroke: var(--hairline);
+    stroke-width: 1;
+    stroke-dasharray: 2 5;
+  }
+  .lineage-path {
     fill: none;
     stroke-width: 3;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
-  .phylo-trunk { stroke: var(--text-muted); }
-  .phylo-branch--dark { stroke: var(--c-burnt-700); }
-  .phylo-branch--pale { stroke: var(--c-ochre-600); }
-  .phylo-divergence-node {
+  .lineage-trunk,
+  .homogenised-lineage { stroke: var(--text-muted); }
+  .incipient-branch--dark,
+  .recipient-branch,
+  .hybrid-lineage-branch { stroke: var(--c-burnt-700); }
+  .incipient-branch--pale,
+  .donor-branch { stroke: var(--c-ochre-600); }
+  .lineage-node {
     fill: var(--bg-panel);
     stroke: var(--text-strong);
     stroke-width: 2;
@@ -628,25 +699,24 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     stroke-width: 1.7;
     stroke-linecap: round;
   }
-  .phylo-butterfly--ancestor { color: var(--text-muted); }
-  .phylo-butterfly--dark { color: var(--c-burnt-700); }
-  .phylo-butterfly--pale { color: var(--c-ochre-500); }
-  .phylo-lineage-label--dark { fill: var(--c-burnt-700); }
-  .phylo-lineage-label--pale { fill: var(--c-ochre-700); }
-  :global([data-mode='dark']) .phylo-branch--dark { stroke: var(--c-burnt-300); }
-  :global([data-mode='dark']) .phylo-branch--pale { stroke: var(--c-ochre-300); }
-  :global([data-mode='dark']) .phylo-butterfly--dark { color: var(--c-burnt-300); }
-  :global([data-mode='dark']) .phylo-butterfly--pale { color: var(--c-ochre-300); }
-  :global([data-mode='dark']) .phylo-lineage-label--dark { fill: var(--c-burnt-200); }
-  :global([data-mode='dark']) .phylo-lineage-label--pale { fill: var(--c-ochre-300); }
-  .introgression-link {
+  .lineage-butterfly--ancestor { color: var(--text-muted); }
+  .lineage-butterfly--dark { color: var(--c-burnt-700); }
+  .lineage-butterfly--pale { color: var(--c-ochre-500); }
+  :global([data-mode='dark']) .incipient-branch--dark,
+  :global([data-mode='dark']) .recipient-branch,
+  :global([data-mode='dark']) .hybrid-lineage-branch { stroke: var(--c-burnt-300); }
+  :global([data-mode='dark']) .incipient-branch--pale,
+  :global([data-mode='dark']) .donor-branch { stroke: var(--c-ochre-300); }
+  :global([data-mode='dark']) .lineage-butterfly--dark { color: var(--c-burnt-300); }
+  :global([data-mode='dark']) .lineage-butterfly--pale { color: var(--c-ochre-300); }
+  .gene-flow-link {
     fill: none;
     stroke: var(--signal);
     stroke-width: 2.2;
     stroke-linecap: round;
   }
-  .introgression-link--exchange { stroke-dasharray: 5 5; }
-  .introgression-link--transfer { stroke-width: 2.7; }
+  .early-gene-flow { stroke-dasharray: 5 5; }
+  .late-introgression-link { stroke-width: 2.7; }
   .trait-token-shape,
   .trait-mark {
     fill: var(--signal);
@@ -654,17 +724,15 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     stroke-width: 1.6;
     stroke-linejoin: round;
   }
-  .trait-mark--introgressed { stroke-width: 1.8; }
-  .introgression-label {
+  .trait-mark--hybrid { stroke-width: 1.8; }
+  .gene-flow-label {
     fill: var(--text-strong);
     font-weight: 650;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
   }
   .introgression-note { fill: var(--text-muted); }
-  .phylo-outcome {
+  .panel-outcome {
     fill: var(--text-muted);
-    font-size: 9.5px;
+    font-size: 9px;
     font-weight: 600;
   }
   .signal-dot { fill: var(--highlight); }
@@ -735,24 +803,32 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-diagram.is-playing .fusion-result .chromosome-outline { animation: joined-outline 600ms 3.82s ease-out both; }
   .concept-diagram.is-playing .fusion-junction { animation: junction-flash 720ms 3.92s var(--ease-settle) both; }
 
-  /* Connectivity timeline: ancestor → divergence → lateral allele transfer → conclusion. */
-  .concept-diagram.is-playing .phylo-butterfly--ancestor,
-  .concept-diagram.is-playing .phylo-ancestor-label { animation: phylo-ancestor-focus 720ms 0s var(--ease-settle) both; }
-  .concept-diagram.is-playing .phylo-trunk { animation: phylo-tree-draw 650ms 420ms ease-out both; }
-  .concept-diagram.is-playing .phylo-branch--dark,
-  .concept-diagram.is-playing .phylo-branch--pale { animation: phylo-tree-draw 900ms 900ms ease-out both; }
-  .concept-diagram.is-playing .phylo-divergence-node,
-  .concept-diagram.is-playing .phylo-divergence-label { animation: event-pop 620ms 1.05s var(--ease-settle) both; }
-  .concept-diagram.is-playing .phylo-lineage-stage--dark { animation: phylo-lineage-emerge 720ms 1.55s var(--ease-settle) both; }
-  .concept-diagram.is-playing .phylo-lineage-stage--pale { animation: phylo-lineage-emerge 720ms 1.78s var(--ease-settle) both; }
-  .concept-diagram.is-playing .phylo-lineage-label { animation: stage-label-focus 620ms 1.72s ease-out both; }
-  .concept-diagram.is-playing .introgression-link--exchange { animation: introgression-link-draw 650ms 2.38s ease-out both; }
-  .concept-diagram.is-playing .introgression-link--transfer { animation: introgression-link-draw 700ms 2.72s ease-out both; }
-  .concept-diagram.is-playing .introgression-label,
-  .concept-diagram.is-playing .introgression-note { animation: stage-label-focus 620ms 2.58s ease-out both; }
-  .concept-diagram.is-playing .introgression-token { animation: allele-cross 1.05s 3.05s ease-in-out both; }
-  .concept-diagram.is-playing .trait-mark--introgressed { animation: trait-arrive 650ms 3.82s var(--ease-settle) both; }
-  .concept-diagram.is-playing .phylo-outcome { animation: outcome-focus 760ms 4.18s ease-out both; }
+  /* Connectivity timeline: split both ancestors → homogenise early lineages → transfer one later allele → state both outcomes. */
+  .concept-diagram.is-playing .early-ancestor,
+  .concept-diagram.is-playing .late-ancestor { animation: lineage-ancestor-focus 650ms 0s var(--ease-settle) both; }
+  .concept-diagram.is-playing .early-lineage-trunk,
+  .concept-diagram.is-playing .late-lineage-trunk { animation: lineage-path-draw 550ms 360ms ease-out both; }
+  .concept-diagram.is-playing .incipient-branch,
+  .concept-diagram.is-playing .recipient-branch,
+  .concept-diagram.is-playing .donor-branch { animation: lineage-path-draw 800ms 760ms ease-out both; }
+  .concept-diagram.is-playing .early-divergence-node,
+  .concept-diagram.is-playing .late-divergence-node,
+  .concept-diagram.is-playing .early-lineage-glyphs,
+  .concept-diagram.is-playing .recipient-butterfly,
+  .concept-diagram.is-playing .donor-butterfly { animation: lineage-stage-emerge 620ms 1.08s var(--ease-settle) both; }
+  .concept-diagram.is-playing .early-gene-flow { animation: gene-flow-draw 620ms 1.55s ease-out both; }
+  .concept-diagram.is-playing .gene-flow-label { animation: stage-label-focus 520ms 1.55s ease-out both; }
+  .concept-diagram.is-playing .homogenised-lineage { animation: lineage-path-draw 620ms 1.95s ease-out both; }
+  .concept-diagram.is-playing .homogenisation-node,
+  .concept-diagram.is-playing .homogenised-butterfly { animation: lineage-stage-emerge 620ms 2.15s var(--ease-settle) both; }
+  .concept-diagram.is-playing .late-introgression-link { animation: gene-flow-draw 650ms 2.45s ease-out both; }
+  .concept-diagram.is-playing .introgression-note { animation: stage-label-focus 520ms 2.45s ease-out both; }
+  .concept-diagram.is-playing .late-introgression-token { animation: hybrid-allele-cross 1s 2.75s ease-in-out both; }
+  .concept-diagram.is-playing .hybrid-lineage-branch { animation: lineage-path-draw 680ms 3.35s ease-out both; }
+  .concept-diagram.is-playing .hybrid-origin-node,
+  .concept-diagram.is-playing .hybrid-butterfly,
+  .concept-diagram.is-playing .trait-mark--hybrid { animation: trait-arrive 620ms 3.65s var(--ease-settle) both; }
+  .concept-diagram.is-playing .panel-outcome { animation: outcome-focus 720ms 4.15s ease-out both; }
 
   .concept-diagram.is-playing .workflow-stage--one { animation: group-focus 720ms 0s var(--ease-settle) both; }
   .concept-diagram.is-playing .workflow-link--one { animation: draw-link 650ms 620ms ease-out both; }
@@ -794,6 +870,25 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     box-shadow: 0 0 0 0.28rem color-mix(in oklab, var(--highlight) 18%, transparent);
   }
   .concept-diagram.is-finished .concept-status::before { background: var(--accent); }
+  .concept-evidence {
+    margin: 0;
+    padding: 0 var(--space-m) var(--space-m);
+    color: var(--text-faint);
+    font-size: var(--step--2);
+    line-height: 1.5;
+  }
+  .concept-evidence a {
+    color: var(--text-muted);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--accent) 38%, transparent);
+    text-underline-offset: 0.16em;
+  }
+  .concept-evidence a:hover { color: var(--accent-strong); }
+  .concept-evidence a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
 
   @keyframes play-orbit { 50% { transform: rotate(180deg) scale(1.08); } 100% { transform: rotate(360deg); } }
   @keyframes chromosome-source-focus { 0% { opacity: 0.3; filter: saturate(0.55); } 65% { opacity: 1; filter: saturate(1.25) brightness(1.08); } 100% { opacity: 1; filter: none; } }
@@ -811,11 +906,11 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   @keyframes junction-flash { from { opacity: 0; stroke-width: 1; } 55% { opacity: 1; stroke-width: 5; } to { opacity: 1; stroke-width: 2.5; } }
   @keyframes group-focus { from { opacity: 0.12; filter: saturate(0.45) brightness(0.72); } 70% { opacity: 1; filter: saturate(1.25) brightness(1.12); } to { opacity: 1; filter: none; } }
   @keyframes route-flow { from { opacity: 0.15; stroke-dashoffset: 72; } to { opacity: 1; stroke-dashoffset: 0; } }
-  @keyframes phylo-ancestor-focus { from { opacity: 0.22; filter: saturate(0.35); } 70% { opacity: 1; filter: saturate(1.18); } to { opacity: 1; filter: none; } }
-  @keyframes phylo-tree-draw { from { opacity: 0; stroke-dasharray: 190; stroke-dashoffset: 190; } to { opacity: 1; stroke-dasharray: 190; stroke-dashoffset: 0; } }
-  @keyframes phylo-lineage-emerge { from { opacity: 0; filter: saturate(0.35); } 70% { opacity: 1; filter: saturate(1.22) brightness(1.08); } to { opacity: 1; filter: none; } }
-  @keyframes introgression-link-draw { from { opacity: 0; stroke-dasharray: 180; stroke-dashoffset: 180; } to { opacity: 1; stroke-dashoffset: 0; } }
-  @keyframes allele-cross { 0% { opacity: 0; transform: translateX(0); } 15% { opacity: 1; } 82% { opacity: 1; transform: translateX(-150px); } 100% { opacity: 0.35; transform: translateX(-150px); } }
+  @keyframes lineage-ancestor-focus { from { opacity: 0.22; filter: saturate(0.35); } 70% { opacity: 1; filter: saturate(1.18); } to { opacity: 1; filter: none; } }
+  @keyframes lineage-path-draw { from { opacity: 0; stroke-dasharray: 190; stroke-dashoffset: 190; } to { opacity: 1; stroke-dasharray: 190; stroke-dashoffset: 0; } }
+  @keyframes lineage-stage-emerge { from { opacity: 0; filter: saturate(0.35); } 70% { opacity: 1; filter: saturate(1.22) brightness(1.08); } to { opacity: 1; filter: none; } }
+  @keyframes gene-flow-draw { from { opacity: 0; stroke-dasharray: 180; stroke-dashoffset: 180; } to { opacity: 1; stroke-dashoffset: 0; } }
+  @keyframes hybrid-allele-cross { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: 1; } 82% { opacity: 1; transform: translate(-80px, -22px); } 100% { opacity: 0.35; transform: translate(-80px, -22px); } }
   @keyframes trait-arrive { from { opacity: 0; transform: scale(0.2); } 70% { opacity: 1; transform: scale(1.28); } to { opacity: 1; transform: scale(1); } }
   @keyframes outcome-focus { from { opacity: 0.16; } 65% { opacity: 1; } to { opacity: 1; } }
   @keyframes stage-label-focus { from { opacity: 0; } to { opacity: 1; } }
@@ -833,11 +928,11 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .event-ring,
   .split-mark,
   .join-mark,
-  .phylo-butterfly--ancestor,
-  .phylo-divergence-node,
-  .phylo-lineage-stage,
-  .introgression-token,
-  .trait-mark--introgressed,
+  .lineage-butterfly,
+  .lineage-node,
+  .early-lineage-glyphs,
+  .late-introgression-token,
+  .trait-mark--hybrid,
   .migration-sample,
   .migration-question,
   .migration-result {
@@ -930,6 +1025,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   @keyframes row-mark { from { opacity: 0; transform: scaleX(0.15); } 70% { opacity: 1; transform: scaleX(1.03); } to { opacity: 1; transform: scaleX(1); } }
   [data-context='pilot'] .concept-heading { padding-block-start: var(--space-xs); }
   [data-context='pilot'] .concept-svg { max-height: 10.75rem; }
+  [data-kind='connectivity'][data-context='pilot'] .concept-svg { max-height: 13.5rem; }
   .concept-mobile-flow { display: none; }
   @media (max-width: 34rem) {
     .concept-heading { display: grid; }
