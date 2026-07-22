@@ -22,9 +22,8 @@ const levels = [
   class="tier-progression"
   data-tier-progression
   data-label-replay={progression.replay}
-  data-label-playing={progression.playing}
-  data-label-finished={progression.finished}
   data-duration-ms="5800"
+  aria-busy="false"
 >
   <figcaption class="progression-header">
     <div class="progression-title-group">
@@ -37,14 +36,10 @@ const levels = [
         type="button"
         class="progression-play"
         data-tier-play
-        aria-describedby={`${figureId}-status`}
       >
         <span class="play-icon" aria-hidden="true">▶</span>
         <span data-tier-play-label>{progression.play}</span>
       </button>
-      <p id={`${figureId}-status`} class="progression-status" data-tier-status aria-live="polite">
-        {progression.ready}
-      </p>
     </div>
   </figcaption>
 
@@ -160,14 +155,12 @@ const levels = [
   }
   .progression-eyebrow,
   .progression-heading,
-  .progression-note,
-  .progression-status {
+  .progression-note {
     margin: 0;
   }
   .progression-eyebrow,
   .tier-level-label,
-  .tier-platforms-label,
-  .progression-status {
+  .tier-platforms-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
     font-weight: 550;
@@ -228,10 +221,6 @@ const levels = [
   }
   .play-icon {
     font-size: 0.72em;
-  }
-  .progression-status {
-    color: var(--text-muted);
-    line-height: 1.45;
   }
   .tier-list {
     list-style: none;
@@ -491,34 +480,28 @@ const levels = [
 
       const button = progression.querySelector<HTMLButtonElement>('[data-tier-play]');
       const label = progression.querySelector<HTMLElement>('[data-tier-play-label]');
-      const status = progression.querySelector<HTMLElement>('[data-tier-status]');
-      if (!button || !label || !status) return;
+      if (!button || !label) return;
 
       button.addEventListener('click', () => {
         const runningTimer = tierTimers.get(progression);
         if (runningTimer !== undefined) window.clearTimeout(runningTimer);
 
-        progression.classList.remove('is-playing', 'is-finished');
+        progression.classList.remove('is-playing');
         void progression.offsetWidth;
 
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          progression.classList.add('is-finished');
           progression.setAttribute('aria-busy', 'false');
-          status.textContent = progression.dataset.labelFinished ?? '';
           label.textContent = progression.dataset.labelReplay ?? '';
           return;
         }
 
         progression.classList.add('is-playing');
         progression.setAttribute('aria-busy', 'true');
-        status.textContent = progression.dataset.labelPlaying ?? '';
         label.textContent = progression.dataset.labelReplay ?? '';
 
         const timer = window.setTimeout(() => {
           progression.classList.remove('is-playing');
-          progression.classList.add('is-finished');
           progression.setAttribute('aria-busy', 'false');
-          status.textContent = progression.dataset.labelFinished ?? '';
           tierTimers.delete(progression);
         }, Number(progression.dataset.durationMs ?? 5800));
         tierTimers.set(progression, timer);

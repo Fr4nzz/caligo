@@ -117,15 +117,11 @@ export const en = {
       "heading": "From organism to genome",
       "intro": "A trustworthy genomic resource is a chain of biological and documentary decisions, not just a sequence file.",
       "assemblyDiagram": {
-        "conceptual": "Educational animation — conceptual, not data",
+        "conceptual": "Concept diagram",
         "title": "Assemble, then assess",
-        "description": "A simplified genome-assembly workflow. Overlapping reads align into fewer, longer contigs. A conceptual, symmetric Hi-C heatmap first shows contigs in an arbitrary order, so same-chromosome contacts appear scattered. During conceptual manual curation, matching rows and columns are reordered together; curators may also review contig orientation and possible misjoins. The curated map forms three clear blocks along the diagonal, with stronger within-chromosome and fainter between-chromosome contacts. These patterns can help organise contigs into three conceptual chromosome-scale scaffolds, labelled CHR 1 to CHR 3. Hi-C does not provide the missing sequence between contigs, so an unresolved gap remains labelled within CHR 2. A final assessment checks continuity, completeness and known limits or gaps without reporting numeric scores. The marks and chromosome labels are illustrative and do not represent sequence or Hi-C data, an assembly or a result from Caligo.",
+        "description": "Overlapping reads form longer contigs. A symmetric Hi-C contact map helps curators reorder and orient contigs by bringing strong within-chromosome contacts into diagonal blocks. During curation, matching rows and columns move together while possible misjoins are reviewed. The resulting blocks support three chromosome-scale scaffolds. Hi-C does not supply missing sequence, so the gap in CHR 2 remains unresolved. Final assessment checks continuity, completeness and known gaps.",
         "play": "Play the explanation",
         "replay": "Replay",
-        "ready": "Ready to animate",
-        "playing": "Explanation playing",
-        "finished": "Explanation complete",
-        "reduced": "Complete explanation shown without motion",
         "reads": "overlapping reads",
         "contigs": "longer contigs",
         "hic": "Hi-C contacts",
@@ -139,9 +135,8 @@ export const en = {
         "assessment": "assessment",
         "continuity": "continuity",
         "completeness": "completeness",
-        "limits": "limits + gaps",
-        "summary": "manual curation reveals chromosome blocks · one sequence gap remains",
-        "disclaimer": "Illustrative marks — not sequence or Hi-C data, scores or Caligo results"
+        "limits": "limits and gaps",
+        "summary": "Curation reveals chromosome blocks. One sequence gap remains."
       },
       "steps": [
         {
@@ -171,7 +166,7 @@ export const en = {
       ],
       "voucherDiagram": {
         "collector": "COLLECTOR",
-        "description": "A generic schematic. A collector's hand lowers a net over a butterfly; the wristband uses the placeholder COLLECTOR, never a real person's name. That placeholder moves into an abbreviated record row. The wings are cut and stored in a labelled envelope (its CAMID), while the body goes into a tube (its tube ID). The row shows CAMID first, then tube ID, collector and an ellipsis for further fields such as butterfly ID and collection location. It shows no real person, specimen, identifier or complete database schema."
+        "description": "A collector uses a net to capture a butterfly and records their collector code. The wings enter a CAMID-labelled envelope, the body enters a tube with its own ID, and one abbreviated record links both identifiers with the collector and other provenance fields."
       },
       "depositDiagram": {
         "conceptual": "Conceptual link — not data",
@@ -544,38 +539,35 @@ export const en = {
       "heading": "Three scales of genetic evidence",
       "intro": "DNA barcodes, short-read datasets and reference assemblies each serve different questions and depend on different evidence.",
       "progression": {
-        "eyebrow": "Educational comparison — conceptual, not data",
+        "eyebrow": "Genomic evidence compared",
         "heading": "The scale of the evidence changes what can be asked",
-        "note": "These approaches are complementary. The diagrams compare genomic scope; they are not a ranking, protocol or Caligo result.",
+        "note": "These approaches are complementary. Genomic scope determines which questions each can answer, not its overall scientific value.",
         "play": "Play the comparison",
         "replay": "Replay",
-        "ready": "Ready — all three outcomes are visible",
-        "playing": "Comparison playing",
-        "finished": "Comparison complete — all three outcomes are visible",
         "platforms": "Typical platforms",
         "targeted": {
           "label": "Targeted region",
           "title": "Selected locus and amplicons",
-          "desc": "Conceptual schematic, not a Caligo result. Primer bounds select one small region from a much wider genomic context, and discrete copies represent amplicons. The simplified drawing does not show laboratory steps or imply that the surrounding genome was sampled.",
+          "desc": "Primer pairs select one small region from a much wider genomic context, and the repeated segments represent amplicon copies. The diagram focuses on the sampled locus and does not include laboratory steps or surrounding genomic sequence.",
           "context": "wider genomic context",
           "selection": "one selected locus",
-          "outcome": "amplicon copies"
+          "outcome": "copies of one amplicon"
         },
         "shortReads": {
           "label": "Genome-wide sampling",
           "title": "Distributed short reads",
-          "desc": "Conceptual schematic, not a Caligo result. Many separate short reads map to positions distributed across a reference. Their spacing is illustrative and does not imply uniform or complete genomic coverage.",
+          "desc": "Short reads map to many positions across a reference. Their spacing shows distributed sampling, not uniform or complete genomic coverage.",
           "context": "reference coordinates",
           "selection": "short reads from many positions",
-          "outcome": "distributed mapped evidence"
+          "outcome": "mapped reads across the reference"
         },
         "assembly": {
           "label": "Chromosome-scale reference",
           "title": "Overlapping long reads",
-          "desc": "Conceptual schematic, not a Caligo result. Overlapping long reads contribute to an ordered chromosome-scale reference. This simplified view does not show assembly uncertainty or guarantee completeness.",
+          "desc": "Overlapping long reads provide continuity and support an ordered chromosome-scale reference. Assembly uncertainty and remaining gaps still need to be assessed.",
           "context": "overlapping long reads",
           "selection": "overlap provides continuity",
-          "outcome": "ordered reference context"
+          "outcome": "ordered chromosome-scale reference"
         }
       }
     }

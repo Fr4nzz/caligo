@@ -114,15 +114,11 @@ export const es: Dict = {
       "heading": "Del organismo al genoma",
       "intro": "Un recurso genómico confiable es una cadena de decisiones biológicas y documentales, no solo un archivo de secuencias.",
       "assemblyDiagram": {
-        "conceptual": "Animación educativa — conceptual, no son datos",
+        "conceptual": "Esquema conceptual",
         "title": "Ensamblar y luego evaluar",
-        "description": "Flujo simplificado de ensamblaje genómico. Las lecturas superpuestas se alinean y forman menos contigs, de mayor longitud. Un mapa de calor Hi-C conceptual y simétrico muestra primero los contigs en un orden arbitrario, por lo que los contactos del mismo cromosoma aparecen dispersos. Durante la curación manual conceptual, las filas y columnas correspondientes se reordenan juntas; quienes realizan la curación también pueden revisar la orientación de los contigs y posibles uniones erróneas. El mapa curado forma tres bloques claros sobre la diagonal, con contactos más intensos dentro de cada cromosoma y más tenues entre cromosomas. Estos patrones pueden ayudar a organizar los contigs en tres scaffolds conceptuales a escala cromosómica, etiquetados de CHR 1 a CHR 3. Hi-C no aporta la secuencia faltante entre contigs, por lo que una brecha sin resolver permanece etiquetada dentro de CHR 2. Una evaluación final revisa continuidad, completitud y límites o brechas conocidas sin presentar puntajes numéricos. Las marcas y etiquetas cromosómicas son ilustrativas y no representan datos de secuencia o Hi-C, un ensamblaje ni un resultado de Caligo.",
+        "description": "Las lecturas superpuestas forman contigs más largos. Un mapa simétrico de contactos Hi-C ayuda a ordenar y orientar los contigs al reunir los contactos intensos de cada cromosoma en bloques diagonales. Durante la curación, las filas y columnas correspondientes se mueven juntas mientras se revisan posibles uniones erróneas. Los bloques resultantes permiten construir tres scaffolds a escala cromosómica. Hi-C no aporta la secuencia faltante, así que la brecha de CHR 2 permanece sin resolver. La evaluación final revisa continuidad, completitud y brechas conocidas.",
         "play": "Reproducir la explicación",
         "replay": "Repetir",
-        "ready": "Listo para animar",
-        "playing": "Explicación en curso",
-        "finished": "Explicación completa",
-        "reduced": "Explicación completa visible sin movimiento",
         "reads": "lecturas superpuestas",
         "contigs": "contigs más largos",
         "hic": "contactos Hi-C",
@@ -136,9 +132,8 @@ export const es: Dict = {
         "assessment": "evaluación",
         "continuity": "continuidad",
         "completeness": "completitud",
-        "limits": "límites + brechas",
-        "summary": "la curación revela bloques cromosómicos · queda una brecha de secuencia",
-        "disclaimer": "Marcas ilustrativas — no son datos de secuencia o Hi-C, puntajes ni resultados de Caligo"
+        "limits": "límites y brechas",
+        "summary": "La curación revela bloques cromosómicos. Queda una brecha de secuencia."
       },
       "steps": [
         {
@@ -168,7 +163,7 @@ export const es: Dict = {
       ],
       "voucherDiagram": {
         "collector": "COLECTOR",
-        "description": "Esquema genérico. La mano de quien colecta baja una red sobre una mariposa; la pulsera usa el marcador COLECTOR, nunca el nombre de una persona real. Ese marcador pasa a una fila de registro abreviada. Las alas se cortan y se guardan en un sobre etiquetado (su CAMID), mientras el cuerpo va a un tubo (su ID de tubo). La fila muestra primero CAMID, luego ID de tubo, colector y puntos suspensivos para otros campos, como ID de mariposa y lugar de colecta. No muestra una persona, un ejemplar, un identificador ni el esquema completo de una base de datos reales."
+        "description": "Una persona colecta una mariposa con una red y registra su código de colector. Las alas pasan a un sobre etiquetado con CAMID, el cuerpo a un tubo con su propio ID y una fila abreviada conecta ambos identificadores con el colector y otros campos de procedencia."
       },
       "depositDiagram": {
         "conceptual": "Vínculo conceptual — no son datos",
@@ -541,38 +536,35 @@ export const es: Dict = {
       "heading": "Tres escalas de evidencia genética",
       "intro": "Los códigos de barras de ADN, los conjuntos de lecturas cortas y los ensamblajes de referencia sirven a preguntas distintas y dependen de evidencia diferente.",
       "progression": {
-        "eyebrow": "Comparación educativa — conceptual, no son datos",
+        "eyebrow": "Comparación de evidencia genómica",
         "heading": "La escala de la evidencia cambia las preguntas posibles",
-        "note": "Estos enfoques son complementarios. Los diagramas comparan la escala genómica; no son una jerarquía, un protocolo ni un resultado de Caligo.",
+        "note": "Estos enfoques se complementan. La escala genómica determina qué preguntas puede responder cada uno, no su valor científico general.",
         "play": "Reproducir la comparación",
         "replay": "Repetir",
-        "ready": "Listo — los tres resultados están visibles",
-        "playing": "Comparación en curso",
-        "finished": "Comparación completa — los tres resultados están visibles",
         "platforms": "Plataformas habituales",
         "targeted": {
           "label": "Región dirigida",
           "title": "Locus seleccionado y amplicones",
-          "desc": "Esquema conceptual, no es un resultado de Caligo. Los límites de los cebadores seleccionan una región pequeña dentro de un contexto genómico mucho más amplio, y las copias discretas representan amplicones. El dibujo simplificado no muestra los pasos de laboratorio ni implica que se muestreó el genoma circundante.",
+          "desc": "Los pares de cebadores seleccionan una región pequeña dentro de un contexto genómico mucho más amplio, y los segmentos repetidos representan copias del amplicón. El diagrama se concentra en el locus muestreado y no incluye los pasos de laboratorio ni la secuencia genómica circundante.",
           "context": "contexto genómico amplio",
           "selection": "un locus seleccionado",
-          "outcome": "copias del amplicón"
+          "outcome": "copias de un amplicón"
         },
         "shortReads": {
           "label": "Muestreo de todo el genoma",
           "title": "Lecturas cortas distribuidas",
-          "desc": "Esquema conceptual, no es un resultado de Caligo. Muchas lecturas cortas separadas se mapean en posiciones distribuidas sobre una referencia. Su espaciado es ilustrativo y no implica una cobertura genómica uniforme ni completa.",
+          "desc": "Las lecturas cortas se mapean en muchas posiciones de una referencia. Su separación representa un muestreo distribuido, no una cobertura genómica uniforme ni completa.",
           "context": "coordenadas de referencia",
           "selection": "lecturas cortas de muchas posiciones",
-          "outcome": "evidencia mapeada y distribuida"
+          "outcome": "lecturas mapeadas en toda la referencia"
         },
         "assembly": {
           "label": "Referencia a escala cromosómica",
           "title": "Lecturas largas solapadas",
-          "desc": "Esquema conceptual, no es un resultado de Caligo. Las lecturas largas solapadas contribuyen a una referencia ordenada a escala cromosómica. Esta vista simplificada no muestra la incertidumbre del ensamblaje ni garantiza su completitud.",
+          "desc": "Las lecturas largas solapadas aportan continuidad y permiten construir una referencia ordenada a escala cromosómica. La incertidumbre del ensamblaje y las brechas restantes todavía deben evaluarse.",
           "context": "lecturas largas solapadas",
           "selection": "el solapamiento aporta continuidad",
-          "outcome": "contexto de referencia ordenado"
+          "outcome": "referencia ordenada a escala cromosómica"
         }
       }
     }

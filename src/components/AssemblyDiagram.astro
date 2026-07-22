@@ -12,19 +12,15 @@ const mobileSteps = [
   c.reads,
   c.contigs,
   `${c.hicAction}: ${c.uncurated} → ${c.curated}`,
-  `${c.chromosomes}: ${c.chromosomeAbbr} 1–3 · ${c.gap}`,
-  `${c.assessment}: ${c.continuity} · ${c.completeness} · ${c.limits}`,
+  `${c.chromosomes}: ${c.chromosomeAbbr} 1–3, ${c.gap}`,
+  `${c.assessment}: ${c.continuity}, ${c.completeness}, ${c.limits}`,
 ] as const;
 ---
 
 <figure
   class="assembly-diagram"
   data-assembly-diagram
-  data-label-play={c.play}
   data-label-replay={c.replay}
-  data-label-playing={c.playing}
-  data-label-finished={c.finished}
-  data-label-reduced={c.reduced}
   aria-busy="false"
 >
   <figcaption class="assembly-heading">
@@ -32,7 +28,7 @@ const mobileSteps = [
       <span class="assembly-kicker">{c.conceptual}</span>
       <strong>{c.title}</strong>
     </span>
-    <button type="button" class="assembly-play" data-assembly-play aria-describedby={`${id}-status`}>
+    <button type="button" class="assembly-play" data-assembly-play>
       <span class="assembly-play-icon" aria-hidden="true">▶</span>
       <span data-assembly-play-label>{c.play}</span>
     </button>
@@ -172,7 +168,6 @@ const mobileSteps = [
     </g>
 
     <text x="380" y="238" class="asm-summary">{c.summary}</text>
-    <text x="380" y="262" class="asm-disclaimer">{c.disclaimer}</text>
   </svg>
 
   <ol class="assembly-mobile-flow" aria-label={c.title}>
@@ -184,7 +179,6 @@ const mobileSteps = [
     ))}
   </ol>
 
-  <p class="assembly-status" id={`${id}-status`} data-assembly-status aria-live="polite">{c.ready}</p>
 </figure>
 
 <style>
@@ -284,8 +278,7 @@ const mobileSteps = [
   .asm-gap-inside,
   .asm-hic-action,
   .asm-assessment-label,
-  .asm-summary,
-  .asm-disclaimer {
+  .asm-summary {
     font-family: var(--font-mono);
     fill: var(--text-muted);
   }
@@ -503,12 +496,6 @@ const mobileSteps = [
     fill: var(--text-muted);
   }
 
-  .asm-disclaimer {
-    font-size: 8.5px;
-    text-anchor: middle;
-    fill: var(--text-faint);
-  }
-
   .asm-read,
   .asm-contig,
   .asm-hic-map-shell,
@@ -647,16 +634,6 @@ const mobileSteps = [
 
   .assembly-mobile-flow { display: none; }
 
-  .assembly-status {
-    margin: 0;
-    padding: 0.48rem var(--space-m) 0.58rem;
-    border-top: 1px solid var(--hairline);
-    color: var(--text-faint);
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
-    line-height: 1.35;
-  }
-
   @media (max-width: 38rem) {
     .assembly-heading { display: grid; }
     .assembly-play { width: 100%; }
@@ -668,8 +645,7 @@ const mobileSteps = [
     .assembly-svg .asm-hic-state-label,
     .assembly-svg .asm-hic-action,
     .assembly-svg .asm-assessment-label,
-    .assembly-svg .asm-summary,
-    .assembly-svg .asm-disclaimer { display: none; }
+    .assembly-svg .asm-summary { display: none; }
     .assembly-mobile-flow {
       display: grid;
       list-style: none;
@@ -749,39 +725,32 @@ const mobileSteps = [
 
       const button = diagram.querySelector<HTMLButtonElement>('[data-assembly-play]');
       const label = diagram.querySelector<HTMLElement>('[data-assembly-play-label]');
-      const status = diagram.querySelector<HTMLElement>('[data-assembly-status]');
-      if (!button || !label || !status) return;
+      if (!button || !label) return;
 
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         diagram.classList.add('is-reduced');
-        status.textContent = diagram.dataset.labelReduced ?? '';
       }
 
       button.addEventListener('click', () => {
         const runningTimer = assemblyTimers.get(diagram);
         if (runningTimer !== undefined) window.clearTimeout(runningTimer);
 
-        diagram.classList.remove('is-playing', 'is-finished');
+        diagram.classList.remove('is-playing');
         void diagram.offsetWidth;
 
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          diagram.classList.add('is-finished');
           diagram.setAttribute('aria-busy', 'false');
-          status.textContent = diagram.dataset.labelFinished ?? '';
           label.textContent = diagram.dataset.labelReplay ?? '';
           return;
         }
 
         diagram.classList.add('is-playing');
         diagram.setAttribute('aria-busy', 'true');
-        status.textContent = diagram.dataset.labelPlaying ?? '';
         label.textContent = diagram.dataset.labelReplay ?? '';
 
         const timer = window.setTimeout(() => {
           diagram.classList.remove('is-playing');
-          diagram.classList.add('is-finished');
           diagram.setAttribute('aria-busy', 'false');
-          status.textContent = diagram.dataset.labelFinished ?? '';
           label.textContent = diagram.dataset.labelReplay ?? '';
           assemblyTimers.delete(diagram);
         }, 6300);

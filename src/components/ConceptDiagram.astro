@@ -15,33 +15,30 @@ const t = getDict(locale);
 
 const copy = {
   en: {
-    conceptual: 'Educational animation — conceptual, not data',
+    conceptual: 'Concept diagram',
     play: 'Play the explanation',
     replay: 'Replay',
-    ready: 'Ready to animate',
-    playing: 'Explanation playing',
-    finished: 'Explanation complete',
     chromosome: {
       title: 'Chromosome fission and fusion',
-      desc: 'A simplified Lepidoptera schematic. In fission, one chromosome breaks at an internal position and the two fragments become separate chromosomes after their new ends are stabilised. In fusion, an orange chromosome and a yellow chromosome join end-to-end, retaining both coloured regions in one chromosome. The colours track chromosome regions; chromosomes are not literally orange or yellow. Lepidoptera have holocentric chromosomes, with no single localised centromere. The exact break point and junction vary; this is not a Caligo result.',
+      desc: 'Chromosome fission divides one chromosome into two after a break and stabilisation of the new ends. Fusion joins two chromosomes end to end while preserving both chromosome regions. Lepidoptera have holocentric chromosomes without a single localised centromere. Colours distinguish chromosome regions, and break points and junctions vary.',
       one: 'one chromosome',
       two: 'two chromosomes',
       joined: 'one joined chromosome',
       fission: 'fission',
       fusion: 'fusion',
       breakpoint: 'internal break point',
-      newEnds: 'two fragments · new ends stabilised',
-      junction: 'orange + yellow · end-to-end junction',
-      holocentric: 'Holocentric in Lepidoptera · colours track chromosome regions',
+      newEnds: 'two fragments, new ends stabilised',
+      junction: 'orange and yellow regions, end-to-end junction',
+      holocentric: 'Holocentric in Lepidoptera. Colours distinguish chromosome regions.',
       question: 'compare chromosome-scale assemblies',
     },
     connectivity: {
       title: 'Population connectivity and gene flow',
-      desc: 'A generic two-panel phylogenetic schematic. In the first panel, one ancestral butterfly lineage begins to split into two incipient lineages; early, sustained gene flow homogenises them and the branches rejoin, showing that they do not remain distinct. In the second panel, two more divergent lineages remain separate; a discrete wing-mark allele crosses from a donor into a recipient-derived branch, and an independently evolving hybrid lineage persists. The second outcome is rare and does not imply equal genomic contributions or colour blending. Colours, traits, branches and timing are conceptual; this is not a species claim, measured phylogeny or Caligo result.',
+      desc: 'The first panel shows early, sustained gene flow homogenising two incipient lineages until they no longer remain distinct. The second shows introgression between more divergent lineages, followed by the persistence of a hybrid lineage. This rare outcome does not imply equal genomic contributions or blended traits. Colours and branch lengths guide the explanation and do not represent measured values.',
       earlyTitle: 'early, sustained gene flow',
       incipientLineages: 'incipient lineages',
       earlyFlow: 'gene flow homogenises differences',
-      collapseOutcome: 'Divergence collapses · one lineage remains',
+      collapseOutcome: 'Sustained gene flow prevents lasting divergence',
       lateTitle: 'introgression after divergence',
       divergentLineages: 'more divergent lineages',
       recipientLineage: 'recipient lineage',
@@ -49,15 +46,15 @@ const copy = {
       oneLineage: 'one lineage remains',
       newHybridSpecies: 'new hybrid species',
       rareOutcomeLabel: 'rare outcome',
-      introgression: 'discrete adaptive allele · introgression',
-      rareOutcomeLead: 'Rare outcome · an independently evolving',
+      introgression: 'wing-pattern variant crosses lineages',
+      rareOutcomeLead: 'An independently evolving',
       rareOutcomeTail: 'hybrid lineage persists',
-      evidenceLead: 'Evidence context: ',
+      evidenceLead: 'Published evidence: ',
       rosserPrefix: 'hybrid speciation in',
       rosserTaxon: 'Heliconius elevatus',
       rosserTail: ' (Heliconiini)',
-      evidenceJoin: '; ',
-      ithomiiniPrefix: 'putative hybrid origins in Ithomiini (',
+      evidenceJoin: '. ',
+      ithomiiniPrefix: 'Putative hybrid origins in Ithomiini (',
       ithomiiniTaxonOne: 'Melinaea',
       ithomiiniAnd: ' and ',
       ithomiiniTaxonTwo: 'Mechanitis',
@@ -65,7 +62,7 @@ const copy = {
     },
     monitoring: {
       title: 'Movement and resistance monitoring',
-      desc: 'A conceptual workflow linking repeated field sampling, confirmed species identification, tests of movement and candidate resistance-associated variants, and validated monitoring. It contains no observations or results.',
+      desc: 'Repeated field sampling and confirmed species identification support tests of movement and candidate resistance-associated variants. Validation then determines whether those signals can support monitoring.',
       sample: 'repeat sampling',
       identify: 'confirm species',
       movement: 'test movement',
@@ -74,7 +71,7 @@ const copy = {
     },
     migration: {
       title: 'Testing seasonal origins and routes',
-      desc: 'A conceptual schematic in which samples across places and seasons are compared to test possible origins and connections, then interpreted with independent movement and environmental evidence. It is not a geographic map or a reconstructed route.',
+      desc: 'Samples from different places and seasons can test possible origins and connections. Movement observations and environmental evidence help evaluate the resulting hypotheses.',
       sampling: 'places + seasons',
       origins: 'possible origins?',
       routes: 'connections?',
@@ -90,37 +87,34 @@ const copy = {
       collector: t.home.journey.voucherDiagram.collector,
       camid: 'CAMID',
       tubeid: 'TUBE ID',
-      link: 'one record links identifiers + provenance',
+      link: 'one record links identifiers and provenance',
     },
   },
   es: {
-    conceptual: 'Animación educativa — conceptual, no son datos',
+    conceptual: 'Esquema conceptual',
     play: 'Reproducir la explicación',
     replay: 'Repetir',
-    ready: 'Listo para animar',
-    playing: 'Explicación en curso',
-    finished: 'Explicación completa',
     chromosome: {
       title: 'Fisión y fusión cromosómica',
-      desc: 'Esquema simplificado para Lepidoptera. En la fisión, un cromosoma se rompe en una posición interna y los dos fragmentos se convierten en cromosomas separados después de estabilizar sus nuevos extremos. En la fusión, un cromosoma naranja y uno amarillo se unen extremo con extremo y conservan ambas regiones de color en un solo cromosoma. Los colores siguen regiones cromosómicas; los cromosomas no son literalmente naranjas o amarillos. Los Lepidoptera tienen cromosomas holocéntricos, sin un único centrómero localizado. El punto de ruptura y la unión pueden variar; no es un resultado de Caligo.',
+      desc: 'La fisión divide un cromosoma en dos después de una ruptura y de la estabilización de los nuevos extremos. La fusión une dos cromosomas extremo con extremo y conserva ambas regiones cromosómicas. Los lepidópteros tienen cromosomas holocéntricos, sin un único centrómero localizado. Los colores distinguen regiones cromosómicas, y los puntos de ruptura y unión pueden variar.',
       one: 'un cromosoma',
       two: 'dos cromosomas',
       joined: 'un cromosoma unido',
       fission: 'fisión',
       fusion: 'fusión',
       breakpoint: 'punto de ruptura interno',
-      newEnds: 'dos fragmentos · nuevos extremos estabilizados',
-      junction: 'naranja + amarillo · unión extremo con extremo',
-      holocentric: 'Holocéntricos en Lepidoptera · los colores siguen regiones cromosómicas',
+      newEnds: 'dos fragmentos, nuevos extremos estabilizados',
+      junction: 'regiones naranja y amarilla, unión extremo con extremo',
+      holocentric: 'Holocéntricos en lepidópteros. Los colores distinguen regiones cromosómicas.',
       question: 'comparar ensamblajes a escala cromosómica',
     },
     connectivity: {
       title: 'Conectividad poblacional y flujo génico',
-      desc: 'Esquema filogenético genérico en dos paneles. En el primero, un linaje ancestral de mariposas empieza a dividirse en dos linajes incipientes; el flujo génico temprano y sostenido los homogeneiza y las ramas vuelven a unirse, lo que muestra que no permanecen separados. En el segundo, dos linajes más divergentes siguen separados; un alelo discreto con patrón alar cruza desde un donante hacia una rama derivada del receptor y persiste un linaje híbrido que evoluciona de forma independiente. El segundo desenlace es raro y no implica aportes genómicos iguales ni herencia por mezcla de colores. Los colores, rasgos, ramas y tiempos son conceptuales; no representan una especie, una filogenia medida ni un resultado de Caligo.',
+      desc: 'El primer panel muestra cómo el flujo génico temprano y sostenido homogeneiza dos linajes incipientes hasta que dejan de permanecer separados. El segundo muestra introgresión entre linajes más divergentes, seguida por la persistencia de un linaje híbrido. Este desenlace raro no implica aportes genómicos iguales ni rasgos mezclados. Los colores y la longitud de las ramas guían la explicación y no representan valores medidos.',
       earlyTitle: 'flujo génico temprano y sostenido',
       incipientLineages: 'linajes incipientes',
       earlyFlow: 'el flujo génico homogeneiza las diferencias',
-      collapseOutcome: 'La divergencia colapsa · permanece un linaje',
+      collapseOutcome: 'El flujo génico sostenido impide una divergencia duradera',
       lateTitle: 'introgresión después de la divergencia',
       divergentLineages: 'linajes más divergentes',
       recipientLineage: 'linaje receptor',
@@ -128,15 +122,15 @@ const copy = {
       oneLineage: 'permanece un linaje',
       newHybridSpecies: 'nueva especie híbrida',
       rareOutcomeLabel: 'desenlace raro',
-      introgression: 'alelo adaptativo discreto · introgresión',
-      rareOutcomeLead: 'Desenlace raro · persiste un linaje híbrido',
+      introgression: 'una variante del patrón alar cruza entre linajes',
+      rareOutcomeLead: 'Persiste un linaje híbrido',
       rareOutcomeTail: 'que evoluciona de forma independiente',
-      evidenceLead: 'Contexto de evidencia: ',
+      evidenceLead: 'Evidencia publicada: ',
       rosserPrefix: 'especiación híbrida en',
       rosserTaxon: 'Heliconius elevatus',
       rosserTail: ' (Heliconiini)',
-      evidenceJoin: '; ',
-      ithomiiniPrefix: 'orígenes híbridos putativos en Ithomiini (',
+      evidenceJoin: '. ',
+      ithomiiniPrefix: 'Orígenes híbridos putativos en Ithomiini (',
       ithomiiniTaxonOne: 'Melinaea',
       ithomiiniAnd: ' y ',
       ithomiiniTaxonTwo: 'Mechanitis',
@@ -144,7 +138,7 @@ const copy = {
     },
     monitoring: {
       title: 'Monitoreo de movimiento y resistencia',
-      desc: 'Flujo conceptual que vincula muestreo de campo repetido, identificación confirmada de especies, pruebas de movimiento y variantes candidatas asociadas con resistencia, y monitoreo validado. No contiene observaciones ni resultados.',
+      desc: 'El muestreo de campo repetido y la identificación confirmada de especies sustentan pruebas de movimiento y de variantes candidatas asociadas con resistencia. La validación determina después si esas señales pueden servir para el monitoreo.',
       sample: 'repetir muestreo',
       identify: 'confirmar especie',
       movement: 'estudiar movimiento',
@@ -153,7 +147,7 @@ const copy = {
     },
     migration: {
       title: 'Estudiar orígenes y rutas estacionales',
-      desc: 'Esquema conceptual donde se comparan muestras de distintos lugares y temporadas para estudiar posibles orígenes y conexiones, y luego se interpretan con evidencia ambiental y de movimiento independiente. No es un mapa geográfico ni una ruta reconstruida.',
+      desc: 'Las muestras de distintos lugares y temporadas permiten estudiar posibles orígenes y conexiones. Las observaciones de movimiento y la evidencia ambiental ayudan a evaluar las hipótesis resultantes.',
       sampling: 'lugares + temporadas',
       origins: '¿orígenes posibles?',
       routes: '¿conexiones?',
@@ -169,7 +163,7 @@ const copy = {
       collector: t.home.journey.voucherDiagram.collector,
       camid: 'CAMID',
       tubeid: 'ID DE TUBO',
-      link: 'un registro conecta identificadores + procedencia',
+      link: 'un registro conecta identificadores y procedencia',
     },
   },
 } as const;
@@ -186,7 +180,7 @@ const connectivityOutcomes = kind === 'connectivity'
       {
         cue: c.connectivity.rareOutcomeLabel,
         title: c.connectivity.newHybridSpecies,
-        detail: `${c.connectivity.lateTitle} · ${c.connectivity.introgression}`,
+        detail: `${c.connectivity.lateTitle}. ${c.connectivity.introgression}`,
       },
     ]
   : [];
@@ -218,18 +212,16 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   data-kind={kind}
   data-context={context}
   data-concept-diagram
-  data-label-play={c.play}
   data-label-replay={c.replay}
-  data-label-playing={c.playing}
-  data-label-finished={c.finished}
   data-duration-ms={kind === 'connectivity' ? '6500' : '5000'}
+  aria-busy="false"
 >
   <figcaption class="concept-heading">
     <span class="concept-title-group">
       <span class="concept-kicker">{c.conceptual}</span>
       <strong>{k.title}</strong>
     </span>
-    <button type="button" class="concept-play" data-concept-play aria-describedby={`${id}-status`}>
+    <button type="button" class="concept-play" data-concept-play>
       <span class="play-icon" aria-hidden="true">▶</span>
       <span data-concept-play-label>{c.play}</span>
     </button>
@@ -576,7 +568,6 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
       ))}
     </ol>
   )}
-  <p class="concept-status" id={`${id}-status`} data-concept-status aria-live="polite">{c.ready}</p>
   {kind === 'connectivity' && (
     <p class="concept-evidence">
       <span>{c.connectivity.evidenceLead}</span>
@@ -939,28 +930,6 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-diagram.is-playing .migration-result--one { animation: stage-focus 720ms 3.15s var(--ease-settle) both; }
   .concept-diagram.is-playing .migration-result--two { animation: stage-focus 720ms 3.45s var(--ease-settle) both; }
 
-  .concept-status {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    margin: 0;
-    padding: 0 var(--space-m) var(--space-s);
-    color: var(--text-faint);
-    font: 500 var(--step--2)/1.3 var(--font-mono);
-    letter-spacing: 0.04em;
-  }
-  .concept-status::before {
-    content: '';
-    width: 0.48rem;
-    height: 0.48rem;
-    border-radius: 50%;
-    background: var(--hairline-strong);
-  }
-  .concept-diagram.is-playing .concept-status::before {
-    background: var(--highlight);
-    box-shadow: 0 0 0 0.28rem color-mix(in oklab, var(--highlight) 18%, transparent);
-  }
-  .concept-diagram.is-finished .concept-status::before { background: var(--accent); }
   .concept-evidence {
     margin: 0;
     padding: 0 var(--space-m) var(--space-m);
@@ -1275,35 +1244,29 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
 
       const button = diagram.querySelector<HTMLButtonElement>('[data-concept-play]');
       const label = diagram.querySelector<HTMLElement>('[data-concept-play-label]');
-      const status = diagram.querySelector<HTMLElement>('[data-concept-status]');
-      if (!button || !label || !status) return;
+      if (!button || !label) return;
 
       button.addEventListener('click', () => {
         const runningTimer = conceptTimers.get(diagram);
         if (runningTimer !== undefined) window.clearTimeout(runningTimer);
 
-        diagram.classList.remove('is-playing', 'is-finished');
+        diagram.classList.remove('is-playing');
         // Restart the keyframe timeline when Replay is pressed.
         void diagram.offsetWidth;
 
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          diagram.classList.add('is-finished');
           diagram.setAttribute('aria-busy', 'false');
-          status.textContent = diagram.dataset.labelFinished ?? '';
           label.textContent = diagram.dataset.labelReplay ?? '';
           return;
         }
 
         diagram.classList.add('is-playing');
         diagram.setAttribute('aria-busy', 'true');
-        status.textContent = diagram.dataset.labelPlaying ?? '';
         label.textContent = diagram.dataset.labelReplay ?? '';
 
         const timer = window.setTimeout(() => {
           diagram.classList.remove('is-playing');
-          diagram.classList.add('is-finished');
           diagram.setAttribute('aria-busy', 'false');
-          status.textContent = diagram.dataset.labelFinished ?? '';
           label.textContent = diagram.dataset.labelReplay ?? '';
           conceptTimers.delete(diagram);
         }, Number(diagram.dataset.durationMs ?? 5000));
