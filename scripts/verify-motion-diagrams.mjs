@@ -59,13 +59,13 @@ ok(/fusion-result-segment--orange/.test(concepts) && /fusion-result-segment--yel
 ok(/@keyframes fission-left[\s\S]*?translateX\(14px\)/.test(concepts) && /@keyframes fission-right[\s\S]*?translateX\(-14px\)/.test(concepts), 'fission fragments visibly separate in opposite directions');
 ok(/@keyframes fuse-orange[\s\S]*?translateX\(-18px\)/.test(concepts) && /@keyframes fuse-yellow[\s\S]*?translateX\(18px\)/.test(concepts), 'fusion segments visibly converge toward the junction');
 ok(/holocentric/.test(concepts) && /no single localised centromere/.test(concepts), 'the diagram states the Lepidoptera holocentric context without inventing a centromere position');
-ok(/Each large circle is an individual/.test(concepts) && /two inherited allele copies/.test(concepts), 'connectivity explains individuals and two allele copies at one simplified locus');
-ok(/Movement without successful reproduction would be migration, but not gene flow/.test(concepts), 'connectivity distinguishes migration from successful gene flow in this example');
-ok(/allele-token--orange/.test(concepts) && /allele-token--blue/.test(concepts), 'alleles use both colour and solid-versus-ring shape encoding');
-ok(/gene-migrant-motion/.test(concepts) && /@keyframes gene-migrate[\s\S]*?translateX\(-110px\)[\s\S]*?translateX\(110px\)/.test(concepts), 'an orange-allele carrier visibly migrates between populations');
-ok(/mating-parent--migrant[\s\S]*?allele-token--orange[\s\S]*?mating-parent--resident[\s\S]*?allele-token--blue/.test(concepts), 'migrant and resident parents carry distinct allele states');
-ok(/gene-offspring-motion[\s\S]*?allele-token--orange[\s\S]*?allele-token--blue/.test(concepts), 'offspring inherits one visible allele copy from each parent without colour blending');
-ok(/recipient-offspring[\s\S]*?allele-token--orange[\s\S]*?allele-token--blue/.test(concepts), 'the inherited orange allele appears in the recipient population only after reproduction');
+ok(/generic phylogenetic schematic/.test(concepts) && /not a species claim, measured phylogeny or Caligo result/.test(concepts), 'connectivity is explicitly a generic phylogenetic concept, not a Caligo result');
+ok(/phylo-trunk/.test(concepts) && /phylo-branch--dark/.test(concepts) && /phylo-branch--pale/.test(concepts) && /phylo-divergence-node/.test(concepts), 'connectivity draws one ancestral trunk splitting into two diverging branches');
+ok(/phylo-butterfly--ancestor/.test(concepts) && /phylo-butterfly--dark/.test(concepts) && /phylo-butterfly--pale/.test(concepts), 'ancestral and descendant lineage nodes use distinct butterfly glyph states');
+ok(/introgression-link--exchange[\s\S]*?marker-start[\s\S]*?marker-end/.test(concepts) && /introgression-link--transfer[\s\S]*?marker-end/.test(concepts), 'lateral arrows connect the two branches while they diverge');
+ok(/trait-mark--source/.test(concepts) && /introgression-token/.test(concepts) && /trait-mark--introgressed/.test(concepts), 'one discrete trait token is shown in the donor, in transit, and in the receiving lineage');
+ok(/keeps its own colour rather than showing blended inheritance/.test(concepts) && /phylo-butterfly--dark phylo-butterfly--recipient[\s\S]*?trait-mark--introgressed/.test(concepts), 'the receiving lineage keeps its lineage colour and gains a discrete allele without colour blending');
+ok(/@keyframes allele-cross[\s\S]*?translateX\(0\)[\s\S]*?translateX\(-150px\)/.test(concepts) && /Gene flow between lineages can transfer adaptive variation \(introgression\)[\s\S]*?contribute to speciation through hybridisation/.test(concepts), 'the allele visibly crosses between branches before the introgression outcome is stated');
 
 if (fail.length) {
   console.error(`\nFAIL: ${fail.length} motion/diagram contract check(s) failed.`);
