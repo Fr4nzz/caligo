@@ -168,7 +168,7 @@ export const es: Dict = {
       ],
       "voucherDiagram": {
         "collector": "COLECTOR",
-        "description": "Esquema genérico. La mano de quien colecta baja una red sobre una mariposa; la pulsera usa el marcador COLECTOR, nunca el nombre de una persona real. Ese marcador pasa a la fila de registro. Las alas se cortan y se guardan en un sobre etiquetado (su CAMID), mientras el cuerpo va a un tubo (su ID de tubo). La fila reúne colector, CAMID e ID de tubo. No muestra una persona, un ejemplar, un identificador ni una base de datos reales."
+        "description": "Esquema genérico. La mano de quien colecta baja una red sobre una mariposa; la pulsera usa el marcador COLECTOR, nunca el nombre de una persona real. Ese marcador pasa a una fila de registro abreviada. Las alas se cortan y se guardan en un sobre etiquetado (su CAMID), mientras el cuerpo va a un tubo (su ID de tubo). La fila muestra primero CAMID, luego ID de tubo, colector y puntos suspensivos para otros campos, como ID de mariposa y lugar de colecta. No muestra una persona, un ejemplar, un identificador ni el esquema completo de una base de datos reales."
       }
     },
     "uses": {

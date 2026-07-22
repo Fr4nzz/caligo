@@ -171,7 +171,7 @@ export const en = {
       ],
       "voucherDiagram": {
         "collector": "COLLECTOR",
-        "description": "A generic schematic. A collector's hand lowers a net over a butterfly; the wristband uses the placeholder COLLECTOR, never a real person's name. That placeholder moves into the record row. The wings are cut and stored in a labelled envelope (its CAMID), while the body goes into a tube (its tube ID). The row holds collector, CAMID and tube ID together. It shows no real person, specimen, identifier or database."
+        "description": "A generic schematic. A collector's hand lowers a net over a butterfly; the wristband uses the placeholder COLLECTOR, never a real person's name. That placeholder moves into an abbreviated record row. The wings are cut and stored in a labelled envelope (its CAMID), while the body goes into a tube (its tube ID). The row shows CAMID first, then tube ID, collector and an ellipsis for further fields such as butterfly ID and collection location. It shows no real person, specimen, identifier or complete database schema."
       }
     },
     "uses": {

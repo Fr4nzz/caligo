@@ -90,7 +90,7 @@ const copy = {
       collector: t.home.journey.voucherDiagram.collector,
       camid: 'CAMID',
       tubeid: 'TUBE ID',
-      link: 'one CAMID links all three',
+      link: 'one record links identifiers + provenance',
     },
   },
   es: {
@@ -169,7 +169,7 @@ const copy = {
       collector: t.home.journey.voucherDiagram.collector,
       camid: 'CAMID',
       tubeid: 'ID DE TUBO',
-      link: 'un CAMID une los tres',
+      link: 'un registro conecta identificadores + procedencia',
     },
   },
 } as const;
@@ -208,7 +208,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
             `${c.voucher.collector} → ${c.voucher.specimen}`,
             `${c.voucher.envelope} (${c.voucher.camid})`,
             `${c.voucher.tube} (${c.voucher.tubeid})`,
-            `${c.voucher.record}: ${c.voucher.collector} + ${c.voucher.camid} + ${c.voucher.tubeid}`,
+            `${c.voucher.record}: ${c.voucher.camid} + ${c.voucher.tubeid} + ${c.voucher.collector} + …`,
           ];
 ---
 
@@ -450,9 +450,9 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
         {/* Specimen splits: wings to the envelope, body to the tube. */}
         <path d="M138 76 L262 54" class="vch-flow vch-flow--split" />
         <path d="M138 104 L262 122" class="vch-flow vch-flow--split" />
-        {/* Both identifiers converge on one record row. */}
-        <path d="M320 52 L448 82" class="vch-flow vch-flow--env" marker-end={`url(#${id}-arrow)`} />
-        <path d="M320 122 L448 100" class="vch-flow vch-flow--tube" marker-end={`url(#${id}-arrow)`} />
+        {/* Both identifiers converge on their ordered fields in one record row. */}
+        <path d="M320 52 L441 82" class="vch-flow vch-flow--env" marker-end={`url(#${id}-arrow)`} />
+        <path d="M320 122 L479 100" class="vch-flow vch-flow--tube" marker-end={`url(#${id}-arrow)`} />
 
         {/* Specimen: a bilaterally symmetric butterfly with ocelli. */}
         <g class="vch-specimen" transform="translate(86 90)">
@@ -527,25 +527,27 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
           <rect x="-3" y="16" width="6" height="14" rx="3" class="vch-body-inside" />
         </g>
 
-        {/* Record: one row holds collector, CAMID and tube ID together. */}
+        {/* Record: CAMID, tube ID and collector lead an intentionally abbreviated row. */}
         <g class="vch-sheet-group" transform="translate(498 90)">
-          <rect x="-66" y="-33" width="132" height="66" rx="6" class="vch-sheet" />
-          <rect x="-66" y="-33" width="132" height="15" class="vch-sheet-head" />
-          <rect x="-66" y="-3" width="132" height="18" class="vch-row-hit" />
-          <path d="M-22 -33V33 M22 -33V33 M-66 -18H66 M-66 -3H66 M-66 15H66" class="vch-grid" />
-          <text x="-44" y="-22" class="vch-field-head">{c.voucher.collector}</text>
-          <text x="0" y="-22" class="vch-field-head">{c.voucher.camid}</text>
-          <text x="44" y="-22" class="vch-field-head">{c.voucher.tubeid}</text>
+          <rect x="-76" y="-33" width="152" height="66" rx="6" class="vch-sheet" />
+          <rect x="-76" y="-33" width="152" height="15" class="vch-sheet-head" />
+          <rect x="-76" y="-3" width="152" height="18" class="vch-row-hit" />
+          <path d="M-38 -33V33 M0 -33V33 M38 -33V33 M-76 -18H76 M-76 -3H76 M-76 15H76" class="vch-grid" />
+          <text x="-57" y="-22" class="vch-field-head">{c.voucher.camid}</text>
+          <text x="-19" y="-22" class="vch-field-head">{c.voucher.tubeid}</text>
+          <text x="19" y="-22" class="vch-field-head">{c.voucher.collector}</text>
+          <text x="57" y="-22" class="vch-field-head vch-record-more">…</text>
           <g class="vch-record-values">
-            <text x="-44" y="9" class="vch-record-value vch-record-collector">{c.voucher.collector}</text>
-            <text x="0" y="9" class="vch-record-value">{c.voucher.camid}</text>
-            <text x="44" y="9" class="vch-record-value">{c.voucher.tubeid}</text>
+            <text x="-57" y="9" class="vch-record-value">{c.voucher.camid}</text>
+            <text x="-19" y="9" class="vch-record-value">{c.voucher.tubeid}</text>
+            <text x="19" y="9" class="vch-record-value vch-record-collector">{c.voucher.collector}</text>
+            <text x="57" y="9" class="vch-record-value vch-record-more">…</text>
           </g>
-          <path d="M-57 -11h19 M-12 -11h18 M33 -11h20" class="vch-cell" />
-          <path d="M-57 25h18 M-12 25h16 M33 25h20" class="vch-cell" />
+          <path d="M-70 -11h18 M-32 -11h18 M6 -11h18 M45 -11h18" class="vch-cell" />
+          <path d="M-70 25h18 M-32 25h18 M6 25h18 M45 25h18" class="vch-cell" />
         </g>
 
-        <text x="86" y="152" class="node-label">{c.voucher.specimen}</text>
+        <text x="86" y="152" class="node-label vch-specimen-label">{c.voucher.specimen}</text>
         <text x="290" y="20" class="group-label">{c.voucher.envelope}</text>
         <text x="290" y="174" class="node-label">{c.voucher.tube}</text>
         <text x="498" y="152" class="node-label">{c.voucher.record}</text>
@@ -1088,6 +1090,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   }
   .vch-field-head { font-size: 5.2px; letter-spacing: 0.02em; }
   .vch-record-value { font-size: 6.4px; }
+  .vch-record-more { font-size: 9px; letter-spacing: 0.08em; }
   .vch-cell { fill: none; stroke: var(--text-faint); stroke-width: 3; stroke-linecap: round; }
   .vch-flow { fill: none; stroke: var(--text-muted); stroke-width: 2; stroke-linecap: round; }
   .vch-flow--split { stroke: var(--hairline-strong); stroke-width: 1.5; stroke-dasharray: 3 4; opacity: 0.75; }
@@ -1111,6 +1114,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-diagram.is-playing .vch-flow--tube { stroke-dasharray: 48; }
   /* 1. The collector sweeps the fully visible, side-view net across the specimen. */
   .concept-diagram.is-playing .vch-net-sweep { animation: net-catch 2.15s 0s ease-in-out both; }
+  .concept-diagram.is-playing .vch-specimen-label { animation: specimen-label-reveal 500ms 1.7s ease-out both; }
   .concept-diagram.is-playing .vch-collector-token { animation: collector-to-record 2.5s 1.35s ease-in-out both; }
   /* 2. The specimen is opened and filed: wings → envelope, body → tube. */
   .concept-diagram.is-playing .voucher-scene .vch-wings-l { animation: wing-open 600ms 1.05s var(--ease-settle) both; }
@@ -1139,9 +1143,10 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     0% { opacity: 0; transform: translate(0, 0) scale(1); }
     12% { opacity: 1; transform: translate(0, 0) scale(1); }
     22% { opacity: 1; transform: translate(18px, -5px) scale(0.96); }
-    52%, 84% { opacity: 1; transform: translate(402px, -63px) scale(0.72); }
-    100% { opacity: 0; transform: translate(402px, -63px) scale(0.72); }
+    52%, 84% { opacity: 1; transform: translate(465px, -63px) scale(0.72); }
+    100% { opacity: 0; transform: translate(465px, -63px) scale(0.72); }
   }
+  @keyframes specimen-label-reveal { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes wing-open { from { opacity: 1; transform: scaleX(1); } 70% { opacity: 1; transform: scaleX(1.06); } to { opacity: 1; transform: scaleX(1); } }
   @keyframes fly-wings { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 18% { opacity: 0.9; } 82% { opacity: 0.9; } 100% { opacity: 0; transform: translate(204px, -42px) scale(0.42); } }
   @keyframes fly-body { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 18% { opacity: 0.9; } 82% { opacity: 0.9; } 100% { opacity: 0; transform: translate(204px, 36px) scale(0.5); } }

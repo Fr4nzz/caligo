@@ -107,8 +107,9 @@ ok(/prefers-reduced-motion:\s*reduce/.test(tiers) && /animation:\s*none\s*!impor
 ok(/vch-net-depth/.test(concepts) && /vch-net-opening/.test(concepts) && /vch-net-fill/.test(concepts) && /vch-net-rim/.test(concepts) && /vch-hand/.test(concepts) && /vch-fingers/.test(concepts) && /vch-wristband/.test(concepts), 'voucher capture includes a fully filled deep net, gripping hand and collector wristband');
 ok(/translateX\(-30px\)[\s\S]*?translateX\(0\)/.test(netCatch) && !/translateY/.test(netCatch), 'voucher net sweeps left to right across the specimen');
 ok(/@keyframes wing-open\s*\{\s*from\s*\{\s*opacity:\s*1;\s*transform:\s*scaleX\(1\)/.test(concepts), 'voucher butterfly remains fully visible while the net catches it');
-ok(/vch-collector-token/.test(concepts) && /@keyframes collector-to-record[\s\S]*?translate\(402px, -63px\)/.test(concepts), 'collector placeholder travels from the wristband into the record row');
-ok(/vch-record-collector/.test(concepts) && /c\.voucher\.collector[\s\S]*?c\.voucher\.camid[\s\S]*?c\.voucher\.tubeid/.test(concepts), 'voucher record row holds collector, CAMID and tube ID together');
+ok(/vch-collector-token/.test(concepts) && /@keyframes collector-to-record[\s\S]*?translate\(465px, -63px\)/.test(concepts), 'collector placeholder travels from the wristband into the collector field');
+ok(/vch-specimen-label/.test(concepts) && /specimen-label-reveal 500ms 1\.7s/.test(concepts), 'specimen label appears as the net and hand clear it');
+ok(/c\.voucher\.camid[\s\S]*?c\.voucher\.tubeid[\s\S]*?c\.voucher\.collector[\s\S]*?vch-record-more/.test(concepts), 'voucher record orders CAMID, tube ID and collector before an ellipsis for more fields');
 ok(/"collector": "COLLECTOR"/.test(en) && /"collector": "COLECTOR"/.test(es), 'collector placeholder has matching English and Spanish dictionary keys');
 ok(/never a real person's name/.test(en) && /nunca el nombre de una persona real/.test(es), 'voucher description keeps the collector placeholder explicitly conceptual');
 
