@@ -725,10 +725,6 @@ export const es: Dict = {
       "heading": "Lo que hacen y reciben los miembros",
       "intro": "Los miembros activos contribuyen a la red y son elegibles para autoría y derechos de voto."
     },
-    "formFields": {
-      "heading": "Qué pregunta el formulario de inscripción",
-      "intro": "El formulario recoge la siguiente información para ayudar a dar forma a la red."
-    },
     "languagePolicy": {
       "heading": "Idiomas de trabajo",
       "body": "Las comunicaciones oficiales se hacen en inglés y español. El portugués también se usa en las reuniones, con traducción informal entre quienes entienden ambos."

@@ -728,10 +728,6 @@ export const en = {
       "heading": "What members do and receive",
       "intro": "Active members contribute to the network and are eligible for authorship and voting rights."
     },
-    "formFields": {
-      "heading": "What the registration form asks",
-      "intro": "The form collects the following information to help shape the network."
-    },
     "languagePolicy": {
       "heading": "Working languages",
       "body": "Official communications are in English and Spanish. Portuguese is also used in meetings, with informal translation among participants who understand both."

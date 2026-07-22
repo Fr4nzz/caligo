@@ -4,7 +4,7 @@
  *
  * Six modules in order:
  *   H1  Cinematic hero (full-bleed photo + overlay copy).
- *   H2  Why Caligo — four principles (h.pillars).
+ *   H2  How the work is shaped — the eight shared guiding principles.
  *   H3  From organism to genome — six-step journey with per-step media.
  *   H4  Three questions worth following — compact teaser links to /science#.
  *   H5  Four proposed pilots — 2×2 compact cards with MediaCandidateViewer.
@@ -23,11 +23,10 @@ import ConceptDiagram from '../ConceptDiagram.astro';
 import Icon from '../Icon.astro';
 import JoinCTA from '../JoinCTA.astro';
 import PrincipleGrid from '../PrincipleGrid.astro';
-import StatBar from '../StatBar.astro';
+import CommunityStats from '../CommunityStats.astro';
 import SourceList from '../SourceList.astro';
 import { getDict, localePath, type Locale } from '../../i18n';
 import { PILOTS, PUBLIC_STATUS_LABELS, getMedia } from '../../data/records';
-import { PARTICIPANTS, PROJECTS, facilityStats } from '../../data/initiative';
 
 const journeyModuleIds = [
   'journey-1-organism',
@@ -79,13 +78,6 @@ const mobileSrcset = [
 
 const publishedPilots = PILOTS.filter((p) => p.publish);
 
-const { facilities, countries } = facilityStats();
-const homeMetrics = [
-  { kind: 'participants', value: PARTICIPANTS.value, label: h.stats.participants, asOf: h.stats.asOf },
-  { kind: 'facilities', value: facilities, label: h.stats.facilities },
-  { kind: 'countries', value: countries, label: h.stats.countries },
-  { kind: 'pilots', value: PROJECTS.length, label: h.stats.pilots },
-] as const;
 ---
 
 <Base locale={locale} title={h.metaTitle} description={h.metaDescription} page="/">
@@ -132,11 +124,11 @@ const homeMetrics = [
   <!-- ==================== STAT BAR — network metrics ==================== -->
   <section class="section stat-bar-section">
     <div class="container-wide">
-      <StatBar metrics={homeMetrics} variant="community-cards" />
+      <CommunityStats locale={locale} />
     </div>
   </section>
 
-  <!-- ====================== H2 — Why Caligo (four principles) ====================== -->
+  <!-- ====================== H2 — Eight guiding principles ====================== -->
   <section id="snapshot" class="section" aria-labelledby="h2-title">
     <span id="h2" hidden aria-hidden="true" data-legacy-anchor="h2" />
     <div class="container-wide">
@@ -540,7 +532,7 @@ const homeMetrics = [
     color: var(--text-faint);
   }
 
-  /* ---- H2 Why Caligo — four-principle list ---- */
+  /* ---- H2 Guiding principles ---- */
   .why-list {
     list-style: none;
     padding: 0;
@@ -731,6 +723,9 @@ const homeMetrics = [
     box-shadow: inset 3px 0 0 var(--accent);
   }
   .pilot-card-media { flex: none; }
+  .pilot-card-media :global(.mcv-caption) {
+    padding-inline: var(--space-m);
+  }
   .pilot-card-content {
     display: flex;
     flex-direction: column;

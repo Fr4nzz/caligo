@@ -189,34 +189,6 @@ export const MEMBER_BENEFITS: Bilingual[] = [
   },
 ];
 
-/* ---------- Registration form fields (doc 01 §M2) ---------- */
-/** Eleven fields the Google Form asks of each applicant (BRIEF §9; PRES L193–194). */
-export const FORM_FIELDS: Bilingual[] = [
-  { en: 'Name', es: 'Nombre' },
-  { en: 'Email', es: 'Correo electrónico' },
-  { en: 'Country', es: 'País' },
-  { en: 'Institutional affiliation', es: 'Institución de afiliación' },
-  { en: 'Role or position', es: 'Cargo' },
-  {
-    en: 'Strongest professional connection to a Latin American country (if residing outside the region)',
-    es: 'Conexión profesional más fuerte con un país latinoamericano (si reside fuera)',
-  },
-  { en: 'Taxonomic group of interest', es: 'Grupo taxonómico de interés' },
-  {
-    en: 'Experience generating or working with genomes',
-    es: 'Experiencia generando o trabajando con genomas',
-  },
-  {
-    en: 'Institutional sequencing capacity or plans',
-    es: 'Capacidad o planes de secuenciación institucional',
-  },
-  {
-    en: 'Consent to share information with other participants',
-    es: 'Consentimiento para compartir la información con otros participantes',
-  },
-  { en: 'Additional comments', es: 'Comentarios adicionales' },
-];
-
 /* ---------- Language policy (doc 01 §H10) ---------- */
 /** DOC L69; PRES L81 — English and Spanish official; Portuguese informal in meetings. */
 export const LANGUAGE_POLICY: Bilingual = {

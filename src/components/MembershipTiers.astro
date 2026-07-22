@@ -115,11 +115,13 @@ const benefitsHeading: Record<typeof locale, string> = {
     line-height: 1.5;
   }
   .benefits-item::before {
-    content: '—';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--accent);
-    font-family: var(--font-mono);
+    top: 1.75em;
+    width: 0.75rem;
+    height: 1px;
+    background: var(--accent);
   }
   .benefits-item:last-child {
     border-bottom: none;

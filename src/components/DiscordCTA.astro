@@ -52,7 +52,7 @@ const isActive = discordInviteUrl !== null;
   aria-labelledby="discord-heading"
   data-discord-state={isActive ? 'active' : 'pending'}
 >
-  <h3 id="discord-heading" class="discord-heading">{d.heading}</h3>
+  <h2 id="discord-heading" class="discord-heading">{d.heading}</h2>
   <p class="discord-body">{d.body}</p>
 
   {isActive ? (
@@ -104,8 +104,7 @@ const isActive = discordInviteUrl !== null;
 
 <style>
   .discord-cta {
-    margin-top: var(--space-l);
-    padding: var(--space-m);
+    padding: var(--space-l);
     background: var(--bg-inset);
     border: 1px solid var(--hairline);
     border-left-width: 2px;

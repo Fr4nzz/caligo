@@ -1,17 +1,18 @@
 ---
 /**
- * AboutPage — compact single-column editorial layout.
+ * AboutPage — editorial prose with wide visual systems where cards need room.
  *
  * Four sections:
  *   A1  PageHeader — title + intro (about.title / about.body).
  *   A2  Scope — what Caligo is and is not (about.body as full prose
  *       paragraph; single narrow-measure column).
  *   A3  Principles — the eight guiding principles via PrincipleGrid
- *       as the "how the work is shaped" section; four compact rows).
+ *       as the "how the work is shaped" section; responsive card rows).
  *   A4  Aims — what Caligo brings together (about.beingDecided.questions
  *       as a numbered list; single column).
  *
- * Layout: single column, max-width: var(--measure); margin-inline: auto.
+ * Prose uses the narrow reading container. Principles and leadership use the
+ * wide container so their shared cards keep a readable minimum width.
  * about.externalContext is rendered as a restrained note below aims.
  * about.beingDecided is reused here under the "aims" framing — the i18n
  * key name is legacy but the copy remains editorially correct.
@@ -20,10 +21,10 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
 import ObjectiveList from '../ObjectiveList.astro';
 import PrincipleGrid from '../PrincipleGrid.astro';
-import PersonCard from '../PersonCard.astro';
+import LeadershipGrid from '../LeadershipGrid.astro';
 import SourceList from '../SourceList.astro';
 import { getDict, type Locale } from '../../i18n';
-import { LEADERS, GOVERNANCE_POINTS } from '../../data/initiative';
+import { GOVERNANCE_POINTS } from '../../data/initiative';
 
 interface Props {
   locale: Locale;
@@ -65,7 +66,7 @@ const h = t.home;
 
   <!-- A3 — Principles: the initiative's eight guiding principles -->
   <section class="section section--tight" aria-labelledby="about-principles">
-    <div class="container-narrow">
+    <div class="container-wide visual-section">
       <p class="section-eyebrow mono">{h.pillars.eyebrow}</p>
       <h2 id="about-principles" class="section-heading">{h.pillars.title}</h2>
       <PrincipleGrid locale={locale}/>
@@ -90,14 +91,10 @@ const h = t.home;
 
   <!-- A5 — Leadership -->
   <section class="section section--tight section--panel" aria-labelledby="about-leadership">
-    <div class="container-narrow">
+    <div class="container-wide visual-section">
       <h2 id="about-leadership" class="section-heading">{a.leadership.heading}</h2>
       <p class="prose-para">{a.leadership.intro}</p>
-      <div class="leadership-grid">
-        {LEADERS.map((person) => (
-          <PersonCard person={person} locale={locale}/>
-        ))}
-      </div>
+      <LeadershipGrid locale={locale} />
     </div>
   </section>
 
@@ -129,14 +126,10 @@ const h = t.home;
 </Base>
 
 <style>
-  /* ---- Single-column narrow layout ---- */
-  .container-narrow {
+  .visual-section > .section-eyebrow,
+  .visual-section > .section-heading,
+  .visual-section > .prose-para {
     max-width: var(--measure);
-    margin-inline: auto;
-    padding-inline: var(--space-m);
-  }
-  @media (min-width: 40rem) {
-    .container-narrow { padding-inline: var(--space-l); }
   }
 
   /* ---- Section rhythm ---- */
@@ -182,70 +175,6 @@ const h = t.home;
     line-height: 1.35;
   }
 
-  /* ---- A3 Principles list ---- */
-  .principles-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-top: 1px solid var(--hairline-strong);
-  }
-  .principle {
-    display: grid;
-    grid-template-columns: 2.5rem 1fr;
-    gap: var(--space-s);
-    align-items: baseline;
-    padding-block: var(--space-m);
-    border-bottom: 1px solid var(--hairline);
-  }
-  .principle-index {
-    font-size: var(--step--1);
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    color: var(--accent-strong);
-    line-height: 1;
-  }
-  .principle-content { min-width: 0; }
-  .principle-title {
-    margin: 0 0 0.3rem;
-    font-family: var(--font-body);
-    font-size: var(--step-0);
-    font-weight: 620;
-    color: var(--text-strong);
-    letter-spacing: -0.006em;
-    line-height: 1.3;
-  }
-  .principle-body {
-    margin: 0;
-    color: var(--text-muted);
-    line-height: 1.55;
-    font-size: var(--step--1);
-  }
-
-  /* ---- A4 Aims list ---- */
-  .aims-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-xl);
-    border-top: 1px solid var(--hairline-strong);
-  }
-  .aim {
-    display: grid;
-    grid-template-columns: 2.5rem 1fr;
-    gap: var(--space-s);
-    align-items: baseline;
-    padding-block: var(--space-m);
-    border-bottom: 1px solid var(--hairline);
-    color: var(--text);
-    line-height: 1.55;
-  }
-  .aim-index {
-    font-size: var(--step--1);
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    color: var(--accent-strong);
-  }
-  .aim-text { max-width: var(--measure); }
-
   /* ---- External note — restrained aside + disclaimer ---- */
   .external-note {
     padding: var(--space-m);
@@ -268,17 +197,6 @@ const h = t.home;
     line-height: 1.55;
     font-size: var(--step--1);
   }
-  /* ---- A5 Leadership grid ---- */
-  .leadership-grid {
-    display: grid;
-    gap: var(--space-m);
-    grid-template-columns: 1fr;
-    margin-top: var(--space-m);
-  }
-  @media (min-width: 40rem) {
-    .leadership-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  }
-
   /* ---- A6 Governance list ---- */
   .governance-list {
     list-style: none;

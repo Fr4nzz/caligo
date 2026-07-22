@@ -1,0 +1,26 @@
+---
+import type { Locale } from '../i18n';
+import { LEADERS } from '../data/initiative';
+import PersonCard from './PersonCard.astro';
+
+interface Props {
+  readonly locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<div class="leadership-grid">
+  {LEADERS.map((person) => (
+    <PersonCard person={person} locale={locale} />
+  ))}
+</div>
+
+<style>
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--space-m);
+    margin-top: var(--space-m);
+  }
+</style>
