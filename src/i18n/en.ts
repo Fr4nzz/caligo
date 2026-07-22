@@ -119,7 +119,7 @@ export const en = {
       "assemblyDiagram": {
         "conceptual": "Educational animation — conceptual, not data",
         "title": "Assemble, then assess",
-        "description": "A simplified genome-assembly workflow. Overlapping reads align into fewer, longer contigs. A conceptual, symmetric Hi-C heatmap first shows contigs in an arbitrary order, so same-chromosome contacts appear scattered. During conceptual manual curation, matching rows and columns are reordered together; curators may also review contig orientation and possible misjoins. The curated map forms three clear blocks along the diagonal, with stronger within-chromosome and fainter between-chromosome contacts. These patterns can help organise contigs into chromosome-scale scaffolds. Hi-C does not provide the missing sequence between contigs, so one unresolved sequence gap remains visible. A final assessment checks continuity, completeness and known limits or gaps without reporting numeric scores. The marks are illustrative and do not represent sequence or Hi-C data, an assembly or a result from Caligo.",
+        "description": "A simplified genome-assembly workflow. Overlapping reads align into fewer, longer contigs. A conceptual, symmetric Hi-C heatmap first shows contigs in an arbitrary order, so same-chromosome contacts appear scattered. During conceptual manual curation, matching rows and columns are reordered together; curators may also review contig orientation and possible misjoins. The curated map forms three clear blocks along the diagonal, with stronger within-chromosome and fainter between-chromosome contacts. These patterns can help organise contigs into three conceptual chromosome-scale scaffolds, labelled CHR 1 to CHR 3. Hi-C does not provide the missing sequence between contigs, so an unresolved gap remains labelled within CHR 2. A final assessment checks continuity, completeness and known limits or gaps without reporting numeric scores. The marks and chromosome labels are illustrative and do not represent sequence or Hi-C data, an assembly or a result from Caligo.",
         "play": "Play the explanation",
         "replay": "Replay",
         "ready": "Ready to animate",
@@ -133,7 +133,9 @@ export const en = {
         "uncurated": "uncurated",
         "curated": "curated",
         "chromosomes": "chromosome-scale scaffolds",
+        "chromosomeAbbr": "CHR",
         "gap": "unresolved gap",
+        "gapShort": "GAP",
         "assessment": "assessment",
         "continuity": "continuity",
         "completeness": "completeness",

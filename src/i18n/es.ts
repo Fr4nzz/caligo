@@ -116,7 +116,7 @@ export const es: Dict = {
       "assemblyDiagram": {
         "conceptual": "Animación educativa — conceptual, no son datos",
         "title": "Ensamblar y luego evaluar",
-        "description": "Flujo simplificado de ensamblaje genómico. Las lecturas superpuestas se alinean y forman menos contigs, de mayor longitud. Un mapa de calor Hi-C conceptual y simétrico muestra primero los contigs en un orden arbitrario, por lo que los contactos del mismo cromosoma aparecen dispersos. Durante la curación manual conceptual, las filas y columnas correspondientes se reordenan juntas; quienes realizan la curación también pueden revisar la orientación de los contigs y posibles uniones erróneas. El mapa curado forma tres bloques claros sobre la diagonal, con contactos más intensos dentro de cada cromosoma y más tenues entre cromosomas. Estos patrones pueden ayudar a organizar los contigs en scaffolds a escala cromosómica. Hi-C no aporta la secuencia faltante entre contigs, por lo que una brecha de secuencia sin resolver permanece visible. Una evaluación final revisa continuidad, completitud y límites o brechas conocidas sin presentar puntajes numéricos. Las marcas son ilustrativas y no representan datos de secuencia o Hi-C, un ensamblaje ni un resultado de Caligo.",
+        "description": "Flujo simplificado de ensamblaje genómico. Las lecturas superpuestas se alinean y forman menos contigs, de mayor longitud. Un mapa de calor Hi-C conceptual y simétrico muestra primero los contigs en un orden arbitrario, por lo que los contactos del mismo cromosoma aparecen dispersos. Durante la curación manual conceptual, las filas y columnas correspondientes se reordenan juntas; quienes realizan la curación también pueden revisar la orientación de los contigs y posibles uniones erróneas. El mapa curado forma tres bloques claros sobre la diagonal, con contactos más intensos dentro de cada cromosoma y más tenues entre cromosomas. Estos patrones pueden ayudar a organizar los contigs en tres scaffolds conceptuales a escala cromosómica, etiquetados de CHR 1 a CHR 3. Hi-C no aporta la secuencia faltante entre contigs, por lo que una brecha sin resolver permanece etiquetada dentro de CHR 2. Una evaluación final revisa continuidad, completitud y límites o brechas conocidas sin presentar puntajes numéricos. Las marcas y etiquetas cromosómicas son ilustrativas y no representan datos de secuencia o Hi-C, un ensamblaje ni un resultado de Caligo.",
         "play": "Reproducir la explicación",
         "replay": "Repetir",
         "ready": "Listo para animar",
@@ -130,7 +130,9 @@ export const es: Dict = {
         "uncurated": "sin curar",
         "curated": "curado",
         "chromosomes": "scaffolds a escala cromosómica",
+        "chromosomeAbbr": "CHR",
         "gap": "brecha sin resolver",
+        "gapShort": "BRECHA",
         "assessment": "evaluación",
         "continuity": "continuidad",
         "completeness": "completitud",
