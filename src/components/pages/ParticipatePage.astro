@@ -20,6 +20,7 @@ import PageHeader from '../PageHeader.astro';
 import Icon from '../Icon.astro';
 import JoinCTA from '../JoinCTA.astro';
 import MembershipTiers from '../MembershipTiers.astro';
+import DiscordCTA from '../DiscordCTA.astro';
 import { getDict, type Locale } from '../../i18n';
 import { FORM_FIELDS } from '../../data/initiative';
 
@@ -121,7 +122,12 @@ const p = t.participate;
     </div>
   </section>
 
-  {/* DiscordCTA hidden — re-enable when a permanent invite exists (owner decision, plan Q5) */}
+  <!-- P5 — Discord community (active when PUBLIC_CALIGO_DISCORD_URL is set) -->
+  <section class="section section--tight">
+    <div class="container-narrow">
+      <DiscordCTA locale={locale} />
+    </div>
+  </section>
 
 </Base>
 

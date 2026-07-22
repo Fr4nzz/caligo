@@ -50,6 +50,9 @@ jobs:
 
       - name: Build
         run: pnpm build
+        env:
+          # Provisional Discord invite from Nicol Rueda; update when a permanent one exists.
+          PUBLIC_CALIGO_DISCORD_URL: https://discord.gg/4jXGkW4N
 
       - name: Post-build navigation checks
         run: pnpm test:nav
