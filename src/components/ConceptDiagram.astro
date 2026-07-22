@@ -206,6 +206,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   data-label-replay={c.replay}
   data-label-playing={c.playing}
   data-label-finished={c.finished}
+  data-duration-ms={kind === 'connectivity' ? '6500' : '5000'}
 >
   <figcaption class="concept-heading">
     <span class="concept-title-group">
@@ -295,10 +296,14 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
         <g class="gene-flow-panel gene-flow-panel--homogenisation">
           <text x="180" y="18" class="group-label gene-flow-panel-title">{c.connectivity.earlyTitle}</text>
           <path d="M180 198 V168" class="lineage-path lineage-trunk early-lineage-trunk" />
-          <path d="M180 168 C156 151 129 131 118 105 C130 86 151 69 180 57" class="lineage-path incipient-branch incipient-branch--dark" />
-          <path d="M180 168 C204 151 231 131 242 105 C230 86 209 69 180 57" class="lineage-path incipient-branch incipient-branch--pale" />
+          <path d="M180 168 C158 151 143 131 126 113" class="lineage-path early-split-branch early-split-branch--dark" />
+          <path d="M180 168 C202 151 217 131 234 113" class="lineage-path early-split-branch early-split-branch--pale" />
+          <path d="M126 113 C136 90 155 70 180 57" class="lineage-path early-merge-branch early-merge-branch--dark" />
+          <path d="M234 113 C224 90 205 70 180 57" class="lineage-path early-merge-branch early-merge-branch--pale" />
           <path d="M180 57 V38" class="lineage-path homogenised-lineage" />
           <circle cx="180" cy="168" r="4.5" class="lineage-node early-divergence-node" />
+          <circle cx="126" cy="113" r="3.5" class="lineage-node early-midpoint-node early-midpoint-node--dark" />
+          <circle cx="234" cy="113" r="3.5" class="lineage-node early-midpoint-node early-midpoint-node--pale" />
           <circle cx="180" cy="57" r="4.5" class="lineage-node homogenisation-node" />
 
           <g class="lineage-butterfly lineage-butterfly--ancestor early-ancestor" transform="translate(180 204) scale(.7)">
@@ -326,11 +331,14 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
         <g class="gene-flow-panel gene-flow-panel--hybrid-speciation">
           <text x="540" y="18" class="group-label gene-flow-panel-title">{c.connectivity.lateTitle}</text>
           <path d="M540 198 V169" class="lineage-path lineage-trunk late-lineage-trunk" />
-          <path d="M540 169 C514 146 476 111 435 53" class="lineage-path recipient-branch" />
-          <path d="M540 169 C568 143 611 105 653 53" class="lineage-path donor-branch" />
+          <path d="M540 169 C520 149 500 129 481 111" class="lineage-path late-split-branch late-split-branch--recipient" />
+          <path d="M540 169 C564 148 588 127 613 111" class="lineage-path late-split-branch late-split-branch--donor" />
+          <path d="M481 111 C464 93 449 72 435 53" class="lineage-path late-tip-branch late-tip-branch--recipient" />
+          <path d="M613 111 C628 92 641 72 653 53" class="lineage-path late-tip-branch late-tip-branch--donor" />
           <path d="M481 111 C500 94 522 72 548 50" class="lineage-path hybrid-lineage-branch" />
           <circle cx="540" cy="169" r="4.5" class="lineage-node late-divergence-node" />
           <circle cx="481" cy="111" r="4.5" class="lineage-node hybrid-origin-node" />
+          <circle cx="613" cy="111" r="3.5" class="lineage-node donor-midpoint-node" />
 
           <g class="lineage-butterfly lineage-butterfly--ancestor late-ancestor" transform="translate(540 204) scale(.7)">
             <use href={`#${id}-butterfly`} />
@@ -347,17 +355,22 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
             <path d="M-11 -1 L-7 -5 L-3 -1 L-7 3 Z" class="trait-mark trait-mark--hybrid" />
           </g>
 
-          <path d="M621 91 C590 87 560 78 530 68" class="gene-flow-link late-introgression-link" marker-end={`url(#${id}-phylo-arrow)`} />
+          <path d="M600 111 H494" class="gene-flow-link late-introgression-link" marker-end={`url(#${id}-phylo-arrow)`} />
           <g class="late-introgression-token">
-            <path d="M614 84 L620 90 L614 96 L608 90 Z" class="trait-token-shape" />
+            <path d="M594 105 L600 111 L594 117 L588 111 Z" class="trait-token-shape" />
           </g>
-          <text x="575" y="110" class="micro-label introgression-note">{c.connectivity.introgression}</text>
+          <text x="547" y="103" class="micro-label introgression-note">{c.connectivity.introgression}</text>
           <text x="432" y="77" class="micro-label lineage-tip-label">{c.connectivity.recipientLineage}</text>
           <text x="548" y="71" class="micro-label lineage-tip-label">{c.connectivity.hybridLineage}</text>
           <text x="660" y="77" class="micro-label lineage-tip-label">{c.connectivity.donorLineage}</text>
-          <text x="540" y="218" class="footer-label panel-outcome panel-outcome--hybrid">
+          <text
+            x="540"
+            y="218"
+            class="footer-label panel-outcome panel-outcome--hybrid"
+            aria-label={`${c.connectivity.rareOutcomeLead} ${c.connectivity.rareOutcomeTail}`}
+          >
             <tspan x="540">{c.connectivity.rareOutcomeLead}</tspan>
-            <tspan x="540" dy="11">{c.connectivity.rareOutcomeTail}</tspan>
+            <tspan x="540" dy="11">{` ${c.connectivity.rareOutcomeTail}`}</tspan>
           </text>
         </g>
       </g>
@@ -676,11 +689,15 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   }
   .lineage-trunk,
   .homogenised-lineage { stroke: var(--text-muted); }
-  .incipient-branch--dark,
-  .recipient-branch,
+  .early-split-branch--dark,
+  .early-merge-branch--dark,
+  .late-split-branch--recipient,
+  .late-tip-branch--recipient,
   .hybrid-lineage-branch { stroke: var(--c-burnt-700); }
-  .incipient-branch--pale,
-  .donor-branch { stroke: var(--c-ochre-600); }
+  .early-split-branch--pale,
+  .early-merge-branch--pale,
+  .late-split-branch--donor,
+  .late-tip-branch--donor { stroke: var(--c-ochre-600); }
   .lineage-node {
     fill: var(--bg-panel);
     stroke: var(--text-strong);
@@ -702,11 +719,15 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .lineage-butterfly--ancestor { color: var(--text-muted); }
   .lineage-butterfly--dark { color: var(--c-burnt-700); }
   .lineage-butterfly--pale { color: var(--c-ochre-500); }
-  :global([data-mode='dark']) .incipient-branch--dark,
-  :global([data-mode='dark']) .recipient-branch,
+  :global([data-mode='dark']) .early-split-branch--dark,
+  :global([data-mode='dark']) .early-merge-branch--dark,
+  :global([data-mode='dark']) .late-split-branch--recipient,
+  :global([data-mode='dark']) .late-tip-branch--recipient,
   :global([data-mode='dark']) .hybrid-lineage-branch { stroke: var(--c-burnt-300); }
-  :global([data-mode='dark']) .incipient-branch--pale,
-  :global([data-mode='dark']) .donor-branch { stroke: var(--c-ochre-300); }
+  :global([data-mode='dark']) .early-split-branch--pale,
+  :global([data-mode='dark']) .early-merge-branch--pale,
+  :global([data-mode='dark']) .late-split-branch--donor,
+  :global([data-mode='dark']) .late-tip-branch--donor { stroke: var(--c-ochre-300); }
   :global([data-mode='dark']) .lineage-butterfly--dark { color: var(--c-burnt-300); }
   :global([data-mode='dark']) .lineage-butterfly--pale { color: var(--c-ochre-300); }
   .gene-flow-link {
@@ -803,32 +824,37 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-diagram.is-playing .fusion-result .chromosome-outline { animation: joined-outline 600ms 3.82s ease-out both; }
   .concept-diagram.is-playing .fusion-junction { animation: junction-flash 720ms 3.92s var(--ease-settle) both; }
 
-  /* Connectivity timeline: split both ancestors → homogenise early lineages → transfer one later allele → state both outcomes. */
+  /* Connectivity timeline grows from ancestral bases to descendant tips, with
+     deliberate pauses at the split, gene-flow event and final outcome. */
   .concept-diagram.is-playing .early-ancestor,
   .concept-diagram.is-playing .late-ancestor { animation: lineage-ancestor-focus 650ms 0s var(--ease-settle) both; }
   .concept-diagram.is-playing .early-lineage-trunk,
-  .concept-diagram.is-playing .late-lineage-trunk { animation: lineage-path-draw 550ms 360ms ease-out both; }
-  .concept-diagram.is-playing .incipient-branch,
-  .concept-diagram.is-playing .recipient-branch,
-  .concept-diagram.is-playing .donor-branch { animation: lineage-path-draw 800ms 760ms ease-out both; }
+  .concept-diagram.is-playing .late-lineage-trunk { animation: lineage-path-draw 550ms 350ms ease-out both; }
   .concept-diagram.is-playing .early-divergence-node,
-  .concept-diagram.is-playing .late-divergence-node,
+  .concept-diagram.is-playing .late-divergence-node { animation: lineage-stage-emerge 420ms 760ms var(--ease-settle) both; }
+  .concept-diagram.is-playing .early-split-branch,
+  .concept-diagram.is-playing .late-split-branch { animation: lineage-path-draw 750ms 1.0s ease-out both; }
+  .concept-diagram.is-playing .early-midpoint-node,
+  .concept-diagram.is-playing .donor-midpoint-node,
   .concept-diagram.is-playing .early-lineage-glyphs,
-  .concept-diagram.is-playing .recipient-butterfly,
-  .concept-diagram.is-playing .donor-butterfly { animation: lineage-stage-emerge 620ms 1.08s var(--ease-settle) both; }
-  .concept-diagram.is-playing .early-gene-flow { animation: gene-flow-draw 620ms 1.55s ease-out both; }
-  .concept-diagram.is-playing .gene-flow-label { animation: stage-label-focus 520ms 1.55s ease-out both; }
-  .concept-diagram.is-playing .homogenised-lineage { animation: lineage-path-draw 620ms 1.95s ease-out both; }
+  .concept-diagram.is-playing .incipient-label { animation: lineage-stage-emerge 500ms 1.58s var(--ease-settle) both; }
+  .concept-diagram.is-playing .early-gene-flow,
+  .concept-diagram.is-playing .late-introgression-link { animation: gene-flow-draw 620ms 2.3s ease-out both; }
+  .concept-diagram.is-playing .gene-flow-label,
+  .concept-diagram.is-playing .introgression-note { animation: stage-label-focus 520ms 2.3s ease-out both; }
+  .concept-diagram.is-playing .late-introgression-token { animation: hybrid-allele-cross 900ms 2.48s ease-in-out both; }
+  .concept-diagram.is-playing .early-merge-branch { animation: lineage-path-draw 780ms 3.45s ease-out both; }
+  .concept-diagram.is-playing .hybrid-origin-node { animation: event-pop 520ms 3.4s var(--ease-settle) both; }
+  .concept-diagram.is-playing .late-tip-branch,
+  .concept-diagram.is-playing .hybrid-lineage-branch { animation: lineage-path-draw 850ms 3.82s ease-out both; }
+  .concept-diagram.is-playing .homogenised-lineage { animation: lineage-path-draw 560ms 4.3s ease-out both; }
   .concept-diagram.is-playing .homogenisation-node,
-  .concept-diagram.is-playing .homogenised-butterfly { animation: lineage-stage-emerge 620ms 2.15s var(--ease-settle) both; }
-  .concept-diagram.is-playing .late-introgression-link { animation: gene-flow-draw 650ms 2.45s ease-out both; }
-  .concept-diagram.is-playing .introgression-note { animation: stage-label-focus 520ms 2.45s ease-out both; }
-  .concept-diagram.is-playing .late-introgression-token { animation: hybrid-allele-cross 1s 2.75s ease-in-out both; }
-  .concept-diagram.is-playing .hybrid-lineage-branch { animation: lineage-path-draw 680ms 3.35s ease-out both; }
-  .concept-diagram.is-playing .hybrid-origin-node,
+  .concept-diagram.is-playing .homogenised-butterfly,
+  .concept-diagram.is-playing .recipient-butterfly,
+  .concept-diagram.is-playing .donor-butterfly,
   .concept-diagram.is-playing .hybrid-butterfly,
-  .concept-diagram.is-playing .trait-mark--hybrid { animation: trait-arrive 620ms 3.65s var(--ease-settle) both; }
-  .concept-diagram.is-playing .panel-outcome { animation: outcome-focus 720ms 4.15s ease-out both; }
+  .concept-diagram.is-playing .trait-mark--hybrid { animation: lineage-stage-emerge 620ms 4.78s var(--ease-settle) both; }
+  .concept-diagram.is-playing .panel-outcome { animation: outcome-focus 720ms 5.5s ease-out both; }
 
   .concept-diagram.is-playing .workflow-stage--one { animation: group-focus 720ms 0s var(--ease-settle) both; }
   .concept-diagram.is-playing .workflow-link--one { animation: draw-link 650ms 620ms ease-out both; }
@@ -910,7 +936,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   @keyframes lineage-path-draw { from { opacity: 0; stroke-dasharray: 190; stroke-dashoffset: 190; } to { opacity: 1; stroke-dasharray: 190; stroke-dashoffset: 0; } }
   @keyframes lineage-stage-emerge { from { opacity: 0; filter: saturate(0.35); } 70% { opacity: 1; filter: saturate(1.22) brightness(1.08); } to { opacity: 1; filter: none; } }
   @keyframes gene-flow-draw { from { opacity: 0; stroke-dasharray: 180; stroke-dashoffset: 180; } to { opacity: 1; stroke-dashoffset: 0; } }
-  @keyframes hybrid-allele-cross { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: 1; } 82% { opacity: 1; transform: translate(-80px, -22px); } 100% { opacity: 0.35; transform: translate(-80px, -22px); } }
+  @keyframes hybrid-allele-cross { 0% { opacity: 0; transform: translateX(0); } 15% { opacity: 1; } 82% { opacity: 1; transform: translateX(-106px); } 100% { opacity: 0.35; transform: translateX(-106px); } }
   @keyframes trait-arrive { from { opacity: 0; transform: scale(0.2); } 70% { opacity: 1; transform: scale(1.28); } to { opacity: 1; transform: scale(1); } }
   @keyframes outcome-focus { from { opacity: 0.16; } 65% { opacity: 1; } to { opacity: 1; } }
   @keyframes stage-label-focus { from { opacity: 0; } to { opacity: 1; } }
@@ -1127,6 +1153,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
 
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           diagram.classList.add('is-finished');
+          diagram.setAttribute('aria-busy', 'false');
           status.textContent = diagram.dataset.labelFinished ?? '';
           label.textContent = diagram.dataset.labelReplay ?? '';
           return;
@@ -1144,7 +1171,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
           status.textContent = diagram.dataset.labelFinished ?? '';
           label.textContent = diagram.dataset.labelReplay ?? '';
           conceptTimers.delete(diagram);
-        }, 5000);
+        }, Number(diagram.dataset.durationMs ?? 5000));
         conceptTimers.set(diagram, timer);
       });
     });
