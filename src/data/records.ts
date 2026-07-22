@@ -243,7 +243,7 @@ export const SOURCES: readonly Source[] = [
     id: 'nagoya',
     kind: 'standard',
     citation:
-      'Convention on Biological Diversity — Nagoya Protocol on Access and Benefit-sharing.',
+      'Convention on Biological Diversity: Nagoya Protocol on Access and Benefit-sharing.',
     url: 'https://www.cbd.int/abs/about/default.shtml',
     checkedDate: '2026-07-15',
   },
@@ -251,7 +251,7 @@ export const SOURCES: readonly Source[] = [
     id: 'ukri-soybean',
     kind: 'institutional',
     citation:
-      'UK Research and Innovation, project UKRI2955, Population genomic monitoring of soybean pests. Related external context only; not a Caligo grant.',
+      'UK Research and Innovation, project UKRI2955, Population genomic monitoring of soybean pests. Independent scientific context for the proposed Caligo pilot.',
     url: 'https://gtr.ukri.org/projects?ref=UKRI2955',
     checkedDate: '2026-07-16',
   },
@@ -425,8 +425,8 @@ export const CLAIMS: readonly Claim[] = [
       es: 'Las polillas de cuerpo pequeño y los linajes tropicales siguen subrepresentados.',
     },
     detail: {
-      en: 'A global pattern in taxonomic and genomic research. This is not a Caligo performance measure.',
-      es: 'Un patrón global en la investigación taxonómica y genómica. No es una medida de desempeño de Caligo.',
+      en: 'Global context for taxonomic and genomic research. Caligo measures progress against its own dated records.',
+      es: 'Contexto global de la investigación taxonómica y genómica. Caligo mide su avance con sus propios registros fechados.',
     },
     status: 'published-evidence',
     provenance: 'published-evidence',
@@ -524,8 +524,8 @@ export const PILOTS: readonly Pilot[] = [
     },
     taxon: 'Heliconius',
     publishedContext: {
-      en: 'Published genomic work shows an exceptional burst of chromosome change in the Heliconius sapho subclade. Most Heliconius species have 21 haploid chromosomes, but five species in this lineage range from 21 to 60 after repeated chromosome fissions—events in which one ancestral chromosome becomes two. Researchers have also identified three separate fusions between the female-specific W chromosome and autosomes. These changes create a natural system for asking how genome structure affects recombination, sex-chromosome evolution and the way inherited variants travel together. Five highly contiguous Heliconius reference genomes published in July 2026 add valuable comparative material, but they do not by themselves answer why the rearrangements spread or what effects they had.',
-      es: 'La evidencia genómica publicada muestra una explosión excepcional de cambios cromosómicos en el subclado sapho de Heliconius. La mayoría de las especies del género tiene 21 cromosomas haploides, pero cinco especies de este linaje presentan entre 21 y 60 después de fisiones repetidas, procesos en los que un cromosoma ancestral pasa a formar dos. También se identificaron tres fusiones independientes entre el cromosoma W —propio de las hembras— y autosomas. Este sistema permite preguntar cómo la estructura del genoma modifica la recombinación, la evolución de los cromosomas sexuales y la herencia conjunta de variantes. Cinco genomas de referencia de Heliconius muy contiguos, publicados en julio de 2026, amplían el material comparativo; por sí solos no explican por qué se extendieron los reordenamientos ni qué efectos tuvieron.',
+      en: 'Published genomic work shows an exceptional burst of chromosome change in the Heliconius sapho subclade. Most Heliconius species have 21 haploid chromosomes, but five species in this lineage range from 21 to 60 after repeated chromosome fissions, events in which one ancestral chromosome becomes two. Researchers have also identified three separate fusions between the female-specific W chromosome and autosomes. These changes create a natural system for asking how genome structure affects recombination, sex-chromosome evolution and the way inherited variants travel together. Five highly contiguous Heliconius reference genomes published in July 2026 add valuable comparative material, but they do not by themselves answer why the rearrangements spread or what effects they had.',
+      es: 'La evidencia genómica publicada muestra una explosión excepcional de cambios cromosómicos en el subclado sapho de Heliconius. La mayoría de las especies del género tiene 21 cromosomas haploides, pero cinco especies de este linaje presentan entre 21 y 60 después de fisiones repetidas, procesos en los que un cromosoma ancestral pasa a formar dos. También se identificaron tres fusiones independientes entre el cromosoma W, propio de las hembras, y autosomas. Este sistema permite preguntar cómo la estructura del genoma modifica la recombinación, la evolución de los cromosomas sexuales y la herencia conjunta de variantes. Cinco genomas de referencia de Heliconius muy contiguos, publicados en julio de 2026, amplían el material comparativo; por sí solos no explican por qué se extendieron los reordenamientos ni qué efectos tuvieron.',
     },
     proposedQuestion: {
       en: 'The proposed Caligo pilot would compare selected chromosome-scale genomes to test where fissions and fusions occurred, how they changed genomic organisation and which evolutionary hypotheses deserve deeper study.',
@@ -569,7 +569,7 @@ export const PILOTS: readonly Pilot[] = [
     },
     taxon: 'Parides ascanius',
     publishedContext: {
-      en: 'The 2018 IUCN assessment classified Parides ascanius as Vulnerable globally; Brazil’s 2021 national assessment classified it as Endangered. These dated assessments come from different jurisdictions and should not be treated as interchangeable. The species is associated with lowland coastal restinga and wetland habitats. A genetic study published in 2016 found low population structure and inferred substantial migration among the populations it sampled—an encouraging historical baseline, but not proof that the same connections persist today. Habitat loss, drainage and fragmentation can change movement long before populations look visibly different. A contemporary study therefore has to ask not only how much genetic diversity remains, but whether individuals and inherited variants still move among habitat patches. Precise localities should remain protected in public communication.',
+      en: 'The 2018 IUCN assessment classified Parides ascanius as Vulnerable globally; Brazil’s 2021 national assessment classified it as Endangered. These dated assessments come from different jurisdictions and should not be treated as interchangeable. The species is associated with lowland coastal restinga and wetland habitats. A genetic study published in 2016 found low population structure and inferred substantial migration among the populations it sampled. This is an encouraging historical baseline, but not proof that the same connections persist today. Habitat loss, drainage and fragmentation can change movement long before populations look visibly different. A contemporary study must measure both the genetic diversity that remains and the movement of individuals and inherited variants among habitat patches. Precise localities should remain protected in public communication.',
       es: 'La evaluación de la UICN de 2018 clasificó a Parides ascanius como Vulnerable a escala mundial; la evaluación nacional de Brasil de 2021 la clasificó como En Peligro. Son evaluaciones fechadas, pertenecen a jurisdicciones distintas y no deben tratarse como equivalentes. La especie se asocia con restingas costeras de tierras bajas y humedales. Un estudio genético publicado en 2016 encontró poca estructura poblacional e infirió migración considerable entre las poblaciones muestreadas: una línea de base histórica alentadora, pero no una prueba de que esas conexiones sigan intactas. La pérdida, el drenaje y la fragmentación del hábitat pueden modificar el movimiento mucho antes de que las poblaciones se vean diferentes. Por eso, un estudio actual debe preguntar no solo cuánta diversidad genética queda, sino si los individuos y las variantes heredadas todavía circulan entre parches de hábitat. Las localidades precisas deben permanecer protegidas.',
     },
     proposedQuestion: {
@@ -638,8 +638,8 @@ export const PILOTS: readonly Pilot[] = [
       es: 'El objetivo no es convertir a las polillas en villanas, sino lograr un monitoreo lo bastante preciso para tomar mejores decisiones.',
     },
     sourceNote: {
-      en: 'Scientific context: Horikoshi et al. 2021; Braga et al. 2024. UKRI2955 is related external context only; its taxa, sites, samples, partners, years and outputs are not Caligo facts.',
-      es: 'Contexto científico: Horikoshi et al. 2021; Braga et al. 2024. UKRI2955 es solo contexto externo relacionado; sus taxones, sitios, muestras, socios, años y resultados no son hechos de Caligo.',
+      en: 'Scientific context: Horikoshi et al. 2021; Braga et al. 2024. UKRI2955 is an independent project; its taxa, sites, samples, partners, years and outputs remain specific to that work.',
+      es: 'Contexto científico: Horikoshi et al. 2021; Braga et al. 2024. UKRI2955 es un proyecto independiente; sus taxones, sitios, muestras, socios, años y resultados pertenecen a ese trabajo.',
     },
     sourceIds: ['horikoshi-2021', 'braga-2024', 'ukri-soybean'],
     mediaIds: [],
@@ -723,8 +723,8 @@ export const MEDIA: readonly Media[] = [
       es: 'Primer plano de una mariposa búho del género Caligo, fotografiada de noche cerca del Centro de Investigación de Tambopata, Perú. El gran ojo compuesto redondo ocupa el centro; los patrones de escamas del ala llenan la parte izquierda.',
     },
     caption: {
-      en: 'Caligo sp., near Tambopata Research Centre, Peru. The bright round feature is the butterfly’s compound eye — not a wing eyespot.',
-      es: 'Caligo sp., cerca del Centro de Investigación de Tambopata, Perú. El elemento redondo brillante es el ojo compuesto de la mariposa, no un ocelo alar.',
+      en: 'Caligo sp., near Tambopata Research Centre, Peru. The bright round feature is the butterfly’s compound eye.',
+      es: 'Caligo sp., cerca del Centro de Investigación de Tambopata, Perú. El elemento redondo brillante es el ojo compuesto de la mariposa.',
     },
     credit: {
       en: 'Photograph: Polygonia c-album / Wikimedia Commons, CC BY-SA 4.0. Cropped and resized.',
@@ -803,12 +803,11 @@ const CC_BY_SA_4 = { name: 'CC BY-SA 4.0', url: 'https://creativecommons.org/lic
 const CC_BY_4 = { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' };
 const CC_BY_3 = { name: 'CC BY 3.0', url: 'https://creativecommons.org/licenses/by/3.0/' };
 
-const CC_BY_2 = { name: 'CC BY 2.0', url: 'https://creativecommons.org/licenses/by/2.0/' };
 const PD_US = { name: 'Public domain (US Government work)', url: 'https://www.usa.gov/government-works' };
 
 const AI_CAVEAT: Bilingual = {
-  en: 'AI concept illustration — not a documented specimen record.',
-  es: 'Ilustración conceptual generada con IA — no representa un registro documentado.',
+  en: 'AI concept illustration.',
+  es: 'Ilustración conceptual generada con IA.',
 };
 
 export const MODULES: readonly MediaModule[] = [
@@ -833,8 +832,8 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Una mariposa Heliconius erato con alas negras cruzadas por bandas rojas y amarillas, posada con las alas parcialmente abiertas.',
         },
         caption: {
-          en: 'Heliconius erato — a longwing butterfly from the Neotropics.',
-          es: 'Heliconius erato — una mariposa longwing del Neotrópico.',
+          en: 'Heliconius erato, a longwing butterfly from the Neotropics.',
+          es: 'Heliconius erato, una mariposa longwing del Neotrópico.',
         },
         credit: {
           en: 'Photograph: Philipp Weigell / Wikimedia Commons.',
@@ -885,25 +884,27 @@ export const MODULES: readonly MediaModule[] = [
     candidates: [
       {
         kind: 'documentary',
-        path: 'media/pilot-imagery/pilot-soybean-field-scouting-review.webp',
+        path: 'media/documentary/soybean-field-novo-barreiro.webp',
         width: 1600,
-        height: 1067,
-        creator: 'United Soybean Board / Soybean Checkoff',
-        licence: CC_BY_2.name,
-        licenceUrl: CC_BY_2.url,
-        sourceItemPage: 'https://commons.wikimedia.org/wiki/File:Scouting_for_Insects_in_Field_(48743831126).jpg',
-        changes: ['downloaded from Wikimedia Commons; resized to 2400 × 1600 and metadata stripped for the review copy'],
+        height: 1073,
+        creator: 'Lucas Friederich',
+        licence: CC_BY_SA_4.name,
+        licenceUrl: CC_BY_SA_4.url,
+        sourceItemPage: 'https://commons.wikimedia.org/wiki/File:Planta%C3%A7%C3%A3o_de_Soja_em_Novo_Barreiro.jpg',
+        dateTaken: '2018-12-18',
+        location: 'Novo Barreiro, Rio Grande do Sul, Brazil',
+        changes: ['downloaded from Wikimedia Commons; resized to 1600 × 1073, converted to WebP and metadata stripped'],
         alt: {
-          en: 'A person walks a soybean field with a large sweep net, actively scouting the crop for insects.',
-          es: 'Una persona recorre un campo de soja con una red de manga larga, buscando activamente insectos en el cultivo.',
+          en: 'Rows of green soybean plants fill a field bordered by trees in Novo Barreiro, southern Brazil.',
+          es: 'Hileras de plantas verdes de soja llenan un campo rodeado de árboles en Novo Barreiro, al sur de Brasil.',
         },
         caption: {
-          en: 'Sweep-net scouting is one common way monitoring is done in soybean production. This is a generic example of insect field scouting — not a Caligo site, not a Caligo participant and not necessarily a Neotropical locality.',
-          es: 'El muestreo con red de manga larga es una forma habitual de monitoreo en la producción de soja. Es un ejemplo genérico de trabajo de campo con insectos — no es un sitio de Caligo, ni un miembro de Caligo, ni necesariamente una localidad neotropical.',
+          en: 'A soybean field in Novo Barreiro, Rio Grande do Sul, Brazil. The proposed pilot follows lepidopteran populations across Brazilian soybean landscapes.',
+          es: 'Un campo de soja en Novo Barreiro, Rio Grande do Sul, Brasil. El piloto propuesto sigue poblaciones de lepidópteros en paisajes sojeros de Brasil.',
         },
         credit: {
-          en: 'Photograph: United Soybean Board / Soybean Checkoff, via Wikimedia Commons.',
-          es: 'Fotografía: United Soybean Board / Soybean Checkoff, vía Wikimedia Commons.',
+          en: 'Photograph: Lucas Friederich / Wikimedia Commons.',
+          es: 'Fotografía: Lucas Friederich / Wikimedia Commons.',
         },
       },
     ],
@@ -934,8 +935,8 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Un Panacea prola vivo posado sobre una hoja verde cubierta de rocío, con alas anteriores negras y blancas y alas posteriores de un rojo anaranjado intenso.',
         },
         caption: {
-          en: 'A living Panacea prola resting on vegetation during a field observation in Brazil. This photograph documents the species, not the seasonal movement reported in Peru.',
-          es: 'Un Panacea prola vivo posado sobre vegetación durante una observación de campo en Brasil. Esta fotografía documenta la especie, no el movimiento estacional reportado en Perú.',
+          en: 'A living Panacea prola resting on vegetation during a field observation in Brazil.',
+          es: 'Un Panacea prola vivo posado sobre vegetación durante una observación de campo en Brasil.',
         },
         credit: {
           en: 'Photograph: Laura Gaudette / iNaturalist, CC BY 4.0. Field-observation record indexed by GBIF.',
@@ -953,7 +954,7 @@ export const MODULES: readonly MediaModule[] = [
         path: 'media/journey/journey-01-identify-ai.webp',
         width: 1600,
         height: 900,
-        licence: 'Concept illustration — Caligo',
+        licence: 'Concept illustration by Caligo',
         licenceUrl: '',
         conceptCaveat: AI_CAVEAT,
         alt: {
@@ -965,8 +966,8 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Una pregunta clara y una identificación confiable orientan cada paso posterior.',
         },
         credit: {
-          en: 'Generated concept illustration; not documentary Caligo fieldwork. Person, butterfly and locality are synthetic.',
-          es: 'Ilustración conceptual generada; no representa trabajo de campo documental de Caligo. Persona, mariposa y localidad son sintéticas.',
+          en: 'Generated concept illustration for Caligo, combining a researcher, butterfly and field setting.',
+          es: 'Ilustración conceptual generada para Caligo que combina una investigadora, una mariposa y un entorno de campo.',
         },
       },
     ],
@@ -984,7 +985,7 @@ export const MODULES: readonly MediaModule[] = [
         licence: CC_BY_4.name,
         licenceUrl: CC_BY_4.url,
         sourceItemPage: 'https://commons.wikimedia.org/wiki/File:Trapezites_sciron_eremicola_labels.jpg',
-        taxon: 'Trapezites sciron eremicola (Australian skipper — used here as a generic voucher example)',
+        taxon: 'Trapezites sciron eremicola (Australian skipper)',
         taxonConfidence: 'species',
         changes: ['downloaded from Wikimedia Commons; no re-encode or crop applied locally'],
         alt: {
@@ -992,8 +993,8 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Primer plano de etiquetas de espécimen apiladas en orden canónico bajo una mariposa alfilerada, mostrando líneas de colector, localidad, fecha y determinavit.',
         },
         caption: {
-          en: 'Voucher labels in canonical order — a generic example, not a Caligo record. A reusable genomic reference should carry this level of provenance metadata.',
-          es: 'Etiquetas de voucher en orden canónico — un ejemplo genérico, no un registro de Caligo. Una referencia genómica reutilizable debería llevar este nivel de metadatos de procedencia.',
+          en: 'Voucher labels preserve collector, locality, date and identification details in a standard order. This is the documentary record a reusable genomic reference needs.',
+          es: 'Las etiquetas de voucher conservan los datos de colector, localidad, fecha e identificación en un orden estándar. Este es el registro documental que necesita una referencia genómica reutilizable.',
         },
         credit: {
           en: 'Photograph: Kristy Hoath / Museums Victoria Collections / Wikimedia Commons.',
@@ -1025,8 +1026,8 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Un cajón de museo con ejemplares preservados y curados de mariposas y polillas dispuestos en filas ordenadas.',
         },
         caption: {
-          en: 'A preserved voucher — a curated specimen kept in a collection — lets future researchers re-examine which organism produced the DNA. This is a generic European museum collection, not Caligo or Neotropical project activity.',
-          es: 'Un voucher preservado — un ejemplar curado dentro de una colección — permite volver a examinar qué organismo produjo el ADN. Se trata de una colección europea genérica, no de actividad neotropical ni del proyecto Caligo.',
+          en: 'A preserved voucher lets future researchers re-examine the organism that produced the DNA. These curated specimens belong to the Muzeum Górnośląskie collection in Bytom, Poland.',
+          es: 'Un voucher preservado permite volver a examinar el organismo que produjo el ADN. Estos ejemplares curados pertenecen a la colección del Muzeum Górnośląskie, en Bytom, Polonia.',
         },
         credit: {
           en: 'Photograph: Marek Ślusarczyk / Muzeum Górnośląskie, Bytom / Wikimedia Commons.',
@@ -1047,12 +1048,12 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Esquema de tres etapas que enlaza un ejemplar de mariposa preservado, un vial de material retenido y una tarjeta neutra de registro de secuencia.',
         },
         caption: {
-          en: 'Schematic: preserved specimen → retained material → sequence record. A generic diagram, not a real Caligo record.',
-          es: 'Esquema: ejemplar preservado → material retenido → registro de secuencia. Un diagrama genérico, no un registro real de Caligo.',
+          en: 'A preserved specimen connects retained material to its sequence record, keeping the organism available for future study.',
+          es: 'Un ejemplar preservado conecta el material retenido con su registro de secuencia y mantiene el organismo disponible para estudios futuros.',
         },
         credit: {
-          en: 'Code-native schematic created for the Caligo project — not a diagnostic image or completed dataset.',
-          es: 'Esquema vectorial creado mediante código para el proyecto Caligo — no es una imagen diagnóstica ni un conjunto de datos completado.',
+          en: 'Explanatory diagram created for Caligo.',
+          es: 'Diagrama explicativo creado para Caligo.',
         },
       },
     ],
@@ -1076,8 +1077,8 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Una investigadora con guantes usa una pipeta para tomar ADN de un microtubo en un laboratorio de genómica.',
         },
         caption: {
-          en: 'Extraction and sequencing generate the raw data. This is a generic illustration of laboratory technique, not Caligo laboratory work.',
-          es: 'La extracción y la secuenciación producen los datos crudos. Esta es una ilustración genérica de la técnica de laboratorio, no del trabajo de laboratorio de Caligo.',
+          en: 'DNA extraction and sequencing turn a documented sample into the raw data used for assembly and analysis.',
+          es: 'La extracción y la secuenciación convierten una muestra documentada en los datos crudos usados para el ensamblaje y el análisis.',
         },
         credit: {
           en: 'Photograph: Maggie Bartlett / National Human Genome Research Institute (NHGRI). Public domain (US Government work).',
@@ -1104,12 +1105,12 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Esquema de cuatro etapas del ensamblaje genómico: lecturas cortas superpuestas forman contigs más largos, los contigs se ordenan en scaffolds con brechas y los scaffolds se resuelven en una secuencia a escala cromosómica.',
         },
         caption: {
-          en: 'Assembly progresses from reads to contigs, scaffolds, and chromosome-scale sequence. The marks show the process only; they are not sequence data or quality measurements.',
-          es: 'El ensamblaje avanza de lecturas a contigs, scaffolds y una secuencia a escala cromosómica. Las marcas solo muestran el proceso; no son datos de secuencia ni mediciones de calidad.',
+          en: 'Assembly connects overlapping reads into contigs, orders them into scaffolds and resolves them toward chromosome-scale sequence.',
+          es: 'El ensamblaje conecta lecturas superpuestas en contigs, las ordena en scaffolds y las resuelve hacia una secuencia a escala cromosómica.',
         },
         credit: {
-          en: 'Code-native schematic created for the Caligo project. Generic scientific process diagram; no real assembly is depicted.',
-          es: 'Esquema vectorial creado mediante código para el proyecto Caligo. Diagrama científico genérico del proceso; no representa un ensamblaje real.',
+          en: 'Explanatory assembly diagram created for Caligo.',
+          es: 'Diagrama explicativo de ensamblaje creado para Caligo.',
         },
       },
     ],
@@ -1132,8 +1133,8 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Cadena bidireccional de evidencia que enlaza un ejemplar documentado, su genoma de referencia, muestras poblacionales, el contexto ambiental y la pregunta de investigación.',
         },
         caption: {
-          en: 'A reusable reference connects specimen provenance to population and environmental evidence—and back to the question being tested. This is a generic evidence model, not a completed Caligo dataset.',
-          es: 'Una referencia reutilizable conecta la procedencia del ejemplar con evidencia poblacional y ambiental, y con la pregunta que se pone a prueba. Es un modelo genérico de evidencia, no un conjunto de datos completado de Caligo.',
+          en: 'A reusable reference connects specimen provenance to population and environmental evidence, then returns every layer to the question being tested.',
+          es: 'Una referencia reutilizable conecta la procedencia del ejemplar con la evidencia poblacional y ambiental, y devuelve cada capa a la pregunta que se pone a prueba.',
         },
         credit: {
           en: 'Code-native schematic created for the Caligo project. No identifiers, coordinates, or study results are shown.',
@@ -1171,8 +1172,8 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Primer plano de una mariposa búho del género Caligo, fotografiada de noche. El gran ojo compuesto redondo ocupa el centro; los patrones de escamas del ala llenan la parte izquierda.',
         },
         caption: {
-          en: 'Caligo sp., near Tambopata Research Centre, Peru. The bright round feature is the butterfly’s compound eye — not a wing eyespot.',
-          es: 'Caligo sp., cerca del Centro de Investigación de Tambopata, Perú. El elemento redondo brillante es el ojo compuesto de la mariposa, no un ocelo alar.',
+          en: 'Caligo sp., near Tambopata Research Centre, Peru. The bright round feature is the butterfly’s compound eye.',
+          es: 'Caligo sp., cerca del Centro de Investigación de Tambopata, Perú. El elemento redondo brillante es el ojo compuesto de la mariposa.',
         },
         credit: {
           en: 'Photograph: Polygonia c-album / Wikimedia Commons. Cropped and resized.',

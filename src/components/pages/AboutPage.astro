@@ -51,8 +51,20 @@ const h = t.home;
     </div>
   </section>
 
+  <!-- A2b — The name as a present-day statement of the initiative's purpose -->
+  <section class="section section--tight section--panel" aria-labelledby="about-name">
+    <div class="container-narrow name-story">
+      <h2 id="about-name" class="section-heading">{a.name.heading}</h2>
+      <div class="prose-block">
+        {a.name.body.map((para) => (
+          <p class="prose-para">{para}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- A3 — Principles: the initiative's eight guiding principles -->
-  <section class="section section--tight section--panel" aria-labelledby="about-principles">
+  <section class="section section--tight" aria-labelledby="about-principles">
     <div class="container-narrow">
       <p class="section-eyebrow mono">{h.pillars.eyebrow}</p>
       <h2 id="about-principles" class="section-heading">{h.pillars.title}</h2>
@@ -161,6 +173,13 @@ const h = t.home;
     margin: 0;
     color: var(--text);
     line-height: 1.65;
+  }
+  .name-story .prose-para:last-child {
+    color: var(--text-strong);
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 560;
+    line-height: 1.35;
   }
 
   /* ---- A3 Principles list ---- */

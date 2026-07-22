@@ -48,8 +48,8 @@ export const PRINCIPLES: { title: Bilingual; body: Bilingual }[] = [
   {
     title: { en: 'Latin American leadership', es: 'Liderazgo latinoamericano' },
     body: {
-      en: 'Regional researchers are co-designers and co-leaders, not only sample providers.',
-      es: 'Quienes investigan en la región son co-diseñadores y co-líderes, no solo proveedores de muestras.',
+      en: 'Regional researchers co-design and co-lead the work, with roles extending far beyond sample provision.',
+      es: 'Quienes investigan en la región codiseñan y colideran el trabajo, con funciones que van mucho más allá de aportar muestras.',
     },
   },
   {
@@ -76,8 +76,8 @@ export const PRINCIPLES: { title: Bilingual; body: Bilingual }[] = [
   {
     title: { en: 'Patient and pragmatic', es: 'Con paciencia y sentido práctico' },
     body: {
-      en: 'Begin with available capacity — protocols, tissue banking, training, a white paper — and scale with funding and partnerships.',
-      es: 'Comenzar con la capacidad disponible —protocolos, bancos de tejidos, formación, un documento marco— y crecer con financiación y alianzas.',
+      en: 'Begin with available capacity in protocols, tissue banking, training and a white paper, then scale with funding and partnerships.',
+      es: 'Comenzar con la capacidad disponible en protocolos, bancos de tejidos, formación y un documento marco, y crecer con financiación y alianzas.',
     },
   },
   {

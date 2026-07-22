@@ -50,12 +50,12 @@ export const en = {
     "aiConceptCaveat": "",
     "aiGeneratedCredit": "Generated with AI for Caligo",
     "caveats": {
-      "fieldSite": "Illustrative scene—not a documented field site or completed Caligo activity.",
-      "specimen": "Illustrative organism—not a specimen identification or collection record.",
-      "map": "Generalised landscape—not a map, sampling route or locality record.",
-      "laboratory": "Illustrative workflow—not a documented laboratory, protocol result or Caligo activity.",
-      "data": "Schematic data—not an analysis result or authoritative scientific figure.",
-      "repository": "Illustrative interface—not a real accession, repository screen or deposited Caligo record."
+      "fieldSite": "Illustrative field scene",
+      "specimen": "Illustrative organism",
+      "map": "Generalised landscape view",
+      "laboratory": "Illustrative laboratory workflow",
+      "data": "Explanatory data schematic",
+      "repository": "Illustrative repository interface"
     }
   },
   "nav": {
@@ -89,7 +89,7 @@ export const en = {
     "ctaSecondary": "Join the network"
   },
   "home": {
-    "metaTitle": "Caligo — Genomes of Neotropical butterflies and moths",
+    "metaTitle": "Caligo | Genomes of Neotropical butterflies and moths",
     "metaDescription": "A Latin American-led effort developing reference genomes connected to documented specimens of Neotropical butterflies and moths.",
     "rail": {
       "overview": "Overview",
@@ -170,7 +170,7 @@ export const en = {
         },
         {
           "use": "Compare living populations with museum history",
-          "hook": "Historical specimens can place today’s genomes against a record collected decades—or more than a century—earlier.",
+          "hook": "Historical specimens can place today’s genomes against records collected decades, or more than a century, earlier.",
           "referenceContribution": "Helps organise fragmented historical DNA and compare it with present-day samples.",
           "whatElseIsNeeded": "Curated specimens, strong provenance, damage-aware methods and cautious interpretation of uneven historical sampling.",
           "cannotShowAlone": "A reference genome cannot repair missing collection records or turn a biased archive into a complete past population."
@@ -179,12 +179,12 @@ export const en = {
     },
     "questions": {
       "heading": "Six questions that open whole worlds",
-      "intro": "Six doorways into what regional genomics can — and cannot — answer. Each links to the full story on the Science page.",
+      "intro": "Six doorways into the questions regional genomics can investigate. Each leads to the full story on the Science page.",
       "labels": {
         "example": "A Neotropical example",
         "evidence": "Evidence scientists would need",
         "genomesCan": "What genomes can contribute",
-        "limits": "What genomes cannot show alone",
+        "limits": "Evidence needed beyond genomics",
         "sources": "Sources"
       },
       "items": [
@@ -196,7 +196,7 @@ export const en = {
           "evidence": "Chromosome-scale assemblies from several related species; chromosome counts or microscopy where available; reliable species relationships; and trait, recombination or breeding evidence that can test consequences.",
           "genomesCan": "Show which chromosome regions correspond across species, locate fissions and fusions, and reveal how recombination and linked variation changed around them.",
           "limits": "A genome comparison cannot establish why a rearrangement spread, whether it caused speciation, or how it affects behaviour and survival without additional biological evidence.",
-          "closing": "The deeper question is not only how many chromosomes a butterfly has, but what changed when its genome was repackaged.",
+          "closing": "The deeper question reaches beyond chromosome counts to what changed when the genome was repackaged.",
           "sourceNote": "Primary sources: Rueda-M et al. 2024 [S02]; Mackay-Smith et al. 2026 [S03].",
           "sourceIds": [
             "rueda-2024",
@@ -219,9 +219,9 @@ export const en = {
           ]
         },
         {
-          "question": "Which populations are still connected—and which are becoming isolated?",
+          "question": "Which populations remain connected, and which are becoming isolated?",
           "body": "Two populations can look alike even after the routes between them have begun to disappear.",
-          "answer": "Population connectivity means that individuals—and therefore inherited variants—still move among populations often enough to leave a detectable signal. Genetic diversity is the variety of inherited DNA variants within a population or species. Both depend on sampling: which individuals, places and moments are included. Parides ascanius, a threatened butterfly of Brazil’s coastal habitats, provides a useful baseline. A study published in 2016 found low genetic structure and inferred substantial migration among the populations it sampled. That does not guarantee that connectivity is unchanged today, especially where habitat loss, drainage and fragmentation continue. A new genomic study would need to compare carefully designed contemporary sampling with the earlier evidence, while protecting sensitive localities. [S06][S07][S08]",
+          "answer": "Population connectivity means that individuals, and therefore inherited variants, still move among populations often enough to leave a detectable signal. Genetic diversity is the variety of inherited DNA variants within a population or species. Both depend on sampling: which individuals, places and moments are included. Parides ascanius, a threatened butterfly of Brazil’s coastal habitats, provides a useful baseline. A study published in 2016 found low genetic structure and inferred substantial migration among the populations it sampled. That does not guarantee that connectivity is unchanged today, especially where habitat loss, drainage and fragmentation continue. A new genomic study would need to compare carefully designed contemporary sampling with the earlier evidence, while protecting sensitive localities. [S06][S07][S08]",
           "example": "Earlier genetic work on sampled P. ascanius populations found little structure and high inferred migration; that published result is a baseline to revisit, not proof of present-day connectivity. [S06]",
           "evidence": "Many individuals from a planned set of populations and times; a reference genome; habitat and landscape information; demographic models; and, where possible, direct observations or mark–recapture data.",
           "genomesCan": "Estimate relatedness, population structure, historical and recent gene flow, inbreeding and changes in genomic diversity.",
@@ -238,7 +238,7 @@ export const en = {
     },
     "pilotsTeaser": {
       "heading": "Four proposed pilots, four ways to test the approach",
-      "intro": "Four real biological puzzles turned into proposed workflows. Each card is a doorway; the full evidence, methods and boundaries live on the Pilots page."
+      "intro": "Four biological puzzles shape four proposed lines of work. The Pilots page connects each question to published evidence, methods and proposed next steps."
     },
     "namesakeTeaser": {
       "heading": "Look closer: form becomes evidence",
@@ -253,9 +253,9 @@ export const en = {
     },
     "name": {
       "eyebrow": "About the name",
-      "title": "Caligo: a genus and a project name",
-      "body": "The name Caligo also belongs to a Neotropical genus commonly known as owl butterflies. Here, that namesake opens a present-day path from visible structures—eyes, eyespots and scales—to questions about behaviour, evolution and inherited information.",
-      "sourceNote": "Naming note: Nicol Rueda’s source materials document Caligo as the selected project name and record that a naming survey took place; they do not document eyespots or another biological feature as the historical reason for the choice."
+      "title": "A name for what remains to be seen",
+      "body": "Caligo is Latin for fog and the name of a Neotropical genus of owl butterflies. On the wing, an eyespot becomes scales, then inherited information. The name holds the project’s thesis: a fauna this rich should not remain this dimly known.",
+      "sourceNote": "Caligo is the name selected through the initiative’s naming survey. The etymology and biological imagery are a present-day framing of the name, not a claim about how survey participants made their choice."
     },
     "intro": {
       "eyebrow": "Why this matters",
@@ -287,8 +287,8 @@ export const en = {
     }
   },
   "science": {
-    "metaTitle": "Science — Caligo",
-    "metaDescription": "How reference genomes become useful evidence—and why taxonomy, sampling, ecology, provenance and permissions still matter.",
+    "metaTitle": "Science | Caligo",
+    "metaDescription": "How reference genomes become useful evidence when taxonomy, sampling, ecology, provenance and permissions remain connected.",
     "title": "Science",
     "intro": "Genomics is most powerful when it stays connected to organisms, collections, landscapes and clear questions. A reference genome provides a common map for comparison; the biological conclusion comes from the specimens, samples, observations and tests placed around it.",
     "questionsHeading": "Six questions genomes can help investigate",
@@ -298,7 +298,7 @@ export const en = {
       "example": "Neotropical example",
       "evidence": "Evidence needed",
       "genomesCan": "What genomes can contribute",
-      "limits": "What genomes cannot establish alone",
+      "limits": "Evidence needed beyond genomics",
       "value": "Why an answer matters",
       "caligoConnection": "Connection to Caligo",
       "sourceNote": "Sources and scope"
@@ -328,7 +328,7 @@ export const en = {
         "evidence": "Chromosome-scale assemblies from several related species; chromosome counts or microscopy where available; reliable species relationships; and trait, recombination or breeding evidence that can test consequences.",
         "genomesCan": "Show which chromosome regions correspond across species, locate fissions and fusions, and reveal how recombination and linked variation changed around them.",
         "limits": "A genome comparison cannot establish why a rearrangement spread, whether it caused speciation, or how it affects behaviour and survival without additional biological evidence.",
-        "closing": "The deeper question is not only how many chromosomes a butterfly has, but what changed when its genome was repackaged.",
+        "closing": "The deeper question reaches beyond chromosome counts to what changed when the genome was repackaged.",
         "caligoConnection": "Direct context for the proposed Heliconius pilot.",
         "sourceNote": "Primary sources: Rueda-M et al. 2024 [S02]; Mackay-Smith et al. 2026 [S03].",
         "sourceIds": [
@@ -356,7 +356,7 @@ export const en = {
       },
       {
         "heading": "When does one scientific name conceal more than one lineage?",
-        "hook": "A name is a testable hypothesis about identity—not a label that DNA can confirm automatically.",
+        "hook": "A name is a testable hypothesis about identity. DNA alone cannot confirm it automatically.",
         "answer": "Taxonomy asks which organisms belong together, how they differ and what name applies. Genomes can reveal deep splits, overlooked relatives or unexpected mixing, but a genomic cluster is not automatically a species. Scientists also need specimens, morphology, life history, geography, earlier names and the rules of nomenclature. This matters especially for the Neotropics, where many moth groups remain less studied than familiar butterflies. A phylogenomic study of the predominantly Neotropical sack-bearer moth family Mimallonidae compared hundreds of genetic loci across most recognised genera, including data recovered from dry museum specimens. The result reorganised higher-level relationships and showed how collections can help resolve moth diversity that is difficult to study from fresh material alone. [S17]",
         "example": "Researchers used 515 loci and material representing 32 of 36 recognised Mimallonidae genera, including historical dry specimens, to reassess relationships in this largely Neotropical moth family. [S17]",
         "evidence": "Documented specimens; morphology and natural history; type and nomenclatural research; broad geographic and taxonomic sampling; barcodes or genomic data; and explicit species-delimitation hypotheses.",
@@ -371,9 +371,9 @@ export const en = {
         "value": "It can improve identification and classification while keeping species decisions grounded in more than genetic clusters."
       },
       {
-        "heading": "Which populations are still connected—and which are becoming isolated?",
+        "heading": "Which populations remain connected, and which are becoming isolated?",
         "hook": "Two populations can look alike even after the routes between them have begun to disappear.",
-        "answer": "Population connectivity means that individuals—and therefore inherited variants—still move among populations often enough to leave a detectable signal. Genetic diversity is the variety of inherited DNA variants within a population or species. Both depend on sampling: which individuals, places and moments are included. Parides ascanius, a threatened butterfly of Brazil’s coastal habitats, provides a useful baseline. A study published in 2016 found low genetic structure and inferred substantial migration among the populations it sampled. That does not guarantee that connectivity is unchanged today, especially where habitat loss, drainage and fragmentation continue. A new genomic study would need to compare carefully designed contemporary sampling with the earlier evidence, while protecting sensitive localities. [S06][S07][S08]",
+        "answer": "Population connectivity means that individuals, and therefore inherited variants, still move among populations often enough to leave a detectable signal. Genetic diversity is the variety of inherited DNA variants within a population or species. Both depend on sampling: which individuals, places and moments are included. Parides ascanius, a threatened butterfly of Brazil’s coastal habitats, provides a useful baseline. A study published in 2016 found low genetic structure and inferred substantial migration among the populations it sampled. That does not guarantee that connectivity is unchanged today, especially where habitat loss, drainage and fragmentation continue. A new genomic study would need to compare carefully designed contemporary sampling with the earlier evidence, while protecting sensitive localities. [S06][S07][S08]",
         "example": "Earlier genetic work on sampled P. ascanius populations found little structure and high inferred migration; that published result is a baseline to revisit, not proof of present-day connectivity. [S06]",
         "evidence": "Many individuals from a planned set of populations and times; a reference genome; habitat and landscape information; demographic models; and, where possible, direct observations or mark–recapture data.",
         "genomesCan": "Estimate relatedness, population structure, historical and recent gene flow, inbreeding and changes in genomic diversity.",
@@ -425,7 +425,7 @@ export const en = {
       }
     ],
     "recordVsGenome": {
-      "heading": "Not every genetic record is a genome—and not every genome answers the same question",
+      "heading": "Different genetic records answer different questions",
       "intro": "The terms below describe different kinds of evidence. Naming the right one prevents a barcode from being presented as a whole genome, a fragmented assembly from being described as chromosome-complete or one individual from standing in for an entire population.",
       "labels": {
         "recordColHeading": "Evidence type",
@@ -505,12 +505,12 @@ export const en = {
     }
   },
   "pilots": {
-    "metaTitle": "Proposed pilots — Caligo",
+    "metaTitle": "Proposed pilots | Caligo",
     "metaDescription": "Four proposed investigations linking chromosome evolution, threatened-population connectivity, sustainable agriculture and seasonal movement to documented genomic evidence.",
     "title": "Proposed pilots",
-    "opening": "These four pilot directions turn Caligo’s approach into testable work. Each starts with published evidence, defines the additional observations and samples a study would need, and states where genomics can help—and where it cannot answer alone.",
+    "opening": "These four pilot directions pair published evidence with questions designed for Caligo. Each sets out the organisms, observations, samples and comparisons needed to turn a biological puzzle into testable work.",
     "whatAPilotCanTest": {
-      "heading": "A pilot tests the whole chain, not only the sequencing",
+      "heading": "A pilot tests the entire evidence chain",
       "body": "The question, permissions, specimen record, DNA data, analysis, repositories and contributor credit all have to connect. A pilot is valuable when it reveals what works, what is missing and what should change before wider effort is considered."
     },
     "fieldLabels": {
@@ -519,18 +519,18 @@ export const en = {
       "proposedQuestion": "What the proposed Caligo pilot would test",
       "evidenceNeeded": "Evidence the pilot would need",
       "genomesCan": "What genomes can contribute",
-      "limits": "What genomes cannot show alone",
+      "limits": "Evidence needed beyond genomics",
       "closing": "The question to carry forward",
       "sourcesChecked": "Sources and scope"
     }
   },
   "caligo": {
-    "metaTitle": "Discover Caligo — eye, eyespot and evidence",
+    "metaTitle": "Discover Caligo | Eye, eyespot and evidence",
     "metaDescription": "A popular-science story about the Caligo genus, compound eyes, wing eyespots, scales and how competing explanations are tested.",
     "meetTheNamesake": {
-      "heading": "Meet Caligo: eye, eyespot and evidence",
-      "body": "Caligo is also a Neotropical genus commonly known as owl butterflies. Its compound eyes, wing eyespots and microscopic scales offer a compact lesson in how science works: observe carefully, distinguish structures that look similar and test more than one explanation. This Discover story uses the namesake as a present-day invitation to move from what we can see to the evidence beneath it.",
-      "sourceNote": "Naming note: Nicol Rueda’s source materials document Caligo as the selected project name and record that a naming survey took place; they do not document eyespots or another biological feature as the historical reason for the choice."
+      "heading": "Caligo: a name for the work ahead",
+      "body": "Caligo is Latin for fog. It is also a Neotropical genus of owl butterflies, a name rooted in the region this network serves. On its wings, a mark resembles an eye but cannot see. Look closer and the pattern resolves into scales; closer still, into the inherited information that built them. A fauna this rich should not remain this dimly known.",
+      "sourceNote": "Caligo is the name selected through the initiative’s naming survey. The etymology and biological imagery are a present-day framing of the name, not a claim about how survey participants made their choice."
     },
     "compoundEye": {
       "eyebrow": "Look at the right structure",
@@ -571,11 +571,11 @@ export const en = {
     },
     "scales": {
       "heading": "A wing pattern is built from thousands of scales",
-      "body": "Butterfly scales are tiny structures that overlap across the wing. Pigments absorb some wavelengths; microscopic architecture can scatter, reflect or suppress light. A study of a dark eyespot region in Caligo memnon described nanoscale structures associated with its black appearance. Elsewhere in the Neotropics, the glasswing Greta oto achieves transparency through much lower scale density, narrow bristle-like scales and irregular wax nanopillars that reduce reflection. Similar-looking effects can therefore arise from very different physical arrangements—another reason to connect visible traits with microscopy, development and comparative genomics. [S19][S12]"
+      "body": "Butterfly scales are tiny structures that overlap across the wing. Pigments absorb some wavelengths; microscopic architecture can scatter, reflect or suppress light. A study of a dark eyespot region in Caligo memnon described nanoscale structures associated with its black appearance. Elsewhere in the Neotropics, the glasswing Greta oto achieves transparency through much lower scale density, narrow bristle-like scales and irregular wax nanopillars that reduce reflection. Similar-looking effects can arise from very different physical arrangements. That is another reason to connect visible traits with microscopy, development and comparative genomics. [S19][S12]"
     },
     "genomicsCould": {
       "heading": "From the visible butterfly to inherited information",
-      "body": "A genome can help researchers compare genes and regulatory regions involved in scale development, pigmentation, vision or behaviour across related species. It can also reveal when those regions changed, mixed between lineages or evolved under different pressures. It cannot show what a predator perceives or why a butterfly behaves in a certain way without experiments, microscopy, natural history and sensory biology. The value of the genome is not that it replaces the visible organism, but that it gives another layer of evidence beneath what we can see."
+      "body": "A genome adds another layer of evidence beneath the visible organism. Researchers can compare genes and regulatory regions involved in scale development, pigmentation, vision or behaviour across related species, then investigate when those regions changed, crossed between lineages or evolved under different pressures. Experiments, microscopy, natural history and sensory biology remain essential for understanding perception and behaviour."
     },
     "relatedStories": [
       {
@@ -590,7 +590,7 @@ export const en = {
       },
       {
         "title": "A century-old specimen can still speak",
-        "body": "With methods designed for fragmented DNA, dry-pinned museum Lepidoptera more than a century old can yield hundreds of genetic loci—provided their identity and history remain traceable. [S16]",
+        "body": "With methods designed for fragmented DNA, dry-pinned museum Lepidoptera more than a century old can yield hundreds of genetic loci when their identity and history remain traceable. [S16]",
         "placement": "Discover story and Science provenance link"
       }
     ]
@@ -603,10 +603,10 @@ export const en = {
       "soybean": "Soybean Lepidoptera",
       "panacea": "Panacea prola"
     },
-    "metaTitle": "Proposed pilot projects — Caligo",
+    "metaTitle": "Proposed pilot projects | Caligo",
     "metaDescription": "Four proposed pilot projects linking published evidence to testable Neotropical genomics questions.",
     "title": "Proposed pilot projects",
-    "intro": "Each proposed pilot project begins with published evidence and a question that demands more. Follow the organism, the observations and samples the work would need, what genomics can add, and what must still come from ecology, taxonomy or experiment.",
+    "intro": "Each proposed pilot begins with published evidence and a question that demands more. Follow the organism, the observations and samples the work would need, the contribution of genomics and the evidence supplied by ecology, taxonomy or experiment.",
     "openToCollaborators": "Start a pilot conversation",
     "goalLabel": "Research question",
     "resourcesLabel": "Published and documented starting points",
@@ -633,10 +633,18 @@ export const en = {
     }
   },
   "about": {
-    "metaTitle": "About — Caligo",
+    "metaTitle": "About | Caligo",
     "metaDescription": "Caligo’s purpose, scientific stance and place in the wider biodiversity-genomics landscape.",
     "title": "About Caligo",
     "body": "Caligo is a Latin American-led effort focused on reference genomes for Neotropical butterflies and moths. It brings together organisms, documented specimens, taxonomy and comparative genomics so regional questions can be investigated with evidence that remains traceable and reusable.",
+    "name": {
+      "heading": "Why Caligo",
+      "body": [
+        "Caligo is Latin for fog. It is also a Neotropical genus of owl butterflies, a name rooted in the region this network serves. The name belongs to no single country, and neither does the work ahead.",
+        "On its wings, a mark resembles an eye but cannot see. Look closer and the pattern resolves into scales; closer still, into the inherited information that built them.",
+        "One of Earth’s richest Lepidoptera faunas should not remain among its least sequenced."
+      ]
+    },
     "beingDecided": {
       "heading": "What Caligo brings together",
       "questions": [
@@ -648,8 +656,8 @@ export const en = {
     },
     "externalContext": {
       "heading": "Part of a wider scientific landscape",
-      "body": "Caligo can learn from global genome initiatives, public repositories, collections, taxonomic networks and data-governance frameworks while keeping its public claims specific to Caligo. External projects appear only when they provide scientific or methodological context.",
-      "disclaimer": "A citation or comparison does not imply a partnership, commitment, endorsement or transfer of another project's people, samples, sites, funding or achievements to Caligo."
+      "body": "Caligo learns from global genome initiatives, public repositories, collections, taxonomic networks and data-governance frameworks while keeping its public claims specific to this initiative.",
+      "disclaimer": "External projects provide scientific or methodological context. Formal partnerships and commitments are identified explicitly when they exist."
     },
     "objectives": {
       "heading": "Strategic objectives",
@@ -673,7 +681,7 @@ export const en = {
     }
   },
   "participate": {
-    "metaTitle": "Participate — Caligo",
+    "metaTitle": "Participate | Caligo",
     "metaDescription": "Ways for researchers, students, collections, educators, naturalists, institutions and supporters to begin a conversation with Caligo.",
     "title": "Participate",
     "intro": "Good biodiversity genomics begins with people who know organisms, collections, landscapes, methods and questions. Whether you work in a laboratory, a museum, a classroom, the field or an institution, the useful first step is a clear conversation about what you know and what you hope to investigate.",
@@ -742,14 +750,14 @@ export const en = {
     "preprint": "Preprint; not peer reviewed at the time of checking.",
     "sensitiveLocalities": "Precise sensitive-species localities are not shown.",
     "mutableData": "Mutable database or institutional record; access date shown.",
-    "noRegionalPercentage": "No Neotropical genome-coverage percentage is stated because a frozen taxonomic denominator, realm-membership rule and dated assembly deduplication analysis have not been completed together."
+    "noRegionalPercentage": "Regional genome coverage will be reported against a frozen taxonomic denominator, explicit realm rules and a dated, deduplicated assembly snapshot."
   },
   "compat": {
     "heading": "This material now lives elsewhere",
     "body": "The current explanation is part of the About page. Follow the link to continue."
   },
   "network": {
-    "metaTitle": "Network — Caligo",
+    "metaTitle": "Network | Caligo",
     "metaDescription": "The Caligo research network: partner sequencing facilities, initiative leaders and upcoming activities in Latin America.",
     "title": "Research network",
     "intro": "A Latin American-led collaboration of researchers, institutions and facilities working on reference genomes for Neotropical butterflies and moths.",
@@ -763,16 +771,16 @@ export const en = {
     },
     "positioning": {
       "heading": "Connections and context",
-      "body": "Caligo is engaged with EBP Latin America — the Earth BioGenome Project's Latin American regional initiative — and with Genotropics, a network working on genomic diversity of tropical organisms. These connections situate Caligo's work within a wider regional genomics landscape; they do not imply joint governance, shared resources or formal partnership unless explicitly stated."
+      "body": "Caligo is engaged with EBP Latin America, the Earth BioGenome Project's regional initiative, and with Genotropics, a network working on the genomic diversity of tropical organisms. These connections place Caligo within a wider regional genomics landscape. Formal partnerships or shared programmes are identified explicitly."
     }
   },
   "notFound": {
-    "title": "Page not found",
-    "body": "The page you are looking for does not exist or has moved.",
-    "homeLink": "Return to the home page"
+    "title": "This page has not been assembled yet",
+    "body": "The address may have changed, or the page may never have existed. Here is the way back.",
+    "homeLink": "Back to the home page"
   },
   "footer": {
-    "tagline": "Documented organisms. Reusable genomes. Neotropical questions.",
+    "tagline": "Documented specimens. Reusable genomes. Neotropical questions.",
     "rights": "Caligo",
     "contact": "Contact",
     "navHeading": "Explore",

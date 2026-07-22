@@ -47,12 +47,12 @@ export const es: Dict = {
     "aiConceptCaveat": "",
     "aiGeneratedCredit": "Generada con IA para Caligo",
     "caveats": {
-      "fieldSite": "Escena ilustrativa: no corresponde a un sitio de campo documentado ni a una actividad realizada por Caligo.",
-      "specimen": "Organismo ilustrativo: no corresponde a una identificación ni a un registro de colecta.",
-      "map": "Paisaje generalizado: no es un mapa, una ruta de muestreo ni un registro de localidad.",
-      "laboratory": "Flujo ilustrativo: no corresponde a un laboratorio, un resultado de protocolo ni una actividad documentada de Caligo.",
-      "data": "Datos esquemáticos: no son un resultado de análisis ni una figura científica de referencia.",
-      "repository": "Interfaz ilustrativa: no es un número de acceso, una pantalla de repositorio ni un registro depositado por Caligo."
+      "fieldSite": "Escena ilustrativa de campo",
+      "specimen": "Organismo ilustrativo",
+      "map": "Vista generalizada del paisaje",
+      "laboratory": "Flujo ilustrativo de laboratorio",
+      "data": "Esquema explicativo de datos",
+      "repository": "Interfaz ilustrativa de repositorio"
     }
   },
   "nav": {
@@ -94,7 +94,7 @@ export const es: Dict = {
       "proposedPilots": "Pilotos propuestos",
       "discoverCaligo": "Descubre Caligo"
     },
-    "metaTitle": "Caligo — Genomas de mariposas y polillas neotropicales",
+    "metaTitle": "Caligo | Genomas de mariposas y polillas neotropicales",
     "metaDescription": "Un esfuerzo liderado desde América Latina que desarrolla genomas de referencia vinculados a ejemplares documentados de mariposas y polillas neotropicales.",
     "hero": {
       "kicker": "Genómica de mariposas y polillas neotropicales",
@@ -176,24 +176,24 @@ export const es: Dict = {
     },
     "questions": {
       "heading": "Seis preguntas que abren mundos enteros",
-      "intro": "Seis puertas hacia lo que la genómica regional puede —y no puede— responder. Cada una lleva a la historia completa en la página de Ciencia.",
+      "intro": "Seis puertas hacia las preguntas que la genómica regional puede investigar. Cada una lleva a la historia completa en la página de Ciencia.",
       "labels": {
         "example": "Un ejemplo neotropical",
         "evidence": "Evidencia que haría falta",
         "genomesCan": "Qué pueden aportar los genomas",
-        "limits": "Qué no pueden mostrar por sí solos",
+        "limits": "Evidencia necesaria más allá de la genómica",
         "sources": "Fuentes"
       },
       "items": [
         {
           "question": "¿Cómo pueden dividirse y fusionarse los cromosomas mientras un linaje sigue evolucionando?",
           "body": "Un linaje de mariposas puede reorganizar los paquetes que contienen su ADN sin desmoronarse por el camino.",
-          "answer": "Los cromosomas son grandes paquetes de ADN. Hay una fisión cromosómica cuando un cromosoma ancestral pasa a formar dos; una fusión reúne en uno solo ADN que antes estaba en dos cromosomas. Estos cambios pueden modificar qué genes se heredan juntos, cómo se recombina el ADN durante la reproducción y cómo evolucionan los cromosomas sexuales. En Heliconius, la mayoría de las especies tiene 21 cromosomas en el conjunto haploide, pero cinco especies del subclado sapho presentan entre 21 y 60 después de numerosas fisiones. La evidencia genómica también respalda tres fusiones independientes entre el cromosoma W —propio de las hembras— y autosomas. Las cifras muestran que hubo cambios estructurales profundos; no revelan por sí solas si persistieron por selección, azar u otro proceso. Para responder eso hay que comparar especies, rasgos e historias evolutivas. [S02][S03]",
+          "answer": "Los cromosomas son grandes paquetes de ADN. Hay una fisión cromosómica cuando un cromosoma ancestral pasa a formar dos; una fusión reúne en uno solo ADN que antes estaba en dos cromosomas. Estos cambios pueden modificar qué genes se heredan juntos, cómo se recombina el ADN durante la reproducción y cómo evolucionan los cromosomas sexuales. En Heliconius, la mayoría de las especies tiene 21 cromosomas en el conjunto haploide, pero cinco especies del subclado sapho presentan entre 21 y 60 después de numerosas fisiones. La evidencia genómica también respalda tres fusiones independientes entre el cromosoma W, propio de las hembras, y autosomas. Las cifras muestran que hubo cambios estructurales profundos; no revelan por sí solas si persistieron por selección, azar u otro proceso. Para responder eso hay que comparar especies, rasgos e historias evolutivas. [S02][S03]",
           "example": "La mayoría de Heliconius conserva 21 cromosomas haploides, mientras un linaje llega hasta 60; además, se identificaron tres eventos de fusión entre el W y autosomas. [S02]",
           "evidence": "Ensamblajes a escala cromosómica de varias especies emparentadas; conteos cromosómicos o microscopía cuando existan; relaciones filogenéticas confiables; y evidencia sobre rasgos, recombinación o cruces que permita probar consecuencias.",
           "genomesCan": "Mostrar qué regiones cromosómicas corresponden entre especies, localizar fisiones y fusiones y revelar cómo cambió la recombinación o la variación ligada alrededor de ellas.",
           "limits": "La comparación de genomas no demuestra por qué se extendió un reordenamiento, si causó especiación ni cómo afecta la conducta o la supervivencia sin evidencia biológica adicional.",
-          "closing": "La pregunta profunda no es solo cuántos cromosomas tiene una mariposa, sino qué cambió cuando su genoma volvió a empaquetarse.",
+          "closing": "La pregunta profunda va más allá del número de cromosomas: qué cambió cuando el genoma volvió a empaquetarse.",
           "sourceNote": "Fuentes primarias: Rueda-M et al. 2024 [S02]; Mackay-Smith et al. 2026 [S03].",
           "sourceIds": [
             "rueda-2024",
@@ -218,7 +218,7 @@ export const es: Dict = {
         {
           "question": "¿Qué poblaciones siguen conectadas y cuáles comienzan a quedar aisladas?",
           "body": "Dos poblaciones pueden verse iguales incluso cuando las rutas entre ellas ya están desapareciendo.",
-          "answer": "La conectividad poblacional significa que los individuos —y con ellos las variantes heredadas— todavía se desplazan entre poblaciones con suficiente frecuencia para dejar una señal detectable. La diversidad genética es la variedad de variantes heredadas dentro de una población o especie. Ambas dependen del muestreo: qué individuos, lugares y momentos se incluyen. Parides ascanius, una mariposa amenazada de hábitats costeros de Brasil, ofrece una línea de base útil. Un estudio de 2016 encontró poca estructura genética e infirió migración considerable entre las poblaciones muestreadas. Eso no garantiza que la conectividad siga igual hoy, sobre todo donde continúan la pérdida, el drenaje y la fragmentación del hábitat. Un nuevo estudio genómico tendría que comparar un muestreo contemporáneo bien diseñado con la evidencia anterior y proteger las localidades sensibles. [S06][S07][S08]",
+          "answer": "La conectividad poblacional significa que los individuos, y con ellos las variantes heredadas, todavía se desplazan entre poblaciones con suficiente frecuencia para dejar una señal detectable. La diversidad genética es la variedad de variantes heredadas dentro de una población o especie. Ambas dependen del muestreo: qué individuos, lugares y momentos se incluyen. Parides ascanius, una mariposa amenazada de hábitats costeros de Brasil, ofrece una línea de base útil. Un estudio de 2016 encontró poca estructura genética e infirió migración considerable entre las poblaciones muestreadas. Eso no garantiza que la conectividad siga igual hoy, sobre todo donde continúan la pérdida, el drenaje y la fragmentación del hábitat. Un nuevo estudio genómico tendría que comparar un muestreo contemporáneo bien diseñado con la evidencia anterior y proteger las localidades sensibles. [S06][S07][S08]",
           "example": "El trabajo genético anterior encontró poca estructura y alta migración inferida entre las poblaciones de P. ascanius estudiadas; es una referencia para volver a medir, no una prueba de conectividad actual. [S06]",
           "evidence": "Muchos individuos de un conjunto planificado de poblaciones y momentos; un genoma de referencia; información de hábitat y paisaje; modelos demográficos; y, cuando sea posible, observaciones directas o marcaje y recaptura.",
           "genomesCan": "Estimar parentesco, estructura poblacional, flujo génico histórico y reciente, endogamia y cambios en la diversidad genómica.",
@@ -235,7 +235,7 @@ export const es: Dict = {
     },
     "pilotsTeaser": {
       "heading": "Cuatro pilotos propuestos, cuatro maneras de poner a prueba el enfoque",
-      "intro": "Cuatro enigmas biológicos reales convertidos en flujos de trabajo propuestos. Cada tarjeta es una puerta; la evidencia, los métodos y los límites completos viven en la página de Pilotos."
+      "intro": "Cuatro enigmas biológicos orientan cuatro líneas de trabajo propuestas. La página de Pilotos conecta cada pregunta con la evidencia publicada, los métodos y los siguientes pasos propuestos."
     },
     "namesakeTeaser": {
       "heading": "Mira más de cerca: la forma se convierte en evidencia",
@@ -250,9 +250,9 @@ export const es: Dict = {
     },
     "name": {
       "eyebrow": "Sobre el nombre",
-      "title": "Caligo: un género y el nombre de un proyecto",
-      "body": "El nombre Caligo también pertenece a un género neotropical conocido por sus mariposas búho. Aquí, ese nombre abre un recorrido actual desde estructuras visibles —ojos, ocelos y escamas— hacia preguntas sobre conducta, evolución e información heredada.",
-      "sourceNote": "Nota sobre el nombre: los materiales fuente de Nicol Rueda documentan a Caligo como el nombre elegido para el proyecto y registran que hubo una encuesta de nombres; no documentan los ocelos ni otro rasgo biológico como la razón histórica de esa elección."
+      "title": "Un nombre para lo que falta por ver",
+      "body": "Caligo significa niebla en latín y también nombra un género neotropical de mariposas búho. En el ala, un ocelo se resuelve en escamas y luego en información heredada. El nombre contiene la tesis del proyecto: una fauna tan rica no debería seguir tan a oscuras.",
+      "sourceNote": "Caligo es el nombre elegido en la encuesta de la iniciativa. La etimología y las imágenes biológicas son una lectura actual del nombre, no una afirmación sobre cómo votaron quienes participaron."
     },
     "intro": {
       "eyebrow": "Por qué importa",
@@ -284,7 +284,7 @@ export const es: Dict = {
     }
   },
   "science": {
-    "metaTitle": "Ciencia — Caligo",
+    "metaTitle": "Ciencia | Caligo",
     "metaDescription": "Cómo los genomas de referencia se convierten en evidencia útil y por qué siguen importando la taxonomía, el muestreo, la ecología, la procedencia y los permisos.",
     "title": "Ciencia",
     "intro": "La genómica alcanza su mayor fuerza cuando permanece conectada con organismos, colecciones, paisajes y preguntas claras. Un genoma de referencia ofrece un mapa común para comparar; la conclusión biológica surge de los ejemplares, muestras, observaciones y pruebas que se colocan a su alrededor.",
@@ -295,7 +295,7 @@ export const es: Dict = {
       "example": "Ejemplo neotropical",
       "evidence": "Evidencia necesaria",
       "genomesCan": "Qué pueden aportar los genomas",
-      "limits": "Qué no pueden establecer por sí solos",
+      "limits": "Evidencia necesaria más allá de la genómica",
       "value": "Por qué importa una respuesta",
       "caligoConnection": "Conexión con Caligo",
       "sourceNote": "Fuentes y alcance"
@@ -320,12 +320,12 @@ export const es: Dict = {
       {
         "heading": "¿Cómo pueden dividirse y fusionarse los cromosomas mientras un linaje sigue evolucionando?",
         "hook": "Un linaje de mariposas puede reorganizar los paquetes que contienen su ADN sin desmoronarse por el camino.",
-        "answer": "Los cromosomas son grandes paquetes de ADN. Hay una fisión cromosómica cuando un cromosoma ancestral pasa a formar dos; una fusión reúne en uno solo ADN que antes estaba en dos cromosomas. Estos cambios pueden modificar qué genes se heredan juntos, cómo se recombina el ADN durante la reproducción y cómo evolucionan los cromosomas sexuales. En Heliconius, la mayoría de las especies tiene 21 cromosomas en el conjunto haploide, pero cinco especies del subclado sapho presentan entre 21 y 60 después de numerosas fisiones. La evidencia genómica también respalda tres fusiones independientes entre el cromosoma W —propio de las hembras— y autosomas. Las cifras muestran que hubo cambios estructurales profundos; no revelan por sí solas si persistieron por selección, azar u otro proceso. Para responder eso hay que comparar especies, rasgos e historias evolutivas. [S02][S03]",
+        "answer": "Los cromosomas son grandes paquetes de ADN. Hay una fisión cromosómica cuando un cromosoma ancestral pasa a formar dos; una fusión reúne en uno solo ADN que antes estaba en dos cromosomas. Estos cambios pueden modificar qué genes se heredan juntos, cómo se recombina el ADN durante la reproducción y cómo evolucionan los cromosomas sexuales. En Heliconius, la mayoría de las especies tiene 21 cromosomas en el conjunto haploide, pero cinco especies del subclado sapho presentan entre 21 y 60 después de numerosas fisiones. La evidencia genómica también respalda tres fusiones independientes entre el cromosoma W, propio de las hembras, y autosomas. Las cifras muestran que hubo cambios estructurales profundos; no revelan por sí solas si persistieron por selección, azar u otro proceso. Para responder eso hay que comparar especies, rasgos e historias evolutivas. [S02][S03]",
         "example": "La mayoría de Heliconius conserva 21 cromosomas haploides, mientras un linaje llega hasta 60; además, se identificaron tres eventos de fusión entre el W y autosomas. [S02]",
         "evidence": "Ensamblajes a escala cromosómica de varias especies emparentadas; conteos cromosómicos o microscopía cuando existan; relaciones filogenéticas confiables; y evidencia sobre rasgos, recombinación o cruces que permita probar consecuencias.",
         "genomesCan": "Mostrar qué regiones cromosómicas corresponden entre especies, localizar fisiones y fusiones y revelar cómo cambió la recombinación o la variación ligada alrededor de ellas.",
         "limits": "La comparación de genomas no demuestra por qué se extendió un reordenamiento, si causó especiación ni cómo afecta la conducta o la supervivencia sin evidencia biológica adicional.",
-        "closing": "La pregunta profunda no es solo cuántos cromosomas tiene una mariposa, sino qué cambió cuando su genoma volvió a empaquetarse.",
+        "closing": "La pregunta profunda va más allá del número de cromosomas: qué cambió cuando el genoma volvió a empaquetarse.",
         "caligoConnection": "Contexto directo para el piloto propuesto sobre Heliconius.",
         "sourceNote": "Fuentes primarias: Rueda-M et al. 2024 [S02]; Mackay-Smith et al. 2026 [S03].",
         "sourceIds": [
@@ -354,7 +354,7 @@ export const es: Dict = {
       {
         "heading": "¿Cuándo un solo nombre científico oculta más de un linaje?",
         "hook": "Un nombre es una hipótesis comprobable sobre la identidad, no una etiqueta que el ADN confirma de manera automática.",
-        "answer": "La taxonomía pregunta qué organismos pertenecen al mismo grupo, en qué se diferencian y qué nombre corresponde. Los genomas pueden revelar separaciones profundas, parientes inadvertidos o mezclas inesperadas, pero un grupo genómico no se convierte automáticamente en especie. También hacen falta ejemplares, morfología, historia natural, geografía, nombres previos y las reglas de nomenclatura. Esto importa especialmente en el Neotrópico, donde muchos grupos de polillas han recibido menos atención que las mariposas conocidas. Un estudio filogenómico de Mimallonidae —una familia de polillas predominantemente neotropical— comparó cientos de loci genéticos en la mayoría de los géneros reconocidos e incluyó datos recuperados de ejemplares secos de museo. El análisis reorganizó relaciones de nivel superior y mostró cómo las colecciones ayudan a resolver una diversidad difícil de estudiar solo con material reciente. [S17]",
+        "answer": "La taxonomía pregunta qué organismos pertenecen al mismo grupo, en qué se diferencian y qué nombre corresponde. Los genomas pueden revelar separaciones profundas, parientes inadvertidos o mezclas inesperadas, pero un grupo genómico no se convierte automáticamente en especie. También hacen falta ejemplares, morfología, historia natural, geografía, nombres previos y las reglas de nomenclatura. Esto importa especialmente en el Neotrópico, donde muchos grupos de polillas han recibido menos atención que las mariposas conocidas. Un estudio filogenómico de Mimallonidae, una familia de polillas predominantemente neotropical, comparó cientos de loci genéticos en la mayoría de los géneros reconocidos e incluyó datos recuperados de ejemplares secos de museo. El análisis reorganizó relaciones de nivel superior y mostró cómo las colecciones ayudan a resolver una diversidad difícil de estudiar solo con material reciente. [S17]",
         "example": "El estudio usó 515 loci y material de 32 de los 36 géneros reconocidos de Mimallonidae, incluidos ejemplares históricos secos, para reevaluar las relaciones de esta familia principalmente neotropical. [S17]",
         "evidence": "Ejemplares documentados; morfología e historia natural; revisión de tipos y nomenclatura; muestreo geográfico y taxonómico amplio; códigos de barras o datos genómicos; e hipótesis explícitas de delimitación.",
         "genomesCan": "Revelar relaciones, estructura oculta, hibridación y regiones diagnósticas que merecen una revisión taxonómica más profunda.",
@@ -370,7 +370,7 @@ export const es: Dict = {
       {
         "heading": "¿Qué poblaciones siguen conectadas y cuáles comienzan a quedar aisladas?",
         "hook": "Dos poblaciones pueden verse iguales incluso cuando las rutas entre ellas ya están desapareciendo.",
-        "answer": "La conectividad poblacional significa que los individuos —y con ellos las variantes heredadas— todavía se desplazan entre poblaciones con suficiente frecuencia para dejar una señal detectable. La diversidad genética es la variedad de variantes heredadas dentro de una población o especie. Ambas dependen del muestreo: qué individuos, lugares y momentos se incluyen. Parides ascanius, una mariposa amenazada de hábitats costeros de Brasil, ofrece una línea de base útil. Un estudio de 2016 encontró poca estructura genética e infirió migración considerable entre las poblaciones muestreadas. Eso no garantiza que la conectividad siga igual hoy, sobre todo donde continúan la pérdida, el drenaje y la fragmentación del hábitat. Un nuevo estudio genómico tendría que comparar un muestreo contemporáneo bien diseñado con la evidencia anterior y proteger las localidades sensibles. [S06][S07][S08]",
+        "answer": "La conectividad poblacional significa que los individuos, y con ellos las variantes heredadas, todavía se desplazan entre poblaciones con suficiente frecuencia para dejar una señal detectable. La diversidad genética es la variedad de variantes heredadas dentro de una población o especie. Ambas dependen del muestreo: qué individuos, lugares y momentos se incluyen. Parides ascanius, una mariposa amenazada de hábitats costeros de Brasil, ofrece una línea de base útil. Un estudio de 2016 encontró poca estructura genética e infirió migración considerable entre las poblaciones muestreadas. Eso no garantiza que la conectividad siga igual hoy, sobre todo donde continúan la pérdida, el drenaje y la fragmentación del hábitat. Un nuevo estudio genómico tendría que comparar un muestreo contemporáneo bien diseñado con la evidencia anterior y proteger las localidades sensibles. [S06][S07][S08]",
         "example": "El trabajo genético anterior encontró poca estructura y alta migración inferida entre las poblaciones de P. ascanius estudiadas; es una referencia para volver a medir, no una prueba de conectividad actual. [S06]",
         "evidence": "Muchos individuos de un conjunto planificado de poblaciones y momentos; un genoma de referencia; información de hábitat y paisaje; modelos demográficos; y, cuando sea posible, observaciones directas o marcaje y recaptura.",
         "genomesCan": "Estimar parentesco, estructura poblacional, flujo génico histórico y reciente, endogamia y cambios en la diversidad genómica.",
@@ -422,7 +422,7 @@ export const es: Dict = {
       }
     ],
     "recordVsGenome": {
-      "heading": "No todo registro genético es un genoma, y no todo genoma responde la misma pregunta",
+      "heading": "Distintos registros genéticos responden distintas preguntas",
       "intro": "Los términos siguientes describen evidencias diferentes. Nombrarlos bien evita presentar un código de barras como genoma completo, un ensamblaje fragmentado como si estuviera organizado en cromosomas o un solo individuo como representante de toda una población.",
       "labels": {
         "recordColHeading": "Tipo de evidencia",
@@ -502,12 +502,12 @@ export const es: Dict = {
     }
   },
   "pilots": {
-    "metaTitle": "Pilotos propuestos — Caligo",
+    "metaTitle": "Pilotos propuestos | Caligo",
     "metaDescription": "Cuatro investigaciones propuestas que conectan evolución cromosómica, conectividad de poblaciones amenazadas, agricultura sostenible y movimiento estacional con evidencia genómica documentada.",
     "title": "Pilotos propuestos",
-    "opening": "Estas cuatro líneas convierten el enfoque de Caligo en trabajo comprobable. Cada una parte de evidencia publicada, define qué observaciones y muestras adicionales harían falta y muestra dónde ayuda la genómica y dónde no responde por sí sola.",
+    "opening": "Estas cuatro líneas combinan evidencia publicada con preguntas diseñadas para Caligo. Cada una define los organismos, observaciones, muestras y comparaciones necesarios para convertir un enigma biológico en trabajo comprobable.",
     "whatAPilotCanTest": {
-      "heading": "Un piloto prueba toda la cadena, no solo la secuenciación",
+      "heading": "Un piloto pone a prueba toda la cadena de evidencia",
       "body": "La pregunta, los permisos, el registro del ejemplar, los datos de ADN, el análisis, los repositorios y el reconocimiento de contribuciones deben permanecer conectados. Un piloto es valioso cuando revela qué funciona, qué falta y qué debería cambiar antes de considerar una escala mayor."
     },
     "fieldLabels": {
@@ -516,18 +516,18 @@ export const es: Dict = {
       "proposedQuestion": "Lo que pondría a prueba el piloto propuesto de Caligo",
       "evidenceNeeded": "Evidencia que necesitaría el piloto",
       "genomesCan": "Qué pueden aportar los genomas",
-      "limits": "Qué no pueden mostrar por sí solos",
+      "limits": "Evidencia necesaria más allá de la genómica",
       "closing": "La pregunta para seguir pensando",
       "sourcesChecked": "Fuentes y alcance"
     }
   },
   "caligo": {
-    "metaTitle": "Descubre Caligo — ojo, ocelo y evidencia",
+    "metaTitle": "Descubre Caligo | Ojo, ocelo y evidencia",
     "metaDescription": "Una historia de ciencia para todos sobre el género Caligo, los ojos compuestos, los ocelos alares, las escamas y la manera de poner a prueba explicaciones rivales.",
     "meetTheNamesake": {
-      "heading": "Conoce a Caligo: ojo, ocelo y evidencia",
-      "body": "Caligo también es un género neotropical conocido por sus mariposas búho. Sus ojos compuestos, ocelos alares y escamas microscópicas ofrecen una lección compacta sobre cómo funciona la ciencia: observar con cuidado, distinguir estructuras que se parecen y poner a prueba más de una explicación. Esta historia de Descubre usa el nombre como una invitación actual a pasar de lo que vemos a la evidencia que hay debajo.",
-      "sourceNote": "Nota sobre el nombre: los materiales fuente de Nicol Rueda documentan a Caligo como el nombre elegido para el proyecto y registran que hubo una encuesta de nombres; no documentan los ocelos ni otro rasgo biológico como la razón histórica de esa elección."
+      "heading": "Caligo: un nombre para el trabajo que viene",
+      "body": "Caligo significa niebla en latín. También nombra un género neotropical de mariposas búho, arraigado en la región que esta red estudia. En sus alas, una marca parece un ojo, pero no puede ver. De cerca se resuelve en escamas; más cerca aún, en la información heredada que las formó. Una fauna tan rica no debería seguir tan a oscuras.",
+      "sourceNote": "Caligo es el nombre elegido en la encuesta de la iniciativa. La etimología y las imágenes biológicas son una lectura actual del nombre, no una afirmación sobre cómo votaron quienes participaron."
     },
     "compoundEye": {
       "eyebrow": "Mira la estructura correcta",
@@ -572,7 +572,7 @@ export const es: Dict = {
     },
     "genomicsCould": {
       "heading": "Del organismo visible a la información heredada",
-      "body": "Un genoma puede ayudar a comparar genes y regiones reguladoras relacionados con el desarrollo de las escamas, la pigmentación, la visión o la conducta entre especies emparentadas. También puede mostrar cuándo cambiaron esas regiones, cuándo pasaron entre linajes o cómo evolucionaron bajo presiones distintas. No revela qué percibe un depredador ni por qué una mariposa se comporta de cierta manera sin experimentos, microscopía, historia natural y biología sensorial. El valor del genoma no está en reemplazar al organismo visible, sino en aportar otra capa de evidencia debajo de lo que vemos."
+      "body": "Un genoma añade otra capa de evidencia bajo el organismo visible. Permite comparar genes y regiones reguladoras relacionados con el desarrollo de las escamas, la pigmentación, la visión o la conducta entre especies emparentadas, e investigar cuándo cambiaron esas regiones, pasaron entre linajes o evolucionaron bajo presiones distintas. Los experimentos, la microscopía, la historia natural y la biología sensorial siguen siendo esenciales para comprender la percepción y la conducta."
     },
     "relatedStories": [
       {
@@ -600,10 +600,10 @@ export const es: Dict = {
       "soybean": "Lepidópteros de la soja",
       "panacea": "Panacea prola"
     },
-    "metaTitle": "Proyectos piloto propuestos — Caligo",
+    "metaTitle": "Proyectos piloto propuestos | Caligo",
     "metaDescription": "Cuatro proyectos piloto propuestos que conectan evidencia publicada con preguntas comprobables de genómica neotropical.",
     "title": "Proyectos piloto propuestos",
-    "intro": "Cada proyecto piloto propuesto parte de evidencia publicada y de una pregunta que exige ir más lejos. Sigue al organismo, las observaciones y muestras que harían falta, lo que la genómica puede aportar y lo que todavía debe venir de la ecología, la taxonomía o la experimentación.",
+    "intro": "Cada piloto propuesto parte de evidencia publicada y de una pregunta que exige ir más lejos. Sigue al organismo, las observaciones y muestras que harían falta, el aporte de la genómica y la evidencia que ofrecen la ecología, la taxonomía o la experimentación.",
     "openToCollaborators": "Inicia una conversación sobre un piloto",
     "goalLabel": "Pregunta de investigación",
     "resourcesLabel": "Puntos de partida publicados y documentados",
@@ -630,10 +630,18 @@ export const es: Dict = {
     }
   },
   "about": {
-    "metaTitle": "Acerca de — Caligo",
+    "metaTitle": "Acerca de | Caligo",
     "metaDescription": "El propósito de Caligo, su postura científica y su lugar en el panorama más amplio de la genómica de biodiversidad.",
     "title": "Acerca de Caligo",
     "body": "Caligo es un esfuerzo liderado desde América Latina y enfocado en genomas de referencia de mariposas y polillas neotropicales. Reúne organismos, ejemplares documentados, taxonomía y genómica comparada para investigar preguntas regionales con evidencia rastreable y reutilizable.",
+    "name": {
+      "heading": "Por qué Caligo",
+      "body": [
+        "Caligo significa niebla en latín. También nombra un género neotropical de mariposas búho, arraigado en la región que esta red estudia. El nombre no pertenece a un solo país. El trabajo que viene, tampoco.",
+        "En sus alas, una marca parece un ojo, pero no puede ver. De cerca se resuelve en escamas; más cerca aún, en la información heredada que las formó.",
+        "Una de las faunas de lepidópteros más ricas del planeta no debería seguir entre las menos secuenciadas."
+      ]
+    },
     "beingDecided": {
       "heading": "Lo que Caligo busca reunir",
       "questions": [
@@ -645,8 +653,8 @@ export const es: Dict = {
     },
     "externalContext": {
       "heading": "Parte de un paisaje científico más amplio",
-      "body": "Caligo puede aprender de iniciativas globales de genómica, repositorios públicos, colecciones, redes taxonómicas y marcos de gobernanza de datos sin extender sus afirmaciones más allá de Caligo. Los proyectos externos aparecen solo cuando aportan contexto científico o metodológico.",
-      "disclaimer": "Una cita o comparación no implica alianza, compromiso, respaldo ni transferencia a Caligo de personas, muestras, sitios, financiamiento o logros de otro proyecto."
+      "body": "Caligo aprende de iniciativas globales de genómica, repositorios públicos, colecciones, redes taxonómicas y marcos de gobernanza de datos, manteniendo sus afirmaciones públicas dentro del alcance de esta iniciativa.",
+      "disclaimer": "Los proyectos externos aportan contexto científico o metodológico. Las alianzas y los compromisos formales se identifican de manera explícita cuando existen."
     },
     "objectives": {
       "heading": "Objetivos estratégicos",
@@ -670,7 +678,7 @@ export const es: Dict = {
     }
   },
   "participate": {
-    "metaTitle": "Participa — Caligo",
+    "metaTitle": "Participa | Caligo",
     "metaDescription": "Formas para que investigadores, estudiantes, colecciones, educadores, naturalistas, instituciones y personas interesadas inicien una conversación con Caligo.",
     "title": "Participa",
     "intro": "La buena genómica de biodiversidad comienza con personas que conocen organismos, colecciones, paisajes, métodos y preguntas. Ya sea que trabajes en un laboratorio, un museo, un aula, el campo o una institución, el primer paso útil es una conversación clara sobre lo que sabes y lo que te gustaría investigar.",
@@ -739,14 +747,14 @@ export const es: Dict = {
     "preprint": "Preprint; no había pasado por revisión por pares en la fecha de consulta.",
     "sensitiveLocalities": "No se muestran localidades precisas de especies sensibles.",
     "mutableData": "Base de datos o registro institucional cambiante; se indica la fecha de consulta.",
-    "noRegionalPercentage": "No se informa un porcentaje de cobertura genómica neotropical porque todavía no se ha completado en conjunto un denominador taxonómico congelado, una regla de pertenencia al reino y un análisis fechado y deduplicado de ensamblajes."
+    "noRegionalPercentage": "La cobertura genómica regional se informará con un denominador taxonómico congelado, reglas geográficas explícitas y una consulta fechada y sin duplicados de los ensamblajes."
   },
   "compat": {
     "heading": "Este contenido ahora está en otra sección",
     "body": "La explicación actual forma parte de la página Acerca de. Sigue el enlace para continuar."
   },
   "network": {
-    "metaTitle": "Red — Caligo",
+    "metaTitle": "Red | Caligo",
     "metaDescription": "La red de investigación de Caligo: instalaciones de secuenciación asociadas, líderes de la iniciativa y actividades próximas en América Latina.",
     "title": "Red de investigación",
     "intro": "Una colaboración liderada desde América Latina, con investigadores, instituciones e instalaciones que trabajan en genomas de referencia para mariposas y polillas neotropicales.",
@@ -760,16 +768,16 @@ export const es: Dict = {
     },
     "positioning": {
       "heading": "Conexiones y contexto",
-      "body": "Caligo participa en EBP Latinoamérica —la iniciativa regional latinoamericana del Earth BioGenome Project— y en Genotropics, una red que trabaja en la diversidad genómica de organismos tropicales. Estas conexiones sitúan el trabajo de Caligo en un panorama regional más amplio; no implican gobernanza conjunta, recursos compartidos ni asociación formal a menos que se indique explícitamente."
+      "body": "Caligo participa en EBP Latinoamérica, la iniciativa regional del Earth BioGenome Project, y en Genotropics, una red que trabaja en la diversidad genómica de organismos tropicales. Estas conexiones sitúan a Caligo en un panorama regional más amplio. Las alianzas formales o los programas compartidos se identifican de manera explícita."
     }
   },
   "notFound": {
-    "title": "Página no encontrada",
-    "body": "La página que buscas no existe o ha sido trasladada.",
-    "homeLink": "Volver a la página de inicio"
+    "title": "Esta página todavía no ha sido ensamblada",
+    "body": "Puede que la dirección haya cambiado o que la página nunca haya existido. Por aquí se vuelve.",
+    "homeLink": "Volver al inicio"
   },
   "footer": {
-    "tagline": "Organismos documentados. Genomas reutilizables. Preguntas neotropicales.",
+    "tagline": "Ejemplares documentados. Genomas reutilizables. Preguntas neotropicales.",
     "rights": "Caligo",
     "contact": "Contacto",
     "navHeading": "Explora",
