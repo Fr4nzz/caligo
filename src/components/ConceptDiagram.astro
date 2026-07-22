@@ -339,6 +339,16 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
           <rect x="-2.5" y="-12" width="5" height="24" rx="2.5" class="vch-body vch-ghost-body" />
         </g>
 
+        {/* Collector: a hand net that catches the specimen, then fades. */}
+        <g class="vch-net" transform="translate(86 90)">
+          <ellipse cx="0" cy="-2" rx="46" ry="48" class="vch-net-bag" />
+          <path d="M-46 -12 A46 48 0 0 1 46 -12" class="vch-net-mesh" />
+          <path d="M-40 -30 A46 48 0 0 1 40 -30 M-44 6 A46 48 0 0 0 44 6 M-30 -44 A46 48 0 0 1 30 -44" class="vch-net-mesh" />
+          <path d="M-24 -46 V44 M0 -48 V48 M24 -46 V44" class="vch-net-mesh" />
+          <ellipse cx="0" cy="-2" rx="46" ry="48" class="vch-net-hoop" />
+          <path d="M32 40 L64 92" class="vch-net-handle" />
+        </g>
+
         {/* Wings stored in a labelled envelope carrying the CAMID. */}
         <g class="vch-envelope" transform="translate(290 48)">
           <rect x="-28" y="-19" width="56" height="40" rx="3" class="vch-env" />
@@ -698,7 +708,12 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .vch-wing--hind { fill: color-mix(in oklab, var(--accent) 14%, var(--bg-panel)); }
   .vch-ocellus { fill: var(--highlight); stroke: var(--accent-strong); stroke-width: 1.5; }
   .vch-ghost-wings,
-  .vch-ghost-body { opacity: 0; }
+  .vch-ghost-body,
+  .vch-net { opacity: 0; }
+  .vch-net-hoop { fill: none; stroke: var(--text-strong); stroke-width: 2.5; }
+  .vch-net-bag { fill: color-mix(in oklab, var(--text-muted) 8%, transparent); stroke: none; }
+  .vch-net-mesh { fill: none; stroke: var(--hairline-strong); stroke-width: 0.8; opacity: 0.7; }
+  .vch-net-handle { fill: none; stroke: var(--accent-strong); stroke-width: 4; stroke-linecap: round; }
   .vch-env { fill: color-mix(in oklab, var(--accent) 6%, var(--bg-panel)); stroke: var(--hairline-strong); stroke-width: 1.5; }
   .vch-env-flap { fill: none; stroke: var(--hairline-strong); stroke-width: 1.2; }
   .vch-env-wings { fill: color-mix(in oklab, var(--accent) 30%, var(--bg-panel)); }
@@ -728,29 +743,42 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .vch-body-inside,
   .vch-row-hit,
   .vch-row-wing,
-  .vch-barcode--row { transform-box: fill-box; transform-origin: center; }
+  .vch-barcode--row,
+  .vch-net { transform-box: fill-box; transform-origin: center; }
   .vch-wings-l { transform-origin: right center; }
   .vch-wings-r { transform-origin: left center; }
   .vch-row-hit { transform-origin: left center; }
+  .vch-net { transform-origin: 72% 92%; }
 
   .concept-diagram.is-playing .vch-flow--env,
   .concept-diagram.is-playing .vch-flow--tube { stroke-dasharray: 48; }
-  .concept-diagram.is-playing .voucher-scene .vch-wings-l { animation: wing-open 600ms 0s var(--ease-settle) both; }
-  .concept-diagram.is-playing .voucher-scene .vch-wings-r { animation: wing-open 600ms 100ms var(--ease-settle) both; }
-  .concept-diagram.is-playing .vch-ghost-wings { animation: fly-wings 1.15s 0.5s ease-in-out both; }
-  .concept-diagram.is-playing .vch-ghost-body { animation: fly-body 1.15s 0.55s ease-in-out both; }
-  .concept-diagram.is-playing .vch-cap-group { animation: cap-open 1s 1.05s ease-in-out both; }
-  .concept-diagram.is-playing .vch-envelope { animation: group-focus 700ms 1.4s var(--ease-settle) both; }
-  .concept-diagram.is-playing .vch-env-wings { animation: event-pop 620ms 1.55s var(--ease-settle) both; }
-  .concept-diagram.is-playing .vch-tube-group { animation: group-focus 700ms 1.55s var(--ease-settle) both; }
-  .concept-diagram.is-playing .vch-body-inside { animation: event-pop 620ms 1.75s var(--ease-settle) both; }
-  .concept-diagram.is-playing .vch-flow--env { animation: draw-link 650ms 2.5s ease-out both; }
-  .concept-diagram.is-playing .vch-flow--tube { animation: draw-link 650ms 2.7s ease-out both; }
-  .concept-diagram.is-playing .vch-sheet-group { animation: group-focus 720ms 3.3s var(--ease-settle) both; }
-  .concept-diagram.is-playing .voucher-scene .vch-row-hit { animation: row-mark 760ms 3.5s var(--ease-settle) both; }
+  /* 1. A collector's net swoops in and catches the specimen, then fades. */
+  .concept-diagram.is-playing .vch-net { animation: net-catch 1.35s 0s ease-in-out both; }
+  /* 2. The specimen is opened and filed: wings → envelope, body → tube. */
+  .concept-diagram.is-playing .voucher-scene .vch-wings-l { animation: wing-open 600ms 1.05s var(--ease-settle) both; }
+  .concept-diagram.is-playing .voucher-scene .vch-wings-r { animation: wing-open 600ms 1.15s var(--ease-settle) both; }
+  .concept-diagram.is-playing .vch-ghost-wings { animation: fly-wings 1.15s 1.15s ease-in-out both; }
+  .concept-diagram.is-playing .vch-ghost-body { animation: fly-body 1.15s 1.2s ease-in-out both; }
+  .concept-diagram.is-playing .vch-cap-group { animation: cap-open 1s 1.7s ease-in-out both; }
+  .concept-diagram.is-playing .vch-envelope { animation: group-focus 700ms 2.05s var(--ease-settle) both; }
+  .concept-diagram.is-playing .vch-env-wings { animation: event-pop 620ms 2.2s var(--ease-settle) both; }
+  .concept-diagram.is-playing .vch-tube-group { animation: group-focus 700ms 2.2s var(--ease-settle) both; }
+  .concept-diagram.is-playing .vch-body-inside { animation: event-pop 620ms 2.4s var(--ease-settle) both; }
+  /* 3. Both identifiers converge on one record row. */
+  .concept-diagram.is-playing .vch-flow--env { animation: draw-link 650ms 3.0s ease-out both; }
+  .concept-diagram.is-playing .vch-flow--tube { animation: draw-link 650ms 3.2s ease-out both; }
+  .concept-diagram.is-playing .vch-sheet-group { animation: group-focus 720ms 3.55s var(--ease-settle) both; }
+  .concept-diagram.is-playing .voucher-scene .vch-row-hit { animation: row-mark 760ms 3.8s var(--ease-settle) both; }
   .concept-diagram.is-playing .voucher-scene .vch-row-wing,
-  .concept-diagram.is-playing .voucher-scene .vch-barcode--row { animation: event-pop 620ms 3.75s var(--ease-settle) both; }
+  .concept-diagram.is-playing .voucher-scene .vch-barcode--row { animation: event-pop 620ms 4.05s var(--ease-settle) both; }
 
+  @keyframes net-catch {
+    0% { opacity: 0; transform: translate(-64px, -52px) rotate(-34deg); }
+    22% { opacity: 0.95; }
+    46% { opacity: 0.95; transform: translate(0, 0) rotate(0deg); }
+    70% { opacity: 0.95; transform: translate(0, 0) rotate(0deg); }
+    100% { opacity: 0; transform: translate(10px, -6px) rotate(6deg); }
+  }
   @keyframes wing-open { from { opacity: 0.2; transform: scaleX(0.12); } 70% { opacity: 1; transform: scaleX(1.06); } to { opacity: 1; transform: scaleX(1); } }
   @keyframes fly-wings { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 18% { opacity: 0.9; } 82% { opacity: 0.9; } 100% { opacity: 0; transform: translate(204px, -42px) scale(0.42); } }
   @keyframes fly-body { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 18% { opacity: 0.9; } 82% { opacity: 0.9; } 100% { opacity: 0; transform: translate(204px, 36px) scale(0.5); } }
@@ -875,7 +903,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
           status.textContent = diagram.dataset.labelFinished ?? '';
           label.textContent = diagram.dataset.labelReplay ?? '';
           conceptTimers.delete(diagram);
-        }, 4700);
+        }, 5000);
         conceptTimers.set(diagram, timer);
       });
     });
