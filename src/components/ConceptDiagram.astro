@@ -1,7 +1,7 @@
 ---
 import type { Locale } from '../i18n';
 
-type DiagramKind = 'chromosome' | 'connectivity' | 'monitoring' | 'migration';
+type DiagramKind = 'chromosome' | 'connectivity' | 'monitoring' | 'migration' | 'voucher';
 
 interface Props {
   readonly locale: Locale;
@@ -53,6 +53,17 @@ const copy = {
       routes: 'connections?',
       evidence: 'independent evidence',
     },
+    voucher: {
+      title: 'Voucher: specimen, sample, record',
+      desc: 'A generic schematic. The wings are cut and stored in a labelled envelope (its CAMID); the body goes into a tube (its tube ID); one record row holds both identifiers. It shows no real specimen, identifier or database.',
+      specimen: 'specimen',
+      envelope: 'wings → envelope',
+      tube: 'body → tube',
+      record: 'record row',
+      camid: 'CAMID',
+      tubeid: 'TUBE ID',
+      link: 'one CAMID links all three',
+    },
   },
   es: {
     conceptual: 'Animación educativa — conceptual, no son datos',
@@ -94,6 +105,17 @@ const copy = {
       routes: '¿conexiones?',
       evidence: 'evidencia independiente',
     },
+    voucher: {
+      title: 'Voucher: ejemplar, muestra, registro',
+      desc: 'Esquema genérico. Las alas se cortan y se guardan en un sobre etiquetado (su CAMID); el cuerpo va a un tubo (su ID de tubo); una fila de registro reúne ambos identificadores. No muestra un ejemplar, un identificador ni una base de datos reales.',
+      specimen: 'ejemplar',
+      envelope: 'alas → sobre',
+      tube: 'cuerpo → tubo',
+      record: 'fila de registro',
+      camid: 'CAMID',
+      tubeid: 'ID DE TUBO',
+      link: 'un CAMID une los tres',
+    },
   },
 } as const;
 
@@ -109,7 +131,14 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     ? [c.connectivity.patches, c.connectivity.test, c.connectivity.compare]
     : kind === 'monitoring'
       ? [c.monitoring.sample, c.monitoring.identify, c.monitoring.movement, c.monitoring.candidates, c.monitoring.validate]
-      : [c.migration.sampling, c.migration.origins, c.migration.routes, c.migration.evidence];
+      : kind === 'migration'
+        ? [c.migration.sampling, c.migration.origins, c.migration.routes, c.migration.evidence]
+        : [
+            c.voucher.specimen,
+            `${c.voucher.envelope} (${c.voucher.camid})`,
+            `${c.voucher.tube} (${c.voucher.tubeid})`,
+            `${c.voucher.record}: ${c.voucher.camid} + ${c.voucher.tubeid}`,
+          ];
 ---
 
 <figure
@@ -238,6 +267,85 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
         <text x="325" y="142" class="node-label">{c.migration.origins}</text>
         <text x="455" y="153" class="node-label">{c.migration.routes}</text>
         <text x="300" y="178" class="footer-label">{c.migration.evidence}</text>
+      </g>
+    )}
+
+    {kind === 'voucher' && (
+      <g class="diagram-scene voucher-scene">
+        {/* Specimen splits: wings to the envelope, body to the tube. */}
+        <path d="M138 76 L262 54" class="vch-flow vch-flow--split" />
+        <path d="M138 104 L262 122" class="vch-flow vch-flow--split" />
+        {/* Both identifiers converge on one record row. */}
+        <path d="M320 52 L448 82" class="vch-flow vch-flow--env" marker-end={`url(#${id}-arrow)`} />
+        <path d="M320 122 L448 100" class="vch-flow vch-flow--tube" marker-end={`url(#${id}-arrow)`} />
+
+        {/* Specimen: a bilaterally symmetric butterfly with ocelli. */}
+        <g class="vch-specimen" transform="translate(86 90)">
+          <rect x="-3" y="-24" width="6" height="48" rx="3" class="vch-body" />
+          <path d="M-2 -24 C -8 -38 -15 -42 -20 -44 M2 -24 C 8 -38 15 -42 20 -44" class="vch-antenna" />
+          <g class="vch-wings-l">
+            <path d="M-4 -14 C -40 -34 -54 -18 -46 3 C -40 15 -17 12 -4 2 Z" class="vch-wing" />
+            <path d="M-4 6 C -30 6 -40 20 -31 32 C -22 41 -8 32 -4 20 Z" class="vch-wing vch-wing--hind" />
+            <circle cx="-27" cy="-6" r="4.5" class="vch-ocellus" />
+          </g>
+          <g class="vch-wings-r">
+            <path d="M4 -14 C 40 -34 54 -18 46 3 C 40 15 17 12 4 2 Z" class="vch-wing" />
+            <path d="M4 6 C 30 6 40 20 31 32 C 22 41 8 32 4 20 Z" class="vch-wing vch-wing--hind" />
+            <circle cx="27" cy="-6" r="4.5" class="vch-ocellus" />
+          </g>
+          {/* Transient parts that fly to their stores during playback. */}
+          <g class="vch-ghost-wings">
+            <path d="M-2 -3 C -20 -17 -30 -5 -24 6 C -20 13 -6 11 -2 3 Z" class="vch-wing" />
+            <path d="M2 -3 C 20 -17 30 -5 24 6 C 20 13 6 11 2 3 Z" class="vch-wing" />
+          </g>
+          <rect x="-2.5" y="-12" width="5" height="24" rx="2.5" class="vch-body vch-ghost-body" />
+        </g>
+
+        {/* Wings stored in a labelled envelope carrying the CAMID. */}
+        <g class="vch-envelope" transform="translate(290 48)">
+          <rect x="-28" y="-19" width="56" height="40" rx="3" class="vch-env" />
+          <path d="M-28 -19 L0 -3 L28 -19" class="vch-env-flap" />
+          <g class="vch-env-wings">
+            <path d="M-1 3 C -15 -7 -23 1 -19 9 C -15 15 -5 13 -1 8 Z" class="vch-wing" />
+            <path d="M1 3 C 15 -7 23 1 19 9 C 15 15 5 13 1 8 Z" class="vch-wing" />
+          </g>
+          <text x="0" y="-8" class="vch-idtag">{c.voucher.camid}</text>
+        </g>
+
+        {/* Body stored in a tube carrying its own tube ID (barcode). */}
+        <g class="vch-tube-group" transform="translate(290 126)">
+          <g class="vch-cap-group">
+            <rect x="-12" y="-30" width="24" height="13" rx="4" class="vch-cap" />
+            <rect x="-13" y="-19" width="26" height="5" rx="2" class="vch-cap" />
+          </g>
+          <rect x="-12" y="-14" width="24" height="48" rx="9" class="vch-tube" />
+          <rect x="-12" y="-6" width="24" height="16" class="vch-label" />
+          <path d="M-8 -3v10 M-5 -3v10 M-2 -3v10 M1 -3v10 M5 -3v10 M8 -3v10" class="vch-barcode" />
+          <rect x="-3" y="16" width="6" height="14" rx="3" class="vch-body-inside" />
+        </g>
+
+        {/* Record: one row holds the CAMID and the tube ID together. */}
+        <g class="vch-sheet-group" transform="translate(498 90)">
+          <rect x="-46" y="-33" width="92" height="66" rx="6" class="vch-sheet" />
+          <rect x="-46" y="-33" width="92" height="15" class="vch-sheet-head" />
+          <rect x="-46" y="-3" width="92" height="16" class="vch-row-hit" />
+          <path d="M0 -33V33 M-46 -18H46 M-46 -3H46 M-46 13H46" class="vch-grid" />
+          <text x="-23" y="-22" class="vch-idtag">{c.voucher.camid}</text>
+          <text x="23" y="-22" class="vch-idtag vch-idtag--sm">{c.voucher.tubeid}</text>
+          <g class="vch-row-wing">
+            <path d="M-25 5 C -33 -1 -37 3 -35 8 C -33 11 -28 10 -25 7 Z" class="vch-wing" />
+            <path d="M-21 5 C -13 -1 -9 3 -11 8 C -13 11 -18 10 -21 7 Z" class="vch-wing" />
+          </g>
+          <path d="M13 1v8 M16 1v8 M19 1v8 M22 1v8 M26 1v8 M30 1v8" class="vch-barcode--row" />
+          <path d="M-30 -11h20 M8 -11h12 M26 -11h14" class="vch-cell" />
+          <path d="M-30 24h18 M6 24h16 M28 24h12" class="vch-cell" />
+        </g>
+
+        <text x="86" y="152" class="node-label">{c.voucher.specimen}</text>
+        <text x="290" y="20" class="group-label">{c.voucher.envelope}</text>
+        <text x="290" y="174" class="node-label">{c.voucher.tube}</text>
+        <text x="498" y="152" class="node-label">{c.voucher.record}</text>
+        <text x="300" y="188" class="footer-label">{c.voucher.link}</text>
       </g>
     )}
   </svg>
@@ -506,6 +614,72 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     transform-box: fill-box;
     transform-origin: center;
   }
+
+  /* Voucher scene: specimen → wings in an envelope (CAMID) + body in a tube (tube ID) → one record row. */
+  .vch-body { fill: var(--text-muted); }
+  .vch-antenna { fill: none; stroke: var(--text-muted); stroke-width: 2; stroke-linecap: round; }
+  .vch-wing { fill: color-mix(in oklab, var(--accent) 22%, var(--bg-panel)); stroke: var(--accent); stroke-width: 1.5; }
+  .vch-wing--hind { fill: color-mix(in oklab, var(--accent) 14%, var(--bg-panel)); }
+  .vch-ocellus { fill: var(--highlight); stroke: var(--accent-strong); stroke-width: 1.5; }
+  .vch-ghost-wings,
+  .vch-ghost-body { opacity: 0; }
+  .vch-env { fill: color-mix(in oklab, var(--accent) 6%, var(--bg-panel)); stroke: var(--hairline-strong); stroke-width: 1.5; }
+  .vch-env-flap { fill: none; stroke: var(--hairline-strong); stroke-width: 1.2; }
+  .vch-env-wings { fill: color-mix(in oklab, var(--accent) 30%, var(--bg-panel)); }
+  .vch-idtag { font-family: var(--font-mono); font-size: 8px; font-weight: 600; letter-spacing: 0.04em; fill: var(--accent-strong); text-anchor: middle; }
+  .vch-idtag--sm { font-size: 6.5px; }
+  .vch-cap { fill: var(--accent-strong); }
+  .vch-tube { fill: color-mix(in oklab, var(--accent) 7%, var(--bg-panel)); stroke: var(--hairline-strong); stroke-width: 1.5; }
+  .vch-label { fill: var(--text-strong); opacity: 0.88; }
+  .vch-barcode { fill: none; stroke: var(--bg-panel); stroke-width: 1.4; }
+  .vch-barcode--row { fill: none; stroke: var(--accent-strong); stroke-width: 1.3; }
+  .vch-body-inside { fill: color-mix(in oklab, var(--accent) 42%, transparent); stroke: var(--accent); stroke-width: 1; }
+  .vch-sheet { fill: var(--bg-panel); stroke: var(--hairline-strong); stroke-width: 1.5; }
+  .vch-sheet-head { fill: color-mix(in oklab, var(--accent) 14%, transparent); }
+  .vch-row-hit { fill: color-mix(in oklab, var(--accent) 20%, transparent); }
+  .vch-row-wing { fill: color-mix(in oklab, var(--accent) 34%, var(--bg-panel)); }
+  .vch-grid { fill: none; stroke: var(--hairline-strong); stroke-width: 1; opacity: 0.5; }
+  .vch-cell { fill: none; stroke: var(--text-faint); stroke-width: 3; stroke-linecap: round; }
+  .vch-flow { fill: none; stroke: var(--text-muted); stroke-width: 2; stroke-linecap: round; }
+  .vch-flow--split { stroke: var(--hairline-strong); stroke-width: 1.5; stroke-dasharray: 3 4; opacity: 0.75; }
+
+  .vch-wings-l,
+  .vch-wings-r,
+  .vch-ghost-wings,
+  .vch-ghost-body,
+  .vch-cap-group,
+  .vch-env-wings,
+  .vch-body-inside,
+  .vch-row-hit,
+  .vch-row-wing,
+  .vch-barcode--row { transform-box: fill-box; transform-origin: center; }
+  .vch-wings-l { transform-origin: right center; }
+  .vch-wings-r { transform-origin: left center; }
+  .vch-row-hit { transform-origin: left center; }
+
+  .concept-diagram.is-playing .vch-flow--env,
+  .concept-diagram.is-playing .vch-flow--tube { stroke-dasharray: 48; }
+  .concept-diagram.is-playing .voucher-scene .vch-wings-l { animation: wing-open 600ms 0s var(--ease-settle) both; }
+  .concept-diagram.is-playing .voucher-scene .vch-wings-r { animation: wing-open 600ms 100ms var(--ease-settle) both; }
+  .concept-diagram.is-playing .vch-ghost-wings { animation: fly-wings 1.15s 0.5s ease-in-out both; }
+  .concept-diagram.is-playing .vch-ghost-body { animation: fly-body 1.15s 0.55s ease-in-out both; }
+  .concept-diagram.is-playing .vch-cap-group { animation: cap-open 1s 1.05s ease-in-out both; }
+  .concept-diagram.is-playing .vch-envelope { animation: group-focus 700ms 1.4s var(--ease-settle) both; }
+  .concept-diagram.is-playing .vch-env-wings { animation: event-pop 620ms 1.55s var(--ease-settle) both; }
+  .concept-diagram.is-playing .vch-tube-group { animation: group-focus 700ms 1.55s var(--ease-settle) both; }
+  .concept-diagram.is-playing .vch-body-inside { animation: event-pop 620ms 1.75s var(--ease-settle) both; }
+  .concept-diagram.is-playing .vch-flow--env { animation: draw-link 650ms 2.5s ease-out both; }
+  .concept-diagram.is-playing .vch-flow--tube { animation: draw-link 650ms 2.7s ease-out both; }
+  .concept-diagram.is-playing .vch-sheet-group { animation: group-focus 720ms 3.3s var(--ease-settle) both; }
+  .concept-diagram.is-playing .voucher-scene .vch-row-hit { animation: row-mark 760ms 3.5s var(--ease-settle) both; }
+  .concept-diagram.is-playing .voucher-scene .vch-row-wing,
+  .concept-diagram.is-playing .voucher-scene .vch-barcode--row { animation: event-pop 620ms 3.75s var(--ease-settle) both; }
+
+  @keyframes wing-open { from { opacity: 0.2; transform: scaleX(0.12); } 70% { opacity: 1; transform: scaleX(1.06); } to { opacity: 1; transform: scaleX(1); } }
+  @keyframes fly-wings { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 18% { opacity: 0.9; } 82% { opacity: 0.9; } 100% { opacity: 0; transform: translate(204px, -42px) scale(0.42); } }
+  @keyframes fly-body { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 18% { opacity: 0.9; } 82% { opacity: 0.9; } 100% { opacity: 0; transform: translate(204px, 36px) scale(0.5); } }
+  @keyframes cap-open { 0% { transform: translateY(0); } 25%, 70% { transform: translateY(-12px); } 100% { transform: translateY(0); } }
+  @keyframes row-mark { from { opacity: 0; transform: scaleX(0.15); } 70% { opacity: 1; transform: scaleX(1.03); } to { opacity: 1; transform: scaleX(1); } }
   [data-context='pilot'] .concept-heading { padding-block-start: var(--space-xs); }
   [data-context='pilot'] .concept-svg { max-height: 10.75rem; }
   .concept-mobile-flow { display: none; }

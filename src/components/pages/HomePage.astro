@@ -19,6 +19,7 @@
 import Base from '../../layouts/Base.astro';
 import HeroMedia from '../HeroMedia.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
+import ConceptDiagram from '../ConceptDiagram.astro';
 import Icon from '../Icon.astro';
 import JoinCTA from '../JoinCTA.astro';
 import PrincipleGrid from '../PrincipleGrid.astro';
@@ -163,11 +164,15 @@ const homeMetrics = [
                 <p class="journey-step-body">{step.body}</p>
               </div>
               <div class="journey-media">
-                <MediaCandidateViewer
-                  moduleId={journeyModuleIds[i]}
-                  locale={locale}
-                  aspectRatio="16 / 9"
-                />
+                {journeyModuleIds[i] === 'journey-3-voucher' ? (
+                  <ConceptDiagram locale={locale} kind="voucher" context="pilot" />
+                ) : (
+                  <MediaCandidateViewer
+                    moduleId={journeyModuleIds[i]}
+                    locale={locale}
+                    aspectRatio="16 / 9"
+                  />
+                )}
               </div>
             </li>
           ))
