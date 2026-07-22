@@ -116,6 +116,28 @@ export const en = {
     "journey": {
       "heading": "From organism to genome",
       "intro": "A trustworthy genomic resource is a chain of biological and documentary decisions, not just a sequence file.",
+      "assemblyDiagram": {
+        "conceptual": "Educational animation — conceptual, not data",
+        "title": "Assemble, then assess",
+        "description": "A simplified genome-assembly workflow. Overlapping reads align into fewer, longer contigs. Ordering links organise contigs into several chromosome-scale units while one unresolved gap remains visible. A final assessment checks continuity, completeness and known limits or gaps without reporting numeric scores. The marks are illustrative and do not represent sequence data, an assembly or a result from Caligo.",
+        "play": "Play the explanation",
+        "replay": "Replay",
+        "ready": "Ready to animate",
+        "playing": "Explanation playing",
+        "finished": "Explanation complete",
+        "reduced": "Complete explanation shown without motion",
+        "reads": "overlapping reads",
+        "contigs": "longer contigs",
+        "ordering": "order links",
+        "chromosomes": "chromosome-scale units",
+        "gap": "unresolved gap",
+        "assessment": "assessment",
+        "continuity": "continuity",
+        "completeness": "completeness",
+        "limits": "limits + gaps",
+        "summary": "several units · one conceptual gap remains",
+        "disclaimer": "Illustrative workflow — not sequence data, scores or Caligo results"
+      },
       "steps": [
         {
           "title": "Ask and identify",

@@ -113,6 +113,28 @@ export const es: Dict = {
     "journey": {
       "heading": "Del organismo al genoma",
       "intro": "Un recurso genómico confiable es una cadena de decisiones biológicas y documentales, no solo un archivo de secuencias.",
+      "assemblyDiagram": {
+        "conceptual": "Animación educativa — conceptual, no son datos",
+        "title": "Ensamblar y luego evaluar",
+        "description": "Flujo simplificado de ensamblaje genómico. Las lecturas superpuestas se alinean y forman menos contigs, de mayor longitud. Los enlaces de ordenamiento organizan los contigs en varias unidades a escala cromosómica mientras una brecha sin resolver permanece visible. Una evaluación final revisa continuidad, completitud y límites o brechas conocidas sin presentar puntajes numéricos. Las marcas son ilustrativas y no representan datos de secuencia, un ensamblaje ni un resultado de Caligo.",
+        "play": "Reproducir la explicación",
+        "replay": "Repetir",
+        "ready": "Listo para animar",
+        "playing": "Explicación en curso",
+        "finished": "Explicación completa",
+        "reduced": "Explicación completa visible sin movimiento",
+        "reads": "lecturas superpuestas",
+        "contigs": "contigs más largos",
+        "ordering": "enlaces de ordenamiento",
+        "chromosomes": "unidades a escala cromosómica",
+        "gap": "brecha sin resolver",
+        "assessment": "evaluación",
+        "continuity": "continuidad",
+        "completeness": "completitud",
+        "limits": "límites + brechas",
+        "summary": "varias unidades · queda una brecha conceptual",
+        "disclaimer": "Flujo ilustrativo — no son datos, puntajes ni resultados de Caligo"
+      },
       "steps": [
         {
           "title": "Preguntar e identificar",
