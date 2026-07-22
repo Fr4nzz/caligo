@@ -478,25 +478,23 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
 
         {/* Collector: the net, hand and placeholder wristband remain entirely in frame. */}
         <g class="vch-net" transform="translate(86 90)">
-          <g class="vch-net-head">
-            <ellipse cx="0" cy="-4" rx="47" ry="43" class="vch-net-bag" />
-            <path d="M-47 -12 A47 43 0 0 1 47 -12" class="vch-net-mesh" />
-            <path d="M-40 -28 A47 43 0 0 1 40 -28 M-44 4 A47 43 0 0 0 44 4 M-28 -40 A47 43 0 0 1 28 -40" class="vch-net-mesh" />
-            <path d="M-24 -44 V36 M0 -47 V39 M24 -44 V36" class="vch-net-mesh" />
-            <ellipse cx="0" cy="-4" rx="47" ry="43" class="vch-net-hoop" />
-          </g>
-          <g class="vch-collector">
-            <path d="M-34 28 L-50 58" class="vch-net-handle" />
-            <path d="M-86 55 H-65 C-59 55 -54 58 -50 63 L-57 77 H-86 Z" class="vch-forearm" />
-            <path d="M-59 55 C-53 51 -46 53 -43 59 L-37 68 C-34 73 -37 79 -43 80 C-49 80 -54 76 -57 72 L-65 63 Z" class="vch-hand" />
-            <path d="M-57 59 C-52 59 -48 63 -47 68 M-52 56 C-47 57 -43 61 -41 66" class="vch-hand-detail" />
-            <rect x="-83" y="57" width="28" height="18" rx="3" class="vch-wristband" />
-            <text x="-69" y="68.5" class="vch-wristband-label">{c.voucher.collector}</text>
+          <g class="vch-net-sweep">
+            {/* Side-view bag trails the rim so the net reads with depth. */}
+            <path d="M21 -43 C5 -42 -14 -36 -31 -25 C-43 -17 -48 -6 -44 5 C-39 18 -21 26 -4 22 C9 19 18 10 25 -2 C20 -14 18 -30 21 -43 Z" class="vch-net-depth" />
+            <ellipse cx="26" cy="-1" rx="20" ry="45" transform="rotate(-8 26 -1)" class="vch-net-rim" />
+            <path d="M23 42 L-8 73" class="vch-net-handle" />
+            <g class="vch-collector">
+              <path d="M-45 58 H-22 C-16 58 -12 61 -8 66 L-15 80 H-45 Z" class="vch-forearm" />
+              <path d="M-22 57 C-16 53 -9 55 -6 61 L0 70 C3 75 0 81 -6 82 C-12 82 -17 78 -20 74 L-28 65 Z" class="vch-hand" />
+              <path d="M-20 61 C-15 61 -11 65 -10 70 M-15 58 C-10 59 -6 63 -4 68" class="vch-hand-detail" />
+              <rect x="-43" y="60" width="28" height="18" rx="3" class="vch-wristband" />
+              <text x="-29" y="71.5" class="vch-wristband-label">{c.voucher.collector}</text>
+            </g>
           </g>
         </g>
 
         {/* A duplicate of the wristband label travels into the record. */}
-        <g transform="translate(17 159)">
+        <g transform="translate(57 159)">
           <g class="vch-collector-token">
             <rect x="-16" y="-7" width="32" height="14" rx="3" class="vch-token-card" />
             <text x="0" y="2" class="vch-token-label">{c.voucher.collector}</text>
@@ -1036,12 +1034,12 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .vch-ocellus { fill: var(--highlight); stroke: var(--accent-strong); stroke-width: 1.5; }
   .vch-ghost-wings,
   .vch-ghost-body,
-  .vch-net-head,
-  .vch-collector,
+  .vch-net-sweep,
   .vch-collector-token { opacity: 0; }
-  .vch-net-hoop { fill: none; stroke: var(--text-strong); stroke-width: 2.5; }
-  .vch-net-bag { fill: color-mix(in oklab, var(--text-muted) 8%, transparent); stroke: none; }
-  .vch-net-mesh { fill: none; stroke: var(--hairline-strong); stroke-width: 0.8; opacity: 0.7; }
+  .vch-net-depth {
+    fill: color-mix(in oklab, var(--accent-strong) 16%, transparent);
+  }
+  .vch-net-rim { fill: none; stroke: var(--accent-strong); stroke-width: 3; }
   .vch-net-handle { fill: none; stroke: var(--accent-strong); stroke-width: 4; stroke-linecap: round; }
   .vch-forearm,
   .vch-hand {
@@ -1100,8 +1098,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .vch-body-inside,
   .vch-row-hit,
   .vch-record-values,
-  .vch-net-head,
-  .vch-collector,
+  .vch-net-sweep,
   .vch-collector-token { transform-box: fill-box; transform-origin: center; }
   .vch-wings-l { transform-origin: right center; }
   .vch-wings-r { transform-origin: left center; }
@@ -1109,10 +1106,9 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
 
   .concept-diagram.is-playing .vch-flow--env,
   .concept-diagram.is-playing .vch-flow--tube { stroke-dasharray: 48; }
-  /* 1. The collector lowers the fully visible net onto the specimen. */
-  .concept-diagram.is-playing .vch-net-head { animation: net-catch 1.45s 0s ease-in-out both; }
-  .concept-diagram.is-playing .vch-collector { animation: collector-catch 2.15s 0s ease-in-out both; }
-  .concept-diagram.is-playing .vch-collector-token { animation: collector-to-record 3.2s 700ms ease-in-out both; }
+  /* 1. The collector sweeps the fully visible, side-view net across the specimen. */
+  .concept-diagram.is-playing .vch-net-sweep { animation: net-catch 2.15s 0s ease-in-out both; }
+  .concept-diagram.is-playing .vch-collector-token { animation: collector-to-record 2.5s 1.35s ease-in-out both; }
   /* 2. The specimen is opened and filed: wings → envelope, body → tube. */
   .concept-diagram.is-playing .voucher-scene .vch-wings-l { animation: wing-open 600ms 1.05s var(--ease-settle) both; }
   .concept-diagram.is-playing .voucher-scene .vch-wings-r { animation: wing-open 600ms 1.15s var(--ease-settle) both; }
@@ -1131,26 +1127,19 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-diagram.is-playing .voucher-scene .vch-record-values { animation: event-pop 620ms 4.05s var(--ease-settle) both; }
 
   @keyframes net-catch {
-    0% { opacity: 0; transform: translateY(-18px); }
-    14% { opacity: 0.95; }
-    55% { opacity: 0.95; transform: translateY(0); }
-    76% { opacity: 0.95; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-4px); }
-  }
-  @keyframes collector-catch {
-    0% { opacity: 0; transform: translateY(-18px); }
+    0% { opacity: 0; transform: translateX(-40px); }
     10% { opacity: 1; }
-    38%, 78% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(0); }
+    48%, 78% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(4px); }
   }
   @keyframes collector-to-record {
     0% { opacity: 0; transform: translate(0, 0) scale(1); }
     12% { opacity: 1; transform: translate(0, 0) scale(1); }
     22% { opacity: 1; transform: translate(18px, -5px) scale(0.96); }
-    52%, 84% { opacity: 1; transform: translate(437px, -60px) scale(0.72); }
-    100% { opacity: 0; transform: translate(437px, -60px) scale(0.72); }
+    52%, 84% { opacity: 1; transform: translate(397px, -60px) scale(0.72); }
+    100% { opacity: 0; transform: translate(397px, -60px) scale(0.72); }
   }
-  @keyframes wing-open { from { opacity: 0.2; transform: scaleX(0.12); } 70% { opacity: 1; transform: scaleX(1.06); } to { opacity: 1; transform: scaleX(1); } }
+  @keyframes wing-open { from { opacity: 1; transform: scaleX(1); } 70% { opacity: 1; transform: scaleX(1.06); } to { opacity: 1; transform: scaleX(1); } }
   @keyframes fly-wings { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 18% { opacity: 0.9; } 82% { opacity: 0.9; } 100% { opacity: 0; transform: translate(204px, -42px) scale(0.42); } }
   @keyframes fly-body { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 18% { opacity: 0.9; } 82% { opacity: 0.9; } 100% { opacity: 0; transform: translate(204px, 36px) scale(0.5); } }
   @keyframes cap-open { 0% { transform: translateY(0); } 25%, 70% { transform: translateY(-12px); } 100% { transform: translateY(0); } }
