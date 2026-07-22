@@ -480,7 +480,10 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
         <g class="vch-net" transform="translate(86 90)">
           <g class="vch-net-sweep">
             {/* Side-view bag trails the rim so the net reads with depth. */}
-            <path d="M21 -43 C5 -42 -14 -36 -31 -25 C-43 -17 -48 -6 -44 5 C-39 18 -21 26 -4 22 C9 19 18 10 25 -2 C20 -14 18 -30 21 -43 Z" class="vch-net-depth" />
+            <g class="vch-net-fill">
+              <path d="M21 -43 C5 -42 -14 -36 -31 -25 C-43 -17 -48 -6 -44 5 C-39 18 -21 26 -4 22 C9 19 18 10 25 -2 C20 -14 18 -30 21 -43 Z" class="vch-net-depth" />
+              <ellipse cx="26" cy="-1" rx="20" ry="45" transform="rotate(-8 26 -1)" class="vch-net-opening" />
+            </g>
             <ellipse cx="26" cy="-1" rx="20" ry="45" transform="rotate(-8 26 -1)" class="vch-net-rim" />
             <path d="M23 42 L-8 73" class="vch-net-handle" />
             <g class="vch-collector">
@@ -1036,9 +1039,9 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .vch-ghost-body,
   .vch-net-sweep,
   .vch-collector-token { opacity: 0; }
-  .vch-net-depth {
-    fill: color-mix(in oklab, var(--accent-strong) 16%, transparent);
-  }
+  .vch-net-fill { opacity: 0.18; }
+  .vch-net-depth,
+  .vch-net-opening { fill: var(--text-muted); }
   .vch-net-rim { fill: none; stroke: var(--accent-strong); stroke-width: 3; }
   .vch-net-handle { fill: none; stroke: var(--accent-strong); stroke-width: 4; stroke-linecap: round; }
   .vch-forearm,
