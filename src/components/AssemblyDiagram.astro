@@ -11,7 +11,7 @@ const id = `assembly-journey-${locale}`;
 const mobileSteps = [
   c.reads,
   c.contigs,
-  `${c.hic}: ${c.hicAction}`,
+  `${c.hicAction}: ${c.uncurated} → ${c.curated}`,
   `${c.chromosomes} · ${c.gap}`,
   `${c.assessment}: ${c.continuity} · ${c.completeness} · ${c.limits}`,
 ] as const;
@@ -48,6 +48,10 @@ const mobileSteps = [
       <pattern id={`${id}-gap`} width="6" height="6" patternUnits="userSpaceOnUse">
         <path d="M0 6 L6 0" class="asm-gap-hatch" />
       </pattern>
+      <path
+        id={`${id}-hic-cells`}
+        d="M319 60h8v8h-8z M328 60h8v8h-8z M337 60h8v8h-8z M346 60h8v8h-8z M355 60h8v8h-8z M364 60h8v8h-8z M319 69h8v8h-8z M328 69h8v8h-8z M337 69h8v8h-8z M346 69h8v8h-8z M355 69h8v8h-8z M364 69h8v8h-8z M319 78h8v8h-8z M328 78h8v8h-8z M337 78h8v8h-8z M346 78h8v8h-8z M355 78h8v8h-8z M364 78h8v8h-8z M319 87h8v8h-8z M328 87h8v8h-8z M337 87h8v8h-8z M346 87h8v8h-8z M355 87h8v8h-8z M364 87h8v8h-8z M319 96h8v8h-8z M328 96h8v8h-8z M337 96h8v8h-8z M346 96h8v8h-8z M355 96h8v8h-8z M364 96h8v8h-8z M319 105h8v8h-8z M328 105h8v8h-8z M337 105h8v8h-8z M346 105h8v8h-8z M355 105h8v8h-8z M364 105h8v8h-8z"
+      />
     </defs>
 
     <g class="asm-stage asm-stage--reads">
@@ -75,21 +79,36 @@ const mobileSteps = [
 
     <path d="M280 103 H296" class="asm-flow asm-flow--two" marker-end={`url(#${id}-arrow)`} />
 
-    {/* Hi-C supplies long-range contact evidence for grouping, ordering and orienting contigs. */}
+    {/* Manual curation reorders the same rows and columns together; it does not sort individual contacts. */}
     <g class="asm-stage asm-stage--hic">
       <path d="M299 42 H392" class="asm-stage-rule" />
       <text x="345.5" y="30" class="asm-stage-label">{c.hic}</text>
       <g class="asm-hic-contact-map" aria-hidden="true" shape-rendering="crispEdges">
         <rect x="316" y="57" width="59" height="59" rx="4" class="asm-hic-map-shell" />
-        {/* Symmetric conceptual contact intensities: strongest near the diagonal, lighter farther away. */}
-        <path d="M346 60h8v8h-8z M355 60h8v8h-8z M364 60h8v8h-8z M355 69h8v8h-8z M364 69h8v8h-8z M364 78h8v8h-8z M319 87h8v8h-8z M319 96h8v8h-8z M328 96h8v8h-8z M319 105h8v8h-8z M328 105h8v8h-8z M337 105h8v8h-8z" class="asm-hic-cells asm-hic-cells--faint" />
-        <path d="M337 60h8v8h-8z M346 69h8v8h-8z M355 78h8v8h-8z M364 87h8v8h-8z M319 78h8v8h-8z M328 87h8v8h-8z M337 96h8v8h-8z M346 105h8v8h-8z" class="asm-hic-cells asm-hic-cells--soft" />
-        <path d="M328 60h8v8h-8z M319 69h8v8h-8z M337 69h8v8h-8z M328 78h8v8h-8z M346 78h8v8h-8z M337 87h8v8h-8z M355 87h8v8h-8z M346 96h8v8h-8z M364 96h8v8h-8z M355 105h8v8h-8z" class="asm-hic-cells asm-hic-cells--mid" />
-        <path d="M319 60h8v8h-8z M328 69h8v8h-8z M337 78h8v8h-8z M346 87h8v8h-8z M355 96h8v8h-8z M364 105h8v8h-8z" class="asm-hic-cells asm-hic-cells--strong" />
-        <rect x="318.5" y="59.5" width="27" height="27" class="asm-hic-domain" />
-        <rect x="345.5" y="86.5" width="27" height="27" class="asm-hic-domain" />
+        <text x="345.5" y="53" class="asm-hic-state-label asm-hic-state-label--uncurated">{c.uncurated}</text>
+        <text x="345.5" y="53" class="asm-hic-state-label asm-hic-state-label--curated">{c.curated}</text>
+
+        <g class="asm-hic-map-state asm-hic-map-state--uncurated">
+          <use href={`#${id}-hic-cells`} class="asm-hic-cells asm-hic-cells--faint" />
+          {/* Three same-chromosome pairs are interleaved in an arbitrary contig order. */}
+          <path d="M346 60h8v8h-8z M319 87h8v8h-8z M364 69h8v8h-8z M328 105h8v8h-8z M355 78h8v8h-8z M337 96h8v8h-8z" class="asm-hic-cells asm-hic-cells--mid" />
+          <path d="M319 60h8v8h-8z M328 69h8v8h-8z M337 78h8v8h-8z M346 87h8v8h-8z M355 96h8v8h-8z M364 105h8v8h-8z" class="asm-hic-cells asm-hic-cells--strong" />
+        </g>
+
+        <g class="asm-hic-map-state asm-hic-map-state--curated">
+          <use href={`#${id}-hic-cells`} class="asm-hic-cells asm-hic-cells--faint" />
+          {/* Reordering both axes together brings the three pairs onto the main diagonal. */}
+          <path d="M328 60h8v8h-8z M319 69h8v8h-8z M346 78h8v8h-8z M337 87h8v8h-8z M364 96h8v8h-8z M355 105h8v8h-8z" class="asm-hic-cells asm-hic-cells--mid" />
+          <path d="M319 60h8v8h-8z M328 69h8v8h-8z M337 78h8v8h-8z M346 87h8v8h-8z M355 96h8v8h-8z M364 105h8v8h-8z" class="asm-hic-cells asm-hic-cells--strong" />
+          <rect x="318.5" y="59.5" width="18" height="18" class="asm-hic-domain" />
+          <rect x="336.5" y="77.5" width="18" height="18" class="asm-hic-domain" />
+          <rect x="354.5" y="95.5" width="18" height="18" class="asm-hic-domain" />
+        </g>
       </g>
-      <text x="345.5" y="138" class="asm-hic-action">{c.hicAction}</text>
+      <g class="asm-hic-curation-cue" aria-hidden="true">
+        <path d="M323 123 H341 M337 120 L341 123 L337 126 M368 129 H350 M354 126 L350 129 L354 132" />
+      </g>
+      <text x="345.5" y="142" class="asm-hic-action">{c.hicAction}</text>
     </g>
 
     <path d="M394 103 H411" class="asm-flow asm-flow--three" marker-end={`url(#${id}-arrow)`} />
@@ -341,14 +360,40 @@ const mobileSteps = [
   }
 
   .asm-hic-cells--faint { fill: color-mix(in oklab, var(--accent) 14%, var(--bg-panel)); }
-  .asm-hic-cells--soft { fill: color-mix(in oklab, var(--accent) 28%, var(--bg-panel)); }
   .asm-hic-cells--mid { fill: color-mix(in oklab, var(--accent) 52%, var(--bg-panel)); }
   .asm-hic-cells--strong { fill: var(--accent-strong); }
+
+  .asm-hic-map-state--uncurated,
+  .asm-hic-state-label--uncurated {
+    opacity: 0;
+  }
+
+  .asm-hic-state-label {
+    font-family: var(--font-mono);
+    font-size: 6.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-anchor: middle;
+    text-transform: uppercase;
+    fill: var(--text-faint);
+  }
 
   .asm-hic-domain {
     fill: none;
     stroke: color-mix(in oklab, var(--accent-strong) 58%, transparent);
     stroke-width: 1;
+  }
+
+  .asm-hic-curation-cue {
+    opacity: 0;
+  }
+
+  .asm-hic-curation-cue path {
+    fill: none;
+    stroke: var(--highlight-strong);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   .asm-hic-action {
@@ -466,6 +511,7 @@ const mobileSteps = [
   .asm-read,
   .asm-contig,
   .asm-hic-map-shell,
+  .asm-hic-map-state,
   .asm-hic-cells,
   .asm-hic-domain,
   .asm-unit,
@@ -494,25 +540,26 @@ const mobileSteps = [
   .assembly-diagram.is-playing .asm-contig--three { animation: contig-build 680ms 1.26s var(--ease-settle) both; }
   .assembly-diagram.is-playing .asm-flow--two { animation: assembly-link 520ms 1.7s ease-out both; }
   .assembly-diagram.is-playing .asm-hic-map-shell { animation: hic-map-focus 600ms 1.92s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-hic-cells--faint { animation: hic-heatmap-reveal 440ms 2.02s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-hic-cells--soft { animation: hic-heatmap-reveal 440ms 2.1s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-hic-cells--mid { animation: hic-heatmap-reveal 440ms 2.18s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-hic-cells--strong { animation: hic-heatmap-reveal 440ms 2.26s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-hic-domain { animation: hic-domain-reveal 500ms 2.34s ease-out both; }
-  .assembly-diagram.is-playing .asm-hic-action { animation: label-reveal 500ms 2.48s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-flow--three { animation: assembly-link 520ms 2.72s ease-out both; }
-  .assembly-diagram.is-playing .asm-unit--one { animation: unit-settle 680ms 3s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-unit--two { animation: unit-settle 680ms 3.12s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-unit--three { animation: unit-settle 680ms 3.24s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-gap { animation: gap-focus 780ms 3.38s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-hic-map-state--uncurated,
+  .assembly-diagram.is-playing .asm-hic-state-label--uncurated { animation: hic-uncurated-state 1.05s 2.04s ease-in-out both; }
+  .assembly-diagram.is-playing .asm-hic-map-state--curated,
+  .assembly-diagram.is-playing .asm-hic-state-label--curated { animation: hic-curated-state 1.05s 2.04s ease-in-out both; }
+  .assembly-diagram.is-playing .asm-hic-curation-cue { animation: hic-curation-cue 760ms 2.22s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-hic-domain { animation: hic-domain-reveal 420ms 2.69s ease-out both; }
+  .assembly-diagram.is-playing .asm-hic-action { animation: label-reveal 500ms 2.25s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-flow--three { animation: assembly-link 520ms 3.18s ease-out both; }
+  .assembly-diagram.is-playing .asm-unit--one { animation: unit-settle 680ms 3.45s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-unit--two { animation: unit-settle 680ms 3.57s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-unit--three { animation: unit-settle 680ms 3.69s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-gap { animation: gap-focus 780ms 3.83s var(--ease-settle) both; }
   .assembly-diagram.is-playing .asm-gap-pointer,
-  .assembly-diagram.is-playing .asm-gap-label { animation: label-reveal 540ms 3.52s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-flow--four { animation: assembly-link 520ms 3.74s ease-out both; }
-  .assembly-diagram.is-playing .asm-assessment-card { animation: assessment-focus 620ms 3.94s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-scan-line { animation: assessment-scan 760ms 4.14s ease-out both; }
-  .assembly-diagram.is-playing .asm-check--continuity { animation: check-reveal 520ms 4.48s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-check--completeness { animation: check-reveal 520ms 4.74s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-check--limits { animation: check-reveal 520ms 5s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-gap-label { animation: label-reveal 540ms 3.97s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-flow--four { animation: assembly-link 520ms 4.19s ease-out both; }
+  .assembly-diagram.is-playing .asm-assessment-card { animation: assessment-focus 620ms 4.39s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-scan-line { animation: assessment-scan 760ms 4.59s ease-out both; }
+  .assembly-diagram.is-playing .asm-check--continuity { animation: check-reveal 520ms 4.93s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-check--completeness { animation: check-reveal 520ms 5.19s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-check--limits { animation: check-reveal 520ms 5.45s var(--ease-settle) both; }
 
   @keyframes assembly-control {
     from { opacity: 0.55; transform: scale(0.94); }
@@ -545,9 +592,20 @@ const mobileSteps = [
     to { opacity: 1; transform: scale(1); }
   }
 
-  @keyframes hic-heatmap-reveal {
-    from { opacity: 0.15; transform: scale(0.92); }
-    to { opacity: 1; transform: scale(1); }
+  @keyframes hic-uncurated-state {
+    0% { opacity: 0; }
+    12%, 55% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes hic-curated-state {
+    0%, 58% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes hic-curation-cue {
+    0%, 100% { opacity: 0; transform: scaleX(0.75); }
+    25%, 70% { opacity: 1; transform: scaleX(1); }
   }
 
   @keyframes hic-domain-reveal {
@@ -608,6 +666,7 @@ const mobileSteps = [
     }
     .assembly-svg .asm-stage-label,
     .assembly-svg .asm-gap-label,
+    .assembly-svg .asm-hic-state-label,
     .assembly-svg .asm-hic-action,
     .assembly-svg .asm-assessment-label,
     .assembly-svg .asm-summary,
@@ -726,7 +785,7 @@ const mobileSteps = [
           status.textContent = diagram.dataset.labelFinished ?? '';
           label.textContent = diagram.dataset.labelReplay ?? '';
           assemblyTimers.delete(diagram);
-        }, 5800);
+        }, 6300);
         assemblyTimers.set(diagram, timer);
       });
     });

@@ -54,9 +54,11 @@ ok(/import AssemblyDiagram/.test(home) && /journey-5-assemble[\s\S]*?<AssemblyDi
 ok(/data-assembly-play/.test(assembly) && /data-assembly-status/.test(assembly) && /aria-live="polite"/.test(assembly), 'assembly explainer exposes native user-controlled playback and live status');
 ok(!/setInterval|autoplay/.test(assembly), 'assembly explainer never autoplays or loops without user input');
 ok(/asm-read--six/.test(assembly) && /asm-contig--three/.test(assembly), 'assembly explainer aligns overlapping reads into fewer longer contigs');
-ok(/asm-hic-contact-map/.test(assembly) && /asm-hic-cells--strong/.test(assembly) && /asm-hic-cells--faint/.test(assembly) && /asm-hic-domain/.test(assembly), 'assembly explainer includes a dense block-structured Hi-C heatmap stage');
+ok(/asm-hic-map-state--uncurated/.test(assembly) && /asm-hic-map-state--curated/.test(assembly) && (assembly.match(/class="asm-hic-domain"/g) ?? []).length === 3, 'assembly explainer contrasts an uncurated Hi-C map with three curated chromosome blocks');
 ok(!/asm-hic-scan/.test(assembly) && /symmetric Hi-C heatmap/.test(en) && /mapa de calor Hi-C conceptual y simétrico/.test(es), 'Hi-C heatmap uses symmetric contact intensity rather than an ambiguous persistent scan line');
-ok(/group · order · orient/.test(en) && /agrupar · ordenar · orientar/.test(es), 'EN and ES state that Hi-C evidence groups, orders and orients contigs');
+ok(/matching rows and columns are reordered together/.test(en) && /filas y columnas correspondientes se reordenan juntas/.test(es), 'EN and ES explain that manual curation reorders both Hi-C axes together');
+ok(/stronger within-chromosome and fainter between-chromosome contacts/.test(en) && /contactos más intensos dentro de cada cromosoma y más tenues entre cromosomas/.test(es), 'EN and ES distinguish stronger within-chromosome from fainter between-chromosome contacts');
+ok(/"hicAction": "manual curation"/.test(en) && /"hicAction": "curación manual"/.test(es), 'EN and ES label the conceptual manual-curation transition');
 ok(/asm-unit--one/.test(assembly) && /asm-unit--two/.test(assembly) && /asm-unit--three/.test(assembly) && /chromosome-scale scaffolds/.test(en), 'assembly explainer ends with several chromosome-scale scaffolds rather than one chromosome');
 ok(/asm-gap/.test(assembly) && /gap-pointer/.test(assembly) && /does not provide the missing sequence/.test(en) && /no aporta la secuencia faltante/.test(es), 'Hi-C scaffolding retains an explicit unresolved sequence gap instead of implying gap filling');
 ok(/asm-check--continuity/.test(assembly) && /asm-check--completeness/.test(assembly) && /asm-check--limits/.test(assembly), 'assessment separately reveals continuity, completeness and limits or gaps');

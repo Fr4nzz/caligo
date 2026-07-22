@@ -119,7 +119,7 @@ export const en = {
       "assemblyDiagram": {
         "conceptual": "Educational animation — conceptual, not data",
         "title": "Assemble, then assess",
-        "description": "A simplified genome-assembly workflow. Overlapping reads align into fewer, longer contigs. A conceptual, symmetric Hi-C heatmap uses stronger cells along a blocky diagonal and lighter off-diagonal cells to represent relative contact frequencies; those patterns can be used to group, order and orient contigs into several chromosome-scale scaffolds. Hi-C does not provide the missing sequence between contigs, so one unresolved sequence gap remains visible. A final assessment checks continuity, completeness and known limits or gaps without reporting numeric scores. The marks are illustrative and do not represent sequence or Hi-C data, an assembly or a result from Caligo.",
+        "description": "A simplified genome-assembly workflow. Overlapping reads align into fewer, longer contigs. A conceptual, symmetric Hi-C heatmap first shows contigs in an arbitrary order, so same-chromosome contacts appear scattered. During conceptual manual curation, matching rows and columns are reordered together; curators may also review contig orientation and possible misjoins. The curated map forms three clear blocks along the diagonal, with stronger within-chromosome and fainter between-chromosome contacts. These patterns can help organise contigs into chromosome-scale scaffolds. Hi-C does not provide the missing sequence between contigs, so one unresolved sequence gap remains visible. A final assessment checks continuity, completeness and known limits or gaps without reporting numeric scores. The marks are illustrative and do not represent sequence or Hi-C data, an assembly or a result from Caligo.",
         "play": "Play the explanation",
         "replay": "Replay",
         "ready": "Ready to animate",
@@ -129,14 +129,16 @@ export const en = {
         "reads": "overlapping reads",
         "contigs": "longer contigs",
         "hic": "Hi-C contacts",
-        "hicAction": "group · order · orient",
+        "hicAction": "manual curation",
+        "uncurated": "uncurated",
+        "curated": "curated",
         "chromosomes": "chromosome-scale scaffolds",
         "gap": "unresolved gap",
         "assessment": "assessment",
         "continuity": "continuity",
         "completeness": "completeness",
         "limits": "limits + gaps",
-        "summary": "Hi-C orders and orients · one sequence gap remains",
+        "summary": "manual curation reveals chromosome blocks · one sequence gap remains",
         "disclaimer": "Illustrative marks — not sequence or Hi-C data, scores or Caligo results"
       },
       "steps": [
