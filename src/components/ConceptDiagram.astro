@@ -777,11 +777,19 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     font-weight: 650;
   }
   .introgression-note { fill: var(--text-muted); }
+  .connectivity-scene .micro-label,
+  .connectivity-scene .panel-outcome {
+    paint-order: stroke fill;
+    stroke: var(--bg-panel);
+    stroke-width: 3.5px;
+    stroke-linejoin: round;
+  }
   .final-state-label {
     fill: var(--text-strong);
     font-size: 10px;
     font-weight: 750;
   }
+  .connectivity-scene .final-state-label { stroke-width: 4.5px; }
   .hybrid-species-label { fill: var(--accent-strong); }
   .panel-outcome {
     fill: var(--text-muted);
