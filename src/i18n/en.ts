@@ -30,13 +30,13 @@ export const en = {
     "status": "Status",
     "privacy": "Privacy",
     "exploreQuestion": "Explore this question",
-    "exploreThisPilot": "Explore this pilot"
+    "exploreThisPilot": "Explore this pilot project"
   },
   "status": {
     "publishedEvidence": "Published evidence",
     "databaseSnapshot": "Dated database snapshot",
-    "proposedCaligoWork": "Proposed pilot",
-    "proposedPilot": "Proposed pilot",
+    "proposedCaligoWork": "Proposed pilot project",
+    "proposedPilot": "Proposed pilot project",
     "preprint": "Preprint",
     "externalContext": "Related external context"
   },
@@ -61,18 +61,18 @@ export const en = {
   "nav": {
     "home": "Home",
     "science": "Science",
-    "proposedPilots": "Pilots",
+    "proposedPilots": "Pilot projects",
     "about": "About",
     "participate": "Participate",
     "caligoStory": "Discover",
     "network": "Network",
-    "projects": "Pilots",
+    "projects": "Pilot projects",
     "capacity": "Learning and exchange",
     "join": "Join"
   },
   "cta": {
     "exploreScience": "Explore the questions",
-    "seeProposedPilots": "Meet the proposed pilots",
+    "seeProposedPilots": "Meet the proposed pilot projects",
     "contact": "Contact Caligo",
     "join": "Start a conversation",
     "seeScience": "See how the science works",
@@ -96,7 +96,7 @@ export const en = {
       "fromOrganismToGenome": "From organism to genome",
       "whatReferenceSupports": "What a reference supports",
       "questions": "Questions",
-      "proposedPilots": "Proposed pilots",
+      "proposedPilots": "Proposed pilot projects",
       "discoverCaligo": "Discover Caligo"
     },
     "hero": {
@@ -273,8 +273,8 @@ export const en = {
       ]
     },
     "pilotsTeaser": {
-      "heading": "Four proposed pilots, four ways to test the approach",
-      "intro": "Four biological puzzles shape four proposed lines of work. The Pilots page connects each question to published evidence, methods and proposed next steps."
+      "heading": "Four proposed pilot projects, four ways to test the approach",
+      "intro": "Four biological puzzles shape four proposed lines of work. The Pilot projects page connects each question to published evidence, methods and proposed next steps."
     },
     "namesakeTeaser": {
       "heading": "Look closer: form becomes evidence",
@@ -289,9 +289,9 @@ export const en = {
     },
     "name": {
       "eyebrow": "About the name",
-      "title": "A name for what remains to be seen",
-      "body": "Caligo is Latin for fog and the name of a Neotropical genus of owl butterflies. On the wing, an eyespot becomes scales, then inherited information. The name holds the project’s thesis: a fauna this rich should not remain this dimly known.",
-      "sourceNote": "Caligo is the name selected through the initiative’s naming survey. The etymology and biological imagery are a present-day framing of the name, not a claim about how survey participants made their choice."
+      "title": "Named for the owl butterflies",
+      "body": "Caligo is a Neotropical genus of owl butterflies, known for their beauty and the large eyespots on their wings.",
+      "sourceNote": "Caligo is a Neotropical genus of owl butterflies."
     },
     "intro": {
       "eyebrow": "Why this matters",
@@ -318,7 +318,7 @@ export const en = {
       "participants": "participants",
       "facilities": "sequencing facilities",
       "countries": "countries",
-      "pilots": "proposed pilots",
+      "pilots": "proposed pilot projects",
       "asOf": "as of July 2026"
     }
   },
@@ -343,8 +343,8 @@ export const en = {
     "tiersOpenQuestion": "A short DNA barcode can support identification, a reference genome can organise whole-genome comparisons, and a population dataset can reveal variation among many individuals. None substitutes for the others, and each depends on a documented biological record.",
     "breadthTitle": "Make room for the moths, the small-bodied lineages and the difficult names",
     "breadthBody": "Lepidoptera genomics has advanced rapidly, but effort remains uneven: familiar butterflies and larger moths are better represented than many small-bodied and tropical lineages. A regionally useful programme should combine broad taxonomic representation with questions defined by researchers who know the organisms, collections and landscapes. [S01]",
-    "pilotsTitle": "Why begin with pilots",
-    "pilotsIntro": "A pilot lets Caligo test whether the entire chain of evidence works before any wider scale is claimed. A well-chosen pilot should:",
+    "pilotsTitle": "Why begin with pilot projects",
+    "pilotsIntro": "A pilot project lets Caligo test whether the entire chain of evidence works before any wider scale is claimed. A well-chosen pilot project should:",
     "pilotsReasons": [
       "connect a clear biological question to documented specimens and an appropriate genomic strategy;",
       "reveal missing permissions, metadata or taxonomic work before they become expensive problems;",
@@ -354,7 +354,7 @@ export const en = {
       "show where training, shared interpretation and local infrastructure need strengthening;",
       "produce enough evidence to decide what should be repeated, revised, scaled or stopped."
     ],
-    "seeProjects": "Explore the four proposed pilot questions.",
+    "seeProjects": "Explore the four proposed pilot project questions.",
     "questions": [
       {
         "heading": "How can chromosomes split and fuse while a lineage keeps evolving?",
@@ -365,7 +365,7 @@ export const en = {
         "genomesCan": "Show which chromosome regions correspond across species, locate fissions and fusions, and reveal how recombination and linked variation changed around them.",
         "limits": "A genome comparison cannot establish why a rearrangement spread, whether it caused speciation, or how it affects behaviour and survival without additional biological evidence.",
         "closing": "The deeper question reaches beyond chromosome counts to what changed when the genome was repackaged.",
-        "caligoConnection": "Direct context for the proposed Heliconius pilot.",
+        "caligoConnection": "Direct context for the proposed Heliconius pilot project.",
         "sourceNote": "Primary sources: Rueda-M et al. 2024 [S02]; Mackay-Smith et al. 2026 [S03].",
         "sourceIds": [
           "rueda-2024",
@@ -382,7 +382,7 @@ export const en = {
         "genomesCan": "Detect regions with different evolutionary histories, estimate patterns of ancestry and test whether inherited variants moved between lineages.",
         "limits": "Genomic similarity alone cannot prove that a transferred variant was adaptive, identify the ecological mechanism or show that hybridisation created a species.",
         "closing": "A surprising patch of shared DNA is the beginning of an investigation, not its conclusion.",
-        "caligoConnection": "Relevant to Heliconius comparisons and to any pilot asking about movement, hybridisation or adaptation.",
+        "caligoConnection": "Relevant to Heliconius comparisons and to any pilot project asking about movement, hybridisation or adaptation.",
         "sourceNote": "Primary sources: Rosser et al. 2024 [S04]; Edelman et al. 2019 [S05].",
         "sourceIds": [
           "rosser-2024",
@@ -415,7 +415,7 @@ export const en = {
         "genomesCan": "Estimate relatedness, population structure, historical and recent gene flow, inbreeding and changes in genomic diversity.",
         "limits": "Genomes alone cannot show the exact route an individual travelled, measure habitat quality or determine conservation priorities without ecological and social context.",
         "closing": "Connectivity is not a line on a map; it is a moving relationship that must be measured again.",
-        "caligoConnection": "Direct context for the proposed Parides ascanius pilot.",
+        "caligoConnection": "Direct context for the proposed Parides ascanius pilot project.",
         "sourceNote": "Primary study and assessments: Seraphim et al. 2016 [S06]; IUCN 2018 [S07]; ICMBio 2021 [S08].",
         "sourceIds": [
           "seraphim-2016",
@@ -433,7 +433,7 @@ export const en = {
         "genomesCan": "Compare ancestry among sampled groups, estimate connectivity and test whether seasonal aggregations draw from one or several populations.",
         "limits": "Genomes cannot reconstruct an individual flight path, determine the environmental trigger or define the full range of a movement without other evidence.",
         "closing": "The spectacle is visible; the network of populations behind it is still waiting to be traced.",
-        "caligoConnection": "Direct context for the proposed Panacea prola pilot.",
+        "caligoConnection": "Direct context for the proposed Panacea prola pilot project.",
         "sourceNote": "Public evidence: Gallice et al. 2020 preprint [S09].",
         "sourceIds": [
           "gallice-2020"
@@ -449,7 +449,7 @@ export const en = {
         "genomesCan": "Provide a durable comparative resource when sequence, metadata and biological evidence remain connected.",
         "limits": "Technical openness alone cannot establish legitimate authority, fair credit, appropriate benefit sharing or safe publication of sensitive information.",
         "closing": "The future value of a genome is designed long before anyone downloads it.",
-        "caligoConnection": "Applies to every proposed pilot and to Caligo’s public explanation of responsible genomics.",
+        "caligoConnection": "Applies to every proposed pilot project and to Caligo’s public explanation of responsible genomics.",
         "sourceNote": "Sources: Mayer et al. 2021 [S16]; FAIR [S20]; CARE [S21]; Nagoya Protocol [S22].",
         "sourceIds": [
           "mayer-2021",
@@ -573,19 +573,19 @@ export const en = {
     }
   },
   "pilots": {
-    "metaTitle": "Proposed pilots | Caligo",
+    "metaTitle": "Proposed pilot projects | Caligo",
     "metaDescription": "Four proposed investigations linking chromosome evolution, threatened-population connectivity, sustainable agriculture and seasonal movement to documented genomic evidence.",
-    "title": "Proposed pilots",
-    "opening": "These four pilot directions pair published evidence with questions designed for Caligo. Each sets out the organisms, observations, samples and comparisons needed to turn a biological puzzle into testable work.",
+    "title": "Proposed pilot projects",
+    "opening": "These four pilot project directions pair published evidence with questions designed for Caligo. Each sets out the organisms, observations, samples and comparisons needed to turn a biological puzzle into testable work.",
     "whatAPilotCanTest": {
-      "heading": "A pilot tests the entire evidence chain",
-      "body": "The question, permissions, specimen record, DNA data, analysis, repositories and contributor credit all have to connect. A pilot is valuable when it reveals what works, what is missing and what should change before wider effort is considered."
+      "heading": "A pilot project tests the entire evidence chain",
+      "body": "The question, permissions, specimen record, DNA data, analysis, repositories and contributor credit all have to connect. A pilot project is valuable when it reveals what works, what is missing and what should change before wider effort is considered."
     },
     "fieldLabels": {
       "hook": "The question in one sentence",
       "publishedContext": "What published evidence already shows",
-      "proposedQuestion": "What the proposed Caligo pilot would test",
-      "evidenceNeeded": "Evidence the pilot would need",
+      "proposedQuestion": "What the proposed Caligo pilot project would test",
+      "evidenceNeeded": "Evidence the pilot project would need",
       "genomesCan": "What genomes can contribute",
       "limits": "Evidence needed beyond genomics",
       "closing": "The question to carry forward",
@@ -596,9 +596,9 @@ export const en = {
     "metaTitle": "Discover Caligo | Eye, eyespot and evidence",
     "metaDescription": "A popular-science story about the Caligo genus, compound eyes, wing eyespots, scales and how competing explanations are tested.",
     "meetTheNamesake": {
-      "heading": "Caligo: a name for the work ahead",
-      "body": "Caligo is Latin for fog. It is also a Neotropical genus of owl butterflies, a name rooted in the region this network serves. On its wings, a mark resembles an eye but cannot see. Look closer and the pattern resolves into scales; closer still, into the inherited information that built them. A fauna this rich should not remain this dimly known.",
-      "sourceNote": "Caligo is the name selected through the initiative’s naming survey. The etymology and biological imagery are a present-day framing of the name, not a claim about how survey participants made their choice."
+      "heading": "Meet the owl butterflies",
+      "body": "Caligo is a Neotropical genus of owl butterflies, known for their beauty and the large eyespots on their wings.",
+      "sourceNote": "Caligo is a Neotropical genus of owl butterflies."
     },
     "compoundEye": {
       "eyebrow": "Look at the right structure",
@@ -674,12 +674,12 @@ export const en = {
     "metaTitle": "Proposed pilot projects | Caligo",
     "metaDescription": "Four proposed pilot projects linking published evidence to testable Neotropical genomics questions.",
     "title": "Proposed pilot projects",
-    "intro": "Each proposed pilot begins with published evidence and a question that demands more. Follow the organism, the observations and samples the work would need, the contribution of genomics and the evidence supplied by ecology, taxonomy or experiment.",
-    "openToCollaborators": "Start a pilot conversation",
+    "intro": "Each proposed pilot project begins with published evidence and a question that demands more. Follow the organism, the observations and samples the work would need, the contribution of genomics and the evidence supplied by ecology, taxonomy or experiment.",
+    "openToCollaborators": "Discuss a pilot project",
     "goalLabel": "Research question",
     "resourcesLabel": "Published and documented starting points",
     "motives": {
-      "heading": "Why begin with pilots",
+      "heading": "Why begin with pilot projects",
       "intro": "The initiative identified reasons to start with focused pilot projects.",
       "items": [
         "Demonstrate to funders that the network can generate genomes in Latin America and analyse them collaboratively.",
@@ -692,9 +692,9 @@ export const en = {
       ]
     },
     "pilotProposal": {
-      "heading": "The proposed Caligo pilot",
-      "leadsLabel": "Pilot leads",
-      "goalLabel": "What the pilot would do",
+      "heading": "The proposed Caligo pilot project",
+      "leadsLabel": "Pilot project leads",
+      "goalLabel": "What the pilot project would do",
       "resourcesLabel": "Available resources",
       "openLabel": "Open to collaborators",
       "closedLabel": "Not currently open to collaborators"
@@ -708,9 +708,7 @@ export const en = {
     "name": {
       "heading": "Why Caligo",
       "body": [
-        "Caligo is Latin for fog. It is also a Neotropical genus of owl butterflies, a name rooted in the region this network serves. The name belongs to no single country, and neither does the work ahead.",
-        "On its wings, a mark resembles an eye but cannot see. Look closer and the pattern resolves into scales; closer still, into the inherited information that built them.",
-        "One of Earth’s richest Lepidoptera faunas should not remain among its least sequenced."
+        "Caligo is a Neotropical genus of owl butterflies, known for their beauty and the large eyespots on their wings."
       ]
     },
     "beingDecided": {

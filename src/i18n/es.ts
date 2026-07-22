@@ -27,13 +27,13 @@ export const es: Dict = {
     "status": "Estado",
     "privacy": "Privacidad",
     "exploreQuestion": "Explora esta pregunta",
-    "exploreThisPilot": "Explora este piloto"
+    "exploreThisPilot": "Explora este proyecto piloto"
   },
   "status": {
     "publishedEvidence": "Evidencia publicada",
     "databaseSnapshot": "Consulta fechada de base de datos",
-    "proposedCaligoWork": "Piloto propuesto",
-    "proposedPilot": "Piloto propuesto",
+    "proposedCaligoWork": "Proyecto piloto propuesto",
+    "proposedPilot": "Proyecto piloto propuesto",
     "preprint": "Preprint",
     "externalContext": "Contexto externo relacionado"
   },
@@ -58,18 +58,18 @@ export const es: Dict = {
   "nav": {
     "home": "Inicio",
     "science": "Ciencia",
-    "proposedPilots": "Pilotos",
+    "proposedPilots": "Proyectos piloto",
     "about": "Acerca de",
     "participate": "Participa",
     "caligoStory": "Descubre",
     "network": "Red",
-    "projects": "Pilotos",
+    "projects": "Proyectos piloto",
     "capacity": "Aprendizaje e intercambio",
     "join": "Unirse"
   },
   "cta": {
     "exploreScience": "Explora las preguntas",
-    "seeProposedPilots": "Conoce los pilotos propuestos",
+    "seeProposedPilots": "Conoce los proyectos piloto propuestos",
     "contact": "Contacta a Caligo",
     "join": "Inicia una conversación",
     "seeScience": "Mira cómo funciona la ciencia",
@@ -91,7 +91,7 @@ export const es: Dict = {
       "fromOrganismToGenome": "Del organismo al genoma",
       "whatReferenceSupports": "Qué permite una referencia",
       "questions": "Preguntas",
-      "proposedPilots": "Pilotos propuestos",
+      "proposedPilots": "Proyectos piloto propuestos",
       "discoverCaligo": "Descubre Caligo"
     },
     "metaTitle": "Caligo | Genomas de mariposas y polillas neotropicales",
@@ -270,8 +270,8 @@ export const es: Dict = {
       ]
     },
     "pilotsTeaser": {
-      "heading": "Cuatro pilotos propuestos, cuatro maneras de poner a prueba el enfoque",
-      "intro": "Cuatro enigmas biológicos orientan cuatro líneas de trabajo propuestas. La página de Pilotos conecta cada pregunta con la evidencia publicada, los métodos y los siguientes pasos propuestos."
+      "heading": "Cuatro proyectos piloto propuestos, cuatro maneras de poner a prueba el enfoque",
+      "intro": "Cuatro enigmas biológicos orientan cuatro líneas de trabajo propuestas. La página de Proyectos piloto conecta cada pregunta con la evidencia publicada, los métodos y los siguientes pasos propuestos."
     },
     "namesakeTeaser": {
       "heading": "Mira más de cerca: la forma se convierte en evidencia",
@@ -286,9 +286,9 @@ export const es: Dict = {
     },
     "name": {
       "eyebrow": "Sobre el nombre",
-      "title": "Un nombre para lo que falta por ver",
-      "body": "Caligo significa niebla en latín y también nombra un género neotropical de mariposas búho. En el ala, un ocelo se resuelve en escamas y luego en información heredada. El nombre contiene la tesis del proyecto: una fauna tan rica no debería seguir tan a oscuras.",
-      "sourceNote": "Caligo es el nombre elegido en la encuesta de la iniciativa. La etimología y las imágenes biológicas son una lectura actual del nombre, no una afirmación sobre cómo votaron quienes participaron."
+      "title": "El nombre de las mariposas búho",
+      "body": "Caligo es un género neotropical de mariposas búho, conocidas por su belleza y los grandes ocelos de sus alas.",
+      "sourceNote": "Caligo es un género neotropical de mariposas búho."
     },
     "intro": {
       "eyebrow": "Por qué importa",
@@ -315,7 +315,7 @@ export const es: Dict = {
       "participants": "participantes",
       "facilities": "instalaciones de secuenciación",
       "countries": "países",
-      "pilots": "pilotos propuestos",
+      "pilots": "proyectos piloto propuestos",
       "asOf": "a julio de 2026"
     }
   },
@@ -340,8 +340,8 @@ export const es: Dict = {
     "tiersOpenQuestion": "Un código de barras corto puede apoyar una identificación, un genoma de referencia puede ordenar comparaciones de genoma completo y un conjunto poblacional puede revelar variación entre muchos individuos. Ninguno reemplaza a los demás y todos dependen de un registro biológico documentado.",
     "breadthTitle": "Dar espacio a las polillas, los linajes pequeños y los nombres difíciles",
     "breadthBody": "La genómica de lepidópteros avanzó con rapidez, pero el esfuerzo sigue siendo desigual: las mariposas conocidas y las polillas grandes están mejor representadas que muchos linajes pequeños y tropicales. Un programa útil para la región debe combinar amplitud taxonómica con preguntas definidas por quienes conocen los organismos, las colecciones y los paisajes. [S01]",
-    "pilotsTitle": "Por qué empezar con pilotos",
-    "pilotsIntro": "Un piloto permite comprobar que toda la cadena de evidencia funciona antes de hablar de una escala mayor. Un buen piloto debe:",
+    "pilotsTitle": "Por qué empezar con proyectos piloto",
+    "pilotsIntro": "Un proyecto piloto permite comprobar que toda la cadena de evidencia funciona antes de hablar de una escala mayor. Un buen proyecto piloto debe:",
     "pilotsReasons": [
       "conectar una pregunta biológica clara con ejemplares documentados y una estrategia genómica adecuada;",
       "detectar permisos, metadatos o trabajo taxonómico faltantes antes de que se conviertan en problemas costosos;",
@@ -351,7 +351,7 @@ export const es: Dict = {
       "mostrar dónde hace falta fortalecer la formación, la interpretación compartida y la infraestructura local;",
       "producir evidencia suficiente para decidir qué conviene repetir, revisar, ampliar o detener."
     ],
-    "seeProjects": "Explora las cuatro preguntas de los pilotos propuestos.",
+    "seeProjects": "Explora las preguntas de los cuatro proyectos piloto propuestos.",
     "questions": [
       {
         "heading": "¿Cómo pueden dividirse y fusionarse los cromosomas mientras un linaje sigue evolucionando?",
@@ -362,7 +362,7 @@ export const es: Dict = {
         "genomesCan": "Mostrar qué regiones cromosómicas corresponden entre especies, localizar fisiones y fusiones y revelar cómo cambió la recombinación o la variación ligada alrededor de ellas.",
         "limits": "La comparación de genomas no demuestra por qué se extendió un reordenamiento, si causó especiación ni cómo afecta la conducta o la supervivencia sin evidencia biológica adicional.",
         "closing": "La pregunta profunda va más allá del número de cromosomas: qué cambió cuando el genoma volvió a empaquetarse.",
-        "caligoConnection": "Contexto directo para el piloto propuesto sobre Heliconius.",
+        "caligoConnection": "Contexto directo para el proyecto piloto propuesto sobre Heliconius.",
         "sourceNote": "Fuentes primarias: Rueda-M et al. 2024 [S02]; Mackay-Smith et al. 2026 [S03].",
         "sourceIds": [
           "rueda-2024",
@@ -379,7 +379,7 @@ export const es: Dict = {
         "genomesCan": "Detectar regiones con historias evolutivas distintas, estimar patrones de ascendencia y probar si variantes heredadas pasaron entre linajes.",
         "limits": "La similitud genómica por sí sola no demuestra que una variante transferida fue adaptativa, no identifica el mecanismo ecológico ni prueba que la hibridación originó una especie.",
         "closing": "Un fragmento inesperado de ADN compartido abre una investigación; no la cierra.",
-        "caligoConnection": "Pertinente para comparaciones en Heliconius y para cualquier piloto sobre movimiento, hibridación o adaptación.",
+        "caligoConnection": "Pertinente para comparaciones en Heliconius y para cualquier proyecto piloto sobre movimiento, hibridación o adaptación.",
         "sourceNote": "Fuentes primarias: Rosser et al. 2024 [S04]; Edelman et al. 2019 [S05].",
         "sourceIds": [
           "rosser-2024",
@@ -412,7 +412,7 @@ export const es: Dict = {
         "genomesCan": "Estimar parentesco, estructura poblacional, flujo génico histórico y reciente, endogamia y cambios en la diversidad genómica.",
         "limits": "Los genomas no muestran por sí solos la ruta exacta que recorrió un individuo, no miden la calidad del hábitat ni fijan prioridades de conservación sin contexto ecológico y social.",
         "closing": "La conectividad no es una línea inmóvil en el mapa: es una relación cambiante que debe medirse de nuevo.",
-        "caligoConnection": "Contexto directo para el piloto propuesto sobre Parides ascanius.",
+        "caligoConnection": "Contexto directo para el proyecto piloto propuesto sobre Parides ascanius.",
         "sourceNote": "Estudio primario y evaluaciones: Seraphim et al. 2016 [S06]; UICN 2018 [S07]; ICMBio 2021 [S08].",
         "sourceIds": [
           "seraphim-2016",
@@ -430,7 +430,7 @@ export const es: Dict = {
         "genomesCan": "Comparar la ascendencia de grupos muestreados, estimar conectividad y probar si las agregaciones estacionales provienen de una o varias poblaciones.",
         "limits": "Los genomas no reconstruyen la trayectoria de vuelo de un individuo, no determinan el disparador ambiental ni definen el alcance completo del movimiento sin otras evidencias.",
         "closing": "El espectáculo está a la vista; la red de poblaciones que lo sostiene todavía debe trazarse.",
-        "caligoConnection": "Contexto directo para el piloto propuesto sobre Panacea prola.",
+        "caligoConnection": "Contexto directo para el proyecto piloto propuesto sobre Panacea prola.",
         "sourceNote": "Evidencia pública: preprint de Gallice et al. 2020 [S09].",
         "sourceIds": [
           "gallice-2020"
@@ -446,7 +446,7 @@ export const es: Dict = {
         "genomesCan": "Convertirse en un recurso comparativo duradero cuando la secuencia, los metadatos y la evidencia biológica permanecen conectados.",
         "limits": "La apertura técnica no establece por sí sola autoridad legítima, crédito justo, distribución adecuada de beneficios ni publicación segura de información sensible.",
         "closing": "El valor futuro de un genoma se diseña mucho antes de que alguien lo descargue.",
-        "caligoConnection": "Se aplica a todos los pilotos propuestos y a la explicación pública de una genómica responsable.",
+        "caligoConnection": "Se aplica a todos los proyectos piloto propuestos y a la explicación pública de una genómica responsable.",
         "sourceNote": "Fuentes: Mayer et al. 2021 [S16]; FAIR [S20]; CARE [S21]; Protocolo de Nagoya [S22].",
         "sourceIds": [
           "mayer-2021",
@@ -570,19 +570,19 @@ export const es: Dict = {
     }
   },
   "pilots": {
-    "metaTitle": "Pilotos propuestos | Caligo",
+    "metaTitle": "Proyectos piloto propuestos | Caligo",
     "metaDescription": "Cuatro investigaciones propuestas que conectan evolución cromosómica, conectividad de poblaciones amenazadas, agricultura sostenible y movimiento estacional con evidencia genómica documentada.",
-    "title": "Pilotos propuestos",
+    "title": "Proyectos piloto propuestos",
     "opening": "Estas cuatro líneas combinan evidencia publicada con preguntas diseñadas para Caligo. Cada una define los organismos, observaciones, muestras y comparaciones necesarios para convertir un enigma biológico en trabajo comprobable.",
     "whatAPilotCanTest": {
-      "heading": "Un piloto pone a prueba toda la cadena de evidencia",
-      "body": "La pregunta, los permisos, el registro del ejemplar, los datos de ADN, el análisis, los repositorios y el reconocimiento de contribuciones deben permanecer conectados. Un piloto es valioso cuando revela qué funciona, qué falta y qué debería cambiar antes de considerar una escala mayor."
+      "heading": "Un proyecto piloto pone a prueba toda la cadena de evidencia",
+      "body": "La pregunta, los permisos, el registro del ejemplar, los datos de ADN, el análisis, los repositorios y el reconocimiento de contribuciones deben permanecer conectados. Un proyecto piloto es valioso cuando revela qué funciona, qué falta y qué debería cambiar antes de considerar una escala mayor."
     },
     "fieldLabels": {
       "hook": "La pregunta en una frase",
       "publishedContext": "Lo que ya muestra la evidencia publicada",
-      "proposedQuestion": "Lo que pondría a prueba el piloto propuesto de Caligo",
-      "evidenceNeeded": "Evidencia que necesitaría el piloto",
+      "proposedQuestion": "Lo que pondría a prueba el proyecto piloto propuesto de Caligo",
+      "evidenceNeeded": "Evidencia que necesitaría el proyecto piloto",
       "genomesCan": "Qué pueden aportar los genomas",
       "limits": "Evidencia necesaria más allá de la genómica",
       "closing": "La pregunta para seguir pensando",
@@ -593,9 +593,9 @@ export const es: Dict = {
     "metaTitle": "Descubre Caligo | Ojo, ocelo y evidencia",
     "metaDescription": "Una historia de ciencia para todos sobre el género Caligo, los ojos compuestos, los ocelos alares, las escamas y la manera de poner a prueba explicaciones rivales.",
     "meetTheNamesake": {
-      "heading": "Caligo: un nombre para el trabajo que viene",
-      "body": "Caligo significa niebla en latín. También nombra un género neotropical de mariposas búho, arraigado en la región que esta red estudia. En sus alas, una marca parece un ojo, pero no puede ver. De cerca se resuelve en escamas; más cerca aún, en la información heredada que las formó. Una fauna tan rica no debería seguir tan a oscuras.",
-      "sourceNote": "Caligo es el nombre elegido en la encuesta de la iniciativa. La etimología y las imágenes biológicas son una lectura actual del nombre, no una afirmación sobre cómo votaron quienes participaron."
+      "heading": "Conoce a las mariposas búho",
+      "body": "Caligo es un género neotropical de mariposas búho, conocidas por su belleza y los grandes ocelos de sus alas.",
+      "sourceNote": "Caligo es un género neotropical de mariposas búho."
     },
     "compoundEye": {
       "eyebrow": "Mira la estructura correcta",
@@ -671,12 +671,12 @@ export const es: Dict = {
     "metaTitle": "Proyectos piloto propuestos | Caligo",
     "metaDescription": "Cuatro proyectos piloto propuestos que conectan evidencia publicada con preguntas comprobables de genómica neotropical.",
     "title": "Proyectos piloto propuestos",
-    "intro": "Cada piloto propuesto parte de evidencia publicada y de una pregunta que exige ir más lejos. Sigue al organismo, las observaciones y muestras que harían falta, el aporte de la genómica y la evidencia que ofrecen la ecología, la taxonomía o la experimentación.",
-    "openToCollaborators": "Inicia una conversación sobre un piloto",
+    "intro": "Cada proyecto piloto propuesto parte de evidencia publicada y de una pregunta que exige ir más lejos. Sigue al organismo, las observaciones y muestras que harían falta, el aporte de la genómica y la evidencia que ofrecen la ecología, la taxonomía o la experimentación.",
+    "openToCollaborators": "Conversa sobre un proyecto piloto",
     "goalLabel": "Pregunta de investigación",
     "resourcesLabel": "Puntos de partida publicados y documentados",
     "motives": {
-      "heading": "Por qué empezar con pilotos",
+      "heading": "Por qué empezar con proyectos piloto",
       "intro": "La iniciativa identificó razones para comenzar con proyectos piloto enfocados.",
       "items": [
         "Demostrar a los financiadores que la red puede generar genomas en América Latina y analizarlos de forma colaborativa.",
@@ -689,9 +689,9 @@ export const es: Dict = {
       ]
     },
     "pilotProposal": {
-      "heading": "El piloto propuesto de Caligo",
-      "leadsLabel": "Quienes lideran el piloto",
-      "goalLabel": "Qué haría el piloto",
+      "heading": "El proyecto piloto propuesto de Caligo",
+      "leadsLabel": "Quienes lideran el proyecto piloto",
+      "goalLabel": "Qué haría el proyecto piloto",
       "resourcesLabel": "Recursos disponibles",
       "openLabel": "Abierto a colaboradores",
       "closedLabel": "No abierto a colaboradores por ahora"
@@ -705,9 +705,7 @@ export const es: Dict = {
     "name": {
       "heading": "Por qué Caligo",
       "body": [
-        "Caligo significa niebla en latín. También nombra un género neotropical de mariposas búho, arraigado en la región que esta red estudia. El nombre no pertenece a un solo país. El trabajo que viene, tampoco.",
-        "En sus alas, una marca parece un ojo, pero no puede ver. De cerca se resuelve en escamas; más cerca aún, en la información heredada que las formó.",
-        "Una de las faunas de lepidópteros más ricas del planeta no debería seguir entre las menos secuenciadas."
+        "Caligo es un género neotropical de mariposas búho, conocidas por su belleza y los grandes ocelos de sus alas."
       ]
     },
     "beingDecided": {

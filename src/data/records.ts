@@ -251,7 +251,7 @@ export const SOURCES: readonly Source[] = [
     id: 'ukri-soybean',
     kind: 'institutional',
     citation:
-      'UK Research and Innovation, project UKRI2955, Population genomic monitoring of soybean pests. Independent scientific context for the proposed Caligo pilot.',
+      'UK Research and Innovation, project UKRI2955, Population genomic monitoring of soybean pests. Independent scientific context for the proposed Caligo pilot project.',
     url: 'https://gtr.ukri.org/projects?ref=UKRI2955',
     checkedDate: '2026-07-16',
   },
@@ -528,8 +528,8 @@ export const PILOTS: readonly Pilot[] = [
       es: 'La evidencia genómica publicada muestra una explosión excepcional de cambios cromosómicos en el subclado sapho de Heliconius. La mayoría de las especies del género tiene 21 cromosomas haploides, pero cinco especies de este linaje presentan entre 21 y 60 después de fisiones repetidas, procesos en los que un cromosoma ancestral pasa a formar dos. También se identificaron tres fusiones independientes entre el cromosoma W, propio de las hembras, y autosomas. Este sistema permite preguntar cómo la estructura del genoma modifica la recombinación, la evolución de los cromosomas sexuales y la herencia conjunta de variantes. Cinco genomas de referencia de Heliconius muy contiguos, publicados en julio de 2026, amplían el material comparativo; por sí solos no explican por qué se extendieron los reordenamientos ni qué efectos tuvieron.',
     },
     proposedQuestion: {
-      en: 'The proposed Caligo pilot would compare selected chromosome-scale genomes to test where fissions and fusions occurred, how they changed genomic organisation and which evolutionary hypotheses deserve deeper study.',
-      es: 'El piloto propuesto de Caligo compararía genomas seleccionados a escala cromosómica para ubicar fisiones y fusiones, estudiar cómo reorganizaron el genoma y reconocer qué hipótesis evolutivas merecen una investigación más profunda.',
+      en: 'The proposed Caligo pilot project would compare selected chromosome-scale genomes to test where fissions and fusions occurred, how they changed genomic organisation and which evolutionary hypotheses deserve deeper study.',
+      es: 'El proyecto piloto propuesto de Caligo compararía genomas seleccionados a escala cromosómica para ubicar fisiones y fusiones, estudiar cómo reorganizaron el genoma y reconocer qué hipótesis evolutivas merecen una investigación más profunda.',
     },
     evidenceNeeded: {
       en: 'Chromosome-scale assemblies from the focal and closely related species; verified specimens; chromosome counts where available; robust phylogenetic comparisons; and trait, recombination or breeding evidence.',
@@ -544,8 +544,8 @@ export const PILOTS: readonly Pilot[] = [
       es: 'Las comparaciones no demuestran que un reordenamiento causó adaptación o especiación sin experimentos, datos poblacionales y evidencia del organismo.',
     },
     closing: {
-      en: 'A chromosome count is the visible clue; the pilot asks what changed inside the evolutionary story.',
-      es: 'El número de cromosomas es la pista visible; el piloto pregunta qué cambió dentro de la historia evolutiva.',
+      en: 'A chromosome count is the visible clue; the pilot project asks what changed inside the evolutionary story.',
+      es: 'El número de cromosomas es la pista visible; el proyecto piloto pregunta qué cambió dentro de la historia evolutiva.',
     },
     sourceNote: {
       en: 'Published context: Rueda-M et al. 2024; Mackay-Smith et al. 2026. The 2026 paper is a published accepted manuscript and may receive typesetting changes while retaining its DOI.',
@@ -573,8 +573,8 @@ export const PILOTS: readonly Pilot[] = [
       es: 'La evaluación de la UICN de 2018 clasificó a Parides ascanius como Vulnerable a escala mundial; la evaluación nacional de Brasil de 2021 la clasificó como En Peligro. Son evaluaciones fechadas, pertenecen a jurisdicciones distintas y no deben tratarse como equivalentes. La especie se asocia con restingas costeras de tierras bajas y humedales. Un estudio genético publicado en 2016 encontró poca estructura poblacional e infirió migración considerable entre las poblaciones muestreadas: una línea de base histórica alentadora, pero no una prueba de que esas conexiones sigan intactas. La pérdida, el drenaje y la fragmentación del hábitat pueden modificar el movimiento mucho antes de que las poblaciones se vean diferentes. Por eso, un estudio actual debe preguntar no solo cuánta diversidad genética queda, sino si los individuos y las variantes heredadas todavía circulan entre parches de hábitat. Las localidades precisas deben permanecer protegidas.',
     },
     proposedQuestion: {
-      en: 'The proposed Caligo pilot would build a documented reference genome and compare responsibly sampled populations to test whether connectivity and genetic diversity have changed since the earlier baseline.',
-      es: 'El piloto propuesto de Caligo construiría un genoma de referencia vinculado a un ejemplar documentado y compararía poblaciones muestreadas de manera responsable para saber si la conectividad y la diversidad genética cambiaron desde la línea de base anterior.',
+      en: 'The proposed Caligo pilot project would build a documented reference genome and compare responsibly sampled populations to test whether connectivity and genetic diversity have changed since the earlier baseline.',
+      es: 'El proyecto piloto propuesto de Caligo construiría un genoma de referencia vinculado a un ejemplar documentado y compararía poblaciones muestreadas de manera responsable para saber si la conectividad y la diversidad genética cambiaron desde la línea de base anterior.',
     },
     evidenceNeeded: {
       en: 'A documented reference specimen; appropriately permitted samples from a planned, non-public set of populations; habitat and time metadata; and analyses designed to compare current structure with earlier results.',
@@ -618,8 +618,8 @@ export const PILOTS: readonly Pilot[] = [
       es: 'Los paisajes sojeros reúnen a varias especies de lepidópteros en un mismo desafío aplicado: identificar bien el organismo, comprender cómo se mueven las poblaciones y vigilar si el manejo está seleccionando resistencia. Estas preguntas importan para la seguridad alimentaria y para reducir intervenciones innecesarias o ineficaces. Estudios publicados en Brasil muestran por qué los detalles son decisivos. Especies cercanas pueden confundirse durante el monitoreo y los cambios de susceptibilidad a proteínas insecticidas deben medirse con evidencia repetida y específica de cada especie, no darse por hechos. La genómica puede ayudar a distinguir linajes, seguir variantes heredadas y diseñar herramientas dirigidas, pero el manejo sostenible también exige observaciones de campo, agronomía, bioensayos de resistencia, historia del paisaje y decisiones de productores y autoridades. Los organismos forman parte del ecosistema; «plaga» es una categoría de manejo dependiente del contexto, no un juicio sobre las mariposas y polillas como grupo.',
     },
     proposedQuestion: {
-      en: 'The proposed Caligo pilot would ask how confirmed soybean-associated species move across changing agricultural mosaics, how resistance-related variants are distributed and which genomic markers are reliable enough for monitoring.',
-      es: 'El piloto propuesto de Caligo preguntaría cómo se desplazan especies confirmadas asociadas con la soja a través de mosaicos agrícolas cambiantes, cómo se distribuyen variantes relacionadas con resistencia y qué marcadores genómicos son suficientemente confiables para el monitoreo.',
+      en: 'The proposed Caligo pilot project would ask how confirmed soybean-associated species move across changing agricultural mosaics, how resistance-related variants are distributed and which genomic markers are reliable enough for monitoring.',
+      es: 'El proyecto piloto propuesto de Caligo preguntaría cómo se desplazan especies confirmadas asociadas con la soja a través de mosaicos agrícolas cambiantes, cómo se distribuyen variantes relacionadas con resistencia y qué marcadores genómicos son suficientemente confiables para el monitoreo.',
     },
     evidenceNeeded: {
       en: 'Confirmed species identifications; documented reference specimens; repeated and geographically designed population sampling; resistance phenotypes or bioassays; crop and management context; and validated marker panels.',
@@ -663,8 +663,8 @@ export const PILOTS: readonly Pilot[] = [
       es: 'Un preprint de 2020 describió un movimiento estacional masivo de Panacea prola en el sureste del Perú y lo presentó como la primera evidencia de una migración de insectos en la Amazonía. La observación es cautivadora, pero deja el mapa central incompleto. ¿De dónde vinieron las mariposas? ¿Participó una sola población o varias? ¿Qué paisajes quedaron conectados y el patrón se repitió entre años? Un genoma de referencia y muestras obtenidas en distintos lugares y temporadas permitirían comparar ascendencia y conectividad. Para interpretar las señales genómicas harían falta registros ambientales, plantas hospederas, clima, observación directa y evidencia de isótopos estables. El informe público es un preprint, así que el evento documentado se presenta con precisión, dejando abiertas las afirmaciones geográficas más amplias o resultados no publicados.',
     },
     proposedQuestion: {
-      en: 'The proposed Caligo pilot would combine a documented reference genome with repeated population sampling to test the origins, connections and seasonal consistency of the observed movement.',
-      es: 'El piloto propuesto de Caligo combinaría un genoma de referencia vinculado a un ejemplar documentado con muestreo poblacional repetido para estudiar el origen, las conexiones y la constancia estacional del movimiento observado.',
+      en: 'The proposed Caligo pilot project would combine a documented reference genome with repeated population sampling to test the origins, connections and seasonal consistency of the observed movement.',
+      es: 'El proyecto piloto propuesto de Caligo combinaría un genoma de referencia vinculado a un ejemplar documentado con muestreo poblacional repetido para estudiar el origen, las conexiones y la constancia estacional del movimiento observado.',
     },
     evidenceNeeded: {
       en: 'A verified reference specimen; repeated, responsibly permitted sampling across seasons and broad regions; environmental and host-plant context; and independent movement evidence such as observations, tracking or stable isotopes.',
@@ -679,8 +679,8 @@ export const PILOTS: readonly Pilot[] = [
       es: 'Los genomas no reconstruyen trayectorias individuales de vuelo, no identifican el disparador ambiental ni definen por sí solos el alcance geográfico completo del fenómeno.',
     },
     closing: {
-      en: 'The visible wave is only one moment; the pilot asks what population system creates it.',
-      es: 'La oleada visible es apenas un momento; el piloto pregunta qué sistema de poblaciones la produce.',
+      en: 'The visible wave is only one moment; the pilot project asks what population system creates it.',
+      es: 'La oleada visible es apenas un momento; el proyecto piloto pregunta qué sistema de poblaciones la produce.',
     },
     sourceNote: {
       en: 'Public evidence: Gallice et al. 2020, a preprint checked on 16 July 2026. No unpublished isotope result or wider route is stated.',
@@ -754,7 +754,7 @@ export const getMedia = (id: string): Media | undefined => MEDIA_MAP.get(id);
 export const PUBLIC_STATUS_LABELS: Readonly<Record<PublicStatus, Bilingual>> = {
   'published-evidence': { en: 'Published evidence', es: 'Evidencia publicada' },
   'database-snapshot': { en: 'Database snapshot', es: 'Consulta de base de datos' },
-  'proposed-caligo-work': { en: 'Proposed pilot', es: 'Piloto propuesto' },
+  'proposed-caligo-work': { en: 'Proposed pilot project', es: 'Proyecto piloto propuesto' },
 };
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -899,8 +899,8 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Hileras de plantas verdes de soja llenan un campo rodeado de árboles en Novo Barreiro, al sur de Brasil.',
         },
         caption: {
-          en: 'A soybean field in Novo Barreiro, Rio Grande do Sul, Brazil. The proposed pilot follows lepidopteran populations across Brazilian soybean landscapes.',
-          es: 'Un campo de soja en Novo Barreiro, Rio Grande do Sul, Brasil. El piloto propuesto sigue poblaciones de lepidópteros en paisajes sojeros de Brasil.',
+          en: 'A soybean field in Novo Barreiro, Rio Grande do Sul, Brazil. The proposed pilot project follows lepidopteran populations across Brazilian soybean landscapes.',
+          es: 'Un campo de soja en Novo Barreiro, Rio Grande do Sul, Brasil. El proyecto piloto propuesto sigue poblaciones de lepidópteros en paisajes sojeros de Brasil.',
         },
         credit: {
           en: 'Photograph: Lucas Friederich / Wikimedia Commons.',

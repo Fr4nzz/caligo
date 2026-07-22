@@ -22,6 +22,15 @@ const distDir = resolve(root, 'dist');
 
 const CITATION_TOKEN = /\[S\d{2,3}\]/;
 const VOUCHER_LINKED = /\bvoucher-linked\b/i;
+const FOG_ASSOCIATION = /\b(?:fog|niebla)\b/i;
+
+function visibleText(html) {
+  return html
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<(?:script|style)\b[^>]*>[\s\S]*?<\/(?:script|style)>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ');
+}
 
 function walk(dir) {
   const out = [];
@@ -50,6 +59,8 @@ if (htmls.length === 0) {
 
 let tokenLeaks = 0;
 let voucherLeaks = 0;
+let pilotCopyLeaks = 0;
+let fogLeaks = 0;
 
 for (const file of htmls) {
   const rel = file.replace(root + '/', '');
@@ -63,10 +74,27 @@ for (const file of htmls) {
     fail(`${rel} contains "voucher-linked" (broadened v7 ban)`);
     voucherLeaks += 1;
   }
+
+  const text = visibleText(src);
+  const textWithoutApprovedPilotTerms = text
+    .replace(/\bpilot projects?\b/gi, '')
+    .replace(/\bproyectos? piloto\b/gi, '');
+  if (/\bpilots?\b/i.test(textWithoutApprovedPilotTerms)) {
+    fail(`${rel} uses "pilot" without "project" in visitor-facing copy`);
+    pilotCopyLeaks += 1;
+  }
+  if (/\bpilotos?\b/i.test(textWithoutApprovedPilotTerms)) {
+    fail(`${rel} uses "piloto" without "proyecto" in visitor-facing copy`);
+    pilotCopyLeaks += 1;
+  }
+  if (FOG_ASSOCIATION.test(text)) {
+    fail(`${rel} retains the discarded fog association in visitor-facing copy`);
+    fogLeaks += 1;
+  }
 }
 
 if (failures === 0) {
-  console.log(`  ✓ ${htmls.length} HTML files scanned — no raw [S##] tokens or "voucher-linked" leaks`);
+  console.log(`  ✓ ${htmls.length} HTML files scanned — citation, terminology and namesake copy are clean`);
   console.log('\nAll rendered-token checks passed.');
 } else {
   console.error(`\nFAILED: ${failures} problem(s) across ${htmls.length} HTML files.`);
