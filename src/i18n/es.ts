@@ -525,7 +525,42 @@ export const es: Dict = {
     },
     "tiers": {
       "heading": "Tres escalas de evidencia genética",
-      "intro": "Los códigos de barras de ADN, los conjuntos de lecturas cortas y los ensamblajes de referencia sirven a preguntas distintas y dependen de evidencia diferente."
+      "intro": "Los códigos de barras de ADN, los conjuntos de lecturas cortas y los ensamblajes de referencia sirven a preguntas distintas y dependen de evidencia diferente.",
+      "progression": {
+        "eyebrow": "Comparación educativa — conceptual, no son datos",
+        "heading": "La escala de la evidencia cambia las preguntas posibles",
+        "note": "Estos enfoques son complementarios. Los diagramas comparan la escala genómica; no son una jerarquía, un protocolo ni un resultado de Caligo.",
+        "play": "Reproducir la comparación",
+        "replay": "Repetir",
+        "ready": "Listo — los tres resultados están visibles",
+        "playing": "Comparación en curso",
+        "finished": "Comparación completa — los tres resultados están visibles",
+        "platforms": "Plataformas habituales",
+        "targeted": {
+          "label": "Región dirigida",
+          "title": "Locus seleccionado y amplicones",
+          "desc": "Esquema conceptual, no es un resultado de Caligo. Los límites de los cebadores seleccionan una región pequeña dentro de un contexto genómico mucho más amplio, y las copias discretas representan amplicones. El dibujo simplificado no muestra los pasos de laboratorio ni implica que se muestreó el genoma circundante.",
+          "context": "contexto genómico amplio",
+          "selection": "un locus seleccionado",
+          "outcome": "copias del amplicón"
+        },
+        "shortReads": {
+          "label": "Muestreo de todo el genoma",
+          "title": "Lecturas cortas distribuidas",
+          "desc": "Esquema conceptual, no es un resultado de Caligo. Muchas lecturas cortas separadas se mapean en posiciones distribuidas sobre una referencia. Su espaciado es ilustrativo y no implica una cobertura genómica uniforme ni completa.",
+          "context": "coordenadas de referencia",
+          "selection": "lecturas cortas de muchas posiciones",
+          "outcome": "evidencia mapeada y distribuida"
+        },
+        "assembly": {
+          "label": "Referencia a escala cromosómica",
+          "title": "Lecturas largas solapadas",
+          "desc": "Esquema conceptual, no es un resultado de Caligo. Las lecturas largas solapadas contribuyen a una referencia ordenada a escala cromosómica. Esta vista simplificada no muestra la incertidumbre del ensamblaje ni garantiza su completitud.",
+          "context": "lecturas largas solapadas",
+          "selection": "el solapamiento aporta continuidad",
+          "outcome": "contexto de referencia ordenado"
+        }
+      }
     }
   },
   "pilots": {

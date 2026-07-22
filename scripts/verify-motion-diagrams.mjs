@@ -25,6 +25,7 @@ const science = read('src/components/pages/SciencePage.astro');
 const projects = read('src/components/pages/ProjectsPage.astro');
 const concepts = read('src/components/ConceptDiagram.astro');
 const assembly = read('src/components/AssemblyDiagram.astro');
+const tiers = read('src/components/DataTierProgression.astro');
 const en = read('src/i18n/en.ts');
 const es = read('src/i18n/es.ts');
 const groupFocusStart = concepts.indexOf('@keyframes group-focus');
@@ -90,6 +91,14 @@ ok(/\.connectivity-scene \.micro-label,[\s\S]*?paint-order:\s*stroke fill[\s\S]*
 ok(/trait-mark--source/.test(concepts) && /late-introgression-token/.test(concepts) && /trait-mark--hybrid/.test(concepts) && /does not imply equal genomic contributions or colour blending/.test(concepts), 'one discrete allele moves from donor to hybrid lineage without colour blending or a 50/50 ancestry claim');
 ok(/early-split-branch[\s\S]*?1\.0s[\s\S]*?early-gene-flow[\s\S]*?2\.3s[\s\S]*?early-merge-branch[\s\S]*?3\.45s[\s\S]*?late-tip-branch[\s\S]*?3\.82s[\s\S]*?recipient-butterfly[\s\S]*?4\.78s[\s\S]*?final-state-label[\s\S]*?4\.78s/.test(concepts) && /data-duration-ms=\{kind === 'connectivity' \? '6500' : '5000'\}/.test(concepts), 'connectivity playback pauses between bottom-to-top lineage stages and runs long enough to finish');
 ok(/@keyframes hybrid-allele-cross[\s\S]*?translateX\(0\)[\s\S]*?translateX\(-106px\)/.test(concepts) && /s41586-024-07263-w/.test(concepts) && /pnas\.2410939122/.test(concepts) && /putative hybrid origins/.test(concepts), 'right-to-left allele transfer and evidence links distinguish demonstrated Heliconius speciation from putative Ithomiini origins');
+ok(/data-tier-progression/.test(tiers) && /data-tier-play/.test(tiers) && /data-tier-status/.test(tiers) && /aria-live="polite"/.test(tiers), 'evidence-tier comparison exposes user-controlled playback and a real DOM status');
+ok(!/tier-node|tier-step/.test(tiers) && /These approaches are complementary/.test(en) && /Estos enfoques son complementarios/.test(es), 'evidence tiers avoid a numbered ranking and explicitly remain complementary in both languages');
+ok(/selected-window/.test(tiers) && /primer-bounds/.test(tiers) && /amplicon-stack/.test(tiers), 'targeted-region diagram distinguishes one primer-bounded locus and discrete amplicon copies');
+ok(/short-read-fragments/.test(tiers) && /mapping-guides/.test(tiers) && /sampled-sites/.test(tiers) && /does not imply uniform or complete genomic coverage/.test(en), 'genome-wide sampling maps distributed short reads without claiming uniform or complete coverage');
+ok(/long-read-stack/.test(tiers) && /overlap-guides/.test(tiers) && /assembly-result/.test(tiers) && /does not show assembly uncertainty or guarantee completeness/.test(en), 'reference-assembly diagram links overlapping long reads to ordered context while stating its limits');
+ok(/role="img"/.test(tiers) && /<title id=/.test(tiers) && /<desc id=/.test(tiers) && /not a Caligo result/.test(en) && /no es un resultado de Caligo/.test(es), 'all evidence-tier SVGs have localised semantic titles, descriptions and a conceptual disclaimer');
+ok(/stage-targeted-selection[\s\S]*?180ms[\s\S]*?stage-targeted-outcome[\s\S]*?1\.05s[\s\S]*?stage-short-reads[\s\S]*?2s[\s\S]*?stage-short-outcome[\s\S]*?2\.95s[\s\S]*?stage-long-reads[\s\S]*?3\.65s[\s\S]*?stage-assembly-result[\s\S]*?4\.62s/.test(tiers), 'evidence-tier playback pauses through targeted, distributed-read and assembly stages');
+ok(/prefers-reduced-motion:\s*reduce/.test(tiers) && /animation:\s*none\s*!important/.test(tiers) && /all three outcomes are visible/.test(en), 'evidence-tier reduced motion preserves the complete static comparison');
 
 if (fail.length) {
   console.error(`\nFAIL: ${fail.length} motion/diagram contract check(s) failed.`);

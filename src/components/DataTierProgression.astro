@@ -1,75 +1,137 @@
 ---
 import { TIERS, pick } from '../data/initiative';
-import type { Locale } from '../i18n';
+import { getDict, type Locale } from '../i18n';
 
 interface Props {
   readonly locale: Locale;
 }
 
 const { locale } = Astro.props;
+const progression = getDict(locale).science.tiers.progression;
+const figureId = `evidence-scales-${locale}`;
 
-const LEVELS = ['barcode', 'short-reads', 'assembly'] as const;
-type Level = typeof LEVELS[number];
-
-const progression = locale === 'es'
-  ? {
-      eyebrow: 'Progresión de evidencia complementaria',
-      heading: 'De un fragmento dirigido al contexto cromosómico',
-      note: 'Cada nivel amplía las preguntas posibles; no reemplaza al anterior.',
-      platforms: 'Plataformas',
-      labels: ['Región dirigida', 'Muestreo de todo el genoma', 'Referencia a escala cromosómica'],
-    }
-  : {
-      eyebrow: 'Complementary evidence progression',
-      heading: 'From a targeted fragment to chromosome-scale context',
-      note: 'Each tier expands the questions available; it does not replace the tier before it.',
-      platforms: 'Platforms',
-      labels: ['Targeted region', 'Genome-wide sampling', 'Chromosome-scale reference'],
-    };
+const levels = [
+  { key: 'targeted', method: progression.targeted },
+  { key: 'short-reads', method: progression.shortReads },
+  { key: 'assembly', method: progression.assembly },
+] as const;
 ---
 
-<div class="tier-progression">
-  <header class="progression-header">
-    <div>
+<figure
+  id={figureId}
+  class="tier-progression"
+  data-tier-progression
+  data-label-replay={progression.replay}
+  data-label-playing={progression.playing}
+  data-label-finished={progression.finished}
+  data-duration-ms="5800"
+>
+  <figcaption class="progression-header">
+    <div class="progression-title-group">
       <p class="progression-eyebrow">{progression.eyebrow}</p>
       <p class="progression-heading">{progression.heading}</p>
     </div>
     <p class="progression-note">{progression.note}</p>
-  </header>
+    <div class="progression-controls">
+      <button
+        type="button"
+        class="progression-play"
+        data-tier-play
+        aria-describedby={`${figureId}-status`}
+      >
+        <span class="play-icon" aria-hidden="true">▶</span>
+        <span data-tier-play-label>{progression.play}</span>
+      </button>
+      <p id={`${figureId}-status`} class="progression-status" data-tier-status aria-live="polite">
+        {progression.ready}
+      </p>
+    </div>
+  </figcaption>
 
   <ol class="tier-list" role="list">
     {TIERS.map((tier, i) => {
-      const level = LEVELS[i] as Level;
+      const level = levels[i];
+      const svgTitleId = `${figureId}-${level.key}-title`;
+      const svgDescId = `${figureId}-${level.key}-desc`;
+
       return (
-        <li class="tier-item" data-level={level}>
-          <div class="tier-step" aria-hidden="true">
-            <span class="tier-node">{tier.n}</span>
-          </div>
-
-          <div class="evidence-glyph" aria-hidden="true">
-            {level === 'barcode' && (
-              <svg viewBox="0 0 180 52">
-                <path d="M12 26 H168" class="genome-line" />
-                <rect x="76" y="17" width="28" height="18" rx="9" class="focus-region" />
-                <path d="M76 11 V41 M104 11 V41" class="guide-mark" />
-              </svg>
-            )}
-            {level === 'short-reads' && (
-              <svg viewBox="0 0 180 52">
-                <path d="M12 26 H168" class="genome-line" />
-                <path d="M18 17 h23 M50 31 h28 M86 16 h18 M113 31 h20 M142 18 h25" class="read-fragments" />
-              </svg>
-            )}
-            {level === 'assembly' && (
-              <svg viewBox="0 0 180 52">
-                <rect x="12" y="17" width="156" height="18" rx="9" class="assembly-bar" />
-                <path d="M48 18 V34 M86 18 V34 M127 18 V34" class="assembly-joins" />
-              </svg>
-            )}
-          </div>
-
-          <p class="tier-level-label">{progression.labels[i]}</p>
+        <li class="tier-item" data-level={level.key}>
+          <p class="tier-level-label">{level.method.label}</p>
           <h3 class="tier-title">{pick(tier.title, locale)}</h3>
+
+          <div class="evidence-diagram">
+            <svg viewBox="0 0 300 168" role="img" aria-labelledby={`${svgTitleId} ${svgDescId}`}>
+              <title id={svgTitleId}>{level.method.title}</title>
+              <desc id={svgDescId}>{level.method.desc}</desc>
+
+              {level.key === 'targeted' && (
+                <g class="targeted-scene">
+                  <text x="18" y="19" class="diagram-label">{level.method.context}</text>
+                  <path d="M18 48 H282" class="genome-track" />
+                  <path d="M39 42 V54 M72 42 V54 M105 42 V54 M138 42 V54 M171 42 V54 M204 42 V54 M237 42 V54 M270 42 V54" class="coordinate-ticks" />
+
+                  <g class="targeted-selection stage-targeted-selection">
+                    <rect x="127" y="37" width="46" height="22" rx="4" class="selected-window" />
+                    <path d="M119 31 V65 M181 31 V65" class="primer-bounds" />
+                    <path d="M119 31 l8 5 M119 31 l8 -5 M181 65 l-8 5 M181 65 l-8 -5" class="primer-arrows" />
+                    <text x="150" y="83" text-anchor="middle" class="diagram-emphasis">{level.method.selection}</text>
+                  </g>
+
+                  <text x="18" y="111" class="diagram-label stage-targeted-outcome">{level.method.outcome}</text>
+                  <g class="amplicon-stack stage-targeted-outcome">
+                    <path d="M62 127 H108" class="amplicon-copy amplicon-copy--one" />
+                    <path d="M127 127 H173" class="amplicon-copy amplicon-copy--two" />
+                    <path d="M192 127 H238" class="amplicon-copy amplicon-copy--three" />
+                    <path d="M62 121 V133 M108 121 V133 M127 121 V133 M173 121 V133 M192 121 V133 M238 121 V133" class="amplicon-ends" />
+                  </g>
+                </g>
+              )}
+
+              {level.key === 'short-reads' && (
+                <g class="short-read-scene">
+                  <text x="18" y="19" class="diagram-label">{level.method.context}</text>
+                  <path d="M18 76 H282" class="genome-track" />
+                  <path d="M39 70 V82 M72 70 V82 M105 70 V82 M138 70 V82 M171 70 V82 M204 70 V82 M237 70 V82 M270 70 V82" class="coordinate-ticks" />
+
+                  <text x="18" y="42" class="diagram-emphasis stage-short-reads">{level.method.selection}</text>
+                  <g class="short-read-fragments stage-short-reads">
+                    <path d="M25 53 H53 M67 62 H95 M105 50 H133 M143 61 H171 M183 52 H211 M226 62 H254 M258 50 H280" class="short-read short-read--one" />
+                    <path d="M39 57 V69 M81 66 V69 M119 54 V69 M157 65 V69 M197 56 V69 M240 66 V69 M269 54 V69" class="mapping-guides" />
+                  </g>
+
+                  <text x="18" y="111" class="diagram-label stage-short-outcome">{level.method.outcome}</text>
+                  <g class="sampled-sites stage-short-outcome">
+                    <circle cx="39" cy="128" r="5" />
+                    <circle cx="81" cy="128" r="5" />
+                    <circle cx="119" cy="128" r="5" />
+                    <circle cx="157" cy="128" r="5" />
+                    <circle cx="197" cy="128" r="5" />
+                    <circle cx="240" cy="128" r="5" />
+                    <circle cx="269" cy="128" r="5" />
+                    <path d="M39 128 H269" class="sampled-site-rail" />
+                  </g>
+                </g>
+              )}
+
+              {level.key === 'assembly' && (
+                <g class="assembly-scene">
+                  <text x="18" y="19" class="diagram-label stage-long-reads">{level.method.context}</text>
+                  <g class="long-read-stack stage-long-reads">
+                    <path d="M20 40 H139 M91 55 H219 M164 70 H280 M32 85 H174 M130 100 H264" class="long-reads" />
+                    <path d="M91 33 V107 M139 33 V107 M164 33 V107 M174 33 V107 M219 33 V107" class="overlap-guides" />
+                  </g>
+
+                  <text x="18" y="124" class="diagram-label stage-long-reads">{level.method.selection}</text>
+                  <g class="assembly-result stage-assembly-result">
+                    <rect x="18" y="138" width="264" height="18" rx="9" class="assembly-bar" />
+                    <path d="M70 140 V154 M122 140 V154 M177 140 V154 M230 140 V154" class="assembly-joins" />
+                  </g>
+                  <text x="150" y="151" text-anchor="middle" class="assembly-label stage-assembly-label">{level.method.outcome}</text>
+                </g>
+              )}
+            </svg>
+          </div>
+
           <p class="tier-body">{pick(tier.body, locale)}</p>
           <p class="tier-platforms">
             <span class="tier-platforms-label">{progression.platforms}:</span>
@@ -79,11 +141,12 @@ const progression = locale === 'es'
       );
     })}
   </ol>
-</div>
+</figure>
 
 <style>
   .tier-progression {
     overflow: hidden;
+    margin: 0;
     background: var(--bg-panel);
     border: 1px solid var(--hairline);
     border-radius: var(--radius);
@@ -97,23 +160,30 @@ const progression = locale === 'es'
   }
   .progression-eyebrow,
   .progression-heading,
-  .progression-note {
+  .progression-note,
+  .progression-status {
     margin: 0;
   }
   .progression-eyebrow,
   .tier-level-label,
-  .tier-platforms-label {
+  .tier-platforms-label,
+  .progression-status {
     font-family: var(--font-mono);
     font-size: var(--step--2);
     font-weight: 550;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
+  }
+  .progression-eyebrow,
+  .tier-level-label,
+  .tier-platforms-label {
     text-transform: uppercase;
   }
   .progression-eyebrow {
-    color: var(--accent-strong);
     margin-bottom: 0.25rem;
+    color: var(--accent-strong);
   }
   .progression-heading {
+    max-width: 40rem;
     font-family: var(--font-display);
     font-size: var(--step-1);
     font-weight: 600;
@@ -121,11 +191,47 @@ const progression = locale === 'es'
     line-height: 1.25;
   }
   .progression-note {
-    align-self: end;
-    max-width: 34rem;
+    max-width: 37rem;
     color: var(--text-muted);
     font-size: var(--step--1);
     line-height: 1.5;
+  }
+  .progression-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs) var(--space-s);
+  }
+  .progression-play {
+    min-height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    background: var(--bg-panel);
+    color: var(--accent-strong);
+    font: 650 var(--step--1)/1.2 var(--font-body);
+    cursor: pointer;
+    transition: transform var(--transition), background-color var(--transition), color var(--transition);
+  }
+  .progression-play:hover {
+    transform: translateY(-1px);
+    background: var(--accent);
+    color: var(--bg-panel);
+  }
+  .progression-play:focus-visible {
+    outline: 3px solid color-mix(in oklab, var(--accent) 45%, transparent);
+    outline-offset: 3px;
+  }
+  .play-icon {
+    font-size: 0.72em;
+  }
+  .progression-status {
+    color: var(--text-muted);
+    line-height: 1.45;
   }
   .tier-list {
     list-style: none;
@@ -135,81 +241,19 @@ const progression = locale === 'es'
     grid-template-columns: 1fr;
   }
   .tier-item {
-    position: relative;
     min-width: 0;
-    display: grid;
-    grid-template-columns: 3.25rem minmax(0, 1fr);
-    column-gap: var(--space-s);
+    display: flex;
+    flex-direction: column;
     padding: var(--space-m);
   }
   .tier-item + .tier-item {
     border-top: 1px solid var(--hairline);
   }
-  .tier-step {
-    grid-column: 1;
-    grid-row: 1 / span 5;
-    position: relative;
-    display: flex;
-    justify-content: center;
-  }
-  .tier-step::after {
-    content: '';
-    position: absolute;
-    top: 2.6rem;
-    bottom: calc(-1 * var(--space-m) - 1px);
-    left: 50%;
-    width: 1px;
-    background: var(--hairline-strong);
-  }
-  .tier-item:last-child .tier-step::after { display: none; }
-  .tier-node {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    place-items: center;
-    width: 2.55rem;
-    height: 2.55rem;
-    border: 1px solid var(--accent);
-    border-radius: 50%;
-    background: var(--bg-panel);
-    color: var(--accent-strong);
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    font-weight: 650;
-    letter-spacing: 0.03em;
-  }
-  .evidence-glyph {
-    grid-column: 2;
-    width: min(100%, 15rem);
-    height: 3.25rem;
-    margin-bottom: var(--space-xs);
-    color: var(--accent);
-  }
-  .evidence-glyph svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  .genome-line,
-  .guide-mark,
-  .read-fragments,
-  .assembly-joins {
-    fill: none;
-    stroke-linecap: round;
-  }
-  .genome-line { stroke: var(--hairline-strong); stroke-width: 4; }
-  .guide-mark { stroke: var(--text-faint); stroke-width: 1.5; }
-  .focus-region { fill: var(--highlight); }
-  .read-fragments { stroke: var(--accent-strong); stroke-width: 6; }
-  .assembly-bar { fill: var(--accent); }
-  .assembly-joins { stroke: var(--bg-panel); stroke-width: 2; opacity: 0.75; }
   .tier-level-label {
-    grid-column: 2;
     margin: 0 0 0.35rem;
-    color: var(--text-faint);
+    color: var(--accent-strong);
   }
   .tier-title {
-    grid-column: 2;
     margin: 0;
     font-family: var(--font-body);
     font-size: var(--step-0);
@@ -218,15 +262,125 @@ const progression = locale === 'es'
     letter-spacing: -0.006em;
     line-height: 1.3;
   }
+  .evidence-diagram {
+    position: relative;
+    margin: var(--space-s) 0;
+    padding: 0.35rem;
+    border: 1px solid var(--hairline-strong);
+    border-radius: calc(var(--radius) * 0.72);
+    background: color-mix(in oklab, var(--accent) 3%, var(--bg-inset));
+  }
+  .evidence-diagram svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .diagram-label,
+  .diagram-emphasis,
+  .assembly-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.035em;
+  }
+  .diagram-label { fill: var(--text-muted); }
+  .diagram-emphasis { fill: var(--text-strong); font-weight: 650; }
+  .genome-track,
+  .coordinate-ticks,
+  .primer-bounds,
+  .primer-arrows,
+  .amplicon-copy,
+  .amplicon-ends,
+  .short-read,
+  .mapping-guides,
+  .sampled-site-rail,
+  .long-reads,
+  .overlap-guides,
+  .assembly-joins {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .genome-track {
+    stroke: var(--hairline-strong);
+    stroke-width: 7;
+  }
+  .coordinate-ticks {
+    stroke: var(--bg-panel);
+    stroke-width: 1.5;
+    opacity: 0.9;
+  }
+  .selected-window {
+    fill: color-mix(in oklab, var(--highlight) 70%, var(--bg-panel));
+    stroke: var(--accent-strong);
+    stroke-width: 1.5;
+  }
+  .primer-bounds,
+  .primer-arrows {
+    stroke: var(--accent-strong);
+    stroke-width: 2;
+  }
+  .amplicon-copy {
+    stroke: var(--accent);
+    stroke-width: 8;
+  }
+  .amplicon-ends {
+    stroke: var(--accent-strong);
+    stroke-width: 1.5;
+  }
+  .short-read {
+    stroke: var(--accent-strong);
+    stroke-width: 7;
+  }
+  .mapping-guides {
+    stroke: var(--text-faint);
+    stroke-width: 1;
+    stroke-dasharray: 2 3;
+  }
+  .sampled-sites circle {
+    fill: var(--accent);
+    stroke: var(--bg-panel);
+    stroke-width: 2;
+  }
+  .sampled-site-rail {
+    stroke: var(--hairline-strong);
+    stroke-width: 2;
+  }
+  .long-reads {
+    stroke: var(--accent-strong);
+    stroke-width: 7;
+  }
+  .overlap-guides {
+    stroke: var(--text-faint);
+    stroke-width: 1;
+    stroke-dasharray: 2 4;
+  }
+  .assembly-bar {
+    fill: var(--accent);
+    stroke: var(--accent-strong);
+    stroke-width: 1;
+  }
+  .assembly-joins {
+    stroke: var(--bg-panel);
+    stroke-width: 2;
+    opacity: 0.85;
+  }
+  .assembly-label {
+    fill: var(--bg-panel);
+    stroke: var(--accent);
+    stroke-width: 3px;
+    paint-order: stroke fill;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
   .tier-body {
-    grid-column: 2;
-    margin: var(--space-xs) 0 0;
+    flex: 1;
+    margin: 0;
     font-size: var(--step--1);
     color: var(--text);
     line-height: 1.58;
   }
   .tier-platforms {
-    grid-column: 2;
     margin: var(--space-s) 0 0;
     padding-top: var(--space-xs);
     border-top: 1px solid var(--hairline);
@@ -238,47 +392,140 @@ const progression = locale === 'es'
     color: var(--text-faint);
     letter-spacing: 0.07em;
   }
+
+  .tier-progression.is-playing .stage-targeted-selection {
+    animation: select-locus 760ms var(--ease-settle) 180ms both;
+  }
+  .tier-progression.is-playing .stage-targeted-outcome {
+    animation: make-amplicons 760ms var(--ease-settle) 1.05s both;
+  }
+  .tier-progression.is-playing .stage-short-reads {
+    animation: map-short-reads 900ms var(--ease-settle) 2s both;
+  }
+  .tier-progression.is-playing .stage-short-outcome {
+    animation: reveal-sites 620ms var(--ease-settle) 2.95s both;
+  }
+  .tier-progression.is-playing .stage-long-reads {
+    animation: overlap-reads 920ms var(--ease-settle) 3.65s both;
+  }
+  .tier-progression.is-playing .stage-assembly-result {
+    animation: build-reference 820ms var(--ease-settle) 4.62s both;
+    transform-origin: 18px 147px;
+  }
+  .tier-progression.is-playing .stage-assembly-label {
+    animation: reveal-label 420ms ease-out 5.15s both;
+  }
+  @keyframes select-locus {
+    from { opacity: 0; transform: translateY(-5px); }
+    70% { opacity: 1; transform: translateY(1px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes make-amplicons {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes map-short-reads {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes reveal-sites {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes overlap-reads {
+    from { opacity: 0; transform: translateX(-8px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes build-reference {
+    from { opacity: 0; transform: scaleX(0.04); }
+    to { opacity: 1; transform: scaleX(1); }
+  }
+  @keyframes reveal-label {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
   @media (min-width: 48rem) {
     .progression-header {
-      grid-template-columns: minmax(0, 1.25fr) minmax(15rem, 0.75fr);
+      grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
       align-items: end;
     }
+    .progression-title-group { grid-column: 1; }
+    .progression-note { grid-column: 2; grid-row: 1; }
+    .progression-controls { grid-column: 1 / -1; }
     .tier-list {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-    .tier-item {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto auto auto 1fr auto;
-      padding: var(--space-m);
     }
     .tier-item + .tier-item {
       border-top: 0;
       border-left: 1px solid var(--hairline);
     }
-    .tier-step {
-      grid-column: 1;
-      grid-row: 1;
-      justify-content: flex-start;
-      margin-bottom: var(--space-s);
+  }
+
+  @media (max-width: 30rem) {
+    .progression-play { width: 100%; }
+    .progression-controls { align-items: stretch; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .progression-play,
+    .progression-play:hover {
+      transition: none;
+      transform: none;
     }
-    .tier-step::after {
-      top: 50%;
-      bottom: auto;
-      left: 2.55rem;
-      right: calc(-1 * var(--space-m) - 1px);
-      width: auto;
-      height: 1px;
+    .tier-progression *,
+    .tier-progression *::before,
+    .tier-progression *::after {
+      animation: none !important;
     }
-    .tier-item:last-child .tier-step::after { display: none; }
-    .evidence-glyph,
-    .tier-level-label,
-    .tier-title,
-    .tier-body,
-    .tier-platforms { grid-column: 1; }
-    .evidence-glyph { grid-row: 2; width: 100%; }
-    .tier-level-label { grid-row: 3; }
-    .tier-title { grid-row: 4; }
-    .tier-body { grid-row: 5; }
-    .tier-platforms { grid-row: 6; }
   }
 </style>
+
+<script>
+  const tierTimers = new WeakMap<HTMLElement, number>();
+
+  function initTierProgressions() {
+    document.querySelectorAll<HTMLElement>('[data-tier-progression]').forEach((progression) => {
+      if (progression.dataset.tierInit === '1') return;
+      progression.dataset.tierInit = '1';
+
+      const button = progression.querySelector<HTMLButtonElement>('[data-tier-play]');
+      const label = progression.querySelector<HTMLElement>('[data-tier-play-label]');
+      const status = progression.querySelector<HTMLElement>('[data-tier-status]');
+      if (!button || !label || !status) return;
+
+      button.addEventListener('click', () => {
+        const runningTimer = tierTimers.get(progression);
+        if (runningTimer !== undefined) window.clearTimeout(runningTimer);
+
+        progression.classList.remove('is-playing', 'is-finished');
+        void progression.offsetWidth;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          progression.classList.add('is-finished');
+          progression.setAttribute('aria-busy', 'false');
+          status.textContent = progression.dataset.labelFinished ?? '';
+          label.textContent = progression.dataset.labelReplay ?? '';
+          return;
+        }
+
+        progression.classList.add('is-playing');
+        progression.setAttribute('aria-busy', 'true');
+        status.textContent = progression.dataset.labelPlaying ?? '';
+        label.textContent = progression.dataset.labelReplay ?? '';
+
+        const timer = window.setTimeout(() => {
+          progression.classList.remove('is-playing');
+          progression.classList.add('is-finished');
+          progression.setAttribute('aria-busy', 'false');
+          status.textContent = progression.dataset.labelFinished ?? '';
+          tierTimers.delete(progression);
+        }, Number(progression.dataset.durationMs ?? 5800));
+        tierTimers.set(progression, timer);
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initTierProgressions);
+  initTierProgressions();
+</script>

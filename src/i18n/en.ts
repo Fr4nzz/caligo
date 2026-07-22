@@ -528,7 +528,42 @@ export const en = {
     },
     "tiers": {
       "heading": "Three scales of genetic evidence",
-      "intro": "DNA barcodes, short-read datasets and reference assemblies each serve different questions and depend on different evidence."
+      "intro": "DNA barcodes, short-read datasets and reference assemblies each serve different questions and depend on different evidence.",
+      "progression": {
+        "eyebrow": "Educational comparison — conceptual, not data",
+        "heading": "The scale of the evidence changes what can be asked",
+        "note": "These approaches are complementary. The diagrams compare genomic scope; they are not a ranking, protocol or Caligo result.",
+        "play": "Play the comparison",
+        "replay": "Replay",
+        "ready": "Ready — all three outcomes are visible",
+        "playing": "Comparison playing",
+        "finished": "Comparison complete — all three outcomes are visible",
+        "platforms": "Typical platforms",
+        "targeted": {
+          "label": "Targeted region",
+          "title": "Selected locus and amplicons",
+          "desc": "Conceptual schematic, not a Caligo result. Primer bounds select one small region from a much wider genomic context, and discrete copies represent amplicons. The simplified drawing does not show laboratory steps or imply that the surrounding genome was sampled.",
+          "context": "wider genomic context",
+          "selection": "one selected locus",
+          "outcome": "amplicon copies"
+        },
+        "shortReads": {
+          "label": "Genome-wide sampling",
+          "title": "Distributed short reads",
+          "desc": "Conceptual schematic, not a Caligo result. Many separate short reads map to positions distributed across a reference. Their spacing is illustrative and does not imply uniform or complete genomic coverage.",
+          "context": "reference coordinates",
+          "selection": "short reads from many positions",
+          "outcome": "distributed mapped evidence"
+        },
+        "assembly": {
+          "label": "Chromosome-scale reference",
+          "title": "Overlapping long reads",
+          "desc": "Conceptual schematic, not a Caligo result. Overlapping long reads contribute to an ordered chromosome-scale reference. This simplified view does not show assembly uncertainty or guarantee completeness.",
+          "context": "overlapping long reads",
+          "selection": "overlap provides continuity",
+          "outcome": "ordered reference context"
+        }
+      }
     }
   },
   "pilots": {
