@@ -166,14 +166,13 @@ export const es: Dict = {
         "description": "Una persona colecta una mariposa con una red y registra su código de colector. Las alas pasan a un sobre etiquetado con CAMID, el cuerpo a un tubo con su propio ID y una fila abreviada conecta ambos identificadores con el colector y otros campos de procedencia."
       },
       "depositDiagram": {
-        "conceptual": "Vínculo conceptual — no son datos",
-        "title": "Mantener intacta la cadena de evidencia",
+        "conceptual": "Cadena de evidencia",
+        "title": "Conectar toda la cadena de evidencia",
         "voucher": "ejemplar",
         "genome": "genoma",
         "contributors": "contribuciones",
-        "outcome": "vinculado · citable · reutilizable",
-        "description": "Cadena conceptual genérica con tres nodos grandes: ejemplar, genoma y contribuciones. Una sola línea mantiene los tres conectados. Un pequeño símbolo de enlace identifica el resultado como vinculado, citable y reutilizable; no representa un identificador específico. La línea representa vínculos rastreables, no que todos los registros estén en un solo repositorio. No muestra repositorios, accesiones, personas, identificadores ni políticas de Caligo reales.",
-        "disclaimer": "Vínculos conceptuales — los registros pueden permanecer en hogares duraderos distintos"
+        "outcome": "rastreable, citable y reutilizable",
+        "description": "Los vínculos rastreables conectan un ejemplar de referencia, su registro genómico y la información de quienes contribuyeron. Cada registro puede permanecer en un repositorio duradero distinto mientras esos vínculos conservan la procedencia y facilitan la citación y la reutilización."
       }
     },
     "uses": {

@@ -169,14 +169,13 @@ export const en = {
         "description": "A collector uses a net to capture a butterfly and records their collector code. The wings enter a CAMID-labelled envelope, the body enters a tube with its own ID, and one abbreviated record links both identifiers with the collector and other provenance fields."
       },
       "depositDiagram": {
-        "conceptual": "Conceptual link — not data",
-        "title": "Keep the evidence chain intact",
+        "conceptual": "Evidence chain",
+        "title": "Connect the full evidence chain",
         "voucher": "voucher",
         "genome": "genome",
         "contributors": "contributors",
-        "outcome": "linked · citable · reusable",
-        "description": "A generic conceptual chain with three large nodes: voucher, genome and contributors. A single line keeps the three connected. A small chain-link mark labels the outcome as linked, citable and reusable; it does not represent a specific identifier. The line means traceable links, not that every record is kept in one repository. No real repository, accession, person, identifier or Caligo policy is shown.",
-        "disclaimer": "Conceptual links — records may remain in separate durable homes"
+        "outcome": "traceable, citable, reusable",
+        "description": "Traceable links connect a voucher, its genome record and contributor information. Each record may remain in a different durable repository while those links preserve provenance and support citation and reuse."
       }
     },
     "uses": {

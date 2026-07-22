@@ -25,10 +25,11 @@ const science = read('src/components/pages/SciencePage.astro');
 const projects = read('src/components/pages/ProjectsPage.astro');
 const concepts = read('src/components/ConceptDiagram.astro');
 const assembly = read('src/components/AssemblyDiagram.astro');
+const deposit = read('src/components/DepositSimpleDiagram.astro');
 const tiers = read('src/components/DataTierProgression.astro');
 const en = read('src/i18n/en.ts');
 const es = read('src/i18n/es.ts');
-const diagramCopy = [concepts, assembly, tiers, science, en, es].join('\n');
+const diagramCopy = [concepts, assembly, deposit, tiers, science, en, es].join('\n');
 const groupFocusStart = concepts.indexOf('@keyframes group-focus');
 const groupFocusEnd = concepts.indexOf('@keyframes route-flow', groupFocusStart);
 const groupFocus = groupFocusStart >= 0 && groupFocusEnd > groupFocusStart
@@ -58,6 +59,10 @@ ok(/Diagram|diagram|<svg/.test(science), 'Science renders dedicated educational 
 ok(/Diagram|diagram|<svg/.test(projects), 'Pilots render dedicated conceptual diagrams');
 ok(/data-concept-play/.test(concepts) && /is-playing/.test(concepts), 'concept diagrams expose user-controlled playback');
 ok(/import AssemblyDiagram/.test(home) && /journey-5-assemble[\s\S]*?<AssemblyDiagram/.test(home), 'Journey 05 mounts the dedicated animated assembly explainer');
+ok(/import DepositSimpleDiagram/.test(home) && /journey-6-deposit[\s\S]*?<DepositSimpleDiagram/.test(home), 'Journey 06 mounts the dedicated evidence-chain diagram');
+ok(/aria-labelledby=/.test(deposit) && /aria-describedby=/.test(deposit) && !/chain-disclaimer|c\.disclaimer/.test(deposit), 'deposit diagram exposes one concise accessible description without a repeated disclaimer');
+ok(/"conceptual": "Evidence chain"/.test(en) && /"conceptual": "Cadena de evidencia"/.test(es) && /Traceable links connect a voucher/.test(en) && /Los vínculos rastreables conectan un ejemplar/.test(es), 'deposit diagram leads with the evidence chain in direct bilingual copy');
+ok(!/Conceptual link \u2014 not data|Vínculo conceptual \u2014 no son datos|generic conceptual chain|Cadena conceptual genérica|No real repository|No muestra repositorios/.test(diagramCopy), 'deposit diagram omits defensive project disclaimers');
 ok(/data-assembly-play/.test(assembly) && /aria-busy="false"/.test(assembly) && !/data-assembly-status|aria-live="polite"/.test(assembly), 'assembly explainer exposes user-controlled playback without redundant visible status copy');
 ok(!/setInterval|autoplay/.test(assembly), 'assembly explainer never autoplays or loops without user input');
 ok(/asm-read--six/.test(assembly) && /asm-contig--three/.test(assembly), 'assembly explainer aligns overlapping reads into fewer longer contigs');

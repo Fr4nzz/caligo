@@ -8,10 +8,10 @@ const c = getDict(locale).home.journey.depositDiagram;
 const id = `deposit-chain-${locale}`;
 ---
 
-<figure class="deposit-chain" aria-labelledby={`${id}-title`} aria-describedby={`${id}-desc ${id}-disclaimer`}>
+<figure class="deposit-chain" aria-labelledby={`${id}-title`} aria-describedby={`${id}-desc`}>
   <figcaption class="chain-caption">
     <span class="chain-kicker">{c.conceptual}</span>
-    <strong id={`${id}-title`} class="visually-hidden">{c.title}</strong>
+    <strong id={`${id}-title`}>{c.title}</strong>
   </figcaption>
 
   <div class="chain-canvas" aria-hidden="true">
@@ -66,7 +66,6 @@ const id = `deposit-chain-${locale}`;
     </strong>
   </div>
 
-  <p class="chain-disclaimer" id={`${id}-disclaimer`}>{c.disclaimer}</p>
   <p class="chain-description" id={`${id}-desc`}>{c.description}</p>
 </figure>
 
@@ -81,12 +80,13 @@ const id = `deposit-chain-${locale}`;
   }
 
   .chain-caption {
+    display: grid;
+    gap: .2rem;
     padding: .8rem var(--space-m);
     border-bottom: 1px solid var(--hairline);
   }
 
-  .chain-kicker,
-  .chain-disclaimer {
+  .chain-kicker {
     font-family: var(--font-mono);
   }
 
@@ -97,7 +97,6 @@ const id = `deposit-chain-${locale}`;
     text-transform: uppercase;
   }
 
-  .visually-hidden,
   .chain-description {
     position: absolute;
     width: 1px;
@@ -245,13 +244,6 @@ const id = `deposit-chain-${locale}`;
     stroke-width: 1.7;
     stroke-linecap: round;
     stroke-linejoin: round;
-  }
-
-  .chain-disclaimer {
-    margin: 0;
-    padding: .65rem var(--space-m);
-    color: var(--text-faint);
-    font-size: var(--step--2);
   }
 
   @media (max-width: 620px) {
