@@ -119,7 +119,7 @@ export const en = {
       "assemblyDiagram": {
         "conceptual": "Educational animation — conceptual, not data",
         "title": "Assemble, then assess",
-        "description": "A simplified genome-assembly workflow. Overlapping reads align into fewer, longer contigs. Ordering links organise contigs into several chromosome-scale units while one unresolved gap remains visible. A final assessment checks continuity, completeness and known limits or gaps without reporting numeric scores. The marks are illustrative and do not represent sequence data, an assembly or a result from Caligo.",
+        "description": "A simplified genome-assembly workflow. Overlapping reads align into fewer, longer contigs. A conceptual Hi-C contact map represents long-range interaction frequencies used to group, order and orient contigs into several chromosome-scale scaffolds. Hi-C does not provide the missing sequence between contigs, so one unresolved sequence gap remains visible. A final assessment checks continuity, completeness and known limits or gaps without reporting numeric scores. The marks are illustrative and do not represent sequence or Hi-C data, an assembly or a result from Caligo.",
         "play": "Play the explanation",
         "replay": "Replay",
         "ready": "Ready to animate",
@@ -128,15 +128,16 @@ export const en = {
         "reduced": "Complete explanation shown without motion",
         "reads": "overlapping reads",
         "contigs": "longer contigs",
-        "ordering": "order links",
-        "chromosomes": "chromosome-scale units",
+        "hic": "Hi-C contacts",
+        "hicAction": "group · order · orient",
+        "chromosomes": "chromosome-scale scaffolds",
         "gap": "unresolved gap",
         "assessment": "assessment",
         "continuity": "continuity",
         "completeness": "completeness",
         "limits": "limits + gaps",
-        "summary": "several units · one conceptual gap remains",
-        "disclaimer": "Illustrative workflow — not sequence data, scores or Caligo results"
+        "summary": "Hi-C orders and orients · one sequence gap remains",
+        "disclaimer": "Illustrative marks — not sequence or Hi-C data, scores or Caligo results"
       },
       "steps": [
         {

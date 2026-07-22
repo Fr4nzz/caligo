@@ -116,7 +116,7 @@ export const es: Dict = {
       "assemblyDiagram": {
         "conceptual": "Animación educativa — conceptual, no son datos",
         "title": "Ensamblar y luego evaluar",
-        "description": "Flujo simplificado de ensamblaje genómico. Las lecturas superpuestas se alinean y forman menos contigs, de mayor longitud. Los enlaces de ordenamiento organizan los contigs en varias unidades a escala cromosómica mientras una brecha sin resolver permanece visible. Una evaluación final revisa continuidad, completitud y límites o brechas conocidas sin presentar puntajes numéricos. Las marcas son ilustrativas y no representan datos de secuencia, un ensamblaje ni un resultado de Caligo.",
+        "description": "Flujo simplificado de ensamblaje genómico. Las lecturas superpuestas se alinean y forman menos contigs, de mayor longitud. Un mapa conceptual de contactos Hi-C representa frecuencias de interacción de largo alcance que se usan para agrupar, ordenar y orientar contigs en varios scaffolds a escala cromosómica. Hi-C no aporta la secuencia faltante entre contigs, por lo que una brecha de secuencia sin resolver permanece visible. Una evaluación final revisa continuidad, completitud y límites o brechas conocidas sin presentar puntajes numéricos. Las marcas son ilustrativas y no representan datos de secuencia o Hi-C, un ensamblaje ni un resultado de Caligo.",
         "play": "Reproducir la explicación",
         "replay": "Repetir",
         "ready": "Listo para animar",
@@ -125,15 +125,16 @@ export const es: Dict = {
         "reduced": "Explicación completa visible sin movimiento",
         "reads": "lecturas superpuestas",
         "contigs": "contigs más largos",
-        "ordering": "enlaces de ordenamiento",
-        "chromosomes": "unidades a escala cromosómica",
+        "hic": "contactos Hi-C",
+        "hicAction": "agrupar · ordenar · orientar",
+        "chromosomes": "scaffolds a escala cromosómica",
         "gap": "brecha sin resolver",
         "assessment": "evaluación",
         "continuity": "continuidad",
         "completeness": "completitud",
         "limits": "límites + brechas",
-        "summary": "varias unidades · queda una brecha conceptual",
-        "disclaimer": "Flujo ilustrativo — no son datos, puntajes ni resultados de Caligo"
+        "summary": "Hi-C ordena y orienta · queda una brecha de secuencia",
+        "disclaimer": "Marcas ilustrativas — no son datos de secuencia o Hi-C, puntajes ni resultados de Caligo"
       },
       "steps": [
         {

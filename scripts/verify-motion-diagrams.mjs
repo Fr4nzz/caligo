@@ -54,10 +54,12 @@ ok(/import AssemblyDiagram/.test(home) && /journey-5-assemble[\s\S]*?<AssemblyDi
 ok(/data-assembly-play/.test(assembly) && /data-assembly-status/.test(assembly) && /aria-live="polite"/.test(assembly), 'assembly explainer exposes native user-controlled playback and live status');
 ok(!/setInterval|autoplay/.test(assembly), 'assembly explainer never autoplays or loops without user input');
 ok(/asm-read--six/.test(assembly) && /asm-contig--three/.test(assembly), 'assembly explainer aligns overlapping reads into fewer longer contigs');
-ok(/asm-unit--one/.test(assembly) && /asm-unit--two/.test(assembly) && /asm-unit--three/.test(assembly), 'assembly explainer ends with several chromosome-scale units rather than one chromosome');
-ok(/asm-order-link/.test(assembly) && /asm-gap/.test(assembly) && /gap-pointer/.test(assembly), 'ordering links and a visible unresolved gap remain explicit');
+ok(/asm-hic-contact-map/.test(assembly) && /asm-hic-contact--strong/.test(assembly) && /asm-hic-scan/.test(assembly), 'assembly explainer includes a distinct conceptual Hi-C contact-map stage');
+ok(/group · order · orient/.test(en) && /agrupar · ordenar · orientar/.test(es), 'EN and ES state that Hi-C evidence groups, orders and orients contigs');
+ok(/asm-unit--one/.test(assembly) && /asm-unit--two/.test(assembly) && /asm-unit--three/.test(assembly) && /chromosome-scale scaffolds/.test(en), 'assembly explainer ends with several chromosome-scale scaffolds rather than one chromosome');
+ok(/asm-gap/.test(assembly) && /gap-pointer/.test(assembly) && /does not provide the missing sequence/.test(en) && /no aporta la secuencia faltante/.test(es), 'Hi-C scaffolding retains an explicit unresolved sequence gap instead of implying gap filling');
 ok(/asm-check--continuity/.test(assembly) && /asm-check--completeness/.test(assembly) && /asm-check--limits/.test(assembly), 'assessment separately reveals continuity, completeness and limits or gaps');
-ok(/not sequence data, scores or Caligo results/.test(en) && /no son datos, puntajes ni resultados de Caligo/.test(es), 'EN and ES retain the conceptual-not-data disclaimer without fabricated scores');
+ok(/not sequence or Hi-C data, scores or Caligo results/.test(en) && /no son datos de secuencia o Hi-C, puntajes ni resultados de Caligo/.test(es), 'EN and ES retain the conceptual-not-data disclaimer without fabricated scores');
 ok(/prefers-reduced-motion:\s*reduce/.test(assembly) && /animation:\s*none\s*!important/.test(assembly) && /labelReduced/.test(assembly), 'assembly explainer has a complete semantic reduced-motion state');
 ok(/@media \(max-width: 38rem\)[\s\S]*?assembly-mobile-flow/.test(assembly) && /assembly-step-number/.test(assembly), 'assembly explainer keeps the SVG and an ordered mobile summary');
 ok(/fission-source/.test(concepts) && /connectivity-scene/.test(concepts) && /workflow-stage/.test(concepts) && /migration-link/.test(concepts), 'all four concept-diagram families have didactic animation stages');
