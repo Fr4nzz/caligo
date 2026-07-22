@@ -119,7 +119,7 @@ export const en = {
       "assemblyDiagram": {
         "conceptual": "Educational animation — conceptual, not data",
         "title": "Assemble, then assess",
-        "description": "A simplified genome-assembly workflow. Overlapping reads align into fewer, longer contigs. A conceptual Hi-C contact map represents long-range interaction frequencies used to group, order and orient contigs into several chromosome-scale scaffolds. Hi-C does not provide the missing sequence between contigs, so one unresolved sequence gap remains visible. A final assessment checks continuity, completeness and known limits or gaps without reporting numeric scores. The marks are illustrative and do not represent sequence or Hi-C data, an assembly or a result from Caligo.",
+        "description": "A simplified genome-assembly workflow. Overlapping reads align into fewer, longer contigs. A conceptual, symmetric Hi-C heatmap uses stronger cells along a blocky diagonal and lighter off-diagonal cells to represent relative contact frequencies; those patterns can be used to group, order and orient contigs into several chromosome-scale scaffolds. Hi-C does not provide the missing sequence between contigs, so one unresolved sequence gap remains visible. A final assessment checks continuity, completeness and known limits or gaps without reporting numeric scores. The marks are illustrative and do not represent sequence or Hi-C data, an assembly or a result from Caligo.",
         "play": "Play the explanation",
         "replay": "Replay",
         "ready": "Ready to animate",

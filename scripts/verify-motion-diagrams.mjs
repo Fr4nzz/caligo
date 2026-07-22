@@ -54,7 +54,8 @@ ok(/import AssemblyDiagram/.test(home) && /journey-5-assemble[\s\S]*?<AssemblyDi
 ok(/data-assembly-play/.test(assembly) && /data-assembly-status/.test(assembly) && /aria-live="polite"/.test(assembly), 'assembly explainer exposes native user-controlled playback and live status');
 ok(!/setInterval|autoplay/.test(assembly), 'assembly explainer never autoplays or loops without user input');
 ok(/asm-read--six/.test(assembly) && /asm-contig--three/.test(assembly), 'assembly explainer aligns overlapping reads into fewer longer contigs');
-ok(/asm-hic-contact-map/.test(assembly) && /asm-hic-contact--strong/.test(assembly) && /asm-hic-scan/.test(assembly), 'assembly explainer includes a distinct conceptual Hi-C contact-map stage');
+ok(/asm-hic-contact-map/.test(assembly) && /asm-hic-cells--strong/.test(assembly) && /asm-hic-cells--faint/.test(assembly) && /asm-hic-domain/.test(assembly), 'assembly explainer includes a dense block-structured Hi-C heatmap stage');
+ok(!/asm-hic-scan/.test(assembly) && /symmetric Hi-C heatmap/.test(en) && /mapa de calor Hi-C conceptual y simétrico/.test(es), 'Hi-C heatmap uses symmetric contact intensity rather than an ambiguous persistent scan line');
 ok(/group · order · orient/.test(en) && /agrupar · ordenar · orientar/.test(es), 'EN and ES state that Hi-C evidence groups, orders and orients contigs');
 ok(/asm-unit--one/.test(assembly) && /asm-unit--two/.test(assembly) && /asm-unit--three/.test(assembly) && /chromosome-scale scaffolds/.test(en), 'assembly explainer ends with several chromosome-scale scaffolds rather than one chromosome');
 ok(/asm-gap/.test(assembly) && /gap-pointer/.test(assembly) && /does not provide the missing sequence/.test(en) && /no aporta la secuencia faltante/.test(es), 'Hi-C scaffolding retains an explicit unresolved sequence gap instead of implying gap filling');

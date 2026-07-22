@@ -79,16 +79,15 @@ const mobileSteps = [
     <g class="asm-stage asm-stage--hic">
       <path d="M299 42 H392" class="asm-stage-rule" />
       <text x="345.5" y="30" class="asm-stage-label">{c.hic}</text>
-      <g class="asm-hic-contact-map" aria-hidden="true">
+      <g class="asm-hic-contact-map" aria-hidden="true" shape-rendering="crispEdges">
         <rect x="316" y="57" width="59" height="59" rx="4" class="asm-hic-map-shell" />
-        <path d="M330.75 58 V115 M345.5 58 V115 M360.25 58 V115 M317 71.75 H374 M317 86.5 H374 M317 101.25 H374" class="asm-hic-grid" />
-        <rect x="320" y="61" width="10" height="10" rx="2" class="asm-hic-contact asm-hic-contact--strong asm-hic-contact--one" />
-        <rect x="333" y="74" width="10" height="10" rx="2" class="asm-hic-contact asm-hic-contact--strong asm-hic-contact--two" />
-        <rect x="348" y="89" width="10" height="10" rx="2" class="asm-hic-contact asm-hic-contact--strong asm-hic-contact--three" />
-        <rect x="361" y="102" width="10" height="10" rx="2" class="asm-hic-contact asm-hic-contact--strong asm-hic-contact--four" />
-        <rect x="361" y="61" width="10" height="10" rx="2" class="asm-hic-contact asm-hic-contact--long asm-hic-contact--five" />
-        <rect x="320" y="102" width="10" height="10" rx="2" class="asm-hic-contact asm-hic-contact--long asm-hic-contact--six" />
-        <path d="M318 114 L373 59" class="asm-hic-scan" />
+        {/* Symmetric conceptual contact intensities: strongest near the diagonal, lighter farther away. */}
+        <path d="M346 60h8v8h-8z M355 60h8v8h-8z M364 60h8v8h-8z M355 69h8v8h-8z M364 69h8v8h-8z M364 78h8v8h-8z M319 87h8v8h-8z M319 96h8v8h-8z M328 96h8v8h-8z M319 105h8v8h-8z M328 105h8v8h-8z M337 105h8v8h-8z" class="asm-hic-cells asm-hic-cells--faint" />
+        <path d="M337 60h8v8h-8z M346 69h8v8h-8z M355 78h8v8h-8z M364 87h8v8h-8z M319 78h8v8h-8z M328 87h8v8h-8z M337 96h8v8h-8z M346 105h8v8h-8z" class="asm-hic-cells asm-hic-cells--soft" />
+        <path d="M328 60h8v8h-8z M319 69h8v8h-8z M337 69h8v8h-8z M328 78h8v8h-8z M346 78h8v8h-8z M337 87h8v8h-8z M355 87h8v8h-8z M346 96h8v8h-8z M364 96h8v8h-8z M355 105h8v8h-8z" class="asm-hic-cells asm-hic-cells--mid" />
+        <path d="M319 60h8v8h-8z M328 69h8v8h-8z M337 78h8v8h-8z M346 87h8v8h-8z M355 96h8v8h-8z M364 105h8v8h-8z" class="asm-hic-cells asm-hic-cells--strong" />
+        <rect x="318.5" y="59.5" width="27" height="27" class="asm-hic-domain" />
+        <rect x="345.5" y="86.5" width="27" height="27" class="asm-hic-domain" />
       </g>
       <text x="345.5" y="138" class="asm-hic-action">{c.hicAction}</text>
     </g>
@@ -341,29 +340,15 @@ const mobileSteps = [
     stroke-width: 1.4;
   }
 
-  .asm-hic-grid {
+  .asm-hic-cells--faint { fill: color-mix(in oklab, var(--accent) 14%, var(--bg-panel)); }
+  .asm-hic-cells--soft { fill: color-mix(in oklab, var(--accent) 28%, var(--bg-panel)); }
+  .asm-hic-cells--mid { fill: color-mix(in oklab, var(--accent) 52%, var(--bg-panel)); }
+  .asm-hic-cells--strong { fill: var(--accent-strong); }
+
+  .asm-hic-domain {
     fill: none;
-    stroke: var(--hairline-strong);
-    stroke-width: 0.8;
-    opacity: 0.55;
-  }
-
-  .asm-hic-contact {
-    fill: color-mix(in oklab, var(--accent) 72%, var(--bg-panel));
-    stroke: var(--accent-strong);
-    stroke-width: 0.7;
-  }
-
-  .asm-hic-contact--long {
-    fill: color-mix(in oklab, var(--signal) 34%, var(--bg-panel));
-    stroke: color-mix(in oklab, var(--signal) 76%, var(--text-muted));
-  }
-
-  .asm-hic-scan {
-    fill: none;
-    stroke: var(--signal);
-    stroke-width: 1.7;
-    stroke-linecap: round;
+    stroke: color-mix(in oklab, var(--accent-strong) 58%, transparent);
+    stroke-width: 1;
   }
 
   .asm-hic-action {
@@ -481,7 +466,8 @@ const mobileSteps = [
   .asm-read,
   .asm-contig,
   .asm-hic-map-shell,
-  .asm-hic-contact,
+  .asm-hic-cells,
+  .asm-hic-domain,
   .asm-unit,
   .asm-check,
   .asm-assessment-card {
@@ -508,13 +494,11 @@ const mobileSteps = [
   .assembly-diagram.is-playing .asm-contig--three { animation: contig-build 680ms 1.26s var(--ease-settle) both; }
   .assembly-diagram.is-playing .asm-flow--two { animation: assembly-link 520ms 1.7s ease-out both; }
   .assembly-diagram.is-playing .asm-hic-map-shell { animation: hic-map-focus 600ms 1.92s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-hic-contact--one { animation: hic-contact-pop 430ms 2.02s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-hic-contact--two { animation: hic-contact-pop 430ms 2.1s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-hic-contact--three { animation: hic-contact-pop 430ms 2.18s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-hic-contact--four { animation: hic-contact-pop 430ms 2.26s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-hic-contact--five,
-  .assembly-diagram.is-playing .asm-hic-contact--six { animation: hic-contact-pop 430ms 2.34s var(--ease-settle) both; }
-  .assembly-diagram.is-playing .asm-hic-scan { animation: hic-scan 680ms 2.2s ease-out both; }
+  .assembly-diagram.is-playing .asm-hic-cells--faint { animation: hic-heatmap-reveal 440ms 2.02s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-hic-cells--soft { animation: hic-heatmap-reveal 440ms 2.1s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-hic-cells--mid { animation: hic-heatmap-reveal 440ms 2.18s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-hic-cells--strong { animation: hic-heatmap-reveal 440ms 2.26s var(--ease-settle) both; }
+  .assembly-diagram.is-playing .asm-hic-domain { animation: hic-domain-reveal 500ms 2.34s ease-out both; }
   .assembly-diagram.is-playing .asm-hic-action { animation: label-reveal 500ms 2.48s var(--ease-settle) both; }
   .assembly-diagram.is-playing .asm-flow--three { animation: assembly-link 520ms 2.72s ease-out both; }
   .assembly-diagram.is-playing .asm-unit--one { animation: unit-settle 680ms 3s var(--ease-settle) both; }
@@ -561,15 +545,14 @@ const mobileSteps = [
     to { opacity: 1; transform: scale(1); }
   }
 
-  @keyframes hic-contact-pop {
-    from { opacity: 0.18; transform: scale(0.45); }
+  @keyframes hic-heatmap-reveal {
+    from { opacity: 0.15; transform: scale(0.92); }
     to { opacity: 1; transform: scale(1); }
   }
 
-  @keyframes hic-scan {
-    from { opacity: 0; stroke-dasharray: 80; stroke-dashoffset: 80; }
-    72% { opacity: 1; stroke-dashoffset: 0; }
-    to { opacity: 0.62; stroke-dasharray: 80; stroke-dashoffset: 0; }
+  @keyframes hic-domain-reveal {
+    from { opacity: 0; stroke-dasharray: 90; stroke-dashoffset: 90; }
+    to { opacity: 1; stroke-dasharray: 90; stroke-dashoffset: 0; }
   }
 
   @keyframes unit-settle {
