@@ -172,6 +172,22 @@ export const en = {
       "voucherDiagram": {
         "collector": "COLLECTOR",
         "description": "A generic schematic. A collector's hand lowers a net over a butterfly; the wristband uses the placeholder COLLECTOR, never a real person's name. That placeholder moves into an abbreviated record row. The wings are cut and stored in a labelled envelope (its CAMID), while the body goes into a tube (its tube ID). The row shows CAMID first, then tube ID, collector and an ellipsis for further fields such as butterfly ID and collection location. It shows no real person, specimen, identifier or complete database schema."
+      },
+      "depositDiagram": {
+        "conceptual": "Educational animation — conceptual, not data",
+        "title": "Three links, one traceable resource",
+        "play": "Play the explanation",
+        "replay": "Replay",
+        "ready": "Ready to animate",
+        "playing": "Connecting the evidence chain",
+        "finished": "Evidence chain connected",
+        "reduced": "Complete diagram shown without motion",
+        "voucher": "voucher",
+        "genome": "genome",
+        "contributors": "contributors",
+        "outcome": "public · reusable · credited",
+        "description": "A generic conceptual chain with three large nodes: voucher, genome and contributors. A single line connects the three, then the outcome public, reusable and credited appears. The line means traceable links, not that every record is kept in one repository. No real repository, accession, person, identifier or Caligo policy is shown.",
+        "disclaimer": "Conceptual links — records may remain in separate durable homes"
       }
     },
     "uses": {

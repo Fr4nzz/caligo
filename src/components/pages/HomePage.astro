@@ -21,6 +21,7 @@ import HeroMedia from '../HeroMedia.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
 import ConceptDiagram from '../ConceptDiagram.astro';
 import AssemblyDiagram from '../AssemblyDiagram.astro';
+import DepositSimpleDiagram from '../DepositSimpleDiagram.astro';
 import Icon from '../Icon.astro';
 import JoinCTA from '../JoinCTA.astro';
 import PrincipleGrid from '../PrincipleGrid.astro';
@@ -161,6 +162,8 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
                   <ConceptDiagram locale={locale} kind="voucher" context="pilot" />
                 ) : journeyModuleIds[i] === 'journey-5-assemble' ? (
                   <AssemblyDiagram locale={locale} />
+                ) : journeyModuleIds[i] === 'journey-6-deposit' ? (
+                  <DepositSimpleDiagram locale={locale} />
                 ) : (
                   <MediaCandidateViewer
                     moduleId={journeyModuleIds[i]}
