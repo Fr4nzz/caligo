@@ -15,47 +15,64 @@ const id = `deposit-chain-${locale}`;
   </figcaption>
 
   <div class="chain-canvas" aria-hidden="true">
-    <span class="chain-line"></span>
+    <div class="chain-network">
+      <span class="chain-line chain-line--desktop"></span>
+      <span class="chain-line chain-line--mobile-top"></span>
+      <span class="chain-line chain-line--mobile-bottom"></span>
+      <span class="chain-line chain-line--mobile-vertical"></span>
 
-    <div class="chain-node chain-node--voucher">
-      <span class="node-icon node-icon--voucher">
-        <svg viewBox="-56 -48 112 96" focusable="false">
-          <rect x="-3" y="-24" width="6" height="48" rx="3" class="voucher-body" />
-          <path d="M-2 -24 C-8 -38 -15 -42 -20 -44 M2 -24 C8 -38 15 -42 20 -44" class="voucher-antenna" />
-          <path d="M-4 -14 C-40 -34 -54 -18 -46 3 C-40 15 -17 12 -4 2 Z" class="voucher-wing" />
-          <path d="M-4 6 C-30 6 -40 20 -31 32 C-22 41 -8 32 -4 20 Z" class="voucher-wing voucher-wing--hind" />
-          <path d="M4 -14 C40 -34 54 -18 46 3 C40 15 17 12 4 2 Z" class="voucher-wing" />
-          <path d="M4 6 C30 6 40 20 31 32 C22 41 8 32 4 20 Z" class="voucher-wing voucher-wing--hind" />
-          <circle cx="-27" cy="-6" r="4.5" class="voucher-ocellus" />
-          <circle cx="27" cy="-6" r="4.5" class="voucher-ocellus" />
-        </svg>
-      </span>
-      <b>{c.voucher}</b>
-    </div>
+      <div class="chain-node chain-node--voucher">
+        <span class="node-icon node-icon--voucher">
+          <svg viewBox="-56 -48 112 96" focusable="false">
+            <rect x="-3" y="-24" width="6" height="48" rx="3" class="voucher-body" />
+            <path d="M-2 -24 C-8 -38 -15 -42 -20 -44 M2 -24 C8 -38 15 -42 20 -44" class="voucher-antenna" />
+            <path d="M-4 -14 C-40 -34 -54 -18 -46 3 C-40 15 -17 12 -4 2 Z" class="voucher-wing" />
+            <path d="M-4 6 C-30 6 -40 20 -31 32 C-22 41 -8 32 -4 20 Z" class="voucher-wing voucher-wing--hind" />
+            <path d="M4 -14 C40 -34 54 -18 46 3 C40 15 17 12 4 2 Z" class="voucher-wing" />
+            <path d="M4 6 C30 6 40 20 31 32 C22 41 8 32 4 20 Z" class="voucher-wing voucher-wing--hind" />
+            <circle cx="-27" cy="-6" r="4.5" class="voucher-ocellus" />
+            <circle cx="27" cy="-6" r="4.5" class="voucher-ocellus" />
+          </svg>
+        </span>
+        <b>{c.voucher}</b>
+      </div>
 
-    <div class="chain-node chain-node--genome">
-      <span class="node-icon node-icon--genome">
-        <svg viewBox="0 0 64 64" focusable="false">
-          <path d="M20 6 C20 18 44 18 44 32 C44 46 20 46 20 58" />
-          <path d="M44 6 C44 18 20 18 20 32 C20 46 44 46 44 58" />
-          <path class="genome-rungs" d="M22 10 H42 M27 18 H37 M22 27 H42 M22 37 H42 M27 46 H37 M22 54 H42" />
-        </svg>
-      </span>
-      <b>{c.genome}</b>
-    </div>
+      <div class="chain-node chain-node--genome">
+        <span class="node-icon node-icon--genome">
+          <svg viewBox="0 0 64 64" focusable="false">
+            <path class="genome-helix" d="M12 8 C12 18 34 18 34 31 C34 44 12 44 12 56 M34 8 C34 18 12 18 12 31 C12 44 34 44 34 56" />
+            <path class="genome-rungs" d="M15 12 H31 M19 20 H27 M14 28 H32 M14 36 H32 M19 44 H27 M15 52 H31" />
+            <rect x="38" y="16" width="16" height="32" rx="3" class="method-sheet" />
+            <path class="method-lines" d="M42 24 H50 M42 30 H50 M42 36 H48" />
+          </svg>
+        </span>
+        <b>{c.genome}</b>
+      </div>
 
-    <div class="chain-node chain-node--contributors">
-      <span class="node-icon node-icon--contributors">
-        <svg viewBox="0 0 64 64" focusable="false">
-          <circle class="person person--left" cx="17" cy="25" r="7" />
-          <path class="person-body person-body--left" d="M6 49 C7 37 27 37 28 49 Z" />
-          <circle class="person person--right" cx="47" cy="25" r="7" />
-          <path class="person-body person-body--right" d="M36 49 C37 37 57 37 58 49 Z" />
-          <circle class="person person--centre" cx="32" cy="19" r="8" />
-          <path class="person-body person-body--centre" d="M18 51 C19 34 45 34 46 51 Z" />
-        </svg>
-      </span>
-      <b>{c.contributors}</b>
+      <div class="chain-node chain-node--repositories">
+        <span class="node-icon node-icon--repositories">
+          <svg viewBox="0 0 64 64" focusable="false">
+            <ellipse cx="32" cy="15" rx="19" ry="7" />
+            <path d="M13 15 V43 C13 47 21 51 32 51 C43 51 51 47 51 43 V15" />
+            <path d="M13 29 C13 33 21 37 32 37 C43 37 51 33 51 29 M13 42 C13 46 21 50 32 50 C43 50 51 46 51 42" />
+          </svg>
+        </span>
+        <b>{c.repositories}</b>
+      </div>
+
+      <div class="chain-node chain-node--contributors">
+        <span class="node-icon node-icon--contributors">
+          <svg viewBox="0 0 64 64" focusable="false">
+            <circle class="person person--left" cx="17" cy="25" r="7" />
+            <path class="person-body person-body--left" d="M6 49 C7 37 27 37 28 49 Z" />
+            <circle class="person person--right" cx="47" cy="25" r="7" />
+            <path class="person-body person-body--right" d="M36 49 C37 37 57 37 58 49 Z" />
+            <circle class="person person--centre" cx="32" cy="19" r="8" />
+            <path class="person-body person-body--centre" d="M18 51 C19 34 45 34 46 51 Z" />
+          </svg>
+        </span>
+        <b>{c.contributors}</b>
+      </div>
     </div>
 
     <strong class="chain-outcome">
@@ -86,12 +103,14 @@ const id = `deposit-chain-${locale}`;
     border-bottom: 1px solid var(--hairline);
   }
 
-  .chain-kicker {
-    font-family: var(--font-mono);
+  .chain-caption strong {
+    font-size: var(--step--1);
+    line-height: 1.25;
   }
 
   .chain-kicker {
     color: var(--text-faint);
+    font-family: var(--font-mono);
     font-size: var(--step--2);
     letter-spacing: .11em;
     text-transform: uppercase;
@@ -107,65 +126,68 @@ const id = `deposit-chain-${locale}`;
   }
 
   .chain-canvas {
-    position: relative;
-    min-height: 235px;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: start;
-    gap: 1rem;
-    padding: 2.15rem 2rem 1rem;
+    padding: 2rem 1.35rem 1.1rem;
     background: var(--bg-inset);
+  }
+
+  .chain-network {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: .65rem;
   }
 
   .chain-line {
     position: absolute;
-    left: 17%;
-    right: 17%;
-    top: 76px;
+    z-index: 0;
+    background: var(--accent-strong);
+    opacity: .78;
+  }
+
+  .chain-line--desktop {
+    left: 12.5%;
+    right: 12.5%;
+    top: 2.3rem;
     height: 2px;
-    background: var(--accent-strong);
   }
 
-  .chain-line::before,
-  .chain-line::after {
-    content: '';
-    position: absolute;
-    top: -3px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent-strong);
+  .chain-line--mobile-top,
+  .chain-line--mobile-bottom,
+  .chain-line--mobile-vertical {
+    display: none;
   }
-
-  .chain-line::before { left: 0; }
-  .chain-line::after { right: 0; }
 
   .chain-node {
     position: relative;
     z-index: 1;
     display: grid;
+    grid-template-rows: 4.6rem minmax(2.5rem, auto);
     justify-items: center;
-    gap: .7rem;
+    gap: .55rem;
     color: var(--text-strong);
-    font-size: var(--step--1);
     text-align: center;
-    text-transform: uppercase;
-    letter-spacing: .045em;
+  }
+
+  .chain-node b {
+    max-width: 8.5rem;
+    font: 650 var(--step--2)/1.28 var(--font-mono);
   }
 
   .node-icon {
     display: grid;
     place-items: center;
-    width: 4.8rem;
-    height: 4.8rem;
-    border: 1.5px solid var(--accent-strong);
+    width: 4.6rem;
+    height: 4.6rem;
+    border: 1.5px solid currentColor;
     border-radius: 50%;
     background: var(--bg-panel);
+    color: var(--accent-strong);
   }
 
   .node-icon svg {
-    width: 3.7rem;
-    height: 3.7rem;
+    width: 3.35rem;
+    height: 3.35rem;
     overflow: visible;
   }
 
@@ -194,16 +216,45 @@ const id = `deposit-chain-${locale}`;
     stroke-width: 1.5;
   }
 
-  .node-icon--genome path {
+  .node-icon--genome {
+    color: var(--signal);
+  }
+
+  .node-icon--genome .genome-helix,
+  .node-icon--genome .genome-rungs,
+  .node-icon--genome .method-sheet,
+  .node-icon--genome .method-lines {
     fill: none;
-    stroke: var(--accent-strong);
+    stroke: currentColor;
     stroke-width: 2;
     stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   .node-icon--genome .genome-rungs {
     stroke-width: 1.1;
     opacity: .72;
+  }
+
+  .node-icon--genome .method-lines {
+    stroke-width: 1.5;
+  }
+
+  .node-icon--repositories {
+    color: var(--accent-strong);
+  }
+
+  .node-icon--repositories ellipse,
+  .node-icon--repositories path {
+    fill: color-mix(in oklab, currentColor 8%, var(--bg-panel));
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .node-icon--contributors {
+    color: var(--highlight);
   }
 
   .node-icon--contributors .person {
@@ -217,18 +268,20 @@ const id = `deposit-chain-${locale}`;
   .person--right, .person-body--right { fill: color-mix(in oklab, var(--highlight) 64%, var(--bg-panel)); }
 
   .chain-outcome {
-    grid-column: 1 / -1;
-    justify-self: center;
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: .5rem;
-    margin-top: .7rem;
+    width: max-content;
+    max-width: 100%;
+    margin: .75rem auto 0;
     padding: .48rem .85rem;
     border: 1px solid var(--accent-strong);
     border-radius: 999px;
     color: var(--accent-strong);
     font: 650 var(--step--2)/1.2 var(--font-mono);
     letter-spacing: .055em;
+    text-align: center;
     text-transform: uppercase;
   }
 
@@ -248,15 +301,53 @@ const id = `deposit-chain-${locale}`;
 
   @media (max-width: 620px) {
     .chain-canvas {
-      min-height: 215px;
-      gap: .3rem;
-      padding: 2rem .55rem .8rem;
+      padding: 1.45rem .8rem .9rem;
     }
 
-    .chain-line { left: 18%; right: 18%; top: 67px; }
-    .node-icon { width: 4rem; height: 4rem; }
-    .node-icon svg { width: 3.15rem; height: 3.15rem; }
-    .chain-node { font-size: .62rem; }
-    .chain-outcome { gap: .35rem; font-size: .55rem; letter-spacing: .035em; }
+    .chain-network {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: 7.25rem;
+      column-gap: .8rem;
+      row-gap: 1rem;
+    }
+
+    .chain-line--desktop { display: none; }
+
+    .chain-line--mobile-top,
+    .chain-line--mobile-bottom,
+    .chain-line--mobile-vertical {
+      display: block;
+    }
+
+    .chain-line--mobile-top,
+    .chain-line--mobile-bottom {
+      left: 25%;
+      right: 25%;
+      height: 2px;
+    }
+
+    .chain-line--mobile-top { top: 1.9rem; }
+    .chain-line--mobile-bottom { top: 10.15rem; }
+
+    .chain-line--mobile-vertical {
+      left: calc(50% - 1px);
+      top: 1.9rem;
+      width: 2px;
+      height: 8.25rem;
+    }
+
+    .chain-node {
+      grid-template-rows: 3.8rem minmax(2.75rem, auto);
+      gap: .45rem;
+    }
+
+    .chain-node b {
+      max-width: 9rem;
+      font-size: var(--step--2);
+    }
+
+    .node-icon { width: 3.8rem; height: 3.8rem; }
+    .node-icon svg { width: 2.85rem; height: 2.85rem; }
+    .chain-outcome { gap: .35rem; margin-top: .35rem; letter-spacing: .035em; }
   }
 </style>

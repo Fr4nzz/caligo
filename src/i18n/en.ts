@@ -170,12 +170,13 @@ export const en = {
       },
       "depositDiagram": {
         "conceptual": "Evidence chain",
-        "title": "Connect the full evidence chain",
-        "voucher": "voucher",
-        "genome": "genome",
-        "contributors": "contributors",
+        "title": "Connect records, repositories and credit",
+        "voucher": "voucher and provenance",
+        "genome": "genome data and methods",
+        "repositories": "durable repositories",
+        "contributors": "contributors and credit",
         "outcome": "traceable, citable, reusable",
-        "description": "Traceable links connect a voucher, its genome record and contributor information. Each record may remain in a different durable repository while those links preserve provenance and support citation and reuse."
+        "description": "Traceable links connect the voucher and its provenance with genome data, methods, durable repositories and contributor credit. Records may remain in different repositories without losing those relationships."
       }
     },
     "uses": {

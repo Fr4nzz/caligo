@@ -167,12 +167,13 @@ export const es: Dict = {
       },
       "depositDiagram": {
         "conceptual": "Cadena de evidencia",
-        "title": "Conectar toda la cadena de evidencia",
-        "voucher": "ejemplar",
-        "genome": "genoma",
-        "contributors": "contribuciones",
+        "title": "Conectar registros, repositorios y reconocimiento",
+        "voucher": "ejemplar y procedencia",
+        "genome": "datos genómicos y métodos",
+        "repositories": "repositorios duraderos",
+        "contributors": "reconocimiento",
         "outcome": "rastreable, citable y reutilizable",
-        "description": "Los vínculos rastreables conectan un ejemplar de referencia, su registro genómico y la información de quienes contribuyeron. Cada registro puede permanecer en un repositorio duradero distinto mientras esos vínculos conservan la procedencia y facilitan la citación y la reutilización."
+        "description": "Los vínculos rastreables conectan el ejemplar y su procedencia con los datos genómicos, los métodos, los repositorios duraderos y el reconocimiento de quienes contribuyeron. Los registros pueden permanecer en repositorios distintos sin perder esas relaciones."
       }
     },
     "uses": {
