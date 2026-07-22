@@ -485,19 +485,19 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
               <ellipse cx="26" cy="-1" rx="20" ry="45" transform="rotate(-8 26 -1)" class="vch-net-opening" />
             </g>
             <ellipse cx="26" cy="-1" rx="20" ry="45" transform="rotate(-8 26 -1)" class="vch-net-rim" />
-            <path d="M23 42 L-8 73" class="vch-net-handle" />
+            <path d="M23 42 L-2 68" class="vch-net-handle" />
             <g class="vch-collector">
-              <path d="M-45 58 H-22 C-16 58 -12 61 -8 66 L-15 80 H-45 Z" class="vch-forearm" />
-              <path d="M-22 57 C-16 53 -9 55 -6 61 L0 70 C3 75 0 81 -6 82 C-12 82 -17 78 -20 74 L-28 65 Z" class="vch-hand" />
-              <path d="M-20 61 C-15 61 -11 65 -10 70 M-15 58 C-10 59 -6 63 -4 68" class="vch-hand-detail" />
-              <rect x="-43" y="60" width="28" height="18" rx="3" class="vch-wristband" />
-              <text x="-29" y="71.5" class="vch-wristband-label">{c.voucher.collector}</text>
+              <path d="M-52 62 H-24 C-18 62 -14 66 -12 72 L-18 83 H-52 Z" class="vch-forearm" />
+              <rect x="-49" y="64" width="30" height="16" rx="3" class="vch-wristband" />
+              <text x="-34" y="74.5" class="vch-wristband-label">{c.voucher.collector}</text>
+              <path d="M-23 73 C-26 67 -23 60 -17 57 C-13 55 -9 57 -7 61 C-6 56 -2 54 2 56 C6 58 7 63 6 67 L9 65 C13 64 16 67 16 71 C16 75 13 77 9 78 L3 80 C0 85 -5 88 -11 87 C-17 86 -21 81 -23 73 Z" class="vch-hand" />
+              <path d="M-16 61 C-11 61 -8 65 -8 69 M-9 59 C-4 60 -1 63 0 68 M-4 78 C1 74 5 73 10 74" class="vch-fingers" />
             </g>
           </g>
         </g>
 
         {/* A duplicate of the wristband label travels into the record. */}
-        <g transform="translate(57 159)">
+        <g transform="translate(52 162)">
           <g class="vch-collector-token">
             <rect x="-16" y="-7" width="32" height="14" rx="3" class="vch-token-card" />
             <text x="0" y="2" class="vch-token-label">{c.voucher.collector}</text>
@@ -1046,12 +1046,12 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .vch-net-handle { fill: none; stroke: var(--accent-strong); stroke-width: 4; stroke-linecap: round; }
   .vch-forearm,
   .vch-hand {
-    fill: color-mix(in oklab, var(--text-muted) 24%, var(--bg-panel));
+    fill: color-mix(in oklab, var(--accent) 18%, var(--bg-panel));
     stroke: var(--text-strong);
     stroke-width: 1.6;
     stroke-linejoin: round;
   }
-  .vch-hand-detail { fill: none; stroke: var(--text-muted); stroke-width: 1.1; stroke-linecap: round; }
+  .vch-fingers { fill: none; stroke: var(--text-muted); stroke-width: 1.15; stroke-linecap: round; }
   .vch-wristband,
   .vch-token-card { fill: var(--accent-strong); stroke: var(--bg-panel); stroke-width: 0.8; }
   .vch-wristband-label,
@@ -1130,7 +1130,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-diagram.is-playing .voucher-scene .vch-record-values { animation: event-pop 620ms 4.05s var(--ease-settle) both; }
 
   @keyframes net-catch {
-    0% { opacity: 0; transform: translateX(-40px); }
+    0% { opacity: 0; transform: translateX(-30px); }
     10% { opacity: 1; }
     48%, 78% { opacity: 1; transform: translateX(0); }
     100% { opacity: 0; transform: translateX(4px); }
@@ -1139,8 +1139,8 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     0% { opacity: 0; transform: translate(0, 0) scale(1); }
     12% { opacity: 1; transform: translate(0, 0) scale(1); }
     22% { opacity: 1; transform: translate(18px, -5px) scale(0.96); }
-    52%, 84% { opacity: 1; transform: translate(397px, -60px) scale(0.72); }
-    100% { opacity: 0; transform: translate(397px, -60px) scale(0.72); }
+    52%, 84% { opacity: 1; transform: translate(402px, -63px) scale(0.72); }
+    100% { opacity: 0; transform: translate(402px, -63px) scale(0.72); }
   }
   @keyframes wing-open { from { opacity: 1; transform: scaleX(1); } 70% { opacity: 1; transform: scaleX(1.06); } to { opacity: 1; transform: scaleX(1); } }
   @keyframes fly-wings { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 18% { opacity: 0.9; } 82% { opacity: 0.9; } 100% { opacity: 0; transform: translate(204px, -42px) scale(0.42); } }
