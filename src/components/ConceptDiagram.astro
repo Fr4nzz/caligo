@@ -45,7 +45,9 @@ const copy = {
       divergentLineages: 'more divergent lineages',
       recipientLineage: 'recipient lineage',
       donorLineage: 'donor lineage',
-      hybridLineage: 'hybrid lineage',
+      oneLineage: 'one lineage remains',
+      newHybridSpecies: 'new hybrid species',
+      rareOutcomeLabel: 'rare outcome',
       introgression: 'discrete adaptive allele · introgression',
       rareOutcomeLead: 'Rare outcome · an independently evolving',
       rareOutcomeTail: 'hybrid lineage persists',
@@ -121,7 +123,9 @@ const copy = {
       divergentLineages: 'linajes más divergentes',
       recipientLineage: 'linaje receptor',
       donorLineage: 'linaje donante',
-      hybridLineage: 'linaje híbrido',
+      oneLineage: 'permanece un linaje',
+      newHybridSpecies: 'nueva especie híbrida',
+      rareOutcomeLabel: 'desenlace raro',
       introgression: 'alelo adaptativo discreto · introgresión',
       rareOutcomeLead: 'Desenlace raro · persiste un linaje híbrido',
       rareOutcomeTail: 'que evoluciona de forma independiente',
@@ -169,6 +173,20 @@ const copy = {
 
 const c = copy[locale];
 const k = c[kind];
+const connectivityOutcomes = kind === 'connectivity'
+  ? [
+      {
+        cue: c.connectivity.earlyTitle,
+        title: c.connectivity.oneLineage,
+        detail: c.connectivity.earlyFlow,
+      },
+      {
+        cue: c.connectivity.rareOutcomeLabel,
+        title: c.connectivity.newHybridSpecies,
+        detail: `${c.connectivity.lateTitle} · ${c.connectivity.introgression}`,
+      },
+    ]
+  : [];
 const mobileSteps: readonly string[] = kind === 'chromosome'
   ? [
       `${c.chromosome.one} → ${c.chromosome.breakpoint}`,
@@ -178,12 +196,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
       c.chromosome.holocentric,
     ]
   : kind === 'connectivity'
-    ? [
-        `${c.connectivity.earlyTitle}: ${c.connectivity.incipientLineages}`,
-        `${c.connectivity.earlyFlow} → ${c.connectivity.collapseOutcome}`,
-        `${c.connectivity.lateTitle}: ${c.connectivity.divergentLineages}`,
-        `${c.connectivity.introgression} → ${c.connectivity.rareOutcomeLead} ${c.connectivity.rareOutcomeTail}`,
-      ]
+    ? []
     : kind === 'monitoring'
       ? [c.monitoring.sample, c.monitoring.identify, c.monitoring.movement, c.monitoring.candidates, c.monitoring.validate]
       : kind === 'migration'
@@ -324,6 +337,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
           <path d="M143 133 H217" class="gene-flow-link early-gene-flow" marker-start={`url(#${id}-phylo-arrow)`} marker-end={`url(#${id}-phylo-arrow)`} />
           <text x="180" y="127" class="micro-label gene-flow-label">{c.connectivity.earlyFlow}</text>
           <text x="180" y="92" class="micro-label incipient-label">{c.connectivity.incipientLineages}</text>
+          <text x="180" y="73" class="micro-label final-state-label one-lineage-label">{c.connectivity.oneLineage}</text>
           <text x="180" y="224" class="footer-label panel-outcome panel-outcome--collapse">{c.connectivity.collapseOutcome}</text>
         </g>
 
@@ -361,7 +375,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
           </g>
           <text x="547" y="103" class="micro-label introgression-note">{c.connectivity.introgression}</text>
           <text x="432" y="77" class="micro-label lineage-tip-label">{c.connectivity.recipientLineage}</text>
-          <text x="548" y="71" class="micro-label lineage-tip-label">{c.connectivity.hybridLineage}</text>
+          <text x="548" y="71" class="micro-label lineage-tip-label final-state-label hybrid-species-label">{c.connectivity.newHybridSpecies}</text>
           <text x="660" y="77" class="micro-label lineage-tip-label">{c.connectivity.donorLineage}</text>
           <text
             x="540"
@@ -518,14 +532,26 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     )}
   </svg>
 
-  <ol class="concept-mobile-flow" aria-label={k.title}>
-    {mobileSteps.map((step, index) => (
-      <li data-mobile-step>
-        <span class="mobile-step-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-        <span>{step}</span>
-      </li>
-    ))}
-  </ol>
+  {kind === 'connectivity' ? (
+    <ul class="concept-mobile-flow connectivity-mobile-outcomes" aria-label={k.title}>
+      {connectivityOutcomes.map((outcome) => (
+        <li data-mobile-step>
+          <span class="connectivity-outcome-cue">{outcome.cue}</span>
+          <strong>{outcome.title}</strong>
+          <span>{outcome.detail}</span>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <ol class="concept-mobile-flow" aria-label={k.title}>
+      {mobileSteps.map((step, index) => (
+        <li data-mobile-step>
+          <span class="mobile-step-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+          <span>{step}</span>
+        </li>
+      ))}
+    </ol>
+  )}
   <p class="concept-status" id={`${id}-status`} data-concept-status aria-live="polite">{c.ready}</p>
   {kind === 'connectivity' && (
     <p class="concept-evidence">
@@ -751,6 +777,12 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     font-weight: 650;
   }
   .introgression-note { fill: var(--text-muted); }
+  .final-state-label {
+    fill: var(--text-strong);
+    font-size: 10px;
+    font-weight: 750;
+  }
+  .hybrid-species-label { fill: var(--accent-strong); }
   .panel-outcome {
     fill: var(--text-muted);
     font-size: 9px;
@@ -854,6 +886,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-diagram.is-playing .donor-butterfly,
   .concept-diagram.is-playing .hybrid-butterfly,
   .concept-diagram.is-playing .trait-mark--hybrid { animation: lineage-stage-emerge 620ms 4.78s var(--ease-settle) both; }
+  .concept-diagram.is-playing .final-state-label { animation: stage-label-focus 520ms 4.78s ease-out both; }
   .concept-diagram.is-playing .panel-outcome { animation: outcome-focus 720ms 5.5s ease-out both; }
 
   .concept-diagram.is-playing .workflow-stage--one { animation: group-focus 720ms 0s var(--ease-settle) both; }
@@ -1066,6 +1099,10 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     .concept-svg .node-label,
     .concept-svg .footer-label { display: none; }
     .connectivity-scene .micro-label { display: none; }
+    .connectivity-scene .final-state-label {
+      display: block;
+      font-size: 12px;
+    }
     .concept-mobile-flow {
       display: grid;
       list-style: none;
@@ -1106,6 +1143,34 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
       font-family: var(--font-mono);
       font-size: var(--step--2);
       font-weight: 650;
+    }
+    .connectivity-mobile-outcomes {
+      gap: var(--space-xs);
+    }
+    .connectivity-mobile-outcomes li {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: start;
+      gap: 0.2rem;
+      min-height: 0;
+      padding: var(--space-s);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--radius);
+      background: color-mix(in oklab, var(--accent) 5%, var(--bg-panel));
+    }
+    .connectivity-mobile-outcomes li:last-child {
+      border-color: color-mix(in oklab, var(--accent) 55%, var(--hairline-strong));
+    }
+    .connectivity-mobile-outcomes li:not(:last-child)::after { display: none; }
+    .connectivity-mobile-outcomes strong {
+      color: var(--text-strong);
+      font-size: var(--step-0);
+      line-height: 1.2;
+    }
+    .connectivity-outcome-cue {
+      color: var(--accent-strong);
+      font: 650 var(--step--2)/1.2 var(--font-mono);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
     .concept-diagram.is-playing .concept-mobile-flow li {
       animation: mobile-step 620ms var(--ease-settle) both;
