@@ -17,6 +17,7 @@ const { person, locale } = Astro.props;
     <CardIcon name="person" />
   </div>
   <p class="person-role">{pick(person.role, locale)}</p>
+  <p class="person-bio">{pick(person.bio, locale)}</p>
   <p class="person-affil mono">{person.affiliation}</p>
   <p class="person-country mono">{pick(person.country, locale)}</p>
 </article>
@@ -53,11 +54,18 @@ const { person, locale } = Astro.props;
     color: var(--text);
     line-height: 1.4;
   }
+  .person-bio {
+    margin: 0.15rem 0 var(--space-xs);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
   .person-affil {
     margin: 0;
     font-size: var(--step--1);
-    color: var(--text-muted);
+    color: var(--text);
     letter-spacing: 0.01em;
+    line-height: 1.45;
   }
   .person-country {
     margin: 0;

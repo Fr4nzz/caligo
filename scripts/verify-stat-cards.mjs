@@ -14,6 +14,8 @@ const cardIcon = read('src/components/CardIcon.astro');
 const principles = read('src/components/PrincipleGrid.astro');
 const people = read('src/components/PersonCard.astro');
 const membership = read('src/components/MembershipTiers.astro');
+const initiative = read('src/data/initiative.ts');
+const leaders = initiative.match(/export const LEADERS: Person\[\] = \[([\s\S]*?)\n\];/)?.[1] ?? '';
 const failures = [];
 const ok = (condition, message) => {
   process.stdout.write(`${condition ? '✓' : '✗'} ${message}\n`);
@@ -39,6 +41,7 @@ ok(/principleIcons/.test(principles) && /<CardIcon/.test(principles), 'guiding-p
 ok(/linear-gradient\(145deg, var\(--bg-panel\), var\(--bg-inset\)\)/.test(principles), 'guiding-principle cards use the shared gradient shell');
 ok(/<CardIcon name="person"/.test(people), 'person cards use a meaningful person icon');
 ok(/linear-gradient\(145deg, var\(--bg-panel\), var\(--bg-inset\)\)/.test(people), 'person cards use the shared gradient shell');
+ok(/pick\(person\.bio, locale\)/.test(people), 'person cards render the localized research summary');
 ok(/name=\{index === 0 \? 'core' : 'affiliate'\}/.test(membership), 'membership cards distinguish core and affiliate roles');
 ok(/linear-gradient\(145deg, var\(--bg-panel\), var\(--bg-inset\)\)/.test(membership), 'membership cards use the shared gradient shell');
 ok(/\.pilot-card[\s\S]*?background:\s*linear-gradient\(145deg, var\(--bg-panel\), var\(--bg-inset\)\)/.test(home), 'media-rich pilot cards use the shared shell without a redundant icon');
@@ -47,6 +50,30 @@ ok(/<CommunityStats locale=\{locale\}/.test(network), 'Network reuses the same C
 ok(!/<StatBar|networkMetrics|homeMetrics/.test(home + network), 'pages do not duplicate metric assembly or StatBar variants');
 ok(/repeat\(auto-fit, minmax\(min\(100%, 16rem\), 1fr\)\)/.test(leadershipGrid), 'shared leadership cards keep a readable minimum width');
 ok(/<LeadershipGrid locale=\{locale\}/.test(about) && /<LeadershipGrid locale=\{locale\}/.test(network), 'About and Network reuse the same leadership grid');
+const expectedLeaders = [
+  'Caroline Bacquet',
+  'Gyanpriya Maharaj',
+  'Carmen Barragan',
+  'Carlos Arias',
+  'Nicol Rueda',
+  'Joana Meier',
+  'Vicencio Oostra',
+];
+ok(
+  expectedLeaders.every((name, index) => {
+    const current = leaders.indexOf(`name: '${name}'`);
+    const next = expectedLeaders[index + 1];
+    return current >= 0 && (!next || current < leaders.indexOf(`name: '${next}'`));
+  }),
+  'leadership data includes the seven slide-listed leaders in the approved order',
+);
+ok(
+  (leaders.match(/\n\s+name:/g) ?? []).length === 7
+    && (leaders.match(/\n\s+role: \{ en: '[^']+', es: '[^']+' \},/g) ?? []).length === 7
+    && (leaders.match(/\n\s+bio: \{\n\s+en: '[^']+',\n\s+es: '[^']+',\n\s+\},/g) ?? []).length === 7
+    && (leaders.match(/\n\s+country: \{ en: '[^']+', es: '[^']+' \},/g) ?? []).length === 7,
+  'every leadership profile has complete English and Spanish content',
+);
 ok(/pilot-card-media[\s\S]*?:global\(\.mcv-caption\)[\s\S]*?padding-inline/.test(home), 'pilot-card media captions keep horizontal space from the card border');
 ok((about.match(/class="container-wide visual-section"/g) ?? []).length >= 2, 'About gives principle and leadership card systems the wide visual container');
 ok((network.match(/class="container-wide visual-section"/g) ?? []).length >= 3, 'Network gives metrics, facilities, and leadership the wide visual container');
