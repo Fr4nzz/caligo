@@ -33,7 +33,11 @@ export type Person = {
   role: Bilingual;
   bio: Bilingual;
   affiliation: string;
-  country: Bilingual;
+  regionalTies: Bilingual;
+  source: {
+    label: Bilingual;
+    href: string;
+  };
 };
 
 /**
@@ -50,7 +54,11 @@ export const LEADERS: Person[] = [
       es: 'Su trabajo en el Insectario Científico de Ikiam vincula los lepidópteros amazónicos con la genética, la evolución molecular, el comportamiento y las respuestas de las mariposas al cambio ambiental.',
     },
     affiliation: 'Universidad Regional Amazónica Ikiam',
-    country: { en: 'Ecuador', es: 'Ecuador' },
+    regionalTies: { en: 'Ecuador', es: 'Ecuador' },
+    source: {
+      label: { en: 'Profile at Ikiam', es: 'Perfil en Ikiam' },
+      href: 'https://pure.ikiam.edu.ec/en/persons/caroline-bacquet-p%C3%A9rez/',
+    },
   },
   {
     name: 'Gyanpriya Maharaj',
@@ -60,7 +68,11 @@ export const LEADERS: Person[] = [
       es: 'Su investigación estudia la diversidad, genética, fisiología, ecología y conducta de las mariposas neotropicales, junto con temas más amplios de entomología y monitoreo de insectos.',
     },
     affiliation: 'University of Guyana',
-    country: { en: 'Guyana', es: 'Guyana' },
+    regionalTies: { en: 'Guyana', es: 'Guyana' },
+    source: {
+      label: { en: 'University of Guyana profile', es: 'Perfil en la Universidad de Guyana' },
+      href: 'https://expertguide.uog.edu.gy/dr-gyanpriya-maharaj',
+    },
   },
   {
     name: 'Carmen Barragan',
@@ -70,7 +82,11 @@ export const LEADERS: Person[] = [
       es: 'Su investigación combina la ecología molecular y la genética de la conservación para estudiar especies neotropicales, historia poblacional y conservación de la biodiversidad.',
     },
     affiliation: 'Universidade Federal de Goiás',
-    country: { en: 'Brazil / Colombia', es: 'Brasil / Colombia' },
+    regionalTies: { en: 'Brazil / Colombia', es: 'Brasil / Colombia' },
+    source: {
+      label: { en: 'PUC Goiás research feature', es: 'Nota de investigación de PUC Goiás' },
+      href: 'https://www.pucgoias.edu.br/noticias/coleta-de-dados-genomicos-em-especies-do-cerrado-impulsiona-pesquisa-coordenada-pela-puc/',
+    },
   },
   {
     name: 'Carlos Arias',
@@ -80,7 +96,11 @@ export const LEADERS: Person[] = [
       es: 'Combina métodos computacionales con investigación en Heliconius para estudiar los procesos evolutivos que impulsan o limitan el origen de las especies en la naturaleza.',
     },
     affiliation: 'Smithsonian Tropical Research Institute',
-    country: { en: 'Panama', es: 'Panamá' },
+    regionalTies: { en: 'Panama', es: 'Panamá' },
+    source: {
+      label: { en: 'Smithsonian team profile', es: 'Perfil del equipo Smithsonian' },
+      href: 'https://striresearch.si.edu/gamboa-heliconius/research/team/',
+    },
   },
   {
     name: 'Nicol Rueda',
@@ -90,7 +110,11 @@ export const LEADERS: Person[] = [
       es: 'Estudia la estructura cromosómica y las fusiones entre cromosomas sexuales y autosomas en Heliconius mediante genomas de referencia para investigar la evolución de los lepidópteros.',
     },
     affiliation: 'Wellcome Sanger Institute',
-    country: { en: 'Colombia / United Kingdom', es: 'Colombia / Reino Unido' },
+    regionalTies: { en: 'Colombia / United Kingdom', es: 'Colombia / Reino Unido' },
+    source: {
+      label: { en: 'Profile at Sanger', es: 'Perfil en Sanger' },
+      href: 'https://www.sanger.ac.uk/person/rueda-nicol/',
+    },
   },
   {
     name: 'Joana Meier',
@@ -100,7 +124,11 @@ export const LEADERS: Person[] = [
       es: 'Su investigación en especiación y genómica evolutiva estudia cómo la hibridación y los reordenamientos cromosómicos contribuyen a la adaptación rápida y la formación de nuevas especies.',
     },
     affiliation: 'Wellcome Sanger Institute',
-    country: { en: 'Peru / United Kingdom', es: 'Perú / Reino Unido' },
+    regionalTies: { en: 'Peru / United Kingdom', es: 'Perú / Reino Unido' },
+    source: {
+      label: { en: 'Profile at Sanger', es: 'Perfil en Sanger' },
+      href: 'https://www.sanger.ac.uk/person/meier-joana/',
+    },
   },
   {
     name: 'Vicencio Oostra',
@@ -110,7 +138,11 @@ export const LEADERS: Person[] = [
       es: 'Combina desarrollo, genómica, biología evolutiva y ecología para estudiar cómo las mariposas tropicales se adaptan al cambio ambiental.',
     },
     affiliation: 'Queen Mary University of London',
-    country: { en: 'Colombia / United Kingdom', es: 'Colombia / Reino Unido' },
+    regionalTies: { en: 'Colombia / United Kingdom', es: 'Colombia / Reino Unido' },
+    source: {
+      label: { en: 'Profile at Queen Mary', es: 'Perfil en Queen Mary' },
+      href: 'https://www.seresearch.qmul.ac.uk/cefg/people/voostra/',
+    },
   },
 ];
 

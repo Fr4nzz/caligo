@@ -42,6 +42,8 @@ ok(/linear-gradient\(145deg, var\(--bg-panel\), var\(--bg-inset\)\)/.test(princi
 ok(/<CardIcon name="person"/.test(people), 'person cards use a meaningful person icon');
 ok(/linear-gradient\(145deg, var\(--bg-panel\), var\(--bg-inset\)\)/.test(people), 'person cards use the shared gradient shell');
 ok(/pick\(person\.bio, locale\)/.test(people), 'person cards render the localized research summary');
+ok(/pick\(person\.regionalTies, locale\)/.test(people), 'person cards distinguish regional ties from nationality');
+ok(/href=\{person\.source\.href\}/.test(people), 'person cards link to their public research source');
 ok(/name=\{index === 0 \? 'core' : 'affiliate'\}/.test(membership), 'membership cards distinguish core and affiliate roles');
 ok(/linear-gradient\(145deg, var\(--bg-panel\), var\(--bg-inset\)\)/.test(membership), 'membership cards use the shared gradient shell');
 ok(/\.pilot-card[\s\S]*?background:\s*linear-gradient\(145deg, var\(--bg-panel\), var\(--bg-inset\)\)/.test(home), 'media-rich pilot cards use the shared shell without a redundant icon');
@@ -71,8 +73,9 @@ ok(
   (leaders.match(/\n\s+name:/g) ?? []).length === 7
     && (leaders.match(/\n\s+role: \{ en: '[^']+', es: '[^']+' \},/g) ?? []).length === 7
     && (leaders.match(/\n\s+bio: \{\n\s+en: '[^']+',\n\s+es: '[^']+',\n\s+\},/g) ?? []).length === 7
-    && (leaders.match(/\n\s+country: \{ en: '[^']+', es: '[^']+' \},/g) ?? []).length === 7,
-  'every leadership profile has complete English and Spanish content',
+    && (leaders.match(/\n\s+regionalTies: \{ en: '[^']+', es: '[^']+' \},/g) ?? []).length === 7
+    && (leaders.match(/\n\s+source: \{\n\s+label: \{ en: '[^']+', es: '[^']+' \},\n\s+href: 'https:\/\/[^']+',\n\s+\},/g) ?? []).length === 7,
+  'every leadership profile has complete bilingual copy and a source URL',
 );
 ok(/pilot-card-media[\s\S]*?:global\(\.mcv-caption\)[\s\S]*?padding-inline/.test(home), 'pilot-card media captions keep horizontal space from the card border');
 ok((about.match(/class="container-wide visual-section"/g) ?? []).length >= 2, 'About gives principle and leadership card systems the wide visual container');
