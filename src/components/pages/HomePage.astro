@@ -339,22 +339,6 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     object-position: center center;
     display: block;
   }
-  .hero-cinematic::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: linear-gradient(
-      to right,
-      rgba(13,14,16,0) 0%,
-      rgba(13,14,16,0) 46%,
-      rgba(13,14,16,0.72) 50%,
-      #0d0e10 54%,
-      #0d0e10 56%,
-      #0d0e10 100%
-    );
-    pointer-events: none;
-  }
   .hero-overlay {
     position: relative;
     z-index: 2;
@@ -442,11 +426,18 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
   .hero-attribution a:hover { color: #F6F7F3; text-decoration-color: currentColor; }
   @media (min-width: 60.001rem) {
     /* Keep the specimen and the message in separate territories. The image
-       remains full bleed underneath, while the copy is locked to the matte
-       field on the right at every desktop width. */
+       keeps its original brightness and its natural dark field behind the
+       copy, while the focal subject shifts clear of the text column. */
+    .hero-media-frame :global(.hero-media) {
+      transform: scale(1.12);
+      transform-origin: right center;
+    }
     .hero-overlay-inner {
+      width: 100%;
+      margin-inline: 0;
+      padding-right: max(1.25rem, calc((100vw - var(--container-wide)) / 2));
       display: grid;
-      grid-template-columns: minmax(0, 56fr) minmax(0, 44fr);
+      grid-template-columns: 58vw minmax(0, 1fr);
     }
     .hero-copy {
       grid-column: 2;
@@ -461,7 +452,6 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
       min-height: auto;
       background: #0d0e10;
     }
-    .hero-cinematic::before { display: none; }
     .hero-media-frame {
       position: absolute;
       inset: 0 0 auto 0;

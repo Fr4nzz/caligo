@@ -59,14 +59,14 @@
 
 - Target standard: WCAG 2.2 AA
 - Keyboard/focus behavior: every CTA and source link remains keyboard reachable with visible focus
-- Contrast/readability: hero text always sits on an opaque or near-opaque dark field, never directly over the butterfly’s head or eye
+- Contrast/readability: hero text uses the photograph’s naturally dark right side, never the butterfly’s head or eye; no overlay, filter, clipping edge, or added panel may alter the specimen
 - Screen-reader semantics: one page `h1`, meaningful photo alternative text, and visible attribution
 - Reduced motion and sensory considerations: the hero remains static; explanatory motion respects `prefers-reduced-motion`
 
 ## Responsive behavior
 
 - Supported breakpoints/devices: approximately 390 px mobile through wide desktop; the critical narrow-desktop boundary is immediately above 60 rem
-- Desktop layout above 60 rem: the copy occupies the right 44% of the wide container; the butterfly remains visually to its left; a matte black field reaches the full right edge
+- Desktop layout above 60 rem: the photograph remains full bleed at its original brightness and is scaled gently from the right edge so its focal subject stays left of copy beginning at 58 vw; the image’s own dark area supplies the text field
 - Mobile layout at or below 60 rem: photograph first, then a dedicated dark copy field; no copy overlays the image
 - Intermediate widths: title, body, actions, and attribution may wrap or increase hero height, but they must not cross into the specimen territory
 - Validation widths: 390, 960, 961, 1024, 1280, 1440, and 1920 CSS pixels
