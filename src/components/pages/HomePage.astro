@@ -346,10 +346,12 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     z-index: 1;
     background: linear-gradient(
       to right,
-      rgba(0,0,0,0) 0%,
-      rgba(0,0,0,0) 45%,
-      rgba(10,10,12,0.42) 78%,
-      rgba(6,8,10,0.62) 100%
+      rgba(13,14,16,0) 0%,
+      rgba(13,14,16,0) 46%,
+      rgba(13,14,16,0.72) 50%,
+      #0d0e10 54%,
+      #0d0e10 56%,
+      #0d0e10 100%
     );
     pointer-events: none;
   }
@@ -438,6 +440,20 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     text-underline-offset: 0.15em;
   }
   .hero-attribution a:hover { color: #F6F7F3; text-decoration-color: currentColor; }
+  @media (min-width: 60.001rem) {
+    /* Keep the specimen and the message in separate territories. The image
+       remains full bleed underneath, while the copy is locked to the matte
+       field on the right at every desktop width. */
+    .hero-overlay-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 56fr) minmax(0, 44fr);
+    }
+    .hero-copy {
+      grid-column: 2;
+      max-width: none;
+      margin-left: 0;
+    }
+  }
   @media (max-width: 60rem) {
     /* Mobile hero — translate the desktop's horizontal composition into a
        vertical one: photograph first, then a dedicated dark copy field. */

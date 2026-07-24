@@ -53,6 +53,29 @@ for (const { re, why } of homeBans) {
   else pass(`clear: ${why}`);
 }
 
+const heroContracts = [
+  {
+    re: /@media \(min-width: 60\.001rem\)[\s\S]*?\.hero-overlay-inner\s*\{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*minmax\(0,\s*56fr\)\s+minmax\(0,\s*44fr\);/,
+    why: 'HomePage: desktop hero reserves distinct specimen and copy columns',
+  },
+  {
+    re: /@media \(min-width: 60\.001rem\)[\s\S]*?\.hero-copy\s*\{[\s\S]*?grid-column:\s*2;[\s\S]*?max-width:\s*none;/,
+    why: 'HomePage: desktop hero copy is locked to the right-hand column',
+  },
+  {
+    re: /\.hero-cinematic::before\s*\{[\s\S]*?linear-gradient\([\s\S]*?#0d0e10\s+56%,[\s\S]*?#0d0e10\s+100%/,
+    why: 'HomePage: desktop hero reaches an opaque black copy field before the text column',
+  },
+  {
+    re: /@media \(max-width: 60rem\)[\s\S]*?\.hero-overlay\s*\{[\s\S]*?padding-block:\s*calc\(clamp\(15rem,\s*33svh,\s*19rem\)\s*-\s*0\.35rem\)\s+1rem;/,
+    why: 'HomePage: mobile keeps the existing photograph-first stacked composition',
+  },
+];
+for (const { re, why } of heroContracts) {
+  if (re.test(homeSrc)) pass(why);
+  else fail(why);
+}
+
 if (failures) {
   console.error(`\nFAILED: ${failures} decoration-discipline check(s).`);
   process.exit(1);
