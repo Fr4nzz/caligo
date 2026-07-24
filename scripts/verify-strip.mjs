@@ -55,7 +55,11 @@ for (const { re, why } of homeBans) {
 
 const heroContracts = [
   {
-    re: /@media \(min-width: 60\.001rem\)[\s\S]*?\.hero-overlay-inner\s*\{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*58vw\s+minmax\(0,\s*1fr\);/,
+    re: /\.hero-cinematic\s*\{[\s\S]*?min-height:\s*clamp\(34rem,\s*56\.42vw,\s*48rem\);/,
+    why: 'HomePage: hero height follows the landscape image ratio before its wide-screen cap',
+  },
+  {
+    re: /@media \(min-width: 60\.001rem\)[\s\S]*?\.hero-overlay-inner\s*\{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*64vw\s+minmax\(0,\s*1fr\);/,
     why: 'HomePage: desktop hero reserves distinct specimen and copy columns',
   },
   {
@@ -63,20 +67,12 @@ const heroContracts = [
     why: 'HomePage: desktop hero copy is locked to the right-hand column',
   },
   {
-    re: /@media \(min-width: 60\.001rem\)[\s\S]*?\.hero-media-frame :global\(\.hero-media\)\s*\{[\s\S]*?transform:\s*scale\(1\.12\);[\s\S]*?transform-origin:\s*right center;/,
-    why: 'HomePage: desktop hero shifts the full-brightness focal subject clear of the photograph edge',
+    re: /@media \(max-width: 60rem\)[\s\S]*?\.hero-media-frame\s*\{[\s\S]*?position:\s*relative;[\s\S]*?aspect-ratio:\s*2400\s*\/\s*1354;/,
+    why: 'HomePage: mobile displays the landscape photograph at its intrinsic composition',
   },
   {
-    re: /@media \(max-width: 60rem\)[\s\S]*?\.hero-overlay\s*\{[\s\S]*?padding-block:\s*calc\(clamp\(15rem,\s*33svh,\s*19rem\)\s*-\s*0\.35rem\)\s+1rem;/,
-    why: 'HomePage: mobile keeps the existing photograph-first stacked composition',
-  },
-  {
-    re: /@media \(max-width: 60rem\)[\s\S]*?object-position:\s*34%\s+42%;/,
-    why: 'HomePage: narrow phones preserve the approved portrait composition',
-  },
-  {
-    re: /mobileMedia="\s*\(max-width:\s*34rem\)\s*"/,
-    why: 'HomePage: wide mobile and tablet layouts use the landscape crop so the compound eye stays visible',
+    re: /@media \(max-width: 60rem\)[\s\S]*?\.hero-overlay\s*\{[\s\S]*?padding-block:\s*0\s+1rem;/,
+    why: 'HomePage: mobile copy follows the photograph in normal flow',
   },
 ];
 for (const { re, why } of heroContracts) {
@@ -92,6 +88,16 @@ if (/\.hero-media-frame\s*\{[^}]*clip-path:/s.test(homeSrc)) {
   fail('HomePage: the desktop photograph must remain continuous behind the copy');
 } else {
   pass('HomePage: the desktop photograph supplies its own continuous dark copy field');
+}
+if (/mobileSrcset=|mobileMedia=/.test(homeSrc)) {
+  fail('HomePage: the hero must not swap to a differently cropped mobile image');
+} else {
+  pass('HomePage: one landscape composition serves every viewport');
+}
+if (/\.hero-media-frame::after/.test(homeSrc)) {
+  fail('HomePage: the mobile photograph must not be obscured by a fade overlay');
+} else {
+  pass('HomePage: the complete mobile photograph remains unobscured');
 }
 
 if (failures) {

@@ -66,8 +66,8 @@
 ## Responsive behavior
 
 - Supported breakpoints/devices: approximately 390 px mobile through wide desktop; the critical narrow-desktop boundary is immediately above 60 rem
-- Desktop layout above 60 rem: the photograph remains full bleed at its original brightness and is scaled gently from the right edge so its focal subject stays left of copy beginning at 58 vw; the image’s own dark area supplies the text field
-- Mobile layout at or below 60 rem: photograph first, then a dedicated dark copy field; no copy overlays the image; the corrected portrait crop serves narrow phones up to 34 rem, while wider mobile and tablet layouts use the landscape source so the complete eye remains visible
+- Desktop layout above 60 rem: the landscape photograph remains full bleed at its original brightness and composition; copy begins at 64 vw over the image’s own dark field, and hero height follows the photograph’s ratio until its wide-screen cap
+- Mobile layout at or below 60 rem: the same landscape composition appears first at its intrinsic aspect ratio, followed by a dedicated dark copy field; no alternate crop, overlay, or copy obscures the specimen
 - Intermediate widths: title, body, actions, and attribution may wrap or increase hero height, but they must not cross into the specimen territory
 - Validation widths: 390, 960, 961, 1024, 1280, 1440, and 1920 CSS pixels
 - Touch/hover differences: full-width mobile CTAs; hover styling is supplemental and never the only state cue

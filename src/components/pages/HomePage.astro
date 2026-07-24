@@ -73,11 +73,6 @@ const desktopSrcset = [
   { width: 1600, height: 902,  path: `${base}media/hero/caligo-tambopata-1600w.jpg` },
   { width: 2400, height: 1354, path: `${base}media/hero/caligo-tambopata-2400w.jpg` },
 ] as const;
-const mobileSrcset = [
-  { width: 480, height: 514, path: `${base}media/hero/caligo-tambopata-portrait-480w.jpg` },
-  { width: 800, height: 857, path: `${base}media/hero/caligo-tambopata-portrait-800w.jpg` },
-] as const;
-
 const publishedPilots = PILOTS.filter((p) => p.publish);
 
 ---
@@ -93,8 +88,6 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
         locale={locale}
         kind="photo"
         desktopSrcset={desktopSrcset}
-        mobileSrcset={mobileSrcset}
-        mobileMedia="(max-width: 34rem)"
         hideCaption
       />
     </div>
@@ -318,7 +311,7 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    min-height: clamp(30rem, 82vh, 48rem);
+    min-height: clamp(34rem, 56.42vw, 48rem);
     background: #0d0e10;
     border-bottom: 1px solid var(--hairline);
   }
@@ -427,18 +420,13 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
   .hero-attribution a:hover { color: #F6F7F3; text-decoration-color: currentColor; }
   @media (min-width: 60.001rem) {
     /* Keep the specimen and the message in separate territories. The image
-       keeps its original brightness and its natural dark field behind the
-       copy, while the focal subject shifts clear of the text column. */
-    .hero-media-frame :global(.hero-media) {
-      transform: scale(1.12);
-      transform-origin: right center;
-    }
+       keeps its original brightness and natural composition behind the copy. */
     .hero-overlay-inner {
       width: 100%;
       margin-inline: 0;
       padding-right: max(1.25rem, calc((100vw - var(--container-wide)) / 2));
       display: grid;
-      grid-template-columns: 58vw minmax(0, 1fr);
+      grid-template-columns: 64vw minmax(0, 1fr);
     }
     .hero-copy {
       grid-column: 2;
@@ -454,32 +442,15 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
       background: #0d0e10;
     }
     .hero-media-frame {
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: clamp(15rem, 33svh, 19rem);
-    }
-    .hero-media-frame::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-      background: linear-gradient(
-        to bottom,
-        rgba(13,14,16,0) 0%,
-        rgba(13,14,16,0) 58%,
-        rgba(13,14,16,0.35) 76%,
-        #0d0e10 100%
-      );
-    }
-    .hero-media-frame :global(.hero-media picture),
-    .hero-media-frame :global(.hero-media img) {
-      object-position: 34% 42%;
+      position: relative;
+      inset: auto;
+      height: auto;
+      aspect-ratio: 2400 / 1354;
     }
     .hero-overlay {
       min-height: auto;
       align-items: flex-start;
-      padding-block: calc(clamp(15rem, 33svh, 19rem) - 0.35rem) 1rem;
+      padding-block: 0 1rem;
     }
     .hero-copy {
       max-width: 100%;
