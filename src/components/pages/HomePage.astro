@@ -75,7 +75,7 @@ const desktopSrcset = [
 ] as const;
 const mobileSrcset = [
   { width: 480, height: 514, path: `${base}media/hero/caligo-tambopata-portrait-480w.jpg` },
-  { width: 800, height: 856, path: `${base}media/hero/caligo-tambopata-portrait-800w.jpg` },
+  { width: 800, height: 857, path: `${base}media/hero/caligo-tambopata-portrait-800w.jpg` },
 ] as const;
 
 const publishedPilots = PILOTS.filter((p) => p.publish);
@@ -94,6 +94,7 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
         kind="photo"
         desktopSrcset={desktopSrcset}
         mobileSrcset={mobileSrcset}
+        mobileMedia="(max-width: 34rem)"
         hideCaption
       />
     </div>

@@ -4,7 +4,7 @@
  *
  * Contract (see brief §§7.4 / 7.5 / 8.3 and Wave 3 rebuild spec):
  *
- *  • Photo (primary near-term use) renders a `<picture>` with mobile
+ *  • Photo (primary near-term use) renders a `<picture>` with optional
  *    portrait + desktop widescreen art-direction. Intrinsic width/height
  *    are emitted on <img> and each <source> to reserve layout and
  *    prevent CLS.
@@ -54,8 +54,10 @@ interface Props {
   readonly kind: 'photo' | 'video';
   /** For kind='photo': required desktop widescreen sources (widths + heights in px). */
   readonly desktopSrcset?: readonly SrcsetEntry[];
-  /** For kind='photo': optional mobile portrait sources. Used at max-width 60rem. */
+  /** For kind='photo': optional portrait sources. */
   readonly mobileSrcset?: readonly SrcsetEntry[];
+  /** Media query selecting the portrait sources. Defaults to max-width 60rem. */
+  readonly mobileMedia?: string;
   /** For kind='video': required poster image path (must exist under /public). */
   readonly poster?: string;
   /** For kind='video': required non-empty list of <source> descriptors. */
@@ -80,6 +82,7 @@ const {
   kind,
   desktopSrcset,
   mobileSrcset,
+  mobileMedia = '(max-width: 60rem)',
   poster,
   videoSources,
   decorative = false,
@@ -171,7 +174,7 @@ const altText: string = decorative ? '' : media.alt[locale];
     <picture>
       {largestMobile !== null && (
         <source
-          media="(max-width: 60rem)"
+          media={mobileMedia}
           srcset={mobileSrcsetStr}
           width={largestMobile.width}
           height={largestMobile.height}

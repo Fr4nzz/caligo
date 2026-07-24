@@ -70,6 +70,14 @@ const heroContracts = [
     re: /@media \(max-width: 60rem\)[\s\S]*?\.hero-overlay\s*\{[\s\S]*?padding-block:\s*calc\(clamp\(15rem,\s*33svh,\s*19rem\)\s*-\s*0\.35rem\)\s+1rem;/,
     why: 'HomePage: mobile keeps the existing photograph-first stacked composition',
   },
+  {
+    re: /@media \(max-width: 60rem\)[\s\S]*?object-position:\s*34%\s+42%;/,
+    why: 'HomePage: narrow phones preserve the approved portrait composition',
+  },
+  {
+    re: /mobileMedia="\s*\(max-width:\s*34rem\)\s*"/,
+    why: 'HomePage: wide mobile and tablet layouts use the landscape crop so the compound eye stays visible',
+  },
 ];
 for (const { re, why } of heroContracts) {
   if (re.test(homeSrc)) pass(why);

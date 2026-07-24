@@ -715,7 +715,7 @@ export const MEDIA: readonly Media[] = [
       'colour space normalised to sRGB',
       'stripped EXIF metadata',
       'resized proportionally to multiple widths',
-      'mobile portrait crop 2000×2142+50+0 to centre the head and compound eye',
+      'mobile portrait crop 2000×2142+400+0 to keep the head and compound eye fully visible',
       'JPEG re-encoded (quality 82; progressive; 4:2:0)',
     ],
     alt: {

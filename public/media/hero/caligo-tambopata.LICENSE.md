@@ -70,7 +70,7 @@ Spanish working equivalent (subject to Caligo review):
 | `caligo-tambopata-1600w.jpg` | Desktop widescreen | 1600 × 902 | Same composition, medium |
 | `caligo-tambopata-1200w.jpg` | Desktop widescreen | 1200 × 677 | Same composition, small |
 | `caligo-tambopata-800w.jpg` | Desktop widescreen | 800 × 451 | Same composition, smallest desktop |
-| `caligo-tambopata-portrait-800w.jpg` | Mobile near-square | 800 × 856 | Crop `2000×2142+50+0` from original, then resize; centred on wing + head + compound eye |
+| `caligo-tambopata-portrait-800w.jpg` | Mobile near-square | 800 × 857 | Crop `2000×2142+400+0` from original, then resize; keeps the wing, head, and complete compound eye visible |
 | `caligo-tambopata-portrait-480w.jpg` | Mobile near-square | 480 × 514 | Same crop, smallest mobile |
 | `caligo-tambopata-poster-1600w.jpg` | Video poster placeholder | 1600 × 902 | For future `<video poster>`; presently unused |
 
@@ -83,9 +83,9 @@ required.
 - Colour space normalised to sRGB.
 - All metadata stripped (`-strip`) except intrinsic pixel data.
 - Widescreen files: proportional downscale only; no crop.
-- Portrait files: horizontal crop of `2000 × 2142` pixels at offset `+50 +0`
-  (drops the mostly-empty right-hand black field so the head, compound eye,
-  antenna base, and left-wing scale texture remain visible on narrow
+- Portrait files: horizontal crop of `2000 × 2142` pixels at offset `+400 +0`
+  (retains enough natural black space on the right to keep the head, compound
+  eye, antenna base, and left-wing scale texture visible across narrow phone
   viewports). Proportional downscale after crop.
 - JPEG re-encoded at quality 82 (widescreen and portrait) / 78 (poster),
   progressive, 4:2:0 chroma subsampling.
