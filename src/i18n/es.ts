@@ -811,10 +811,6 @@ export const es: Dict = {
     "mutableData": "Base de datos o registro institucional cambiante; se indica la fecha de consulta.",
     "noRegionalPercentage": "La cobertura genómica regional se informará con un denominador taxonómico congelado, reglas geográficas explícitas y una consulta fechada y sin duplicados de los ensamblajes."
   },
-  "compat": {
-    "heading": "Este contenido ahora está en otra sección",
-    "body": "La explicación actual forma parte de la página Acerca de. Sigue el enlace para continuar."
-  },
   "network": {
     "metaTitle": "Red | Caligo",
     "metaDescription": "La red de investigación de Caligo: instalaciones de secuenciación asociadas, líderes de la iniciativa y actividades próximas en América Latina.",

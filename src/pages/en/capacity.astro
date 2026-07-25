@@ -1,50 +1,55 @@
 ---
 /*
-  Compat page. The previous /capacity/ URL is retained so any existing
-  inbound link resolves, but the capacity directory is not published in
-  the first release (brief §1: withheld until institutional consent and
-  a reproducible facility record exist). Point visitors to About for the
-  current initiative status.
+  Legacy URL. /capacity/ predates the Network page and is kept alive so old
+  inbound links resolve — but a visitor should land on the real page, not on
+  a notice about how the site was reorganised. Redirect immediately; the
+  visible body is a fallback for anyone whose browser blocks the refresh.
 */
 import Base from '../../layouts/Base.astro';
 import { getDict, localePath } from '../../i18n';
 
 const locale = 'en' as const;
 const t = getDict(locale);
-const c = t.compat;
+const target = localePath(locale, '/network');
 ---
 
 <Base
   locale={locale}
-  title={`${c.heading} | Caligo`}
-  description={c.body}
+  title={`${t.network.title} | Caligo`}
+  description={t.network.intro}
   page="/capacity"
   noindex
 >
-  <section class="container-narrow compat-page">
-    <p class="eyebrow">Compat</p>
-    <h1>{c.heading}</h1>
-    <p class="lead">{c.body}</p>
-    <p class="compat-cta">
-      <a class="btn" href={localePath(locale, '/network')}>{t.nav.network}</a>
+  <meta http-equiv="refresh" content={`0; url=${target}`} slot="head" />
+  <link rel="canonical" href={target} slot="head" />
+
+  <section class="container-wide redirect-page">
+    <h1>{t.network.title}</h1>
+    <p class="lead">{t.network.intro}</p>
+    <p class="redirect-cta">
+      <a class="btn" href={target}>{t.nav.network}</a>
     </p>
   </section>
 </Base>
 
+<script is:inline define:vars={{ target }}>
+  location.replace(target);
+</script>
+
 <style>
-  .compat-page {
+  .redirect-page {
     padding-block: var(--space-xl);
   }
-  .compat-page h1 {
-    margin-top: 0.6rem;
+  .redirect-page h1 {
+    margin-top: 0;
     max-width: 22ch;
   }
-  .compat-page .lead {
+  .redirect-page .lead {
     margin-top: var(--space-s);
     max-width: 56ch;
     color: var(--text-muted);
   }
-  .compat-cta {
+  .redirect-cta {
     margin-top: var(--space-l);
   }
 </style>

@@ -83,7 +83,10 @@ const themeInit = `
   try { storedPalette = localStorage.getItem('caligo-palette'); if(!has(E.palettes,storedPalette)) storedPalette=null; } catch(_){}
   try { storedMode    = localStorage.getItem('caligo-mode');    if(!has(E.modes,   storedMode))    storedMode   =null; } catch(_){}
   var sysMode = E.defaults.mode;
-  try { if (window.matchMedia('(prefers-color-scheme: light)').matches) sysMode='light'; } catch(_){}
+  try {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) sysMode='dark';
+    else if (window.matchMedia('(prefers-color-scheme: light)').matches) sysMode='light';
+  } catch(_){}
 
   var palette = urlPalette || storedPalette || E.defaults.palette;
   var mode    = urlMode    || storedMode    || sysMode;
@@ -144,6 +147,7 @@ const ssrThemeColor = MODE_COLORS[DEFAULT_PALETTE][DEFAULT_MODE];
     <meta name="twitter:card" content="summary_large_image" />
 
     <meta name="generator" content={Astro.generator} />
+    <slot name="head" />
     <ClientRouter />
     <script is:inline set:html={themeInit} />
     <script is:inline>

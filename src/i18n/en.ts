@@ -814,10 +814,6 @@ export const en = {
     "mutableData": "Mutable database or institutional record; access date shown.",
     "noRegionalPercentage": "Regional genome coverage will be reported against a frozen taxonomic denominator, explicit realm rules and a dated, deduplicated assembly snapshot."
   },
-  "compat": {
-    "heading": "This material now lives elsewhere",
-    "body": "The current explanation is part of the About page. Follow the link to continue."
-  },
   "network": {
     "metaTitle": "Network | Caligo",
     "metaDescription": "The Caligo research network: partner sequencing facilities, initiative leaders and upcoming activities in Latin America.",
