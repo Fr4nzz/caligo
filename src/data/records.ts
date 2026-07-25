@@ -702,7 +702,7 @@ export const MEDIA: readonly Media[] = [
     id: 'hero-caligo-tambopata',
     path: 'media/hero/caligo-tambopata-1600w.jpg',
     kind: 'photograph',
-    creator: 'Polygonia c-album',
+    creator: 'Wikimedia Commons user “Polygonia c-album”',
     licence: 'CC BY-SA 4.0',
     licenceUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
     sourceItemPage:
@@ -727,8 +727,8 @@ export const MEDIA: readonly Media[] = [
       es: 'Caligo sp., cerca del Centro de Investigación de Tambopata, Perú. El elemento redondo brillante es el ojo compuesto de la mariposa.',
     },
     credit: {
-      en: 'Photograph: Polygonia c-album / Wikimedia Commons, CC BY-SA 4.0. Cropped and resized.',
-      es: 'Fotografía: Polygonia c-album / Wikimedia Commons, CC BY-SA 4.0. Recortada y redimensionada.',
+      en: 'Photograph: Wikimedia Commons user “Polygonia c-album” / CC BY-SA 4.0. Cropped and resized.',
+      es: 'Fotografía: usuario de Wikimedia Commons «Polygonia c-album» / CC BY-SA 4.0. Recortada y redimensionada.',
     },
     publish: true,
   },
@@ -1152,7 +1152,7 @@ export const MODULES: readonly MediaModule[] = [
         path: 'media/hero/caligo-tambopata-1200w.jpg',
         width: 1200,
         height: 677,
-        creator: 'Polygonia c-album',
+        creator: 'Wikimedia Commons user “Polygonia c-album”',
         licence: CC_BY_SA_4.name,
         licenceUrl: CC_BY_SA_4.url,
         sourceItemPage:
@@ -1176,8 +1176,8 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Caligo sp., cerca del Centro de Investigación de Tambopata, Perú. El elemento redondo brillante es el ojo compuesto de la mariposa.',
         },
         credit: {
-          en: 'Photograph: Polygonia c-album / Wikimedia Commons. Cropped and resized.',
-          es: 'Fotografía: Polygonia c-album / Wikimedia Commons. Recortada y redimensionada.',
+          en: 'Photograph: Wikimedia Commons user “Polygonia c-album”. Cropped and resized.',
+          es: 'Fotografía: usuario de Wikimedia Commons «Polygonia c-album». Recortada y redimensionada.',
         },
       },
     ],
