@@ -156,36 +156,41 @@ export const MEMBERSHIP_TIERS: MembershipTier[] = [
   },
 ];
 
-/* ---------- Member benefits (doc 01 §H7) ---------- */
-/** Seven documented benefits / contributions of core-membership (DOC L48–55; PRES L67–71). */
+/* ---------- Member benefits (doc 01 §H7; brief §3) ---------- */
+/**
+ * What the network offers the people who join, as listed in the vision and
+ * governance draft. These are benefits — what a member gains. What a core
+ * member commits to (samples, meetings, votes, formal roles) is stated once,
+ * in MEMBERSHIP_TIERS above, and must not be duplicated here.
+ */
 export const MEMBER_BENEFITS: Bilingual[] = [
   {
-    en: 'Contribute samples, sequencing capacity or funding to the network.',
-    es: 'Aportar muestras, capacidad de secuenciación o financiación a la red.',
+    en: 'New collaborations across cities, countries and continents.',
+    es: 'Nuevas colaboraciones entre ciudades, países y continentes.',
   },
   {
-    en: 'Participate in working groups or committees.',
-    es: 'Participar en grupos de trabajo o comités.',
+    en: 'Training and hands-on learning in genomic analysis.',
+    es: 'Formación y aprendizaje práctico en análisis genómico.',
   },
   {
-    en: 'Co-authorship on network publications.',
-    es: 'Co-autoría en publicaciones de la red.',
+    en: 'Greater visibility for researchers based in the Neotropics.',
+    es: 'Mayor visibilidad para quienes investigan en el Neotrópico.',
   },
   {
-    en: 'Attend meetings regularly.',
-    es: 'Asistir regularmente a las reuniones.',
+    en: 'A route to circulate results from existing Lepidoptera biodiversity projects.',
+    es: 'Una vía para difundir resultados de proyectos de biodiversidad de lepidópteros ya en marcha.',
   },
   {
-    en: 'Hold formal responsibilities within the network.',
-    es: 'Tener responsabilidades formales dentro de la red.',
+    en: 'Stronger joint applications for international funding.',
+    es: 'Postulaciones conjuntas más sólidas a financiación internacional.',
   },
   {
-    en: 'Vote on network decisions.',
-    es: 'Votar sobre las decisiones de la red.',
+    en: 'Academic visits and exchanges between institutions.',
+    es: 'Visitas académicas e intercambios entre instituciones.',
   },
   {
-    en: 'Eligible for authorship credit on publications.',
-    es: 'Elegibilidad para el reconocimiento de autoría en publicaciones.',
+    en: 'Participation in the network’s publications.',
+    es: 'Participación en las publicaciones de la red.',
   },
 ];
 
@@ -198,9 +203,9 @@ export const LANGUAGE_POLICY: Bilingual = {
 
 /* ---------- Governance points (doc 01 §H1–H3, §H5, §I1, §I7, §I8) ---------- */
 /**
- * Key governance facts as factual points.
- * Items marked "draft" / "borrador" reflect the source document's own
- * designation (DOC title: "Draft Vision and Governance").
+ * Key governance facts as factual points. The whole model is a draft (DOC
+ * title: "Draft Vision and Governance"); that status is stated once in the
+ * section intro rather than repeated after each point.
  */
 export const GOVERNANCE_POINTS: Bilingual[] = [
   {

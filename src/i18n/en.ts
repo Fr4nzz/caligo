@@ -769,8 +769,7 @@ export const en = {
       "body": "Discord offers an informal space for questions, introductions, shared resources and conversation across countries and disciplines. Email remains the route for formal or sensitive enquiries.",
       "active": {
         "button": "Join the Discord",
-        "ariaLabel": "Join the Caligo Discord community; opens an external site",
-        "externalNote": "Opens Discord in a new tab."
+        "ariaLabel": "Join the Caligo Discord community; opens an external site"
       },
       "pending": {
         "button": "New invite link coming soon",
@@ -787,8 +786,8 @@ export const en = {
       "intro": "Two levels of membership define different roles and responsibilities in the network."
     },
     "benefits": {
-      "heading": "What members do and receive",
-      "intro": "Active members contribute to the network and are eligible for authorship and voting rights."
+      "heading": "What members gain",
+      "intro": "What the network offers the people who join, from the initiative's vision and governance draft."
     },
     "languagePolicy": {
       "heading": "Working languages",

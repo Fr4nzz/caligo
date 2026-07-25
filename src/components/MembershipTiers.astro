@@ -1,6 +1,6 @@
 ---
 import { MEMBERSHIP_TIERS, MEMBER_BENEFITS, pick } from '../data/initiative';
-import type { Locale } from '../i18n';
+import { getDict, type Locale } from '../i18n';
 import CardIcon from './CardIcon.astro';
 
 interface Props {
@@ -8,11 +8,7 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-
-const benefitsHeading: Record<typeof locale, string> = {
-  en: 'Member benefits',
-  es: 'Beneficios para miembros',
-};
+const b = getDict(locale).participate.benefits;
 ---
 
 <div class="membership-layout">
@@ -29,7 +25,8 @@ const benefitsHeading: Record<typeof locale, string> = {
     ))}
   </div>
   <div class="membership-benefits">
-    <h3 class="benefits-heading mono">{benefitsHeading[locale]}</h3>
+    <h3 class="benefits-heading mono">{b.heading}</h3>
+    <p class="benefits-intro">{b.intro}</p>
     <ul class="benefits-list">
       {MEMBER_BENEFITS.map((benefit) => (
         <li class="benefits-item">{pick(benefit, locale)}</li>
@@ -92,12 +89,19 @@ const benefitsHeading: Record<typeof locale, string> = {
     min-width: 0;
   }
   .benefits-heading {
-    margin: 0 0 var(--space-s);
+    margin: 0 0 0.4rem;
     font-size: var(--step--1);
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-faint);
+  }
+  .benefits-intro {
+    margin: 0 0 var(--space-s);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: var(--measure);
   }
   .benefits-list {
     margin: 0;

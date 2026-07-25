@@ -766,8 +766,7 @@ export const es: Dict = {
       "body": "Discord ofrece un espacio informal para preguntas, presentaciones, recursos compartidos y conversación entre países y disciplinas. El correo electrónico sigue siendo la vía para consultas formales o sensibles.",
       "active": {
         "button": "Únete al Discord",
-        "ariaLabel": "Unirse a la comunidad de Caligo en Discord; abre un sitio externo",
-        "externalNote": "Abre Discord en una pestaña nueva."
+        "ariaLabel": "Unirse a la comunidad de Caligo en Discord; abre un sitio externo"
       },
       "pending": {
         "button": "Nuevo enlace de invitación próximamente",
@@ -784,8 +783,8 @@ export const es: Dict = {
       "intro": "Dos niveles de membresía definen diferentes roles y responsabilidades en la red."
     },
     "benefits": {
-      "heading": "Lo que hacen y reciben los miembros",
-      "intro": "Los miembros activos contribuyen a la red y son elegibles para autoría y derechos de voto."
+      "heading": "Lo que gana quien se une",
+      "intro": "Lo que la red ofrece a quienes se suman, según el borrador de visión y gobernanza de la iniciativa."
     },
     "languagePolicy": {
       "heading": "Idiomas de trabajo",
