@@ -558,13 +558,13 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     padding: 0;
     margin: var(--space-l) 0 0;
     display: grid;
-    gap: var(--space-2xl);
+    gap: var(--space-l);
     grid-template-columns: 1fr;
   }
   .journey-vertical .journey-step {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
     padding: 0;
     border: none;
     scroll-margin-top: 5rem;
@@ -600,14 +600,19 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     font-size: var(--step-0);
   }
   .journey-media { min-width: 0; }
+  /* Two columns of six steps rather than six full-width rows. The old layout
+     paired a three-line caption with a 16:9 image and centred both, which left
+     roughly 200px of empty column beside every step. It also swapped the two
+     columns on even rows with `order`, so on half the steps the visual order
+     and the focus order disagreed — the play buttons inside the media column
+     were reached before the step they belong to. */
   @media (min-width: 60rem) {
-    .journey-vertical .journey-step {
-      grid-template-columns: minmax(0,1fr) minmax(0,1.15fr);
-      gap: var(--space-xl);
-      align-items: center;
+    .journey-vertical {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--space-xl);
+      row-gap: var(--space-xl);
+      align-items: start;
     }
-    .journey-vertical .journey-step:nth-child(even) .journey-copy { order: 2; }
-    .journey-vertical .journey-step:nth-child(even) .journey-media { order: 1; }
   }
 
   /* ---- H4 Question teasers ---- */
