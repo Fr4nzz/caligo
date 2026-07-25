@@ -8,14 +8,11 @@
  *       paragraph; single narrow-measure column).
  *   A3  Principles — the eight guiding principles via PrincipleGrid
  *       as the "how the work is shaped" section; responsive card rows).
- *   A4  Aims — what Caligo brings together (about.beingDecided.questions
- *       as a numbered list; single column).
  *
- * Prose uses the narrow reading container. Principles and leadership use the
- * wide container so their shared cards keep a readable minimum width.
- * about.externalContext is rendered as a restrained note below aims.
- * about.beingDecided is reused here under the "aims" framing — the i18n
- * key name is legacy but the copy remains editorially correct.
+ * Every section sits in the wide container. Prose sections add .prose-column
+ * so the text keeps its reading measure without re-centring, which is what
+ * gives the page a single left edge. about.externalContext is rendered as a
+ * restrained note below the objectives.
  */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';

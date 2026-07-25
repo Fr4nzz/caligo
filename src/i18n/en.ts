@@ -168,8 +168,8 @@ export const en = {
       }
     },
     "questions": {
-      "heading": "Six questions that open whole worlds",
-      "intro": "Six doorways into the questions regional genomics can investigate. Each leads to the full story on the Science page."
+      "heading": "Six questions genomes can help answer",
+      "intro": "Each one links to the published evidence, the methods it would take and the limits, on the Science page."
     },
     "pilotsTeaser": {
       "heading": "Four proposed pilot projects, four ways to test the approach",
@@ -195,7 +195,7 @@ export const en = {
     },
     "closing": {
       "title": "Bring a question, an organism or a perspective",
-      "body": "Caligo welcomes conversations with researchers, students, collections, institutions, educators, naturalists and supporters who care about rigorous, regionally grounded genomics of Neotropical butterflies and moths."
+      "body": "Whether you hold the specimens, the sequencing capacity, the taxonomic expertise or the question, there is a way into this network. Start with an email."
     },
     "stats": {
       "participants": "participants",
@@ -517,15 +517,6 @@ export const en = {
         "Caligo is a Neotropical genus of owl butterflies, known for their beauty and the large eyespots on their wings."
       ]
     },
-    "beingDecided": {
-      "heading": "What Caligo brings together",
-      "questions": [
-        "Questions shaped by researchers who know the region, organisms and collections",
-        "Reference genomes connected to documented specimens or material records",
-        "Taxonomy, natural history, ecology and population sampling alongside genomics",
-        "Permissions, provenance, repositories and contributor credit as part of the scientific record"
-      ]
-    },
     "externalContext": {
       "heading": "Part of a wider scientific landscape",
       "body": "Caligo builds on the methods and standards of global genome initiatives, public repositories, collections, taxonomic networks and data-governance frameworks.",
@@ -556,7 +547,7 @@ export const en = {
     "metaTitle": "Participate | Caligo",
     "metaDescription": "Ways for researchers, students, collections, educators, naturalists, institutions and supporters to begin a conversation with Caligo.",
     "title": "Participate",
-    "intro": "Good biodiversity genomics begins with people who know organisms, collections, landscapes, methods and questions. Whether you work in a laboratory, a museum, a classroom, the field or an institution, the useful first step is a clear conversation about what you know and what you hope to investigate.",
+    "intro": "Caligo is built by people who know the organisms, the collections and the landscapes. Tell us what you work on and what you would like to investigate — that conversation is where most collaborations start.",
     "contact": {
       "heading": "Start a conversation",
       "body": "Write with a short introduction, your connection to Neotropical butterflies or moths, and the question or kind of contribution you would like to discuss.",
@@ -564,7 +555,7 @@ export const en = {
       "ariaLabel": "Email Caligo at genomica.neotropical@gmail.com"
     },
     "audiences": {
-      "heading": "Conversations Caligo welcomes",
+      "heading": "Who the network is for",
       "items": [
         "Researchers and collections with taxonomic, specimen, ecological or genomic expertise",
         "Students and early-career scientists looking to learn, contribute or connect a research question",
@@ -588,7 +579,7 @@ export const en = {
     },
     "beforeSubmitting": {
       "heading": "Begin safely",
-      "body": "Please do not send precise localities for threatened or sensitive species, unpublished specimen records, biological material, permit files or personal data through a first-contact message. Describe the topic in general terms so the appropriate, secure next step can be agreed."
+      "body": "A first email is not the place for precise localities of threatened species, unpublished specimen records, biological material, permit files or personal data. Describe the topic in general terms and we will agree a secure route for the rest."
     },
     "membership": {
       "heading": "Membership",

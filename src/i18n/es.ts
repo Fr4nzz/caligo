@@ -165,8 +165,8 @@ export const es: Dict = {
       }
     },
     "questions": {
-      "heading": "Seis preguntas que abren mundos enteros",
-      "intro": "Seis puertas hacia las preguntas que la genómica regional puede investigar. Cada una lleva a la historia completa en la página de Ciencia."
+      "heading": "Seis preguntas que los genomas ayudan a responder",
+      "intro": "Cada una enlaza con la evidencia publicada, los métodos que exigiría y sus límites, en la página de Ciencia."
     },
     "pilotsTeaser": {
       "heading": "Cuatro proyectos piloto propuestos, cuatro maneras de poner a prueba el enfoque",
@@ -192,7 +192,7 @@ export const es: Dict = {
     },
     "closing": {
       "title": "Trae una pregunta, un organismo o una perspectiva",
-      "body": "Caligo recibe conversaciones con investigadores, estudiantes, colecciones, instituciones, educadores, naturalistas y personas que quieran apoyar una genómica rigurosa y arraigada en la región para las mariposas y polillas neotropicales."
+      "body": "Tengas los ejemplares, la capacidad de secuenciación, la experiencia taxonómica o la pregunta, hay una manera de entrar a esta red. Empieza con un correo."
     },
     "stats": {
       "participants": "participantes",
@@ -514,15 +514,6 @@ export const es: Dict = {
         "Caligo es un género neotropical de mariposas búho, conocidas por su belleza y los grandes ocelos de sus alas."
       ]
     },
-    "beingDecided": {
-      "heading": "Lo que Caligo busca reunir",
-      "questions": [
-        "Preguntas construidas por quienes conocen la región, sus organismos y sus colecciones",
-        "Genomas de referencia vinculados a ejemplares documentados o registros de material",
-        "Taxonomía, historia natural, ecología y muestreo poblacional junto con la genómica",
-        "Permisos, procedencia, repositorios y reconocimiento de contribuciones como parte del registro científico"
-      ]
-    },
     "externalContext": {
       "heading": "Parte de un paisaje científico más amplio",
       "body": "Caligo se apoya en los métodos y estándares de iniciativas globales de genómica, repositorios públicos, colecciones, redes taxonómicas y marcos de gobernanza de datos.",
@@ -553,7 +544,7 @@ export const es: Dict = {
     "metaTitle": "Participa | Caligo",
     "metaDescription": "Formas para que investigadores, estudiantes, colecciones, educadores, naturalistas, instituciones y personas interesadas inicien una conversación con Caligo.",
     "title": "Participa",
-    "intro": "La buena genómica de biodiversidad comienza con personas que conocen organismos, colecciones, paisajes, métodos y preguntas. Ya sea que trabajes en un laboratorio, un museo, un aula, el campo o una institución, el primer paso útil es una conversación clara sobre lo que sabes y lo que te gustaría investigar.",
+    "intro": "Caligo la construye gente que conoce los organismos, las colecciones y los paisajes. Cuéntanos en qué trabajas y qué te gustaría investigar: de esa conversación salen casi todas las colaboraciones.",
     "contact": {
       "heading": "Inicia una conversación",
       "body": "Escribe una breve presentación, explica tu vínculo con las mariposas o polillas neotropicales y cuenta qué pregunta o tipo de aporte te gustaría conversar.",
@@ -561,7 +552,7 @@ export const es: Dict = {
       "ariaLabel": "Enviar un correo a Caligo a genomica.neotropical@gmail.com"
     },
     "audiences": {
-      "heading": "Conversaciones que Caligo recibe con interés",
+      "heading": "Para quién es la red",
       "items": [
         "Investigadores y colecciones con experiencia taxonómica, ecológica, de ejemplares o genómica",
         "Estudiantes y personas al inicio de su carrera que quieran aprender, aportar o conectar una pregunta de investigación",
@@ -585,7 +576,7 @@ export const es: Dict = {
     },
     "beforeSubmitting": {
       "heading": "Comienza de forma segura",
-      "body": "No envíes localidades precisas de especies amenazadas o sensibles, registros inéditos de ejemplares, material biológico, archivos de permisos ni datos personales en un primer mensaje. Describe el tema en términos generales para acordar el siguiente paso apropiado y seguro."
+      "body": "Un primer correo no es el lugar para localidades precisas de especies amenazadas, registros inéditos de ejemplares, material biológico, archivos de permisos ni datos personales. Describe el tema en términos generales y acordamos una vía segura para el resto."
     },
     "membership": {
       "heading": "Membresía",
