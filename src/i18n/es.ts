@@ -98,15 +98,6 @@ export const es: Dict = {
       "title": "Latinoamérica tiene una de las faunas de Lepidoptera más ricas de la Tierra, y una de las menos secuenciadas",
       "body": "Caligo es una red colaborativa que genera recursos genómicos para las mariposas y polillas neotropicales, conecta el conocimiento regional, construye capacidad local y garantiza el reparto equitativo de beneficios."
     },
-    "snapshot": {
-      "heading": "Diversidad extraordinaria. Cobertura genómica desigual.",
-      "body": "El Neotrópico alberga una variedad excepcional de mariposas y polillas, desde heliconinos conocidos hasta pequeños linajes de polillas poco estudiados. Sin embargo, la investigación genómica sigue concentrada en un conjunto limitado de organismos y los grupos tropicales continúan subrepresentados. El aporte de Caligo es concreto: desarrollar genomas de referencia vinculados a ejemplares cuya identidad y origen puedan comprobarse, y usarlos junto con evidencia ecológica, taxonómica y poblacional para plantear preguntas regionales. [S01]",
-      "sourceNote": "El encuadre regional sigue a Wright et al. 2026 [S01]. Caligo no publica un porcentaje de cobertura genómica neotropical porque todavía no existe un análisis congelado y reproducible que combine denominador, pertenencia geográfica y ensamblajes. La documentación de NCBI se revisó el 16 de julio de 2026 [S23].",
-      "sourceIds": [
-        "wright-2026",
-        "ncbi-datasets-2026"
-      ]
-    },
     "journey": {
       "heading": "Del organismo al genoma",
       "intro": "Un recurso genómico confiable es una cadena de decisiones biológicas y documentales, no solo un archivo de secuencias.",
@@ -173,113 +164,13 @@ export const es: Dict = {
         "description": "Los vínculos rastreables conectan el ejemplar y su procedencia con los datos genómicos, los métodos, los repositorios duraderos y el reconocimiento de quienes contribuyeron. Los registros pueden permanecer en repositorios distintos sin perder esas relaciones."
       }
     },
-    "uses": {
-      "heading": "Un genoma de referencia, cuatro investigaciones distintas",
-      "intro": "Un genoma de referencia es una secuencia de ADN ensamblada que funciona como mapa común. Se vuelve informativo cuando se suman los ejemplares, muestras, observaciones y comparaciones apropiados para cada pregunta.",
-      "rows": [
-        {
-          "use": "Identificar muestras y ordenar lecturas de secuencia",
-          "hook": "Un mapa genómico común ayuda a ubicar fragmentos nuevos de ADN y compararlos de manera consistente.",
-          "referenceContribution": "Ofrece coordenadas para mapear lecturas y regiones que pueden ayudar a diferenciar linajes conocidos.",
-          "whatElseIsNeeded": "Ejemplares verificados, taxonomía confiable, datos de comparación y métodos que detecten contaminación.",
-          "cannotShowAlone": "No prueba por sí solo la identidad de una muestra desconocida ni resuelve límites de especie."
-        },
-        {
-          "use": "Comparar cromosomas y orden de genes",
-          "hook": "Los genomas emparentados pueden mostrar dónde los cromosomas se dividieron, fusionaron, invirtieron o conservaron su estructura.",
-          "referenceContribution": "Permite alinear regiones cromosómicas y estudiar bloques de genes conservados, conocidos como sintenia.",
-          "whatElseIsNeeded": "Ensamblajes a escala cromosómica de especies relacionadas, relaciones confiables y métodos de comparación explícitos.",
-          "cannotShowAlone": "No explica por qué evolucionó un reordenamiento ni qué efecto tuvo sobre el organismo."
-        },
-        {
-          "use": "Estudiar variación dentro y entre poblaciones",
-          "hook": "Muchos individuos comparados con la misma referencia pueden revelar parentesco, diversidad y conectividad.",
-          "referenceContribution": "Proporciona un sistema común de coordenadas para comparar variantes heredadas entre muestras.",
-          "whatElseIsNeeded": "Muestreo planificado entre individuos, lugares o momentos; metadatos ecológicos; y modelos demográficos.",
-          "cannotShowAlone": "Un individuo de referencia no representa toda la variación ni revela la historia de movimiento de una población."
-        },
-        {
-          "use": "Comparar poblaciones actuales con la historia de los museos",
-          "hook": "Los ejemplares históricos permiten contrastar los genomas de hoy con un registro de hace décadas o más de un siglo.",
-          "referenceContribution": "Ayuda a ordenar ADN histórico fragmentado y compararlo con muestras actuales.",
-          "whatElseIsNeeded": "Ejemplares curados, buena procedencia, métodos que contemplen el daño del ADN e interpretación cautelosa de un muestreo histórico desigual.",
-          "cannotShowAlone": "Un genoma de referencia no recupera registros de colección perdidos ni convierte un archivo sesgado en una población completa del pasado."
-        }
-      ]
-    },
     "questions": {
       "heading": "Seis preguntas que abren mundos enteros",
-      "intro": "Seis puertas hacia las preguntas que la genómica regional puede investigar. Cada una lleva a la historia completa en la página de Ciencia.",
-      "labels": {
-        "example": "Un ejemplo neotropical",
-        "evidence": "Evidencia que haría falta",
-        "genomesCan": "Qué pueden aportar los genomas",
-        "limits": "Evidencia necesaria más allá de la genómica",
-        "sources": "Fuentes"
-      },
-      "items": [
-        {
-          "question": "¿Cómo pueden dividirse y fusionarse los cromosomas mientras un linaje sigue evolucionando?",
-          "body": "Un linaje de mariposas puede reorganizar los paquetes que contienen su ADN sin desmoronarse por el camino.",
-          "answer": "Los cromosomas son grandes paquetes de ADN. Hay una fisión cromosómica cuando un cromosoma ancestral pasa a formar dos; una fusión reúne en uno solo ADN que antes estaba en dos cromosomas. Estos cambios pueden modificar qué genes se heredan juntos, cómo se recombina el ADN durante la reproducción y cómo evolucionan los cromosomas sexuales. En Heliconius, la mayoría de las especies tiene 21 cromosomas en el conjunto haploide, pero cinco especies del subclado sapho presentan entre 21 y 60 después de numerosas fisiones. La evidencia genómica también respalda tres fusiones independientes entre el cromosoma W, propio de las hembras, y autosomas. Las cifras muestran que hubo cambios estructurales profundos; no revelan por sí solas si persistieron por selección, azar u otro proceso. Para responder eso hay que comparar especies, rasgos e historias evolutivas. [S02][S03]",
-          "example": "La mayoría de Heliconius conserva 21 cromosomas haploides, mientras un linaje llega hasta 60; además, se identificaron tres eventos de fusión entre el W y autosomas. [S02]",
-          "evidence": "Ensamblajes a escala cromosómica de varias especies emparentadas; conteos cromosómicos o microscopía cuando existan; relaciones filogenéticas confiables; y evidencia sobre rasgos, recombinación o cruces que permita probar consecuencias.",
-          "genomesCan": "Mostrar qué regiones cromosómicas corresponden entre especies, localizar fisiones y fusiones y revelar cómo cambió la recombinación o la variación ligada alrededor de ellas.",
-          "limits": "La comparación de genomas no demuestra por qué se extendió un reordenamiento, si causó especiación ni cómo afecta la conducta o la supervivencia sin evidencia biológica adicional.",
-          "closing": "La pregunta profunda va más allá del número de cromosomas: qué cambió cuando el genoma volvió a empaquetarse.",
-          "sourceNote": "Fuentes primarias: Rueda-M et al. 2024 [S02]; Mackay-Smith et al. 2026 [S03].",
-          "sourceIds": [
-            "rueda-2024",
-            "mackay-smith-2026"
-          ]
-        },
-        {
-          "question": "¿Cuándo cruza el ADN la frontera entre linajes?",
-          "body": "La historia evolutiva no siempre parece un árbol ordenado: linajes vecinos pueden intercambiar variación heredada.",
-          "answer": "El flujo génico es el paso de variantes heredadas entre poblaciones mediante la reproducción. Cuando una hibridación va seguida de cruces sucesivos, parte del ADN de un linaje puede incorporarse de forma duradera a otro; eso se llama introgresión. Heliconius ofrece un ejemplo neotropical extraordinario. La evidencia genómica, conductual y de cruces respalda a H. elevatus como una especie híbrida que ha persistido como linaje distinto durante más de 720.000 generaciones. El flujo génico actual con H. pardalinus hace que cerca del 99 % de sus genomas sea muy parecido, mientras un pequeño conjunto de regiones heredadas de H. melpomene se asocia con patrón de color, forma del ala, preferencia de planta hospedera, feromonas sexuales y elección de pareja. El genoma mostró dónde difieren las historias; el caso se volvió convincente al unir esos patrones con mapeo de rasgos, experimentos y conducta. [S04][S05]",
-          "example": "En H. elevatus, una pequeña fracción del genoma conserva ascendencia de H. melpomene asociada con rasgos, aunque el flujo génico con H. pardalinus homogeneiza la mayor parte del genoma. [S04]",
-          "evidence": "Muchos individuos de las poblaciones pertinentes; un buen genoma de referencia; datos genómicos bien resueltos; modelos demográficos explícitos; y evidencia independiente de rasgos, geografía, conducta o cruces.",
-          "genomesCan": "Detectar regiones con historias evolutivas distintas, estimar patrones de ascendencia y probar si variantes heredadas pasaron entre linajes.",
-          "limits": "La similitud genómica por sí sola no demuestra que una variante transferida fue adaptativa, no identifica el mecanismo ecológico ni prueba que la hibridación originó una especie.",
-          "closing": "Un fragmento inesperado de ADN compartido abre una investigación; no la cierra.",
-          "sourceNote": "Fuentes primarias: Rosser et al. 2024 [S04]; Edelman et al. 2019 [S05].",
-          "sourceIds": [
-            "rosser-2024",
-            "edelman-2019"
-          ]
-        },
-        {
-          "question": "¿Qué poblaciones siguen conectadas y cuáles comienzan a quedar aisladas?",
-          "body": "Dos poblaciones pueden verse iguales incluso cuando las rutas entre ellas ya están desapareciendo.",
-          "answer": "La conectividad poblacional significa que los individuos, y con ellos las variantes heredadas, todavía se desplazan entre poblaciones con suficiente frecuencia para dejar una señal detectable. La diversidad genética es la variedad de variantes heredadas dentro de una población o especie. Ambas dependen del muestreo: qué individuos, lugares y momentos se incluyen. Parides ascanius, una mariposa amenazada de hábitats costeros de Brasil, ofrece una línea de base útil. Un estudio de 2016 encontró poca estructura genética e infirió migración considerable entre las poblaciones muestreadas. Eso no garantiza que la conectividad siga igual hoy, sobre todo donde continúan la pérdida, el drenaje y la fragmentación del hábitat. Un nuevo estudio genómico tendría que comparar un muestreo contemporáneo bien diseñado con la evidencia anterior y proteger las localidades sensibles. [S06][S07][S08]",
-          "example": "El trabajo genético anterior encontró poca estructura y alta migración inferida entre las poblaciones de P. ascanius estudiadas; es una referencia para volver a medir, no una prueba de conectividad actual. [S06]",
-          "evidence": "Muchos individuos de un conjunto planificado de poblaciones y momentos; un genoma de referencia; información de hábitat y paisaje; modelos demográficos; y, cuando sea posible, observaciones directas o marcaje y recaptura.",
-          "genomesCan": "Estimar parentesco, estructura poblacional, flujo génico histórico y reciente, endogamia y cambios en la diversidad genómica.",
-          "limits": "Los genomas no muestran por sí solos la ruta exacta que recorrió un individuo, no miden la calidad del hábitat ni fijan prioridades de conservación sin contexto ecológico y social.",
-          "closing": "La conectividad no es una línea inmóvil en el mapa: es una relación cambiante que debe medirse de nuevo.",
-          "sourceNote": "Estudio primario y evaluaciones: Seraphim et al. 2016 [S06]; UICN 2018 [S07]; ICMBio 2021 [S08].",
-          "sourceIds": [
-            "seraphim-2016",
-            "iucn-parides-2018",
-            "icmbio-parides-2021"
-          ]
-        }
-      ]
+      "intro": "Seis puertas hacia las preguntas que la genómica regional puede investigar. Cada una lleva a la historia completa en la página de Ciencia."
     },
     "pilotsTeaser": {
       "heading": "Cuatro proyectos piloto propuestos, cuatro maneras de poner a prueba el enfoque",
       "intro": "Cuatro enigmas biológicos orientan cuatro líneas de trabajo propuestas. La página de Proyectos piloto conecta cada pregunta con la evidencia publicada, los métodos y los siguientes pasos propuestos."
-    },
-    "namesakeTeaser": {
-      "heading": "Mira más de cerca: la forma se convierte en evidencia",
-      "body": "Una mariposa de cristal produce transparencia con escamas escasas y modificadas y nanoestructuras antirreflectantes. Algunas Heliconius distinguen diferencias ultravioletas invisibles para nosotros. Ejemplares de museo todavía pueden rendir cientos de loci genéticos después de más de un siglo. No son curiosidades aisladas: cada sorpresa visible abre una pregunta sobre desarrollo, evolución o cambio a través del tiempo. [S12][S13][S16]",
-      "linkLabel": "Descubre las historias de los organismos",
-      "sourceNote": "Fuentes: Pomerantz et al. 2021 [S12]; Chakraborty et al. 2023 [S13]; Mayer et al. 2021 [S16].",
-      "sourceIds": [
-        "pomerantz-2021",
-        "chakraborty-2023",
-        "mayer-2021"
-      ]
     },
     "name": {
       "eyebrow": "Sobre el nombre",
@@ -299,11 +190,6 @@ export const es: Dict = {
       "eyebrow": "Cómo se orienta el trabajo",
       "title": "Principios rectores para una genómica regional"
     },
-    "tiersTeaser": {
-      "eyebrow": "Datos distintos, preguntas distintas",
-      "title": "Un código de barras, un genoma de referencia y un conjunto poblacional no son intercambiables",
-      "body": "Cada uno ofrece una escala diferente de evidencia. Las páginas de ciencia de Caligo explican qué puede mostrar cada recurso, qué datos adicionales necesita y dónde debe detenerse la interpretación."
-    },
     "closing": {
       "title": "Trae una pregunta, un organismo o una perspectiva",
       "body": "Caligo recibe conversaciones con investigadores, estudiantes, colecciones, instituciones, educadores, naturalistas y personas que quieran apoyar una genómica rigurosa y arraigada en la región para las mariposas y polillas neotropicales."
@@ -322,136 +208,80 @@ export const es: Dict = {
     "title": "Ciencia",
     "intro": "La genómica alcanza su mayor fuerza cuando permanece conectada con organismos, colecciones, paisajes y preguntas claras. Un genoma de referencia ofrece un mapa común para comparar; la conclusión biológica surge de los ejemplares, muestras, observaciones y pruebas que se colocan a su alrededor.",
     "questionsHeading": "Seis preguntas que los genomas pueden ayudar a investigar",
-    "questionLabels": {
-      "hook": "Por qué despierta curiosidad",
-      "answer": "La historia",
-      "example": "Ejemplo neotropical",
-      "evidence": "Evidencia necesaria",
-      "genomesCan": "Qué pueden aportar los genomas",
-      "limits": "Evidencia necesaria más allá de la genómica",
-      "value": "Por qué importa una respuesta",
-      "caligoConnection": "Conexión con Caligo",
-      "sourceNote": "Fuentes y alcance"
-    },
     "tiersTitle": "Tres escalas de evidencia genética",
-    "tiersOpenQuestion": "Un código de barras corto puede apoyar una identificación, un genoma de referencia puede ordenar comparaciones de genoma completo y un conjunto poblacional puede revelar variación entre muchos individuos. Ninguno reemplaza a los demás y todos dependen de un registro biológico documentado.",
-    "breadthTitle": "Dar espacio a las polillas, los linajes pequeños y los nombres difíciles",
-    "breadthBody": "La genómica de lepidópteros avanzó con rapidez, pero el esfuerzo sigue siendo desigual: las mariposas conocidas y las polillas grandes están mejor representadas que muchos linajes pequeños y tropicales. Un programa útil para la región debe combinar amplitud taxonómica con preguntas definidas por quienes conocen los organismos, las colecciones y los paisajes. [S01]",
-    "pilotsTitle": "Por qué empezar con proyectos piloto",
-    "pilotsIntro": "Un proyecto piloto permite comprobar que toda la cadena de evidencia funciona antes de hablar de una escala mayor. Un buen proyecto piloto debe:",
-    "pilotsReasons": [
-      "conectar una pregunta biológica clara con ejemplares documentados y una estrategia genómica adecuada;",
-      "detectar permisos, metadatos o trabajo taxonómico faltantes antes de que se conviertan en problemas costosos;",
-      "comparar supuestos realistas de calidad, tiempo y costo entre distintos flujos de trabajo;",
-      "probar cómo se mantienen unidos los datos, métodos, registros de repositorio y el reconocimiento de contribuciones;",
-      "comprobar si otro equipo puede comprender y reutilizar los registros sin depender de conocimiento no documentado;",
-      "mostrar dónde hace falta fortalecer la formación, la interpretación compartida y la infraestructura local;",
-      "producir evidencia suficiente para decidir qué conviene repetir, revisar, ampliar o detener."
-    ],
-    "seeProjects": "Explora las preguntas de los cuatro proyectos piloto propuestos.",
     "questions": [
       {
         "heading": "¿Cómo pueden dividirse y fusionarse los cromosomas mientras un linaje sigue evolucionando?",
-        "hook": "Un linaje de mariposas puede reorganizar los paquetes que contienen su ADN sin desmoronarse por el camino.",
         "answer": "Los cromosomas son grandes paquetes de ADN. Hay una fisión cromosómica cuando un cromosoma ancestral pasa a formar dos; una fusión reúne en uno solo ADN que antes estaba en dos cromosomas. Estos cambios pueden modificar qué genes se heredan juntos, cómo se recombina el ADN durante la reproducción y cómo evolucionan los cromosomas sexuales. En Heliconius, la mayoría de las especies tiene 21 cromosomas en el conjunto haploide, pero cinco especies del subclado sapho presentan entre 21 y 60 después de numerosas fisiones. La evidencia genómica también respalda tres fusiones independientes entre el cromosoma W, propio de las hembras, y autosomas. Las cifras muestran que hubo cambios estructurales profundos; no revelan por sí solas si persistieron por selección, azar u otro proceso. Para responder eso hay que comparar especies, rasgos e historias evolutivas. [S02][S03]",
         "example": "La mayoría de Heliconius conserva 21 cromosomas haploides, mientras un linaje llega hasta 60; además, se identificaron tres eventos de fusión entre el W y autosomas. [S02]",
         "evidence": "Ensamblajes a escala cromosómica de varias especies emparentadas; conteos cromosómicos o microscopía cuando existan; relaciones filogenéticas confiables; y evidencia sobre rasgos, recombinación o cruces que permita probar consecuencias.",
-        "genomesCan": "Mostrar qué regiones cromosómicas corresponden entre especies, localizar fisiones y fusiones y revelar cómo cambió la recombinación o la variación ligada alrededor de ellas.",
         "limits": "La comparación de genomas no demuestra por qué se extendió un reordenamiento, si causó especiación ni cómo afecta la conducta o la supervivencia sin evidencia biológica adicional.",
-        "closing": "La pregunta profunda va más allá del número de cromosomas: qué cambió cuando el genoma volvió a empaquetarse.",
-        "caligoConnection": "Contexto directo para el proyecto piloto propuesto sobre Heliconius.",
         "sourceNote": "Fuentes primarias: Rueda-M et al. 2024 [S02]; Mackay-Smith et al. 2026 [S03].",
         "sourceIds": [
           "rueda-2024",
           "mackay-smith-2026"
-        ],
-        "value": "Puede revelar cómo la arquitectura del genoma cambia las condiciones en que la variación se hereda y se compara."
+        ]
       },
       {
         "heading": "¿Cuándo cruza el ADN la frontera entre linajes?",
-        "hook": "La historia evolutiva no siempre parece un árbol ordenado: linajes vecinos pueden intercambiar variación heredada.",
         "answer": "El flujo génico es el paso de variantes heredadas entre poblaciones mediante la reproducción. Cuando una hibridación va seguida de cruces sucesivos, parte del ADN de un linaje puede incorporarse de forma duradera a otro; eso se llama introgresión. Heliconius ofrece un ejemplo neotropical extraordinario. La evidencia genómica, conductual y de cruces respalda a H. elevatus como una especie híbrida que ha persistido como linaje distinto durante más de 720.000 generaciones. El flujo génico actual con H. pardalinus hace que cerca del 99 % de sus genomas sea muy parecido, mientras un pequeño conjunto de regiones heredadas de H. melpomene se asocia con patrón de color, forma del ala, preferencia de planta hospedera, feromonas sexuales y elección de pareja. El genoma mostró dónde difieren las historias; el caso se volvió convincente al unir esos patrones con mapeo de rasgos, experimentos y conducta. [S04][S05]",
         "example": "En H. elevatus, una pequeña fracción del genoma conserva ascendencia de H. melpomene asociada con rasgos, aunque el flujo génico con H. pardalinus homogeneiza la mayor parte del genoma. [S04]",
         "evidence": "Muchos individuos de las poblaciones pertinentes; un buen genoma de referencia; datos genómicos bien resueltos; modelos demográficos explícitos; y evidencia independiente de rasgos, geografía, conducta o cruces.",
-        "genomesCan": "Detectar regiones con historias evolutivas distintas, estimar patrones de ascendencia y probar si variantes heredadas pasaron entre linajes.",
         "limits": "La similitud genómica por sí sola no demuestra que una variante transferida fue adaptativa, no identifica el mecanismo ecológico ni prueba que la hibridación originó una especie.",
-        "closing": "Un fragmento inesperado de ADN compartido abre una investigación; no la cierra.",
-        "caligoConnection": "Pertinente para comparaciones en Heliconius y para cualquier proyecto piloto sobre movimiento, hibridación o adaptación.",
         "sourceNote": "Fuentes primarias: Rosser et al. 2024 [S04]; Edelman et al. 2019 [S05].",
         "sourceIds": [
           "rosser-2024",
           "edelman-2019"
-        ],
-        "value": "Puede aclarar cómo los linajes conservan su identidad mientras intercambian variación heredada con sus vecinos."
+        ]
       },
       {
         "heading": "¿Cuándo un solo nombre científico oculta más de un linaje?",
-        "hook": "Un nombre es una hipótesis comprobable sobre la identidad, no una etiqueta que el ADN confirma de manera automática.",
         "answer": "La taxonomía pregunta qué organismos pertenecen al mismo grupo, en qué se diferencian y qué nombre corresponde. Los genomas pueden revelar separaciones profundas, parientes inadvertidos o mezclas inesperadas, pero un grupo genómico no se convierte automáticamente en especie. También hacen falta ejemplares, morfología, historia natural, geografía, nombres previos y las reglas de nomenclatura. Esto importa especialmente en el Neotrópico, donde muchos grupos de polillas han recibido menos atención que las mariposas conocidas. Un estudio filogenómico de Mimallonidae, una familia de polillas predominantemente neotropical, comparó cientos de loci genéticos en la mayoría de los géneros reconocidos e incluyó datos recuperados de ejemplares secos de museo. El análisis reorganizó relaciones de nivel superior y mostró cómo las colecciones ayudan a resolver una diversidad difícil de estudiar solo con material reciente. [S17]",
         "example": "El estudio usó 515 loci y material de 32 de los 36 géneros reconocidos de Mimallonidae, incluidos ejemplares históricos secos, para reevaluar las relaciones de esta familia principalmente neotropical. [S17]",
         "evidence": "Ejemplares documentados; morfología e historia natural; revisión de tipos y nomenclatura; muestreo geográfico y taxonómico amplio; códigos de barras o datos genómicos; e hipótesis explícitas de delimitación.",
-        "genomesCan": "Revelar relaciones, estructura oculta, hibridación y regiones diagnósticas que merecen una revisión taxonómica más profunda.",
         "limits": "Los genomas no asignan el nombre correcto, no reemplazan el examen de material tipo ni deciden límites de especie sin criterio biológico y nomenclatural.",
-        "closing": "A veces el resultado más valioso no es una etiqueta rápida, sino una mejor pregunta sobre la identidad.",
-        "caligoConnection": "Se aplica a todo el programa y es especialmente importante para linajes ricos en polillas o taxonómicamente difíciles.",
         "sourceNote": "Fuente primaria: St Laurent et al. 2018 [S17].",
         "sourceIds": [
           "st-laurent-2018"
-        ],
-        "value": "Puede mejorar la identificación y la clasificación sin reducir las decisiones de especie a grupos genéticos."
+        ]
       },
       {
         "heading": "¿Qué poblaciones siguen conectadas y cuáles comienzan a quedar aisladas?",
-        "hook": "Dos poblaciones pueden verse iguales incluso cuando las rutas entre ellas ya están desapareciendo.",
         "answer": "La conectividad poblacional significa que los individuos, y con ellos las variantes heredadas, todavía se desplazan entre poblaciones con suficiente frecuencia para dejar una señal detectable. La diversidad genética es la variedad de variantes heredadas dentro de una población o especie. Ambas dependen del muestreo: qué individuos, lugares y momentos se incluyen. Parides ascanius, una mariposa amenazada de hábitats costeros de Brasil, ofrece una línea de base útil. Un estudio de 2016 encontró poca estructura genética e infirió migración considerable entre las poblaciones muestreadas. Eso no garantiza que la conectividad siga igual hoy, sobre todo donde continúan la pérdida, el drenaje y la fragmentación del hábitat. Un nuevo estudio genómico tendría que comparar un muestreo contemporáneo bien diseñado con la evidencia anterior y proteger las localidades sensibles. [S06][S07][S08]",
         "example": "El trabajo genético anterior encontró poca estructura y alta migración inferida entre las poblaciones de P. ascanius estudiadas; es una referencia para volver a medir, no una prueba de conectividad actual. [S06]",
         "evidence": "Muchos individuos de un conjunto planificado de poblaciones y momentos; un genoma de referencia; información de hábitat y paisaje; modelos demográficos; y, cuando sea posible, observaciones directas o marcaje y recaptura.",
-        "genomesCan": "Estimar parentesco, estructura poblacional, flujo génico histórico y reciente, endogamia y cambios en la diversidad genómica.",
         "limits": "Los genomas no muestran por sí solos la ruta exacta que recorrió un individuo, no miden la calidad del hábitat ni fijan prioridades de conservación sin contexto ecológico y social.",
-        "closing": "La conectividad no es una línea inmóvil en el mapa: es una relación cambiante que debe medirse de nuevo.",
-        "caligoConnection": "Contexto directo para el proyecto piloto propuesto sobre Parides ascanius.",
         "sourceNote": "Estudio primario y evaluaciones: Seraphim et al. 2016 [S06]; UICN 2018 [S07]; ICMBio 2021 [S08].",
         "sourceIds": [
           "seraphim-2016",
           "iucn-parides-2018",
           "icmbio-parides-2021"
-        ],
-        "value": "Puede aportar evidencia para monitorear cambios, siempre que los patrones genómicos se interpreten con contexto de hábitat y demografía."
+        ]
       },
       {
         "heading": "¿Dónde empiezan, terminan y conectan los movimientos estacionales?",
-        "hook": "Un río repentino de mariposas sobre un sendero del bosque es una observación; su origen es una pregunta de investigación.",
         "answer": "El movimiento estacional puede conectar poblaciones, seguir la lluvia o el alimento, o llevar distintas etapas de vida a paisajes diferentes. Un preprint de 2020 describió un gran desplazamiento estacional de Panacea prola en el sureste del Perú y lo presentó como la primera evidencia de una migración de insectos en la Amazonía. Ver el movimiento masivo no revela dónde comenzó, si los mismos individuos regresan ni hasta dónde se extiende. Los genomas de referencia y el muestreo repetido de poblaciones pueden comparar ascendencia entre lugares y temporadas. Los isótopos estables, el clima, las plantas hospederas, las observaciones directas y el seguimiento aportan otras piezas. El informe del desplazamiento es un preprint y no ha pasado por revisión por pares. [S09]",
         "example": "El evento documentado fue un movimiento estacional masivo de P. prola en el sureste del Perú; sus orígenes y conexiones más amplias siguen abiertos. [S09]",
         "evidence": "Muestreo repetido, responsable y autorizado a lo largo de temporadas y regiones amplias; un genoma de referencia; registros ambientales y de plantas hospederas; y evidencia independiente como observaciones, marcaje o isótopos estables.",
-        "genomesCan": "Comparar la ascendencia de grupos muestreados, estimar conectividad y probar si las agregaciones estacionales provienen de una o varias poblaciones.",
         "limits": "Los genomas no reconstruyen la trayectoria de vuelo de un individuo, no determinan el disparador ambiental ni definen el alcance completo del movimiento sin otras evidencias.",
-        "closing": "El espectáculo está a la vista; la red de poblaciones que lo sostiene todavía debe trazarse.",
-        "caligoConnection": "Contexto directo para el proyecto piloto propuesto sobre Panacea prola.",
         "sourceNote": "Evidencia pública: preprint de Gallice et al. 2020 [S09].",
         "sourceIds": [
           "gallice-2020"
-        ],
-        "value": "Puede conectar un fenómeno estacional visible con el sistema de poblaciones que lo produce."
+        ]
       },
       {
         "heading": "¿Qué hace que un genoma de biodiversidad siga siendo útil dentro de muchos años?",
-        "hook": "Una secuencia conserva su valor científico cuando se puede rastrear el organismo, los permisos, los métodos y el reconocimiento que la sostienen.",
         "answer": "Un genoma es más que un archivo de letras de ADN. Para reutilizarlo necesita un organismo documentado, un ejemplar o registro de material que pueda revisarse, información segura de origen, permisos, métodos de laboratorio y cómputo, medidas de calidad, identificadores de repositorio y reconocimiento claro de las contribuciones. Las colecciones históricas muestran por qué importa esa cadena: métodos de captura dirigida han recuperado cientos de loci genéticos de lepidópteros secos y montados, incluidos ejemplares de más de un siglo, y permiten que preguntas actuales miren hacia atrás en el tiempo. Los principios FAIR enfatizan datos localizables y reutilizables; CARE incorpora beneficio colectivo, autoridad, responsabilidad y ética; los marcos de acceso y distribución de beneficios orientan la obtención y el uso del material biológico. Ninguno sustituye acuerdos o leyes específicos de cada proyecto. [S16][S20][S21][S22]",
         "example": "Estudios de museómica han recuperado abundante información genética de mariposas y polillas secas recolectadas a lo largo de más de un siglo, cuando se conservaron la identidad y los registros de curaduría. [S16]",
         "evidence": "Registros rastreables de ejemplares y material; permisos y acuerdos; versiones de métodos; métricas de calidad; identificadores estables; roles de contribución; y decisiones sobre datos sensibles.",
-        "genomesCan": "Convertirse en un recurso comparativo duradero cuando la secuencia, los metadatos y la evidencia biológica permanecen conectados.",
         "limits": "La apertura técnica no establece por sí sola autoridad legítima, crédito justo, distribución adecuada de beneficios ni publicación segura de información sensible.",
-        "closing": "El valor futuro de un genoma se diseña mucho antes de que alguien lo descargue.",
-        "caligoConnection": "Se aplica a todos los proyectos piloto propuestos y a la explicación pública de una genómica responsable.",
         "sourceNote": "Fuentes: Mayer et al. 2021 [S16]; FAIR [S20]; CARE [S21]; Protocolo de Nagoya [S22].",
         "sourceIds": [
           "mayer-2021",
           "fair-2016",
           "care-2020",
           "nagoya"
-        ],
-        "value": "Determina si un genoma seguirá siendo rastreable, interpretable y reutilizable con responsabilidad después de su primer análisis."
+        ]
       }
     ],
     "recordVsGenome": {
@@ -571,10 +401,6 @@ export const es: Dict = {
     "metaDescription": "Cuatro investigaciones propuestas que conectan evolución cromosómica, conectividad de poblaciones amenazadas, agricultura sostenible y movimiento estacional con evidencia genómica documentada.",
     "title": "Proyectos piloto propuestos",
     "opening": "Estas cuatro líneas combinan evidencia publicada con preguntas diseñadas para Caligo. Cada una define los organismos, observaciones, muestras y comparaciones necesarios para convertir un enigma biológico en trabajo comprobable.",
-    "whatAPilotCanTest": {
-      "heading": "Un proyecto piloto pone a prueba toda la cadena de evidencia",
-      "body": "La pregunta, los permisos, el registro del ejemplar, los datos de ADN, el análisis, los repositorios y el reconocimiento de contribuciones deben permanecer conectados. Un proyecto piloto es valioso cuando revela qué funciona, qué falta y qué debería cambiar antes de considerar una escala mayor."
-    },
     "fieldLabels": {
       "hook": "La pregunta en una frase",
       "publishedContext": "Lo que ya muestra la evidencia publicada",
@@ -638,24 +464,7 @@ export const es: Dict = {
     "genomicsCould": {
       "heading": "Del organismo visible a la información heredada",
       "body": "Un genoma añade otra capa de evidencia bajo el organismo visible. Permite comparar genes y regiones reguladoras relacionados con el desarrollo de las escamas, la pigmentación, la visión o la conducta entre especies emparentadas, e investigar cuándo cambiaron esas regiones, pasaron entre linajes o evolucionaron bajo presiones distintas. Los experimentos, la microscopía, la historia natural y la biología sensorial siguen siendo esenciales para comprender la percepción y la conducta."
-    },
-    "relatedStories": [
-      {
-        "title": "Un ala que casi desaparece",
-        "body": "Greta oto combina escamas escasas y modificadas con nanopilares de cera antirreflectantes. La pregunta es cómo el desarrollo construye esa superficie óptica y cuántas veces evolucionaron soluciones parecidas. [S12]",
-        "placement": "Historia de Descubre"
-      },
-      {
-        "title": "Colores más allá de la visión humana",
-        "body": "Las hembras de Heliconius charithonia distinguen diferencias de color ultravioleta mediante una opsina UV vinculada al cromosoma sexual W. El hallazgo conecta conducta sensorial, cromosomas sexuales y evolución. [S13]",
-        "placement": "Historia de Descubre"
-      },
-      {
-        "title": "Un ejemplar de hace un siglo todavía puede hablar",
-        "body": "Con métodos diseñados para ADN fragmentado, lepidópteros secos de museo de más de un siglo pueden rendir cientos de loci genéticos, siempre que su identidad e historia sigan siendo rastreables. [S16]",
-        "placement": "Historia de Descubre y vínculo desde procedencia en Ciencia"
-      }
-    ]
+    }
   },
   "projects": {
     "rail": {
