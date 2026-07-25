@@ -732,7 +732,7 @@ export const en = {
     },
     "governance": {
       "heading": "Governance",
-      "intro": "How decisions are made and the network is organized. Governance documents are in preparation; items marked draft may change."
+      "intro": "How decisions are made and the network is organised. This is the current draft model; the organising committee can still change it."
     },
     "vision": {
       "heading": "Vision",

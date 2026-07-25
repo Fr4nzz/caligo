@@ -729,7 +729,7 @@ export const es: Dict = {
     },
     "governance": {
       "heading": "Gobernanza",
-      "intro": "Cómo se toman las decisiones y se organiza la red. Los documentos de gobernanza están en preparación; los puntos marcados como borrador pueden cambiar."
+      "intro": "Cómo se toman las decisiones y se organiza la red. Este es el modelo en borrador vigente; el comité organizador aún puede cambiarlo."
     },
     "vision": {
       "heading": "Visión",

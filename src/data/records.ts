@@ -544,8 +544,8 @@ export const PILOTS: readonly Pilot[] = [
       es: 'Las comparaciones no demuestran que un reordenamiento causó adaptación o especiación sin experimentos, datos poblacionales y evidencia del organismo.',
     },
     closing: {
-      en: 'A chromosome count is the visible clue; the pilot project asks what changed inside the evolutionary story.',
-      es: 'El número de cromosomas es la pista visible; el proyecto piloto pregunta qué cambió dentro de la historia evolutiva.',
+      en: 'Why did these rearrangements spread, and what did they change for the species that carry them?',
+      es: '¿Por qué se extendieron estos reordenamientos y qué cambiaron para las especies que los llevan?',
     },
     sourceNote: {
       en: 'Published context: Rueda-M et al. 2024; Mackay-Smith et al. 2026. The 2026 paper is a published accepted manuscript and may receive typesetting changes while retaining its DOI.',
@@ -589,8 +589,8 @@ export const PILOTS: readonly Pilot[] = [
       es: 'Los datos genómicos no miden la calidad del hábitat, no identifican todas las rutas de movimiento ni fijan prioridades de conservación sin observaciones ecológicas y decisiones de las autoridades y comunidades pertinentes.',
     },
     closing: {
-      en: 'The question is not whether one butterfly can fly, but whether a whole network of populations can still exchange life across a changing coast.',
-      es: 'La pregunta no es si una mariposa puede volar, sino si toda una red de poblaciones todavía puede intercambiar vida a lo largo de una costa cambiante.',
+      en: 'Do the populations sampled in 2016 still exchange individuals across today’s coast?',
+      es: '¿Las poblaciones muestreadas en 2016 todavía intercambian individuos en la costa actual?',
     },
     sourceNote: {
       en: 'Published context: Seraphim et al. 2016; IUCN global assessment 2018; ICMBio national assessment 2021. Sensitive localities remain omitted.',
@@ -614,8 +614,8 @@ export const PILOTS: readonly Pilot[] = [
     },
     taxon: '',
     publishedContext: {
-      en: 'Soybean landscapes bring several Lepidoptera species into one applied challenge: identify the organism correctly, understand how populations move and monitor whether management is selecting for resistance. Those questions matter for food security and for reducing unnecessary or ineffective interventions. Published work in Brazil shows why the details matter. Closely related species can be confused in monitoring, and changes in susceptibility to insecticidal proteins must be measured through repeated, species-specific evidence rather than assumed. Genomics can help distinguish lineages, track inherited variants and design targeted monitoring tools, but sustainable management also depends on field observations, agronomy, resistance bioassays, landscape history and the choices of growers and regulators. The organisms are part of the ecosystem; "pest" is a context-dependent management category, not a judgement on butterflies and moths as a group.',
-      es: 'Los paisajes sojeros reúnen a varias especies de lepidópteros en un mismo desafío aplicado: identificar bien el organismo, comprender cómo se mueven las poblaciones y vigilar si el manejo está seleccionando resistencia. Estas preguntas importan para la seguridad alimentaria y para reducir intervenciones innecesarias o ineficaces. Estudios publicados en Brasil muestran por qué los detalles son decisivos. Especies cercanas pueden confundirse durante el monitoreo y los cambios de susceptibilidad a proteínas insecticidas deben medirse con evidencia repetida y específica de cada especie, no darse por hechos. La genómica puede ayudar a distinguir linajes, seguir variantes heredadas y diseñar herramientas dirigidas, pero el manejo sostenible también exige observaciones de campo, agronomía, bioensayos de resistencia, historia del paisaje y decisiones de productores y autoridades. Los organismos forman parte del ecosistema; «plaga» es una categoría de manejo dependiente del contexto, no un juicio sobre las mariposas y polillas como grupo.',
+      en: 'Soybean landscapes bring several Lepidoptera species into one applied challenge: identify the organism correctly, understand how populations move and monitor whether management is selecting for resistance. Those questions matter for food security and for reducing unnecessary or ineffective interventions. Published work in Brazil shows why the details matter. Closely related species can be confused in monitoring, and changes in susceptibility to insecticidal proteins must be measured through repeated, species-specific evidence rather than assumed. Genomics can help distinguish lineages, track inherited variants and design targeted monitoring tools, but sustainable management also depends on field observations, agronomy, resistance bioassays, landscape history and the choices of growers and regulators.',
+      es: 'Los paisajes sojeros reúnen a varias especies de lepidópteros en un mismo desafío aplicado: identificar bien el organismo, comprender cómo se mueven las poblaciones y vigilar si el manejo está seleccionando resistencia. Estas preguntas importan para la seguridad alimentaria y para reducir intervenciones innecesarias o ineficaces. Estudios publicados en Brasil muestran por qué los detalles son decisivos. Especies cercanas pueden confundirse durante el monitoreo y los cambios de susceptibilidad a proteínas insecticidas deben medirse con evidencia repetida y específica de cada especie, no darse por hechos. La genómica puede ayudar a distinguir linajes, seguir variantes heredadas y diseñar herramientas dirigidas, pero el manejo sostenible también exige observaciones de campo, agronomía, bioensayos de resistencia, historia del paisaje y decisiones de productores y autoridades.',
     },
     proposedQuestion: {
       en: 'The proposed Caligo pilot project would ask how confirmed soybean-associated species move across changing agricultural mosaics, how resistance-related variants are distributed and which genomic markers are reliable enough for monitoring.',
@@ -634,8 +634,8 @@ export const PILOTS: readonly Pilot[] = [
       es: 'Los genomas no determinan el daño al cultivo, no prueban que una variante cause resistencia ni eligen una respuesta de manejo sin evidencia de campo, experimental, agronómica y socioeconómica.',
     },
     closing: {
-      en: 'The goal is not to turn moths into villains; it is to make monitoring precise enough for better decisions.',
-      es: 'El objetivo no es convertir a las polillas en villanas, sino lograr un monitoreo lo bastante preciso para tomar mejores decisiones.',
+      en: 'Which markers are reliable enough that a monitoring result can change a management decision?',
+      es: '¿Qué marcadores son lo bastante confiables para que un resultado de monitoreo cambie una decisión de manejo?',
     },
     sourceNote: {
       en: 'Scientific context: Horikoshi et al. 2021; Braga et al. 2024. UKRI2955 is an independent project; its taxa, sites, samples, partners, years and outputs remain specific to that work.',
@@ -659,8 +659,8 @@ export const PILOTS: readonly Pilot[] = [
     },
     taxon: 'Panacea prola',
     publishedContext: {
-      en: 'A 2020 preprint reported a seasonal mass movement of Panacea prola in south-eastern Peru and presented it as the first evidence for an Amazonian insect migration. The observation is compelling, but it leaves the central map unfinished. Where did the butterflies originate? Did one population or several contribute? Which landscapes were connected, and did the pattern repeat across years? A reference genome and samples collected across places and seasons could compare ancestry and connectivity. Environmental records, host plants, weather, direct observation and stable-isotope evidence would be needed to interpret the genomic patterns. The public report is a preprint, so the documented event is presented precisely, with wider geographic or unpublished claims remaining open.',
-      es: 'Un preprint de 2020 describió un movimiento estacional masivo de Panacea prola en el sureste del Perú y lo presentó como la primera evidencia de una migración de insectos en la Amazonía. La observación es cautivadora, pero deja el mapa central incompleto. ¿De dónde vinieron las mariposas? ¿Participó una sola población o varias? ¿Qué paisajes quedaron conectados y el patrón se repitió entre años? Un genoma de referencia y muestras obtenidas en distintos lugares y temporadas permitirían comparar ascendencia y conectividad. Para interpretar las señales genómicas harían falta registros ambientales, plantas hospederas, clima, observación directa y evidencia de isótopos estables. El informe público es un preprint, así que el evento documentado se presenta con precisión, dejando abiertas las afirmaciones geográficas más amplias o resultados no publicados.',
+      en: 'A 2020 preprint reported a seasonal mass movement of Panacea prola in south-eastern Peru and presented it as the first evidence for an Amazonian insect migration. The observation is compelling, but it leaves the central map unfinished. Where did the butterflies originate? Did one population or several contribute? Which landscapes were connected, and did the pattern repeat across years? A reference genome and samples collected across places and seasons could compare ancestry and connectivity. Environmental records, host plants, weather, direct observation and stable-isotope evidence would be needed to interpret the genomic patterns. The report is a preprint, and the wider geographic extent of the movement remains an open question.',
+      es: 'Un preprint de 2020 describió un movimiento estacional masivo de Panacea prola en el sureste del Perú y lo presentó como la primera evidencia de una migración de insectos en la Amazonía. La observación es cautivadora, pero deja el mapa central incompleto. ¿De dónde vinieron las mariposas? ¿Participó una sola población o varias? ¿Qué paisajes quedaron conectados y el patrón se repitió entre años? Un genoma de referencia y muestras obtenidas en distintos lugares y temporadas permitirían comparar ascendencia y conectividad. Para interpretar las señales genómicas harían falta registros ambientales, plantas hospederas, clima, observación directa y evidencia de isótopos estables. El informe es un preprint y el alcance geográfico más amplio del desplazamiento sigue siendo una pregunta abierta.',
     },
     proposedQuestion: {
       en: 'The proposed Caligo pilot project would combine a documented reference genome with repeated population sampling to test the origins, connections and seasonal consistency of the observed movement.',
@@ -679,8 +679,8 @@ export const PILOTS: readonly Pilot[] = [
       es: 'Los genomas no reconstruyen trayectorias individuales de vuelo, no identifican el disparador ambiental ni definen por sí solos el alcance geográfico completo del fenómeno.',
     },
     closing: {
-      en: 'The visible wave is only one moment; the pilot project asks what population system creates it.',
-      es: 'La oleada visible es apenas un momento; el proyecto piloto pregunta qué sistema de poblaciones la produce.',
+      en: 'Did the butterflies in that wave come from one population or from several?',
+      es: '¿Las mariposas de esa oleada vinieron de una sola población o de varias?',
     },
     sourceNote: {
       en: 'Public evidence: Gallice et al. 2020, a preprint checked on 16 July 2026. No unpublished isotope result or wider route is stated.',

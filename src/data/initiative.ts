@@ -112,8 +112,8 @@ export const EVENTS: InitiativeEvent[] = [
       es: 'Campinas, Brasil',
     },
     summary: {
-      en: 'Hackathon at the Neotropical Lepidoptera / Biology of Butterflies congress (draft).',
-      es: 'Hackathon en el congreso Lepidópteros Neotropicales / Biología de las Mariposas (borrador).',
+      en: 'Hackathon at the Neotropical Lepidoptera / Biology of Butterflies congress; dates to be confirmed.',
+      es: 'Hackathon en el congreso Lepidópteros Neotropicales / Biología de las Mariposas; fechas por confirmar.',
     },
   },
 ];
@@ -208,24 +208,24 @@ export const GOVERNANCE_POINTS: Bilingual[] = [
     es: 'Un comité organizador coordina la iniciativa, con al menos un representante por cada país latinoamericano y también fuera de la región.',
   },
   {
-    en: 'The committee elects 3–5 leaders (draft; number subject to change).',
-    es: 'El comité elige entre 3 y 5 líderes (borrador; número sujeto a cambios).',
+    en: 'The committee elects 3–5 leaders.',
+    es: 'El comité elige entre 3 y 5 líderes.',
   },
   {
-    en: 'Leaders rotate approximately every three years (draft; subject to change).',
-    es: 'Los líderes rotan aproximadamente cada tres años (borrador; sujeto a cambios).',
+    en: 'Leaders rotate approximately every three years.',
+    es: 'Los líderes rotan aproximadamente cada tres años.',
   },
   {
-    en: 'Monthly meetings, recorded and distributed to all members (draft).',
-    es: 'Reuniones mensuales, grabadas y distribuidas a todos los miembros (borrador).',
+    en: 'Monthly meetings, recorded and distributed to all members.',
+    es: 'Reuniones mensuales, grabadas y distribuidas a todos los miembros.',
   },
   {
-    en: 'No aggressive, abusive or irresponsible behaviour is tolerated; the member in question may be removed from the network. A code of conduct is in preparation (draft).',
-    es: 'No se tolera ningún comportamiento agresivo, abusivo o irresponsable; el miembro en cuestión puede ser removido de la red. El código de conducta está en preparación (borrador).',
+    en: 'No aggressive, abusive or irresponsible behaviour is tolerated; the member in question may be removed from the network. A code of conduct is in preparation.',
+    es: 'No se tolera ningún comportamiento agresivo, abusivo o irresponsable; el miembro en cuestión puede ser removido de la red. El código de conducta está en preparación.',
   },
   {
-    en: 'Before beginning a project, who will be first and last author must be agreed; remaining author order follows contributions. Publication and authorship policy in preparation (draft).',
-    es: 'Antes de iniciar un proyecto debe acordarse quiénes serán el primer y último autor; el orden restante sigue las contribuciones. La política de publicación y autoría está en preparación (borrador).',
+    en: 'Before beginning a project, who will be first and last author must be agreed; remaining author order follows contributions. Publication and authorship policy in preparation.',
+    es: 'Antes de iniciar un proyecto debe acordarse quiénes serán el primer y último autor; el orden restante sigue las contribuciones. La política de publicación y autoría está en preparación.',
   },
 ];
 
