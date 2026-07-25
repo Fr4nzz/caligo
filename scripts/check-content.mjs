@@ -149,6 +149,15 @@ const banned = [
   { pattern: /\bshould be read as provisional\b/i, why: 'v6 launch-safe: "should be read as provisional" is internal editorial language' },
   { pattern: /\binformational site\b/i, why: 'v6 launch-safe: "informational site" undersells the initiative publicly' },
   { pattern: /\bhas not yet been calculated\b/i, why: 'v6 launch-safe: publish the positive regional gap story, not the missing-percentage caveat' },
+  // Site-referential copy. Public text describes the initiative, never the
+  // website's own editorial policy ("the site presents…", "we label…").
+  { pattern: /\b(el sitio|the site) (explains|presents|describes|does not|explica|presenta|describe|no publica)\b/i, why: 'site-referential copy: describe the initiative, not the website\'s editorial policy' },
+  { pattern: /\bit is presented as\b/i, why: 'site-referential copy: state the fact and its status, do not narrate how the site frames it' },
+  { pattern: /\bse presenta como una\b/i, why: 'copy autorreferencial: enuncia el hecho y su estado, no cómo lo enmarca el sitio' },
+  { pattern: /\b(are|is) identified explicitly\b/i, why: 'site-referential copy: state the disclaimer itself, not the site\'s labelling policy' },
+  { pattern: /\bse identifican de manera explícita\b/i, why: 'copy autorreferencial: enuncia el deslinde, no la política de etiquetado del sitio' },
+  { pattern: /\bany future form should\b/i, why: 'internal to-do rendered as public copy' },
+  { pattern: /\bcualquier formulario futuro debe\b/i, why: 'nota interna publicada como copy público' },
 ];
 // Personal emails: only the approved public contact address is allowed.
 const ALLOWED_EMAIL = 'genomica.neotropical@gmail.com';

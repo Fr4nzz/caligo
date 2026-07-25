@@ -44,7 +44,6 @@ export const es: Dict = {
     "documentaryType": "Imagen documental",
     "aiConceptType": "Ilustración conceptual",
     "codeNativeType": "Gráfico explicativo",
-    "aiConceptCaveat": "",
     "aiGeneratedCredit": "Generada con IA para Caligo",
     "caveats": {
       "fieldSite": "Escena ilustrativa de campo",
@@ -80,9 +79,7 @@ export const es: Dict = {
     "title": "Únete a la red",
     "body": "El formulario de inscripción pregunta por tu país, institución, grupos taxonómicos de interés y tu experiencia con genomas o secuenciación. Toma unos minutos y está abierto.",
     "cta": "Abrir el formulario de inscripción",
-    "newTabNote": "Abre Google Forms en una pestaña nueva.",
-    "privacyNote": "El formulario está alojado en Google Forms. La información que envías llega al equipo organizador de Caligo y se usa solo para registrar tu interés y ayudar a dar forma a la red.",
-    "formNameNote": "El formulario todavía se titula «Genómica de los Lepidópteros Neotropicales», el nombre anterior de la iniciativa.",
+    "privacyNote": "Alojado en Google Forms; abre en una pestaña nueva. Tus respuestas llegan al equipo organizador de Caligo.",
     "ctaSecondary": "Únete a la red"
   },
   "home": {
@@ -424,7 +421,7 @@ export const es: Dict = {
       {
         "heading": "¿Dónde empiezan, terminan y conectan los movimientos estacionales?",
         "hook": "Un río repentino de mariposas sobre un sendero del bosque es una observación; su origen es una pregunta de investigación.",
-        "answer": "El movimiento estacional puede conectar poblaciones, seguir la lluvia o el alimento, o llevar distintas etapas de vida a paisajes diferentes. Un preprint de 2020 describió un gran desplazamiento estacional de Panacea prola en el sureste del Perú y lo presentó como la primera evidencia de una migración de insectos en la Amazonía. Ver el movimiento masivo no revela dónde comenzó, si los mismos individuos regresan ni hasta dónde se extiende. Los genomas de referencia y el muestreo repetido de poblaciones pueden comparar ascendencia entre lugares y temporadas. Los isótopos estables, el clima, las plantas hospederas, las observaciones directas y el seguimiento aportan otras piezas. Como el informe público sigue siendo un preprint, se presenta como una observación publicada fascinante. [S09]",
+        "answer": "El movimiento estacional puede conectar poblaciones, seguir la lluvia o el alimento, o llevar distintas etapas de vida a paisajes diferentes. Un preprint de 2020 describió un gran desplazamiento estacional de Panacea prola en el sureste del Perú y lo presentó como la primera evidencia de una migración de insectos en la Amazonía. Ver el movimiento masivo no revela dónde comenzó, si los mismos individuos regresan ni hasta dónde se extiende. Los genomas de referencia y el muestreo repetido de poblaciones pueden comparar ascendencia entre lugares y temporadas. Los isótopos estables, el clima, las plantas hospederas, las observaciones directas y el seguimiento aportan otras piezas. El informe del desplazamiento es un preprint y no ha pasado por revisión por pares. [S09]",
         "example": "El evento documentado fue un movimiento estacional masivo de P. prola en el sureste del Perú; sus orígenes y conexiones más amplias siguen abiertos. [S09]",
         "evidence": "Muestreo repetido, responsable y autorizado a lo largo de temporadas y regiones amplias; un genoma de referencia; registros ambientales y de plantas hospederas; y evidencia independiente como observaciones, marcaje o isótopos estables.",
         "genomesCan": "Comparar la ascendencia de grupos muestreados, estimar conectividad y probar si las agregaciones estacionales provienen de una o varias poblaciones.",
@@ -530,7 +527,7 @@ export const es: Dict = {
         "¿Cómo se manejarán los roles, la cita, el uso de datos y los beneficios?"
       ],
       "externalContext": "Los marcos FAIR, CARE y de acceso y distribución de beneficios ayudan a formular mejores preguntas sobre reutilización, autoridad y responsabilidad. Su aplicación depende del proyecto, la jurisdicción, las instituciones y las comunidades involucradas. [S20][S21][S22]",
-      "disclaimer": "Para requisitos jurídicos, éticos o institucionales de un proyecto, deben consultarse las autoridades y los acuerdos pertinentes. El sitio explica principios; no publica una política universal de Caligo ni ofrece asesoría legal."
+      "disclaimer": "Los requisitos jurídicos, éticos e institucionales los fijan las autoridades y los acuerdos que aplican a cada proyecto."
     },
     "tiers": {
       "heading": "Tres escalas de evidencia genética",
@@ -719,8 +716,8 @@ export const es: Dict = {
     },
     "externalContext": {
       "heading": "Parte de un paisaje científico más amplio",
-      "body": "Caligo aprende de iniciativas globales de genómica, repositorios públicos, colecciones, redes taxonómicas y marcos de gobernanza de datos, manteniendo sus afirmaciones públicas dentro del alcance de esta iniciativa.",
-      "disclaimer": "Los proyectos externos aportan contexto científico o metodológico. Las alianzas y los compromisos formales se identifican de manera explícita cuando existen."
+      "body": "Caligo se apoya en los métodos y estándares de iniciativas globales de genómica, repositorios públicos, colecciones, redes taxonómicas y marcos de gobernanza de datos.",
+      "disclaimer": "Citar o comparar otro proyecto no implica sociedad, compromiso ni respaldo."
     },
     "objectives": {
       "heading": "Objetivos estratégicos",
@@ -782,7 +779,6 @@ export const es: Dict = {
       "heading": "Comienza de forma segura",
       "body": "No envíes localidades precisas de especies amenazadas o sensibles, registros inéditos de ejemplares, material biológico, archivos de permisos ni datos personales en un primer mensaje. Describe el tema en términos generales para acordar el siguiente paso apropiado y seguro."
     },
-    "privacyNote": "Cualquier formulario futuro debe mostrar su aviso de privacidad y uso de datos antes de que una persona envíe información.",
     "membership": {
       "heading": "Membresía",
       "intro": "Dos niveles de membresía definen diferentes roles y responsabilidades en la red."
@@ -808,8 +804,7 @@ export const es: Dict = {
     "externalContext": "Contexto externo relacionado",
     "preprint": "Preprint; no había pasado por revisión por pares en la fecha de consulta.",
     "sensitiveLocalities": "No se muestran localidades precisas de especies sensibles.",
-    "mutableData": "Base de datos o registro institucional cambiante; se indica la fecha de consulta.",
-    "noRegionalPercentage": "La cobertura genómica regional se informará con un denominador taxonómico congelado, reglas geográficas explícitas y una consulta fechada y sin duplicados de los ensamblajes."
+    "mutableData": "Base de datos o registro institucional cambiante; se indica la fecha de consulta."
   },
   "network": {
     "metaTitle": "Red | Caligo",
@@ -826,7 +821,7 @@ export const es: Dict = {
     },
     "positioning": {
       "heading": "Conexiones y contexto",
-      "body": "Caligo participa en EBP Latinoamérica, la iniciativa regional del Earth BioGenome Project, y en Genotropics, una red que trabaja en la diversidad genómica de organismos tropicales. Estas conexiones sitúan a Caligo en un panorama regional más amplio. Las alianzas formales o los programas compartidos se identifican de manera explícita."
+      "body": "Caligo participa en EBP Latinoamérica, la iniciativa regional del Earth BioGenome Project, y en Genotropics, una red que trabaja en la diversidad genómica de organismos tropicales."
     }
   },
   "notFound": {
@@ -840,7 +835,6 @@ export const es: Dict = {
     "contact": "Contacto",
     "navHeading": "Explora",
     "languageHeading": "Idioma",
-    "sources": "Fuentes y métodos",
-    "aiDisclosure": "Las ilustraciones conceptuales se identifican y acreditan cuando se utilizan."
+    "sources": "Fuentes y métodos"
   }
 };

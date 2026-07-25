@@ -47,7 +47,6 @@ export const en = {
     "documentaryType": "Documentary image",
     "aiConceptType": "Concept illustration",
     "codeNativeType": "Explanatory graphic",
-    "aiConceptCaveat": "",
     "aiGeneratedCredit": "Generated with AI for Caligo",
     "caveats": {
       "fieldSite": "Illustrative field scene",
@@ -83,9 +82,7 @@ export const en = {
     "title": "Join the network",
     "body": "The registration form asks for your country, institution, taxonomic groups of interest, and your experience with genomes or sequencing. It takes a few minutes and is open now.",
     "cta": "Open the registration form",
-    "newTabNote": "Opens Google Forms in a new tab.",
-    "privacyNote": "The form is hosted on Google Forms. The information you submit goes to the Caligo organizing team and is used only to register your interest and help shape the network.",
-    "formNameNote": "The form is still titled \"Genomics of Neotropical Lepidoptera\", the initiative's earlier name.",
+    "privacyNote": "Hosted on Google Forms; opens in a new tab. Your answers go to the Caligo organising team.",
     "ctaSecondary": "Join the network"
   },
   "home": {
@@ -427,7 +424,7 @@ export const en = {
       {
         "heading": "Where do seasonal movements begin, end and connect?",
         "hook": "A sudden river of butterflies over a forest trail is an observation; its origin is a research question.",
-        "answer": "Seasonal movement can connect populations, track rainfall or food, or place different life stages in different landscapes. A 2020 preprint reported a large seasonal movement of Panacea prola in south-eastern Peru and presented it as the first evidence for an Amazonian insect migration. Observing a mass movement does not reveal where the butterflies began, whether the same individuals return, or how far the phenomenon extends. Reference genomes and repeated population sampling can compare ancestry among places and seasons. Stable isotopes, weather, host plants, direct observations and movement tracking can add different pieces of evidence. Because the public movement report remains a preprint, it is presented as an intriguing published observation. [S09]",
+        "answer": "Seasonal movement can connect populations, track rainfall or food, or place different life stages in different landscapes. A 2020 preprint reported a large seasonal movement of Panacea prola in south-eastern Peru and presented it as the first evidence for an Amazonian insect migration. Observing a mass movement does not reveal where the butterflies began, whether the same individuals return, or how far the phenomenon extends. Reference genomes and repeated population sampling can compare ancestry among places and seasons. Stable isotopes, weather, host plants, direct observations and movement tracking can add different pieces of evidence. The movement report is a preprint and has not been peer reviewed. [S09]",
         "example": "The documented event involved a seasonal mass movement of P. prola in south-eastern Peru; broader origins and connections remain open. [S09]",
         "evidence": "Repeated, responsibly permitted sampling across seasons and broad regions; a reference genome; environmental and host-plant records; and independent movement evidence such as observations, tagging or stable isotopes.",
         "genomesCan": "Compare ancestry among sampled groups, estimate connectivity and test whether seasonal aggregations draw from one or several populations.",
@@ -533,7 +530,7 @@ export const en = {
         "How will contributor roles, citation, data use and benefits be handled?"
       ],
       "externalContext": "FAIR, CARE and access-and-benefit-sharing frameworks help teams ask better questions about reuse, authority and responsibility. Their application depends on the project, jurisdiction, institutions and communities involved. [S20][S21][S22]",
-      "disclaimer": "For project-specific legal, ethical or institutional requirements, consult the relevant authorities and agreements. The site explains principles; it does not publish a universal Caligo policy or provide legal advice."
+      "disclaimer": "Legal, ethical and institutional requirements are set by the authorities and agreements that apply to each project."
     },
     "tiers": {
       "heading": "Three scales of genetic evidence",
@@ -722,8 +719,8 @@ export const en = {
     },
     "externalContext": {
       "heading": "Part of a wider scientific landscape",
-      "body": "Caligo learns from global genome initiatives, public repositories, collections, taxonomic networks and data-governance frameworks while keeping its public claims specific to this initiative.",
-      "disclaimer": "External projects provide scientific or methodological context. Formal partnerships and commitments are identified explicitly when they exist."
+      "body": "Caligo builds on the methods and standards of global genome initiatives, public repositories, collections, taxonomic networks and data-governance frameworks.",
+      "disclaimer": "Citing or comparing another project does not imply a partnership, a commitment or an endorsement."
     },
     "objectives": {
       "heading": "Strategic objectives",
@@ -785,7 +782,6 @@ export const en = {
       "heading": "Begin safely",
       "body": "Please do not send precise localities for threatened or sensitive species, unpublished specimen records, biological material, permit files or personal data through a first-contact message. Describe the topic in general terms so the appropriate, secure next step can be agreed."
     },
-    "privacyNote": "Any future form should display its privacy and data-use notice before a person submits information.",
     "membership": {
       "heading": "Membership",
       "intro": "Two levels of membership define different roles and responsibilities in the network."
@@ -811,8 +807,7 @@ export const en = {
     "externalContext": "Related external context",
     "preprint": "Preprint; not peer reviewed at the time of checking.",
     "sensitiveLocalities": "Precise sensitive-species localities are not shown.",
-    "mutableData": "Mutable database or institutional record; access date shown.",
-    "noRegionalPercentage": "Regional genome coverage will be reported against a frozen taxonomic denominator, explicit realm rules and a dated, deduplicated assembly snapshot."
+    "mutableData": "Mutable database or institutional record; access date shown."
   },
   "network": {
     "metaTitle": "Network | Caligo",
@@ -829,7 +824,7 @@ export const en = {
     },
     "positioning": {
       "heading": "Connections and context",
-      "body": "Caligo is engaged with EBP Latin America, the Earth BioGenome Project's regional initiative, and with Genotropics, a network working on the genomic diversity of tropical organisms. These connections place Caligo within a wider regional genomics landscape. Formal partnerships or shared programmes are identified explicitly."
+      "body": "Caligo is engaged with EBP Latin America, the Earth BioGenome Project's regional initiative, and with Genotropics, a network working on the genomic diversity of tropical organisms."
     }
   },
   "notFound": {
@@ -843,8 +838,7 @@ export const en = {
     "contact": "Contact",
     "navHeading": "Explore",
     "languageHeading": "Language",
-    "sources": "Sources and methods",
-    "aiDisclosure": "Concept illustrations are labelled and credited where used."
+    "sources": "Sources and methods"
   }
 } as const;
 

@@ -3,16 +3,16 @@
  * JoinCTA — registration form CTA, two states.
  *
  * variant="full"    Primary block for /participate#join. Shows h2, body text,
- *                   a primary link-button to LINKS.joinForm, and three small-
- *                   print lines (new-tab note, privacy note, form-name note).
+ *                   a primary link-button to LINKS.joinForm, and one line of
+ *                   small print saying where the answers go.
  *
  * variant="compact" Secondary inline link used on Home (H6 closing section)
  *                   and in the Footer, pointing to the localized
  *                   /participate/#join anchor.
  *
  * ─── i18n ──────────────────────────────────────────────────────────────────
- * Consumes the join.* keys from src/i18n (title, body, cta, newTabNote,
- * privacyNote, formNameNote, ctaSecondary), fully typed via Dict.
+ * Consumes the join.* keys from src/i18n (title, body, cta, privacyNote,
+ * ctaSecondary), fully typed via Dict.
  */
 import { getDict, localePath, type Locale } from '../i18n';
 import { LINKS } from '../data/content';
@@ -48,11 +48,7 @@ const participateUrl = `${localePath(locale, '/participate')}#join`;
         {j.cta}
       </a>
     </p>
-    <div class="join-small-print">
-      <p class="join-note mono">{j.newTabNote}</p>
-      <p class="join-note mono">{j.privacyNote}</p>
-      <p class="join-note mono">{j.formNameNote}</p>
-    </div>
+    <p class="join-note mono">{j.privacyNote}</p>
   </section>
 ) : (
   <p class:list={['join-compact', className]}>
