@@ -184,6 +184,15 @@ kbd,
   margin-inline: auto;
 }
 
+/* Prose held to a reading measure INSIDE the wide container, so a page that
+   alternates text sections with full-width grids keeps one left edge instead
+   of re-centring a narrower column every other section. Use
+   `container-wide prose-column`; use `container-narrow` only when a section
+   is genuinely meant to sit centred on its own. */
+.prose-column > * {
+  max-width: var(--measure);
+}
+
 /* Shared shell for pages with an opt-in "On this page" rail. The compact
    12rem column preserves reading width without letting the rail consume the
    280px used by the earlier Science-only layout. Pages with wider visual

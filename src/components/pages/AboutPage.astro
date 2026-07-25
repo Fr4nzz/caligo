@@ -42,7 +42,7 @@ const h = t.home;
 
   <!-- A2 — Scope: what Caligo is -->
   <section class="section section--tight" aria-labelledby="about-scope">
-    <div class="container-narrow">
+    <div class="container-wide prose-column">
       <h2 id="about-scope" class="section-heading">{h.intro.title}</h2>
       <div class="prose-block">
         {h.intro.body.map((para) => (
@@ -54,7 +54,7 @@ const h = t.home;
 
   <!-- A2b — The name as a present-day statement of the initiative's purpose -->
   <section class="section section--tight section--panel" aria-labelledby="about-name">
-    <div class="container-narrow name-story">
+    <div class="container-wide prose-column name-story">
       <h2 id="about-name" class="section-heading">{a.name.heading}</h2>
       <div class="prose-block">
         {a.name.body.map((para) => (
@@ -75,7 +75,7 @@ const h = t.home;
 
   <!-- A4 — Objectives: strategic goals -->
   <section class="section section--tight" aria-labelledby="about-objectives">
-    <div class="container-narrow">
+    <div class="container-wide prose-column">
       <h2 id="about-objectives" class="section-heading">{a.objectives.heading}</h2>
       <p class="prose-para">{a.objectives.intro}</p>
       <ObjectiveList locale={locale}/>
@@ -100,7 +100,7 @@ const h = t.home;
 
   <!-- A6 — Governance -->
   <section class="section section--tight" aria-labelledby="about-governance">
-    <div class="container-narrow">
+    <div class="container-wide prose-column">
       <h2 id="about-governance" class="section-heading">{a.governance.heading}</h2>
       <p class="prose-para">{a.governance.intro}</p>
       <ul class="governance-list" role="list">
@@ -113,7 +113,7 @@ const h = t.home;
 
   <!-- A7 — Vision and Mission -->
   <section class="section section--tight section--panel" aria-labelledby="about-vision">
-    <div class="container-narrow">
+    <div class="container-wide prose-column">
       <h2 id="about-vision" class="section-heading">{a.vision.heading}</h2>
       <p class="prose-para">{a.vision.body}</p>
       <h2 id="about-mission" class="section-heading">{a.mission.heading}</h2>
@@ -154,6 +154,11 @@ const h = t.home;
     line-height: 1.15;
     letter-spacing: -0.012em;
     color: var(--text-strong);
+  }
+  /* A section can hold two headings (Vision, then Mission). Without this the
+     second one starts a new topic with less air than the paragraphs above it. */
+  .prose-para + .section-heading {
+    margin-top: var(--space-l);
   }
 
   /* ---- A2 Scope prose ---- */
