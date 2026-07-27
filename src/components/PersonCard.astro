@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { person, locale } = Astro.props;
+const regionalTiesLabel = locale === 'en' ? 'Regional ties' : 'Vínculos regionales';
 ---
 
 <article class="person-card">
@@ -19,7 +20,17 @@ const { person, locale } = Astro.props;
   <p class="person-role">{pick(person.role, locale)}</p>
   <p class="person-bio">{pick(person.bio, locale)}</p>
   <p class="person-affil mono">{person.affiliation}</p>
-  <p class="person-country mono">{pick(person.country, locale)}</p>
+  <p class="person-region mono">
+    <span>{regionalTiesLabel}:</span> {pick(person.regionalTies, locale)}
+  </p>
+  <a
+    class="person-source mono"
+    href={person.source.href}
+    target="_blank"
+    rel="noopener noreferrer external"
+  >
+    {pick(person.source.label, locale)} <span aria-hidden="true">↗</span>
+  </a>
 </article>
 
 <style>
@@ -67,10 +78,33 @@ const { person, locale } = Astro.props;
     letter-spacing: 0.01em;
     line-height: 1.45;
   }
-  .person-country {
+  .person-region {
     margin: 0;
     font-size: var(--step--2);
     color: var(--text-faint);
     letter-spacing: 0.04em;
+  }
+  .person-region span {
+    color: var(--text-muted);
+  }
+  .person-source {
+    align-self: flex-start;
+    margin-top: auto;
+    padding-top: var(--space-xs);
+    color: var(--accent);
+    font-size: var(--step--2);
+    letter-spacing: 0.02em;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--accent) 35%, transparent);
+    text-underline-offset: 0.18em;
+  }
+  .person-source:hover {
+    color: var(--accent-strong);
+    text-decoration-color: currentColor;
+  }
+  .person-source:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 </style>
