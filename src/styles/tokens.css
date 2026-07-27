@@ -453,3 +453,39 @@
 
   --shadow: 0 1px 2px rgba(22, 30, 60, 0.05), 0 16px 34px -22px rgba(22, 30, 60, 0.22);
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CATEGORICAL DATA COLOURS
+
+   Four hues for the introgression figure, where colour has to carry which
+   trait a piece of DNA controls. These are deliberately NOT palette tokens:
+   they encode data, not brand, so they stay the same under every palette
+   and vary only by mode.
+
+   Taken from the Okabe–Ito qualitative set, which separates categories by
+   HUE rather than luminance and stays distinguishable under deuteranopia,
+   protanopia and tritanopia. The light-mode values are darkened from the
+   published set because the originals fall below the 3:1 non-text contrast
+   floor (WCAG 2.2 1.4.11) against --bg-inset: bluish green measured 2.74:1
+   and reddish purple 2.45:1. Every value below clears 3.2:1 against the
+   --bg-inset of its own mode.
+
+   Because these separate by hue and not luminance, colour must never be the
+   only channel: the figure pairs every swatch with a text label, and its
+   mobile fallback lists each trait in words.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-mode='dark'] {
+  --trait-pattern: #d55e00; /* vermillion    — 5.03:1 on #100c0a */
+  --trait-wing: #56b4e9;    /* sky blue      — 8.43:1 */
+  --trait-plant: #009e73;   /* bluish green  — 5.69:1 */
+  --trait-scent: #cc79a7;   /* reddish purple— 6.36:1 */
+}
+
+[data-mode='light'] {
+  --trait-pattern: #d15c00; /* 3.21:1 on #e8e6de */
+  --trait-wing: #0072b2;    /* 4.15:1 */
+  --trait-plant: #008e67;   /* 3.32:1 */
+  --trait-scent: #af6890;   /* 3.23:1 */
+}
