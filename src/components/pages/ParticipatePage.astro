@@ -1,12 +1,16 @@
 ---
 /**
- * ParticipatePage — contribution, membership, language, action and contact
- * sections in one responsive participation path.
+ * ParticipatePage — how to join, and what to send.
+ *
+ * The membership-tier section is gone. It described two tiers whose
+ * stated privileges were working groups, network publications, regular
+ * meetings and votes — none of which exist yet. /about/ is honest that
+ * the governance model is a draft; this page was selling that draft as
+ * a benefits package.
  *
  * Section order:
  *   P1  PageHeader — title + intro.
  *   P2  Ways to contribute — audience types.
- *   P-Membership — two membership tiers + seven member benefits.
  *   P-LangPolicy — working-languages policy.
  *   P-Actions — JoinCTA and DiscordCTA in one responsive group.
  *   P3  Email CTA + safe-sharing advisory.
@@ -15,7 +19,6 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
 import Icon from '../Icon.astro';
 import JoinCTA from '../JoinCTA.astro';
-import MembershipTiers from '../MembershipTiers.astro';
 import DiscordCTA from '../DiscordCTA.astro';
 import { getDict, type Locale } from '../../i18n';
 
@@ -30,7 +33,7 @@ const p = t.participate;
 <Base locale={locale} title={p.metaTitle} description={p.metaDescription} page="/participate">
 
   <!-- P1 — Header -->
-  <PageHeader eyebrow={t.nav.participate} title={p.title} intro={p.intro} />
+  <PageHeader eyebrow={t.nav.join} title={p.title} intro={p.intro} />
 
   <!-- P2 — Ways to contribute (audience types) -->
   <section class="section section--tight section--panel" aria-labelledby="ways-heading">
@@ -46,15 +49,6 @@ const p = t.participate;
           </li>
         ))}
       </ol>
-    </div>
-  </section>
-
-  <!-- P-Membership — Two membership tiers + seven benefits -->
-  <section class="section section--tight" aria-labelledby="membership-heading">
-    <div class="container-wide">
-      <h2 id="membership-heading">{p.membership.heading}</h2>
-      <p class="section-intro muted">{p.membership.intro}</p>
-      <MembershipTiers locale={locale} />
     </div>
   </section>
 

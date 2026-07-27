@@ -63,10 +63,7 @@ export const en = {
     "proposedPilots": "Pilot projects",
     "about": "About",
     "participate": "Participate",
-    "caligoStory": "Discover",
-    "network": "Network",
     "projects": "Pilot projects",
-    "capacity": "Learning and exchange",
     "join": "Join"
   },
   "cta": {
@@ -99,7 +96,7 @@ export const en = {
     "hero": {
       "kicker": "Neotropical butterfly and moth genomics",
       "title": "Latin America has one of the richest Lepidoptera faunas on Earth, and one of the least-sequenced",
-      "body": "Caligo is a collaborative network generating genomic resources for Neotropical butterflies and moths, connecting regional expertise, building local capacity, and ensuring fair benefit-sharing."
+      "body": "Caligo is a collaborative network building reference genomes for Neotropical butterflies and moths, led by researchers based in the region."
     },
     "journey": {
       "heading": "From organism to genome",
@@ -168,25 +165,19 @@ export const en = {
       }
     },
     "questions": {
-      "heading": "Six questions genomes can help answer",
-      "intro": "Each one links to the published evidence, the methods it would take and the limits, on the Science page."
+      "heading": "Three questions genomes can help answer",
+      "intro": "Each links to what has already been published, and what it would take to go further."
     },
     "pilotsTeaser": {
-      "heading": "Four proposed pilot projects, four ways to test the approach",
-      "intro": "Four biological puzzles shape four proposed lines of work. The Pilot projects page connects each question to published evidence, methods and proposed next steps."
-    },
-    "name": {
-      "eyebrow": "About the name",
-      "title": "Named for the owl butterflies",
-      "body": "Caligo is a Neotropical genus of owl butterflies, known for their beauty and the large eyespots on their wings.",
-      "sourceNote": "Caligo is a Neotropical genus of owl butterflies."
+      "heading": "Four proposed pilot projects",
+      "intro": "Each begins from a biological puzzle that regional collections and sequencing could address."
     },
     "intro": {
-      "eyebrow": "Why this matters",
+      "eyebrow": "Why butterflies and moths",
       "title": "A rich fauna with many unanswered genomic questions",
       "body": [
-        "Butterflies and moths make visible some of evolution’s boldest experiments: transparency, mimicry, chemical defence, migration, shifting host plants and changing chromosomes.",
-        "Caligo links those observable lives to documented specimens and genomic evidence, so regional questions can be compared without separating the sequence from the organism that produced it."
+        "Butterflies and moths make some of evolution’s boldest experiments visible to the naked eye: mimicry, transparency, chemical defence, migration.",
+        "Most Neotropical species have never been sequenced. Caligo keeps each genome tied to a documented specimen, so a result can always be traced back to the animal it came from."
       ]
     },
     "pillars": {
@@ -514,33 +505,28 @@ export const en = {
     "name": {
       "heading": "Why Caligo",
       "body": [
-        "Caligo is a Neotropical genus of owl butterflies, known for their beauty and the large eyespots on their wings."
+        "Caligo is a Neotropical genus of owl butterflies, named for the large eyespots on their wings. They are common, widely recognised across the region, and have never had a reference genome — which is roughly the situation the network exists to change."
       ]
-    },
-    "externalContext": {
-      "heading": "Part of a wider scientific landscape",
-      "body": "Caligo builds on the methods and standards of global genome initiatives, public repositories, collections, taxonomic networks and data-governance frameworks.",
-      "disclaimer": "Citing or comparing another project does not imply a partnership, a commitment or an endorsement."
-    },
-    "objectives": {
-      "heading": "Strategic objectives",
-      "intro": "Caligo pursues complementary scientific and organizational goals."
     },
     "leadership": {
       "heading": "Leadership",
       "intro": "The initiative is coordinated by researchers from institutions in Latin America and internationally."
     },
+    "facilities": {
+      "heading": "Partner facilities",
+      "intro": "Seven institutions in Colombia, Panama, Brazil, Ecuador and Chile provide the sequencing platforms the network can currently draw on."
+    },
+    "events": {
+      "heading": "Events",
+      "intro": "Where the network has met, and what is planned next."
+    },
+    "positioning": {
+      "heading": "Connections and context",
+      "body": "Caligo is engaged with EBP Latin America, the Earth BioGenome Project's regional initiative, and with Genotropics, a network working on the genomic diversity of tropical organisms."
+    },
     "governance": {
       "heading": "Governance",
-      "intro": "How decisions are made and the network is organised. This is the current draft model; the organising committee can still change it."
-    },
-    "vision": {
-      "heading": "Vision",
-      "body": "An international group that leads the genomic exploration of Latin American Lepidoptera by generating, curating, and using data documenting one of the planet's richest yet least-sequenced faunas, while building the people, partnerships, and infrastructure needed to sustain the work over the long term."
-    },
-    "mission": {
-      "heading": "Mission",
-      "body": "A collaborative network of researchers, taxonomists, students, and institutions across the Neotropics working together to produce high-quality genomic resources for butterflies and moths. The work is grounded in taxonomic expertise, shaped by regional research priorities, and connected to the global Lepidoptera genomics community on equal footing."
+      "intro": "Decisions are made by an organising committee drawn from the participating institutions. The model is still a draft and the committee can change it."
     }
   },
   "participate": {
@@ -581,14 +567,6 @@ export const en = {
       "heading": "Begin safely",
       "body": "A first email is not the place for precise localities of threatened species, unpublished specimen records, biological material, permit files or personal data. Describe the topic in general terms and we will agree a secure route for the rest."
     },
-    "membership": {
-      "heading": "Membership",
-      "intro": "Two levels of membership define different roles and responsibilities in the network."
-    },
-    "benefits": {
-      "heading": "What members gain",
-      "intro": "What the network offers the people who join, from the initiative's vision and governance draft."
-    },
     "languagePolicy": {
       "heading": "Working languages",
       "body": "Official communications are in English and Spanish. Portuguese is also used in meetings, with informal translation among participants who understand both."
@@ -607,24 +585,6 @@ export const en = {
     "preprint": "Preprint; not peer reviewed at the time of checking.",
     "sensitiveLocalities": "Precise sensitive-species localities are not shown.",
     "mutableData": "Mutable database or institutional record; access date shown."
-  },
-  "network": {
-    "metaTitle": "Network | Caligo",
-    "metaDescription": "The Caligo research network: partner sequencing facilities, initiative leaders and upcoming activities in Latin America.",
-    "title": "Research network",
-    "intro": "A Latin American-led collaboration of researchers, institutions and facilities working on reference genomes for Neotropical butterflies and moths.",
-    "facilities": {
-      "heading": "Partner facilities",
-      "intro": "Sequencing and research facilities participating in the initiative."
-    },
-    "events": {
-      "heading": "Events",
-      "intro": "Initiative activities and planned gatherings."
-    },
-    "positioning": {
-      "heading": "Connections and context",
-      "body": "Caligo is engaged with EBP Latin America, the Earth BioGenome Project's regional initiative, and with Genotropics, a network working on the genomic diversity of tropical organisms."
-    }
   },
   "notFound": {
     "title": "This page has not been assembled yet",

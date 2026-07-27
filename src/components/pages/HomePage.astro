@@ -1,58 +1,42 @@
 ---
 /**
- * HomePage — compact six-module persuasive path.
+ * HomePage — what Caligo is, why it matters, and how to join.
  *
- * Six modules in order:
+ * Modules in order:
  *   H1  Cinematic hero (full-bleed photo + overlay copy).
- *   H2  How the work is shaped — the eight shared guiding principles.
- *   H3  From organism to genome — six-step journey with per-step media.
- *   H4  Three questions worth following — compact teaser links to /science#.
- *   H5  Four proposed pilots — 2×2 compact cards with MediaCandidateViewer.
- *   H6  Participate + brand close — email CTA + namesake sentence → /caligo/.
+ *   —   Stat bar — the cheapest credibility on the page.
+ *   H2  Why butterflies and moths.
+ *   H3  How the work is shaped — guiding principles.
+ *   H4  Three questions — teaser links to /science#.
+ *   H5  Four proposed pilots — 2×2 cards.
+ *   H6  Participate.
  *
- * SectionRail is deliberately not used here — the cinematic hero must stay
- * above the fold. Stable section IDs (overview, snapshot,
- * from-organism-to-genome, questions, proposed-pilots, discover-caligo, plus
- * the #h1..#h6 shim anchors) are preserved for language-position
- * preservation, Back/Forward restoration and direct hash navigation.
+ * The six-step "From organism to genome" section used to sit between the
+ * principles and the questions. It was ~390 words — a third of the page —
+ * teaching assembly and Hi-C curation to a visitor who had not yet been
+ * told why the project is worth their attention. It also carried three
+ * animated diagrams and seven image-credit disclosures. Project Psyche
+ * has published genomes and still does not explain assembly on its
+ * homepage. That material belongs on /science/, where the readers who
+ * want it already are.
  */
 import Base from '../../layouts/Base.astro';
 import HeroMedia from '../HeroMedia.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
-import ConceptDiagram from '../ConceptDiagram.astro';
-import AssemblyDiagram from '../AssemblyDiagram.astro';
-import DepositSimpleDiagram from '../DepositSimpleDiagram.astro';
 import Icon from '../Icon.astro';
 import JoinCTA from '../JoinCTA.astro';
 import PrincipleGrid from '../PrincipleGrid.astro';
 import CommunityStats from '../CommunityStats.astro';
-import SourceList from '../SourceList.astro';
 import { getDict, localePath, type Locale } from '../../i18n';
-import { PILOTS, PUBLIC_STATUS_LABELS, getMedia } from '../../data/records';
-
-const journeyModuleIds = [
-  'journey-1-organism',
-  'journey-2-provenance',
-  'journey-3-voucher',
-  'journey-4-sequence',
-  'journey-5-assemble',
-  'journey-6-deposit',
-] as const;
+import { PILOTS, getMedia } from '../../data/records';
 
 /**
- * Science-page anchor IDs for the six question teaser links, in the same
- * order as `t.science.questions[]` (single source of truth). Home renders
- * concise question hooks; the full four-layer answer lives on Science.
- * These slugs must match `sciQuestionAnchors` in SciencePage.astro.
+ * Science-page anchors for the question teasers, in the same order as
+ * `t.science.questions[]` (single source of truth). The array length is
+ * also what Home renders, so adding a question on Science does not
+ * silently add an unanchored row here.
  */
-const questionAnchors = [
-  'chromosomes',
-  'gene-flow',
-  'species-boundaries',
-  'connectivity',
-  'seasonal-movement',
-  'biodiversity-reuse',
-] as const;
+const questionAnchors = ['chromosomes', 'gene-flow', 'connectivity'] as const;
 
 interface Props {
   locale: Locale;
@@ -124,8 +108,21 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     </div>
   </section>
 
-  <!-- ====================== H2 — Eight guiding principles ====================== -->
-  <section id="snapshot" class="section" aria-labelledby="h2-title">
+  <!-- ====================== H2 — Why butterflies and moths ======================
+       Psyche's second homepage section. This copy already existed under
+       `home.intro` but was rendered on /about/ instead, so the homepage
+       never answered "why this group of animals" at all.
+  -->
+  <section id="why-lepidoptera" class="section" aria-labelledby="h2b-title">
+    <div class="container-wide">
+      <p class="section-eyebrow mono">{h.intro.eyebrow}</p>
+      <h2 id="h2b-title">{h.intro.title}</h2>
+      {h.intro.body.map((para) => <p class="lead">{para}</p>)}
+    </div>
+  </section>
+
+  <!-- ====================== H3 — Guiding principles ====================== -->
+  <section id="snapshot" class="section section--panel" aria-labelledby="h2-title">
     <span id="h2" hidden aria-hidden="true" data-legacy-anchor="h2" />
     <div class="container-wide">
       <p class="section-eyebrow mono">{h.pillars.eyebrow}</p>
@@ -134,50 +131,10 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     </div>
   </section>
 
-  <!-- ====================== H3 — From organism to genome (six-step journey) ====================== -->
-  <section id="from-organism-to-genome" class="section section--panel" aria-labelledby="h3-title">
-    <span id="h3" hidden aria-hidden="true" data-legacy-anchor="h3" />
-    <div class="container-wide">
-      <h2 id="h3-title">{h.journey.heading}</h2>
-      <p class="lead journey-intro">{h.journey.intro}</p>
-      <ol class="journey-steps journey-vertical">
-        {
-          h.journey.steps.map((step, i) => (
-            <li class="journey-step" id={`step-${i + 1}`}>
-              <div class="journey-copy">
-                <p class="journey-step-index mono" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </p>
-                <h3 class="journey-step-title">{step.title}</h3>
-                <p class="journey-step-body">{step.body}</p>
-              </div>
-              <div class="journey-media">
-                {journeyModuleIds[i] === 'journey-3-voucher' ? (
-                  <ConceptDiagram locale={locale} kind="voucher" context="pilot" />
-                ) : journeyModuleIds[i] === 'journey-5-assemble' ? (
-                  <AssemblyDiagram locale={locale} />
-                ) : journeyModuleIds[i] === 'journey-6-deposit' ? (
-                  <DepositSimpleDiagram locale={locale} />
-                ) : (
-                  <MediaCandidateViewer
-                    moduleId={journeyModuleIds[i]}
-                    locale={locale}
-                    aspectRatio="16 / 9"
-                  />
-                )}
-              </div>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
-  </section>
-
-  <!-- ====================== H4 — Six questions worth following ======================
-       Home renders concise hooks (question heading only). The full four-layer
-       answer + evidence + sources lives on the Science page. We iterate
-       `t.science.questions` directly so Home and Science stay in lockstep by
-       construction: no duplicated question copy, no drift in count.
+  <!-- ====================== H4 — Questions worth following ======================
+       Home renders the question headings only; the answers live on Science.
+       We iterate `t.science.questions` so the two pages stay in lockstep by
+       construction — no duplicated question copy.
   -->
   <section id="questions" class="section" aria-labelledby="h4-title">
     <span id="h4" hidden aria-hidden="true" data-legacy-anchor="h4" />
@@ -185,7 +142,7 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
       <h2 id="h4-title">{h.questions.heading}</h2>
       <p class="lead">{h.questions.intro}</p>
       <ol class="question-teasers" role="list">
-        {t.science.questions.map((q, i) => (
+        {t.science.questions.slice(0, questionAnchors.length).map((q, i) => (
           <li class="question-teaser">
             <a
               class="question-teaser-link"
@@ -212,16 +169,13 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
       <p class="lead">{h.pilotsTeaser.intro}</p>
 
       <!--
-        v7.4 concision: Home pilot cards are HOOKS, not summaries. Per-card
-        content is index + status + heading + taxon + a single explicit
-        "Explore this pilot →" affordance that deep-links to the pilot's
-        section on the Pilots page. The full published context, evidence,
-        methods, limits, sources and figures live on /projects — never on
-        Home. This mirrors the H4 pattern (heading-only questions that link
-        into Science) and cuts Home mobile card height ~35–40%.
+        Home pilot cards are hooks: image, heading, taxon. The status pill
+        ("Proposed pilot project") repeated a phrase already in the section
+        heading and in the page title, and the separate "Explore this pilot
+        project →" line duplicated the heading link directly above it.
       -->
       <ol class="pilot-cards" aria-label={h.pilotsTeaser.heading}>
-        {publishedPilots.map((pilot, i) => (
+        {publishedPilots.map((pilot) => (
           <li class="pilot-card" id={`preview-${pilot.slug}`}>
             <div class="pilot-card-media">
               <MediaCandidateViewer
@@ -231,12 +185,6 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
               />
             </div>
             <div class="pilot-card-content">
-              <div class="pilot-card-meta mono">
-                <span class="pilot-card-index" aria-hidden="true">P{i + 1}</span>
-                <span class="pilot-card-status">
-                  {PUBLIC_STATUS_LABELS[pilot.status][locale]}
-                </span>
-              </div>
               <h3 class="pilot-card-heading">
                 <a
                   class="pilot-card-heading-link"
@@ -248,14 +196,6 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
               {pilot.taxon && (
                 <p class="pilot-card-taxon mono"><em>{pilot.taxon}</em></p>
               )}
-              <p class="pilot-card-cta mono">
-                <a
-                  class="pilot-card-cta-link"
-                  href={`${localePath(locale, '/projects')}#${pilot.slug}`}
-                >
-                  {t.common.exploreThisPilot ?? (locale === 'es' ? 'Explora este proyecto piloto' : 'Explore this pilot project')}<Icon name="arrow-right" />
-                </a>
-              </p>
             </div>
           </li>
         ))}
@@ -286,18 +226,8 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
         </div>
         <JoinCTA variant="compact" locale={locale} />
       </div>
-      <aside class="close-namesake" aria-label={h.name.eyebrow}>
-        <p class="namesake-eyebrow mono">{h.name.eyebrow}</p>
-        <p class="namesake-sentence">
-          <a class="namesake-link" href={localePath(locale, '/caligo')}>
-            {h.name.body}
-          </a>
-        </p>
-      </aside>
     </div>
   </section>
-
-  <SourceList ids={[]} locale={locale}/>
 </Base>
 
 <style>
@@ -551,70 +481,6 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     max-width: 28ch;
   }
 
-  /* ---- H3 Journey (vertical 1→6 with per-step media) ---- */
-  .journey-intro { max-width: var(--measure); }
-  .journey-vertical {
-    list-style: none;
-    padding: 0;
-    margin: var(--space-l) 0 0;
-    display: grid;
-    gap: var(--space-l);
-    grid-template-columns: 1fr;
-  }
-  .journey-vertical .journey-step {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-s);
-    padding: 0;
-    border: none;
-    scroll-margin-top: 5rem;
-  }
-  .journey-copy {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    min-width: 0;
-  }
-  .journey-step-index {
-    margin: 0;
-    font-size: var(--step-1);
-    font-weight: 500;
-    line-height: 1;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-  }
-  .journey-step-title {
-    margin: 0;
-    font-family: var(--font-body);
-    font-size: var(--step-2);
-    font-weight: 620;
-    line-height: 1.3;
-    color: var(--text-strong);
-    letter-spacing: -0.006em;
-  }
-  .journey-step-body {
-    margin: 0;
-    max-width: 46ch;
-    color: var(--text-muted);
-    line-height: 1.5;
-    font-size: var(--step-0);
-  }
-  .journey-media { min-width: 0; }
-  /* Two columns of six steps rather than six full-width rows. The old layout
-     paired a three-line caption with a 16:9 image and centred both, which left
-     roughly 200px of empty column beside every step. It also swapped the two
-     columns on even rows with `order`, so on half the steps the visual order
-     and the focus order disagreed — the play buttons inside the media column
-     were reached before the step they belong to. */
-  @media (min-width: 60rem) {
-    .journey-vertical {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: var(--space-xl);
-      row-gap: var(--space-xl);
-      align-items: start;
-    }
-  }
-
   /* ---- H4 Question teasers ---- */
   .question-teasers {
     list-style: none;
@@ -722,22 +588,6 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     padding: var(--space-m);
     flex: 1;
   }
-  .pilot-card-meta {
-    display: flex;
-    gap: 0.75rem;
-    align-items: baseline;
-    font-size: var(--step--2);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-  .pilot-card-index {
-    color: var(--accent);
-    font-size: var(--step-0);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-transform: none;
-  }
-  .pilot-card-status { color: var(--text-faint); }
   .pilot-card-heading {
     margin: 0;
     font-family: var(--font-body);
@@ -773,35 +623,6 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
   /* v7.4: single, explicit "Explore this pilot →" affordance replaces the
      verbose one-sentence hook prose that used to fill the card. The full
      published context lives on the Pilots page. */
-  .pilot-card-cta {
-    margin: auto 0 0;   /* pushes CTA to card bottom regardless of heading length */
-    padding-top: 0.35rem;
-  }
-  .pilot-card-cta-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: var(--step--1);
-    color: var(--accent);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    font-weight: 500;
-    transition: color var(--transition), transform var(--transition);
-  }
-  .pilot-card-cta-link :global(svg) {
-    width: 0.9rem;
-    height: 0.9rem;
-    transition: transform var(--transition);
-  }
-  .pilot-card-cta-link:hover,
-  .pilot-card-cta-link:focus-visible {
-    color: var(--accent);
-    outline: none;
-  }
-  .pilot-card-cta-link:hover :global(svg),
-  .pilot-card-cta-link:focus-visible :global(svg) {
-    transform: translateX(3px);
-  }
   .pilots-cta { margin-top: var(--space-m); }
 
   /* ---- H6 Participate + brand close ---- */
@@ -829,37 +650,5 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     flex-wrap: wrap;
     align-items: center;
     gap: var(--space-m);
-  }
-  .close-namesake {
-    min-width: 0;
-    padding: var(--space-l);
-    background: linear-gradient(145deg, var(--bg-panel), var(--bg-inset));
-    border: 1px solid var(--hairline);
-    border-left: 2px solid var(--accent);
-    border-radius: var(--radius-lg);
-  }
-  .namesake-eyebrow {
-    margin: 0 0 var(--space-s);
-    font-size: var(--step--2);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-  }
-  .namesake-sentence {
-    margin: 0;
-    font-size: var(--step-0);
-    line-height: 1.55;
-    color: var(--text);
-  }
-  .namesake-link {
-    color: var(--text);
-    text-underline-offset: 0.2em;
-    text-decoration-color: var(--hairline-strong);
-    transition: color var(--transition), text-decoration-color var(--transition);
-  }
-  .namesake-link:hover,
-  .namesake-link:focus-visible {
-    color: var(--text-strong);
-    text-decoration-color: var(--accent);
   }
 </style>

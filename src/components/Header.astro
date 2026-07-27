@@ -2,9 +2,12 @@
 /*
   Site header.
 
-  Primary nav — six items:
-    Home · Science · Pilot projects · Network · About · Participate
-  (/capacity/ is a legacy URL that redirects to /network/.)
+  Primary nav — five items:
+    Home · Science · Pilot projects · About · Join
+
+  "Join" is the /participate/ route. It used to be both a nav item
+  ("Participate") and a separate accent button pointing at the same page,
+  which gave the header two affordances for one destination.
 
   Brand: emblem + text wordmark. The provisional Caligo JPEG is unsuitable
   for the compact header (see DESIGN.md).
@@ -29,9 +32,8 @@ const items = [
   { path: '/', label: t.nav.home },
   { path: '/science', label: t.nav.science },
   { path: '/projects', label: t.nav.proposedPilots },
-  { path: '/network', label: t.nav.network },
   { path: '/about', label: t.nav.about },
-  { path: '/participate', label: t.nav.participate },
+  { path: '/participate', label: t.nav.join },
 ];
 
 const isCurrent = (path: string) => path === page;
@@ -73,10 +75,6 @@ const isCurrent = (path: string) => path === page;
       </ul>
     </nav>
 
-    <a class="nav-join-btn" href={localePath(locale, '/participate') + '#join'}>
-      {t.nav.join}
-    </a>
-
     <div class="header-tools">
       <LanguageSwitcher locale={locale} />
       <ThemeToggle locale={locale} />
@@ -108,11 +106,6 @@ const isCurrent = (path: string) => path === page;
           </li>
         ))
       }
-      <li class="mobile-join-item">
-        <a href={localePath(locale, '/participate') + '#join'}>
-          {t.nav.join}
-        </a>
-      </li>
     </ul>
   </nav>
 </header>
@@ -324,36 +317,10 @@ const isCurrent = (path: string) => path === page;
     }
   }
 
-  /* ---- Join button (visually distinct from nav links) ---- */
-  .nav-join-btn {
-    display: none;
-    padding: 0.35rem 0.85rem;
-    font-size: 0.875rem;
-    font-weight: 560;
-    color: var(--accent-strong);
-    background: transparent;
-    border: 1px solid var(--accent);
-    border-radius: var(--radius);
-    text-decoration: none;
-    white-space: nowrap;
-    flex: none;
-    transition: background var(--transition), color var(--transition), border-color var(--transition);
-  }
-  .nav-join-btn:hover,
-  .nav-join-btn:focus-visible {
-    background: var(--accent);
-    color: var(--bg);
-    border-color: var(--accent);
-  }
-  @media (min-width: 62rem) {
-    .nav-join-btn { display: inline-block; }
-  }
-
-  /* ---- Mobile Join item — accented separator ---- */
-  .mobile-join-item {
-    border-top: 2px solid var(--accent) !important;
-  }
-  .mobile-join-item a {
+  /* The last nav item is Join. It keeps the accent underline the other
+     items get on hover, rather than a second button competing with the
+     Join section on the page itself. */
+  .primary-nav li:last-child a {
     color: var(--accent-strong);
     font-weight: 560;
   }

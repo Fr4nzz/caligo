@@ -60,10 +60,7 @@ export const es: Dict = {
     "proposedPilots": "Proyectos piloto",
     "about": "Acerca de",
     "participate": "Participa",
-    "caligoStory": "Descubre",
-    "network": "Red",
     "projects": "Proyectos piloto",
-    "capacity": "Aprendizaje e intercambio",
     "join": "Unirse"
   },
   "cta": {
@@ -96,7 +93,7 @@ export const es: Dict = {
     "hero": {
       "kicker": "Genómica de mariposas y polillas neotropicales",
       "title": "Latinoamérica tiene una de las faunas de Lepidoptera más ricas de la Tierra, y una de las menos secuenciadas",
-      "body": "Caligo es una red colaborativa que genera recursos genómicos para las mariposas y polillas neotropicales, conecta el conocimiento regional, construye capacidad local y garantiza el reparto equitativo de beneficios."
+      "body": "Caligo es una red colaborativa que construye genomas de referencia para las mariposas y polillas neotropicales, liderada por investigadores de la región."
     },
     "journey": {
       "heading": "Del organismo al genoma",
@@ -165,25 +162,19 @@ export const es: Dict = {
       }
     },
     "questions": {
-      "heading": "Seis preguntas que los genomas ayudan a responder",
-      "intro": "Cada una enlaza con la evidencia publicada, los métodos que exigiría y sus límites, en la página de Ciencia."
+      "heading": "Tres preguntas que los genomas ayudan a responder",
+      "intro": "Cada una enlaza con lo que ya se ha publicado y con lo que haría falta para ir más lejos."
     },
     "pilotsTeaser": {
-      "heading": "Cuatro proyectos piloto propuestos, cuatro maneras de poner a prueba el enfoque",
-      "intro": "Cuatro enigmas biológicos orientan cuatro líneas de trabajo propuestas. La página de Proyectos piloto conecta cada pregunta con la evidencia publicada, los métodos y los siguientes pasos propuestos."
-    },
-    "name": {
-      "eyebrow": "Sobre el nombre",
-      "title": "El nombre de las mariposas búho",
-      "body": "Caligo es un género neotropical de mariposas búho, conocidas por su belleza y los grandes ocelos de sus alas.",
-      "sourceNote": "Caligo es un género neotropical de mariposas búho."
+      "heading": "Cuatro proyectos piloto propuestos",
+      "intro": "Cada uno parte de un enigma biológico que las colecciones y la secuenciación regionales podrían abordar."
     },
     "intro": {
-      "eyebrow": "Por qué importa",
+      "eyebrow": "Por qué mariposas y polillas",
       "title": "Una fauna rica en preguntas genómicas todavía abiertas",
       "body": [
-        "Las mariposas y polillas hacen visibles algunos de los experimentos más audaces de la evolución: transparencia, mimetismo, defensa química, migración, cambios de planta hospedera y cromosomas que se reorganizan.",
-        "Caligo vincula esas vidas observables con ejemplares documentados y evidencia genómica, para comparar preguntas regionales sin separar la secuencia del organismo que la produjo."
+        "Las mariposas y polillas hacen visibles a simple vista algunos de los experimentos más audaces de la evolución: mimetismo, transparencia, defensa química, migración.",
+        "La mayoría de las especies neotropicales nunca se han secuenciado. Caligo mantiene cada genoma unido a un ejemplar documentado, para que un resultado siempre pueda rastrearse hasta el animal del que salió."
       ]
     },
     "pillars": {
@@ -511,33 +502,28 @@ export const es: Dict = {
     "name": {
       "heading": "Por qué Caligo",
       "body": [
-        "Caligo es un género neotropical de mariposas búho, conocidas por su belleza y los grandes ocelos de sus alas."
+        "Caligo es un género neotropical de mariposas búho, llamadas así por los grandes ocelos de sus alas. Son comunes, se reconocen en toda la región y nunca han tenido un genoma de referencia: más o menos la situación que la red existe para cambiar."
       ]
-    },
-    "externalContext": {
-      "heading": "Parte de un paisaje científico más amplio",
-      "body": "Caligo se apoya en los métodos y estándares de iniciativas globales de genómica, repositorios públicos, colecciones, redes taxonómicas y marcos de gobernanza de datos.",
-      "disclaimer": "Citar o comparar otro proyecto no implica sociedad, compromiso ni respaldo."
-    },
-    "objectives": {
-      "heading": "Objetivos estratégicos",
-      "intro": "Caligo persigue metas científicas y organizativas complementarias."
     },
     "leadership": {
       "heading": "Liderazgo",
       "intro": "La iniciativa está coordinada por investigadores de instituciones en América Latina y en el extranjero."
     },
+    "facilities": {
+      "heading": "Instalaciones asociadas",
+      "intro": "Siete instituciones en Colombia, Panamá, Brasil, Ecuador y Chile aportan las plataformas de secuenciación con las que la red puede contar hoy."
+    },
+    "events": {
+      "heading": "Eventos",
+      "intro": "Dónde se ha reunido la red y qué viene después."
+    },
+    "positioning": {
+      "heading": "Conexiones y contexto",
+      "body": "Caligo participa en EBP Latinoamérica, la iniciativa regional del Earth BioGenome Project, y en Genotropics, una red que trabaja en la diversidad genómica de organismos tropicales."
+    },
     "governance": {
       "heading": "Gobernanza",
-      "intro": "Cómo se toman las decisiones y se organiza la red. Este es el modelo en borrador vigente; el comité organizador aún puede cambiarlo."
-    },
-    "vision": {
-      "heading": "Visión",
-      "body": "Un grupo internacional que lidera la exploración genómica de los lepidópteros latinoamericanos generando, curando y usando datos que documentan una de las faunas más ricas del planeta y a la vez menos secuenciadas, mientras construye las personas, alianzas e infraestructura necesarias para sostener el trabajo a largo plazo."
-    },
-    "mission": {
-      "heading": "Misión",
-      "body": "Una red colaborativa de investigadores, taxónomos, estudiantes e instituciones en todo el Neotrópico que trabajan juntos para producir recursos genómicos de alta calidad para mariposas y polillas. El trabajo está fundamentado en conocimiento taxonómico, guiado por prioridades de investigación regionales y conectado con la comunidad global de genómica de lepidópteros en igualdad de condiciones."
+      "intro": "Las decisiones las toma un comité organizador formado por las instituciones participantes. El modelo sigue siendo un borrador y el comité puede cambiarlo."
     }
   },
   "participate": {
@@ -578,14 +564,6 @@ export const es: Dict = {
       "heading": "Comienza de forma segura",
       "body": "Un primer correo no es el lugar para localidades precisas de especies amenazadas, registros inéditos de ejemplares, material biológico, archivos de permisos ni datos personales. Describe el tema en términos generales y acordamos una vía segura para el resto."
     },
-    "membership": {
-      "heading": "Membresía",
-      "intro": "Dos niveles de membresía definen diferentes roles y responsabilidades en la red."
-    },
-    "benefits": {
-      "heading": "Lo que gana quien se une",
-      "intro": "Lo que la red ofrece a quienes se suman, según el borrador de visión y gobernanza de la iniciativa."
-    },
     "languagePolicy": {
       "heading": "Idiomas de trabajo",
       "body": "Las comunicaciones oficiales se hacen en inglés y español. El portugués también se usa en las reuniones, con traducción informal entre quienes entienden ambos."
@@ -604,24 +582,6 @@ export const es: Dict = {
     "preprint": "Preprint; no había pasado por revisión por pares en la fecha de consulta.",
     "sensitiveLocalities": "No se muestran localidades precisas de especies sensibles.",
     "mutableData": "Base de datos o registro institucional cambiante; se indica la fecha de consulta."
-  },
-  "network": {
-    "metaTitle": "Red | Caligo",
-    "metaDescription": "La red de investigación de Caligo: instalaciones de secuenciación asociadas, líderes de la iniciativa y actividades próximas en América Latina.",
-    "title": "Red de investigación",
-    "intro": "Una colaboración liderada desde América Latina, con investigadores, instituciones e instalaciones que trabajan en genomas de referencia para mariposas y polillas neotropicales.",
-    "facilities": {
-      "heading": "Instalaciones asociadas",
-      "intro": "Instalaciones de secuenciación e investigación que participan en la iniciativa."
-    },
-    "events": {
-      "heading": "Eventos",
-      "intro": "Actividades de la iniciativa y encuentros planificados."
-    },
-    "positioning": {
-      "heading": "Conexiones y contexto",
-      "body": "Caligo participa en EBP Latinoamérica, la iniciativa regional del Earth BioGenome Project, y en Genotropics, una red que trabaja en la diversidad genómica de organismos tropicales."
-    }
   },
   "notFound": {
     "title": "Esta página todavía no ha sido ensamblada",

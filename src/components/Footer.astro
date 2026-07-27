@@ -11,16 +11,14 @@ const { locale } = Astro.props;
 const t = getDict(locale);
 const base = import.meta.env.BASE_URL;
 
-// Footer nav mirrors the 5-item primary nav — Home / Science / Proposed
-// pilots / About / Participate. Network + Capacity are removed (the
-// noindex compat pages at /network and /capacity remain reachable via
-// external links but are not surfaced in navigation).
+// Footer nav mirrors the primary nav. Keep the two in step: verify-nav
+// fails the build if the footer omits a primary destination.
 const items = [
   { path: '/', label: t.nav.home },
   { path: '/science', label: t.nav.science },
   { path: '/projects', label: t.nav.proposedPilots },
   { path: '/about', label: t.nav.about },
-  { path: '/participate', label: t.nav.participate },
+  { path: '/participate', label: t.nav.join },
 ];
 ---
 
