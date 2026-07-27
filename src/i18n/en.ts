@@ -128,6 +128,17 @@ export const en = {
     "title": "Science",
     "intro": "A reference genome is a map. What it can tell you depends entirely on the organisms, collections and observations placed around it. Here are three questions where that combination is already producing answers in the Neotropics.",
     "questionsHeading": "Three questions genomes can help investigate",
+    "chromosomeFigure": {
+      "src": "media/figures-published/rueda-2024-fig1-chromosome-counts.jpg",
+      "citation": "Rueda-M et al. 2024, PLOS Genetics, Fig 1",
+      "citationUrl": "https://doi.org/10.1371/journal.pgen.1011318",
+      "licence": "CC0 1.0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "width": 1600,
+      "height": 1187,
+      "alt": "Phylogeny of the Heliconius sara/sapho clade. Grey boxes give haploid chromosome counts along the tree, ranging from 21 to 56–60. Three dashed arrows mark separate W–autosome fusion events, labelled W+4, W+9 and W+14. Range maps and wing photographs of each subspecies sit to the right.",
+      "caption": "The published evidence behind this section. Read the grey boxes: haploid chromosome counts run from 21 in most of the clade to between 56 and 60 in the sapho and eleuchia lineages. The three dashed arrows mark the separate occasions on which an autosome fused to the W."
+    },
     "questions": [
       {
         "heading": "How can chromosomes split and fuse while a lineage keeps evolving?",

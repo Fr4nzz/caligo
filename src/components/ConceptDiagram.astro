@@ -40,7 +40,6 @@ const copy = {
       outcome: 'And it is the part that makes it a different butterfly.',
       traitsOne: 'colour pattern 1, 5, 10, 12, 13, 15, 18 · hindwing shape 20',
       traitsTwo: 'host plant 2 · male pheromones 19, 20',
-      caveat: 'Mate choice was linked to chromosome 20 but did not reach significance.',
       question: 'compare chromosome-scale assemblies',
     },
   },
@@ -70,7 +69,6 @@ const copy = {
       outcome: 'Y es justo la parte que la hace una mariposa distinta.',
       traitsOne: 'patrón de color 1, 5, 10, 12, 13, 15, 18 · forma del ala 20',
       traitsTwo: 'planta hospedera 2 · feromonas del macho 19, 20',
-      caveat: 'La elección de pareja se asoció al cromosoma 20, pero sin significación.',
       question: 'comparar ensamblajes a escala cromosómica',
     },
   },
@@ -248,7 +246,6 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
         <text x="0" y="188" class="chr-out ig-say">{c.introgression.outcome}</text>
         <text x="0" y="210" class="chr-note">{c.introgression.traitsOne}</text>
         <text x="0" y="226" class="chr-note">{c.introgression.traitsTwo}</text>
-        <text x="0" y="242" class="chr-note">{c.introgression.caveat}</text>
       </g>
     )}
 
@@ -912,12 +909,14 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   /* 600x266 viewBox: at ~30rem of column width the natural height is ~13.3rem,
      so the shared 12.5rem cap was shrinking these two and centring them in a
      much wider box. */
-  [data-kind='chromosome'] .concept-svg,
-  [data-kind='wfusion'] .concept-svg { max-height: 18rem; }
+  /* These caps exist to stop a wide figure eating the viewport. They must
+     stay ABOVE the height the container width implies, or the SVG scales
+     down to satisfy the cap and preserveAspectRatio centres it, leaving
+     dead space on both sides. Container max-width is set by the page. */
+  [data-kind='chromosome'] .concept-svg { max-height: 22rem; }
+  [data-kind='introgression'] .concept-svg { max-height: 21rem; }
   /* 720x255 viewBox at the 46rem lone-figure width is ~16.3rem tall. */
-  [data-kind='connectivity'][data-context='science'] .concept-svg { max-height: 17rem; }
   [data-context='pilot'] .concept-svg { max-height: 10.75rem; }
-  [data-kind='connectivity'][data-context='pilot'] .concept-svg { max-height: 13.5rem; }
   .concept-mobile-flow { display: none; }
   @media (max-width: 34rem) {
     .concept-heading { display: grid; }

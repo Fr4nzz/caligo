@@ -125,6 +125,17 @@ export const es: Dict = {
     "title": "Ciencia",
     "intro": "Un genoma de referencia es un mapa. Lo que puede decirte depende por completo de los organismos, las colecciones y las observaciones que lo rodean. Estas son tres preguntas donde esa combinación ya está dando respuestas en el Neotrópico.",
     "questionsHeading": "Tres preguntas que los genomas pueden ayudar a investigar",
+    "chromosomeFigure": {
+      "src": "media/figures-published/rueda-2024-fig1-chromosome-counts.jpg",
+      "citation": "Rueda-M et al. 2024, PLOS Genetics, Fig 1",
+      "citationUrl": "https://doi.org/10.1371/journal.pgen.1011318",
+      "licence": "CC0 1.0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "width": 1600,
+      "height": 1187,
+      "alt": "Filogenia del clado sara/sapho de Heliconius. Las cajas grises dan los conteos de cromosomas haploides a lo largo del árbol, de 21 a 56–60. Tres flechas punteadas señalan fusiones independientes entre el cromosoma W y un autosoma, rotuladas W+4, W+9 y W+14. A la derecha aparecen mapas de distribución y fotografías de las alas de cada subespecie.",
+      "caption": "La evidencia publicada detrás de esta sección. Fíjate en las cajas grises: los conteos de cromosomas haploides van de 21 en la mayor parte del clado a entre 56 y 60 en los linajes sapho y eleuchia. Las tres flechas punteadas marcan las ocasiones independientes en que un autosoma se fusionó con el W."
+    },
     "questions": [
       {
         "heading": "¿Cómo pueden dividirse y fusionarse los cromosomas mientras un linaje sigue evolucionando?",

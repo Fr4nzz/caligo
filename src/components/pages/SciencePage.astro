@@ -36,6 +36,7 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
 import ConceptDiagram from '../ConceptDiagram.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
+import PublishedFigure from '../PublishedFigure.astro';
 import { getDict, type Locale } from '../../i18n';
 
 interface Props {
@@ -113,6 +114,20 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
             {diagram && (
               <div class="question-diagram">
                 <ConceptDiagram locale={locale} kind={diagram} context="science" />
+              </div>
+            )}
+
+            {/*
+              The custom diagram above teaches the mechanism — why a
+              broken lepidopteran chromosome keeps both halves. This
+              figure is the published evidence for the counts and the
+              fusions. Different jobs, so both earn their place. It is
+              CC0, so we may reproduce it freely; see the .LICENSE.md
+              beside the image.
+            */}
+            {anchor === 'chromosomes' && (
+              <div class="question-diagram question-diagram--wide">
+                <PublishedFigure locale={locale} {...s.chromosomeFigure} />
               </div>
             )}
           </article>
@@ -204,7 +219,17 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
   }
   .question-prose > p:last-child { margin-bottom: 0; }
   .question-figure { min-width: 0; }
-  .question-diagram { margin-top: var(--space-l); }
+  /* A diagram is artwork, not body text: it gets more than the reading
+     measure but not the full container, or it scales past the point where
+     its own labels stay in proportion to the prose. */
+  .question-diagram {
+    margin-top: var(--space-l);
+    max-width: 46rem;
+  }
+  /* A published figure carries real detail — chromosome counts in small
+     grey boxes — so it gets the full container rather than the schematic
+     width. A reader should not have to open the paper to read it. */
+  .question-diagram--wide { max-width: 64rem; }
 
   .question-sources {
     margin-top: var(--space-m);
