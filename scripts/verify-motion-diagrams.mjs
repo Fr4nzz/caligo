@@ -81,23 +81,36 @@ ok(/asm-check--continuity/.test(assembly) && /asm-check--completeness/.test(asse
 ok(!/asm-disclaimer|not sequence or Hi-C data|no son datos de secuencia o Hi-C/.test(diagramCopy), 'assembly removes the repeated conceptual-not-data disclaimer');
 ok(/prefers-reduced-motion:\s*reduce/.test(assembly) && /animation:\s*none\s*!important/.test(assembly) && /is-reduced/.test(assembly), 'assembly explainer has a complete reduced-motion state');
 ok(/@media \(max-width: 38rem\)[\s\S]*?assembly-mobile-flow/.test(assembly) && /assembly-step-number/.test(assembly), 'assembly explainer keeps the SVG and an ordered mobile summary');
-ok(/fission-source/.test(concepts) && /connectivity-scene/.test(concepts) && /workflow-stage/.test(concepts) && /migration-link/.test(concepts), 'all four concept-diagram families have didactic animation stages');
+ok(/chromosome-scene/.test(concepts) && /wfusion-scene/.test(concepts) && /connectivity-scene/.test(concepts) && /workflow-stage/.test(concepts) && /migration-link/.test(concepts), 'all concept-diagram families have didactic animation stages');
 ok(/prefers-reduced-motion:\s*reduce/.test(concepts) && /animation:\s*none\s*!important/.test(concepts), 'concept-diagram motion has an instant reduced-motion path');
 ok(!/setInterval|autoplay/.test(concepts), 'concept diagrams never autoplay or loop without user input');
 ok(/@media \(max-width: 34rem\)[\s\S]*?\.concept-svg\s*\{[\s\S]*?display:\s*block/.test(concepts), 'mobile keeps the illustrated SVG visible');
 ok(groupFocus.length > 0 && !/transform\s*:/.test(groupFocus), 'animations preserve positioned SVG group transforms');
-ok(/@keyframes fusion-input-orange\s*\{\s*0%\s*\{\s*opacity:\s*0/.test(concepts) && /@keyframes fusion-input-yellow\s*\{\s*0%\s*\{\s*opacity:\s*0/.test(concepts), 'fusion inputs stay hidden until the fusion stage begins');
-ok(/breakpoint-line/.test(concepts) && /internal break point/.test(concepts), 'fission shows one chromosome breaking at an internal position');
-ok(/fission-product--orange/.test(concepts) && /fission-product--yellow/.test(concepts) && /new ends stabilised/.test(concepts), 'fission produces two colour-preserving chromosomes with stabilised new ends');
-ok(/fusion-result-segment--orange/.test(concepts) && /fusion-result-segment--yellow/.test(concepts) && /fusion-junction/.test(concepts), 'fusion retains the orange and yellow chromosome regions across an end-to-end junction');
+// The generic "two chromosomes become one" figure was retired: it taught
+// nothing specific to Lepidoptera. Fusion is now shown only where it carries a
+// butterfly-specific fact — a W–autosome fusion — and the unfused inputs are
+// hidden at rest so the resting figure shows the fused outcome.
+ok(/\.wf-in\s*\{\s*opacity:\s*0;\s*\}/.test(concepts) && /\.wf-neo\b/.test(concepts), 'the W-fusion inputs are hidden at rest and the fused chromosome is the resting state');
+// The same break is drawn at the same x in both rows (263), so the figure is a
+// controlled comparison: one event, two fates.
+ok((concepts.match(/class="chr-cut"/g) || []).length === 2 && /d="M263 36 V74"/.test(concepts) && /d="M263 176 V214"/.test(concepts), 'the same internal break is drawn at the same position in both rows');
+// The butterfly-specific point: both pieces of the break keep an anchor and
+// both are inherited, against a monocentric row where one piece is lost.
+ok(/chr-fis-l/.test(concepts) && /chr-fis-r/.test(concepts) && /bothKept: 'both pieces are kept'/.test(concepts) && /bothKept: 'se conservan los dos'/.test(concepts), 'the holocentric row keeps both pieces of the break, in both languages');
+// The W stays visually distinct inside the fused chromosome, so the reader can
+// see which part is female-limited rather than being told.
+ok(/wf-w--butt/.test(concepts) && /autosome: 'autosome'/.test(concepts) && /autosome: 'autosoma'/.test(concepts), 'the fused chromosome still shows the W distinct from the autosome, in both languages');
 // Each fragment now starts on the half of the source chromosome it came from
 // (translateX(-254px) / -283px) and travels to its labelled place, so the break
 // is shown happening rather than implied by two shapes appearing alongside an
 // intact chromosome. The terminal phase still parts them in opposite
 // directions, which is what the original contract was protecting.
-ok(/@keyframes fission-detach-orange[\s\S]*?translateX\(-254px\)[\s\S]*?translateX\(14px\)/.test(concepts) && /@keyframes fission-detach-yellow[\s\S]*?translateX\(-283px\)[\s\S]*?translateX\(-14px\)/.test(concepts), 'fission fragments emerge from the source halves and part in opposite directions');
-ok(/@keyframes fuse-orange[\s\S]*?translateX\(-18px\)/.test(concepts) && /@keyframes fuse-yellow[\s\S]*?translateX\(18px\)/.test(concepts), 'fusion segments visibly converge toward the junction');
-ok(/holocentric chromosomes without a single localised centromere/.test(concepts), 'the diagram states the Lepidoptera holocentric context without inventing a centromere position');
+// Fragments part in opposite directions, and only the monocentric row loses one.
+ok(/@keyframes chr-part-l[\s\S]*?translateX\(-10px\)/.test(concepts) && /@keyframes chr-part-r[\s\S]*?translateX\(10px\)/.test(concepts) && (concepts.match(/class="chr-lost"/g) || []).length === 1, 'break fragments part in opposite directions and only the monocentric row loses a piece');
+ok(/@keyframes wf-close-w[\s\S]*?translateX\(-26px\)/.test(concepts) && /@keyframes wf-close-a[\s\S]*?translateX\(26px\)/.test(concepts), 'the W and the autosome visibly converge before they fuse');
+// Holocentry is now drawn (anchors along the length) as well as stated, and the
+// dot count is declared schematic so it is not read as a measurement.
+ok(/holocentric chromosomes: the spindle anchors along the whole length/.test(concepts) && /cromosomas holocéntricos: el huso se ancla a lo largo de todo el cromosoma/.test(concepts) && /their number is schematic/.test(concepts) && /su cantidad es esquemática/.test(concepts), 'holocentry is drawn and stated in both languages, with the anchor count declared schematic');
 ok(/Colours and branch lengths guide the explanation and do not represent measured values/.test(concepts), 'connectivity description preserves a concise boundary around measured values');
 ok(/gene-flow-panel--homogenisation/.test(concepts) && /gene-flow-panel--hybrid-speciation/.test(concepts) && /gene-flow-divider/.test(concepts), 'connectivity compares homogenisation and hybrid-speciation outcomes in paired panels');
 ok(/early-split-branch--dark/.test(concepts) && /early-split-branch--pale/.test(concepts) && /early-merge-branch--dark/.test(concepts) && /early-merge-branch--pale/.test(concepts) && /homogenisation-node/.test(concepts), 'early lineages grow from one lower split to a separate upper reconvergence stage');
@@ -114,6 +127,7 @@ ok(/\.connectivity-scene \.micro-label,[\s\S]*?paint-order:\s*stroke fill[\s\S]*
 // token contradicted that. Three discrete marks cross together; discrete marks
 // still carry no blended-trait or 50/50 ancestry claim, which is what this
 // contract exists to protect, and the disclaimer string is still required.
+ok(/femaleHeading: 'Here the female carries a chromosome the male never has'/.test(concepts) && /femaleHeading: 'Aquí la hembra lleva un cromosoma que el macho nunca tiene'/.test(concepts) && /outcome: 'That copy is then passed only from mother to daughter\.'/.test(concepts) && /outcome: 'Esa copia ya solo pasa de madre a hija\.'/.test(concepts) && /three independent fusions of this kind are known in Heliconius/i.test(concepts) && /tres fusiones así/i.test(concepts), 'the W-fusion figure carries the ZW surprise, the female-limited inheritance and the three-independent-fusions fact, in both languages');
 ok(/trait-mark--source/.test(concepts) && /late-introgression-token/.test(concepts) && /trait-mark--hybrid/.test(concepts) && /trait-linked regions cross lineages/.test(concepts) && /regiones ligadas a rasgos cruzan entre linajes/.test(concepts) && (concepts.match(/trait-token-shape/g) || []).length >= 3 && /does not imply equal genomic contributions or blended traits/.test(concepts), 'several trait-linked regions move between lineages without a blended-trait or 50/50 ancestry claim');
 ok(/early-split-branch[\s\S]*?1\.0s[\s\S]*?early-gene-flow[\s\S]*?2\.3s[\s\S]*?early-merge-branch[\s\S]*?3\.45s[\s\S]*?late-tip-branch[\s\S]*?3\.82s[\s\S]*?recipient-butterfly[\s\S]*?4\.78s[\s\S]*?final-state-label[\s\S]*?4\.78s/.test(concepts) && /data-duration-ms=\{kind === 'connectivity' \? '6500' : '5000'\}/.test(concepts), 'connectivity playback pauses between bottom-to-top lineage stages and runs long enough to finish');
 ok(/@keyframes hybrid-allele-cross[\s\S]*?translateX\(0\)[\s\S]*?translateX\(-106px\)/.test(concepts) && /s41586-024-07263-w/.test(concepts) && /pnas\.2410939122/.test(concepts) && /putative hybrid origins/i.test(concepts), 'right-to-left variant transfer and evidence links distinguish demonstrated Heliconius speciation from putative Ithomiini origins');

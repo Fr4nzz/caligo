@@ -1,7 +1,7 @@
 ---
 import { getDict, type Locale } from '../i18n';
 
-type DiagramKind = 'chromosome' | 'connectivity' | 'monitoring' | 'migration' | 'voucher';
+type DiagramKind = 'chromosome' | 'wfusion' | 'connectivity' | 'monitoring' | 'migration' | 'voucher';
 
 interface Props {
   readonly locale: Locale;
@@ -19,17 +19,30 @@ const copy = {
     play: 'Play the explanation',
     replay: 'Replay',
     chromosome: {
-      title: 'Chromosome fission and fusion',
-      desc: 'Chromosome fission divides one chromosome into two after a break and stabilisation of the new ends. Fusion joins two chromosomes end to end while preserving both chromosome regions. Lepidoptera have holocentric chromosomes without a single localised centromere. Colours distinguish chromosome regions, and break points and junctions vary.',
-      one: 'one chromosome',
-      two: 'two chromosomes',
-      joined: 'one joined chromosome',
-      fission: 'fission',
-      fusion: 'fusion',
-      breakpoint: 'internal break point',
-      newEnds: 'two fragments, new ends stabilised',
-      junction: 'orange and yellow regions, end-to-end junction',
-      holocentric: 'Holocentric in Lepidoptera. Colours distinguish chromosome regions.',
+      title: 'What happens when a chromosome breaks',
+      desc: 'In most animals the spindle grips a chromosome at a single anchor point. If the chromosome breaks, the piece that does not carry that point is not pulled into the daughter cells and is lost. Butterflies and moths have holocentric chromosomes: the spindle anchors along the whole length, so both pieces of a break keep an anchor and both are inherited. That is why chromosome number can change in this group. The dots mark spindle anchors and their number is schematic.',
+      mostAnimals: 'Most animals',
+      lepidoptera: 'Butterflies and moths',
+      onePointA: 'one anchor',
+      onePointB: 'at a single point',
+      allAlongA: 'anchors along',
+      allAlongB: 'the whole chromosome',
+      lostPiece: 'the piece without an anchor is lost',
+      bothKept: 'both pieces are kept',
+      footnote: 'The orange dots are the spindle anchor. This is why the number of chromosomes can change.',
+      question: 'compare chromosome-scale assemblies',
+    },
+    wfusion: {
+      title: 'A fusion with the W chromosome',
+      desc: 'In butterflies and moths the female carries a chromosome the male never has: the W. A fusion can attach an ordinary chromosome, an autosome, to that W. From then on that copy is no longer inherited like the others; it passes only from mother to daughter. Three such fusions have been identified in Heliconius, each one independently.',
+      femaleHeading: 'Here the female carries a chromosome the male never has',
+      male: 'male',
+      female: 'female',
+      wNote: 'the W travels only in females',
+      fusionHeading: 'A fusion can attach an ordinary chromosome',
+      autosome: 'autosome',
+      outcome: 'That copy is then passed only from mother to daughter.',
+      footnote: 'Three independent fusions of this kind are known in Heliconius (Rueda-M et al. 2024).',
       question: 'compare chromosome-scale assemblies',
     },
     connectivity: {
@@ -95,17 +108,30 @@ const copy = {
     play: 'Reproducir la explicación',
     replay: 'Repetir',
     chromosome: {
-      title: 'Fisión y fusión cromosómica',
-      desc: 'La fisión divide un cromosoma en dos después de una ruptura y de la estabilización de los nuevos extremos. La fusión une dos cromosomas extremo con extremo y conserva ambas regiones cromosómicas. Los lepidópteros tienen cromosomas holocéntricos, sin un único centrómero localizado. Los colores distinguen regiones cromosómicas, y los puntos de ruptura y unión pueden variar.',
-      one: 'un cromosoma',
-      two: 'dos cromosomas',
-      joined: 'un cromosoma unido',
-      fission: 'fisión',
-      fusion: 'fusión',
-      breakpoint: 'punto de ruptura interno',
-      newEnds: 'dos fragmentos, nuevos extremos estabilizados',
-      junction: 'regiones naranja y amarilla, unión extremo con extremo',
-      holocentric: 'Holocéntricos en lepidópteros. Los colores distinguen regiones cromosómicas.',
+      title: 'Qué pasa cuando un cromosoma se parte',
+      desc: 'En la mayoría de los animales el huso sujeta el cromosoma en un solo punto de anclaje. Si el cromosoma se parte, el trozo que no lleva ese punto no se reparte hacia las células hijas y se pierde. Las mariposas y polillas tienen cromosomas holocéntricos: el huso se ancla a lo largo de todo el cromosoma, así que los dos trozos de una ruptura conservan anclaje y los dos se heredan. Por eso el número de cromosomas puede cambiar en este grupo. Los puntos marcan anclajes al huso y su cantidad es esquemática.',
+      mostAnimals: 'La mayoría de los animales',
+      lepidoptera: 'Mariposas y polillas',
+      onePointA: 'un anclaje',
+      onePointB: 'en un punto',
+      allAlongA: 'anclaje por',
+      allAlongB: 'todo el cromosoma',
+      lostPiece: 'se pierde el trozo sin anclaje',
+      bothKept: 'se conservan los dos',
+      footnote: 'Los puntos naranjas son el anclaje al huso. Por eso el número de cromosomas puede cambiar.',
+      question: 'comparar ensamblajes a escala cromosómica',
+    },
+    wfusion: {
+      title: 'Una fusión con el cromosoma W',
+      desc: 'En mariposas y polillas la hembra lleva un cromosoma que el macho nunca tiene: el W. Una fusión puede unirle un cromosoma corriente, un autosoma. Desde ese momento esa copia deja de heredarse como las demás y pasa solo de madre a hija. En Heliconius se han identificado tres fusiones de este tipo, cada una de forma independiente.',
+      femaleHeading: 'Aquí la hembra lleva un cromosoma que el macho nunca tiene',
+      male: 'macho',
+      female: 'hembra',
+      wNote: 'el W solo va en las hembras',
+      fusionHeading: 'Una fusión puede pegarle un cromosoma corriente',
+      autosome: 'autosoma',
+      outcome: 'Esa copia ya solo pasa de madre a hija.',
+      footnote: 'En Heliconius se conocen tres fusiones así, independientes (Rueda-M et al. 2024).',
       question: 'comparar ensamblajes a escala cromosómica',
     },
     connectivity: {
@@ -186,12 +212,18 @@ const connectivityOutcomes = kind === 'connectivity'
   : [];
 const mobileSteps: readonly string[] = kind === 'chromosome'
   ? [
-      `${c.chromosome.one} → ${c.chromosome.breakpoint}`,
-      c.chromosome.newEnds,
-      `${c.chromosome.two} → ${c.chromosome.junction}`,
-      c.chromosome.joined,
-      c.chromosome.holocentric,
+      `${c.chromosome.mostAnimals}: ${c.chromosome.onePointA} ${c.chromosome.onePointB}`,
+      c.chromosome.lostPiece,
+      `${c.chromosome.lepidoptera}: ${c.chromosome.allAlongA} ${c.chromosome.allAlongB}`,
+      c.chromosome.bothKept,
     ]
+  : kind === 'wfusion'
+    ? [
+        `${c.wfusion.male}: Z Z`,
+        `${c.wfusion.female}: Z W`,
+        c.wfusion.fusionHeading,
+        c.wfusion.outcome,
+      ]
   : kind === 'connectivity'
     ? []
     : kind === 'monitoring'
@@ -227,7 +259,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     </button>
   </figcaption>
 
-  <svg class="concept-svg" viewBox={kind === 'connectivity' ? '0 0 720 255' : kind === 'chromosome' ? '0 0 600 220' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
+  <svg class="concept-svg" viewBox={kind === 'connectivity' ? '0 0 720 255' : kind === 'chromosome' ? '0 0 600 266' : kind === 'wfusion' ? '0 0 600 266' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
     <title id={`${id}-title`}>{k.title}</title>
     <desc id={`${id}-desc`}>{k.desc}</desc>
     <defs>
@@ -248,54 +280,94 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
 
     {kind === 'chromosome' && (
       <g class="diagram-scene chromosome-scene">
-        {/* Fission: one two-colour chromosome breaks at an internal point. */}
-        <text x="68" y="20" class="group-label">{c.chromosome.fission}</text>
-        <g class="fission-source">
-          <path d="M39 37 H105 V59 H39 A11 11 0 0 1 28 48 A11 11 0 0 1 39 37 Z" class="chromosome-segment chromosome-segment--orange" />
-          <path d="M105 37 H171 A11 11 0 0 1 182 48 A11 11 0 0 1 171 59 H105 Z" class="chromosome-segment chromosome-segment--yellow" />
-          <rect x="28" y="37" width="154" height="22" rx="11" class="chromosome-outline" />
-          <path d="M105 34 V62" class="breakpoint-line" />
+        {/* Most animals: a single anchor point, so a break loses one piece. */}
+        <text x="0" y="18" class="chr-head">{c.chromosome.mostAnimals}</text>
+        <text x="0" y="60" class="chr-tag">{c.chromosome.onePointA}</text>
+        <text x="0" y="76" class="chr-tag">{c.chromosome.onePointB}</text>
+
+        <path d="M176 42 H263 V68 H176 A13 13 0 0 1 163 55 A13 13 0 0 1 176 42 Z" class="chr-body" />
+        <circle cx="213" cy="55" r="7" class="chr-anch" />
+        <g class="chr-lost">
+          <path d="M263 42 H350 A13 13 0 0 1 363 55 A13 13 0 0 1 350 68 H263 Z" class="chr-body chr-lost-body" />
         </g>
-        <text x="105" y="78" class="node-label">{c.chromosome.one}</text>
-        <text x="105" y="94" class="micro-label">{c.chromosome.breakpoint}</text>
+        <rect x="259" y="43" width="8" height="24" class="chr-seam chr-seam--a" />
+        <path d="M263 36 V74" class="chr-cut" />
+        <text x="345" y="100" class="chr-grey chr-say" text-anchor="middle">{c.chromosome.lostPiece}</text>
 
-        <path d="M200 48 H254" class="flow process-line process-line--one" marker-end={`url(#${id}-arrow)`} />
-        {/* Two arrowheads pointing APART, mirroring the motion the fragments
-            make below. Must not be confusable with the converging pair on the
-            fusion row. Sits above the flow line so it never bisects it. */}
-        <path d="M223 26 L217 32 L223 38 M233 26 L239 32 L233 38" class="split-mark" />
+        <path d="M0 128 H600" class="chr-rule" />
 
-        <g class="fission-product fission-product--orange">
-          <rect x="282" y="37" width="76" height="22" rx="11" class="chromosome-segment chromosome-segment--orange" />
-          <path d="M356 41 V55" class="new-end new-end--orange" />
+        {/* Butterflies and moths: anchors along the whole chromosome, so both
+            pieces of the same break keep an anchor and both are inherited. */}
+        <text x="0" y="158" class="chr-head">{c.chromosome.lepidoptera}</text>
+        <text x="0" y="200" class="chr-tag">{c.chromosome.allAlongA}</text>
+        <text x="0" y="216" class="chr-tag">{c.chromosome.allAlongB}</text>
+
+        <g class="chr-fis-l">
+          <path d="M176 182 H263 V208 H176 A13 13 0 0 1 163 195 A13 13 0 0 1 176 182 Z" class="chr-body" />
+          <g class="chr-anch">
+            <circle cx="177" cy="195" r="5" /><circle cx="197" cy="195" r="5" />
+            <circle cx="217" cy="195" r="5" /><circle cx="237" cy="195" r="5" />
+            <circle cx="257" cy="195" r="5" />
+          </g>
         </g>
-        <g class="fission-product fission-product--yellow">
-          <rect x="388" y="37" width="76" height="22" rx="11" class="chromosome-segment chromosome-segment--yellow" />
-          <path d="M390 41 V55" class="new-end new-end--yellow" />
+        <g class="chr-fis-r">
+          <path d="M263 182 H350 A13 13 0 0 1 363 195 A13 13 0 0 1 350 208 H263 Z" class="chr-body" />
+          <g class="chr-anch">
+            <circle cx="269" cy="195" r="5" /><circle cx="289" cy="195" r="5" />
+            <circle cx="309" cy="195" r="5" /><circle cx="329" cy="195" r="5" />
+            <circle cx="349" cy="195" r="5" />
+          </g>
         </g>
-        <text x="373" y="78" class="node-label">{c.chromosome.two}</text>
-        <text x="373" y="94" class="micro-label">{c.chromosome.newEnds}</text>
+        <rect x="259" y="183" width="8" height="24" class="chr-seam chr-seam--b" />
+        <path d="M263 176 V214" class="chr-cut" />
+        <text x="390" y="200" class="chr-out chr-say">{c.chromosome.bothKept}</text>
 
-        {/* Fusion: distinct orange and yellow chromosomes join end-to-end. */}
-        <text x="68" y="120" class="group-label">{c.chromosome.fusion}</text>
-        <rect x="28" y="136" width="66" height="22" rx="11" class="chromosome-segment chromosome-segment--orange fusion-source fusion-source--orange" />
-        <rect x="118" y="136" width="66" height="22" rx="11" class="chromosome-segment chromosome-segment--yellow fusion-source fusion-source--yellow" />
-        <path d="M106 133 V161" class="fusion-junction fusion-contact" />
-        <text x="106" y="178" class="node-label">{c.chromosome.two}</text>
+        <text x="0" y="252" class="chr-note">{c.chromosome.footnote}</text>
+      </g>
+    )}
 
-        <path d="M200 147 H254" class="flow process-line process-line--two" marker-end={`url(#${id}-arrow)`} />
-        {/* Two arrowheads pointing TOWARDS each other. */}
-        <path d="M217 125 L223 131 L217 137 M239 125 L233 131 L239 137" class="join-mark" />
+    {kind === 'wfusion' && (
+      <g class="diagram-scene wfusion-scene">
+        {/* In Lepidoptera the female is the heterogametic sex: ZW, not XY. */}
+        <text x="0" y="18" class="chr-head">{c.wfusion.femaleHeading}</text>
 
-        <g class="fusion-result">
-          <path d="M293 136 H372 V158 H293 A11 11 0 0 1 282 147 A11 11 0 0 1 293 136 Z" class="chromosome-segment chromosome-segment--orange fusion-result-segment fusion-result-segment--orange" />
-          <path d="M372 136 H451 A11 11 0 0 1 462 147 A11 11 0 0 1 451 158 H372 Z" class="chromosome-segment chromosome-segment--yellow fusion-result-segment fusion-result-segment--yellow" />
-          <rect x="282" y="136" width="180" height="22" rx="11" class="chromosome-outline" />
-          <path d="M372 133 V161" class="fusion-junction" />
+        <text x="0" y="62" class="wf-who">{c.wfusion.male}</text>
+        <rect x="150" y="48" width="58" height="20" rx="10" class="wf-chr" />
+        <text x="179" y="63" class="wf-glyph">Z</text>
+        <rect x="216" y="48" width="58" height="20" rx="10" class="wf-chr" />
+        <text x="245" y="63" class="wf-glyph">Z</text>
+
+        <text x="0" y="98" class="wf-who">{c.wfusion.female}</text>
+        <rect x="150" y="84" width="58" height="20" rx="10" class="wf-chr" />
+        <text x="179" y="99" class="wf-glyph">Z</text>
+        <rect x="216" y="84" width="40" height="20" rx="10" class="wf-w" />
+        <text x="236" y="99" class="wf-glyph wf-glyph--on-accent">W</text>
+        <text x="272" y="99" class="chr-tag">{c.wfusion.wNote}</text>
+
+        <path d="M0 126 H600" class="chr-rule" />
+
+        {/* The fusion itself: the W and an autosome close together and become
+            one chromosome that is transmitted only down the female line. */}
+        <text x="0" y="156" class="chr-head">{c.wfusion.fusionHeading}</text>
+
+        <g class="wf-in wf-in-w">
+          <rect x="150" y="182" width="40" height="22" rx="11" class="wf-w" />
+          <text x="170" y="198" class="wf-glyph wf-glyph--on-accent">W</text>
         </g>
-        <text x="372" y="178" class="node-label">{c.chromosome.joined}</text>
-        <text x="372" y="194" class="micro-label">{c.chromosome.junction}</text>
-        <text x="300" y="214" class="footer-label chromosome-note">{c.chromosome.holocentric}</text>
+        <g class="wf-in wf-in-a">
+          <rect x="216" y="182" width="104" height="22" rx="11" class="wf-chr" />
+          <text x="268" y="198" class="wf-glyph">{c.wfusion.autosome}</text>
+        </g>
+        <g class="wf-neo">
+          <rect x="176" y="182" width="40" height="22" rx="11" class="wf-w" />
+          <rect x="206" y="182" width="104" height="22" rx="11" class="wf-chr" />
+          <rect x="176" y="182" width="34" height="22" class="wf-w wf-w--butt" />
+          <text x="192" y="198" class="wf-glyph wf-glyph--on-accent">W</text>
+          <text x="262" y="198" class="wf-glyph">{c.wfusion.autosome}</text>
+        </g>
+
+        <text x="0" y="232" class="chr-out wf-say">{c.wfusion.outcome}</text>
+        <text x="0" y="252" class="chr-note">{c.wfusion.footnote}</text>
       </g>
     )}
 
@@ -859,28 +931,68 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     stroke-linejoin: round;
   }
 
+
+  /* ── Chromosome break + W-fusion figures ──────────────────────────────
+     Body face rather than mono: these carry sentence-length labels, and the
+     Spanish strings run ~25% longer than the English ones. */
+  .chr-head { font-family: var(--font-body); font-size: 15px; font-weight: 600; fill: var(--text-strong); }
+  .chr-tag  { font-family: var(--font-body); font-size: 13px; fill: var(--text-muted); }
+  .chr-out  { font-family: var(--font-body); font-size: 15px; font-weight: 600; fill: var(--accent); }
+  .chr-grey { font-family: var(--font-body); font-size: 14px; font-weight: 500; fill: var(--text-faint); }
+  .chr-note { font-family: var(--font-body); font-size: 12px; fill: var(--text-faint); }
+  .chr-rule { fill: none; stroke: var(--hairline); stroke-width: 1; }
+  .chr-body { fill: var(--bg-inset); stroke: var(--text-strong); stroke-width: 2; }
+  .chr-anch { fill: var(--accent); }
+  .chr-cut  { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 4 4; opacity: 0; }
+  .chr-seam { fill: var(--bg-inset); opacity: 0; }
+  .wf-who   { font-family: var(--font-body); font-size: 14px; font-weight: 500; fill: var(--text-muted); }
+  .wf-chr   { fill: var(--bg-inset); stroke: var(--text-strong); stroke-width: 2; }
+  .wf-w     { fill: var(--accent); stroke: var(--accent-strong); stroke-width: 2; }
+  .wf-w--butt { stroke: none; }
+  .wf-glyph { font-family: var(--font-body); font-size: 13px; font-weight: 600; fill: var(--text-strong); text-anchor: middle; }
+  .wf-glyph--on-accent { fill: var(--bg-raised); }
+
+  /* Resting state IS the finished explanation, so reduced motion and a reader
+     who never presses play both get the complete result. */
+  .chr-lost      { transform: translateX(40px); opacity: 0.34; }
+  .chr-lost-body { stroke-dasharray: 5 5; }
+  .chr-fis-l     { transform: translateX(-10px); }
+  .chr-fis-r     { transform: translateX(10px); }
+  .wf-in         { opacity: 0; }
+  .wf-in-w       { transform: translateX(-26px); }
+  .wf-in-a       { transform: translateX(26px); }
+
+  @keyframes chr-cut-flash { 0%, 11% { opacity: 0; } 17%, 35% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  @keyframes chr-seam-out  { 0%, 11% { opacity: 1; } 20%, 100% { opacity: 0; } }
+  @keyframes chr-drift     { 0%, 17% { transform: translateX(0); opacity: 1; } 48%, 100% { transform: translateX(40px); opacity: 0.34; } }
+  @keyframes chr-dash-in   { 0%, 35% { stroke-dasharray: 0 0; } 52%, 100% { stroke-dasharray: 5 5; } }
+  @keyframes chr-part-l    { 0%, 17% { transform: translateX(0); } 48%, 100% { transform: translateX(-10px); } }
+  @keyframes chr-part-r    { 0%, 17% { transform: translateX(0); } 48%, 100% { transform: translateX(10px); } }
+  @keyframes chr-say       { 0%, 55% { opacity: 0; } 70%, 100% { opacity: 1; } }
+  @keyframes wf-close-w    { 0%, 30% { transform: translateX(0); } 62%, 100% { transform: translateX(-26px); } }
+  @keyframes wf-close-a    { 0%, 30% { transform: translateX(0); } 62%, 100% { transform: translateX(26px); } }
+  @keyframes wf-in-out     { 0%, 63% { opacity: 1; } 70%, 100% { opacity: 0; } }
+  @keyframes wf-neo-in     { 0%, 63% { opacity: 0; } 70%, 100% { opacity: 1; } }
+  @keyframes wf-say-in     { 0%, 72% { opacity: 0; } 84%, 100% { opacity: 1; } }
+
+  .concept-diagram.is-playing .chr-cut       { animation: chr-cut-flash 4.6s ease-in-out both; }
+  .concept-diagram.is-playing .chr-seam      { animation: chr-seam-out  4.6s linear both; }
+  .concept-diagram.is-playing .chr-lost      { animation: chr-drift     4.6s var(--ease-settle) both; }
+  .concept-diagram.is-playing .chr-lost-body { animation: chr-dash-in   4.6s linear both; }
+  .concept-diagram.is-playing .chr-fis-l     { animation: chr-part-l    4.6s var(--ease-settle) both; }
+  .concept-diagram.is-playing .chr-fis-r     { animation: chr-part-r    4.6s var(--ease-settle) both; }
+  .concept-diagram.is-playing .chr-say       { animation: chr-say       4.6s ease-out both; }
+  .concept-diagram.is-playing .wf-in-w       { animation: wf-close-w 4.6s var(--ease-settle) both, wf-in-out 4.6s linear both; }
+  .concept-diagram.is-playing .wf-in-a       { animation: wf-close-a 4.6s var(--ease-settle) both, wf-in-out 4.6s linear both; }
+  .concept-diagram.is-playing .wf-neo        { animation: wf-neo-in 4.6s linear both; }
+  .concept-diagram.is-playing .wf-say        { animation: wf-say-in 4.6s ease-out both; }
+
   /* The final scientific state is visible before and after playback. Motion
      appears only after the visitor explicitly presses the play control. */
   .concept-diagram.is-playing .play-icon { animation: play-orbit 900ms ease-in-out infinite; }
   .concept-diagram.is-playing .process-line,
   .concept-diagram.is-playing .workflow-link,
   .concept-diagram.is-playing .relation { stroke-dasharray: 10 8; }
-  .concept-diagram.is-playing .fission-source { animation: chromosome-source-focus 850ms ease-out both; }
-  .concept-diagram.is-playing .breakpoint-line { animation: breakpoint-flash 800ms 420ms ease-out both; }
-  .concept-diagram.is-playing .process-line--one { animation: draw-link 700ms 620ms ease-out both; }
-  .concept-diagram.is-playing .split-mark { animation: event-pop 620ms 900ms var(--ease-settle) both; }
-  .concept-diagram.is-playing .fission-product--orange { animation: fission-detach-orange 1.05s 1.02s var(--ease-glide) both; }
-  .concept-diagram.is-playing .fission-product--yellow { animation: fission-detach-yellow 1.05s 1.02s var(--ease-glide) both; }
-  .concept-diagram.is-playing .new-end { animation: end-stabilise 620ms 1.72s var(--ease-settle) both; }
-  .concept-diagram.is-playing .fusion-source--orange { animation: fusion-input-orange 1.05s 2.35s ease-in-out both; }
-  .concept-diagram.is-playing .fusion-source--yellow { animation: fusion-input-yellow 1.05s 2.35s ease-in-out both; }
-  .concept-diagram.is-playing .process-line--two { animation: draw-link 650ms 2.95s ease-out both; }
-  .concept-diagram.is-playing .join-mark { animation: event-pop 620ms 3.2s var(--ease-settle) both; }
-  .concept-diagram.is-playing .fusion-result-segment--orange { animation: fuse-orange 900ms 3.5s var(--ease-settle) both; }
-  .concept-diagram.is-playing .fusion-result-segment--yellow { animation: fuse-yellow 900ms 3.5s var(--ease-settle) both; }
-  .concept-diagram.is-playing .fusion-result .chromosome-outline { animation: joined-outline 600ms 3.82s ease-out both; }
-  .concept-diagram.is-playing .fusion-result .fusion-junction { animation: junction-flash 720ms 3.92s var(--ease-settle) both; }
-  .concept-diagram.is-playing .fusion-contact { animation: junction-flash 700ms 3.28s var(--ease-settle) both; }
 
   /* Connectivity timeline grows from ancestral bases to descendant tips, with
      deliberate pauses at the split, gene-flow event and final outcome. */
@@ -954,24 +1066,8 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   }
 
   @keyframes play-orbit { 50% { transform: rotate(180deg) scale(1.08); } 100% { transform: rotate(360deg); } }
-  @keyframes chromosome-source-focus { 0% { opacity: 0.3; filter: saturate(0.55); } 65% { opacity: 1; filter: saturate(1.25) brightness(1.08); } 100% { opacity: 1; filter: none; } }
-  @keyframes breakpoint-flash { 0% { opacity: 0; stroke-width: 1; } 55% { opacity: 1; stroke-width: 5; } 100% { opacity: 1; stroke-width: 3; } }
   @keyframes draw-link { from { opacity: 0; stroke-dashoffset: 48; } to { opacity: 1; stroke-dashoffset: 0; } }
   @keyframes event-pop { 0% { opacity: 0; transform: scale(0.25); } 65% { opacity: 1; transform: scale(1.25); } 100% { opacity: 0.85; transform: scale(1); } }
-  /* Each fragment starts exactly on the half of the source chromosome it came
-     from and travels to its labelled place, opening the new gap on the way.
-     The break is shown happening, not asserted by adjacency. */
-  @keyframes fission-detach-orange { from { opacity: 1; transform: translateX(-254px); } 72% { transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
-  @keyframes fission-detach-yellow { from { opacity: 1; transform: translateX(-283px); } 72% { transform: translateX(-14px); } to { opacity: 1; transform: translateX(0); } }
-  @keyframes end-stabilise { from { opacity: 0; stroke-width: 1; } 65% { opacity: 1; stroke-width: 5; } to { opacity: 1; stroke-width: 3; } }
-  /* The two chromosomes close the 24px gap and meet end to end. They stay at
-     full opacity: the previous version faded them to 22% and the merge was
-     never visible. */
-  @keyframes fusion-input-orange { 0% { opacity: 0; transform: translateX(0); } 14%, 46% { opacity: 1; transform: translateX(0); } 100% { opacity: 1; transform: translateX(12px); } }
-  @keyframes fusion-input-yellow { 0% { opacity: 0; transform: translateX(0); } 14%, 46% { opacity: 1; transform: translateX(0); } 100% { opacity: 1; transform: translateX(-12px); } }
-  @keyframes fuse-orange { from { opacity: 0; transform: translateX(-18px); } 70% { opacity: 1; transform: translateX(2px); } to { opacity: 1; transform: translateX(0); } }
-  @keyframes fuse-yellow { from { opacity: 0; transform: translateX(18px); } 70% { opacity: 1; transform: translateX(-2px); } to { opacity: 1; transform: translateX(0); } }
-  @keyframes joined-outline { from { opacity: 0; } to { opacity: 1; } }
   @keyframes junction-flash { from { opacity: 0; stroke-width: 1; } 55% { opacity: 1; stroke-width: 5; } to { opacity: 1; stroke-width: 2.5; } }
   @keyframes group-focus { from { opacity: 0.12; filter: saturate(0.45) brightness(0.72); } 70% { opacity: 1; filter: saturate(1.25) brightness(1.12); } to { opacity: 1; filter: none; } }
   @keyframes route-flow { from { opacity: 0.15; stroke-dashoffset: 72; } to { opacity: 1; stroke-dashoffset: 0; } }
@@ -986,17 +1082,11 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   @keyframes stage-focus { from { opacity: 0.16; transform: scale(0.72); } 65% { opacity: 1; transform: scale(1.08); } to { opacity: 1; transform: scale(1); } }
   @keyframes question-focus { from { opacity: 0.18; transform: scale(0.5) rotate(-12deg); } 70% { opacity: 1; transform: scale(1.15) rotate(4deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
 
-  .fission-source,
-  .fission-product,
-  .fusion-source,
-  .fusion-result-segment,
-  .fusion-result .chromosome-outline,
-  .breakpoint-line,
-  .new-end,
-  .fusion-junction,
-  .event-ring,
-  .split-mark,
-  .join-mark,
+  .chr-lost,
+  .chr-fis-l,
+  .chr-fis-r,
+  .wf-in,
+  .wf-neo,
   .lineage-butterfly,
   .lineage-node,
   .early-lineage-glyphs,
