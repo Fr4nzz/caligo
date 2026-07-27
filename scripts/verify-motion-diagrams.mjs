@@ -90,7 +90,12 @@ ok(/@keyframes fusion-input-orange\s*\{\s*0%\s*\{\s*opacity:\s*0/.test(concepts)
 ok(/breakpoint-line/.test(concepts) && /internal break point/.test(concepts), 'fission shows one chromosome breaking at an internal position');
 ok(/fission-product--orange/.test(concepts) && /fission-product--yellow/.test(concepts) && /new ends stabilised/.test(concepts), 'fission produces two colour-preserving chromosomes with stabilised new ends');
 ok(/fusion-result-segment--orange/.test(concepts) && /fusion-result-segment--yellow/.test(concepts) && /fusion-junction/.test(concepts), 'fusion retains the orange and yellow chromosome regions across an end-to-end junction');
-ok(/@keyframes fission-left[\s\S]*?translateX\(14px\)/.test(concepts) && /@keyframes fission-right[\s\S]*?translateX\(-14px\)/.test(concepts), 'fission fragments visibly separate in opposite directions');
+// Each fragment now starts on the half of the source chromosome it came from
+// (translateX(-254px) / -283px) and travels to its labelled place, so the break
+// is shown happening rather than implied by two shapes appearing alongside an
+// intact chromosome. The terminal phase still parts them in opposite
+// directions, which is what the original contract was protecting.
+ok(/@keyframes fission-detach-orange[\s\S]*?translateX\(-254px\)[\s\S]*?translateX\(14px\)/.test(concepts) && /@keyframes fission-detach-yellow[\s\S]*?translateX\(-283px\)[\s\S]*?translateX\(-14px\)/.test(concepts), 'fission fragments emerge from the source halves and part in opposite directions');
 ok(/@keyframes fuse-orange[\s\S]*?translateX\(-18px\)/.test(concepts) && /@keyframes fuse-yellow[\s\S]*?translateX\(18px\)/.test(concepts), 'fusion segments visibly converge toward the junction');
 ok(/holocentric chromosomes without a single localised centromere/.test(concepts), 'the diagram states the Lepidoptera holocentric context without inventing a centromere position');
 ok(/Colours and branch lengths guide the explanation and do not represent measured values/.test(concepts), 'connectivity description preserves a concise boundary around measured values');
@@ -102,7 +107,14 @@ ok(/late-tip-branch--recipient/.test(concepts) && /late-tip-branch--donor/.test(
 ok(/newHybridSpecies: 'new hybrid species'/.test(concepts) && /newHybridSpecies: 'nueva especie híbrida'/.test(concepts) && /hybrid-species-label/.test(concepts), 'the central descendant is explicitly labelled as the new hybrid species in both languages');
 ok(/connectivity-mobile-outcomes/.test(concepts) && /connectivity-outcome-cue/.test(concepts) && /oneLineage/.test(concepts) && /rareOutcomeLabel/.test(concepts), 'mobile replaces connectivity step numbers with two named biological outcomes');
 ok(/\.connectivity-scene \.micro-label,[\s\S]*?paint-order:\s*stroke fill[\s\S]*?stroke:\s*var\(--bg-panel\)/.test(concepts), 'connectivity labels mask crossing branches and arrows instead of sitting visually beneath them');
-ok(/trait-mark--source/.test(concepts) && /late-introgression-token/.test(concepts) && /trait-mark--hybrid/.test(concepts) && /wing-pattern variant crosses lineages/.test(concepts) && /does not imply equal genomic contributions or blended traits/.test(concepts), 'one wing-pattern variant moves between lineages without a blended-trait or 50/50 ancestry claim');
+// Rosser et al. 2024 is "hybrid speciation driven by MULTILOCUS introgression
+// of ecological traits", and the Science page prose beside this figure already
+// says "a small set of regions ... associated with colour pattern, wing shape,
+// host-plant preference, sex pheromones and mate choice". A single travelling
+// token contradicted that. Three discrete marks cross together; discrete marks
+// still carry no blended-trait or 50/50 ancestry claim, which is what this
+// contract exists to protect, and the disclaimer string is still required.
+ok(/trait-mark--source/.test(concepts) && /late-introgression-token/.test(concepts) && /trait-mark--hybrid/.test(concepts) && /trait-linked regions cross lineages/.test(concepts) && /regiones ligadas a rasgos cruzan entre linajes/.test(concepts) && (concepts.match(/trait-token-shape/g) || []).length >= 3 && /does not imply equal genomic contributions or blended traits/.test(concepts), 'several trait-linked regions move between lineages without a blended-trait or 50/50 ancestry claim');
 ok(/early-split-branch[\s\S]*?1\.0s[\s\S]*?early-gene-flow[\s\S]*?2\.3s[\s\S]*?early-merge-branch[\s\S]*?3\.45s[\s\S]*?late-tip-branch[\s\S]*?3\.82s[\s\S]*?recipient-butterfly[\s\S]*?4\.78s[\s\S]*?final-state-label[\s\S]*?4\.78s/.test(concepts) && /data-duration-ms=\{kind === 'connectivity' \? '6500' : '5000'\}/.test(concepts), 'connectivity playback pauses between bottom-to-top lineage stages and runs long enough to finish');
 ok(/@keyframes hybrid-allele-cross[\s\S]*?translateX\(0\)[\s\S]*?translateX\(-106px\)/.test(concepts) && /s41586-024-07263-w/.test(concepts) && /pnas\.2410939122/.test(concepts) && /putative hybrid origins/i.test(concepts), 'right-to-left variant transfer and evidence links distinguish demonstrated Heliconius speciation from putative Ithomiini origins');
 ok(/data-tier-progression/.test(tiers) && /data-tier-play/.test(tiers) && /aria-busy="false"/.test(tiers) && !/data-tier-status|aria-live="polite"/.test(tiers), 'evidence-tier comparison exposes user-controlled playback without redundant visible status copy');
