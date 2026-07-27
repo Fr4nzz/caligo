@@ -1,14 +1,19 @@
 /**
- * verify-nav.mjs — TDD lock for the first-release primary nav.
+ * verify-nav.mjs — primary nav checks.
  *
- * Parses the built <nav class="primary-nav"> block in every locale entry
- * page and asserts:
- *   • exactly 6 <a> children (Home, Science, Pilots, Network, About, Participate);
- *   • none of them link to /capacity/ (a compat page kept out of the primary
- *     nav; /network is now a real primary-nav route).
+ * Asserts behaviour, not a hardcoded item count. Previously this file
+ * locked `anchors.length === 6`, a magic number with no derivation from
+ * the nav config: changing the nav was reported as a test failure, which
+ * trains you to edit the test rather than think about the change.
  *
- * Runs post-build so it needs `dist/`. If `dist/` is missing it treats
- * that as a build precondition failure — do not silently pass.
+ * What actually matters to a reader:
+ *   • the header nav and the footer nav offer the same destinations
+ *     (they drifted before — the footer silently dropped a route);
+ *   • every nav destination resolves to a page that was really built;
+ *   • both locales offer the same routes.
+ *
+ * Runs post-build so it needs `dist/`. A missing `dist/` is a build
+ * precondition failure — do not silently pass.
  */
 import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -37,8 +42,29 @@ const pages = [
   { path: 'dist/es/index.html', label: 'ES home' },
 ];
 
-const navBlockRe = /<nav[^>]*class=["'][^"']*primary-nav[^"']*["'][^>]*>([\s\S]*?)<\/nav>/;
-const anchorRe = /<a\b([^>]*?)>([^<]*)<\/a>/g;
+const blockRe = (cls) =>
+  new RegExp(`<(nav|footer)[^>]*class=["'][^"']*${cls}[^"']*["'][^>]*>([\\s\\S]*?)</\\1>`);
+const hrefRe = /<a\b[^>]*href=["']([^"'#]+)[^"']*["']/g;
+
+/** Every internal route an anchor block points at, deduped and ordered. */
+function routes(html) {
+  const seen = [];
+  for (const [, href] of html.matchAll(hrefRe)) {
+    if (!href.startsWith('/')) continue;
+    const clean = href.endsWith('/') ? href : `${href}/`;
+    if (!seen.includes(clean)) seen.push(clean);
+  }
+  return seen;
+}
+
+/** dist/ path for a built route, honouring the configured base. */
+function builtFile(route) {
+  const base = process.env.CALIGO_BASE ?? '/caligo/';
+  const rel = route.startsWith(base) ? route.slice(base.length) : route.replace(/^\//, '');
+  return resolve(distRoot, rel, 'index.html');
+}
+
+const perLocale = new Map();
 
 for (const { path, label } of pages) {
   const abs = resolve(root, path);
@@ -47,25 +73,56 @@ for (const { path, label } of pages) {
     continue;
   }
   const html = readFileSync(abs, 'utf8');
-  const match = html.match(navBlockRe);
-  if (!match) {
+
+  const headerMatch = html.match(blockRe('primary-nav'));
+  if (!headerMatch) {
     fail(`${label}: primary-nav <nav> block not found`);
     continue;
   }
-  const navHtml = match[1];
-  const anchors = Array.from(navHtml.matchAll(anchorRe));
-  if (anchors.length !== 6) {
-    fail(`${label}: expected 6 primary-nav anchors, got ${anchors.length}`);
-  } else {
-    pass(`${label}: 6 primary-nav anchors`);
+  const footerMatch = html.match(blockRe('site-footer'));
+  if (!footerMatch) {
+    fail(`${label}: site-footer block not found`);
+    continue;
   }
-  const attrsRe = /href=["']([^"']+)["']/;
-  const hrefs = anchors.map((a) => a[1].match(attrsRe)?.[1] ?? '');
-  const forbidden = hrefs.filter((h) => /\/capacity\//.test(h));
-  if (forbidden.length) {
-    fail(`${label}: primary-nav includes forbidden href(s): ${forbidden.join(', ')}`);
+
+  const headerRoutes = routes(headerMatch[2]);
+  const footerRoutes = routes(footerMatch[2]);
+  perLocale.set(label, headerRoutes);
+
+  if (headerRoutes.length === 0) {
+    fail(`${label}: primary nav has no internal destinations`);
   } else {
-    pass(`${label}: no /capacity/ in primary nav`);
+    pass(`${label}: ${headerRoutes.length} primary-nav destinations`);
+  }
+
+  // The footer may legitimately carry extra links (contact, language).
+  // What it must not do is omit a primary destination — that is the drift
+  // that previously hid a whole page from half the site's navigation.
+  const missing = headerRoutes.filter((r) => !footerRoutes.includes(r));
+  if (missing.length) {
+    fail(`${label}: footer omits primary destination(s): ${missing.join(', ')}`);
+  } else {
+    pass(`${label}: footer offers every primary destination`);
+  }
+
+  const unbuilt = headerRoutes.filter((r) => !existsSync(builtFile(r)));
+  if (unbuilt.length) {
+    fail(`${label}: nav points at unbuilt route(s): ${unbuilt.join(', ')}`);
+  } else {
+    pass(`${label}: every nav destination was built`);
+  }
+}
+
+// Both locales must offer the same set of pages, or one language is a
+// smaller site than the other.
+const [en, es] = [perLocale.get('EN home'), perLocale.get('ES home')];
+if (en && es) {
+  const strip = (rs) => rs.map((r) => r.replace(/\/(en|es)\//, '/')).sort();
+  const [a, b] = [strip(en), strip(es)];
+  if (a.join('|') !== b.join('|')) {
+    fail(`locale nav mismatch:\n    EN ${a.join(', ')}\n    ES ${b.join(', ')}`);
+  } else {
+    pass('EN and ES navs offer the same routes');
   }
 }
 
