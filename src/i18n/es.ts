@@ -148,6 +148,18 @@ export const es: Dict = {
       "caption": "Cómo H. elevatus llegó a tener dos ancestros. Las dos flechas son todo el argumento: el 99,3 % de su genoma viene de H. pardalinus y el 0,7 % de H. melpomene, y se encuentran hace unos 180.000 años. Fíjate en las alas: la híbrida no parece una mezcla de sus progenitores.",
       "changes": "recortada al panel e"
     },
+    "traitLociFigure": {
+      "src": "media/figures-published/rosser-2024-fig3-trait-loci.png",
+      "citation": "Rosser et al. 2024, Nature, Fig 3",
+      "citationUrl": "https://doi.org/10.1038/s41586-024-07263-w",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "width": 1800,
+      "height": 1405,
+      "alt": "Cuatro escaneos genómicos apilados que cubren los cromosomas 1 al 20 y el cromosoma Z. Bajo cada escaneo, una traza gris muestra la diferenciación genética a lo largo del cromosoma. Sobre cada cromosoma, barras horizontales de colores con triángulos marcan regiones ligadas a rasgos: patrón de color, forma del ala, planta hospedera, vuelo, feromonas y preferencia del macho. Una leyenda al pie nombra cada color.",
+      "caption": "La misma afirmación, medida. Puedes ignorar las trazas grises: lo que hay que leer son las barras de colores sobre cada cromosoma y la leyenda que las nombra. Las regiones ligadas al patrón de color, la forma del ala, la planta hospedera y las feromonas están en muchos cromosomas distintos en vez de agruparse en uno.",
+      "changes": "redimensionada para la web; sin recortes"
+    },
     "questions": [
       {
         "heading": "¿Cómo pueden dividirse y fusionarse los cromosomas mientras un linaje sigue evolucionando?",

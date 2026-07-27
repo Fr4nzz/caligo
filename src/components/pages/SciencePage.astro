@@ -1,6 +1,6 @@
 ---
 /**
- * SciencePage — three questions, in prose.
+ * SciencePage — three questions, in prose, each paired with an image.
  *
  * This page was 3,536 words, 13 <details> elements, 36 citation
  * superscripts, a 15-entry bibliography, a sticky sidebar and five
@@ -17,24 +17,30 @@
  * to fill in. You cannot edit your way out of that while the renderer
  * exists, so the renderer is gone.
  *
- * Three questions survive, as flowing prose with a photograph and a
- * plain source line. Cut: species boundaries (a 2018 moth-genera
- * reshuffle), seasonal movement (a block that existed to report a
- * preprint and then withdraw confidence in it), the "three scales of
- * genetic evidence" section (which taught the same three tiers as the
- * table directly above it, once as a table and once as an animation),
- * and the 12-item metadata field list, which is a data-management SOP
- * and belongs in a partner handbook.
- *
  * Sources are author-year hyperlinks in the prose flow. The old
  * superscript system rendered 1–9, 16, 17, 20, 21 and 22 above a
  * bibliography styled `list-style: none` — so a reader clicking "22"
  * landed on an unnumbered row, and 10–15, 18 and 19 appeared nowhere on
  * the page. It had never worked in production.
+ *
+ * LAYOUT CONTRACT — every block on this page is one of two shapes:
+ *
+ *   1. prose | image     a text column beside a portrait-ish figure
+ *   2. full-width figure  a wide figure spanning the whole container
+ *
+ * There is deliberately no third shape. The page previously rendered
+ * hand-drawn concept diagrams constrained to 46rem, which left a third
+ * of the row empty beside them — a half-width block in a full-width row
+ * reads as something failing to load.
+ *
+ * The concept diagrams themselves are gone from this page. Where the
+ * source paper had already drawn the thing, we reproduce the paper's own
+ * figure: it is the real measurement rather than our paraphrase of it,
+ * and both papers are licensed for reuse. ConceptDiagram still serves
+ * the Heliconius pilot on /projects/.
  */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
-import ConceptDiagram from '../ConceptDiagram.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
 import PublishedFigure from '../PublishedFigure.astro';
 import { getDict, type Locale } from '../../i18n';
@@ -52,39 +58,24 @@ const s = t.science;
 */
 const anchors = ['chromosomes', 'gene-flow', 'connectivity'] as const;
 
-/*
-  A figure only where it teaches something the paragraph beside it
-  cannot. The holocentric contrast does; so does the karyotype showing
-  where introgressed regions actually landed. The third question gets a
-  photograph of the animal instead — it is about a real population in a
-  real place, and the previous figure attached to it illustrated hybrid
-  speciation, which is the subject of the question above.
-*/
-const questionDiagram: Record<string, 'chromosome' | 'introgression' | undefined> = {
-  chromosomes: 'chromosome',
-  'gene-flow': 'introgression',
-  connectivity: undefined,
-};
-const questionPhoto: Record<string, string | undefined> = {
-  chromosomes: 'pilot-heliconius',
-  'gene-flow': undefined,
-  connectivity: 'pilot-parides',
+/** The image beside the prose. */
+const questionAside: Record<string, { photo?: string; figure?: 'hybridOriginFigure' }> = {
+  chromosomes: { photo: 'pilot-heliconius' },
+  'gene-flow': { figure: 'hybridOriginFigure' },
+  connectivity: { photo: 'pilot-parides' },
 };
 
 /*
-  Published figures, reproduced rather than redrawn. Both licences were
+  The wide figure below the prose, where one exists. Both licences were
   verified against Crossref before use — CC0 for Rueda-M, CC BY 4.0 for
-  Rosser — and the full provenance sits in the .LICENSE.md beside each
-  image. Note that being readable on PMC is not a licence: Edelman 2019
-  and Seraphim 2016, both cited elsewhere on this site, cannot be
-  reproduced this way.
+  Rosser — and full provenance sits in the .LICENSE.md beside each image.
 
-  The aside figure answers "what happened"; the diagram below answers
-  "where it landed in the genome".
+  Being readable on PMC is not a licence: Edelman 2019 and Seraphim 2016,
+  both cited on this site, are free to read and cannot be reproduced.
 */
-const questionAsideFigure: Record<string, 'hybridOriginFigure' | undefined> = {
-  chromosomes: undefined,
-  'gene-flow': 'hybridOriginFigure',
+const questionWideFigure: Record<string, 'chromosomeFigure' | 'traitLociFigure' | undefined> = {
+  chromosomes: 'chromosomeFigure',
+  'gene-flow': 'traitLociFigure',
   connectivity: undefined,
 };
 
@@ -101,15 +92,14 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
 
       {s.questions.map((q, i) => {
         const anchor = anchors[i];
-        const diagram = questionDiagram[anchor];
-        const photo = questionPhoto[anchor];
-        const asideFigure = questionAsideFigure[anchor];
+        const aside = questionAside[anchor];
+        const wide = questionWideFigure[anchor];
         return (
           <article id={anchor} class="question">
             <h3 class="question-heading">{q.heading}</h3>
 
-            <div class="question-body">
-              <div class="question-prose">
+            <div class="split">
+              <div class="split-prose">
                 {q.answer.map((para) => <p>{para}</p>)}
                 <p class="question-sources">
                   <span class="question-sources-label">{sourcesLabel}: </span>
@@ -122,36 +112,17 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
                 </p>
               </div>
 
-              {photo && (
-                <div class="question-figure">
-                  <MediaCandidateViewer moduleId={photo} locale={locale} aspectRatio="4 / 3" />
-                </div>
-              )}
-
-              {asideFigure && (
-                <div class="question-figure">
-                  <PublishedFigure locale={locale} {...s[asideFigure]} />
-                </div>
-              )}
+              <div class="split-figure">
+                {aside.photo && (
+                  <MediaCandidateViewer moduleId={aside.photo} locale={locale} aspectRatio="4 / 3" />
+                )}
+                {aside.figure && <PublishedFigure locale={locale} {...s[aside.figure]} />}
+              </div>
             </div>
 
-            {diagram && (
-              <div class="question-diagram">
-                <ConceptDiagram locale={locale} kind={diagram} context="science" />
-              </div>
-            )}
-
-            {/*
-              The custom diagram above teaches the mechanism — why a
-              broken lepidopteran chromosome keeps both halves. This
-              figure is the published evidence for the counts and the
-              fusions. Different jobs, so both earn their place. It is
-              CC0, so we may reproduce it freely; see the .LICENSE.md
-              beside the image.
-            */}
-            {anchor === 'chromosomes' && (
-              <div class="question-diagram question-diagram--wide">
-                <PublishedFigure locale={locale} {...s.chromosomeFigure} />
+            {wide && (
+              <div class="wide-figure">
+                <PublishedFigure locale={locale} {...s[wide]} />
               </div>
             )}
           </article>
@@ -161,19 +132,24 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
   </section>
 
   <section class="section section--panel" aria-labelledby="evidence-heading">
-    <div class="container-wide prose-column">
-      <h2 id="evidence-heading" class="section-heading">{s.evidence.heading}</h2>
-      {s.evidence.body.map((para) => <p class="prose-para">{para}</p>)}
+    <div class="container-wide split">
+      <div class="split-prose">
+        <h2 id="evidence-heading" class="section-heading">{s.evidence.heading}</h2>
+        {s.evidence.body.map((para) => <p class="prose-para">{para}</p>)}
+      </div>
+      <div class="split-figure">
+        <MediaCandidateViewer moduleId="journey-4-sequence" locale={locale} aspectRatio="4 / 3" />
+      </div>
     </div>
   </section>
 
   <section class="section" aria-labelledby="ethics-heading">
-    <div class="container-wide ethics-layout">
-      <div class="ethics-prose">
+    <div class="container-wide split">
+      <div class="split-prose">
         <h2 id="ethics-heading" class="section-heading">{s.ethics.heading}</h2>
         {s.ethics.body.map((para) => <p class="prose-para">{para}</p>)}
       </div>
-      <div class="ethics-figure">
+      <div class="split-figure">
         <MediaCandidateViewer moduleId="journey-2-provenance" locale={locale} aspectRatio="4 / 3" />
       </div>
     </div>
@@ -203,6 +179,37 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
     line-height: 1.65;
     max-width: var(--measure);
   }
+  .prose-para:last-child { margin-bottom: 0; }
+
+  /* ---- Shape 1: prose beside an image ----
+     One rule, used by every block on the page. The image column carries
+     the figure's own caption and credit, so it is never a bare picture. */
+  .split {
+    display: grid;
+    gap: var(--space-l);
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  @media (min-width: 60rem) {
+    .split { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+  }
+  .split-prose > p {
+    margin: 0 0 var(--space-m);
+    color: var(--text);
+    line-height: 1.65;
+    max-width: var(--measure);
+  }
+  .split-prose > p:last-child { margin-bottom: 0; }
+  .split-figure { min-width: 0; }
+
+  /* ---- Shape 2: a wide figure on its own row ----
+     Full container width, deliberately. These are dense research figures
+     with chromosome-scale labels; below roughly 900px they stop being
+     readable and become decoration. */
+  .wide-figure {
+    margin-top: var(--space-l);
+    max-width: none;
+  }
 
   /* ---- Questions ---- */
   .question {
@@ -222,38 +229,6 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
     color: var(--text-strong);
     max-width: 34ch;
   }
-  .question-body {
-    display: grid;
-    gap: var(--space-l);
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-  /* The photograph sits beside the prose rather than above it, so the
-     reading measure stays intact on wide screens. */
-  @media (min-width: 60rem) {
-    .question-body:has(.question-figure) {
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-    }
-  }
-  .question-prose > p {
-    margin: 0 0 var(--space-m);
-    color: var(--text);
-    line-height: 1.65;
-    max-width: var(--measure);
-  }
-  .question-prose > p:last-child { margin-bottom: 0; }
-  .question-figure { min-width: 0; }
-  /* A diagram is artwork, not body text: it gets more than the reading
-     measure but not the full container, or it scales past the point where
-     its own labels stay in proportion to the prose. */
-  .question-diagram {
-    margin-top: var(--space-l);
-    max-width: 46rem;
-  }
-  /* A published figure carries real detail — chromosome counts in small
-     grey boxes — so it gets the full container rather than the schematic
-     width. A reader should not have to open the paper to read it. */
-  .question-diagram--wide { max-width: 64rem; }
 
   .question-sources {
     margin-top: var(--space-m);
@@ -275,18 +250,4 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
     text-decoration-color: var(--hairline-strong);
   }
   .question-sources a:hover { text-decoration-color: currentColor; }
-
-  /* ---- Ethics ---- */
-  .ethics-layout {
-    display: grid;
-    gap: var(--space-l);
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-  @media (min-width: 60rem) {
-    .ethics-layout {
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-    }
-  }
-  .ethics-figure { min-width: 0; }
 </style>

@@ -1,7 +1,7 @@
 ---
 import { getDict, type Locale } from '../i18n';
 
-type DiagramKind = 'chromosome' | 'introgression';
+type DiagramKind = 'chromosome';
 
 interface Props {
   readonly locale: Locale;
@@ -32,18 +32,6 @@ const copy = {
       footnote: 'The orange dots are the spindle anchor. This is why the number of chromosomes can change.',
       question: 'compare chromosome-scale assemblies',
     },
-    introgression: {
-      title: 'One genome, two ancestors',
-      desc: 'The 21 chromosomes of a single Heliconius elevatus butterfly, drawn as grey bars. About 99% of this genome is inherited from one parent species, Heliconius pardalinus. The orange blocks are the remaining 1%: stretches of DNA inherited from a second species, Heliconius melpomene, through hybridisation. Those stretches are scattered across many chromosomes rather than clumped on one, and they carry the traits that keep the species apart — colour pattern on chromosomes 1, 5, 10, 12, 13, 15 and 18, hindwing shape on chromosome 20, host-plant preference on chromosome 2, and male sex pheromones on chromosomes 19 and 20. Chromosome lengths and the position of each block within a chromosome are schematic.',
-      hook: 'The 21 chromosomes of one Heliconius elevatus butterfly',
-      heading: 'One genome, two ancestors',
-      legendGrey: 'inherited from H. pardalinus — about 99%',
-      legendOrange: 'inherited from H. melpomene by hybridisation — about 1%',
-      outcome: 'Scattered, not clumped — and it is what makes it a different butterfly.',
-      traitsOne: 'colour pattern 1, 5, 10, 12, 13, 15, 18 · hindwing shape 20',
-      traitsTwo: 'host plant 2 · male pheromones 19, 20',
-      question: 'compare chromosome-scale assemblies',
-    },
   },
   es: {
     conceptual: 'Esquema conceptual',
@@ -63,31 +51,17 @@ const copy = {
       footnote: 'Los puntos naranjas son el anclaje al huso. Por eso el número de cromosomas puede cambiar.',
       question: 'comparar ensamblajes a escala cromosómica',
     },
-    introgression: {
-      title: 'Un genoma, dos ancestros',
-      desc: 'Los 21 cromosomas de una sola mariposa Heliconius elevatus, dibujados como barras grises. Cerca del 99 % de este genoma se heredó de una especie progenitora, Heliconius pardalinus. Los bloques naranjas son el 1 % restante: tramos de ADN heredados de una segunda especie, Heliconius melpomene, por hibridación. Esos tramos están repartidos por muchos cromosomas y no agrupados en uno solo, y llevan los rasgos que mantienen separada a la especie: el patrón de color en los cromosomas 1, 5, 10, 12, 13, 15 y 18, la forma del ala posterior en el 20, la preferencia de planta hospedera en el 2 y las feromonas sexuales del macho en el 19 y el 20. Las longitudes de los cromosomas y la posición de cada bloque dentro de un cromosoma son esquemáticas.',
-      hook: 'Los 21 cromosomas de una mariposa Heliconius elevatus',
-      heading: 'Un genoma, dos ancestros',
-      legendGrey: 'heredado de H. pardalinus — cerca del 99 %',
-      legendOrange: 'heredado de H. melpomene por hibridación — cerca del 1 %',
-      outcome: 'Repartido, no agrupado: y es lo que la hace una mariposa distinta.',
-      traitsOne: 'patrón de color 1, 5, 10, 12, 13, 15, 18 · forma del ala 20',
-      traitsTwo: 'planta hospedera 2 · feromonas del macho 19, 20',
-      question: 'comparar ensamblajes a escala cromosómica',
-    },
   },
 } as const;
 
 const c = copy[locale];
 const k = c[kind];
-const mobileSteps: readonly string[] = kind === 'chromosome'
-  ? [
-      `${c.chromosome.mostAnimals}: ${c.chromosome.onePointA} ${c.chromosome.onePointB}`,
-      c.chromosome.lostPiece,
-      `${c.chromosome.lepidoptera}: ${c.chromosome.allAlongA} ${c.chromosome.allAlongB}`,
-      c.chromosome.bothKept,
-    ]
-  : [c.introgression.hook, c.introgression.legendGrey, c.introgression.legendOrange, c.introgression.outcome];
+const mobileSteps: readonly string[] = [
+  `${c.chromosome.mostAnimals}: ${c.chromosome.onePointA} ${c.chromosome.onePointB}`,
+  c.chromosome.lostPiece,
+  `${c.chromosome.lepidoptera}: ${c.chromosome.allAlongA} ${c.chromosome.allAlongB}`,
+  c.chromosome.bothKept,
+];
 ---
 
 <figure
@@ -111,7 +85,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     </button>
   </figcaption>
 
-  <svg class="concept-svg" viewBox={kind === 'chromosome' ? '0 0 600 266' : '0 0 600 260'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
+  <svg class="concept-svg" viewBox="0 0 600 266" role="img" aria-labelledby={`${id}-title ${id}-desc`}>
     <title id={`${id}-title`}>{k.title}</title>
     <desc id={`${id}-desc`}>{k.desc}</desc>
     <defs>
@@ -179,85 +153,6 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     )}
 
 
-    {kind === 'introgression' && (
-      <g class="diagram-scene introgression-scene">
-        <text x="0" y="18" class="chr-tag">{c.introgression.hook}</text>
-
-        <g class="ig-legend">
-          <rect x="0" y="30" width="20" height="12" rx="4" class="ig-chr" />
-          <text x="28" y="40" class="ig-key">{c.introgression.legendGrey}</text>
-          <rect x="0" y="48" width="20" height="12" rx="4" class="ig-isl" />
-          <text x="28" y="58" class="ig-key">{c.introgression.legendOrange}</text>
-        </g>
-
-        <g class="ig-genome">
-          <rect x="42" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="67" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="92" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="117" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="142" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="167" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="192" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="217" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="242" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="267" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="292" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="317" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="342" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="367" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="392" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="417" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="442" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="467" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="492" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="517" y="74" width="16" height="62" rx="6" class="ig-chr" />
-          <rect x="542" y="74" width="16" height="62" rx="6" class="ig-chr" />
-        </g>
-        <g class="ig-islands">
-          <rect x="42" y="100" width="16" height="11" rx="4" class="ig-isl ig-isl--1-0" />
-          <rect x="67" y="108" width="16" height="11" rx="4" class="ig-isl ig-isl--2-0" />
-          <rect x="142" y="95" width="16" height="11" rx="4" class="ig-isl ig-isl--5-0" />
-          <rect x="267" y="103" width="16" height="11" rx="4" class="ig-isl ig-isl--10-0" />
-          <rect x="317" y="111" width="16" height="11" rx="4" class="ig-isl ig-isl--12-0" />
-          <rect x="342" y="92" width="16" height="11" rx="4" class="ig-isl ig-isl--13-0" />
-          <rect x="392" y="106" width="16" height="11" rx="4" class="ig-isl ig-isl--15-0" />
-          <rect x="467" y="101" width="16" height="11" rx="4" class="ig-isl ig-isl--18-0" />
-          <rect x="492" y="97" width="16" height="11" rx="4" class="ig-isl ig-isl--19-0" />
-          <rect x="517" y="91" width="16" height="11" rx="4" class="ig-isl ig-isl--20-0" />
-          <rect x="517" y="112" width="16" height="11" rx="4" class="ig-isl ig-isl--20-1" />
-        </g>
-        <g class="ig-labels">
-          <text x="50" y="152" class="ig-num">1</text>
-          <text x="75" y="152" class="ig-num">2</text>
-          <text x="100" y="152" class="ig-num">3</text>
-          <text x="125" y="152" class="ig-num">4</text>
-          <text x="150" y="152" class="ig-num">5</text>
-          <text x="175" y="152" class="ig-num">6</text>
-          <text x="200" y="152" class="ig-num">7</text>
-          <text x="225" y="152" class="ig-num">8</text>
-          <text x="250" y="152" class="ig-num">9</text>
-          <text x="275" y="152" class="ig-num">10</text>
-          <text x="300" y="152" class="ig-num">11</text>
-          <text x="325" y="152" class="ig-num">12</text>
-          <text x="350" y="152" class="ig-num">13</text>
-          <text x="375" y="152" class="ig-num">14</text>
-          <text x="400" y="152" class="ig-num">15</text>
-          <text x="425" y="152" class="ig-num">16</text>
-          <text x="450" y="152" class="ig-num">17</text>
-          <text x="475" y="152" class="ig-num">18</text>
-          <text x="500" y="152" class="ig-num">19</text>
-          <text x="525" y="152" class="ig-num">20</text>
-          <text x="550" y="152" class="ig-num">21</text>
-          <text x="275" y="174" class="ig-gene">WntA</text>
-          <text x="400" y="174" class="ig-gene">cortex</text>
-          <text x="475" y="174" class="ig-gene">optix</text>
-        </g>
-
-        <text x="0" y="204" class="chr-out ig-say">{c.introgression.outcome}</text>
-        <text x="0" y="226" class="chr-note">{c.introgression.traitsOne}</text>
-        <text x="0" y="242" class="chr-note">{c.introgression.traitsTwo}</text>
-      </g>
-    )}
 
 
 
@@ -576,14 +471,9 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
      21 chromosomes drawn equal: lengths are schematic, and so is the
      position of each island within its chromosome. Only the CHROMOSOME
      assignments are from the source. */
-  .ig-chr  { fill: var(--bg-inset); stroke: var(--text-faint); stroke-width: 1.2; }
-  .ig-isl  { fill: var(--accent); }
   /* The legend is the whole point of this figure being standalone: without
      it, orange is just a colour and the reader has to infer from the prose
      that it means "DNA from a second species". */
-  .ig-key  { font-family: var(--font-body); font-size: 12.5px; fill: var(--text-muted); }
-  .ig-num  { font-family: var(--font-mono); font-size: 9px; fill: var(--text-faint); text-anchor: middle; }
-  .ig-gene { font-family: var(--font-body); font-size: 11px; font-style: italic; fill: var(--text-muted); text-anchor: middle; }
 
   /* ── Mimicry: one pattern, two possible routes ─────────────────────── */
   .mim-body   { fill: var(--text-faint); }
@@ -605,7 +495,6 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .chr-lost-body { stroke-dasharray: 5 5; }
   .chr-fis-l     { transform: translateX(-10px); }
   .chr-fis-r     { transform: translateX(10px); }
-  .ig-isl        { opacity: 1; }
   .wf-in         { opacity: 0; }
   .wf-in-w       { transform: translateX(26px); }
   .wf-in-a       { transform: translateX(-10px); }
@@ -928,7 +817,6 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
      down to satisfy the cap and preserveAspectRatio centres it, leaving
      dead space on both sides. Container max-width is set by the page. */
   [data-kind='chromosome'] .concept-svg { max-height: 22rem; }
-  [data-kind='introgression'] .concept-svg { max-height: 21rem; }
   /* 720x255 viewBox at the 46rem lone-figure width is ~16.3rem tall. */
   [data-context='pilot'] .concept-svg { max-height: 10.75rem; }
   .concept-mobile-flow { display: none; }

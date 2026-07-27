@@ -624,6 +624,35 @@ export const MODULES: readonly MediaModule[] = [
     ],
   },
   {
+    id: 'journey-4-sequence',
+    publish: true,
+    candidates: [
+      {
+        kind: 'documentary',
+        path: 'media/journey/journey-04-nhgri-pipette.webp',
+        width: 1600,
+        height: 1043,
+        creator: 'Maggie Bartlett / National Human Genome Research Institute',
+        licence: PD_US.name,
+        licenceUrl: PD_US.url,
+        sourceItemPage: 'https://commons.wikimedia.org/wiki/File:NHGRI_researcher_uses_a_pipette_to_remove_DNA_from_a_micro_test_tube.jpg',
+        changes: ['downloaded from Wikimedia Commons; no re-encode or crop applied locally'],
+        alt: {
+          en: 'A gloved researcher uses a pipette to remove DNA from a micro test tube in a genomics laboratory.',
+          es: 'Una investigadora con guantes usa una pipeta para tomar ADN de un microtubo en un laboratorio de genómica.',
+        },
+        caption: {
+          en: 'Extracting DNA in the laboratory. What you do next with it — a short barcode, reads from many individuals, or a full reference genome — decides which questions the result can answer.',
+          es: 'Extracción de ADN en el laboratorio. Lo que se haga después con él —un código de barras corto, lecturas de muchos individuos o un genoma de referencia completo— decide qué preguntas puede responder el resultado.',
+        },
+        credit: {
+          en: 'Photograph: Maggie Bartlett / National Human Genome Research Institute (NHGRI). Public domain (US Government work).',
+          es: 'Fotografía: Maggie Bartlett / National Human Genome Research Institute (NHGRI). Dominio público (obra del gobierno de EE.UU.).',
+        },
+      },
+    ],
+  },
+  {
     id: 'journey-2-provenance',
     publish: true,
     candidates: [

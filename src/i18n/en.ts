@@ -151,6 +151,18 @@ export const en = {
       "caption": "How H. elevatus came to have two ancestors. The two arrows are the whole argument: 99.3% of its genome traces to H. pardalinus and 0.7% to H. melpomene, meeting around 180,000 years ago. Note the wings — the hybrid does not look like a blend of its parents.",
       "changes": "cropped to panel e"
     },
+    "traitLociFigure": {
+      "src": "media/figures-published/rosser-2024-fig3-trait-loci.png",
+      "citation": "Rosser et al. 2024, Nature, Fig 3",
+      "citationUrl": "https://doi.org/10.1038/s41586-024-07263-w",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "width": 1800,
+      "height": 1405,
+      "alt": "Four stacked genome scans covering chromosomes 1 to 20 and the Z chromosome. Under each scan a grey trace shows genetic differentiation along the chromosome. Above each chromosome, coloured horizontal bars with triangles mark regions linked to traits: colour pattern, wing shape, host plant, flight, pheromones and male preference. A legend at the bottom names each colour.",
+      "caption": "The same claim, measured. Ignore the grey traces unless you want them — the part to read is the coloured bars above each chromosome, and the legend naming them. Regions linked to colour pattern, wing shape, host plant and pheromones sit on many different chromosomes rather than clustering on one.",
+      "changes": "resized for the web; nothing cropped"
+    },
     "questions": [
       {
         "heading": "How can chromosomes split and fuse while a lineage keeps evolving?",
