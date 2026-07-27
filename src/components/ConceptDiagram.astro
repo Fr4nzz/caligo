@@ -959,8 +959,8 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .chr-fis-l     { transform: translateX(-10px); }
   .chr-fis-r     { transform: translateX(10px); }
   .wf-in         { opacity: 0; }
-  .wf-in-w       { transform: translateX(-26px); }
-  .wf-in-a       { transform: translateX(26px); }
+  .wf-in-w       { transform: translateX(26px); }
+  .wf-in-a       { transform: translateX(-10px); }
 
   @keyframes chr-cut-flash { 0%, 11% { opacity: 0; } 17%, 35% { opacity: 1; } 50%, 100% { opacity: 0; } }
   @keyframes chr-seam-out  { 0%, 11% { opacity: 1; } 20%, 100% { opacity: 0; } }
@@ -969,10 +969,10 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   @keyframes chr-part-l    { 0%, 17% { transform: translateX(0); } 48%, 100% { transform: translateX(-10px); } }
   @keyframes chr-part-r    { 0%, 17% { transform: translateX(0); } 48%, 100% { transform: translateX(10px); } }
   @keyframes chr-say       { 0%, 55% { opacity: 0; } 70%, 100% { opacity: 1; } }
-  @keyframes wf-close-w    { 0%, 30% { transform: translateX(0); } 62%, 100% { transform: translateX(-26px); } }
-  @keyframes wf-close-a    { 0%, 30% { transform: translateX(0); } 62%, 100% { transform: translateX(26px); } }
-  @keyframes wf-in-out     { 0%, 63% { opacity: 1; } 70%, 100% { opacity: 0; } }
-  @keyframes wf-neo-in     { 0%, 63% { opacity: 0; } 70%, 100% { opacity: 1; } }
+  @keyframes wf-close-w    { 0%, 30% { transform: translateX(0); } 62%, 100% { transform: translateX(26px); } }
+  @keyframes wf-close-a    { 0%, 30% { transform: translateX(0); } 62%, 100% { transform: translateX(-10px); } }
+  @keyframes wf-in-out     { 0%, 65.9% { opacity: 1; } 66%, 100% { opacity: 0; } }
+  @keyframes wf-neo-in     { 0%, 65.9% { opacity: 0; } 66%, 100% { opacity: 1; } }
   @keyframes wf-say-in     { 0%, 72% { opacity: 0; } 84%, 100% { opacity: 1; } }
 
   .concept-diagram.is-playing .chr-cut       { animation: chr-cut-flash 4.6s ease-in-out both; }

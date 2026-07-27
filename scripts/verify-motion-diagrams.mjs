@@ -107,7 +107,15 @@ ok(/wf-w--butt/.test(concepts) && /autosome: 'autosome'/.test(concepts) && /auto
 // directions, which is what the original contract was protecting.
 // Fragments part in opposite directions, and only the monocentric row loses one.
 ok(/@keyframes chr-part-l[\s\S]*?translateX\(-10px\)/.test(concepts) && /@keyframes chr-part-r[\s\S]*?translateX\(10px\)/.test(concepts) && (concepts.match(/class="chr-lost"/g) || []).length === 1, 'break fragments part in opposite directions and only the monocentric row loses a piece');
-ok(/@keyframes wf-close-w[\s\S]*?translateX\(-26px\)/.test(concepts) && /@keyframes wf-close-a[\s\S]*?translateX\(26px\)/.test(concepts), 'the W and the autosome visibly converge before they fuse');
+// This check previously asserted translateX(-26px) for the W and (+26px) for
+// the autosome — the numbers that were in the file — while calling it
+// "converge". Those signs moved the two apart. The W sits left of the autosome,
+// so converging means the W travels POSITIVE (150 → 176) and the autosome
+// NEGATIVE (216 → 206); assert the directions, and that they land exactly on
+// the fused geometry so the handover is not a visible jump.
+const wfW = /@keyframes wf-close-w[^}]*?}[^}]*?transform: translateX\((-?\d+)px\); } }/.exec(concepts);
+const wfA = /@keyframes wf-close-a[^}]*?}[^}]*?transform: translateX\((-?\d+)px\); } }/.exec(concepts);
+ok(!!wfW && !!wfA && Number(wfW[1]) === 26 && Number(wfA[1]) === -10, 'the W moves right and the autosome moves left, landing on the fused geometry');
 // Holocentry is now drawn (anchors along the length) as well as stated, and the
 // dot count is declared schematic so it is not read as a measurement.
 ok(/holocentric chromosomes: the spindle anchors along the whole length/.test(concepts) && /cromosomas holocéntricos: el huso se ancla a lo largo de todo el cromosoma/.test(concepts) && /their number is schematic/.test(concepts) && /su cantidad es esquemática/.test(concepts), 'holocentry is drawn and stated in both languages, with the anchor count declared schematic');
