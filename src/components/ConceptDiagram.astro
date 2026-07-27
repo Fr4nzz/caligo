@@ -1,7 +1,7 @@
 ---
 import { getDict, type Locale } from '../i18n';
 
-type DiagramKind = 'chromosome' | 'wfusion' | 'connectivity' | 'monitoring' | 'migration' | 'voucher';
+type DiagramKind = 'chromosome' | 'wfusion' | 'introgression' | 'mimicry' | 'connectivity' | 'monitoring' | 'migration' | 'voucher';
 
 interface Props {
   readonly locale: Locale;
@@ -40,6 +40,27 @@ const copy = {
       autosome: 'autosome',
       meiosisHeading: 'The mother then makes two kinds of egg',
       outcome: 'The fused copy only ever reaches daughters.',
+      question: 'compare chromosome-scale assemblies',
+    },
+    introgression: {
+      title: 'What crossed, and where it landed',
+      desc: 'Heliconius elevatus is a hybrid species. Ongoing gene flow with one parent, Heliconius pardalinus, homogenises 99% of their genomes. The remaining 1%, inherited from Heliconius melpomene, is scattered widely across the genome in islands of divergence rather than sitting on a single chromosome. Those islands carry the traits that keep the species apart: colour pattern on chromosomes 1, 5, 10, 12, 13, 15 and 18, hindwing shape on chromosome 20, host-plant preference on chromosome 2, and male sex pheromones on chromosomes 19 and 20. Chromosome lengths and island positions within each chromosome are schematic.',
+      hook: 'Heliconius elevatus · 21 chromosomes',
+      heading: 'The 1% that crossed is scattered across the genome',
+      outcome: 'And it is the part that makes it a different butterfly.',
+      traitsOne: 'colour pattern 1, 5, 10, 12, 13, 15, 18 · hindwing shape 20',
+      traitsTwo: 'host plant 2 · male pheromones 19, 20',
+      caveat: 'Mate choice was linked to chromosome 20 but did not reach significance.',
+      question: 'compare chromosome-scale assemblies',
+    },
+    mimicry: {
+      title: 'Sharing a warning pattern',
+      desc: 'Two Heliconius species that live in the same place can carry the same warning pattern. Introgression means a lineage can acquire the wing-pattern alleles from another lineage instead of evolving the pattern independently, so a shared appearance does not by itself mean shared ancestry for the rest of the genome.',
+      hook: 'Same warning pattern, different lineages',
+      pathA: 'evolve it independently',
+      pathB: 'inherit it from the other lineage',
+      outcome: 'Genomes tell the two routes apart.',
+      caveat: 'Which route applies is a question for each pair, not a general rule.',
       question: 'compare chromosome-scale assemblies',
     },
     connectivity: {
@@ -128,6 +149,27 @@ const copy = {
       outcome: 'La copia pegada al W solo llega a las hijas.',
       question: 'comparar ensamblajes a escala cromosómica',
     },
+    introgression: {
+      title: 'Qué cruzó, y dónde quedó',
+      desc: 'Heliconius elevatus es una especie híbrida. El flujo génico continuo con uno de sus progenitores, Heliconius pardalinus, homogeneiza el 99 % de sus genomas. El 1 % restante, heredado de Heliconius melpomene, está repartido por todo el genoma en islas de divergencia y no en un solo cromosoma. Esas islas llevan los rasgos que mantienen separada a la especie: el patrón de color en los cromosomas 1, 5, 10, 12, 13, 15 y 18, la forma del ala posterior en el 20, la preferencia de planta hospedera en el 2 y las feromonas sexuales del macho en el 19 y el 20. Las longitudes de los cromosomas y la posición de las islas dentro de cada uno son esquemáticas.',
+      hook: 'Heliconius elevatus · 21 cromosomas',
+      heading: 'El 1 % que cruzó está repartido por todo el genoma',
+      outcome: 'Y es justo la parte que la hace una mariposa distinta.',
+      traitsOne: 'patrón de color 1, 5, 10, 12, 13, 15, 18 · forma del ala 20',
+      traitsTwo: 'planta hospedera 2 · feromonas del macho 19, 20',
+      caveat: 'La elección de pareja se asoció al cromosoma 20, pero sin significación.',
+      question: 'comparar ensamblajes a escala cromosómica',
+    },
+    mimicry: {
+      title: 'Compartir un patrón de advertencia',
+      desc: 'Dos especies de Heliconius que viven en el mismo lugar pueden llevar el mismo patrón de advertencia. La introgresión permite que un linaje adquiera los alelos del patrón alar de otro linaje en vez de desarrollarlo por su cuenta, así que parecerse no implica por sí solo compartir ascendencia en el resto del genoma.',
+      hook: 'El mismo patrón de advertencia, linajes distintos',
+      pathA: 'desarrollarlo por su cuenta',
+      pathB: 'heredarlo del otro linaje',
+      outcome: 'Los genomas distinguen las dos rutas.',
+      caveat: 'Cuál de las dos aplica se decide caso por caso, no como regla general.',
+      question: 'comparar ensamblajes a escala cromosómica',
+    },
     connectivity: {
       title: 'Conectividad poblacional y flujo génico',
       desc: 'El primer panel muestra cómo el flujo génico temprano y sostenido homogeneiza dos linajes incipientes hasta que dejan de permanecer separados. El segundo muestra introgresión entre linajes más divergentes, seguida por la persistencia de un linaje híbrido. Este desenlace raro no implica aportes genómicos iguales ni rasgos mezclados. Los colores y la longitud de las ramas guían la explicación y no representan valores medidos.',
@@ -211,6 +253,10 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
       `${c.chromosome.lepidoptera}: ${c.chromosome.allAlongA} ${c.chromosome.allAlongB}`,
       c.chromosome.bothKept,
     ]
+  : kind === 'introgression'
+    ? [c.introgression.heading, c.introgression.traitsOne, c.introgression.traitsTwo, c.introgression.outcome]
+  : kind === 'mimicry'
+    ? [c.mimicry.hook, c.mimicry.pathA, c.mimicry.pathB, c.mimicry.outcome]
   : kind === 'wfusion'
     ? [
         c.wfusion.hook,
@@ -253,7 +299,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     </button>
   </figcaption>
 
-  <svg class="concept-svg" viewBox={kind === 'connectivity' ? '0 0 720 255' : kind === 'chromosome' ? '0 0 600 266' : kind === 'wfusion' ? '0 0 600 318' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
+  <svg class="concept-svg" viewBox={kind === 'connectivity' ? '0 0 720 255' : kind === 'chromosome' ? '0 0 600 266' : kind === 'wfusion' ? '0 0 600 318' : kind === 'introgression' ? '0 0 600 246' : kind === 'mimicry' ? '0 0 600 272' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
     <title id={`${id}-title`}>{k.title}</title>
     <desc id={`${id}-desc`}>{k.desc}</desc>
     <defs>
@@ -379,6 +425,127 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
         </g>
 
         <text x="0" y="306" class="chr-out wf-say">{c.wfusion.outcome}</text>
+      </g>
+    )}
+
+    {kind === 'introgression' && (
+      <g class="diagram-scene introgression-scene">
+        <text x="0" y="18" class="chr-head">{c.introgression.heading}</text>
+        <text x="0" y="40" class="chr-tag">{c.introgression.hook}</text>
+
+        <g class="ig-genome">
+          <rect x="42" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="67" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="92" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="117" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="142" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="167" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="192" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="217" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="242" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="267" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="292" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="317" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="342" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="367" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="392" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="417" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="442" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="467" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="492" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="517" y="58" width="16" height="62" rx="6" class="ig-chr" />
+          <rect x="542" y="58" width="16" height="62" rx="6" class="ig-chr" />
+        </g>
+        <g class="ig-islands">
+          <rect x="42" y="84" width="16" height="11" rx="4" class="ig-isl ig-isl--1-0" />
+          <rect x="67" y="92" width="16" height="11" rx="4" class="ig-isl ig-isl--2-0" />
+          <rect x="142" y="79" width="16" height="11" rx="4" class="ig-isl ig-isl--5-0" />
+          <rect x="267" y="87" width="16" height="11" rx="4" class="ig-isl ig-isl--10-0" />
+          <rect x="317" y="95" width="16" height="11" rx="4" class="ig-isl ig-isl--12-0" />
+          <rect x="342" y="76" width="16" height="11" rx="4" class="ig-isl ig-isl--13-0" />
+          <rect x="392" y="90" width="16" height="11" rx="4" class="ig-isl ig-isl--15-0" />
+          <rect x="467" y="85" width="16" height="11" rx="4" class="ig-isl ig-isl--18-0" />
+          <rect x="492" y="81" width="16" height="11" rx="4" class="ig-isl ig-isl--19-0" />
+          <rect x="517" y="75" width="16" height="11" rx="4" class="ig-isl ig-isl--20-0" />
+          <rect x="517" y="96" width="16" height="11" rx="4" class="ig-isl ig-isl--20-1" />
+        </g>
+        <g class="ig-labels">
+          <text x="50" y="136" class="ig-num">1</text>
+          <text x="75" y="136" class="ig-num">2</text>
+          <text x="100" y="136" class="ig-num">3</text>
+          <text x="125" y="136" class="ig-num">4</text>
+          <text x="150" y="136" class="ig-num">5</text>
+          <text x="175" y="136" class="ig-num">6</text>
+          <text x="200" y="136" class="ig-num">7</text>
+          <text x="225" y="136" class="ig-num">8</text>
+          <text x="250" y="136" class="ig-num">9</text>
+          <text x="275" y="136" class="ig-num">10</text>
+          <text x="300" y="136" class="ig-num">11</text>
+          <text x="325" y="136" class="ig-num">12</text>
+          <text x="350" y="136" class="ig-num">13</text>
+          <text x="375" y="136" class="ig-num">14</text>
+          <text x="400" y="136" class="ig-num">15</text>
+          <text x="425" y="136" class="ig-num">16</text>
+          <text x="450" y="136" class="ig-num">17</text>
+          <text x="475" y="136" class="ig-num">18</text>
+          <text x="500" y="136" class="ig-num">19</text>
+          <text x="525" y="136" class="ig-num">20</text>
+          <text x="550" y="136" class="ig-num">21</text>
+          <text x="275" y="158" class="ig-gene">WntA</text>
+          <text x="400" y="158" class="ig-gene">cortex</text>
+          <text x="475" y="158" class="ig-gene">optix</text>
+        </g>
+
+        <text x="0" y="188" class="chr-out ig-say">{c.introgression.outcome}</text>
+        <text x="0" y="210" class="chr-note">{c.introgression.traitsOne}</text>
+        <text x="0" y="226" class="chr-note">{c.introgression.traitsTwo}</text>
+        <text x="0" y="242" class="chr-note">{c.introgression.caveat}</text>
+      </g>
+    )}
+
+    {kind === 'mimicry' && (
+      <g class="diagram-scene mimicry-scene">
+        <text x="0" y="18" class="chr-head">{c.mimicry.hook}</text>
+
+        {/* two butterflies from different lineages wearing the same pattern */}
+        <g class="mim-fly" transform="translate(200 66)">
+          <ellipse cx="0" cy="0" rx="6" ry="20" class="mim-body" />
+          <path d="M-5 -12 C-44 -26 -58 12 -28 24 C-16 29 -8 18 -5 8 Z" class="mim-wing" />
+          <path d="M5 -12 C44 -26 58 12 28 24 C16 29 8 18 5 8 Z" class="mim-wing" />
+          <path d="M-40 -8 C-30 -4 -18 -2 -8 -2 L-8 6 C-20 6 -32 4 -42 1 Z" class="mim-band" />
+          <path d="M40 -8 C30 -4 18 -2 8 -2 L8 6 C20 6 32 4 42 1 Z" class="mim-band" />
+        </g>
+        <g class="mim-fly" transform="translate(400 66)">
+          <ellipse cx="0" cy="0" rx="6" ry="20" class="mim-body" />
+          <path d="M-5 -12 C-44 -26 -58 12 -28 24 C-16 29 -8 18 -5 8 Z" class="mim-wing" />
+          <path d="M5 -12 C44 -26 58 12 28 24 C16 29 8 18 5 8 Z" class="mim-wing" />
+          <path d="M-40 -8 C-30 -4 -18 -2 -8 -2 L-8 6 C-20 6 -32 4 -42 1 Z" class="mim-band" />
+          <path d="M40 -8 C30 -4 18 -2 8 -2 L8 6 C20 6 32 4 42 1 Z" class="mim-band" />
+        </g>
+
+        <path d="M0 108 H600" class="chr-rule" />
+
+        {/* route A — the pattern arises twice, independently */}
+        <text x="150" y="134" class="chr-tag mim-label">{c.mimicry.pathA}</text>
+        <g class="mim-route mim-route--a">
+          <path d="M150 214 V182 M150 182 L120 154 M150 182 L180 154" class="mim-branch" />
+          <circle cx="120" cy="150" r="5" class="mim-mark" />
+          <circle cx="180" cy="150" r="5" class="mim-mark" />
+          <path d="M120 172 V162" class="mim-rise" marker-end={`url(#${id}-arrow)`} />
+          <path d="M180 172 V162" class="mim-rise" marker-end={`url(#${id}-arrow)`} />
+        </g>
+
+        {/* route B — it arises once and crosses between lineages */}
+        <text x="430" y="134" class="chr-tag mim-label">{c.mimicry.pathB}</text>
+        <g class="mim-route mim-route--b">
+          <path d="M430 214 V182 M430 182 L400 154 M430 182 L460 154" class="mim-branch" />
+          <circle cx="460" cy="150" r="5" class="mim-mark" />
+          <circle cx="400" cy="150" r="5" class="mim-mark mim-mark--moved" />
+          <path d="M452 150 H408" class="mim-cross" marker-end={`url(#${id}-arrow)`} />
+        </g>
+
+        <text x="0" y="244" class="chr-out mim-say">{c.mimicry.outcome}</text>
+        <text x="0" y="264" class="chr-note">{c.mimicry.caveat}</text>
       </g>
     )}
 
@@ -964,6 +1131,25 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .wf-glyph--on-accent { fill: var(--bg-raised); }
   .wf-mini { font-family: var(--font-body); font-size: 11px; font-weight: 600; fill: var(--text-strong); text-anchor: middle; }
   .wf-mini--on-accent { fill: var(--bg-raised); }
+
+  /* ── Introgression karyotype ──────────────────────────────────────────
+     21 chromosomes drawn equal: lengths are schematic, and so is the
+     position of each island within its chromosome. Only the CHROMOSOME
+     assignments are from the source. */
+  .ig-chr  { fill: var(--bg-inset); stroke: var(--text-faint); stroke-width: 1.2; }
+  .ig-isl  { fill: var(--accent); }
+  .ig-num  { font-family: var(--font-mono); font-size: 9px; fill: var(--text-faint); text-anchor: middle; }
+  .ig-gene { font-family: var(--font-body); font-size: 11px; font-style: italic; fill: var(--text-muted); text-anchor: middle; }
+
+  /* ── Mimicry: one pattern, two possible routes ─────────────────────── */
+  .mim-body   { fill: var(--text-faint); }
+  .mim-wing   { fill: var(--text-faint); opacity: 0.4; }
+  .mim-band   { fill: var(--accent); }
+  .mim-branch { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .mim-mark   { fill: var(--accent); }
+  .mim-rise   { fill: none; stroke: var(--accent); stroke-width: 1.4; }
+  .mim-cross  { fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-dasharray: 4 3; }
+  .mim-label  { text-anchor: middle; }
   .wf-membrane { fill: none; stroke: var(--hairline-strong); stroke-width: 1.5; }
   .wf-split { fill: none; stroke: var(--text-faint); stroke-width: 1.4; }
   .wf-sex { font-family: var(--font-body); font-size: 21px; font-weight: 500; fill: var(--text-faint); text-anchor: middle; }
@@ -975,6 +1161,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .chr-lost-body { stroke-dasharray: 5 5; }
   .chr-fis-l     { transform: translateX(-10px); }
   .chr-fis-r     { transform: translateX(10px); }
+  .ig-isl        { opacity: 1; }
   .wf-in         { opacity: 0; }
   .wf-in-w       { transform: translateX(26px); }
   .wf-in-a       { transform: translateX(-10px); }
@@ -1000,6 +1187,14 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   @keyframes wf-egg-out-l  { 0%, 50% { opacity: 0; transform: translate(115px, -81px); } 60% { opacity: 1; } 80%, 100% { opacity: 1; transform: translate(0, 0); } }
   @keyframes wf-egg-out-r  { 0%, 50% { opacity: 0; transform: translate(-115px, -81px); } 60% { opacity: 1; } 80%, 100% { opacity: 1; transform: translate(0, 0); } }
   @keyframes wf-sym-in     { 0%, 78% { opacity: 0; } 88%, 100% { opacity: 1; } }
+  /* the islands appear one after another, so the reader watches the 1% land
+     on chromosome after chromosome rather than seeing it all at once */
+  @keyframes ig-land       { 0%, 18% { opacity: 0; transform: scaleY(0.2); } 34%, 100% { opacity: 1; transform: scaleY(1); } }
+  @keyframes ig-genome-in  { 0% { opacity: 0.25; } 16%, 100% { opacity: 1; } }
+  @keyframes ig-say-in     { 0%, 74% { opacity: 0; } 86%, 100% { opacity: 1; } }
+  @keyframes mim-rise-in   { 0%, 30% { opacity: 0; } 46%, 100% { opacity: 1; } }
+  @keyframes mim-cross-in  { 0%, 52% { opacity: 0; } 70%, 100% { opacity: 1; } }
+  @keyframes mim-moved-in  { 0%, 62% { opacity: 0; } 76%, 100% { opacity: 1; } }
   @keyframes wf-say-in     { 0%, 84% { opacity: 0; } 94%, 100% { opacity: 1; } }
 
   .concept-diagram.is-playing .chr-cut       { animation: chr-cut-flash 4.6s ease-in-out both; }
@@ -1017,6 +1212,23 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-diagram.is-playing .wf-egg-l      { animation: wf-egg-out-l 4.6s var(--ease-settle) both; }
   .concept-diagram.is-playing .wf-egg-r      { animation: wf-egg-out-r 4.6s var(--ease-settle) both; }
   .concept-diagram.is-playing .wf-sym        { animation: wf-sym-in 4.6s ease-out both; }
+  .concept-diagram.is-playing .ig-genome     { animation: ig-genome-in 4.6s ease-out both; }
+  .concept-diagram.is-playing .mim-rise      { animation: mim-rise-in 4.6s ease-out both; }
+  .concept-diagram.is-playing .mim-cross     { animation: mim-cross-in 4.6s ease-out both; }
+  .concept-diagram.is-playing .mim-mark--moved { animation: mim-moved-in 4.6s var(--ease-settle) both; }
+  .concept-diagram.is-playing .mim-say       { animation: ig-say-in 4.6s ease-out both; }
+  .concept-diagram.is-playing .ig-say        { animation: ig-say-in 4.6s ease-out both; }
+  .concept-diagram.is-playing .ig-isl--1-0 { animation: ig-land 4.6s 0.00s var(--ease-settle) both; }
+  .concept-diagram.is-playing .ig-isl--2-0 { animation: ig-land 4.6s 0.06s var(--ease-settle) both; }
+  .concept-diagram.is-playing .ig-isl--5-0 { animation: ig-land 4.6s 0.12s var(--ease-settle) both; }
+  .concept-diagram.is-playing .ig-isl--10-0 { animation: ig-land 4.6s 0.18s var(--ease-settle) both; }
+  .concept-diagram.is-playing .ig-isl--12-0 { animation: ig-land 4.6s 0.24s var(--ease-settle) both; }
+  .concept-diagram.is-playing .ig-isl--13-0 { animation: ig-land 4.6s 0.30s var(--ease-settle) both; }
+  .concept-diagram.is-playing .ig-isl--15-0 { animation: ig-land 4.6s 0.36s var(--ease-settle) both; }
+  .concept-diagram.is-playing .ig-isl--18-0 { animation: ig-land 4.6s 0.42s var(--ease-settle) both; }
+  .concept-diagram.is-playing .ig-isl--19-0 { animation: ig-land 4.6s 0.48s var(--ease-settle) both; }
+  .concept-diagram.is-playing .ig-isl--20-0 { animation: ig-land 4.6s 0.54s var(--ease-settle) both; }
+  .concept-diagram.is-playing .ig-isl--20-1 { animation: ig-land 4.6s 0.60s var(--ease-settle) both; }
   .concept-diagram.is-playing .wf-say        { animation: wf-say-in 4.6s ease-out both; }
 
   /* The final scientific state is visible before and after playback. Motion
@@ -1117,6 +1329,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .chr-lost,
   .chr-fis-l,
   .chr-fis-r,
+  .ig-isl,
   .wf-in,
   .wf-neo,
   .wf-egg-l,

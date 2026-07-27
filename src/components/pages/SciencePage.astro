@@ -62,9 +62,10 @@ const layer = locale === 'es'
  * at the end. Keyed by the question anchor rather than by index so reordering
  * the questions cannot silently move a diagram to the wrong one.
  */
-const questionDiagrams: Record<string, readonly ('chromosome' | 'wfusion' | 'connectivity')[]> = {
+const questionDiagrams: Record<string, readonly ('chromosome' | 'wfusion' | 'introgression' | 'mimicry' | 'connectivity')[]> = {
   chromosomes: ['chromosome', 'wfusion'],
-  'gene-flow': ['connectivity'],
+  'gene-flow': ['introgression', 'mimicry'],
+  connectivity: ['connectivity'],
 };
 
 // All source IDs referenced on this page (via [S##] tokens + described-species claim S01).
