@@ -344,7 +344,8 @@ const pageSourceIds = [
     display: grid;
     gap: var(--space-m);
     grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-    align-items: start;
+    /* Paired figures keep equal height whatever their content does. */
+    align-items: stretch;
   }
   /* A lone figure must not stretch across the full measure: the drawing is
      height-capped, so a wider box only adds empty space either side of it.

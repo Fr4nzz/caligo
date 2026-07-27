@@ -1220,6 +1220,14 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   @keyframes fly-body { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 18% { opacity: 0.9; } 82% { opacity: 0.9; } 100% { opacity: 0; transform: translate(204px, 36px) scale(0.5); } }
   @keyframes cap-open { 0% { transform: translateY(0); } 25%, 70% { transform: translateY(-12px); } 100% { transform: translateY(0); } }
   @keyframes row-mark { from { opacity: 0; transform: scaleX(0.15); } 70% { opacity: 1; transform: scaleX(1.03); } to { opacity: 1; transform: scaleX(1); } }
+  /* The play label shortens to "Repetir" after the first play. In a wrapping
+     flex header that stops the button wrapping, the header loses a row and the
+     card jumps ~55px shorter mid-interaction. A grid puts the control on its
+     own row whatever the label says, in either language. */
+  [data-context='science'] .concept-heading {
+    display: grid;
+    justify-items: start;
+  }
   [data-context='pilot'] .concept-heading { padding-block-start: var(--space-xs); }
   /* 600x266 viewBox: at ~30rem of column width the natural height is ~13.3rem,
      so the shared 12.5rem cap was shrinking these two and centring them in a
