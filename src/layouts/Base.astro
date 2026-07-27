@@ -327,11 +327,11 @@ const ssrThemeColor = MODE_COLORS[DEFAULT_PALETTE][DEFAULT_MODE];
           try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (_) {}
           if (reduce || !Element.prototype.animate) return;
 
-          var details = document.querySelectorAll('.disclosure, .section-rail-disclosure');
+          var details = document.querySelectorAll('.disclosure');
           details.forEach(function (detail) {
             if (detail.getAttribute('data-disclosure-enhanced') === 'true') return;
             var summary = detail.querySelector(':scope > summary');
-            var body = detail.querySelector(':scope > .disclosure-body, :scope > .section-rail-content');
+            var body = detail.querySelector(':scope > .disclosure-body');
             if (!summary || !body) return;
             detail.setAttribute('data-disclosure-enhanced', 'true');
 

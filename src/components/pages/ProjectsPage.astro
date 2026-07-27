@@ -79,7 +79,13 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
     <PageHeader title={pageTitle} intro={p.opening} />
   </div>
 
-  <div class="projects-layout section--tight">
+  {/*
+    container-wide supplies the gutter and the centring. This used to come
+    from `section-rail-layout`, which was removed with the sidebar — and
+    took the page's left and right margins with it, so the images and
+    diagrams sat flush against the viewport edge.
+  */}
+  <div class="projects-layout container-wide section--tight">
     <ol class="pilots" aria-label={pageTitle}>
       {
         publishedPilots.map((pilot) => {

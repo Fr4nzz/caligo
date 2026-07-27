@@ -193,28 +193,6 @@ kbd,
   max-width: var(--measure);
 }
 
-/* Shared shell for pages with an opt-in "On this page" rail. The compact
-   12rem column preserves reading width without letting the rail consume the
-   280px used by the earlier Science-only layout. Pages with wider visual
-   records opt into the wide modifier; rail geometry remains identical. */
-.section-rail-layout {
-  --section-rail-layout-max: var(--container);
-  width: min(100% - 2.5rem, var(--container-narrow));
-  margin-inline: auto;
-}
-.section-rail-layout--wide {
-  --section-rail-layout-max: var(--container-wide);
-}
-@media (min-width: 68rem) {
-  .section-rail-layout {
-    width: min(100% - 2.5rem, var(--section-rail-layout-max));
-    display: grid;
-    grid-template-columns: 12rem minmax(0, 1fr);
-    gap: clamp(var(--space-m), 2.2vw, var(--space-l));
-    align-items: start;
-  }
-}
-
 .prose {
   max-width: var(--measure);
 }
