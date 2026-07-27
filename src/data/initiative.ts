@@ -27,38 +27,90 @@ export {
 } from './content';
 export type { Project, Facility } from './content';
 
-/* ---------- Initiative leaders (doc 01 §J2, §J3) ---------- */
+/* ---------- Initiative leaders ---------- */
 export type Person = {
   name: string;
   role: Bilingual;
+  bio: Bilingual;
   affiliation: string;
   country: Bilingual;
 };
 
 /**
- * The three initiative leads documented in PRES L3–4, BRIEF §1, and BRIEF §6.
- * Affiliations: Vicencio Oostra — Queen Mary University of London;
- *               Nicol Rueda — Wellcome Sanger Institute (BRIEF §6).
- *               Joana Meier — Wellcome Sanger Institute (PRES L3–4).
+ * Leadership names and regional connections follow the initiative leadership
+ * slide supplied in July 2026. Affiliations and research summaries were checked
+ * against official institutional profiles and research-group pages in July 2026.
  */
 export const LEADERS: Person[] = [
   {
+    name: 'Caroline Bacquet',
+    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    bio: {
+      en: 'Her work at Ikiam’s Scientific Insectary connects Amazonian Lepidoptera with genetics, molecular evolution, behaviour and butterfly responses to environmental change.',
+      es: 'Su trabajo en el Insectario Científico de Ikiam vincula los lepidópteros amazónicos con la genética, la evolución molecular, el comportamiento y las respuestas de las mariposas al cambio ambiental.',
+    },
+    affiliation: 'Universidad Regional Amazónica Ikiam',
+    country: { en: 'Ecuador', es: 'Ecuador' },
+  },
+  {
+    name: 'Gyanpriya Maharaj',
+    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    bio: {
+      en: 'Her research examines the diversity, genetics, physiology, ecology and behaviour of Neotropical butterflies, alongside broader work in entomology and insect monitoring.',
+      es: 'Su investigación estudia la diversidad, genética, fisiología, ecología y conducta de las mariposas neotropicales, junto con temas más amplios de entomología y monitoreo de insectos.',
+    },
+    affiliation: 'University of Guyana',
+    country: { en: 'Guyana', es: 'Guyana' },
+  },
+  {
+    name: 'Carmen Barragan',
+    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    bio: {
+      en: 'Her research combines molecular ecology and conservation genetics to study Neotropical species, population history and biodiversity conservation.',
+      es: 'Su investigación combina la ecología molecular y la genética de la conservación para estudiar especies neotropicales, historia poblacional y conservación de la biodiversidad.',
+    },
+    affiliation: 'Universidade Federal de Goiás',
+    country: { en: 'Brazil / Colombia', es: 'Brasil / Colombia' },
+  },
+  {
+    name: 'Carlos Arias',
+    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    bio: {
+      en: 'He combines computational approaches with Heliconius research to investigate the evolutionary processes that drive or constrain the origin of species in nature.',
+      es: 'Combina métodos computacionales con investigación en Heliconius para estudiar los procesos evolutivos que impulsan o limitan el origen de las especies en la naturaleza.',
+    },
+    affiliation: 'Smithsonian Tropical Research Institute',
+    country: { en: 'Panama', es: 'Panamá' },
+  },
+  {
     name: 'Nicol Rueda',
-    role: { en: 'Initiative lead', es: 'Líder de la iniciativa' },
+    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    bio: {
+      en: 'She studies chromosome structure and sex chromosome-autosome fusions in Heliconius, using reference genomes to investigate Lepidoptera evolution.',
+      es: 'Estudia la estructura cromosómica y las fusiones entre cromosomas sexuales y autosomas en Heliconius mediante genomas de referencia para investigar la evolución de los lepidópteros.',
+    },
     affiliation: 'Wellcome Sanger Institute',
-    country: { en: 'United Kingdom', es: 'Reino Unido' },
+    country: { en: 'Colombia / United Kingdom', es: 'Colombia / Reino Unido' },
   },
   {
     name: 'Joana Meier',
-    role: { en: 'Initiative lead', es: 'Líder de la iniciativa' },
+    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    bio: {
+      en: 'Her research in speciation and evolutionary genomics examines how interbreeding and chromosomal rearrangements contribute to rapid adaptation and the formation of new species.',
+      es: 'Su investigación en especiación y genómica evolutiva estudia cómo la hibridación y los reordenamientos cromosómicos contribuyen a la adaptación rápida y la formación de nuevas especies.',
+    },
     affiliation: 'Wellcome Sanger Institute',
-    country: { en: 'United Kingdom', es: 'Reino Unido' },
+    country: { en: 'Peru / United Kingdom', es: 'Perú / Reino Unido' },
   },
   {
     name: 'Vicencio Oostra',
-    role: { en: 'Initiative lead', es: 'Líder de la iniciativa' },
+    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    bio: {
+      en: 'He combines development, genomics, evolutionary biology and ecology to study how tropical butterflies adapt to environmental change.',
+      es: 'Combina desarrollo, genómica, biología evolutiva y ecología para estudiar cómo las mariposas tropicales se adaptan al cambio ambiental.',
+    },
     affiliation: 'Queen Mary University of London',
-    country: { en: 'United Kingdom', es: 'Reino Unido' },
+    country: { en: 'Colombia / United Kingdom', es: 'Colombia / Reino Unido' },
   },
 ];
 
