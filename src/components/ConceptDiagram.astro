@@ -1,7 +1,7 @@
 ---
 import { getDict, type Locale } from '../i18n';
 
-type DiagramKind = 'chromosome';
+type DiagramKind = 'chromosome' | 'introgression';
 
 interface Props {
   readonly locale: Locale;
@@ -32,6 +32,20 @@ const copy = {
       footnote: 'The orange dots are the spindle anchor. This is why the number of chromosomes can change.',
       question: 'compare chromosome-scale assemblies',
     },
+    introgression: {
+      title: 'One genome, two ancestors',
+      desc: 'The 21 chromosomes of a single Heliconius elevatus butterfly, drawn as grey bars. About 99% of this genome is inherited from one parent species, Heliconius pardalinus. The orange blocks are the remaining 1%: stretches of DNA inherited from a second species, Heliconius melpomene, through hybridisation. Four rows above the chromosomes show what those stretches control. Colour pattern is marked on chromosomes 1, 5, 10, 12, 13, 15 and 18; wing shape on 20; host plant on 2; pheromones on 19 and 20. The stretches are spread across many chromosomes rather than clumped on one. Chromosome lengths and the position of each block within a chromosome are schematic.',
+      hook: 'The 21 chromosomes of one Heliconius elevatus butterfly',
+      legendGrey: 'inherited from H. pardalinus — about 99%',
+      legendOrange: 'inherited from H. melpomene by hybridisation — about 1%',
+      traitsLead: 'and this is what those pieces control',
+      traitColour: 'colour pattern',
+      traitWing: 'wing shape',
+      traitPlant: 'host plant',
+      traitScent: 'pheromones',
+      outcome: 'Spread across the genome, not clumped in one place — and it is what makes it a different butterfly.',
+      question: 'compare chromosome-scale assemblies',
+    },
   },
   es: {
     conceptual: 'Esquema conceptual',
@@ -51,17 +65,38 @@ const copy = {
       footnote: 'Los puntos naranjas son el anclaje al huso. Por eso el número de cromosomas puede cambiar.',
       question: 'comparar ensamblajes a escala cromosómica',
     },
+    introgression: {
+      title: 'Un genoma, dos ancestros',
+      desc: 'Los 21 cromosomas de una sola mariposa Heliconius elevatus, dibujados como barras grises. Cerca del 99 % de este genoma se heredó de una especie progenitora, Heliconius pardalinus. Los bloques naranjas son el 1 % restante: tramos de ADN heredados de una segunda especie, Heliconius melpomene, por hibridación. Cuatro filas sobre los cromosomas muestran qué controlan esos tramos. El patrón de color está marcado en los cromosomas 1, 5, 10, 12, 13, 15 y 18; la forma del ala en el 20; la planta hospedera en el 2; las feromonas en el 19 y el 20. Los tramos están repartidos por muchos cromosomas en vez de agrupados en uno solo. Las longitudes de los cromosomas y la posición de cada bloque dentro de un cromosoma son esquemáticas.',
+      hook: 'Los 21 cromosomas de una mariposa Heliconius elevatus',
+      legendGrey: 'heredado de H. pardalinus — cerca del 99 %',
+      legendOrange: 'heredado de H. melpomene por hibridación — cerca del 1 %',
+      traitsLead: 'y esto es lo que controlan esos fragmentos',
+      traitColour: 'patrón de color',
+      traitWing: 'forma del ala',
+      traitPlant: 'planta hospedera',
+      traitScent: 'feromonas',
+      outcome: 'Repartido por el genoma, no agrupado en un solo sitio: y es lo que la hace una mariposa distinta.',
+      question: 'comparar ensamblajes a escala cromosómica',
+    },
   },
 } as const;
 
 const c = copy[locale];
 const k = c[kind];
-const mobileSteps: readonly string[] = [
-  `${c.chromosome.mostAnimals}: ${c.chromosome.onePointA} ${c.chromosome.onePointB}`,
-  c.chromosome.lostPiece,
-  `${c.chromosome.lepidoptera}: ${c.chromosome.allAlongA} ${c.chromosome.allAlongB}`,
-  c.chromosome.bothKept,
-];
+const mobileSteps: readonly string[] = kind === 'chromosome'
+  ? [
+      `${c.chromosome.mostAnimals}: ${c.chromosome.onePointA} ${c.chromosome.onePointB}`,
+      c.chromosome.lostPiece,
+      `${c.chromosome.lepidoptera}: ${c.chromosome.allAlongA} ${c.chromosome.allAlongB}`,
+      c.chromosome.bothKept,
+    ]
+  : [
+      c.introgression.legendGrey,
+      c.introgression.legendOrange,
+      `${c.introgression.traitsLead}: ${c.introgression.traitColour}, ${c.introgression.traitWing}, ${c.introgression.traitPlant}, ${c.introgression.traitScent}`,
+      c.introgression.outcome,
+    ];
 ---
 
 <figure
@@ -85,7 +120,7 @@ const mobileSteps: readonly string[] = [
     </button>
   </figcaption>
 
-  <svg class="concept-svg" viewBox="0 0 600 266" role="img" aria-labelledby={`${id}-title ${id}-desc`}>
+  <svg class="concept-svg" viewBox={kind === 'chromosome' ? '0 0 600 266' : '0 0 900 310'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
     <title id={`${id}-title`}>{k.title}</title>
     <desc id={`${id}-desc`}>{k.desc}</desc>
     <defs>
@@ -151,6 +186,105 @@ const mobileSteps: readonly string[] = [
         <text x="0" y="252" class="chr-note">{c.chromosome.footnote}</text>
       </g>
     )}
+    {kind === 'introgression' && (
+      <g class="diagram-scene introgression-scene">
+        <text x="0" y="18" class="chr-tag">{c.introgression.hook}</text>
+
+        {/* Legend. Without it, orange is just a colour and the reader has to
+            infer from the prose that it means "DNA from a second species".
+            The figure has to stand on its own. */}
+        <g class="ig-legend">
+          <rect x="0" y="32" width="22" height="13" rx="4" class="ig-chr" />
+          <text x="30" y="42" class="ig-key">{c.introgression.legendGrey}</text>
+          <rect x="0" y="52" width="22" height="13" rx="4" class="ig-isl" />
+          <text x="30" y="62" class="ig-key">{c.introgression.legendOrange}</text>
+        </g>
+
+        {/* Trait rows, the one idea worth taking from Rosser et al. 2024
+            Fig 3: show each trait AT its chromosome rather than listing
+            chromosome numbers in a caption the reader must map back by hand. */}
+        <text x="0" y="92" class="ig-lead">{c.introgression.traitsLead}</text>
+        <g class="ig-traits">
+          <text x="120" y="116" class="ig-trait-label">{c.introgression.traitColour}</text>
+          <rect x="138" y="108" width="12" height="8" rx="3" class="ig-tick" />
+          <rect x="282" y="108" width="12" height="8" rx="3" class="ig-tick" />
+          <rect x="462" y="108" width="12" height="8" rx="3" class="ig-tick" />
+          <rect x="534" y="108" width="12" height="8" rx="3" class="ig-tick" />
+          <rect x="570" y="108" width="12" height="8" rx="3" class="ig-tick" />
+          <rect x="642" y="108" width="12" height="8" rx="3" class="ig-tick" />
+          <rect x="750" y="108" width="12" height="8" rx="3" class="ig-tick" />
+          <text x="120" y="134" class="ig-trait-label">{c.introgression.traitWing}</text>
+          <rect x="822" y="126" width="12" height="8" rx="3" class="ig-tick" />
+          <text x="120" y="152" class="ig-trait-label">{c.introgression.traitPlant}</text>
+          <rect x="174" y="144" width="12" height="8" rx="3" class="ig-tick" />
+          <text x="120" y="170" class="ig-trait-label">{c.introgression.traitScent}</text>
+          <rect x="786" y="162" width="12" height="8" rx="3" class="ig-tick" />
+          <rect x="822" y="162" width="12" height="8" rx="3" class="ig-tick" />
+        </g>
+
+        <g class="ig-genome">
+          <rect x="132" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="168" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="204" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="240" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="276" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="312" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="348" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="384" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="420" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="456" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="492" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="528" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="564" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="600" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="636" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="672" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="708" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="744" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="780" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="816" y="188" width="24" height="64" rx="10" class="ig-chr" />
+          <rect x="852" y="188" width="24" height="64" rx="10" class="ig-chr" />
+        </g>
+        <g class="ig-islands">
+          <rect x="132" y="200" width="24" height="11" rx="4" class="ig-isl" />
+          <rect x="168" y="210" width="24" height="11" rx="4" class="ig-isl" />
+          <rect x="276" y="196" width="24" height="11" rx="4" class="ig-isl" />
+          <rect x="456" y="204" width="24" height="11" rx="4" class="ig-isl" />
+          <rect x="528" y="214" width="24" height="11" rx="4" class="ig-isl" />
+          <rect x="564" y="194" width="24" height="11" rx="4" class="ig-isl" />
+          <rect x="636" y="208" width="24" height="11" rx="4" class="ig-isl" />
+          <rect x="744" y="200" width="24" height="11" rx="4" class="ig-isl" />
+          <rect x="780" y="192" width="24" height="11" rx="4" class="ig-isl" />
+          <rect x="816" y="190" width="24" height="11" rx="4" class="ig-isl" />
+          <rect x="816" y="216" width="24" height="11" rx="4" class="ig-isl" />
+        </g>
+        <g class="ig-labels">
+          <text x="144" y="270" class="ig-num">1</text>
+          <text x="180" y="270" class="ig-num">2</text>
+          <text x="216" y="270" class="ig-num">3</text>
+          <text x="252" y="270" class="ig-num">4</text>
+          <text x="288" y="270" class="ig-num">5</text>
+          <text x="324" y="270" class="ig-num">6</text>
+          <text x="360" y="270" class="ig-num">7</text>
+          <text x="396" y="270" class="ig-num">8</text>
+          <text x="432" y="270" class="ig-num">9</text>
+          <text x="468" y="270" class="ig-num">10</text>
+          <text x="504" y="270" class="ig-num">11</text>
+          <text x="540" y="270" class="ig-num">12</text>
+          <text x="576" y="270" class="ig-num">13</text>
+          <text x="612" y="270" class="ig-num">14</text>
+          <text x="648" y="270" class="ig-num">15</text>
+          <text x="684" y="270" class="ig-num">16</text>
+          <text x="720" y="270" class="ig-num">17</text>
+          <text x="756" y="270" class="ig-num">18</text>
+          <text x="792" y="270" class="ig-num">19</text>
+          <text x="828" y="270" class="ig-num">20</text>
+          <text x="864" y="270" class="ig-num">21</text>
+        </g>
+
+        <text x="0" y="296" class="chr-out ig-say">{c.introgression.outcome}</text>
+      </g>
+    )}
 
 
 
@@ -172,6 +306,17 @@ const mobileSteps: readonly string[] = [
 </figure>
 
 <style>
+  /* ---- introgression ---- */
+  .ig-chr  { fill: var(--bg-inset); stroke: var(--text-faint); stroke-width: 1.2; }
+  .ig-isl  { fill: var(--accent); }
+  .ig-tick { fill: var(--accent); }
+  .ig-key  { font-family: var(--font-body); font-size: 13px; fill: var(--text-muted); }
+  .ig-lead { font-family: var(--font-body); font-size: 13px; font-weight: 600; fill: var(--text-strong); }
+  .ig-trait-label {
+    font-family: var(--font-body); font-size: 13px; fill: var(--text-muted); text-anchor: end;
+  }
+  .ig-num  { font-family: var(--font-mono); font-size: 11px; fill: var(--text-faint); text-anchor: middle; }
+
   .concept-diagram {
     margin: 0;
     min-width: 0;
@@ -817,6 +962,7 @@ const mobileSteps: readonly string[] = [
      down to satisfy the cap and preserveAspectRatio centres it, leaving
      dead space on both sides. Container max-width is set by the page. */
   [data-kind='chromosome'] .concept-svg { max-height: 22rem; }
+  [data-kind='introgression'] .concept-svg { max-height: 30rem; }
   /* 720x255 viewBox at the 46rem lone-figure width is ~16.3rem tall. */
   [data-context='pilot'] .concept-svg { max-height: 10.75rem; }
   .concept-mobile-flow { display: none; }

@@ -43,6 +43,7 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
 import PublishedFigure from '../PublishedFigure.astro';
+import ConceptDiagram from '../ConceptDiagram.astro';
 import { getDict, type Locale } from '../../i18n';
 
 interface Props {
@@ -73,9 +74,30 @@ const questionAside: Record<string, { photo?: string; figure?: 'hybridOriginFigu
   Being readable on PMC is not a licence: Edelman 2019 and Seraphim 2016,
   both cited on this site, are free to read and cannot be reproduced.
 */
-const questionWideFigure: Record<string, 'chromosomeFigure' | 'traitLociFigure' | undefined> = {
+const questionWideFigure: Record<string, 'chromosomeFigure' | undefined> = {
   chromosomes: 'chromosomeFigure',
-  'gene-flow': 'traitLociFigure',
+  'gene-flow': undefined,
+  connectivity: undefined,
+};
+
+/*
+  Where the paper's own figure is a research figure rather than an
+  explanatory one, we draw it instead. Rosser Fig 3 shows the same claim
+  as this diagram and shows it measured — but it is four F_ST tracks, an
+  eight-item legend and a species-tree/introgression-tree key, and this
+  page exists to pull people toward research rather than to gate it.
+
+  What the diagram takes from Fig 3 is its one transferable idea: put
+  each trait AT its chromosome, in a labelled row, instead of listing
+  chromosome numbers in a caption the reader has to map back by hand.
+
+  Full width, like the published figures — a wide karyotype in a narrow
+  column is unreadable, and a half-width block in a full-width row reads
+  as something failing to load.
+*/
+const questionWideDiagram: Record<string, 'introgression' | undefined> = {
+  chromosomes: undefined,
+  'gene-flow': 'introgression',
   connectivity: undefined,
 };
 
@@ -94,6 +116,7 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
         const anchor = anchors[i];
         const aside = questionAside[anchor];
         const wide = questionWideFigure[anchor];
+        const wideDiagram = questionWideDiagram[anchor];
         return (
           <article id={anchor} class="question">
             <h3 class="question-heading">{q.heading}</h3>
@@ -123,6 +146,12 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
             {wide && (
               <div class="wide-figure">
                 <PublishedFigure locale={locale} {...s[wide]} />
+              </div>
+            )}
+
+            {wideDiagram && (
+              <div class="wide-figure">
+                <ConceptDiagram locale={locale} kind={wideDiagram} context="science" />
               </div>
             )}
           </article>
