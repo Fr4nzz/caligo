@@ -139,6 +139,18 @@ export const en = {
       "alt": "Phylogeny of the Heliconius sara/sapho clade. Grey boxes give haploid chromosome counts along the tree, ranging from 21 to 56–60. Three dashed arrows mark separate W–autosome fusion events, labelled W+4, W+9 and W+14. Range maps and wing photographs of each subspecies sit to the right.",
       "caption": "The published evidence behind this section. Read the grey boxes: haploid chromosome counts run from 21 in most of the clade to between 56 and 60 in the sapho and eleuchia lineages. The three dashed arrows mark the separate occasions on which an autosome fused to the W."
     },
+    "hybridOriginFigure": {
+      "src": "media/figures-published/rosser-2024-fig1e-hybrid-origin.png",
+      "citation": "Rosser et al. 2024, Nature, Fig 1e",
+      "citationUrl": "https://doi.org/10.1038/s41586-024-07263-w",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "width": 900,
+      "height": 764,
+      "alt": "A three-branch tree. Heliconius melpomene (Amazon) on the left, Heliconius elevatus (Guianas) in the middle, Heliconius pardalinus (Andes) on the right, with a wing photograph under each name. Two arrows converge on the H. elevatus branch: one from the melpomene lineage labelled 0.7 per cent, one from the pardalinus lineage labelled 99.3 per cent. A time axis on the left runs from 813 thousand years ago at the top to 180 thousand years ago at the branch point.",
+      "caption": "How H. elevatus came to have two ancestors. The two arrows are the whole argument: 99.3% of its genome traces to H. pardalinus and 0.7% to H. melpomene, meeting around 180,000 years ago. Note the wings — the hybrid does not look like a blend of its parents.",
+      "changes": "cropped to panel e"
+    },
     "questions": [
       {
         "heading": "How can chromosomes split and fuse while a lineage keeps evolving?",

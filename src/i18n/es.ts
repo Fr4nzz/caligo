@@ -136,6 +136,18 @@ export const es: Dict = {
       "alt": "Filogenia del clado sara/sapho de Heliconius. Las cajas grises dan los conteos de cromosomas haploides a lo largo del árbol, de 21 a 56–60. Tres flechas punteadas señalan fusiones independientes entre el cromosoma W y un autosoma, rotuladas W+4, W+9 y W+14. A la derecha aparecen mapas de distribución y fotografías de las alas de cada subespecie.",
       "caption": "La evidencia publicada detrás de esta sección. Fíjate en las cajas grises: los conteos de cromosomas haploides van de 21 en la mayor parte del clado a entre 56 y 60 en los linajes sapho y eleuchia. Las tres flechas punteadas marcan las ocasiones independientes en que un autosoma se fusionó con el W."
     },
+    "hybridOriginFigure": {
+      "src": "media/figures-published/rosser-2024-fig1e-hybrid-origin.png",
+      "citation": "Rosser et al. 2024, Nature, Fig 1e",
+      "citationUrl": "https://doi.org/10.1038/s41586-024-07263-w",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "width": 900,
+      "height": 764,
+      "alt": "Un árbol de tres ramas. Heliconius melpomene (Amazonía) a la izquierda, Heliconius elevatus (Guayanas) en el centro y Heliconius pardalinus (Andes) a la derecha, con una fotografía de las alas bajo cada nombre. Dos flechas convergen en la rama de H. elevatus: una desde el linaje de melpomene rotulada 0,7 por ciento y otra desde el linaje de pardalinus rotulada 99,3 por ciento. Un eje temporal a la izquierda va de 813 mil años atrás en la parte superior a 180 mil años atrás en el punto de unión.",
+      "caption": "Cómo H. elevatus llegó a tener dos ancestros. Las dos flechas son todo el argumento: el 99,3 % de su genoma viene de H. pardalinus y el 0,7 % de H. melpomene, y se encuentran hace unos 180.000 años. Fíjate en las alas: la híbrida no parece una mezcla de sus progenitores.",
+      "changes": "recortada al panel e"
+    },
     "questions": [
       {
         "heading": "¿Cómo pueden dividirse y fusionarse los cromosomas mientras un linaje sigue evolucionando?",

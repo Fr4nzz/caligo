@@ -71,6 +71,23 @@ const questionPhoto: Record<string, string | undefined> = {
   connectivity: 'pilot-parides',
 };
 
+/*
+  Published figures, reproduced rather than redrawn. Both licences were
+  verified against Crossref before use — CC0 for Rueda-M, CC BY 4.0 for
+  Rosser — and the full provenance sits in the .LICENSE.md beside each
+  image. Note that being readable on PMC is not a licence: Edelman 2019
+  and Seraphim 2016, both cited elsewhere on this site, cannot be
+  reproduced this way.
+
+  The aside figure answers "what happened"; the diagram below answers
+  "where it landed in the genome".
+*/
+const questionAsideFigure: Record<string, 'hybridOriginFigure' | undefined> = {
+  chromosomes: undefined,
+  'gene-flow': 'hybridOriginFigure',
+  connectivity: undefined,
+};
+
 const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
 ---
 
@@ -86,6 +103,7 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
         const anchor = anchors[i];
         const diagram = questionDiagram[anchor];
         const photo = questionPhoto[anchor];
+        const asideFigure = questionAsideFigure[anchor];
         return (
           <article id={anchor} class="question">
             <h3 class="question-heading">{q.heading}</h3>
@@ -107,6 +125,12 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
               {photo && (
                 <div class="question-figure">
                   <MediaCandidateViewer moduleId={photo} locale={locale} aspectRatio="4 / 3" />
+                </div>
+              )}
+
+              {asideFigure && (
+                <div class="question-figure">
+                  <PublishedFigure locale={locale} {...s[asideFigure]} />
                 </div>
               )}
             </div>
