@@ -48,21 +48,6 @@ export interface Source {
   readonly archive?: string;
 }
 
-export interface Claim {
-  readonly id: string;
-  readonly headline: Bilingual;
-  readonly detail?: Bilingual;
-  readonly caveat?: Bilingual;
-  readonly unit?: string;
-  readonly denominator?: string;
-  readonly status: PublicStatus;
-  readonly provenance: Provenance;
-  readonly sourceIds: readonly string[];
-  readonly approvalOwner?: string;
-  readonly approvalDate?: string;
-  readonly publish: boolean;
-}
-
 export interface Pilot {
   readonly id: string;
   readonly slug: string;
@@ -112,41 +97,15 @@ export interface Media {
 
 export const SOURCES: readonly Source[] = [
   {
-    id: 'wright-2026',
-    kind: 'paper',
-    citation:
-      'Wright et al. Genome sequencing of Lepidoptera: progress, priorities and orphan lineages. Nature Reviews Biodiversity, published 16 February 2026.',
-    url: 'https://doi.org/10.1038/s44358-025-00128-8',
-    publicationDate: '2026-02-16',
-    checkedDate: '2026-07-15',
-    doi: '10.1038/s44358-025-00128-8',
-  },
-  {
-    id: 'wright-2026-snapshot',
-    kind: 'database',
-    citation:
-      'GenBank Lepidoptera assembly snapshot reported in Wright et al. 2026, data accessed 6 November 2025.',
-    url: 'https://doi.org/10.1038/s44358-025-00128-8',
-    publicationDate: '2025-11-06',
-    checkedDate: '2026-07-15',
-  },
-  {
-    id: 'iserhard-2024',
-    kind: 'paper',
-    citation:
-      'Iserhard et al. 2024. Field test of eyespot function in Caligo martia. Peer Community Journal.',
-    url: 'https://doi.org/10.24072/pcjournal.442',
-    publicationDate: '2024-01-01',
-    checkedDate: '2026-07-15',
-    doi: '10.24072/pcjournal.442',
-  },
-  {
     id: 'rueda-2024',
     kind: 'paper',
+    // Title and date corrected against Crossref, 2026-07-27. The record
+    // previously read "Chromosome evolution in Heliconius" dated
+    // 2024-01-01, neither of which matches the DOI. The paper is CC0.
     citation:
-      'Rueda-M et al. 2024. Chromosome evolution in Heliconius. PLOS Genetics.',
+      'Rueda-M et al. 2024. Genomic evidence reveals three W-autosome fusions in Heliconius butterflies. PLOS Genetics 20(7):e1011318.',
     url: 'https://doi.org/10.1371/journal.pgen.1011318',
-    publicationDate: '2024-01-01',
+    publicationDate: '2024-07-18',
     checkedDate: '2026-07-15',
     doi: '10.1371/journal.pgen.1011318',
   },
@@ -159,16 +118,6 @@ export const SOURCES: readonly Source[] = [
     publicationDate: '2026-07-11',
     checkedDate: '2026-07-15',
     doi: '10.1093/gbe/evag171',
-  },
-  {
-    id: 'sackey-2018',
-    kind: 'paper',
-    citation:
-      'Sackey et al. 2018. Nanostructure of black scales in one black eyespot region of Caligo memnon. IET Nanobiotechnology.',
-    url: 'https://doi.org/10.1049/iet-nbt.2017.0320',
-    publicationDate: '2018-01-01',
-    checkedDate: '2026-07-15',
-    doi: '10.1049/iet-nbt.2017.0320',
   },
   {
     id: 'iucn-parides-2018',
@@ -200,80 +149,12 @@ export const SOURCES: readonly Source[] = [
     doi: '10.1101/2020.09.01.277665',
   },
   {
-    id: 'edelman-2019',
-    kind: 'paper',
-    citation:
-      'Edelman et al. 2019. Genomic architecture and introgression shape a butterfly radiation. Science.',
-    url: 'https://doi.org/10.1126/science.aaw2090',
-    publicationDate: '2019-01-01',
-    checkedDate: '2026-07-15',
-    doi: '10.1126/science.aaw2090',
-  },
-  {
-    id: 'blaxter-2022',
-    kind: 'paper',
-    citation:
-      'Blaxter et al. 2022. Why sequence all eukaryotes? PNAS.',
-    url: 'https://doi.org/10.1073/pnas.2115642118',
-    publicationDate: '2022-01-01',
-    checkedDate: '2026-07-15',
-    doi: '10.1073/pnas.2115642118',
-  },
-  {
-    id: 'fair-2016',
-    kind: 'standard',
-    citation:
-      'Wilkinson et al. 2016. The FAIR Guiding Principles for scientific data management and stewardship. Scientific Data.',
-    url: 'https://doi.org/10.1038/sdata.2016.18',
-    publicationDate: '2016-03-15',
-    checkedDate: '2026-07-15',
-    doi: '10.1038/sdata.2016.18',
-  },
-  {
-    id: 'care-2020',
-    kind: 'standard',
-    citation:
-      'Carroll et al. 2020. The CARE Principles for Indigenous Data Governance. Data Science Journal.',
-    url: 'https://doi.org/10.5334/dsj-2020-043',
-    publicationDate: '2020-01-01',
-    checkedDate: '2026-07-15',
-    doi: '10.5334/dsj-2020-043',
-  },
-  {
-    id: 'nagoya',
-    kind: 'standard',
-    citation:
-      'Convention on Biological Diversity: Nagoya Protocol on Access and Benefit-sharing.',
-    url: 'https://www.cbd.int/abs/about/default.shtml',
-    checkedDate: '2026-07-15',
-  },
-  {
     id: 'ukri-soybean',
     kind: 'institutional',
     citation:
       'UK Research and Innovation, project UKRI2955, Population genomic monitoring of soybean pests. Independent scientific context for the proposed Caligo pilot project.',
     url: 'https://gtr.ukri.org/projects?ref=UKRI2955',
     checkedDate: '2026-07-16',
-  },
-  {
-    id: 'rosser-2024',
-    kind: 'paper',
-    citation:
-      'Rosser et al. Hybrid speciation driven by multilocus introgression of ecological traits. Nature 628:811–817 (2024).',
-    url: 'https://doi.org/10.1038/s41586-024-07263-w',
-    publicationDate: '2024-04-01',
-    checkedDate: '2026-07-16',
-    doi: '10.1038/s41586-024-07263-w',
-  },
-  {
-    id: 'vanderheijden-2025',
-    kind: 'paper',
-    citation:
-      'van der Heijden et al. 2025. Genomics of Neotropical biodiversity indicators: Two butterfly radiations with rampant chromosomal rearrangements and hybridization. PNAS 122:e2410939122.',
-    url: 'https://doi.org/10.1073/pnas.2410939122',
-    publicationDate: '2025-07-28',
-    checkedDate: '2026-07-21',
-    doi: '10.1073/pnas.2410939122',
   },
   {
     id: 'seraphim-2016',
@@ -305,209 +186,10 @@ export const SOURCES: readonly Source[] = [
     checkedDate: '2026-07-16',
     doi: '10.1002/ps.8197',
   },
-  {
-    id: 'pomerantz-2021',
-    kind: 'paper',
-    citation:
-      'Pomerantz et al. Developmental, cellular and biochemical basis of transparency in clearwing butterflies. Journal of Experimental Biology 224:jeb237917 (2021).',
-    url: 'https://doi.org/10.1242/jeb.237917',
-    publicationDate: '2021-01-01',
-    checkedDate: '2026-07-16',
-    doi: '10.1242/jeb.237917',
-  },
-  {
-    id: 'chakraborty-2023',
-    kind: 'paper',
-    citation:
-      'Chakraborty et al. Sex-linked gene traffic underlies the acquisition of sexually dimorphic UV color vision in Heliconius butterflies. Proceedings of the National Academy of Sciences 120:e2301411120 (2023).',
-    url: 'https://doi.org/10.1073/pnas.2301411120',
-    publicationDate: '2023-01-01',
-    checkedDate: '2026-07-16',
-    doi: '10.1073/pnas.2301411120',
-  },
-  {
-    id: 'couto-2023',
-    kind: 'paper',
-    citation:
-      'Couto et al. Rapid expansion and visual specialisation of learning and memory centres in the brains of Heliconiini butterflies. Nature Communications 14:4024 (2023).',
-    url: 'https://doi.org/10.1038/s41467-023-39618-8',
-    publicationDate: '2023-01-01',
-    checkedDate: '2026-07-16',
-    doi: '10.1038/s41467-023-39618-8',
-  },
-  {
-    id: 'foley-2026',
-    kind: 'paper',
-    citation:
-      'Foley et al. Evolution of increased longevity and slowed ageing in a genus of tropical butterfly. Nature Communications 17:5077 (2026).',
-    url: 'https://doi.org/10.1038/s41467-026-73635-7',
-    publicationDate: '2026-01-01',
-    checkedDate: '2026-07-16',
-    doi: '10.1038/s41467-026-73635-7',
-  },
-  {
-    id: 'mayer-2021',
-    kind: 'paper',
-    citation:
-      'Mayer et al. Adding leaves to the Lepidoptera tree: capturing hundreds of nuclear genes from old museum specimens. Systematic Entomology 46:649–671 (2021).',
-    url: 'https://doi.org/10.1111/syen.12481',
-    publicationDate: '2021-01-01',
-    checkedDate: '2026-07-16',
-    doi: '10.1111/syen.12481',
-  },
-  {
-    id: 'st-laurent-2018',
-    kind: 'paper',
-    citation:
-      'St Laurent et al. Museum specimens provide phylogenomic data to resolve relationships of sack-bearer moths (Lepidoptera, Mimallonoidea, Mimallonidae). Systematic Entomology 43:729–761 (2018).',
-    url: 'https://doi.org/10.1111/syen.12301',
-    publicationDate: '2018-01-01',
-    checkedDate: '2026-07-16',
-    doi: '10.1111/syen.12301',
-  },
-  {
-    id: 'ncbi-datasets-2026',
-    kind: 'database',
-    citation:
-      'NCBI Datasets genome documentation and genome metadata packages. Accessed 16 July 2026.',
-    url: 'https://www.ncbi.nlm.nih.gov/datasets/docs/v2/how-tos/genomes/',
-    publicationDate: '2026-07-16',
-    checkedDate: '2026-07-16',
-  },
 ];
 
 /* ═══════════════════════════════════════════════════════════════════════
    CLAIMS
-   ═══════════════════════════════════════════════════════════════════════ */
-
-export const CLAIMS: readonly Claim[] = [
-  {
-    id: 'lepidoptera-described',
-    headline: {
-      en: 'At least 161,572 described species of butterflies and moths.',
-      es: 'Al menos 161.572 especies descritas de mariposas y polillas.',
-    },
-    detail: {
-      en: 'Counted in a 2026 synthesis of Lepidoptera genomics. "Described" is not a live checklist total or an estimate of undiscovered diversity.',
-      es: 'Contabilizadas en una síntesis de 2026 sobre genómica de lepidópteros. «Descritas» no es un total vivo del catálogo ni una estimación de la diversidad no descubierta.',
-    },
-    unit: 'described species',
-    status: 'published-evidence',
-    provenance: 'published-evidence',
-    sourceIds: ['wright-2026'],
-    publish: true,
-  },
-  {
-    id: 'assembly-snapshot',
-    headline: {
-      en: '1,672 species with a public assembly and 1,055 at chromosome level.',
-      es: '1.672 especies con ensamblaje público y 1.055 a nivel cromosómico.',
-    },
-    detail: {
-      en: 'Approximately 1.03% and 0.65% of the described total, from a GenBank snapshot made on 6 November 2025 and reported in Wright et al.',
-      es: 'Aproximadamente el 1,03 % y el 0,65 % del total descrito, en una consulta de GenBank realizada el 6 de noviembre de 2025 y reportada por Wright et al.',
-    },
-    caveat: {
-      en: 'These are global orientation figures. Regional Neotropical coverage figures depend on a defined taxonomic backbone, realm-membership rule, and dated NCBI assembly query.',
-      es: 'Son cifras globales de orientación. Las cifras regionales de cobertura neotropical dependen de una base taxonómica definida, una regla explícita de pertenencia al reino y una consulta fechada de ensamblajes en NCBI.',
-    },
-    unit: 'species',
-    denominator: '161572',
-    status: 'database-snapshot',
-    provenance: 'dated-database-result',
-    sourceIds: ['wright-2026', 'wright-2026-snapshot'],
-    publish: true,
-  },
-  {
-    id: 'lepidoptera-bias',
-    headline: {
-      en: 'Small-bodied moths and tropical lineages remain underrepresented.',
-      es: 'Las polillas de cuerpo pequeño y los linajes tropicales siguen subrepresentados.',
-    },
-    detail: {
-      en: 'Global context for taxonomic and genomic research. Caligo measures progress against its own dated records.',
-      es: 'Contexto global de la investigación taxonómica y genómica. Caligo mide su avance con sus propios registros fechados.',
-    },
-    status: 'published-evidence',
-    provenance: 'published-evidence',
-    sourceIds: ['wright-2026'],
-    publish: true,
-  },
-  {
-    id: 'martia-eyespot-2024',
-    headline: {
-      en: 'A 2024 field experiment on Caligo martia found evidence consistent with attacks being redirected toward the wings, but not an overall reduction in attack risk.',
-      es: 'Un experimento de campo de 2024 con Caligo martia encontró evidencia compatible con el desvío de ataques hacia las alas, pero no una reducción general del riesgo de ataque.',
-    },
-    caveat: {
-      en: 'One result does not settle the function of every Caligo eyespot.',
-      es: 'Un resultado no resuelve la función de todos los ocelos de Caligo.',
-    },
-    status: 'published-evidence',
-    provenance: 'published-evidence',
-    sourceIds: ['iserhard-2024'],
-    publish: true,
-  },
-  {
-    id: 'heliconius-chromosomes',
-    headline: {
-      en: 'Most Heliconius species have a haploid chromosome count of 21; a lineage in the sara/sapho group reaches counts as high as 60 through extensive fissions.',
-      es: 'La mayoría de las especies de Heliconius tiene un número haploide de 21 cromosomas; un linaje del grupo sara/sapho alcanza hasta 60 mediante numerosas fisiones.',
-    },
-    caveat: {
-      en: 'This range applies to Heliconius. It should not be generalised to Lepidoptera as a whole.',
-      es: 'Este rango se aplica a Heliconius. No debe generalizarse a los lepidópteros en su conjunto.',
-    },
-    status: 'published-evidence',
-    provenance: 'published-evidence',
-    sourceIds: ['rueda-2024'],
-    publish: true,
-  },
-  {
-    id: 'heliconius-w-fusions',
-    headline: {
-      en: 'Genomic evidence supports three independent W–autosome fusions in Heliconius.',
-      es: 'La evidencia genómica apoya tres fusiones independientes entre el cromosoma W y autosomas en Heliconius.',
-    },
-    status: 'published-evidence',
-    provenance: 'published-evidence',
-    sourceIds: ['rueda-2024'],
-    publish: true,
-  },
-  {
-    id: 'parides-ascanius-status',
-    headline: {
-      en: 'Parides ascanius is Vulnerable globally in the 2018 IUCN assessment and Endangered in Brazil’s 2021 national assessment.',
-      es: 'Parides ascanius figura como Vulnerable a escala mundial en la evaluación de la UICN de 2018 y como En Peligro en la evaluación nacional de Brasil de 2021.',
-    },
-    caveat: {
-      en: 'The two assessments use different jurisdictions, methods and dates and are not interchangeable.',
-      es: 'Las dos evaluaciones usan jurisdicciones, métodos y fechas distintas y no son intercambiables.',
-    },
-    status: 'published-evidence',
-    provenance: 'published-evidence',
-    sourceIds: ['iucn-parides-2018', 'icmbio-parides-2021'],
-    publish: true,
-  },
-  {
-    id: 'panacea-prola-2020',
-    headline: {
-      en: 'A 2020 preprint reported a seasonal mass movement of Panacea prola in south-eastern Peru.',
-      es: 'Un preprint de 2020 informó un movimiento estacional masivo de Panacea prola en el sureste del Perú.',
-    },
-    caveat: {
-      en: 'Preprint. Wider geographic extent, origins and connectivity remain open questions.',
-      es: 'Preprint. La extensión geográfica más amplia, los orígenes y la conectividad siguen siendo preguntas abiertas.',
-    },
-    status: 'published-evidence',
-    provenance: 'published-evidence',
-    sourceIds: ['gallice-2020'],
-    publish: true,
-  },
-];
-
-/* ═══════════════════════════════════════════════════════════════════════
-   PILOTS
    ═══════════════════════════════════════════════════════════════════════ */
 
 export const PILOTS: readonly Pilot[] = [
@@ -524,8 +206,8 @@ export const PILOTS: readonly Pilot[] = [
     },
     taxon: 'Heliconius',
     publishedContext: {
-      en: 'Published genomic work shows an exceptional burst of chromosome change in the Heliconius sapho subclade. Most Heliconius species have 21 haploid chromosomes, but five species in this lineage range from 21 to 60 after repeated chromosome fissions, events in which one ancestral chromosome becomes two. Researchers have also identified three separate fusions between the female-specific W chromosome and autosomes. These changes create a natural system for asking how genome structure affects recombination, sex-chromosome evolution and the way inherited variants travel together. Five highly contiguous Heliconius reference genomes published in July 2026 add valuable comparative material, but they do not by themselves answer why the rearrangements spread or what effects they had.',
-      es: 'La evidencia genómica publicada muestra una explosión excepcional de cambios cromosómicos en el subclado sapho de Heliconius. La mayoría de las especies del género tiene 21 cromosomas haploides, pero cinco especies de este linaje presentan entre 21 y 60 después de fisiones repetidas, procesos en los que un cromosoma ancestral pasa a formar dos. También se identificaron tres fusiones independientes entre el cromosoma W, propio de las hembras, y autosomas. Este sistema permite preguntar cómo la estructura del genoma modifica la recombinación, la evolución de los cromosomas sexuales y la herencia conjunta de variantes. Cinco genomas de referencia de Heliconius muy contiguos, publicados en julio de 2026, amplían el material comparativo; por sí solos no explican por qué se extendieron los reordenamientos ni qué efectos tuvieron.',
+      en: 'Most Heliconius species have 21 haploid chromosomes. Five species in the sapho subclade range from 21 to 60, after repeated fissions in which one ancestral chromosome became two. Three separate fusions between the female-specific W chromosome and autosomes have also been identified. That makes the group a natural experiment in how genome structure affects recombination and sex-chromosome evolution — though the published genomes do not say why the rearrangements spread.',
+      es: 'La mayoría de las especies de Heliconius tienen 21 cromosomas haploides. Cinco especies del subclado sapho van de 21 a 60, tras fisiones repetidas en las que un cromosoma ancestral se convirtió en dos. También se han identificado tres fusiones independientes entre el cromosoma W, exclusivo de las hembras, y autosomas. El grupo es así un experimento natural sobre cómo la estructura del genoma afecta la recombinación y la evolución de los cromosomas sexuales, aunque los genomas publicados no dicen por qué se extendieron los reordenamientos.',
     },
     proposedQuestion: {
       en: 'The proposed Caligo pilot project would compare selected chromosome-scale genomes to test where fissions and fusions occurred, how they changed genomic organisation and which evolutionary hypotheses deserve deeper study.',
@@ -569,8 +251,8 @@ export const PILOTS: readonly Pilot[] = [
     },
     taxon: 'Parides ascanius',
     publishedContext: {
-      en: 'The 2018 IUCN assessment classified Parides ascanius as Vulnerable globally; Brazil’s 2021 national assessment classified it as Endangered. These dated assessments come from different jurisdictions and should not be treated as interchangeable. The species is associated with lowland coastal restinga and wetland habitats. A genetic study published in 2016 found low population structure and inferred substantial migration among the populations it sampled. This is an encouraging historical baseline, but not proof that the same connections persist today. Habitat loss, drainage and fragmentation can change movement long before populations look visibly different. A contemporary study must measure both the genetic diversity that remains and the movement of individuals and inherited variants among habitat patches. Precise localities should remain protected in public communication.',
-      es: 'La evaluación de la UICN de 2018 clasificó a Parides ascanius como Vulnerable a escala mundial; la evaluación nacional de Brasil de 2021 la clasificó como En Peligro. Son evaluaciones fechadas, pertenecen a jurisdicciones distintas y no deben tratarse como equivalentes. La especie se asocia con restingas costeras de tierras bajas y humedales. Un estudio genético publicado en 2016 encontró poca estructura poblacional e infirió migración considerable entre las poblaciones muestreadas: una línea de base histórica alentadora, pero no una prueba de que esas conexiones sigan intactas. La pérdida, el drenaje y la fragmentación del hábitat pueden modificar el movimiento mucho antes de que las poblaciones se vean diferentes. Por eso, un estudio actual debe preguntar no solo cuánta diversidad genética queda, sino si los individuos y las variantes heredadas todavía circulan entre parches de hábitat. Las localidades precisas deben permanecer protegidas.',
+      en: 'The IUCN classified Parides ascanius as Vulnerable globally in 2018; Brazil’s national assessment classified it as Endangered in 2021. It lives in lowland coastal restinga and wetland habitats. A 2016 genetic study found low population structure and inferred substantial migration between the populations it sampled — a historical baseline rather than evidence that those connections survive today. Habitat loss and drainage can change movement long before populations look different. Precise localities stay out of public communication.',
+      es: 'La UICN clasificó a Parides ascanius como Vulnerable a nivel global en 2018; la evaluación nacional de Brasil lo clasificó como En Peligro en 2021. Habita restingas costeras de tierras bajas y humedales. Un estudio genético de 2016 encontró poca estructura poblacional e infirió una migración considerable entre las poblaciones muestreadas: una línea de base histórica, no una prueba de que esas conexiones sigan existiendo. La pérdida de hábitat y el drenaje pueden alterar el movimiento mucho antes de que las poblaciones se vean distintas. Las localidades precisas se mantienen fuera de la comunicación pública.',
     },
     proposedQuestion: {
       en: 'The proposed Caligo pilot project would build a documented reference genome and compare responsibly sampled populations to test whether connectivity and genetic diversity have changed since the earlier baseline.',
@@ -614,8 +296,8 @@ export const PILOTS: readonly Pilot[] = [
     },
     taxon: '',
     publishedContext: {
-      en: 'Soybean landscapes bring several Lepidoptera species into one applied challenge: identify the organism correctly, understand how populations move and monitor whether management is selecting for resistance. Those questions matter for food security and for reducing unnecessary or ineffective interventions. Published work in Brazil shows why the details matter. Closely related species can be confused in monitoring, and changes in susceptibility to insecticidal proteins must be measured through repeated, species-specific evidence rather than assumed. Genomics can help distinguish lineages, track inherited variants and design targeted monitoring tools, but sustainable management also depends on field observations, agronomy, resistance bioassays, landscape history and the choices of growers and regulators.',
-      es: 'Los paisajes sojeros reúnen a varias especies de lepidópteros en un mismo desafío aplicado: identificar bien el organismo, comprender cómo se mueven las poblaciones y vigilar si el manejo está seleccionando resistencia. Estas preguntas importan para la seguridad alimentaria y para reducir intervenciones innecesarias o ineficaces. Estudios publicados en Brasil muestran por qué los detalles son decisivos. Especies cercanas pueden confundirse durante el monitoreo y los cambios de susceptibilidad a proteínas insecticidas deben medirse con evidencia repetida y específica de cada especie, no darse por hechos. La genómica puede ayudar a distinguir linajes, seguir variantes heredadas y diseñar herramientas dirigidas, pero el manejo sostenible también exige observaciones de campo, agronomía, bioensayos de resistencia, historia del paisaje y decisiones de productores y autoridades.',
+      en: 'Several Lepidoptera species share soybean landscapes, which turns three practical problems into one: identifying the organism correctly, understanding how populations move, and detecting whether management is selecting for resistance. Work in Brazil shows closely related species being confused in monitoring, and susceptibility to insecticidal proteins shifting in ways only repeated species-specific testing can catch. Genomics can separate the lineages and track inherited variants; the management decisions still rest with agronomy and growers.',
+      es: 'Varias especies de lepidópteros comparten los paisajes de soya, lo que junta tres problemas prácticos en uno: identificar bien al organismo, entender cómo se mueven las poblaciones y detectar si el manejo está seleccionando resistencia. El trabajo en Brasil muestra especies cercanas que se confunden en el monitoreo, y cambios de susceptibilidad a proteínas insecticidas que solo se detectan con pruebas repetidas y específicas por especie. La genómica puede separar los linajes y rastrear variantes heredadas; las decisiones de manejo siguen dependiendo de la agronomía y de quienes cultivan.',
     },
     proposedQuestion: {
       en: 'The proposed Caligo pilot project would ask how confirmed soybean-associated species move across changing agricultural mosaics, how resistance-related variants are distributed and which genomic markers are reliable enough for monitoring.',
@@ -659,8 +341,8 @@ export const PILOTS: readonly Pilot[] = [
     },
     taxon: 'Panacea prola',
     publishedContext: {
-      en: 'A 2020 preprint reported a seasonal mass movement of Panacea prola in south-eastern Peru and presented it as the first evidence for an Amazonian insect migration. The observation is compelling, but it leaves the central map unfinished. Where did the butterflies originate? Did one population or several contribute? Which landscapes were connected, and did the pattern repeat across years? A reference genome and samples collected across places and seasons could compare ancestry and connectivity. Environmental records, host plants, weather, direct observation and stable-isotope evidence would be needed to interpret the genomic patterns. The report is a preprint, and the wider geographic extent of the movement remains an open question.',
-      es: 'Un preprint de 2020 describió un movimiento estacional masivo de Panacea prola en el sureste del Perú y lo presentó como la primera evidencia de una migración de insectos en la Amazonía. La observación es cautivadora, pero deja el mapa central incompleto. ¿De dónde vinieron las mariposas? ¿Participó una sola población o varias? ¿Qué paisajes quedaron conectados y el patrón se repitió entre años? Un genoma de referencia y muestras obtenidas en distintos lugares y temporadas permitirían comparar ascendencia y conectividad. Para interpretar las señales genómicas harían falta registros ambientales, plantas hospederas, clima, observación directa y evidencia de isótopos estables. El informe es un preprint y el alcance geográfico más amplio del desplazamiento sigue siendo una pregunta abierta.',
+      en: 'A 2020 preprint reported a seasonal mass movement of Panacea prola in south-eastern Peru, and presented it as the first evidence of an Amazonian insect migration. It leaves the map unfinished: where the butterflies came from, whether one population or several contributed, and whether the pattern repeats between years. A reference genome plus samples across seasons and sites could compare ancestry and connectivity. The report has not been peer reviewed.',
+      es: 'Un preprint de 2020 reportó un movimiento masivo estacional de Panacea prola en el sureste de Perú y lo presentó como la primera evidencia de una migración de insectos amazónica. El mapa queda incompleto: de dónde venían las mariposas, si contribuyó una población o varias, y si el patrón se repite entre años. Un genoma de referencia junto con muestras de distintas estaciones y sitios permitiría comparar ancestría y conectividad. El reporte no ha pasado por revisión por pares.',
     },
     proposedQuestion: {
       en: 'The proposed Caligo pilot project would combine a documented reference genome with repeated population sampling to test the origins, connections and seasonal consistency of the observed movement.',
@@ -742,13 +424,9 @@ const byId = <T extends { readonly id: string }>(list: readonly T[]) =>
   new Map(list.map((r) => [r.id, r]));
 
 const SOURCE_MAP = byId(SOURCES);
-const CLAIM_MAP = byId(CLAIMS);
-const PILOT_MAP = byId(PILOTS);
 const MEDIA_MAP = byId(MEDIA);
 
 export const getSource = (id: string): Source | undefined => SOURCE_MAP.get(id);
-export const getClaim = (id: string): Claim | undefined => CLAIM_MAP.get(id);
-export const getPilot = (id: string): Pilot | undefined => PILOT_MAP.get(id);
 export const getMedia = (id: string): Media | undefined => MEDIA_MAP.get(id);
 
 export const PUBLIC_STATUS_LABELS: Readonly<Record<PublicStatus, Bilingual>> = {
@@ -946,33 +624,6 @@ export const MODULES: readonly MediaModule[] = [
     ],
   },
   {
-    id: 'journey-1-organism',
-    publish: true,
-    candidates: [
-      {
-        kind: 'ai-concept',
-        path: 'media/journey/journey-01-identify-ai.webp',
-        width: 1600,
-        height: 900,
-        licence: 'Concept illustration by Caligo',
-        licenceUrl: '',
-        conceptCaveat: AI_CAVEAT,
-        alt: {
-          en: 'Editorial concept illustration: a living butterfly on a Neotropical leaf while a researcher observes it and compares visible traits with an open identification guide.',
-          es: 'Ilustración conceptual editorial: una mariposa viva sobre una hoja neotropical mientras una investigadora la observa y compara caracteres visibles con una guía de identificación abierta.',
-        },
-        caption: {
-          en: 'A clear question and a confident identification shape every step that follows.',
-          es: 'Una pregunta clara y una identificación confiable orientan cada paso posterior.',
-        },
-        credit: {
-          en: 'Generated concept illustration for Caligo, combining a researcher, butterfly and field setting.',
-          es: 'Ilustración conceptual generada para Caligo que combina una investigadora, una mariposa y un entorno de campo.',
-        },
-      },
-    ],
-  },
-  {
     id: 'journey-2-provenance',
     publish: true,
     candidates: [
@@ -999,146 +650,6 @@ export const MODULES: readonly MediaModule[] = [
         credit: {
           en: 'Photograph: Kristy Hoath / Museums Victoria Collections / Wikimedia Commons.',
           es: 'Fotografía: Kristy Hoath / Museums Victoria Collections / Wikimedia Commons.',
-        },
-      },
-    ],
-  },
-  {
-    id: 'journey-3-voucher',
-    publish: true,
-    // This module is diagram-led: the schematic directly explains the
-    // specimen → retained material → sequence-record relationship. The
-    // documentary drawer remains available as the adjacent candidate.
-    initialIndex: 1,
-    candidates: [
-      {
-        kind: 'documentary',
-        path: 'media/journey/journey-03-museum-drawer.webp',
-        width: 1600,
-        height: 1200,
-        creator: 'Marek Ślusarczyk',
-        licence: CC_BY_3.name,
-        licenceUrl: CC_BY_3.url,
-        sourceItemPage: 'https://commons.wikimedia.org/wiki/File:03_Museum_insect_specimen_drawer_-_Muzeum_Gornoslaskie%2C_Bytom%2C_Poland.jpg',
-        changes: ['downloaded from Wikimedia Commons; no re-encode applied locally'],
-        alt: {
-          en: 'A museum insect drawer holding preserved and curated butterfly and moth specimens arranged in tidy rows.',
-          es: 'Un cajón de museo con ejemplares preservados y curados de mariposas y polillas dispuestos en filas ordenadas.',
-        },
-        caption: {
-          en: 'A preserved voucher lets future researchers re-examine the organism that produced the DNA. These curated specimens belong to the Muzeum Górnośląskie collection in Bytom, Poland.',
-          es: 'Un voucher preservado permite volver a examinar el organismo que produjo el ADN. Estos ejemplares curados pertenecen a la colección del Muzeum Górnośląskie, en Bytom, Polonia.',
-        },
-        credit: {
-          en: 'Photograph: Marek Ślusarczyk / Muzeum Górnośląskie, Bytom / Wikimedia Commons.',
-          es: 'Fotografía: Marek Ślusarczyk / Muzeum Górnośląskie, Bytom / Wikimedia Commons.',
-        },
-      },
-      {
-        kind: 'code-native',
-        path: 'media/code-native/journey-3-voucher-diagram.svg',
-        width: 1200,
-        height: 480,
-        fit: 'contain',
-        background: 'var(--bg-inset)',
-        creator: 'Caligo project',
-        changes: ['original language-neutral SVG schematic; no specimen or sequence data represented'],
-        alt: {
-          en: 'Three-stage schematic linking a preserved butterfly specimen, a vial of retained material, and a neutral sequence-record card.',
-          es: 'Esquema de tres etapas que enlaza un ejemplar de mariposa preservado, un vial de material retenido y una tarjeta neutra de registro de secuencia.',
-        },
-        caption: {
-          en: 'A preserved specimen connects retained material to its sequence record, keeping the organism available for future study.',
-          es: 'Un ejemplar preservado conecta el material retenido con su registro de secuencia y mantiene el organismo disponible para estudios futuros.',
-        },
-        credit: {
-          en: 'Explanatory diagram created for Caligo.',
-          es: 'Diagrama explicativo creado para Caligo.',
-        },
-      },
-    ],
-  },
-  {
-    id: 'journey-4-sequence',
-    publish: true,
-    candidates: [
-      {
-        kind: 'documentary',
-        path: 'media/journey/journey-04-nhgri-pipette.webp',
-        width: 1600,
-        height: 1043,
-        creator: 'Maggie Bartlett / National Human Genome Research Institute',
-        licence: PD_US.name,
-        licenceUrl: PD_US.url,
-        sourceItemPage: 'https://commons.wikimedia.org/wiki/File:NHGRI_researcher_uses_a_pipette_to_remove_DNA_from_a_micro_test_tube.jpg',
-        changes: ['downloaded from Wikimedia Commons; no re-encode or crop applied locally'],
-        alt: {
-          en: 'A gloved researcher uses a pipette to remove DNA from a micro test tube in a genomics laboratory.',
-          es: 'Una investigadora con guantes usa una pipeta para tomar ADN de un microtubo en un laboratorio de genómica.',
-        },
-        caption: {
-          en: 'DNA extraction and sequencing turn a documented sample into the raw data used for assembly and analysis.',
-          es: 'La extracción y la secuenciación convierten una muestra documentada en los datos crudos usados para el ensamblaje y el análisis.',
-        },
-        credit: {
-          en: 'Photograph: Maggie Bartlett / National Human Genome Research Institute (NHGRI). Public domain (US Government work).',
-          es: 'Fotografía: Maggie Bartlett / National Human Genome Research Institute (NHGRI). Dominio público (obra del gobierno de EE.UU.).',
-        },
-      },
-    ],
-  },
-  {
-    id: 'journey-5-assemble',
-    publish: true,
-    candidates: [
-      {
-        kind: 'code-native',
-        path: 'media/code-native/journey-5-assembly-diagram.svg',
-        width: 1200,
-        height: 480,
-        fit: 'contain',
-        background: 'var(--bg-inset)',
-        creator: 'Caligo project',
-        changes: ['original language-neutral SVG schematic; no assembly metrics or sequence data represented'],
-        alt: {
-          en: 'Four-stage genome-assembly schematic: overlapping short reads form longer contigs, contigs are ordered into gapped scaffolds, and scaffolds resolve into a chromosome-scale sequence.',
-          es: 'Esquema de cuatro etapas del ensamblaje genómico: lecturas cortas superpuestas forman contigs más largos, los contigs se ordenan en scaffolds con brechas y los scaffolds se resuelven en una secuencia a escala cromosómica.',
-        },
-        caption: {
-          en: 'Assembly connects overlapping reads into contigs, orders them into scaffolds and resolves them toward chromosome-scale sequence.',
-          es: 'El ensamblaje conecta lecturas superpuestas en contigs, las ordena en scaffolds y las resuelve hacia una secuencia a escala cromosómica.',
-        },
-        credit: {
-          en: 'Explanatory assembly diagram created for Caligo.',
-          es: 'Diagrama explicativo de ensamblaje creado para Caligo.',
-        },
-      },
-    ],
-  },
-  {
-    id: 'journey-6-deposit',
-    publish: true,
-    candidates: [
-      {
-        kind: 'code-native',
-        path: 'media/code-native/journey-6-evidence-network-diagram.svg',
-        width: 1200,
-        height: 480,
-        fit: 'contain',
-        background: 'var(--bg-inset)',
-        creator: 'Caligo project',
-        changes: ['original language-neutral SVG schematic; no accessions, localities, or study results represented'],
-        alt: {
-          en: 'Bidirectional evidence chain linking a documented specimen, its reference genome, population samples, environmental context, and the research question.',
-          es: 'Cadena bidireccional de evidencia que enlaza un ejemplar documentado, su genoma de referencia, muestras poblacionales, el contexto ambiental y la pregunta de investigación.',
-        },
-        caption: {
-          en: 'A reusable reference connects specimen provenance to population and environmental evidence, then returns every layer to the question being tested.',
-          es: 'Una referencia reutilizable conecta la procedencia del ejemplar con la evidencia poblacional y ambiental, y devuelve cada capa a la pregunta que se pone a prueba.',
-        },
-        credit: {
-          en: 'Code-native schematic created for the Caligo project. No identifiers, coordinates, or study results are shown.',
-          es: 'Esquema vectorial creado mediante código para el proyecto Caligo. No muestra identificadores, coordenadas ni resultados de investigación.',
         },
       },
     ],

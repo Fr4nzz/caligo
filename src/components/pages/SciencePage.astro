@@ -1,13 +1,42 @@
 ---
+/**
+ * SciencePage — three questions, in prose.
+ *
+ * This page was 3,536 words, 13 <details> elements, 36 citation
+ * superscripts, a 15-entry bibliography, a sticky sidebar and five
+ * animated figures — and not one photograph. The only <img> tags in the
+ * built HTML were the header and footer emblems.
+ *
+ * The structural problem was not length. Every question was a record
+ * with six fixed fields, four of which rendered as identical cells under
+ * mono uppercase labels: A NEOTROPICAL EXAMPLE / WHAT EVIDENCE IS NEEDED
+ * / ONE STATED BOUNDARY / EVIDENCE AND SOURCES. Twenty-four labelled
+ * boxes in a 6×4 grid. That template is what produced six consecutive
+ * "cannot X, Y or Z without W" sentences — the first reads as
+ * intellectual honesty, the sixth reads as a form somebody was required
+ * to fill in. You cannot edit your way out of that while the renderer
+ * exists, so the renderer is gone.
+ *
+ * Three questions survive, as flowing prose with a photograph and a
+ * plain source line. Cut: species boundaries (a 2018 moth-genera
+ * reshuffle), seasonal movement (a block that existed to report a
+ * preprint and then withdraw confidence in it), the "three scales of
+ * genetic evidence" section (which taught the same three tiers as the
+ * table directly above it, once as a table and once as an animation),
+ * and the 12-item metadata field list, which is a data-management SOP
+ * and belongs in a partner handbook.
+ *
+ * Sources are author-year hyperlinks in the prose flow. The old
+ * superscript system rendered 1–9, 16, 17, 20, 21 and 22 above a
+ * bibliography styled `list-style: none` — so a reader clicking "22"
+ * landed on an unnumbered row, and 10–15, 18 and 19 appeared nowhere on
+ * the page. It had never worked in production.
+ */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
-import SectionRail from '../SectionRail.astro';
-import DataTierProgression from '../DataTierProgression.astro';
 import ConceptDiagram from '../ConceptDiagram.astro';
-import SourceList from '../SourceList.astro';
+import MediaCandidateViewer from '../MediaCandidateViewer.astro';
 import { getDict, type Locale } from '../../i18n';
-import { renderCitations } from '../../lib/citations';
-import { getClaim } from '../../data/records';
 
 interface Props {
   locale: Locale;
@@ -16,552 +45,199 @@ const { locale } = Astro.props;
 const t = getDict(locale);
 const s = t.science;
 
-const describedClaim = getClaim('lepidoptera-described');
+/*
+  Anchors must match `questionAnchors` in HomePage.astro, which renders
+  the teaser links into this page.
+*/
+const anchors = ['chromosomes', 'gene-flow', 'connectivity'] as const;
 
-// Rail sections — five content anchors.
-const railSections = [
-  { id: 'questions',     label: s.questionsHeading },
-  { id: 'data-levels',   label: s.recordVsGenome.heading },
-  { id: 'data-tiers',    label: s.tiers.heading },
-  { id: 'reusable',      label: s.provenance.heading },
-  { id: 'responsibility',label: s.ethics.heading },
-];
-
-// Stable anchors for ALL SIX science questions so Home teaser links land
-// inside the right ledger row rather than at the top of #questions. The
-// slug order MUST match `questionAnchors` in HomePage.astro AND the DOM
-// order of `t.science.questions` — Home now renders all six as concise
-// hooks (see v7.4 correction in HomePage.astro). Locale-neutral IDs so
-// language switching preserves the semantic target.
-const sciQuestionAnchors: readonly (string | undefined)[] = [
-  'chromosomes',
-  'gene-flow',
-  'species-boundaries',
-  'connectivity',
-  'seasonal-movement',
-  'biodiversity-reuse',
-];
-
-// Bilingual layer labels for the four-layer question body.
-const layer = locale === 'es'
-  ? {
-      example:   'Un ejemplo neotropical',
-      evidence:  'Qué evidencia se necesita',
-      boundary:  'Un límite declarado',
-      sources:   'Evidencia y fuentes',
-    }
-  : {
-      example:   'A Neotropical example',
-      evidence:  'What evidence is needed',
-      boundary:  'One stated boundary',
-      sources:   'Evidence and sources',
-    };
-
-/**
- * Each figure sits inside the question it illustrates, not in a shared gallery
- * at the end. Keyed by the question anchor rather than by index so reordering
- * the questions cannot silently move a diagram to the wrong one.
- */
-const questionDiagrams: Record<string, readonly ('chromosome' | 'wfusion' | 'introgression' | 'mimicry' | 'connectivity')[]> = {
-  chromosomes: ['chromosome', 'wfusion'],
-  'gene-flow': ['introgression', 'mimicry'],
-  connectivity: ['connectivity'],
+/*
+  A figure only where it teaches something the paragraph beside it
+  cannot. The holocentric contrast does; so does the karyotype showing
+  where introgressed regions actually landed. The third question gets a
+  photograph of the animal instead — it is about a real population in a
+  real place, and the previous figure attached to it illustrated hybrid
+  speciation, which is the subject of the question above.
+*/
+const questionDiagram: Record<string, 'chromosome' | 'introgression' | undefined> = {
+  chromosomes: 'chromosome',
+  'gene-flow': 'introgression',
+  connectivity: undefined,
+};
+const questionPhoto: Record<string, string | undefined> = {
+  chromosomes: 'pilot-heliconius',
+  'gene-flow': undefined,
+  connectivity: 'pilot-parides',
 };
 
-// All source IDs referenced on this page (via [S##] tokens + described-species claim S01).
-const pageSourceIds = [
-  'wright-2026',
-  'rueda-2024',
-  'mackay-smith-2026',
-  'rosser-2024',
-  'edelman-2019',
-  'vanderheijden-2025',
-  'seraphim-2016',
-  'iucn-parides-2018',
-  'icmbio-parides-2021',
-  'gallice-2020',
-  'mayer-2021',
-  'st-laurent-2018',
-  'fair-2016',
-  'care-2020',
-  'nagoya',
-];
+const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
 ---
 
 <Base locale={locale} title={s.metaTitle} description={s.metaDescription} page="/science">
-  <PageHeader title={s.title} intro={s.intro} />
 
-  {describedClaim && describedClaim.publish && (
-    <div class="claim-block container-wide">
-      <p class="claim-headline" set:html={renderCitations(describedClaim.headline[locale] + ' [S01]')} />
-      {describedClaim.detail && (
-        <p class="claim-detail muted">{describedClaim.detail[locale]}</p>
-      )}
-    </div>
-  )}
+  <PageHeader eyebrow={t.nav.science} title={s.title} intro={s.intro} />
 
-  <div class="science-layout section-rail-layout section-rail-layout--wide section--tight">
-    <SectionRail locale={locale} sections={railSections} />
+  <section class="section" aria-labelledby="questions-heading">
+    <div class="container-wide">
+      <h2 id="questions-heading" class="sr-only">{s.questionsHeading}</h2>
 
-    <div class="science-sections">
-      <!-- ═══════════════════ S1 · Six questions ═══════════════════ -->
-      <section id="questions" aria-labelledby="questions-heading">
-        <h2 id="questions-heading">{s.questionsHeading}</h2>
+      {s.questions.map((q, i) => {
+        const anchor = anchors[i];
+        const diagram = questionDiagram[anchor];
+        const photo = questionPhoto[anchor];
+        return (
+          <article id={anchor} class="question">
+            <h3 class="question-heading">{q.heading}</h3>
 
-        <ol class="questions-ledger" role="list">
-          {
-            s.questions.map((q, i) => (
-              <li class="question-row" id={sciQuestionAnchors[i] ?? undefined}>
-                {/* The first question opens on arrival: it carries the two
-                    figures that are most specific to Lepidoptera, and a page of
-                    six closed rows shows a visitor nothing. */}
-                <details class="disclosure" open={i === 0}>
-                  <summary class="disclosure-summary">
-                    <span class="disclosure-summary-inner">
-                      <span class="question-summary-content">
-                        <span class="question-index mono" aria-hidden="true">
-                          Q{String(i + 1).padStart(2, '0')}
-                        </span>
-                        <span class="question-heading">{q.heading}</span>
-                      </span>
-                    </span>
-                  </summary>
-
-                  <div class="disclosure-body question-body">
-                    {/* Layer 1 — concise answer */}
-                    <p class="question-answer" set:html={renderCitations(q.answer)} />
-
-                    {/* The figures for this question, if it has any */}
-                    {(questionDiagrams[sciQuestionAnchors[i] ?? ''] ?? []).length > 0 && (
-                      <div class="question-figures">
-                        {(questionDiagrams[sciQuestionAnchors[i] ?? ''] ?? []).map((k) => (
-                          <ConceptDiagram locale={locale} kind={k} context="science" />
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Layer 2 — A Neotropical example */}
-                    <div class="question-layer">
-                      <p class="layer-label">{layer.example}</p>
-                      <p class="layer-text" set:html={renderCitations(q.example)} />
-                    </div>
-
-                    {/* Layer 3 — What evidence is needed */}
-                    <div class="question-layer">
-                      <p class="layer-label">{layer.evidence}</p>
-                      <p class="layer-text" set:html={renderCitations(q.evidence)} />
-                    </div>
-
-                    {/* Layer 4 — One stated boundary */}
-                    <div class="question-layer">
-                      <p class="layer-label">{layer.boundary}</p>
-                      <p class="layer-text" set:html={renderCitations(q.limits)} />
-                    </div>
-
-                    {/* Compact Evidence and sources sub-disclosure */}
-                    <details class="disclosure disclosure--compact question-sources-disclosure">
-                      <summary class="disclosure-summary">
-                        <span class="disclosure-summary-inner">{layer.sources}</span>
-                      </summary>
-                      <div class="disclosure-body">
-                        <p class="source-note" set:html={renderCitations(q.sourceNote)} />
-                      </div>
-                    </details>
-                  </div>
-                </details>
-              </li>
-            ))
-          }
-        </ol>
-
-      </section>
-
-      <!-- ═══════════════════ S2 · Data levels (record vs genome) ═══════════════════ -->
-      <section id="data-levels" aria-labelledby="dl-heading">
-        <h2 id="dl-heading">{s.recordVsGenome.heading}</h2>
-        <p class="section-intro muted">{s.recordVsGenome.intro}</p>
-
-        <dl class="rvg-ledger">
-          <div class="rvg-row rvg-row--head" aria-hidden="true">
-            <span class="rvg-col-label">{s.recordVsGenome.labels.recordColHeading}</span>
-            <span class="rvg-col-label">{s.recordVsGenome.labels.canShow}</span>
-            <span class="rvg-col-label">{s.recordVsGenome.labels.cannotEstablish}</span>
-          </div>
-          {
-            s.recordVsGenome.rows.map((r) => (
-              <div class="rvg-row">
-                <dt class="rvg-record">{r.record}</dt>
-                <dd class="rvg-cell">
-                  <span class="rvg-inline-label">{s.recordVsGenome.labels.canShow}</span>
-                  <span class="rvg-value">{r.canShow}</span>
-                </dd>
-                <dd class="rvg-cell">
-                  <span class="rvg-inline-label">{s.recordVsGenome.labels.cannotEstablish}</span>
-                  <span class="rvg-value">{r.cannotEstablish}</span>
-                </dd>
+            <div class="question-body">
+              <div class="question-prose">
+                {q.answer.map((para) => <p>{para}</p>)}
+                <p class="question-sources">
+                  <span class="question-sources-label">{sourcesLabel}: </span>
+                  {q.sources.map((src, n) => (
+                    <>
+                      {n > 0 && ' · '}
+                      <a href={src.url} rel="external noopener">{src.label}</a>
+                    </>
+                  ))}
+                </p>
               </div>
-            ))
-          }
-        </dl>
-      </section>
 
-      <!-- ═══════════════════ S2b · Data tiers ═══════════════════ -->
-      <section id="data-tiers" aria-labelledby="tiers-heading">
-        <h2 id="tiers-heading">{s.tiers.heading}</h2>
-        <p class="section-intro muted">{s.tiers.intro}</p>
-        <DataTierProgression locale={locale} />
-      </section>
+              {photo && (
+                <div class="question-figure">
+                  <MediaCandidateViewer moduleId={photo} locale={locale} aspectRatio="4 / 3" />
+                </div>
+              )}
+            </div>
 
-      <!-- ═══════════════════ S3 · Reusable — evidence-chain list ═══════════════════ -->
-      <section id="reusable" aria-labelledby="prov-heading">
-        <h2 id="prov-heading">{s.provenance.heading}</h2>
-        <p class="section-intro muted">{s.provenance.intro}</p>
-
-        <ol class="provenance-list">
-          {
-            s.provenance.fields.map((f, i) => (
-              <li>
-                <span class="prov-index mono" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span class="prov-field">{f}</span>
-              </li>
-            ))
-          }
-        </ol>
-      </section>
-
-      <!-- ═══════════════════ S4 · Responsibility ═══════════════════ -->
-      <section id="responsibility" aria-labelledby="resp-heading">
-        <h2 id="resp-heading">{s.ethics.heading}</h2>
-        <p class="section-intro muted">{s.ethics.intro}</p>
-
-        <ol class="ethics-list">
-          {
-            s.ethics.questions.map((q, i) => (
-              <li>
-                <span class="ethics-index mono" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span class="ethics-text">{q}</span>
-              </li>
-            ))
-          }
-        </ol>
-
-        <p class="external-context muted" set:html={renderCitations(s.ethics.externalContext)} />
-        <p class="disclaimer" role="note">{s.ethics.disclaimer}</p>
-      </section>
+            {diagram && (
+              <div class="question-diagram">
+                <ConceptDiagram locale={locale} kind={diagram} context="science" />
+              </div>
+            )}
+          </article>
+        );
+      })}
     </div>
-  </div>
+  </section>
 
-  <div class="container-wide">
-    <SourceList ids={pageSourceIds} locale={locale} />
-  </div>
+  <section class="section section--panel" aria-labelledby="evidence-heading">
+    <div class="container-wide prose-column">
+      <h2 id="evidence-heading" class="section-heading">{s.evidence.heading}</h2>
+      {s.evidence.body.map((para) => <p class="prose-para">{para}</p>)}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="ethics-heading">
+    <div class="container-wide ethics-layout">
+      <div class="ethics-prose">
+        <h2 id="ethics-heading" class="section-heading">{s.ethics.heading}</h2>
+        {s.ethics.body.map((para) => <p class="prose-para">{para}</p>)}
+      </div>
+      <div class="ethics-figure">
+        <MediaCandidateViewer moduleId="journey-2-provenance" locale={locale} aspectRatio="4 / 3" />
+      </div>
+    </div>
+  </section>
+
 </Base>
 
 <style>
-  /* ═══════════════════ Described-species claim block ═══════════════════ */
-  .claim-block {
-    margin-block: var(--space-l);
-    padding: var(--space-m) var(--space-l);
-    background: var(--bg-inset);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 var(--radius) var(--radius) 0;
+  .section { padding-block: var(--space-xl); }
+  .section--panel {
+    background: var(--bg-raised);
+    border-block: 1px solid var(--hairline);
   }
-  .claim-headline {
-    margin: 0;
+  .section-heading {
+    margin: 0 0 var(--space-m);
     font-family: var(--font-display);
-    font-size: var(--step-1);
+    font-size: var(--step-2);
     font-weight: 560;
+    line-height: 1.15;
+    letter-spacing: -0.012em;
     color: var(--text-strong);
-    line-height: 1.3;
+    max-width: 28ch;
   }
-  .claim-detail {
-    margin: var(--space-2xs) 0 0;
-    font-size: var(--step--1);
-    color: var(--text-muted);
-    line-height: 1.5;
+  .prose-para {
+    margin: 0 0 var(--space-m);
+    color: var(--text);
+    line-height: 1.65;
     max-width: var(--measure);
   }
 
-  /* ═══════════════════ Layout — rail + content ═══════════════════ */
-  .science-layout {
-    /* Width, columns and breakpoint are owned by the shared
-       .section-rail-layout primitive in global.css. */
+  /* ---- Questions ---- */
+  .question {
+    scroll-margin-top: 5rem;
+    padding-block: var(--space-l);
   }
-  .science-sections {
-    min-width: 0;
-  }
-  .science-sections > section {
-    scroll-margin-top: var(--scroll-margin-top);
-  }
-  .science-sections > section + section {
-    margin-top: var(--space-xl);
-  }
-  .science-sections h2 {
-    margin-top: 0.5rem;
-    margin-bottom: var(--space-s);
-    max-width: 26ch;
-  }
-  .section-intro {
-    max-width: var(--measure);
-    margin-bottom: var(--space-m);
-  }
-
-  /* Shared micro-label */
-  .rvg-col-label,
-  .rvg-inline-label {
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
-    font-weight: 500;
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-  }
-  .rvg-col-label {
-    color: var(--accent-strong);
-    letter-spacing: 0.14em;
-  }
-
-  /* ═══════════════════ S1 · Questions ledger ═══════════════════ */
-  .questions-ledger {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .question + .question {
     border-top: 1px solid var(--hairline);
-  }
-  .question-row {
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  /* Figures belong to the answer above them, so they are separated by space
-     rather than by a rule. Two sit side by side wherever the column is wide
-     enough; auto-fit drops them to one column below ~22rem without a media
-     query. Stacked, each figure was capped at 12.5rem tall and centred, which
-     left roughly 400px of dead space on either side of it. */
-  .question-figures {
-    margin-block: var(--space-m);
-    display: grid;
-    gap: var(--space-m);
-    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-    /* Paired figures keep equal height whatever their content does. */
-    align-items: stretch;
-  }
-  /* A lone figure must not stretch across the full measure: the drawing is
-     height-capped, so a wider box only adds empty space either side of it.
-     :global is required — the grid children are ConceptDiagram roots and carry
-     that component's scope id, not this one's, so a scoped selector never
-     matches them. */
-  .question-figures > :global(.concept-diagram:only-child) {
-    max-width: 46rem;
-  }
-  .questions-ledger .disclosure { --disclosure-pad-x: 0; }
-  .questions-ledger .disclosure-summary { padding-block: var(--space-s); }
-
-  /* Q01 + heading cluster */
-  .question-summary-content {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-s);
-    min-width: 0;
-    flex: 1 1 auto;
-  }
-  .question-index {
-    font-size: var(--step--1);
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    color: var(--accent);
-    flex: 0 0 3rem;
   }
   .question-heading {
+    margin: 0 0 var(--space-m);
     font-family: var(--font-display);
-    font-size: var(--step-1);
+    font-size: var(--step-2);
     font-weight: 560;
-    line-height: 1.25;
-    letter-spacing: -0.006em;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
     color: var(--text-strong);
-    max-width: 52ch;
+    max-width: 34ch;
   }
-
-  /* Question body — indent to align with heading text */
   .question-body {
-    padding-inline-start: 3rem;
     display: grid;
-    gap: var(--space-s);
+    gap: var(--space-l);
+    grid-template-columns: 1fr;
+    align-items: start;
   }
-  .question-answer {
-    margin: 0;
+  /* The photograph sits beside the prose rather than above it, so the
+     reading measure stays intact on wide screens. */
+  @media (min-width: 60rem) {
+    .question-body:has(.question-figure) {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    }
+  }
+  .question-prose > p {
+    margin: 0 0 var(--space-m);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.65;
     max-width: var(--measure);
   }
+  .question-prose > p:last-child { margin-bottom: 0; }
+  .question-figure { min-width: 0; }
+  .question-diagram { margin-top: var(--space-l); }
 
-  /* Four-layer structure */
-  .question-layer {
-    border-left: 2px solid var(--hairline-strong);
-    padding-left: var(--space-m);
-    display: grid;
-    gap: 0.25rem;
+  .question-sources {
+    margin-top: var(--space-m);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    line-height: 1.5;
   }
-  .layer-label {
-    margin: 0;
+  .question-sources-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    font-weight: 500;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--text-faint);
   }
-  .layer-text {
-    margin: 0;
-    color: var(--text);
-    line-height: 1.55;
-    max-width: var(--measure);
+  .question-sources a {
+    color: var(--accent-strong);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-color: var(--hairline-strong);
   }
+  .question-sources a:hover { text-decoration-color: currentColor; }
 
-  /* Sources sub-disclosure inside the question body */
-  .question-sources-disclosure {
-    margin-top: var(--space-2xs);
-  }
-  .source-note {
-    margin: 0;
-    font-size: var(--step--1);
-    color: var(--text-muted);
-    line-height: 1.5;
-    max-width: var(--measure);
-  }
-
-  /* ═══════════════════ S2 · Data levels ledger ═══════════════════ */
-  .rvg-ledger {
+  /* ---- Ethics ---- */
+  .ethics-layout {
     display: grid;
-    gap: 0;
-    margin: 0;
-    border-top: 1px solid var(--hairline);
-  }
-  .rvg-row {
-    display: grid;
+    gap: var(--space-l);
     grid-template-columns: 1fr;
-    gap: var(--space-s);
-    padding: var(--space-m) 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-  .rvg-row--head {
-    display: none;
-  }
-  .rvg-record {
-    font-family: var(--font-display);
-    font-size: var(--step-1);
-    font-weight: 560;
-    line-height: 1.2;
-    color: var(--text-strong);
-    margin: 0;
-  }
-  .rvg-cell {
-    display: grid;
-    gap: 0.35rem;
-    margin: 0;
-    max-width: var(--measure);
-  }
-  .rvg-value {
-    color: var(--text);
-    line-height: 1.55;
+    align-items: start;
   }
   @media (min-width: 60rem) {
-    .rvg-row {
-      grid-template-columns: 1.15fr 1fr 1fr;
-      column-gap: var(--space-m);
-      align-items: baseline;
-    }
-    .rvg-row--head {
-      display: grid;
-      padding-block: var(--space-s);
-      border-bottom: 1px solid var(--hairline-strong);
-    }
-    .rvg-inline-label {
-      display: none;
+    .ethics-layout {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
     }
   }
-
-  /* ═══════════════════ S3 · Reusable evidence-chain list ═══════════════════
-     Column-first flow at ≥46rem; break-inside: avoid keeps each item intact. */
-  .provenance-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-top: 1px solid var(--hairline);
-    display: block;
-  }
-  .provenance-list li {
-    display: grid;
-    grid-template-columns: 2.75rem 1fr;
-    gap: var(--space-s);
-    align-items: baseline;
-    padding: var(--space-s) 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-  .prov-index {
-    font-size: var(--step--1);
-    font-weight: 500;
-    color: var(--text-faint);
-    letter-spacing: 0.06em;
-  }
-  .prov-field {
-    color: var(--text);
-    line-height: 1.5;
-  }
-  @media (min-width: 46rem) {
-    .provenance-list {
-      column-count: 2;
-      column-gap: var(--space-xl);
-    }
-    .provenance-list li {
-      break-inside: avoid;
-      -webkit-column-break-inside: avoid;
-      page-break-inside: avoid;
-    }
-  }
-
-  /* ═══════════════════ S4 · Responsibility ═══════════════════ */
-  .ethics-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-top: 1px solid var(--hairline);
-  }
-  .ethics-list li {
-    display: grid;
-    grid-template-columns: 2.75rem 1fr;
-    gap: var(--space-s);
-    align-items: baseline;
-    padding: var(--space-s) 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-  .ethics-index {
-    font-size: var(--step--1);
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.06em;
-  }
-  .ethics-text {
-    color: var(--text);
-    line-height: 1.55;
-    max-width: var(--measure);
-  }
-  .external-context {
-    margin-top: var(--space-l);
-    max-width: var(--measure);
-    font-size: var(--step--1);
-  }
-  .disclaimer {
-    margin-top: var(--space-m);
-    padding: var(--space-s) var(--space-m);
-    border-left: 3px solid var(--highlight);
-    background: var(--bg-inset);
-    color: var(--text-muted);
-    font-size: var(--step--1);
-    line-height: 1.55;
-    max-width: var(--measure);
-    border-radius: 0 var(--radius) var(--radius) 0;
-  }
+  .ethics-figure { min-width: 0; }
 </style>

@@ -171,16 +171,21 @@ for (const { pattern, why } of banned) {
   else pass(`clear: ${why}`);
 }
 
-// 3b. Required scientific corrections must appear in combined content.
-//     Sources for these strings live in records.ts (SOURCES / CLAIMS /
-//     PILOTS entries); the check-content guard catches accidental removal.
+// 3b. Required scientific facts. Each pattern is tested against a single
+//     concatenated blob of both dictionaries plus both data files, so a
+//     match anywhere counts — that is weak, and it is why this list is
+//     short and limited to facts whose accidental removal would make a
+//     published claim wrong rather than merely different.
+//
+//     Removed with the sources they guarded: the Wright et al. and Sackey
+//     date/citation assertions. Both cited records that no longer appear
+//     anywhere on the site, so the checks were keeping dead data alive.
+//     (The Wright DOI also resolved to a different paper than the one the
+//     record claimed — corrected against Crossref on 2026-07-27.)
 const required = [
-  { pattern: /\b16\s*February\s*2026\b/, why: 'Wright et al. correct date "16 February 2026" must be present' },
-  { pattern: /\b11\s*July\s*2026\b/, why: 'Mackay-Smith et al. correct date "11 July 2026" must be present' },
-  { pattern: /\bSackey\b/, why: 'Sackey citation must be present (replaces the earlier Jiang misattribution)' },
-  { pattern: /\bpreprint\b/i, why: 'Panacea prola movement evidence must remain labelled a preprint' },
   { pattern: /\bVulnerable\b/, why: 'Parides ascanius global IUCN status "Vulnerable" must be present' },
-  { pattern: /\bEndangered\b/, why: 'Parides ascanius Brazilian national status "Endangered" must be present' },
+  { pattern: /\bEndangered\b|\bEn Peligro\b/, why: 'Parides ascanius Brazilian national status "Endangered" must be present' },
+  { pattern: /precise locality omitted|localidad precisa omitida|localidades precisas/i, why: 'the Parides ascanius locality suppression note must survive' },
 ];
 for (const { pattern, why } of required) {
   if (pattern.test(allText)) pass(`present: ${why}`);

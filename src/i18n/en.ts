@@ -85,84 +85,10 @@ export const en = {
   "home": {
     "metaTitle": "Caligo | Genomes of Neotropical butterflies and moths",
     "metaDescription": "A Latin American-led effort developing reference genomes connected to documented specimens of Neotropical butterflies and moths.",
-    "rail": {
-      "overview": "Overview",
-      "fromOrganismToGenome": "From organism to genome",
-      "whatReferenceSupports": "What a reference supports",
-      "questions": "Questions",
-      "proposedPilots": "Proposed pilot projects",
-      "discoverCaligo": "Discover Caligo"
-    },
     "hero": {
       "kicker": "Neotropical butterfly and moth genomics",
       "title": "Latin America has one of the richest Lepidoptera faunas on Earth, and one of the least-sequenced",
       "body": "Caligo is a collaborative network building reference genomes for Neotropical butterflies and moths, led by researchers based in the region."
-    },
-    "journey": {
-      "heading": "From organism to genome",
-      "intro": "A trustworthy genomic resource is a chain of biological and documentary decisions, not just a sequence file.",
-      "assemblyDiagram": {
-        "conceptual": "Concept diagram",
-        "title": "Assemble, then assess",
-        "description": "Overlapping reads form longer contigs. A symmetric Hi-C contact map helps curators reorder and orient contigs by bringing strong within-chromosome contacts into diagonal blocks. During curation, matching rows and columns move together while possible misjoins are reviewed. The resulting blocks support three chromosome-scale scaffolds. Hi-C does not supply missing sequence, so the gap in CHR 2 remains unresolved. Final assessment checks continuity, completeness and known gaps.",
-        "play": "Play the explanation",
-        "replay": "Replay",
-        "reads": "overlapping reads",
-        "contigs": "longer contigs",
-        "hic": "Hi-C contacts",
-        "hicAction": "manual curation",
-        "uncurated": "uncurated",
-        "curated": "curated",
-        "chromosomes": "chromosome-scale scaffolds",
-        "chromosomeAbbr": "CHR",
-        "gap": "unresolved gap",
-        "gapShort": "GAP",
-        "assessment": "assessment",
-        "continuity": "continuity",
-        "completeness": "completeness",
-        "limits": "limits and gaps",
-        "summary": "Curation reveals chromosome blocks. One sequence gap remains."
-      },
-      "steps": [
-        {
-          "title": "Ask and identify",
-          "body": "Start with a biological question and the best available identification."
-        },
-        {
-          "title": "Record provenance",
-          "body": "Capture who, where, when, permissions and collection context."
-        },
-        {
-          "title": "Preserve a voucher",
-          "body": "Keep a traceable specimen or material record that can be examined again."
-        },
-        {
-          "title": "Extract and sequence",
-          "body": "Turn a documented sample into DNA reads without breaking the chain of evidence."
-        },
-        {
-          "title": "Assemble and assess",
-          "body": "Build the genomic resource and report its completeness, continuity and limits."
-        },
-        {
-          "title": "Deposit and credit",
-          "body": "Connect sequence, metadata, voucher, methods and contributor credit in durable repositories."
-        }
-      ],
-      "voucherDiagram": {
-        "collector": "COLLECTOR",
-        "description": "A collector uses a net to capture a butterfly and records their collector code. The wings enter a CAMID-labelled envelope, the body enters a tube with its own ID, and one abbreviated record links both identifiers with the collector and other provenance fields."
-      },
-      "depositDiagram": {
-        "conceptual": "Evidence chain",
-        "title": "Connect records, repositories and credit",
-        "voucher": "voucher and provenance",
-        "genome": "genome data and methods",
-        "repositories": "durable repositories",
-        "contributors": "contributors and credit",
-        "outcome": "traceable, citable, reusable",
-        "description": "Traceable links connect the voucher and its provenance with genome data, methods, durable repositories and contributor credit. Records may remain in different repositories without losing those relationships."
-      }
     },
     "questions": {
       "heading": "Three questions genomes can help answer",
@@ -198,196 +124,76 @@ export const en = {
   },
   "science": {
     "metaTitle": "Science | Caligo",
-    "metaDescription": "How reference genomes become useful evidence when taxonomy, sampling, ecology, provenance and permissions remain connected.",
+    "metaDescription": "Three questions that reference genomes of Neotropical butterflies and moths can help answer, and what it would take to answer them.",
     "title": "Science",
-    "intro": "Genomics is most powerful when it stays connected to organisms, collections, landscapes and clear questions. A reference genome provides a common map for comparison; the biological conclusion comes from the specimens, samples, observations and tests placed around it.",
-    "questionsHeading": "Six questions genomes can help investigate",
-    "tiersTitle": "Three scales of genetic evidence",
+    "intro": "A reference genome is a map. What it can tell you depends entirely on the organisms, collections and observations placed around it. Here are three questions where that combination is already producing answers in the Neotropics.",
+    "questionsHeading": "Three questions genomes can help investigate",
     "questions": [
       {
         "heading": "How can chromosomes split and fuse while a lineage keeps evolving?",
-        "answer": "Chromosomes are long packages of DNA. A chromosome fission occurs when one ancestral chromosome becomes two; a fusion joins DNA from two ancestral chromosomes into one. These changes can reshape which genes stay linked, how often DNA is recombined during reproduction and how sex chromosomes evolve. In Heliconius, most species have 21 chromosomes in the haploid set, yet five species in the sapho subclade range from 21 to 60 after extensive fissions. Genomic evidence also supports three separate fusions between the female-specific W chromosome and autosomes. The striking numbers show that major structural change occurred. They do not, by themselves, reveal whether selection, chance or another process made those changes persist. That requires comparisons across species, traits and evolutionary histories. [S02][S03]",
-        "example": "Most Heliconius retain 21 haploid chromosomes, while members of one lineage reach counts as high as 60; researchers also identified three W–autosome fusion events. [S02]",
-        "evidence": "Chromosome-scale assemblies from several related species; chromosome counts or microscopy where available; reliable species relationships; and trait, recombination or breeding evidence that can test consequences.",
-        "limits": "A genome comparison cannot establish why a rearrangement spread, whether it caused speciation, or how it affects behaviour and survival without additional biological evidence.",
-        "sourceNote": "Primary sources: Rueda-M et al. 2024 [S02]; Mackay-Smith et al. 2026 [S03].",
-        "sourceIds": [
-          "rueda-2024",
-          "mackay-smith-2026"
+        "answer": [
+          "Chromosomes are long packages of DNA, and in most animals their number stays stable for millions of years. In butterflies and moths it does not. Most Heliconius species carry 21 chromosomes in the haploid set, but five species in one lineage carry anywhere from 21 to 60 — the result of repeated fissions, in which a single ancestral chromosome breaks into two.",
+          "That is possible because lepidopteran chromosomes are holocentric. The spindle that pulls chromosomes apart during cell division attaches along the whole length rather than at one point. In most animals, a fragment that breaks off without that attachment point is simply lost at the next division. In a butterfly, both halves keep their attachment, and both are inherited.",
+          "Genomic work has also identified three separate occasions on which an ordinary chromosome fused to the W — the chromosome only females carry. Once fused, that copy stops being inherited like the others and passes only from mother to daughter.",
+          "What the numbers do not tell us is why any of it persisted. That needs comparison across species, traits and evolutionary histories."
+        ],
+        "sources": [
+          {
+            "label": "Rueda-M et al. 2024",
+            "url": "https://doi.org/10.1371/journal.pgen.1011318"
+          },
+          {
+            "label": "Mackay-Smith et al. 2026",
+            "url": "https://doi.org/10.1093/gbe/evaf012"
+          }
         ]
       },
       {
         "heading": "When does DNA cross the boundary between lineages?",
-        "answer": "Gene flow is the movement of inherited variants between populations through reproduction. When hybridisation is followed by repeated breeding, some DNA from one lineage can become a lasting part of another; scientists call that introgression. Heliconius offers a vivid Neotropical example. Genomic, behavioural and crossing evidence supports H. elevatus as a hybrid species that has persisted as a distinct lineage for more than 720,000 generations. Ongoing gene flow with H. pardalinus makes roughly 99% of their genomes very similar, while a small set of regions inherited from H. melpomene is associated with colour pattern, wing shape, host-plant preference, sex pheromones and mate choice. The genome revealed where histories differ, but the case became persuasive only when those patterns were joined to trait mapping, experiments and behaviour. [S04][S05]",
-        "example": "In H. elevatus, a small fraction of the genome carries trait-linked ancestry from H. melpomene even though continuing gene flow with H. pardalinus homogenises most of the genome. [S04]",
-        "evidence": "Many individuals from the relevant populations; a strong reference genome; phased or otherwise well-resolved genomic data; explicit demographic models; and independent evidence from traits, geography, behaviour or crosses.",
-        "limits": "Genomic similarity alone cannot prove that a transferred variant was adaptive, identify the ecological mechanism or show that hybridisation created a species.",
-        "sourceNote": "Primary sources: Rosser et al. 2024 [S04]; Edelman et al. 2019 [S05].",
-        "sourceIds": [
-          "rosser-2024",
-          "edelman-2019"
-        ]
-      },
-      {
-        "heading": "When does one scientific name conceal more than one lineage?",
-        "answer": "Taxonomy asks which organisms belong together, how they differ and what name applies. Genomes can reveal deep splits, overlooked relatives or unexpected mixing, but a genomic cluster is not automatically a species. Scientists also need specimens, morphology, life history, geography, earlier names and the rules of nomenclature. This matters especially for the Neotropics, where many moth groups remain less studied than familiar butterflies. A phylogenomic study of the predominantly Neotropical sack-bearer moth family Mimallonidae compared hundreds of genetic loci across most recognised genera, including data recovered from dry museum specimens. The result reorganised higher-level relationships and showed how collections can help resolve moth diversity that is difficult to study from fresh material alone. [S17]",
-        "example": "Researchers used 515 loci and material representing 32 of 36 recognised Mimallonidae genera, including historical dry specimens, to reassess relationships in this largely Neotropical moth family. [S17]",
-        "evidence": "Documented specimens; morphology and natural history; type and nomenclatural research; broad geographic and taxonomic sampling; barcodes or genomic data; and explicit species-delimitation hypotheses.",
-        "limits": "Genomes cannot assign the correct name, replace examination of type material, or decide species boundaries without biological and nomenclatural judgement.",
-        "sourceNote": "Primary source: St Laurent et al. 2018 [S17].",
-        "sourceIds": [
-          "st-laurent-2018"
+        "answer": [
+          "Gene flow is the movement of inherited variants between populations through reproduction. Where hybridisation is followed by generations of backcrossing, some DNA from one lineage can become a permanent part of another. Biologists call that introgression.",
+          "Heliconius elevatus is the clearest Neotropical case. Genomic, behavioural and crossing evidence supports it as a hybrid species that has persisted as its own lineage for more than 720,000 generations. Continuing gene flow with H. pardalinus keeps roughly 99% of their genomes very similar. The remaining fraction is the interesting part: a scattered set of regions inherited from H. melpomene, sitting on chromosomes right across the karyotype, associated with colour pattern, wing shape, host-plant preference and sex pheromones.",
+          "The genome showed where the two histories differ. The case only became persuasive once those regions were matched to mapped traits, crossing experiments and behaviour in the field."
+        ],
+        "sources": [
+          {
+            "label": "Rosser et al. 2024",
+            "url": "https://doi.org/10.1038/s41586-024-07263-w"
+          }
         ]
       },
       {
         "heading": "Which populations remain connected, and which are becoming isolated?",
-        "answer": "Population connectivity means that individuals, and therefore inherited variants, still move among populations often enough to leave a detectable signal. Genetic diversity is the variety of inherited DNA variants within a population or species. Both depend on sampling: which individuals, places and moments are included. Parides ascanius, a threatened butterfly of Brazil’s coastal habitats, provides a useful baseline. A study published in 2016 found low genetic structure and inferred substantial migration among the populations it sampled. That does not guarantee that connectivity is unchanged today, especially where habitat loss, drainage and fragmentation continue. A new genomic study would need to compare carefully designed contemporary sampling with the earlier evidence, while protecting sensitive localities. [S06][S07][S08]",
-        "example": "Earlier genetic work on sampled P. ascanius populations found little structure and high inferred migration; that published result is a baseline to revisit, not proof of present-day connectivity. [S06]",
-        "evidence": "Many individuals from a planned set of populations and times; a reference genome; habitat and landscape information; demographic models; and, where possible, direct observations or mark–recapture data.",
-        "limits": "Genomes alone cannot show the exact route an individual travelled, measure habitat quality or determine conservation priorities without ecological and social context.",
-        "sourceNote": "Primary study and assessments: Seraphim et al. 2016 [S06]; IUCN 2018 [S07]; ICMBio 2021 [S08].",
-        "sourceIds": [
-          "seraphim-2016",
-          "iucn-parides-2018",
-          "icmbio-parides-2021"
-        ]
-      },
-      {
-        "heading": "Where do seasonal movements begin, end and connect?",
-        "answer": "Seasonal movement can connect populations, track rainfall or food, or place different life stages in different landscapes. A 2020 preprint reported a large seasonal movement of Panacea prola in south-eastern Peru and presented it as the first evidence for an Amazonian insect migration. Observing a mass movement does not reveal where the butterflies began, whether the same individuals return, or how far the phenomenon extends. Reference genomes and repeated population sampling can compare ancestry among places and seasons. Stable isotopes, weather, host plants, direct observations and movement tracking can add different pieces of evidence. The movement report is a preprint and has not been peer reviewed. [S09]",
-        "example": "The documented event involved a seasonal mass movement of P. prola in south-eastern Peru; broader origins and connections remain open. [S09]",
-        "evidence": "Repeated, responsibly permitted sampling across seasons and broad regions; a reference genome; environmental and host-plant records; and independent movement evidence such as observations, tagging or stable isotopes.",
-        "limits": "Genomes cannot reconstruct an individual flight path, determine the environmental trigger or define the full range of a movement without other evidence.",
-        "sourceNote": "Public evidence: Gallice et al. 2020 preprint [S09].",
-        "sourceIds": [
-          "gallice-2020"
-        ]
-      },
-      {
-        "heading": "What makes a biodiversity genome useful years from now?",
-        "answer": "A genome is more than a file of DNA letters. To be reusable, it needs a documented organism, a specimen or material record that can be checked, safe origin information, permissions, laboratory and computational methods, quality measures, repository identifiers and clear contributor credit. Historical collections show why that chain matters: target-enrichment methods have recovered hundreds of genetic loci from dry-pinned Lepidoptera, including specimens more than a century old, allowing present-day questions to reach back through time. FAIR principles emphasise findable and reusable data; CARE principles add collective benefit, authority, responsibility and ethics; access-and-benefit-sharing frameworks address how biological material is obtained and used. These frameworks guide questions, but they do not replace project-specific agreements or law. [S16][S20][S21][S22]",
-        "example": "Museomics studies have recovered extensive genetic data from dry-pinned butterflies and moths collected across more than a century, when specimen identity and curation records were preserved. [S16]",
-        "evidence": "Traceable specimen and material records; permissions and agreements; method versions; quality metrics; stable repository identifiers; contributor roles; and decisions about sensitive data.",
-        "limits": "Technical openness alone cannot establish legitimate authority, fair credit, appropriate benefit sharing or safe publication of sensitive information.",
-        "sourceNote": "Sources: Mayer et al. 2021 [S16]; FAIR [S20]; CARE [S21]; Nagoya Protocol [S22].",
-        "sourceIds": [
-          "mayer-2021",
-          "fair-2016",
-          "care-2020",
-          "nagoya"
+        "answer": [
+          "Connectivity means individuals — and so the variants they carry — still move between populations often enough to leave a genetic signal. It is one of the few things a genome can say about a species' future rather than its past.",
+          "Parides ascanius lives in the coastal restinga and wetlands of south-eastern Brazil. The IUCN listed it as Vulnerable globally in 2018; Brazil's national assessment listed it as Endangered in 2021. A genetic study published in 2016 found little population structure and inferred substantial migration between the sites it sampled.",
+          "That is a baseline, not a current reading. Habitat loss, drainage and fragmentation can cut movement long before populations look any different in the field, and those samples are now a decade old. Repeating the work against a reference genome would show how much diversity remains and whether these populations are still exchanging individuals — which is the question that bears on protecting them."
+        ],
+        "sources": [
+          {
+            "label": "Seraphim et al. 2016",
+            "url": "https://doi.org/10.1007/s10592-016-0849-y"
+          },
+          {
+            "label": "IUCN Red List assessment, 2018",
+            "url": "https://www.iucnredlist.org/species/15992/121728821"
+          }
         ]
       }
     ],
-    "recordVsGenome": {
-      "heading": "Different genetic records answer different questions",
-      "intro": "The terms below describe different kinds of evidence. Naming the right one prevents a barcode from being presented as a whole genome, a fragmented assembly from being described as chromosome-complete or one individual from standing in for an entire population.",
-      "labels": {
-        "recordColHeading": "Evidence type",
-        "canShow": "What it can show",
-        "cannotEstablish": "What it cannot establish alone"
-      },
-      "rows": [
-        {
-          "record": "Occurrence record",
-          "canShow": "That an organism was reported at a place and time, with reliability depending on identification and documentation.",
-          "cannotEstablish": "Species boundaries, population connectivity or genetic diversity."
-        },
-        {
-          "record": "DNA barcode",
-          "canShow": "A short standardised DNA region that can support identification and comparison with reference records.",
-          "cannotEstablish": "A complete genome, chromosome structure, population history or adaptive function."
-        },
-        {
-          "record": "Raw sequence reads",
-          "canShow": "The direct output of a sequencing instrument before the fragments are assembled and fully assessed.",
-          "cannotEstablish": "A finished genome, reliable gene set or biological interpretation."
-        },
-        {
-          "record": "Fragmented genome assembly",
-          "canShow": "A reconstruction of much of the genome, usually in multiple pieces with known and unknown gaps.",
-          "cannotEstablish": "The complete order of chromosomes, perfect accuracy or high-confidence annotation everywhere."
-        },
-        {
-          "record": "Chromosome-scale reference genome",
-          "canShow": "An assembly in which most sequence is organised into chromosome-sized units, providing a strong map for comparison.",
-          "cannotEstablish": "All variation in the species, present-day connectivity, local adaptation or ecological cause."
-        },
-        {
-          "record": "Population genomic dataset",
-          "canShow": "Inherited variation across many sampled individuals, allowing tests of structure, diversity, ancestry and gene flow.",
-          "cannotEstablish": "An unbiased picture if sampling is poor, an individual movement path, or a causal mechanism without experiments and ecology."
-        }
-      ]
-    },
-    "provenance": {
-      "heading": "Keep the organism, the evidence and the permissions connected",
-      "intro": "A strong genomic record lets a future researcher follow the full path from organism to sequence: what was sampled, who identified it, how the material was obtained and processed, what may be shared and how contributors should be credited. The fields below show the information that keeps that path traceable.",
-      "templateLabel": "Record guide",
-      "templateNote": "This illustrative field set shows the information needed for a traceable genomic record: specimen details, permissions, processing methods and repository location.",
-      "fields": [
-        "Scientific name, identifier and identification evidence",
-        "Preserved specimen or traceable material record",
-        "Country, date and a safe level of locality detail",
-        "Collecting, access, transfer and use permissions",
-        "Collector, identifier, curator and material custodian",
-        "Tissue, extraction and storage history",
-        "Sequencing technology and laboratory method versions",
-        "Assembly, contamination and quality assessments",
-        "Annotation evidence and confidence",
-        "Repository names and stable identifiers",
-        "Contributor roles, citation and credit",
-        "Restrictions, cultural sensitivity and locality-protection decisions"
+    "evidence": {
+      "heading": "What different genetic evidence can show",
+      "body": [
+        "Not all genetic data answers the same question, and the difference matters more than it sounds. A DNA barcode is a short standard fragment: useful for flagging that two specimens differ, silent on how their genomes are organised. Short-read sequencing across many individuals shows how variation is distributed through a population. A chromosome-scale reference genome shows structure — where genes sit, what stays linked to what, where a chromosome has broken or fused.",
+        "The cost and effort differ by orders of magnitude, and so does what you can conclude. Saying which kind of evidence a result came from is what keeps a barcode from being read as a genome."
       ]
     },
     "ethics": {
-      "heading": "Responsible genomics begins before sampling",
-      "intro": "Good intentions do not replace permission, accountability or clear agreements. Every project should be able to answer the questions below in terms that participants, institutions and future data users can understand.",
-      "questions": [
-        "Who has authority to grant access to the organisms, site and associated knowledge?",
-        "Who identified, collected, curated and provided the specimen or material?",
-        "Which permits, agreements and restrictions apply to collection, transfer, sequencing and reuse?",
-        "Who shaped the research question and who will lead interpretation and publication?",
-        "Which location, cultural or personal information should be protected?",
-        "How will contributor roles, citation, data use and benefits be handled?"
-      ],
-      "externalContext": "FAIR, CARE and access-and-benefit-sharing frameworks help teams ask better questions about reuse, authority and responsibility. Their application depends on the project, jurisdiction, institutions and communities involved. [S20][S21][S22]",
-      "disclaimer": "Legal, ethical and institutional requirements are set by the authorities and agreements that apply to each project."
-    },
-    "tiers": {
-      "heading": "Three scales of genetic evidence",
-      "intro": "DNA barcodes, short-read datasets and reference assemblies each serve different questions and depend on different evidence.",
-      "progression": {
-        "eyebrow": "Genomic evidence compared",
-        "heading": "The scale of the evidence changes what can be asked",
-        "note": "These approaches are complementary. Genomic scope determines which questions each can answer, not its overall scientific value.",
-        "play": "Play the comparison",
-        "replay": "Replay",
-        "platforms": "Typical platforms",
-        "targeted": {
-          "label": "Targeted region",
-          "title": "Selected locus and amplicons",
-          "desc": "Primer pairs select one small region from a much wider genomic context, and the repeated segments represent amplicon copies. The diagram focuses on the sampled locus and does not include laboratory steps or surrounding genomic sequence.",
-          "context": "wider genomic context",
-          "selection": "one selected locus",
-          "outcome": "copies of one amplicon"
-        },
-        "shortReads": {
-          "label": "Genome-wide sampling",
-          "title": "Distributed short reads",
-          "desc": "Short reads map to many positions across a reference. Their spacing shows distributed sampling, not uniform or complete genomic coverage.",
-          "context": "reference coordinates",
-          "selection": "short reads from many positions",
-          "outcome": "mapped reads across the reference"
-        },
-        "assembly": {
-          "label": "Chromosome-scale reference",
-          "title": "Overlapping long reads",
-          "desc": "Overlapping long reads provide continuity and support an ordered chromosome-scale reference. Assembly uncertainty and remaining gaps still need to be assessed.",
-          "context": "overlapping long reads",
-          "selection": "overlap provides continuity",
-          "outcome": "ordered chromosome-scale reference"
-        }
-      }
+      "heading": "Before anyone catches a butterfly",
+      "body": [
+        "Sampling in the Neotropics involves national permits, access and benefit-sharing agreements under the Nagoya Protocol, the rights of Indigenous peoples and local communities, and decisions about what should not be published at all — for a threatened species, a precise locality can be a risk rather than a contribution.",
+        "Caligo works to the FAIR principles for data and the CARE principles for Indigenous data governance, and expects each project to meet what its own jurisdiction requires."
+      ]
     }
   },
   "pilots": {
@@ -396,14 +202,7 @@ export const en = {
     "title": "Proposed pilot projects",
     "opening": "These four pilot project directions pair published evidence with questions designed for Caligo. Each sets out the organisms, observations, samples and comparisons needed to turn a biological puzzle into testable work.",
     "fieldLabels": {
-      "hook": "The question in one sentence",
-      "publishedContext": "What published evidence already shows",
-      "proposedQuestion": "What the proposed Caligo pilot project would test",
-      "evidenceNeeded": "Evidence the pilot project would need",
-      "genomesCan": "What genomes can contribute",
-      "limits": "Evidence needed beyond genomics",
-      "closing": "The question to carry forward",
-      "sourcesChecked": "Sources and scope"
+      "proposedQuestion": "What the proposed Caligo pilot project would test"
     }
   },
   "caligo": {
@@ -472,29 +271,10 @@ export const en = {
     "metaDescription": "Four proposed pilot projects linking published evidence to testable Neotropical genomics questions.",
     "title": "Proposed pilot projects",
     "intro": "Each proposed pilot project begins with published evidence and a question that demands more. Follow the organism, the observations and samples the work would need, the contribution of genomics and the evidence supplied by ecology, taxonomy or experiment.",
-    "openToCollaborators": "Discuss a pilot project",
-    "goalLabel": "Research question",
-    "resourcesLabel": "Published and documented starting points",
-    "motives": {
-      "heading": "Why begin with pilot projects",
-      "intro": "The initiative identified reasons to start with focused pilot projects.",
-      "items": [
-        "Demonstrate to funders that the network can generate genomes in Latin America and analyse them collaboratively.",
-        "Develop workflows from sampling to data deposit.",
-        "Train the regional network and standardise protocols.",
-        "Respect permits, national laws and fair benefit-sharing requirements.",
-        "Establish data and quality standards early.",
-        "Build realistic cost estimates for the region.",
-        "Deliver first scientific results to build momentum."
-      ]
-    },
     "pilotProposal": {
       "heading": "The proposed Caligo pilot project",
       "leadsLabel": "Pilot project leads",
-      "goalLabel": "What the pilot project would do",
-      "resourcesLabel": "Available resources",
-      "openLabel": "Open to collaborators",
-      "closedLabel": "Not currently open to collaborators"
+      "goalLabel": "What the pilot project would do"
     }
   },
   "about": {

@@ -80,86 +80,12 @@ export const es: Dict = {
     "ctaSecondary": "Únete a la red"
   },
   "home": {
-    "rail": {
-      "overview": "Panorama",
-      "fromOrganismToGenome": "Del organismo al genoma",
-      "whatReferenceSupports": "Qué permite una referencia",
-      "questions": "Preguntas",
-      "proposedPilots": "Proyectos piloto propuestos",
-      "discoverCaligo": "Descubre Caligo"
-    },
     "metaTitle": "Caligo | Genomas de mariposas y polillas neotropicales",
     "metaDescription": "Un esfuerzo liderado desde América Latina que desarrolla genomas de referencia vinculados a ejemplares documentados de mariposas y polillas neotropicales.",
     "hero": {
       "kicker": "Genómica de mariposas y polillas neotropicales",
       "title": "Latinoamérica tiene una de las faunas de Lepidoptera más ricas de la Tierra, y una de las menos secuenciadas",
       "body": "Caligo es una red colaborativa que construye genomas de referencia para las mariposas y polillas neotropicales, liderada por investigadores de la región."
-    },
-    "journey": {
-      "heading": "Del organismo al genoma",
-      "intro": "Un recurso genómico confiable es una cadena de decisiones biológicas y documentales, no solo un archivo de secuencias.",
-      "assemblyDiagram": {
-        "conceptual": "Esquema conceptual",
-        "title": "Ensamblar y luego evaluar",
-        "description": "Las lecturas superpuestas forman contigs más largos. Un mapa simétrico de contactos Hi-C ayuda a ordenar y orientar los contigs al reunir los contactos intensos de cada cromosoma en bloques diagonales. Durante la curación, las filas y columnas correspondientes se mueven juntas mientras se revisan posibles uniones erróneas. Los bloques resultantes permiten construir tres scaffolds a escala cromosómica. Hi-C no aporta la secuencia faltante, así que la brecha de CHR 2 permanece sin resolver. La evaluación final revisa continuidad, completitud y brechas conocidas.",
-        "play": "Reproducir la explicación",
-        "replay": "Repetir",
-        "reads": "lecturas superpuestas",
-        "contigs": "contigs más largos",
-        "hic": "contactos Hi-C",
-        "hicAction": "curación manual",
-        "uncurated": "sin curar",
-        "curated": "curado",
-        "chromosomes": "scaffolds a escala cromosómica",
-        "chromosomeAbbr": "CHR",
-        "gap": "brecha sin resolver",
-        "gapShort": "BRECHA",
-        "assessment": "evaluación",
-        "continuity": "continuidad",
-        "completeness": "completitud",
-        "limits": "límites y brechas",
-        "summary": "La curación revela bloques cromosómicos. Queda una brecha de secuencia."
-      },
-      "steps": [
-        {
-          "title": "Preguntar e identificar",
-          "body": "Comenzar con una pregunta biológica y la mejor identificación disponible."
-        },
-        {
-          "title": "Registrar la procedencia",
-          "body": "Documentar quién, dónde, cuándo, los permisos y el contexto de colecta."
-        },
-        {
-          "title": "Preservar un ejemplar de referencia",
-          "body": "Conservar un ejemplar o registro de material rastreable que pueda revisarse de nuevo."
-        },
-        {
-          "title": "Extraer y secuenciar",
-          "body": "Convertir una muestra documentada en lecturas de ADN sin romper la cadena de evidencia."
-        },
-        {
-          "title": "Ensamblar y evaluar",
-          "body": "Construir el recurso genómico y reportar su completitud, continuidad y límites."
-        },
-        {
-          "title": "Depositar y reconocer",
-          "body": "Conectar secuencia, metadatos, ejemplar, métodos y reconocimiento de contribuciones en repositorios duraderos."
-        }
-      ],
-      "voucherDiagram": {
-        "collector": "COLECTOR",
-        "description": "Una persona colecta una mariposa con una red y registra su código de colector. Las alas pasan a un sobre etiquetado con CAMID, el cuerpo a un tubo con su propio ID y una fila abreviada conecta ambos identificadores con el colector y otros campos de procedencia."
-      },
-      "depositDiagram": {
-        "conceptual": "Cadena de evidencia",
-        "title": "Conectar registros, repositorios y reconocimiento",
-        "voucher": "ejemplar y procedencia",
-        "genome": "datos genómicos y métodos",
-        "repositories": "repositorios duraderos",
-        "contributors": "reconocimiento",
-        "outcome": "rastreable, citable y reutilizable",
-        "description": "Los vínculos rastreables conectan el ejemplar y su procedencia con los datos genómicos, los métodos, los repositorios duraderos y el reconocimiento de quienes contribuyeron. Los registros pueden permanecer en repositorios distintos sin perder esas relaciones."
-      }
     },
     "questions": {
       "heading": "Tres preguntas que los genomas ayudan a responder",
@@ -195,196 +121,76 @@ export const es: Dict = {
   },
   "science": {
     "metaTitle": "Ciencia | Caligo",
-    "metaDescription": "Cómo los genomas de referencia se convierten en evidencia útil y por qué siguen importando la taxonomía, el muestreo, la ecología, la procedencia y los permisos.",
+    "metaDescription": "Tres preguntas que los genomas de referencia de mariposas y polillas neotropicales pueden ayudar a responder, y qué haría falta para responderlas.",
     "title": "Ciencia",
-    "intro": "La genómica alcanza su mayor fuerza cuando permanece conectada con organismos, colecciones, paisajes y preguntas claras. Un genoma de referencia ofrece un mapa común para comparar; la conclusión biológica surge de los ejemplares, muestras, observaciones y pruebas que se colocan a su alrededor.",
-    "questionsHeading": "Seis preguntas que los genomas pueden ayudar a investigar",
-    "tiersTitle": "Tres escalas de evidencia genética",
+    "intro": "Un genoma de referencia es un mapa. Lo que puede decirte depende por completo de los organismos, las colecciones y las observaciones que lo rodean. Estas son tres preguntas donde esa combinación ya está dando respuestas en el Neotrópico.",
+    "questionsHeading": "Tres preguntas que los genomas pueden ayudar a investigar",
     "questions": [
       {
         "heading": "¿Cómo pueden dividirse y fusionarse los cromosomas mientras un linaje sigue evolucionando?",
-        "answer": "Los cromosomas son grandes paquetes de ADN. Hay una fisión cromosómica cuando un cromosoma ancestral pasa a formar dos; una fusión reúne en uno solo ADN que antes estaba en dos cromosomas. Estos cambios pueden modificar qué genes se heredan juntos, cómo se recombina el ADN durante la reproducción y cómo evolucionan los cromosomas sexuales. En Heliconius, la mayoría de las especies tiene 21 cromosomas en el conjunto haploide, pero cinco especies del subclado sapho presentan entre 21 y 60 después de numerosas fisiones. La evidencia genómica también respalda tres fusiones independientes entre el cromosoma W, propio de las hembras, y autosomas. Las cifras muestran que hubo cambios estructurales profundos; no revelan por sí solas si persistieron por selección, azar u otro proceso. Para responder eso hay que comparar especies, rasgos e historias evolutivas. [S02][S03]",
-        "example": "La mayoría de Heliconius conserva 21 cromosomas haploides, mientras un linaje llega hasta 60; además, se identificaron tres eventos de fusión entre el W y autosomas. [S02]",
-        "evidence": "Ensamblajes a escala cromosómica de varias especies emparentadas; conteos cromosómicos o microscopía cuando existan; relaciones filogenéticas confiables; y evidencia sobre rasgos, recombinación o cruces que permita probar consecuencias.",
-        "limits": "La comparación de genomas no demuestra por qué se extendió un reordenamiento, si causó especiación ni cómo afecta la conducta o la supervivencia sin evidencia biológica adicional.",
-        "sourceNote": "Fuentes primarias: Rueda-M et al. 2024 [S02]; Mackay-Smith et al. 2026 [S03].",
-        "sourceIds": [
-          "rueda-2024",
-          "mackay-smith-2026"
+        "answer": [
+          "Los cromosomas son grandes paquetes de ADN y, en la mayoría de los animales, su número se mantiene estable durante millones de años. En las mariposas y polillas no. La mayoría de las especies de Heliconius llevan 21 cromosomas en el juego haploide, pero cinco especies de un mismo linaje llevan entre 21 y 60, resultado de fisiones repetidas en las que un cromosoma ancestral se parte en dos.",
+          "Esto es posible porque los cromosomas de los lepidópteros son holocéntricos. El huso que separa los cromosomas durante la división celular se ancla a lo largo de toda su longitud, no en un solo punto. En la mayoría de los animales, un fragmento que se desprende sin ese punto de anclaje simplemente se pierde en la siguiente división. En una mariposa, las dos mitades conservan anclaje y las dos se heredan.",
+          "El trabajo genómico también ha identificado tres ocasiones independientes en las que un cromosoma corriente se fusionó con el W, el cromosoma que solo llevan las hembras. Una vez fusionada, esa copia deja de heredarse como las demás y pasa solo de madre a hija.",
+          "Lo que los números no dicen es por qué nada de esto persistió. Eso exige comparar entre especies, rasgos e historias evolutivas."
+        ],
+        "sources": [
+          {
+            "label": "Rueda-M et al. 2024",
+            "url": "https://doi.org/10.1371/journal.pgen.1011318"
+          },
+          {
+            "label": "Mackay-Smith et al. 2026",
+            "url": "https://doi.org/10.1093/gbe/evaf012"
+          }
         ]
       },
       {
         "heading": "¿Cuándo cruza el ADN la frontera entre linajes?",
-        "answer": "El flujo génico es el paso de variantes heredadas entre poblaciones mediante la reproducción. Cuando una hibridación va seguida de cruces sucesivos, parte del ADN de un linaje puede incorporarse de forma duradera a otro; eso se llama introgresión. Heliconius ofrece un ejemplo neotropical extraordinario. La evidencia genómica, conductual y de cruces respalda a H. elevatus como una especie híbrida que ha persistido como linaje distinto durante más de 720.000 generaciones. El flujo génico actual con H. pardalinus hace que cerca del 99 % de sus genomas sea muy parecido, mientras un pequeño conjunto de regiones heredadas de H. melpomene se asocia con patrón de color, forma del ala, preferencia de planta hospedera, feromonas sexuales y elección de pareja. El genoma mostró dónde difieren las historias; el caso se volvió convincente al unir esos patrones con mapeo de rasgos, experimentos y conducta. [S04][S05]",
-        "example": "En H. elevatus, una pequeña fracción del genoma conserva ascendencia de H. melpomene asociada con rasgos, aunque el flujo génico con H. pardalinus homogeneiza la mayor parte del genoma. [S04]",
-        "evidence": "Muchos individuos de las poblaciones pertinentes; un buen genoma de referencia; datos genómicos bien resueltos; modelos demográficos explícitos; y evidencia independiente de rasgos, geografía, conducta o cruces.",
-        "limits": "La similitud genómica por sí sola no demuestra que una variante transferida fue adaptativa, no identifica el mecanismo ecológico ni prueba que la hibridación originó una especie.",
-        "sourceNote": "Fuentes primarias: Rosser et al. 2024 [S04]; Edelman et al. 2019 [S05].",
-        "sourceIds": [
-          "rosser-2024",
-          "edelman-2019"
+        "answer": [
+          "El flujo génico es el movimiento de variantes heredadas entre poblaciones a través de la reproducción. Cuando la hibridación va seguida de generaciones de retrocruzamiento, parte del ADN de un linaje puede quedar de forma permanente en otro. La biología llama a eso introgresión.",
+          "Heliconius elevatus es el caso neotropical más claro. La evidencia genómica, conductual y de cruzamientos lo respalda como una especie híbrida que ha persistido como linaje propio durante más de 720.000 generaciones. El flujo génico continuo con H. pardalinus mantiene cerca del 99% de sus genomas muy parecidos. Lo interesante está en la fracción restante: un conjunto disperso de regiones heredadas de H. melpomene, repartidas por cromosomas de todo el cariotipo y asociadas al patrón de color, la forma del ala, la preferencia de planta hospedera y las feromonas sexuales.",
+          "El genoma mostró dónde difieren las dos historias. El caso solo resultó convincente cuando esas regiones se conectaron con rasgos mapeados, experimentos de cruzamiento y conducta en campo."
+        ],
+        "sources": [
+          {
+            "label": "Rosser et al. 2024",
+            "url": "https://doi.org/10.1038/s41586-024-07263-w"
+          }
         ]
       },
       {
-        "heading": "¿Cuándo un solo nombre científico oculta más de un linaje?",
-        "answer": "La taxonomía pregunta qué organismos pertenecen al mismo grupo, en qué se diferencian y qué nombre corresponde. Los genomas pueden revelar separaciones profundas, parientes inadvertidos o mezclas inesperadas, pero un grupo genómico no se convierte automáticamente en especie. También hacen falta ejemplares, morfología, historia natural, geografía, nombres previos y las reglas de nomenclatura. Esto importa especialmente en el Neotrópico, donde muchos grupos de polillas han recibido menos atención que las mariposas conocidas. Un estudio filogenómico de Mimallonidae, una familia de polillas predominantemente neotropical, comparó cientos de loci genéticos en la mayoría de los géneros reconocidos e incluyó datos recuperados de ejemplares secos de museo. El análisis reorganizó relaciones de nivel superior y mostró cómo las colecciones ayudan a resolver una diversidad difícil de estudiar solo con material reciente. [S17]",
-        "example": "El estudio usó 515 loci y material de 32 de los 36 géneros reconocidos de Mimallonidae, incluidos ejemplares históricos secos, para reevaluar las relaciones de esta familia principalmente neotropical. [S17]",
-        "evidence": "Ejemplares documentados; morfología e historia natural; revisión de tipos y nomenclatura; muestreo geográfico y taxonómico amplio; códigos de barras o datos genómicos; e hipótesis explícitas de delimitación.",
-        "limits": "Los genomas no asignan el nombre correcto, no reemplazan el examen de material tipo ni deciden límites de especie sin criterio biológico y nomenclatural.",
-        "sourceNote": "Fuente primaria: St Laurent et al. 2018 [S17].",
-        "sourceIds": [
-          "st-laurent-2018"
-        ]
-      },
-      {
-        "heading": "¿Qué poblaciones siguen conectadas y cuáles comienzan a quedar aisladas?",
-        "answer": "La conectividad poblacional significa que los individuos, y con ellos las variantes heredadas, todavía se desplazan entre poblaciones con suficiente frecuencia para dejar una señal detectable. La diversidad genética es la variedad de variantes heredadas dentro de una población o especie. Ambas dependen del muestreo: qué individuos, lugares y momentos se incluyen. Parides ascanius, una mariposa amenazada de hábitats costeros de Brasil, ofrece una línea de base útil. Un estudio de 2016 encontró poca estructura genética e infirió migración considerable entre las poblaciones muestreadas. Eso no garantiza que la conectividad siga igual hoy, sobre todo donde continúan la pérdida, el drenaje y la fragmentación del hábitat. Un nuevo estudio genómico tendría que comparar un muestreo contemporáneo bien diseñado con la evidencia anterior y proteger las localidades sensibles. [S06][S07][S08]",
-        "example": "El trabajo genético anterior encontró poca estructura y alta migración inferida entre las poblaciones de P. ascanius estudiadas; es una referencia para volver a medir, no una prueba de conectividad actual. [S06]",
-        "evidence": "Muchos individuos de un conjunto planificado de poblaciones y momentos; un genoma de referencia; información de hábitat y paisaje; modelos demográficos; y, cuando sea posible, observaciones directas o marcaje y recaptura.",
-        "limits": "Los genomas no muestran por sí solos la ruta exacta que recorrió un individuo, no miden la calidad del hábitat ni fijan prioridades de conservación sin contexto ecológico y social.",
-        "sourceNote": "Estudio primario y evaluaciones: Seraphim et al. 2016 [S06]; UICN 2018 [S07]; ICMBio 2021 [S08].",
-        "sourceIds": [
-          "seraphim-2016",
-          "iucn-parides-2018",
-          "icmbio-parides-2021"
-        ]
-      },
-      {
-        "heading": "¿Dónde empiezan, terminan y conectan los movimientos estacionales?",
-        "answer": "El movimiento estacional puede conectar poblaciones, seguir la lluvia o el alimento, o llevar distintas etapas de vida a paisajes diferentes. Un preprint de 2020 describió un gran desplazamiento estacional de Panacea prola en el sureste del Perú y lo presentó como la primera evidencia de una migración de insectos en la Amazonía. Ver el movimiento masivo no revela dónde comenzó, si los mismos individuos regresan ni hasta dónde se extiende. Los genomas de referencia y el muestreo repetido de poblaciones pueden comparar ascendencia entre lugares y temporadas. Los isótopos estables, el clima, las plantas hospederas, las observaciones directas y el seguimiento aportan otras piezas. El informe del desplazamiento es un preprint y no ha pasado por revisión por pares. [S09]",
-        "example": "El evento documentado fue un movimiento estacional masivo de P. prola en el sureste del Perú; sus orígenes y conexiones más amplias siguen abiertos. [S09]",
-        "evidence": "Muestreo repetido, responsable y autorizado a lo largo de temporadas y regiones amplias; un genoma de referencia; registros ambientales y de plantas hospederas; y evidencia independiente como observaciones, marcaje o isótopos estables.",
-        "limits": "Los genomas no reconstruyen la trayectoria de vuelo de un individuo, no determinan el disparador ambiental ni definen el alcance completo del movimiento sin otras evidencias.",
-        "sourceNote": "Evidencia pública: preprint de Gallice et al. 2020 [S09].",
-        "sourceIds": [
-          "gallice-2020"
-        ]
-      },
-      {
-        "heading": "¿Qué hace que un genoma de biodiversidad siga siendo útil dentro de muchos años?",
-        "answer": "Un genoma es más que un archivo de letras de ADN. Para reutilizarlo necesita un organismo documentado, un ejemplar o registro de material que pueda revisarse, información segura de origen, permisos, métodos de laboratorio y cómputo, medidas de calidad, identificadores de repositorio y reconocimiento claro de las contribuciones. Las colecciones históricas muestran por qué importa esa cadena: métodos de captura dirigida han recuperado cientos de loci genéticos de lepidópteros secos y montados, incluidos ejemplares de más de un siglo, y permiten que preguntas actuales miren hacia atrás en el tiempo. Los principios FAIR enfatizan datos localizables y reutilizables; CARE incorpora beneficio colectivo, autoridad, responsabilidad y ética; los marcos de acceso y distribución de beneficios orientan la obtención y el uso del material biológico. Ninguno sustituye acuerdos o leyes específicos de cada proyecto. [S16][S20][S21][S22]",
-        "example": "Estudios de museómica han recuperado abundante información genética de mariposas y polillas secas recolectadas a lo largo de más de un siglo, cuando se conservaron la identidad y los registros de curaduría. [S16]",
-        "evidence": "Registros rastreables de ejemplares y material; permisos y acuerdos; versiones de métodos; métricas de calidad; identificadores estables; roles de contribución; y decisiones sobre datos sensibles.",
-        "limits": "La apertura técnica no establece por sí sola autoridad legítima, crédito justo, distribución adecuada de beneficios ni publicación segura de información sensible.",
-        "sourceNote": "Fuentes: Mayer et al. 2021 [S16]; FAIR [S20]; CARE [S21]; Protocolo de Nagoya [S22].",
-        "sourceIds": [
-          "mayer-2021",
-          "fair-2016",
-          "care-2020",
-          "nagoya"
+        "heading": "¿Qué poblaciones siguen conectadas y cuáles se están aislando?",
+        "answer": [
+          "La conectividad significa que los individuos, y por tanto las variantes que llevan, todavía se mueven entre poblaciones con frecuencia suficiente para dejar una señal genética. Es una de las pocas cosas que un genoma puede decir sobre el futuro de una especie y no solo sobre su pasado.",
+          "Parides ascanius vive en las restingas costeras y los humedales del sureste de Brasil. La UICN lo listó como Vulnerable a nivel global en 2018; la evaluación nacional de Brasil lo listó como En Peligro en 2021. Un estudio genético publicado en 2016 encontró poca estructura poblacional e infirió una migración considerable entre los sitios muestreados.",
+          "Eso es una línea de base, no una lectura actual. La pérdida de hábitat, el drenaje y la fragmentación pueden cortar el movimiento mucho antes de que las poblaciones se vean distintas en campo, y esas muestras ya tienen una década. Repetir el trabajo con un genoma de referencia mostraría cuánta diversidad queda y si esas poblaciones siguen intercambiando individuos, que es la pregunta que importa para protegerlas."
+        ],
+        "sources": [
+          {
+            "label": "Seraphim et al. 2016",
+            "url": "https://doi.org/10.1007/s10592-016-0849-y"
+          },
+          {
+            "label": "Evaluación de la Lista Roja de la UICN, 2018",
+            "url": "https://www.iucnredlist.org/species/15992/121728821"
+          }
         ]
       }
     ],
-    "recordVsGenome": {
-      "heading": "Distintos registros genéticos responden distintas preguntas",
-      "intro": "Los términos siguientes describen evidencias diferentes. Nombrarlos bien evita presentar un código de barras como genoma completo, un ensamblaje fragmentado como si estuviera organizado en cromosomas o un solo individuo como representante de toda una población.",
-      "labels": {
-        "recordColHeading": "Tipo de evidencia",
-        "canShow": "Qué puede mostrar",
-        "cannotEstablish": "Qué no puede establecer por sí solo"
-      },
-      "rows": [
-        {
-          "record": "Registro de ocurrencia",
-          "canShow": "Que un organismo fue reportado en un lugar y momento; su confiabilidad depende de la identificación y la documentación.",
-          "cannotEstablish": "Límites de especie, conectividad poblacional o diversidad genética."
-        },
-        {
-          "record": "Código de barras de ADN",
-          "canShow": "Una región corta y estandarizada de ADN que puede apoyar la identificación y la comparación con registros de referencia.",
-          "cannotEstablish": "Un genoma completo, estructura cromosómica, historia poblacional o función adaptativa."
-        },
-        {
-          "record": "Lecturas crudas de secuencia",
-          "canShow": "La salida directa de un secuenciador antes de ensamblar y evaluar por completo los fragmentos.",
-          "cannotEstablish": "Un genoma terminado, un conjunto confiable de genes o una interpretación biológica."
-        },
-        {
-          "record": "Ensamblaje fragmentado del genoma",
-          "canShow": "Una reconstrucción de gran parte del genoma, por lo general en múltiples fragmentos con vacíos conocidos y desconocidos.",
-          "cannotEstablish": "El orden completo de los cromosomas, precisión perfecta o anotación de alta confianza en todas las regiones."
-        },
-        {
-          "record": "Genoma de referencia a escala cromosómica",
-          "canShow": "Un ensamblaje en el que la mayor parte de la secuencia está organizada en unidades del tamaño de cromosomas y funciona como mapa sólido para comparar.",
-          "cannotEstablish": "Toda la variación de la especie, conectividad actual, adaptación local o causa ecológica."
-        },
-        {
-          "record": "Conjunto de genómica poblacional",
-          "canShow": "Variación heredada en muchos individuos muestreados para probar estructura, diversidad, ascendencia y flujo génico.",
-          "cannotEstablish": "Una imagen sin sesgos cuando el muestreo es pobre, la ruta recorrida por un individuo o un mecanismo causal sin experimentos y ecología."
-        }
-      ]
-    },
-    "provenance": {
-      "heading": "Mantener unidos el organismo, la evidencia y los permisos",
-      "intro": "Un registro genómico sólido permite que, en el futuro, otra persona siga todo el recorrido del organismo a la secuencia: qué se muestreó, quién lo identificó, cómo se obtuvo y procesó el material, qué puede compartirse y cómo se reconocerán las contribuciones. Los campos siguientes muestran la información necesaria para mantener ese recorrido rastreable.",
-      "templateLabel": "Guía de registro",
-      "templateNote": "Este conjunto ilustrativo de campos muestra la información necesaria para un registro genómico rastreable: detalles del ejemplar, permisos, métodos de procesamiento y ubicación del repositorio.",
-      "fields": [
-        "Nombre científico, identificador y evidencia de identificación",
-        "Ejemplar preservado o registro rastreable de material",
-        "País, fecha y un nivel seguro de detalle de localidad",
-        "Permisos de colecta, acceso, transferencia y uso",
-        "Persona colectora, identificadora, curadora y custodio del material",
-        "Historia del tejido, la extracción y el almacenamiento",
-        "Tecnología de secuenciación y versiones de métodos de laboratorio",
-        "Evaluaciones de ensamblaje, contaminación y calidad",
-        "Evidencia y confianza de la anotación",
-        "Repositorios e identificadores estables",
-        "Roles de contribución, cita y reconocimiento",
-        "Restricciones y decisiones sobre sensibilidad cultural o protección de localidades"
+    "evidence": {
+      "heading": "Qué puede mostrar cada tipo de evidencia genética",
+      "body": [
+        "No todos los datos genéticos responden la misma pregunta, y la diferencia importa más de lo que parece. Un código de barras de ADN es un fragmento corto y estandarizado: sirve para señalar que dos ejemplares difieren, pero no dice nada sobre cómo están organizados sus genomas. La secuenciación de lecturas cortas en muchos individuos muestra cómo se distribuye la variación en una población. Un genoma de referencia a escala cromosómica muestra la estructura: dónde están los genes, qué se hereda junto con qué, dónde se ha partido o fusionado un cromosoma.",
+        "El costo y el esfuerzo difieren en órdenes de magnitud, y también lo que se puede concluir. Decir de qué tipo de evidencia salió un resultado es lo que evita que un código de barras se lea como un genoma."
       ]
     },
     "ethics": {
-      "heading": "La genómica responsable comienza antes del muestreo",
-      "intro": "Las buenas intenciones no sustituyen los permisos, la rendición de cuentas ni los acuerdos claros. Todo proyecto debe poder responder las siguientes preguntas en términos comprensibles para participantes, instituciones y futuros usuarios de los datos.",
-      "questions": [
-        "¿Quién tiene autoridad para dar acceso a los organismos, el sitio y los conocimientos asociados?",
-        "¿Quién identificó, recolectó, curó y proporcionó el ejemplar o material?",
-        "¿Qué permisos, acuerdos y restricciones se aplican a la colecta, transferencia, secuenciación y reutilización?",
-        "¿Quién dio forma a la pregunta y quién liderará la interpretación y la publicación?",
-        "¿Qué información de localidad, cultural o personal debe protegerse?",
-        "¿Cómo se manejarán los roles, la cita, el uso de datos y los beneficios?"
-      ],
-      "externalContext": "Los marcos FAIR, CARE y de acceso y distribución de beneficios ayudan a formular mejores preguntas sobre reutilización, autoridad y responsabilidad. Su aplicación depende del proyecto, la jurisdicción, las instituciones y las comunidades involucradas. [S20][S21][S22]",
-      "disclaimer": "Los requisitos jurídicos, éticos e institucionales los fijan las autoridades y los acuerdos que aplican a cada proyecto."
-    },
-    "tiers": {
-      "heading": "Tres escalas de evidencia genética",
-      "intro": "Los códigos de barras de ADN, los conjuntos de lecturas cortas y los ensamblajes de referencia sirven a preguntas distintas y dependen de evidencia diferente.",
-      "progression": {
-        "eyebrow": "Comparación de evidencia genómica",
-        "heading": "La escala de la evidencia cambia las preguntas posibles",
-        "note": "Estos enfoques se complementan. La escala genómica determina qué preguntas puede responder cada uno, no su valor científico general.",
-        "play": "Reproducir la comparación",
-        "replay": "Repetir",
-        "platforms": "Plataformas habituales",
-        "targeted": {
-          "label": "Región dirigida",
-          "title": "Locus seleccionado y amplicones",
-          "desc": "Los pares de cebadores seleccionan una región pequeña dentro de un contexto genómico mucho más amplio, y los segmentos repetidos representan copias del amplicón. El diagrama se concentra en el locus muestreado y no incluye los pasos de laboratorio ni la secuencia genómica circundante.",
-          "context": "contexto genómico amplio",
-          "selection": "un locus seleccionado",
-          "outcome": "copias de un amplicón"
-        },
-        "shortReads": {
-          "label": "Muestreo de todo el genoma",
-          "title": "Lecturas cortas distribuidas",
-          "desc": "Las lecturas cortas se mapean en muchas posiciones de una referencia. Su separación representa un muestreo distribuido, no una cobertura genómica uniforme ni completa.",
-          "context": "coordenadas de referencia",
-          "selection": "lecturas cortas de muchas posiciones",
-          "outcome": "lecturas mapeadas en toda la referencia"
-        },
-        "assembly": {
-          "label": "Referencia a escala cromosómica",
-          "title": "Lecturas largas solapadas",
-          "desc": "Las lecturas largas solapadas aportan continuidad y permiten construir una referencia ordenada a escala cromosómica. La incertidumbre del ensamblaje y las brechas restantes todavía deben evaluarse.",
-          "context": "lecturas largas solapadas",
-          "selection": "el solapamiento aporta continuidad",
-          "outcome": "referencia ordenada a escala cromosómica"
-        }
-      }
+      "heading": "Antes de que alguien capture una mariposa",
+      "body": [
+        "Muestrear en el Neotrópico implica permisos nacionales, acuerdos de acceso y reparto de beneficios bajo el Protocolo de Nagoya, los derechos de los pueblos indígenas y las comunidades locales, y decisiones sobre qué no debería publicarse: para una especie amenazada, una localidad precisa puede ser un riesgo más que un aporte.",
+        "Caligo trabaja con los principios FAIR para los datos y los principios CARE para la gobernanza de datos indígenas, y espera que cada proyecto cumpla lo que exija su propia jurisdicción."
+      ]
     }
   },
   "pilots": {
@@ -393,14 +199,7 @@ export const es: Dict = {
     "title": "Proyectos piloto propuestos",
     "opening": "Estas cuatro líneas combinan evidencia publicada con preguntas diseñadas para Caligo. Cada una define los organismos, observaciones, muestras y comparaciones necesarios para convertir un enigma biológico en trabajo comprobable.",
     "fieldLabels": {
-      "hook": "La pregunta en una frase",
-      "publishedContext": "Lo que ya muestra la evidencia publicada",
-      "proposedQuestion": "Lo que pondría a prueba el proyecto piloto propuesto de Caligo",
-      "evidenceNeeded": "Evidencia que necesitaría el proyecto piloto",
-      "genomesCan": "Qué pueden aportar los genomas",
-      "limits": "Evidencia necesaria más allá de la genómica",
-      "closing": "La pregunta para seguir pensando",
-      "sourcesChecked": "Fuentes y alcance"
+      "proposedQuestion": "Lo que pondría a prueba el proyecto piloto propuesto de Caligo"
     }
   },
   "caligo": {
@@ -469,29 +268,10 @@ export const es: Dict = {
     "metaDescription": "Cuatro proyectos piloto propuestos que conectan evidencia publicada con preguntas comprobables de genómica neotropical.",
     "title": "Proyectos piloto propuestos",
     "intro": "Cada proyecto piloto propuesto parte de evidencia publicada y de una pregunta que exige ir más lejos. Sigue al organismo, las observaciones y muestras que harían falta, el aporte de la genómica y la evidencia que ofrecen la ecología, la taxonomía o la experimentación.",
-    "openToCollaborators": "Conversa sobre un proyecto piloto",
-    "goalLabel": "Pregunta de investigación",
-    "resourcesLabel": "Puntos de partida publicados y documentados",
-    "motives": {
-      "heading": "Por qué empezar con proyectos piloto",
-      "intro": "La iniciativa identificó razones para comenzar con proyectos piloto enfocados.",
-      "items": [
-        "Demostrar a los financiadores que la red puede generar genomas en América Latina y analizarlos de forma colaborativa.",
-        "Desarrollar flujos de trabajo desde el muestreo hasta el depósito de datos.",
-        "Formar a la red regional y estandarizar protocolos.",
-        "Respetar los permisos, las leyes nacionales y los requisitos de distribución justa de beneficios.",
-        "Establecer estándares de datos y calidad desde temprano.",
-        "Construir estimaciones de costo realistas para la región.",
-        "Entregar primeros resultados científicos para generar impulso."
-      ]
-    },
     "pilotProposal": {
       "heading": "El proyecto piloto propuesto de Caligo",
       "leadsLabel": "Quienes lideran el proyecto piloto",
-      "goalLabel": "Qué haría el proyecto piloto",
-      "resourcesLabel": "Recursos disponibles",
-      "openLabel": "Abierto a colaboradores",
-      "closedLabel": "No abierto a colaboradores por ahora"
+      "goalLabel": "Qué haría el proyecto piloto"
     }
   },
   "about": {

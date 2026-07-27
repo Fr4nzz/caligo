@@ -1,14 +1,38 @@
 ---
+/**
+ * ProjectsPage — four proposed pilots, one section each.
+ *
+ * This page was 2,861 words and carried twelve <details> elements (some
+ * nested inside others), a sidebar table of contents for a four-item
+ * list, and the same nine sources printed twice — once inline inside the
+ * per-pilot disclosures and again in a footer bibliography with DOIs and
+ * access dates. That is 417 words of citation apparatus on work that has
+ * not started.
+ *
+ * What each pilot now renders: image, heading, taxon, the one-sentence
+ * question, the published background, what Caligo proposes to test, who
+ * would lead it, and a plain source line. Everything a reader needs to
+ * decide whether to email us; nothing that performs rigour about work
+ * nobody has begun.
+ *
+ * Removed: the motives block (an internal funding memo — "Demonstrate to
+ * funders that the network can generate genomes in Latin America"), the
+ * "Evidence, contributions and boundaries" disclosure whose three fields
+ * were the same sentence four times with the nouns swapped, the status
+ * pills repeating a phrase already in the page title, and the per-pilot
+ * research-question and study-objective lists.
+ *
+ * renderCitations() is gone: it wrapped prose containing zero [S##]
+ * tokens (all 78 live in the i18n files, none in records.ts), so it was
+ * escapeHtml + set:html for nothing.
+ */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
 import ConceptDiagram from '../ConceptDiagram.astro';
-import SectionRail from '../SectionRail.astro';
-import SourceList from '../SourceList.astro';
 import { getDict, type Locale } from '../../i18n';
 import { PILOTS, getSource, getMediaModule } from '../../data/records';
 import { PROJECTS } from '../../data/content';
-import { renderCitations } from '../../lib/citations';
 
 interface Props {
   locale: Locale;
@@ -26,66 +50,28 @@ const metaDescription = proj.metaDescription as string;
 
 const p = t.pilots;
 const pp = t.projects.pilotProposal;
-const motives = t.projects.motives;
 
 const publishedPilots = PILOTS.filter((pilot) => pilot.publish);
 
-const railSections = [
-  { id: 'overview',            label: t.projects.rail.overview },
-  { id: 'heliconius',          label: t.projects.rail.heliconius },
-  { id: 'parides-ascanius',    label: t.projects.rail.parides },
-  { id: 'soybean-lepidoptera', label: t.projects.rail.soybean },
-  { id: 'panacea-prola',       label: t.projects.rail.panacea },
-];
+const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
 
-// Bilingual labels for the structured card disclosure
-const label = locale === 'es'
-  ? {
-      statusPill:    'Proyecto piloto propuesto',
-      detailsToggle: 'Evidencia, aportes y límites',
-      sourcesToggle:  'Contexto y fuentes publicados',
-    }
-  : {
-      statusPill:    'Proposed pilot project',
-      detailsToggle: 'Evidence, contributions and boundaries',
-      sourcesToggle:  'Published context and sources',
-    };
-
-// Map from PILOTS.id to PROJECTS.id for the Nicol block lookup.
+// Map from PILOTS.id to PROJECTS.id for the proposal lookup.
 const pilotToProjectId: Record<string, string> = {
   'pilot-heliconius': 'heliconius',
   'pilot-parides':    'parides',
   'pilot-soybean':    'soybean-pests',
   'pilot-panacea':    'panacea',
 };
+
+/*
+  Only the Heliconius pilot keeps a figure. The holocentric-fission
+  contrast teaches something a reader cannot get from the adjacent
+  paragraph; the other three restated their own captions.
+*/
 const pilotDiagramKind = {
   'pilot-heliconius': 'chromosome',
-  'pilot-parides': 'connectivity',
-  'pilot-soybean': 'monitoring',
-  'pilot-panacea': 'migration',
 } as const;
 const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
-
-// Local bilingual labels for per-pilot extra lists (no i18n key exists).
-const heliconiusQuestionsLabel = locale === 'es'
-  ? 'Preguntas de investigación del proyecto piloto'
-  : 'Pilot project research questions';
-const soyObjectivesLabel = locale === 'es'
-  ? 'Objetivos del estudio'
-  : 'Study objectives';
-
-// All source IDs referenced on this page (pilot sourceIds arrays).
-const pageSourceIds = [
-  'rueda-2024',
-  'mackay-smith-2026',
-  'seraphim-2016',
-  'iucn-parides-2018',
-  'icmbio-parides-2021',
-  'horikoshi-2021',
-  'braga-2024',
-  'ukri-soybean',
-  'gallice-2020',
-];
 ---
 
 <Base locale={locale} title={metaTitle} description={metaDescription} page="/projects">
@@ -93,27 +79,7 @@ const pageSourceIds = [
     <PageHeader title={pageTitle} intro={p.opening} />
   </div>
 
-  <!-- Why pilots: motives block (F1–F7 from doc 01 §F) -->
-  <section class="section section--tight section--panel" aria-labelledby="motives-heading">
-    <div class="container-wide">
-      <h2 id="motives-heading">{motives.heading}</h2>
-      <p class="section-intro muted">{motives.intro}</p>
-      <ol class="motives-list" role="list">
-        {motives.items.map((item: string, i: number) => (
-          <li class="motive-item">
-            <span class="motive-index mono" aria-hidden="true">
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <span class="motive-text">{item}</span>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <div class="projects-layout section-rail-layout section-rail-layout--wide section--tight">
-    <SectionRail locale={locale} sections={railSections} />
-
+  <div class="projects-layout section--tight">
     <ol class="pilots" aria-label={pageTitle}>
       {
         publishedPilots.map((pilot) => {
@@ -130,12 +96,6 @@ const pageSourceIds = [
 
             <!-- Text: 7-column slot on desktop -->
             <div class="pilot-text">
-              <!-- Status pill (once per card) -->
-              <p class="pilot-status-pill">
-                <span class="pilot-status-dot" aria-hidden="true" />
-                {label.statusPill}
-              </p>
-
               <h2 class="pilot-heading">{pilot.heading[locale]}</h2>
 
               {pilot.taxon && (
@@ -145,135 +105,65 @@ const pageSourceIds = [
               )}
 
               <!-- One-sentence research question -->
-              <p class="pilot-hook" set:html={renderCitations(pilot.hook[locale])} />
+              <p class="pilot-hook">{pilot.hook[locale]}</p>
 
-              <!-- ~120–180 word summary body (published context) -->
-              <p class="pilot-body-text" set:html={renderCitations(pilot.publishedContext[locale])} />
+              <!-- Published background -->
+              <p class="pilot-body-text">{pilot.publishedContext[locale]}</p>
 
               {diagramKind && (
                 <ConceptDiagram locale={locale} kind={diagramKind} context="pilot" />
               )}
 
-              <!-- Proposed Caligo pilot question -->
+              <!-- What Caligo proposes to test -->
               <div class="pilot-field">
                 <p class="pilot-field-label">{p.fieldLabels.proposedQuestion}</p>
-                <p class="pilot-field-value" set:html={renderCitations(pilot.proposedQuestion[locale])} />
+                <p class="pilot-field-value">{pilot.proposedQuestion[locale]}</p>
               </div>
 
-              <!-- Closing thought -->
-              {pilot.closing && (
-                <p class="pilot-closing">{pilot.closing[locale]}</p>
-              )}
-
-              <!-- Boxed disclosure: Evidence, contributions and boundaries -->
-              <details class="disclosure disclosure--boxed pilot-details">
-                <summary class="disclosure-summary">
-                  <span class="disclosure-summary-inner">{label.detailsToggle}</span>
-                </summary>
-                <div class="disclosure-body pilot-details-body">
-                  <div class="pilot-field">
-                    <p class="pilot-field-label">{p.fieldLabels.evidenceNeeded}</p>
-                    <p class="pilot-field-value" set:html={renderCitations(pilot.evidenceNeeded[locale])} />
-                  </div>
-                  <div class="pilot-field">
-                    <p class="pilot-field-label">{p.fieldLabels.genomesCan}</p>
-                    <p class="pilot-field-value" set:html={renderCitations(pilot.genomesCan[locale])} />
-                  </div>
-                  <div class="pilot-field">
-                    <p class="pilot-field-label">{p.fieldLabels.limits}</p>
-                    <p class="pilot-field-value" set:html={renderCitations(pilot.limits[locale])} />
-                  </div>
-
-                  <!-- Inner compact sub-disclosure: Published context and sources -->
-                  <details class="disclosure disclosure--compact pilot-sources-disclosure">
-                    <summary class="disclosure-summary">
-                      <span class="disclosure-summary-inner">{label.sourcesToggle}</span>
-                    </summary>
-                    <div class="disclosure-body pilot-sources-body">
-                      <p class="pilot-source-note" set:html={renderCitations(pilot.sourceNote[locale])} />
-                      <ul class="pilot-sources">
-                        {pilot.sourceIds.map((sid) => {
-                          const src = getSource(sid);
-                          return src ? (
-                            <li class="pilot-source">
-                              <a href={src.url} rel="external noopener">
-                                {src.citation}
-                              </a>
-                            </li>
-                          ) : null;
-                        })}
-                      </ul>
-                    </div>
-                  </details>
-                </div>
-              </details>
-
-              <!-- Nicol block: The proposed Caligo pilot -->
               {project && (
-                <details class="disclosure disclosure--boxed pilot-proposal">
-                  <summary class="disclosure-summary">
-                    <span class="disclosure-summary-inner">{pp.heading}</span>
-                  </summary>
-                  <div class="disclosure-body pilot-proposal-body">
-                    <div class="pilot-field">
-                      <p class="pilot-field-label">{pp.leadsLabel}</p>
-                      <p class="pilot-field-value">
-                        {project.leads}
-                        {project.leadsNote && (
-                          <span class="pilot-leads-note">. {project.leadsNote[locale]}</span>
-                        )}
-                      </p>
-                    </div>
-                    <div class="pilot-field">
-                      <p class="pilot-field-label">{pp.goalLabel}</p>
-                      <p class="pilot-field-value">{project.goal[locale]}</p>
-                    </div>
-                    {project.resources && (
-                      <div class="pilot-field">
-                        <p class="pilot-field-label">{pp.resourcesLabel}</p>
-                        <p class="pilot-field-value">{project.resources[locale]}</p>
-                      </div>
+                <div class="pilot-field">
+                  <p class="pilot-field-label">{pp.leadsLabel}</p>
+                  <p class="pilot-field-value">
+                    {project.leads}
+                    {project.leadsNote && (
+                      <span class="pilot-leads-note">. {project.leadsNote[locale]}</span>
                     )}
-                    <p class="pilot-open-status pilot-field-label">
-                      {project.openToCollaborators ? pp.openLabel : pp.closedLabel}
-                    </p>
-
-                    {/* Heliconius: 8 research questions (doc 01 §G1) */}
-                    {project.heliconiusQuestions && project.heliconiusQuestions.length > 0 && (
-                      <div class="pilot-field">
-                        <p class="pilot-field-label">{heliconiusQuestionsLabel}</p>
-                        <ol class="pilot-extra-list">
-                          {project.heliconiusQuestions.map((q) => (
-                            <li class="pilot-extra-item">{q[locale]}</li>
-                          ))}
-                        </ol>
-                      </div>
-                    )}
-
-                    {/* Soybean: 4 study objectives (doc 01 §G8) */}
-                    {project.soyObjectives && project.soyObjectives.length > 0 && (
-                      <div class="pilot-field">
-                        <p class="pilot-field-label">{soyObjectivesLabel}</p>
-                        <ol class="pilot-extra-list">
-                          {project.soyObjectives.map((obj) => (
-                            <li class="pilot-extra-item">{obj[locale]}</li>
-                          ))}
-                        </ol>
-                      </div>
-                    )}
-                  </div>
-                </details>
+                  </p>
+                </div>
               )}
+
+              {project && (
+                <div class="pilot-field">
+                  <p class="pilot-field-label">{pp.goalLabel}</p>
+                  <p class="pilot-field-value">{project.goal[locale]}</p>
+                </div>
+              )}
+
+              <!--
+                Sources as a plain line of author-year links. This replaces
+                a nested disclosure plus a page-footer bibliography that
+                printed the same nine references a second time with DOIs
+                and database access dates.
+              -->
+              <p class="pilot-source-line">
+                <span class="pilot-source-label">{sourcesLabel}: </span>
+                {pilot.sourceIds.map((sid, i) => {
+                  const src = getSource(sid);
+                  if (!src) return null;
+                  return (
+                    <>
+                      {i > 0 && ' · '}
+                      <a href={src.url} rel="external noopener">{src.citation}</a>
+                    </>
+                  );
+                })}
+              </p>
             </div>
             </li>
           );
         })
       }
     </ol>
-  </div>
-
-  <div class="container-wide">
-    <SourceList ids={pageSourceIds} locale={locale} />
   </div>
 </Base>
 
@@ -382,29 +272,6 @@ const pageSourceIds = [
   }
 
   /* Status pill */
-  .pilot-status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    margin: 0;
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    line-height: 1.4;
-  }
-  .pilot-status-dot {
-    display: inline-block;
-    width: 0.45rem;
-    height: 0.45rem;
-    border-radius: 50%;
-    background: var(--highlight);
-    box-shadow: 0 0 0 3px var(--highlight-dim);
-    flex: none;
-  }
-
-  /* Heading */
   .pilot-heading {
     margin: 0;
     font-family: var(--font-display);

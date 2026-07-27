@@ -1,7 +1,7 @@
 ---
 import { getDict, type Locale } from '../i18n';
 
-type DiagramKind = 'chromosome' | 'wfusion' | 'introgression' | 'mimicry' | 'connectivity' | 'monitoring' | 'migration' | 'voucher';
+type DiagramKind = 'chromosome' | 'introgression';
 
 interface Props {
   readonly locale: Locale;
@@ -32,16 +32,6 @@ const copy = {
       footnote: 'The orange dots are the spindle anchor. This is why the number of chromosomes can change.',
       question: 'compare chromosome-scale assemblies',
     },
-    wfusion: {
-      title: 'A fusion with the W chromosome',
-      desc: 'In butterflies and moths only the female carries a W chromosome; the male is ZZ. A fusion can attach an ordinary chromosome, an autosome, to that W. The mother then makes two kinds of egg: one carrying the Z and a free autosome, which produces a son, and one carrying the W with the autosome welded to it, which produces a daughter. The fused copy therefore only ever reaches daughters. Three independent fusions of this kind are known in Heliconius. The father always contributes a Z, and only the chromosomes involved are drawn.',
-      hook: 'Only the female carries a W',
-      fusionHeading: 'A fusion attaches an autosome to the W',
-      autosome: 'autosome',
-      meiosisHeading: 'The mother then makes two kinds of egg',
-      outcome: 'The fused copy only ever reaches daughters.',
-      question: 'compare chromosome-scale assemblies',
-    },
     introgression: {
       title: 'What crossed, and where it landed',
       desc: 'Heliconius elevatus is a hybrid species. Ongoing gene flow with one parent, Heliconius pardalinus, homogenises 99% of their genomes. The remaining 1%, inherited from Heliconius melpomene, is scattered widely across the genome in islands of divergence rather than sitting on a single chromosome. Those islands carry the traits that keep the species apart: colour pattern on chromosomes 1, 5, 10, 12, 13, 15 and 18, hindwing shape on chromosome 20, host-plant preference on chromosome 2, and male sex pheromones on chromosomes 19 and 20. Chromosome lengths and island positions within each chromosome are schematic.',
@@ -52,73 +42,6 @@ const copy = {
       traitsTwo: 'host plant 2 · male pheromones 19, 20',
       caveat: 'Mate choice was linked to chromosome 20 but did not reach significance.',
       question: 'compare chromosome-scale assemblies',
-    },
-    mimicry: {
-      title: 'Sharing a warning pattern',
-      desc: 'Two Heliconius species that live in the same place can carry the same warning pattern. Introgression means a lineage can acquire the wing-pattern alleles from another lineage instead of evolving the pattern independently, so a shared appearance does not by itself mean shared ancestry for the rest of the genome.',
-      hook: 'Same warning pattern, different lineages',
-      pathA: 'evolve it independently',
-      pathB: 'inherit it from the other lineage',
-      outcome: 'Genomes tell the two routes apart.',
-      caveat: 'Which route applies is a question for each pair, not a general rule.',
-      question: 'compare chromosome-scale assemblies',
-    },
-    connectivity: {
-      title: 'Population connectivity and gene flow',
-      desc: 'The first panel shows early, sustained gene flow homogenising two incipient lineages until they no longer remain distinct. The second shows introgression between more divergent lineages, followed by the persistence of a hybrid lineage. This rare outcome does not imply equal genomic contributions or blended traits. Colours and branch lengths guide the explanation and do not represent measured values.',
-      earlyTitle: 'early, sustained gene flow',
-      incipientLineages: 'incipient lineages',
-      earlyFlow: 'gene flow homogenises differences',
-      collapseOutcome: 'Sustained gene flow prevents lasting divergence',
-      lateTitle: 'introgression after divergence',
-      divergentLineages: 'more divergent lineages',
-      recipientLineage: 'recipient lineage',
-      donorLineage: 'donor lineage',
-      oneLineage: 'one lineage remains',
-      newHybridSpecies: 'new hybrid species',
-      rareOutcomeLabel: 'rare outcome',
-      introgression: 'trait-linked regions cross lineages',
-      rareOutcomeLead: 'An independently evolving',
-      rareOutcomeTail: 'hybrid lineage persists',
-      evidenceLead: 'Published evidence: ',
-      rosserPrefix: 'hybrid speciation in',
-      rosserTaxon: 'Heliconius elevatus',
-      rosserTail: ' (Heliconiini)',
-      evidenceJoin: '. ',
-      ithomiiniPrefix: 'Putative hybrid origins in Ithomiini (',
-      ithomiiniTaxonOne: 'Melinaea',
-      ithomiiniAnd: ' and ',
-      ithomiiniTaxonTwo: 'Mechanitis',
-      evidenceTail: ').',
-    },
-    monitoring: {
-      title: 'Movement and resistance monitoring',
-      desc: 'Repeated field sampling and confirmed species identification support tests of movement and candidate resistance-associated variants. Validation then determines whether those signals can support monitoring.',
-      sample: 'repeat sampling',
-      identify: 'confirm species',
-      movement: 'test movement',
-      candidates: 'candidate variants',
-      validate: 'validate monitoring',
-    },
-    migration: {
-      title: 'Testing seasonal origins and routes',
-      desc: 'Samples from different places and seasons can test possible origins and connections. Movement observations and environmental evidence help evaluate the resulting hypotheses.',
-      sampling: 'places + seasons',
-      origins: 'possible origins?',
-      routes: 'connections?',
-      evidence: 'independent evidence',
-    },
-    voucher: {
-      title: 'Voucher: specimen, sample, record',
-      desc: t.home.journey.voucherDiagram.description,
-      specimen: 'specimen',
-      envelope: 'wings → envelope',
-      tube: 'body → tube',
-      record: 'record row',
-      collector: t.home.journey.voucherDiagram.collector,
-      camid: 'CAMID',
-      tubeid: 'TUBE ID',
-      link: 'one record links identifiers and provenance',
     },
   },
   es: {
@@ -139,16 +62,6 @@ const copy = {
       footnote: 'Los puntos naranjas son el anclaje al huso. Por eso el número de cromosomas puede cambiar.',
       question: 'comparar ensamblajes a escala cromosómica',
     },
-    wfusion: {
-      title: 'Una fusión con el cromosoma W',
-      desc: 'En mariposas y polillas solo la hembra lleva un cromosoma W; el macho es ZZ. Una fusión puede unirle un cromosoma corriente, un autosoma. Después la madre hace dos tipos de óvulo: uno con el Z y un autosoma libre, que da un hijo, y otro con el W y el autosoma pegado a él, que da una hija. Por eso la copia fusionada solo llega a las hijas. En Heliconius se conocen tres fusiones así, independientes. El padre siempre aporta un Z y solo se dibujan los cromosomas implicados.',
-      hook: 'Solo la hembra lleva un W',
-      fusionHeading: 'Una fusión le pega un autosoma al W',
-      autosome: 'autosoma',
-      meiosisHeading: 'Después la madre hace dos tipos de óvulo',
-      outcome: 'La copia pegada al W solo llega a las hijas.',
-      question: 'comparar ensamblajes a escala cromosómica',
-    },
     introgression: {
       title: 'Qué cruzó, y dónde quedó',
       desc: 'Heliconius elevatus es una especie híbrida. El flujo génico continuo con uno de sus progenitores, Heliconius pardalinus, homogeneiza el 99 % de sus genomas. El 1 % restante, heredado de Heliconius melpomene, está repartido por todo el genoma en islas de divergencia y no en un solo cromosoma. Esas islas llevan los rasgos que mantienen separada a la especie: el patrón de color en los cromosomas 1, 5, 10, 12, 13, 15 y 18, la forma del ala posterior en el 20, la preferencia de planta hospedera en el 2 y las feromonas sexuales del macho en el 19 y el 20. Las longitudes de los cromosomas y la posición de las islas dentro de cada uno son esquemáticas.',
@@ -160,92 +73,11 @@ const copy = {
       caveat: 'La elección de pareja se asoció al cromosoma 20, pero sin significación.',
       question: 'comparar ensamblajes a escala cromosómica',
     },
-    mimicry: {
-      title: 'Compartir un patrón de advertencia',
-      desc: 'Dos especies de Heliconius que viven en el mismo lugar pueden llevar el mismo patrón de advertencia. La introgresión permite que un linaje adquiera los alelos del patrón alar de otro linaje en vez de desarrollarlo por su cuenta, así que parecerse no implica por sí solo compartir ascendencia en el resto del genoma.',
-      hook: 'El mismo patrón de advertencia, linajes distintos',
-      pathA: 'desarrollarlo por su cuenta',
-      pathB: 'heredarlo del otro linaje',
-      outcome: 'Los genomas distinguen las dos rutas.',
-      caveat: 'Cuál de las dos aplica se decide caso por caso, no como regla general.',
-      question: 'comparar ensamblajes a escala cromosómica',
-    },
-    connectivity: {
-      title: 'Conectividad poblacional y flujo génico',
-      desc: 'El primer panel muestra cómo el flujo génico temprano y sostenido homogeneiza dos linajes incipientes hasta que dejan de permanecer separados. El segundo muestra introgresión entre linajes más divergentes, seguida por la persistencia de un linaje híbrido. Este desenlace raro no implica aportes genómicos iguales ni rasgos mezclados. Los colores y la longitud de las ramas guían la explicación y no representan valores medidos.',
-      earlyTitle: 'flujo génico temprano y sostenido',
-      incipientLineages: 'linajes incipientes',
-      earlyFlow: 'el flujo génico homogeneiza las diferencias',
-      collapseOutcome: 'El flujo génico sostenido impide una divergencia duradera',
-      lateTitle: 'introgresión después de la divergencia',
-      divergentLineages: 'linajes más divergentes',
-      recipientLineage: 'linaje receptor',
-      donorLineage: 'linaje donante',
-      oneLineage: 'permanece un linaje',
-      newHybridSpecies: 'nueva especie híbrida',
-      rareOutcomeLabel: 'desenlace raro',
-      introgression: 'regiones ligadas a rasgos cruzan entre linajes',
-      rareOutcomeLead: 'Persiste un linaje híbrido',
-      rareOutcomeTail: 'que evoluciona de forma independiente',
-      evidenceLead: 'Evidencia publicada: ',
-      rosserPrefix: 'especiación híbrida en',
-      rosserTaxon: 'Heliconius elevatus',
-      rosserTail: ' (Heliconiini)',
-      evidenceJoin: '. ',
-      ithomiiniPrefix: 'Orígenes híbridos putativos en Ithomiini (',
-      ithomiiniTaxonOne: 'Melinaea',
-      ithomiiniAnd: ' y ',
-      ithomiiniTaxonTwo: 'Mechanitis',
-      evidenceTail: ').',
-    },
-    monitoring: {
-      title: 'Monitoreo de movimiento y resistencia',
-      desc: 'El muestreo de campo repetido y la identificación confirmada de especies sustentan pruebas de movimiento y de variantes candidatas asociadas con resistencia. La validación determina después si esas señales pueden servir para el monitoreo.',
-      sample: 'repetir muestreo',
-      identify: 'confirmar especie',
-      movement: 'estudiar movimiento',
-      candidates: 'variantes candidatas',
-      validate: 'validar monitoreo',
-    },
-    migration: {
-      title: 'Estudiar orígenes y rutas estacionales',
-      desc: 'Las muestras de distintos lugares y temporadas permiten estudiar posibles orígenes y conexiones. Las observaciones de movimiento y la evidencia ambiental ayudan a evaluar las hipótesis resultantes.',
-      sampling: 'lugares + temporadas',
-      origins: '¿orígenes posibles?',
-      routes: '¿conexiones?',
-      evidence: 'evidencia independiente',
-    },
-    voucher: {
-      title: 'Voucher: ejemplar, muestra, registro',
-      desc: t.home.journey.voucherDiagram.description,
-      specimen: 'ejemplar',
-      envelope: 'alas → sobre',
-      tube: 'cuerpo → tubo',
-      record: 'fila de registro',
-      collector: t.home.journey.voucherDiagram.collector,
-      camid: 'CAMID',
-      tubeid: 'ID DE TUBO',
-      link: 'un registro conecta identificadores y procedencia',
-    },
   },
 } as const;
 
 const c = copy[locale];
 const k = c[kind];
-const connectivityOutcomes = kind === 'connectivity'
-  ? [
-      {
-        cue: c.connectivity.earlyTitle,
-        title: c.connectivity.oneLineage,
-        detail: c.connectivity.earlyFlow,
-      },
-      {
-        cue: c.connectivity.rareOutcomeLabel,
-        title: c.connectivity.newHybridSpecies,
-        detail: `${c.connectivity.lateTitle}. ${c.connectivity.introgression}`,
-      },
-    ]
-  : [];
 const mobileSteps: readonly string[] = kind === 'chromosome'
   ? [
       `${c.chromosome.mostAnimals}: ${c.chromosome.onePointA} ${c.chromosome.onePointB}`,
@@ -253,29 +85,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
       `${c.chromosome.lepidoptera}: ${c.chromosome.allAlongA} ${c.chromosome.allAlongB}`,
       c.chromosome.bothKept,
     ]
-  : kind === 'introgression'
-    ? [c.introgression.heading, c.introgression.traitsOne, c.introgression.traitsTwo, c.introgression.outcome]
-  : kind === 'mimicry'
-    ? [c.mimicry.hook, c.mimicry.pathA, c.mimicry.pathB, c.mimicry.outcome]
-  : kind === 'wfusion'
-    ? [
-        c.wfusion.hook,
-        c.wfusion.fusionHeading,
-        c.wfusion.meiosisHeading,
-        c.wfusion.outcome,
-      ]
-  : kind === 'connectivity'
-    ? []
-    : kind === 'monitoring'
-      ? [c.monitoring.sample, c.monitoring.identify, c.monitoring.movement, c.monitoring.candidates, c.monitoring.validate]
-      : kind === 'migration'
-        ? [c.migration.sampling, c.migration.origins, c.migration.routes, c.migration.evidence]
-        : [
-            `${c.voucher.collector} → ${c.voucher.specimen}`,
-            `${c.voucher.envelope} (${c.voucher.camid})`,
-            `${c.voucher.tube} (${c.voucher.tubeid})`,
-            `${c.voucher.record}: ${c.voucher.camid} + ${c.voucher.tubeid} + ${c.voucher.collector} + …`,
-          ];
+  : [c.introgression.heading, c.introgression.traitsOne, c.introgression.traitsTwo, c.introgression.outcome];
 ---
 
 <figure
@@ -285,7 +95,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   data-context={context}
   data-concept-diagram
   data-label-replay={c.replay}
-  data-duration-ms={kind === 'connectivity' ? '6500' : '5000'}
+  data-duration-ms="5000"
   aria-busy="false"
 >
   <figcaption class="concept-heading">
@@ -299,7 +109,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     </button>
   </figcaption>
 
-  <svg class="concept-svg" viewBox={kind === 'connectivity' ? '0 0 720 255' : kind === 'chromosome' ? '0 0 600 266' : kind === 'wfusion' ? '0 0 600 318' : kind === 'introgression' ? '0 0 600 246' : kind === 'mimicry' ? '0 0 600 272' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
+  <svg class="concept-svg" viewBox={kind === 'chromosome' ? '0 0 600 266' : '0 0 600 246'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
     <title id={`${id}-title`}>{k.title}</title>
     <desc id={`${id}-desc`}>{k.desc}</desc>
     <defs>
@@ -366,67 +176,6 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
       </g>
     )}
 
-    {kind === 'wfusion' && (
-      <g class="diagram-scene wfusion-scene">
-        <text x="0" y="16" class="chr-tag">{c.wfusion.hook}</text>
-
-        {/* 1 · the fusion: an autosome is welded onto the female-limited W */}
-        <text x="0" y="48" class="chr-head">{c.wfusion.fusionHeading}</text>
-        <g class="wf-in wf-in-w">
-          <rect x="150" y="64" width="40" height="22" rx="11" class="wf-w" />
-          <text x="170" y="80" class="wf-glyph wf-glyph--on-accent">W</text>
-        </g>
-        <g class="wf-in wf-in-a">
-          <rect x="216" y="64" width="104" height="22" rx="11" class="wf-chr" />
-          <text x="268" y="80" class="wf-glyph">{c.wfusion.autosome}</text>
-        </g>
-        <g class="wf-neo">
-          <rect x="176" y="64" width="40" height="22" rx="11" class="wf-w" />
-          <rect x="206" y="64" width="104" height="22" rx="11" class="wf-chr" />
-          <rect x="176" y="64" width="34" height="22" class="wf-w wf-w--butt" />
-          <text x="192" y="80" class="wf-glyph wf-glyph--on-accent">W</text>
-          <text x="262" y="80" class="wf-glyph">{c.wfusion.autosome}</text>
-        </g>
-
-        <path d="M0 112 H600" class="chr-rule" />
-
-        {/* 2 · meiosis in the mother. The W and the free autosome copy go to
-            opposite eggs, so the welded copy can only ever travel with the W. */}
-        <text x="0" y="140" class="chr-head">{c.wfusion.meiosisHeading}</text>
-
-        <g class="wf-cell">
-          <rect x="229" y="152" width="142" height="56" rx="16" class="wf-membrane" />
-          <rect x="245" y="162" width="32" height="16" rx="8" class="wf-w" />
-          <rect x="271" y="162" width="84" height="16" rx="8" class="wf-chr" />
-          <rect x="245" y="162" width="28" height="16" class="wf-w wf-w--butt" />
-          <text x="259" y="174" class="wf-mini wf-mini--on-accent">W</text>
-          <rect x="245" y="184" width="36" height="16" rx="8" class="wf-chr" />
-          <text x="263" y="196" class="wf-mini">Z</text>
-          <rect x="291" y="184" width="64" height="16" rx="8" class="wf-chr" />
-        </g>
-
-        <path d="M282 210 L196 234" class="wf-split wf-split-l" marker-end={`url(#${id}-arrow)`} />
-        <path d="M318 210 L404 234" class="wf-split wf-split-r" marker-end={`url(#${id}-arrow)`} />
-
-        <g class="wf-egg wf-egg-l">
-          <rect x="100" y="240" width="170" height="42" rx="20" class="wf-membrane" />
-          <rect x="116" y="254" width="36" height="16" rx="8" class="wf-chr" />
-          <text x="134" y="266" class="wf-mini">Z</text>
-          <rect x="162" y="254" width="64" height="16" rx="8" class="wf-chr" />
-          <text x="248" y="270" class="wf-sex wf-sym">♂</text>
-        </g>
-        <g class="wf-egg wf-egg-r">
-          <rect x="330" y="240" width="170" height="42" rx="20" class="wf-membrane" />
-          <rect x="346" y="254" width="32" height="16" rx="8" class="wf-w" />
-          <rect x="372" y="254" width="84" height="16" rx="8" class="wf-chr" />
-          <rect x="346" y="254" width="28" height="16" class="wf-w wf-w--butt" />
-          <text x="360" y="266" class="wf-mini wf-mini--on-accent">W</text>
-          <text x="478" y="270" class="wf-sex wf-sex--female wf-sym">♀</text>
-        </g>
-
-        <text x="0" y="306" class="chr-out wf-say">{c.wfusion.outcome}</text>
-      </g>
-    )}
 
     {kind === 'introgression' && (
       <g class="diagram-scene introgression-scene">
@@ -503,337 +252,21 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
       </g>
     )}
 
-    {kind === 'mimicry' && (
-      <g class="diagram-scene mimicry-scene">
-        <text x="0" y="18" class="chr-head">{c.mimicry.hook}</text>
 
-        {/* two butterflies from different lineages wearing the same pattern */}
-        <g class="mim-fly" transform="translate(200 66)">
-          <ellipse cx="0" cy="0" rx="6" ry="20" class="mim-body" />
-          <path d="M-5 -12 C-44 -26 -58 12 -28 24 C-16 29 -8 18 -5 8 Z" class="mim-wing" />
-          <path d="M5 -12 C44 -26 58 12 28 24 C16 29 8 18 5 8 Z" class="mim-wing" />
-          <path d="M-40 -8 C-30 -4 -18 -2 -8 -2 L-8 6 C-20 6 -32 4 -42 1 Z" class="mim-band" />
-          <path d="M40 -8 C30 -4 18 -2 8 -2 L8 6 C20 6 32 4 42 1 Z" class="mim-band" />
-        </g>
-        <g class="mim-fly" transform="translate(400 66)">
-          <ellipse cx="0" cy="0" rx="6" ry="20" class="mim-body" />
-          <path d="M-5 -12 C-44 -26 -58 12 -28 24 C-16 29 -8 18 -5 8 Z" class="mim-wing" />
-          <path d="M5 -12 C44 -26 58 12 28 24 C16 29 8 18 5 8 Z" class="mim-wing" />
-          <path d="M-40 -8 C-30 -4 -18 -2 -8 -2 L-8 6 C-20 6 -32 4 -42 1 Z" class="mim-band" />
-          <path d="M40 -8 C30 -4 18 -2 8 -2 L8 6 C20 6 32 4 42 1 Z" class="mim-band" />
-        </g>
 
-        <path d="M0 108 H600" class="chr-rule" />
 
-        {/* route A — the pattern arises twice, independently */}
-        <text x="150" y="134" class="chr-tag mim-label">{c.mimicry.pathA}</text>
-        <g class="mim-route mim-route--a">
-          <path d="M150 214 V182 M150 182 L120 154 M150 182 L180 154" class="mim-branch" />
-          <circle cx="120" cy="150" r="5" class="mim-mark" />
-          <circle cx="180" cy="150" r="5" class="mim-mark" />
-          <path d="M120 172 V162" class="mim-rise" marker-end={`url(#${id}-arrow)`} />
-          <path d="M180 172 V162" class="mim-rise" marker-end={`url(#${id}-arrow)`} />
-        </g>
 
-        {/* route B — it arises once and crosses between lineages */}
-        <text x="430" y="134" class="chr-tag mim-label">{c.mimicry.pathB}</text>
-        <g class="mim-route mim-route--b">
-          <path d="M430 214 V182 M430 182 L400 154 M430 182 L460 154" class="mim-branch" />
-          <circle cx="460" cy="150" r="5" class="mim-mark" />
-          <circle cx="400" cy="150" r="5" class="mim-mark mim-mark--moved" />
-          <path d="M452 150 H408" class="mim-cross" marker-end={`url(#${id}-arrow)`} />
-        </g>
-
-        <text x="0" y="244" class="chr-out mim-say">{c.mimicry.outcome}</text>
-        <text x="0" y="264" class="chr-note">{c.mimicry.caveat}</text>
-      </g>
-    )}
-
-    {kind === 'connectivity' && (
-      <g class="diagram-scene connectivity-scene">
-        <path d="M360 18 V238" class="gene-flow-divider" />
-
-        {/* Outcome 1: sustained exchange homogenises incipient lineages before they remain distinct. */}
-        <g class="gene-flow-panel gene-flow-panel--homogenisation">
-          <text x="180" y="18" class="group-label gene-flow-panel-title">{c.connectivity.earlyTitle}</text>
-          <path d="M180 198 V168" class="lineage-path lineage-trunk early-lineage-trunk" />
-          <path d="M180 168 C158 151 143 131 126 113" class="lineage-path early-split-branch early-split-branch--dark" />
-          <path d="M180 168 C202 151 217 131 234 113" class="lineage-path early-split-branch early-split-branch--pale" />
-          <path d="M126 113 C136 90 155 70 180 57" class="lineage-path early-merge-branch early-merge-branch--dark" />
-          <path d="M234 113 C224 90 205 70 180 57" class="lineage-path early-merge-branch early-merge-branch--pale" />
-          <path d="M180 57 V38" class="lineage-path homogenised-lineage" />
-          <circle cx="180" cy="168" r="4.5" class="lineage-node early-divergence-node" />
-          <circle cx="126" cy="113" r="3.5" class="lineage-node early-midpoint-node early-midpoint-node--dark" />
-          <circle cx="234" cy="113" r="3.5" class="lineage-node early-midpoint-node early-midpoint-node--pale" />
-          <circle cx="180" cy="57" r="4.5" class="lineage-node homogenisation-node" />
-
-          <g class="lineage-butterfly lineage-butterfly--ancestor early-ancestor" transform="translate(180 204) scale(.7)">
-            <use href={`#${id}-butterfly`} />
-          </g>
-          <g class="early-lineage-glyphs">
-            <g class="lineage-butterfly lineage-butterfly--dark" transform="translate(126 113) scale(.68)">
-              <use href={`#${id}-butterfly`} />
-            </g>
-            <g class="lineage-butterfly lineage-butterfly--pale" transform="translate(234 113) scale(.68)">
-              <use href={`#${id}-butterfly`} />
-            </g>
-          </g>
-          <g class="lineage-butterfly lineage-butterfly--ancestor homogenised-butterfly" transform="translate(180 39) scale(.86)">
-            <use href={`#${id}-butterfly`} />
-          </g>
-
-          <path d="M143 133 H217" class="gene-flow-link early-gene-flow" marker-start={`url(#${id}-phylo-arrow)`} marker-end={`url(#${id}-phylo-arrow)`} />
-          <text x="180" y="92" class="micro-label incipient-label">{c.connectivity.incipientLineages}</text>
-          <text x="180" y="73" class="micro-label final-state-label one-lineage-label">{c.connectivity.oneLineage}</text>
-          <text x="180" y="224" class="footer-label panel-outcome panel-outcome--collapse">{c.connectivity.collapseOutcome}</text>
-        </g>
-
-        {/* Outcome 2: a discrete allele enters a recipient-derived branch; the new lineage is not a 50/50 blend. */}
-        <g class="gene-flow-panel gene-flow-panel--hybrid-speciation">
-          <text x="540" y="18" class="group-label gene-flow-panel-title">{c.connectivity.lateTitle}</text>
-          <path d="M540 198 V169" class="lineage-path lineage-trunk late-lineage-trunk" />
-          <path d="M540 169 C520 149 500 129 481 111" class="lineage-path late-split-branch late-split-branch--recipient" />
-          <path d="M540 169 C564 148 588 127 613 111" class="lineage-path late-split-branch late-split-branch--donor" />
-          <path d="M481 111 C464 93 449 72 435 53" class="lineage-path late-tip-branch late-tip-branch--recipient" />
-          <path d="M613 111 C628 92 641 72 653 53" class="lineage-path late-tip-branch late-tip-branch--donor" />
-          <path d="M481 111 C500 94 522 72 548 50" class="lineage-path hybrid-lineage-branch" />
-          <circle cx="540" cy="169" r="4.5" class="lineage-node late-divergence-node" />
-          <circle cx="481" cy="111" r="4.5" class="lineage-node hybrid-origin-node" />
-          <circle cx="613" cy="111" r="3.5" class="lineage-node donor-midpoint-node" />
-
-          <g class="lineage-butterfly lineage-butterfly--ancestor late-ancestor" transform="translate(540 204) scale(.7)">
-            <use href={`#${id}-butterfly`} />
-          </g>
-          <g class="lineage-butterfly lineage-butterfly--dark recipient-butterfly" transform="translate(432 48) scale(.86)">
-            <use href={`#${id}-butterfly`} />
-          </g>
-          <g class="lineage-butterfly lineage-butterfly--pale donor-butterfly" transform="translate(660 48) scale(.86)">
-            <use href={`#${id}-butterfly`} />
-            <path d="M3 -1 L7 -5 L11 -1 L7 3 Z" class="trait-mark trait-mark--source" />
-          </g>
-          <g class="lineage-butterfly lineage-butterfly--dark hybrid-butterfly" transform="translate(548 43) scale(.92)">
-            <use href={`#${id}-butterfly`} />
-            <path d="M-11 -1 L-7 -5 L-3 -1 L-7 3 Z" class="trait-mark trait-mark--hybrid" />
-          </g>
-
-          <path d="M600 111 H494" class="gene-flow-link late-introgression-link" marker-end={`url(#${id}-phylo-arrow)`} />
-          <g class="late-introgression-token">
-            <path d="M594 105 L600 111 L594 117 L588 111 Z" class="trait-token-shape" />
-            <path d="M576 105 L582 111 L576 117 L570 111 Z" class="trait-token-shape" />
-            <path d="M558 105 L564 111 L558 117 L552 111 Z" class="trait-token-shape" />
-          </g>
-          <text x="547" y="130" class="micro-label introgression-note">{c.connectivity.introgression}</text>
-          <text x="432" y="77" class="micro-label lineage-tip-label">{c.connectivity.recipientLineage}</text>
-          <text x="548" y="71" class="micro-label lineage-tip-label final-state-label hybrid-species-label">{c.connectivity.newHybridSpecies}</text>
-          <text x="660" y="77" class="micro-label lineage-tip-label">{c.connectivity.donorLineage}</text>
-          <text
-            x="540"
-            y="218"
-            class="footer-label panel-outcome panel-outcome--hybrid"
-            aria-label={`${c.connectivity.rareOutcomeLead} ${c.connectivity.rareOutcomeTail}`}
-          >
-            <tspan x="540">{c.connectivity.rareOutcomeLead}</tspan>
-            <tspan x="540" dy="11">{` ${c.connectivity.rareOutcomeTail}`}</tspan>
-          </text>
-        </g>
-      </g>
-    )}
-
-    {kind === 'monitoring' && (
-      <g class="diagram-scene monitoring-scene">
-        <path d="M125 86 H170" class="flow workflow-link workflow-link--one" marker-end={`url(#${id}-arrow)`} />
-        <path d="M275 86 H320" class="flow workflow-link workflow-link--two" marker-end={`url(#${id}-arrow)`} />
-        <path d="M435 86 H478" class="flow workflow-link workflow-link--three" marker-end={`url(#${id}-arrow)`} />
-        <g transform="translate(32 50)" class="workflow-stage workflow-stage--one">
-          <rect width="92" height="72" rx="12" class="workflow-node" />
-          <path d="M25 48 V25 M25 36 L16 29 M25 36 L34 29 M52 48 V20 M52 30 L43 23 M52 30 L61 23 M72 48 V29" class="icon-line" />
-        </g>
-        <g transform="translate(172 50)" class="workflow-stage workflow-stage--two">
-          <rect width="104" height="72" rx="12" class="workflow-node" />
-          <circle cx="47" cy="34" r="17" class="icon-line" />
-          <path d="M60 47 L75 60 M39 34 H55 M47 26 V42" class="icon-line" />
-        </g>
-        <g transform="translate(322 50)" class="workflow-stage workflow-stage--three">
-          <rect width="114" height="72" rx="12" class="workflow-node workflow-node--focus" />
-          <path d="M22 48 C38 17 53 17 69 48 S100 79 106 38" class="icon-line" />
-          <circle cx="36" cy="30" r="4" class="signal-dot" /><circle cx="86" cy="51" r="4" class="signal-dot" />
-        </g>
-        <g transform="translate(480 50)" class="workflow-stage workflow-stage--four">
-          <rect width="88" height="72" rx="12" class="workflow-node" />
-          <path d="M24 38 L39 53 L66 22" class="icon-line icon-line--strong" />
-        </g>
-        <text x="78" y="143" class="node-label">{c.monitoring.sample}</text>
-        <text x="224" y="143" class="node-label">{c.monitoring.identify}</text>
-        <text x="379" y="139" class="node-label">
-          <tspan x="379">{c.monitoring.movement}</tspan>
-          <tspan x="379" dy="13">{c.monitoring.candidates}</tspan>
-        </text>
-        <text x="524" y="143" class="node-label">{c.monitoring.validate}</text>
-      </g>
-    )}
-
-    {kind === 'migration' && (
-      <g class="diagram-scene migration-scene">
-        <text x="78" y="26" class="group-label">{c.migration.sampling}</text>
-        <circle cx="76" cy="70" r="22" class="sample-node migration-sample migration-sample--one" />
-        <circle cx="76" cy="121" r="22" class="sample-node sample-node--alt migration-sample migration-sample--two" />
-        <path d="M103 70 C180 18 243 29 292 75" class="relation migration-link migration-link--one" marker-end={`url(#${id}-arrow)`} />
-        <path d="M103 121 C180 170 242 150 292 98" class="relation migration-link migration-link--two" marker-end={`url(#${id}-arrow)`} />
-        <circle cx="325" cy="86" r="36" class="question-node migration-question" />
-        <text x="325" y="92" class="question-mark">?</text>
-        <path d="M363 86 C414 47 460 49 505 72" class="relation migration-link migration-link--three" marker-end={`url(#${id}-arrow)`} />
-        <path d="M363 92 C414 132 460 129 505 108" class="relation migration-link migration-link--four" marker-end={`url(#${id}-arrow)`} />
-        <circle cx="530" cy="70" r="20" class="sample-node migration-result migration-result--one" />
-        <circle cx="530" cy="112" r="20" class="sample-node sample-node--alt migration-result migration-result--two" />
-        <text x="325" y="142" class="node-label">{c.migration.origins}</text>
-        <text x="455" y="153" class="node-label">{c.migration.routes}</text>
-        <text x="300" y="178" class="footer-label">{c.migration.evidence}</text>
-      </g>
-    )}
-
-    {kind === 'voucher' && (
-      <g class="diagram-scene voucher-scene">
-        {/* Specimen splits: wings to the envelope, body to the tube. */}
-        <path d="M138 76 L262 54" class="vch-flow vch-flow--split" />
-        <path d="M138 104 L262 122" class="vch-flow vch-flow--split" />
-        {/* Both identifiers converge on their ordered fields in one record row. */}
-        <path d="M320 52 L441 82" class="vch-flow vch-flow--env" marker-end={`url(#${id}-arrow)`} />
-        <path d="M320 122 L479 100" class="vch-flow vch-flow--tube" marker-end={`url(#${id}-arrow)`} />
-
-        {/* Specimen: a bilaterally symmetric butterfly with ocelli. */}
-        <g class="vch-specimen" transform="translate(86 90)">
-          <rect x="-3" y="-24" width="6" height="48" rx="3" class="vch-body" />
-          <path d="M-2 -24 C -8 -38 -15 -42 -20 -44 M2 -24 C 8 -38 15 -42 20 -44" class="vch-antenna" />
-          <g class="vch-wings-l">
-            <path d="M-4 -14 C -40 -34 -54 -18 -46 3 C -40 15 -17 12 -4 2 Z" class="vch-wing" />
-            <path d="M-4 6 C -30 6 -40 20 -31 32 C -22 41 -8 32 -4 20 Z" class="vch-wing vch-wing--hind" />
-            <circle cx="-27" cy="-6" r="4.5" class="vch-ocellus" />
-          </g>
-          <g class="vch-wings-r">
-            <path d="M4 -14 C 40 -34 54 -18 46 3 C 40 15 17 12 4 2 Z" class="vch-wing" />
-            <path d="M4 6 C 30 6 40 20 31 32 C 22 41 8 32 4 20 Z" class="vch-wing vch-wing--hind" />
-            <circle cx="27" cy="-6" r="4.5" class="vch-ocellus" />
-          </g>
-          {/* Transient parts that fly to their stores during playback. */}
-          <g class="vch-ghost-wings">
-            <path d="M-2 -3 C -20 -17 -30 -5 -24 6 C -20 13 -6 11 -2 3 Z" class="vch-wing" />
-            <path d="M2 -3 C 20 -17 30 -5 24 6 C 20 13 6 11 2 3 Z" class="vch-wing" />
-          </g>
-          <rect x="-2.5" y="-12" width="5" height="24" rx="2.5" class="vch-body vch-ghost-body" />
-        </g>
-
-        {/* Collector: the net, hand and placeholder wristband remain entirely in frame. */}
-        <g class="vch-net" transform="translate(86 90)">
-          <g class="vch-net-sweep">
-            {/* Side-view bag trails the rim so the net reads with depth. */}
-            <g class="vch-net-fill">
-              <path d="M21 -43 C5 -42 -14 -36 -31 -25 C-43 -17 -48 -6 -44 5 C-39 18 -21 26 -4 22 C9 19 18 10 25 -2 C20 -14 18 -30 21 -43 Z" class="vch-net-depth" />
-              <ellipse cx="26" cy="-1" rx="20" ry="45" transform="rotate(-8 26 -1)" class="vch-net-opening" />
-            </g>
-            <ellipse cx="26" cy="-1" rx="20" ry="45" transform="rotate(-8 26 -1)" class="vch-net-rim" />
-            <path d="M23 42 L-2 68" class="vch-net-handle" />
-            <g class="vch-collector">
-              <path d="M-52 62 H-24 C-18 62 -14 66 -12 72 L-18 83 H-52 Z" class="vch-forearm" />
-              <rect x="-49" y="64" width="30" height="16" rx="3" class="vch-wristband" />
-              <text x="-34" y="74.5" class="vch-wristband-label">{c.voucher.collector}</text>
-              <path d="M-23 73 C-26 67 -23 60 -17 57 C-13 55 -9 57 -7 61 C-6 56 -2 54 2 56 C6 58 7 63 6 67 L9 65 C13 64 16 67 16 71 C16 75 13 77 9 78 L3 80 C0 85 -5 88 -11 87 C-17 86 -21 81 -23 73 Z" class="vch-hand" />
-              <path d="M-16 61 C-11 61 -8 65 -8 69 M-9 59 C-4 60 -1 63 0 68 M-4 78 C1 74 5 73 10 74" class="vch-fingers" />
-            </g>
-          </g>
-        </g>
-
-        {/* A duplicate of the wristband label travels into the record. */}
-        <g transform="translate(52 162)">
-          <g class="vch-collector-token">
-            <rect x="-16" y="-7" width="32" height="14" rx="3" class="vch-token-card" />
-            <text x="0" y="2" class="vch-token-label">{c.voucher.collector}</text>
-          </g>
-        </g>
-
-        {/* Wings stored in a labelled envelope carrying the CAMID. */}
-        <g class="vch-envelope" transform="translate(290 48)">
-          <rect x="-28" y="-19" width="56" height="40" rx="3" class="vch-env" />
-          <path d="M-28 -19 L0 -3 L28 -19" class="vch-env-flap" />
-          <g class="vch-env-wings">
-            <path d="M-1 3 C -15 -7 -23 1 -19 9 C -15 15 -5 13 -1 8 Z" class="vch-wing" />
-            <path d="M1 3 C 15 -7 23 1 19 9 C 15 15 5 13 1 8 Z" class="vch-wing" />
-          </g>
-          <text x="0" y="-8" class="vch-idtag">{c.voucher.camid}</text>
-        </g>
-
-        {/* Body stored in a tube carrying its own tube ID (barcode). */}
-        <g class="vch-tube-group" transform="translate(290 126)">
-          <g class="vch-cap-group">
-            <rect x="-12" y="-30" width="24" height="13" rx="4" class="vch-cap" />
-            <rect x="-13" y="-19" width="26" height="5" rx="2" class="vch-cap" />
-          </g>
-          <rect x="-12" y="-14" width="24" height="48" rx="9" class="vch-tube" />
-          <rect x="-12" y="-6" width="24" height="16" class="vch-label" />
-          <path d="M-8 -3v10 M-5 -3v10 M-2 -3v10 M1 -3v10 M5 -3v10 M8 -3v10" class="vch-barcode" />
-          <rect x="-3" y="16" width="6" height="14" rx="3" class="vch-body-inside" />
-        </g>
-
-        {/* Record: CAMID, tube ID and collector lead an intentionally abbreviated row. */}
-        <g class="vch-sheet-group" transform="translate(498 90)">
-          <rect x="-76" y="-33" width="152" height="66" rx="6" class="vch-sheet" />
-          <rect x="-76" y="-33" width="152" height="15" class="vch-sheet-head" />
-          <rect x="-76" y="-3" width="152" height="18" class="vch-row-hit" />
-          <path d="M-38 -33V33 M0 -33V33 M38 -33V33 M-76 -18H76 M-76 -3H76 M-76 15H76" class="vch-grid" />
-          <text x="-57" y="-22" class="vch-field-head">{c.voucher.camid}</text>
-          <text x="-19" y="-22" class="vch-field-head">{c.voucher.tubeid}</text>
-          <text x="19" y="-22" class="vch-field-head">{c.voucher.collector}</text>
-          <text x="57" y="-22" class="vch-field-head vch-record-more">…</text>
-          <g class="vch-record-values">
-            <text x="-57" y="9" class="vch-record-value">{c.voucher.camid}</text>
-            <text x="-19" y="9" class="vch-record-value">{c.voucher.tubeid}</text>
-            <text x="19" y="9" class="vch-record-value vch-record-collector">{c.voucher.collector}</text>
-            <text x="57" y="9" class="vch-record-value vch-record-more">…</text>
-          </g>
-          <path d="M-70 -11h18 M-32 -11h18 M6 -11h18 M45 -11h18" class="vch-cell" />
-          <path d="M-70 25h18 M-32 25h18 M6 25h18 M45 25h18" class="vch-cell" />
-        </g>
-
-        <text x="86" y="152" class="node-label vch-specimen-label">{c.voucher.specimen}</text>
-        <text x="290" y="20" class="group-label">{c.voucher.envelope}</text>
-        <text x="290" y="174" class="node-label">{c.voucher.tube}</text>
-        <text x="498" y="152" class="node-label">{c.voucher.record}</text>
-        <text x="300" y="188" class="footer-label">{c.voucher.link}</text>
-      </g>
-    )}
   </svg>
 
-  {kind === 'connectivity' ? (
-    <ul class="concept-mobile-flow connectivity-mobile-outcomes" aria-label={k.title}>
-      {connectivityOutcomes.map((outcome) => (
-        <li data-mobile-step>
-          <span class="connectivity-outcome-cue">{outcome.cue}</span>
-          <strong>{outcome.title}</strong>
-          <span>{outcome.detail}</span>
-        </li>
-      ))}
-    </ul>
-  ) : (
-    <ol class="concept-mobile-flow" aria-label={k.title}>
-      {mobileSteps.map((step, index) => (
-        <li data-mobile-step>
-          <span class="mobile-step-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-          <span>{step}</span>
-        </li>
-      ))}
-    </ol>
-  )}
-  {kind === 'connectivity' && (
-    <p class="concept-evidence">
-      <span>{c.connectivity.evidenceLead}</span>
-      <a href="https://doi.org/10.1038/s41586-024-07263-w" target="_blank" rel="noopener noreferrer external">
-        {c.connectivity.rosserPrefix} <i lang="la">{c.connectivity.rosserTaxon}</i>{c.connectivity.rosserTail}
-      </a>
-      <span>{c.connectivity.evidenceJoin}</span>
-      <a href="https://doi.org/10.1073/pnas.2410939122" target="_blank" rel="noopener noreferrer external">
-        {c.connectivity.ithomiiniPrefix}<i lang="la">{c.connectivity.ithomiiniTaxonOne}</i>{c.connectivity.ithomiiniAnd}<i lang="la">{c.connectivity.ithomiiniTaxonTwo}</i>{c.connectivity.evidenceTail}
-      </a>
-    </p>
-  )}
+  <ol class="concept-mobile-flow" aria-label={k.title}>
+    {mobileSteps.map((step, index) => (
+    <li data-mobile-step>
+      <span class="mobile-step-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+      <span>{step}</span>
+    </li>
+    ))}
+  </ol>
+
 </figure>
 
 <style>

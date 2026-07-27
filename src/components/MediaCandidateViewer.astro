@@ -102,12 +102,6 @@ const initialIndexLabel = labels.imageOfLabel
   .replace('{n}', String(initialIndex + 1))
   .replace('{total}', String(total));
 
-// "Image details and credit" disclosure summary is localized inline so the
-// component does not depend on a dictionary key that may not exist in older
-// bilingual payloads.
-const creditDisclosureLabel = locale === 'es'
-  ? 'Detalles y créditos de la imagen'
-  : 'Image details and credit';
 
 const clientCandidates = sorted.map((c) => ({
   kind: c.kind,
@@ -199,28 +193,24 @@ const clientCandidates = sorted.map((c) => ({
       )}
     </div>
     <p class="mcv-caption-text" data-mcv-caption>{initial.caption[locale]}</p>
-    <details class="disclosure disclosure--compact mcv-credit-disclosure">
-      <summary class="disclosure-summary">
-        <span class="disclosure-summary-inner">
-          <span>{creditDisclosureLabel}</span>
-        </span>
-      </summary>
-      <div class="disclosure-body">
-        <p class="mcv-credit mono">
-          <span data-mcv-credit>{initial.credit[locale]}</span>
-          <span data-mcv-licence-wrap>
-            {initial.licence && initial.licenceUrl && (
-              <>
-                {' · '}
-                <a href={initial.licenceUrl} rel="license external noopener" data-mcv-licence-link>
-                  <span data-mcv-licence-text>{initial.licence}</span>
-                </a>
-              </>
-            )}
-          </span>
-        </p>
-      </div>
-    </details>
+    {/*
+      The credit is visible, not collapsed. CC BY and CC BY-SA require
+      attribution; putting a licence notice behind a click was the one
+      disclosure on this site that was arguably wrong. It costs one line.
+    */}
+    <p class="mcv-credit mono">
+      <span data-mcv-credit>{initial.credit[locale]}</span>
+      <span data-mcv-licence-wrap>
+        {initial.licence && initial.licenceUrl && (
+          <>
+            {' · '}
+            <a href={initial.licenceUrl} rel="license external noopener" data-mcv-licence-link>
+              <span data-mcv-licence-text>{initial.licence}</span>
+            </a>
+          </>
+        )}
+      </span>
+    </p>
   </figcaption>
 </figure>
 
