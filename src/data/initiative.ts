@@ -75,7 +75,7 @@ export const LEADERS: Person[] = [
     },
   },
   {
-    name: 'Carmen Barragan',
+    name: 'Carmen Barragán',
     role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
     bio: {
       en: 'Her research combines molecular ecology and conservation genetics to study Neotropical species, population history and biodiversity conservation.',
