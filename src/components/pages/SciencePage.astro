@@ -57,17 +57,15 @@ const layer = locale === 'es'
       sources:   'Evidence and sources',
     };
 
-const diagramIntro = locale === 'es'
-  ? {
-      heading: 'Dos procesos evolutivos que la genómica puede poner a prueba',
-      body: 'Estos diagramas comparan cambios cromosómicos y dos desenlaces posibles del flujo génico.',
-      label: 'Diagramas de procesos evolutivos',
-    }
-  : {
-      heading: 'Two evolutionary processes that genomics can test',
-      body: 'These diagrams compare chromosome change with two possible outcomes of gene flow.',
-      label: 'Diagrams of evolutionary processes',
-    };
+/**
+ * Each figure sits inside the question it illustrates, not in a shared gallery
+ * at the end. Keyed by the question anchor rather than by index so reordering
+ * the questions cannot silently move a diagram to the wrong one.
+ */
+const questionDiagrams: Record<string, readonly ('chromosome' | 'wfusion' | 'connectivity')[]> = {
+  chromosomes: ['chromosome', 'wfusion'],
+  'gene-flow': ['connectivity'],
+};
 
 // All source IDs referenced on this page (via [S##] tokens + described-species claim S01).
 const pageSourceIds = [
@@ -129,6 +127,13 @@ const pageSourceIds = [
                     {/* Layer 1 — concise answer */}
                     <p class="question-answer" set:html={renderCitations(q.answer)} />
 
+                    {/* The figures for this question, if it has any */}
+                    {(questionDiagrams[sciQuestionAnchors[i] ?? ''] ?? []).map((k) => (
+                      <div class="question-figure">
+                        <ConceptDiagram locale={locale} kind={k} context="science" />
+                      </div>
+                    ))}
+
                     {/* Layer 2 — A Neotropical example */}
                     <div class="question-layer">
                       <p class="layer-label">{layer.example}</p>
@@ -163,17 +168,6 @@ const pageSourceIds = [
           }
         </ol>
 
-        <aside class="science-concepts" aria-labelledby="science-concepts-heading">
-          <div class="science-concepts-intro">
-            <h3 id="science-concepts-heading">{diagramIntro.heading}</h3>
-            <p>{diagramIntro.body}</p>
-          </div>
-          <div class="science-concept-grid" aria-label={diagramIntro.label}>
-            <ConceptDiagram locale={locale} kind="chromosome" context="science" />
-            <ConceptDiagram locale={locale} kind="wfusion" context="science" />
-            <ConceptDiagram locale={locale} kind="connectivity" context="science" />
-          </div>
-        </aside>
       </section>
 
       <!-- ═══════════════════ S2 · Data levels (record vs genome) ═══════════════════ -->
@@ -335,38 +329,14 @@ const pageSourceIds = [
     border-bottom: 1px solid var(--hairline);
   }
 
-  .science-concepts {
-    margin-top: var(--space-l);
-    padding-top: var(--space-m);
-    border-top: 1px solid var(--hairline-strong);
+  /* A figure belongs to the answer above it, so it is inset and separated by
+     space rather than by a rule — it reads as part of the answer, not as a new
+     section. */
+  .question-figure {
+    margin-block: var(--space-m);
   }
-  .science-concepts-intro {
-    display: grid;
-    grid-template-columns: minmax(0, 0.8fr) minmax(16rem, 1.2fr);
-    gap: var(--space-m);
-    align-items: baseline;
-    margin-bottom: var(--space-m);
-  }
-  .science-concepts-intro h3 {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: var(--step-1);
-    color: var(--text-strong);
-  }
-  .science-concepts-intro p {
-    margin: 0;
-    color: var(--text-muted);
-    font-size: var(--step--1);
-    line-height: 1.5;
-  }
-  .science-concept-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-m);
-  }
-  @media (max-width: 58rem) {
-    .science-concepts-intro,
-    .science-concept-grid { grid-template-columns: 1fr; }
+  .question-figure + .question-figure {
+    margin-top: calc(var(--space-m) * -0.35);
   }
   .questions-ledger .disclosure { --disclosure-pad-x: 0; }
   .questions-ledger .disclosure-summary { padding-block: var(--space-s); }
