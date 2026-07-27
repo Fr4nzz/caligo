@@ -40,8 +40,6 @@ const copy = {
       autosome: 'autosome',
       meiosisHeading: 'The mother then makes two kinds of egg',
       outcome: 'The fused copy only ever reaches daughters.',
-      footnote: 'Three independent fusions of this kind are known in Heliconius (Rueda-M et al. 2024).',
-      footnoteTwo: 'The father always contributes a Z. Only the chromosomes involved are drawn.',
       question: 'compare chromosome-scale assemblies',
     },
     connectivity: {
@@ -128,8 +126,6 @@ const copy = {
       autosome: 'autosoma',
       meiosisHeading: 'Después la madre hace dos tipos de óvulo',
       outcome: 'La copia pegada al W solo llega a las hijas.',
-      footnote: 'En Heliconius se conocen tres fusiones así, independientes (Rueda-M et al. 2024).',
-      footnoteTwo: 'El padre siempre aporta un Z. Solo se dibujan los cromosomas implicados.',
       question: 'comparar ensamblajes a escala cromosómica',
     },
     connectivity: {
@@ -257,7 +253,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     </button>
   </figcaption>
 
-  <svg class="concept-svg" viewBox={kind === 'connectivity' ? '0 0 720 255' : kind === 'chromosome' ? '0 0 600 266' : kind === 'wfusion' ? '0 0 600 348' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
+  <svg class="concept-svg" viewBox={kind === 'connectivity' ? '0 0 720 255' : kind === 'chromosome' ? '0 0 600 266' : kind === 'wfusion' ? '0 0 600 318' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
     <title id={`${id}-title`}>{k.title}</title>
     <desc id={`${id}-desc`}>{k.desc}</desc>
     <defs>
@@ -383,8 +379,6 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
         </g>
 
         <text x="0" y="306" class="chr-out wf-say">{c.wfusion.outcome}</text>
-        <text x="0" y="326" class="chr-note">{c.wfusion.footnote}</text>
-        <text x="0" y="342" class="chr-note">{c.wfusion.footnoteTwo}</text>
       </g>
     )}
 
