@@ -111,7 +111,10 @@ const pageSourceIds = [
           {
             s.questions.map((q, i) => (
               <li class="question-row" id={sciQuestionAnchors[i] ?? undefined}>
-                <details class="disclosure">
+                {/* The first question opens on arrival: it carries the two
+                    figures that are most specific to Lepidoptera, and a page of
+                    six closed rows shows a visitor nothing. */}
+                <details class="disclosure" open={i === 0}>
                   <summary class="disclosure-summary">
                     <span class="disclosure-summary-inner">
                       <span class="question-summary-content">
