@@ -34,15 +34,14 @@ const copy = {
     },
     wfusion: {
       title: 'A fusion with the W chromosome',
-      desc: 'In butterflies and moths the female carries a chromosome the male never has: the W. A fusion can attach an ordinary chromosome, an autosome, to that W. From then on that copy is no longer inherited like the others; it passes only from mother to daughter. Three such fusions have been identified in Heliconius, each one independently.',
-      femaleHeading: 'Here the female carries a chromosome the male never has',
-      male: 'male',
-      female: 'female',
-      wNote: 'the W travels only in females',
-      fusionHeading: 'A fusion can attach an ordinary chromosome',
+      desc: 'In butterflies and moths only the female carries a W chromosome; the male is ZZ. A fusion can attach an ordinary chromosome, an autosome, to that W. The mother then makes two kinds of egg: one carrying the Z and a free autosome, which produces a son, and one carrying the W with the autosome welded to it, which produces a daughter. The fused copy therefore only ever reaches daughters. Three independent fusions of this kind are known in Heliconius. The father always contributes a Z, and only the chromosomes involved are drawn.',
+      hook: 'Only the female carries a W',
+      fusionHeading: 'A fusion attaches an autosome to the W',
       autosome: 'autosome',
-      outcome: 'That copy is then passed only from mother to daughter.',
+      meiosisHeading: 'The mother then makes two kinds of egg',
+      outcome: 'The fused copy only ever reaches daughters.',
       footnote: 'Three independent fusions of this kind are known in Heliconius (Rueda-M et al. 2024).',
+      footnoteTwo: 'The father always contributes a Z. Only the chromosomes involved are drawn.',
       question: 'compare chromosome-scale assemblies',
     },
     connectivity: {
@@ -123,15 +122,14 @@ const copy = {
     },
     wfusion: {
       title: 'Una fusión con el cromosoma W',
-      desc: 'En mariposas y polillas la hembra lleva un cromosoma que el macho nunca tiene: el W. Una fusión puede unirle un cromosoma corriente, un autosoma. Desde ese momento esa copia deja de heredarse como las demás y pasa solo de madre a hija. En Heliconius se han identificado tres fusiones de este tipo, cada una de forma independiente.',
-      femaleHeading: 'Aquí la hembra lleva un cromosoma que el macho nunca tiene',
-      male: 'macho',
-      female: 'hembra',
-      wNote: 'el W solo va en las hembras',
-      fusionHeading: 'Una fusión puede pegarle un cromosoma corriente',
+      desc: 'En mariposas y polillas solo la hembra lleva un cromosoma W; el macho es ZZ. Una fusión puede unirle un cromosoma corriente, un autosoma. Después la madre hace dos tipos de óvulo: uno con el Z y un autosoma libre, que da un hijo, y otro con el W y el autosoma pegado a él, que da una hija. Por eso la copia fusionada solo llega a las hijas. En Heliconius se conocen tres fusiones así, independientes. El padre siempre aporta un Z y solo se dibujan los cromosomas implicados.',
+      hook: 'Solo la hembra lleva un W',
+      fusionHeading: 'Una fusión le pega un autosoma al W',
       autosome: 'autosoma',
-      outcome: 'Esa copia ya solo pasa de madre a hija.',
+      meiosisHeading: 'Después la madre hace dos tipos de óvulo',
+      outcome: 'La copia pegada al W solo llega a las hijas.',
       footnote: 'En Heliconius se conocen tres fusiones así, independientes (Rueda-M et al. 2024).',
+      footnoteTwo: 'El padre siempre aporta un Z. Solo se dibujan los cromosomas implicados.',
       question: 'comparar ensamblajes a escala cromosómica',
     },
     connectivity: {
@@ -219,9 +217,9 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     ]
   : kind === 'wfusion'
     ? [
-        `${c.wfusion.male}: Z Z`,
-        `${c.wfusion.female}: Z W`,
+        c.wfusion.hook,
         c.wfusion.fusionHeading,
+        c.wfusion.meiosisHeading,
         c.wfusion.outcome,
       ]
   : kind === 'connectivity'
@@ -259,7 +257,7 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
     </button>
   </figcaption>
 
-  <svg class="concept-svg" viewBox={kind === 'connectivity' ? '0 0 720 255' : kind === 'chromosome' ? '0 0 600 266' : kind === 'wfusion' ? '0 0 600 266' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
+  <svg class="concept-svg" viewBox={kind === 'connectivity' ? '0 0 720 255' : kind === 'chromosome' ? '0 0 600 266' : kind === 'wfusion' ? '0 0 600 348' : '0 0 600 190'} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
     <title id={`${id}-title`}>{k.title}</title>
     <desc id={`${id}-desc`}>{k.desc}</desc>
     <defs>
@@ -328,46 +326,65 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
 
     {kind === 'wfusion' && (
       <g class="diagram-scene wfusion-scene">
-        {/* In Lepidoptera the female is the heterogametic sex: ZW, not XY. */}
-        <text x="0" y="18" class="chr-head">{c.wfusion.femaleHeading}</text>
+        <text x="0" y="16" class="chr-tag">{c.wfusion.hook}</text>
 
-        <text x="0" y="62" class="wf-who">{c.wfusion.male}</text>
-        <rect x="150" y="48" width="58" height="20" rx="10" class="wf-chr" />
-        <text x="179" y="63" class="wf-glyph">Z</text>
-        <rect x="216" y="48" width="58" height="20" rx="10" class="wf-chr" />
-        <text x="245" y="63" class="wf-glyph">Z</text>
-
-        <text x="0" y="98" class="wf-who">{c.wfusion.female}</text>
-        <rect x="150" y="84" width="58" height="20" rx="10" class="wf-chr" />
-        <text x="179" y="99" class="wf-glyph">Z</text>
-        <rect x="216" y="84" width="40" height="20" rx="10" class="wf-w" />
-        <text x="236" y="99" class="wf-glyph wf-glyph--on-accent">W</text>
-        <text x="272" y="99" class="chr-tag">{c.wfusion.wNote}</text>
-
-        <path d="M0 126 H600" class="chr-rule" />
-
-        {/* The fusion itself: the W and an autosome close together and become
-            one chromosome that is transmitted only down the female line. */}
-        <text x="0" y="156" class="chr-head">{c.wfusion.fusionHeading}</text>
-
+        {/* 1 · the fusion: an autosome is welded onto the female-limited W */}
+        <text x="0" y="48" class="chr-head">{c.wfusion.fusionHeading}</text>
         <g class="wf-in wf-in-w">
-          <rect x="150" y="182" width="40" height="22" rx="11" class="wf-w" />
-          <text x="170" y="198" class="wf-glyph wf-glyph--on-accent">W</text>
+          <rect x="150" y="64" width="40" height="22" rx="11" class="wf-w" />
+          <text x="170" y="80" class="wf-glyph wf-glyph--on-accent">W</text>
         </g>
         <g class="wf-in wf-in-a">
-          <rect x="216" y="182" width="104" height="22" rx="11" class="wf-chr" />
-          <text x="268" y="198" class="wf-glyph">{c.wfusion.autosome}</text>
+          <rect x="216" y="64" width="104" height="22" rx="11" class="wf-chr" />
+          <text x="268" y="80" class="wf-glyph">{c.wfusion.autosome}</text>
         </g>
         <g class="wf-neo">
-          <rect x="176" y="182" width="40" height="22" rx="11" class="wf-w" />
-          <rect x="206" y="182" width="104" height="22" rx="11" class="wf-chr" />
-          <rect x="176" y="182" width="34" height="22" class="wf-w wf-w--butt" />
-          <text x="192" y="198" class="wf-glyph wf-glyph--on-accent">W</text>
-          <text x="262" y="198" class="wf-glyph">{c.wfusion.autosome}</text>
+          <rect x="176" y="64" width="40" height="22" rx="11" class="wf-w" />
+          <rect x="206" y="64" width="104" height="22" rx="11" class="wf-chr" />
+          <rect x="176" y="64" width="34" height="22" class="wf-w wf-w--butt" />
+          <text x="192" y="80" class="wf-glyph wf-glyph--on-accent">W</text>
+          <text x="262" y="80" class="wf-glyph">{c.wfusion.autosome}</text>
         </g>
 
-        <text x="0" y="232" class="chr-out wf-say">{c.wfusion.outcome}</text>
-        <text x="0" y="252" class="chr-note">{c.wfusion.footnote}</text>
+        <path d="M0 112 H600" class="chr-rule" />
+
+        {/* 2 · meiosis in the mother. The W and the free autosome copy go to
+            opposite eggs, so the welded copy can only ever travel with the W. */}
+        <text x="0" y="140" class="chr-head">{c.wfusion.meiosisHeading}</text>
+
+        <g class="wf-cell">
+          <rect x="229" y="152" width="142" height="56" rx="16" class="wf-membrane" />
+          <rect x="245" y="162" width="32" height="16" rx="8" class="wf-w" />
+          <rect x="271" y="162" width="84" height="16" rx="8" class="wf-chr" />
+          <rect x="245" y="162" width="28" height="16" class="wf-w wf-w--butt" />
+          <text x="259" y="174" class="wf-mini wf-mini--on-accent">W</text>
+          <rect x="245" y="184" width="36" height="16" rx="8" class="wf-chr" />
+          <text x="263" y="196" class="wf-mini">Z</text>
+          <rect x="291" y="184" width="64" height="16" rx="8" class="wf-chr" />
+        </g>
+
+        <path d="M282 210 L196 234" class="wf-split wf-split-l" marker-end={`url(#${id}-arrow)`} />
+        <path d="M318 210 L404 234" class="wf-split wf-split-r" marker-end={`url(#${id}-arrow)`} />
+
+        <g class="wf-egg wf-egg-l">
+          <rect x="100" y="240" width="170" height="42" rx="20" class="wf-membrane" />
+          <rect x="116" y="254" width="36" height="16" rx="8" class="wf-chr" />
+          <text x="134" y="266" class="wf-mini">Z</text>
+          <rect x="162" y="254" width="64" height="16" rx="8" class="wf-chr" />
+          <text x="248" y="270" class="wf-sex wf-sym">♂</text>
+        </g>
+        <g class="wf-egg wf-egg-r">
+          <rect x="330" y="240" width="170" height="42" rx="20" class="wf-membrane" />
+          <rect x="346" y="254" width="32" height="16" rx="8" class="wf-w" />
+          <rect x="372" y="254" width="84" height="16" rx="8" class="wf-chr" />
+          <rect x="346" y="254" width="28" height="16" class="wf-w wf-w--butt" />
+          <text x="360" y="266" class="wf-mini wf-mini--on-accent">W</text>
+          <text x="478" y="270" class="wf-sex wf-sex--female wf-sym">♀</text>
+        </g>
+
+        <text x="0" y="306" class="chr-out wf-say">{c.wfusion.outcome}</text>
+        <text x="0" y="326" class="chr-note">{c.wfusion.footnote}</text>
+        <text x="0" y="342" class="chr-note">{c.wfusion.footnoteTwo}</text>
       </g>
     )}
 
@@ -951,6 +968,12 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .wf-w--butt { stroke: none; }
   .wf-glyph { font-family: var(--font-body); font-size: 13px; font-weight: 600; fill: var(--text-strong); text-anchor: middle; }
   .wf-glyph--on-accent { fill: var(--bg-raised); }
+  .wf-mini { font-family: var(--font-body); font-size: 11px; font-weight: 600; fill: var(--text-strong); text-anchor: middle; }
+  .wf-mini--on-accent { fill: var(--bg-raised); }
+  .wf-membrane { fill: none; stroke: var(--hairline-strong); stroke-width: 1.5; }
+  .wf-split { fill: none; stroke: var(--text-faint); stroke-width: 1.4; }
+  .wf-sex { font-family: var(--font-body); font-size: 21px; font-weight: 500; fill: var(--text-faint); text-anchor: middle; }
+  .wf-sex--female { fill: var(--accent); }
 
   /* Resting state IS the finished explanation, so reduced motion and a reader
      who never presses play both get the complete result. */
@@ -961,6 +984,9 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .wf-in         { opacity: 0; }
   .wf-in-w       { transform: translateX(26px); }
   .wf-in-a       { transform: translateX(-10px); }
+  /* eggs rest where they end up: emerged from the mother cell and separated */
+  .wf-egg-l      { transform: translate(0, 0); }
+  .wf-egg-r      { transform: translate(0, 0); }
 
   @keyframes chr-cut-flash { 0%, 11% { opacity: 0; } 17%, 35% { opacity: 1; } 50%, 100% { opacity: 0; } }
   @keyframes chr-seam-out  { 0%, 11% { opacity: 1; } 20%, 100% { opacity: 0; } }
@@ -969,11 +995,18 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   @keyframes chr-part-l    { 0%, 17% { transform: translateX(0); } 48%, 100% { transform: translateX(-10px); } }
   @keyframes chr-part-r    { 0%, 17% { transform: translateX(0); } 48%, 100% { transform: translateX(10px); } }
   @keyframes chr-say       { 0%, 55% { opacity: 0; } 70%, 100% { opacity: 1; } }
-  @keyframes wf-close-w    { 0%, 30% { transform: translateX(0); } 62%, 100% { transform: translateX(26px); } }
-  @keyframes wf-close-a    { 0%, 30% { transform: translateX(0); } 62%, 100% { transform: translateX(-10px); } }
-  @keyframes wf-in-out     { 0%, 65.9% { opacity: 1; } 66%, 100% { opacity: 0; } }
-  @keyframes wf-neo-in     { 0%, 65.9% { opacity: 0; } 66%, 100% { opacity: 1; } }
-  @keyframes wf-say-in     { 0%, 72% { opacity: 0; } 84%, 100% { opacity: 1; } }
+  @keyframes wf-close-w    { 0%, 12% { transform: translateX(0); } 30%, 100% { transform: translateX(26px); } }
+  @keyframes wf-close-a    { 0%, 12% { transform: translateX(0); } 30%, 100% { transform: translateX(-10px); } }
+  @keyframes wf-in-out     { 0%, 33.9% { opacity: 1; } 34%, 100% { opacity: 0; } }
+  @keyframes wf-neo-in     { 0%, 33.9% { opacity: 0; } 34%, 100% { opacity: 1; } }
+  @keyframes wf-cell-in    { 0%, 38% { opacity: 0; } 48%, 100% { opacity: 1; } }
+  @keyframes wf-split-in   { 0%, 54% { opacity: 0; } 66%, 100% { opacity: 1; } }
+  /* Each egg starts inside the mother cell and moves out to its own place, so
+     the reader sees the two products separating rather than appearing. */
+  @keyframes wf-egg-out-l  { 0%, 50% { opacity: 0; transform: translate(115px, -81px); } 60% { opacity: 1; } 80%, 100% { opacity: 1; transform: translate(0, 0); } }
+  @keyframes wf-egg-out-r  { 0%, 50% { opacity: 0; transform: translate(-115px, -81px); } 60% { opacity: 1; } 80%, 100% { opacity: 1; transform: translate(0, 0); } }
+  @keyframes wf-sym-in     { 0%, 78% { opacity: 0; } 88%, 100% { opacity: 1; } }
+  @keyframes wf-say-in     { 0%, 84% { opacity: 0; } 94%, 100% { opacity: 1; } }
 
   .concept-diagram.is-playing .chr-cut       { animation: chr-cut-flash 4.6s ease-in-out both; }
   .concept-diagram.is-playing .chr-seam      { animation: chr-seam-out  4.6s linear both; }
@@ -985,6 +1018,11 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .concept-diagram.is-playing .wf-in-w       { animation: wf-close-w 4.6s var(--ease-settle) both, wf-in-out 4.6s linear both; }
   .concept-diagram.is-playing .wf-in-a       { animation: wf-close-a 4.6s var(--ease-settle) both, wf-in-out 4.6s linear both; }
   .concept-diagram.is-playing .wf-neo        { animation: wf-neo-in 4.6s linear both; }
+  .concept-diagram.is-playing .wf-cell       { animation: wf-cell-in 4.6s ease-out both; }
+  .concept-diagram.is-playing .wf-split      { animation: wf-split-in 4.6s ease-out both; }
+  .concept-diagram.is-playing .wf-egg-l      { animation: wf-egg-out-l 4.6s var(--ease-settle) both; }
+  .concept-diagram.is-playing .wf-egg-r      { animation: wf-egg-out-r 4.6s var(--ease-settle) both; }
+  .concept-diagram.is-playing .wf-sym        { animation: wf-sym-in 4.6s ease-out both; }
   .concept-diagram.is-playing .wf-say        { animation: wf-say-in 4.6s ease-out both; }
 
   /* The final scientific state is visible before and after playback. Motion
@@ -1087,6 +1125,8 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   .chr-fis-r,
   .wf-in,
   .wf-neo,
+  .wf-egg-l,
+  .wf-egg-r,
   .lineage-butterfly,
   .lineage-node,
   .early-lineage-glyphs,
