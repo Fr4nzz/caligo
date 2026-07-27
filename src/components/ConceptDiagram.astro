@@ -1221,6 +1221,13 @@ const mobileSteps: readonly string[] = kind === 'chromosome'
   @keyframes cap-open { 0% { transform: translateY(0); } 25%, 70% { transform: translateY(-12px); } 100% { transform: translateY(0); } }
   @keyframes row-mark { from { opacity: 0; transform: scaleX(0.15); } 70% { opacity: 1; transform: scaleX(1.03); } to { opacity: 1; transform: scaleX(1); } }
   [data-context='pilot'] .concept-heading { padding-block-start: var(--space-xs); }
+  /* 600x266 viewBox: at ~30rem of column width the natural height is ~13.3rem,
+     so the shared 12.5rem cap was shrinking these two and centring them in a
+     much wider box. */
+  [data-kind='chromosome'] .concept-svg,
+  [data-kind='wfusion'] .concept-svg { max-height: 18rem; }
+  /* 720x255 viewBox at the 46rem lone-figure width is ~16.3rem tall. */
+  [data-kind='connectivity'][data-context='science'] .concept-svg { max-height: 17rem; }
   [data-context='pilot'] .concept-svg { max-height: 10.75rem; }
   [data-kind='connectivity'][data-context='pilot'] .concept-svg { max-height: 13.5rem; }
   .concept-mobile-flow { display: none; }
