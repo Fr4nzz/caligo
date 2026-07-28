@@ -248,6 +248,20 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
       align-items: start;
     }
     .pilot-media :global(.mcv-stage) { max-height: 24rem; }
+
+    /*
+      The text column runs several times the height of the photograph, so
+      `align-items: start` left a tall empty gap under every image. Sticking
+      the figure means that space is doing something: you keep the animal in
+      view while reading about it, and the column ends when its pilot does
+      because the <li> is the containing block.
+
+      Offset clears the sticky header (4rem) plus a little air.
+    */
+    .pilot-media {
+      position: sticky;
+      top: 5rem;
+    }
   }
 
   /* ============================================================
