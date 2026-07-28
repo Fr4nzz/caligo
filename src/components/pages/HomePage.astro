@@ -102,7 +102,7 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
   </section>
 
   <!-- ==================== STAT BAR — network metrics ==================== -->
-  <section class="section stat-bar-section">
+  <section class="section section--tight stat-bar-section">
     <div class="container-wide">
       <CommunityStats locale={locale} />
     </div>
@@ -356,7 +356,18 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
       margin-inline: 0;
       padding-right: max(1.25rem, calc((100vw - var(--container-wide)) / 2));
       display: grid;
-      grid-template-columns: 64vw minmax(0, 1fr);
+      /*
+        The copy column used to be whatever `64vw` left over, which meant it
+        got NARROWER as the viewport got wider — measured 454px at 1440px but
+        387px at 1920px. Wider screens therefore wrapped the headline into
+        more lines and made the hero taller, and Spanish (a longer headline)
+        paid for it twice: 134px taller than English at 1600px.
+
+        Now the text column is the fixed side and the photograph absorbs the
+        remainder, so the headline wraps the same way at every size and the
+        hero height stops depending on which language you are reading.
+      */
+      grid-template-columns: minmax(0, 1fr) clamp(26rem, 32vw, 34rem);
     }
     .hero-copy {
       grid-column: 2;
@@ -430,14 +441,8 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
   }
 
   /* ---- Common section rhythm ---- */
-  .section { padding-block: var(--space-xl); }
-  .section > .container-wide > * + * { margin-top: var(--space-m); }
   .section h2 { max-width: 32ch; }
   .section .lead { max-width: var(--measure); }
-  .section--panel {
-    background: var(--bg-raised);
-    border-block: 1px solid var(--hairline);
-  }
   .section-eyebrow {
     margin: 0;
     font-size: var(--step--2);
@@ -642,7 +647,11 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
       align-items: center;
     }
   }
+  /* This block sits inside .close-layout, not directly in .container-wide,
+     so the global section rhythm does not reach it. Restate it locally
+     rather than leave the heading flush against its paragraph. */
   .close-copy { min-width: 0; }
+  .close-copy > * + * { margin-top: var(--space-m); }
   .close-body { max-width: var(--measure); }
   .close-actions {
     margin-top: var(--space-l);

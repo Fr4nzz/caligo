@@ -37,7 +37,7 @@ const p = t.participate;
   <PageHeader eyebrow={t.nav.join} title={p.title} intro={p.intro} />
 
   <!-- P2 — Ways to contribute (audience types) -->
-  <section class="section section--tight section--panel" aria-labelledby="ways-heading">
+  <section class="section section--panel" aria-labelledby="ways-heading">
     <div class="container-wide">
       <h2 id="ways-heading">{p.audiences.heading}</h2>
       <ol class="ways-list" role="list">
@@ -54,7 +54,7 @@ const p = t.participate;
   </section>
 
   <!-- P-LangPolicy — Working languages -->
-  <section class="section section--tight section--panel" aria-labelledby="lang-policy-heading">
+  <section class="section section--panel" aria-labelledby="lang-policy-heading">
     <div class="container-wide prose-column lang-policy-layout">
       <h2 id="lang-policy-heading" class="lang-policy-heading">{p.languagePolicy.heading}</h2>
       <p class="lang-policy-body">{p.languagePolicy.body}</p>
@@ -62,7 +62,7 @@ const p = t.participate;
   </section>
 
   <!-- P-Actions — Registration and community routes -->
-  <section class="section section--tight">
+  <section class="section">
     <div class="container-wide participation-actions">
       <JoinCTA variant="full" locale={locale} class="participation-action" />
       <DiscordCTA locale={locale} class="participation-action" />
@@ -75,7 +75,7 @@ const p = t.participate;
     wired up; this sheet never was, so for three months the site asked
     people to join a network but not to help run it.
   -->
-  <section class="section section--tight section--panel" aria-labelledby="committee-heading">
+  <section class="section section--panel" aria-labelledby="committee-heading">
     <div class="container-wide prose-column">
       <h2 id="committee-heading">{t.committee.heading}</h2>
       <p class="committee-body">{t.committee.body}</p>
@@ -93,7 +93,7 @@ const p = t.participate;
   </section>
 
   <!-- P3 — Email CTA + safe-sharing advisory -->
-  <section class="section section--tight" aria-labelledby="contact">
+  <section class="section" aria-labelledby="contact">
     <div class="container-wide contact-layout">
       <header class="contact-head">
         <span class="tick" aria-hidden="true"></span>
@@ -122,16 +122,6 @@ const p = t.participate;
 
 <style>
   /* ---- Section rhythm ---- */
-  .section { padding-block: var(--space-xl); }
-  .section--tight { padding-block: var(--space-l); }
-  .section--panel {
-    background: var(--bg-raised);
-    border-block: 1px solid var(--hairline);
-  }
-  .section-intro {
-    max-width: var(--measure);
-    margin-bottom: var(--space-m);
-  }
 
   /* ---- P2 Ways list ---- */
   .ways-list {

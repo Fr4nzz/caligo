@@ -174,49 +174,6 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
 </Base>
 
 <style>
-  /* ============================================================
-     Motives section
-     ============================================================ */
-  .section { padding-block: var(--space-xl); }
-  .section--tight { padding-block: var(--space-l); }
-  .section--panel {
-    background: var(--bg-raised);
-    border-block: 1px solid var(--hairline);
-  }
-  .section-intro {
-    max-width: var(--measure);
-    margin-bottom: var(--space-m);
-  }
-  .motives-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-top: 1px solid var(--hairline-strong);
-  }
-  .motive-item {
-    display: grid;
-    grid-template-columns: 2.75rem 1fr;
-    gap: var(--space-s);
-    align-items: baseline;
-    padding: var(--space-s) 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-  .motive-index {
-    font-size: var(--step--1);
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.06em;
-  }
-  .motive-text {
-    color: var(--text);
-    line-height: 1.55;
-    max-width: var(--measure);
-    font-size: var(--step--1);
-  }
-
-  /* ============================================================
-     Pilot list
-     ============================================================ */
   .pilots {
     list-style: none;
     padding: 0;

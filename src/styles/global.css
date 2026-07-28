@@ -200,6 +200,22 @@ kbd,
   margin-top: var(--space-s);
 }
 
+/* ---------------------------------------------------------------------------
+   SECTION RHYTHM — one definition, used by every page.
+
+   These four rules were copy-pasted into the <style> block of all five page
+   components with byte-identical bodies. Keeping them here means a change to
+   the site's vertical rhythm is one edit, not five.
+
+   The `> * + *` rule in particular MUST live in global CSS, not in a page
+   component. Astro scopes component styles by appending a data-astro-cid
+   attribute to that component's own elements — a child component's root
+   element carries its OWN id, so a scoped `> * + *` silently skips it. That
+   is why the guiding-principles grid sat flush against its heading with no
+   gap at all: PrincipleGrid's <ul> was invisible to HomePage's spacing rule.
+   Unscoped here, it reaches every child regardless of which component
+   rendered it.
+   --------------------------------------------------------------------------- */
 .section {
   padding-block: var(--space-xl);
 }
@@ -208,6 +224,18 @@ kbd,
 }
 .section--flush {
   padding-block: var(--space-l) var(--space-xl);
+}
+.section--panel {
+  background: var(--bg-raised);
+  border-block: 1px solid var(--hairline);
+}
+.section > .container-wide > * + *,
+.section > .container-narrow > * + * {
+  margin-top: var(--space-m);
+}
+.section-intro {
+  max-width: var(--measure);
+  margin-bottom: var(--space-m);
 }
 
 /* Hairline divider drawn as a wing-venation tick rule */

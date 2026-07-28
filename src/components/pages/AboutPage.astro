@@ -46,7 +46,7 @@ const h = t.home;
   <PageHeader eyebrow={t.nav.about} title={a.title} intro={a.body} />
 
   <!-- A2 — The name. The former /caligo/ page said this in 667 words. -->
-  <section class="section section--tight section--panel" aria-labelledby="about-name">
+  <section class="section section--panel" aria-labelledby="about-name">
     <div class="container-wide prose-column">
       <h2 id="about-name" class="section-heading">{a.name.heading}</h2>
       <div class="prose-block">
@@ -58,7 +58,7 @@ const h = t.home;
   </section>
 
   <!-- A3 — Principles -->
-  <section class="section section--tight" aria-labelledby="about-principles">
+  <section class="section" aria-labelledby="about-principles">
     <div class="container-wide visual-section">
       <p class="section-eyebrow mono">{h.pillars.eyebrow}</p>
       <h2 id="about-principles" class="section-heading">{h.pillars.title}</h2>
@@ -67,7 +67,7 @@ const h = t.home;
   </section>
 
   <!-- A4 — Leadership -->
-  <section class="section section--tight section--panel" aria-labelledby="about-leadership">
+  <section class="section section--panel" aria-labelledby="about-leadership">
     <div class="container-wide visual-section">
       <h2 id="about-leadership" class="section-heading">{a.leadership.heading}</h2>
       <p class="prose-para">{a.leadership.intro}</p>
@@ -76,7 +76,7 @@ const h = t.home;
   </section>
 
   <!-- A5 — Partner facilities (from the former /network/) -->
-  <section class="section section--tight" aria-labelledby="about-facilities">
+  <section class="section" aria-labelledby="about-facilities">
     <div class="container-wide visual-section">
       <h2 id="about-facilities" class="section-heading">{a.facilities.heading}</h2>
       <p class="prose-para">{a.facilities.intro}</p>
@@ -85,7 +85,7 @@ const h = t.home;
   </section>
 
   <!-- A6 — Events (from the former /network/) -->
-  <section class="section section--tight section--panel" aria-labelledby="about-events">
+  <section class="section section--panel" aria-labelledby="about-events">
     <div class="container-wide prose-column">
       <h2 id="about-events" class="section-heading">{a.events.heading}</h2>
       <p class="prose-para">{a.events.intro}</p>
@@ -94,7 +94,7 @@ const h = t.home;
   </section>
 
   <!-- A7 — Connections and context (from the former /network/) -->
-  <section class="section section--tight" aria-labelledby="about-positioning">
+  <section class="section" aria-labelledby="about-positioning">
     <div class="container-wide prose-column">
       <h2 id="about-positioning" class="section-heading">{a.positioning.heading}</h2>
       <p class="prose-para">{a.positioning.body}</p>
@@ -102,7 +102,7 @@ const h = t.home;
   </section>
 
   <!-- A8 — Governance -->
-  <section class="section section--tight section--panel" aria-labelledby="about-governance">
+  <section class="section section--panel" aria-labelledby="about-governance">
     <div class="container-wide prose-column">
       <h2 id="about-governance" class="section-heading">{a.governance.heading}</h2>
       <p class="prose-para">{a.governance.intro}</p>
@@ -119,12 +119,6 @@ const h = t.home;
   }
 
   /* ---- Section rhythm ---- */
-  .section { padding-block: var(--space-xl); }
-  .section--tight { padding-block: var(--space-l); }
-  .section--panel {
-    background: var(--bg-raised);
-    border-block: 1px solid var(--hairline);
-  }
   .section-eyebrow {
     margin: 0 0 var(--space-s);
     font-size: var(--step--2);

@@ -17,9 +17,14 @@ const { locale } = Astro.props;
   ))}
 </ol>
 
-<style>
+<style>  /* margin-top is deliberately not reset: the page owns vertical rhythm
+     (see `.section > .container-wide > * + *` in global.css). A blanket
+     `margin: 0` here ties on specificity with that rule and wins on source
+     order, which is what left this grid sitting flush against its heading. */
+
   .objective-list {
-    margin: 0;
+    margin-block-end: 0;
+    margin-inline: 0;
     padding: 0;
     counter-reset: objectives;
     list-style: none;
