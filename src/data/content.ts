@@ -179,8 +179,8 @@ export const PROJECTS: Project[] = [
       es: 'La presentación menciona además a Caroline Bacquet; esta diferencia entre fuentes necesita confirmación.',
     },
     goal: {
-      en: 'Generate chromosome-level genomes across Heliconius. Most species retain 21 chromosomes while some reach as many as 60, giving a system to study why rearrangements occur and how they affect adaptation, speciation, gene loss, and sex-chromosome evolution.',
-      es: 'Generar genomas a nivel cromosómico en Heliconius. La mayoría de las especies conserva 21 cromosomas, mientras algunas llegan a 60, lo que ofrece un sistema para estudiar por qué ocurren los reordenamientos y cómo afectan a la adaptación, la especiación, la pérdida de genes y la evolución de los cromosomas sexuales.',
+      en: 'Generate chromosome-level genomes across Heliconius. Most species retain 21 chromosomes while some reach as many as 60, giving a system to study why rearrangements occur and how they affect adaptation, speciation, gene loss, and sex-chromosome evolution. The W chromosome carries its own set of questions: where it came from, how W–autosome fusions behave once they happen, whether it is degenerating and at what rate, and which genes are still on it.',
+      es: 'Generar genomas a nivel cromosómico en Heliconius. La mayoría de las especies conserva 21 cromosomas, mientras algunas llegan a 60, lo que ofrece un sistema para estudiar por qué ocurren los reordenamientos y cómo afectan a la adaptación, la especiación, la pérdida de genes y la evolución de los cromosomas sexuales. El cromosoma W plantea sus propias preguntas: de dónde viene, cómo se comportan las fusiones entre el W y los autosomas una vez ocurren, si está degenerando y a qué ritmo, y qué genes siguen en él.',
     },
     resources: {
       en: 'Contributors already identified with genomic data, samples, and expertise in analysis, ecology, and behaviour.',
@@ -345,6 +345,13 @@ export const FACILITIES: Facility[] = [
 export const LINKS = {
   joinForm:
     'https://docs.google.com/forms/d/e/1FAIpQLSdJbLIgK-fOI9XjJ9AodMjKtP41JQcnzjrh-o6lRMYOFaQJtg/viewform',
+  /*
+    Nicol listed three links on 2026-07-14 that "deben estar ahí": the
+    registration form, this committee sign-up sheet, and Discord. The
+    committee sheet had never been wired to the site.
+  */
+  committeeForm:
+    'https://docs.google.com/spreadsheets/d/1YaY78DRBeqpfaJzL7bpYRIEecu1msf5usl3Z5piLgCY/edit',
   contactEmail: 'genomica.neotropical@gmail.com',
   projectPsyche: 'https://www.projectpsyche.org/',
 };

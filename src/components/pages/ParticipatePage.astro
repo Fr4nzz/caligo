@@ -20,6 +20,7 @@ import PageHeader from '../PageHeader.astro';
 import Icon from '../Icon.astro';
 import JoinCTA from '../JoinCTA.astro';
 import DiscordCTA from '../DiscordCTA.astro';
+import { LINKS } from '../../data/content';
 import { getDict, type Locale } from '../../i18n';
 
 interface Props {
@@ -65,6 +66,29 @@ const p = t.participate;
     <div class="container-wide participation-actions">
       <JoinCTA variant="full" locale={locale} class="participation-action" />
       <DiscordCTA locale={locale} class="participation-action" />
+    </div>
+  </section>
+
+  <!--
+    P-Committee — the second of the three links Nicol listed on 2026-07-14
+    as ones that "deben estar ahí". The registration form and Discord were
+    wired up; this sheet never was, so for three months the site asked
+    people to join a network but not to help run it.
+  -->
+  <section class="section section--tight section--panel" aria-labelledby="committee-heading">
+    <div class="container-wide prose-column">
+      <h2 id="committee-heading">{t.committee.heading}</h2>
+      <p class="committee-body">{t.committee.body}</p>
+      <p class="committee-action">
+        <a
+          class="btn"
+          href={LINKS.committeeForm}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t.committee.cta}<Icon name="arrow-right" />
+        </a>
+      </p>
     </div>
   </section>
 
@@ -133,6 +157,15 @@ const p = t.participate;
     color: var(--accent-strong);
   }
   .way-text { max-width: var(--measure); }
+
+  /* ---- P-Committee ---- */
+  .committee-body {
+    margin: var(--space-s) 0 var(--space-m);
+    color: var(--text);
+    line-height: 1.6;
+    max-width: var(--measure);
+  }
+  .committee-action { margin: 0; }
 
   /* ---- P-LangPolicy ---- */
   .lang-policy-layout {

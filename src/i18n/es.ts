@@ -72,6 +72,11 @@ export const es: Dict = {
     "howToTakePart": "Formas de participar",
     "readVision": "Conoce Caligo"
   },
+  "committee": {
+    "heading": "Únete a un comité",
+    "body": "Los comités son donde ocurre la organización diaria: muestreo y permisos, secuenciación, análisis, formación y comunicación. La hoja lista los que existen y quiénes ya participan.",
+    "cta": "Abrir la hoja de comités"
+  },
   "join": {
     "title": "Únete a la red",
     "body": "El formulario de inscripción pregunta por tu país, institución, grupos taxonómicos de interés y tu experiencia con genomas o secuenciación. Toma unos minutos y está abierto.",
@@ -204,7 +209,7 @@ export const es: Dict = {
     "evidence": {
       "heading": "Qué puede mostrar cada tipo de evidencia genética",
       "body": [
-        "No todos los datos genéticos responden la misma pregunta, y la diferencia importa más de lo que parece. Un código de barras de ADN es un fragmento corto y estandarizado: sirve para señalar que dos ejemplares difieren, pero no dice nada sobre cómo están organizados sus genomas. La secuenciación de lecturas cortas en muchos individuos muestra cómo se distribuye la variación en una población. Un genoma de referencia a escala cromosómica muestra la estructura: dónde están los genes, qué se hereda junto con qué, dónde se ha partido o fusionado un cromosoma.",
+        "No todos los datos genéticos responden la misma pregunta, y la diferencia importa más de lo que parece. Un código de barras de ADN es un fragmento corto y estandarizado, normalmente leído con Sanger u Oxford Nanopore: sirve para señalar que dos ejemplares difieren, pero no dice nada sobre cómo están organizados sus genomas. La secuenciación de lecturas cortas en muchos individuos —Illumina, por lo general— muestra cómo se distribuye la variación en una población. Un genoma de referencia a escala cromosómica, que necesita lecturas largas de Oxford Nanopore o PacBio, muestra la estructura: dónde están los genes, qué se hereda junto con qué, dónde se ha partido o fusionado un cromosoma.",
         "El costo y el esfuerzo difieren en órdenes de magnitud, y también lo que se puede concluir. Decir de qué tipo de evidencia salió un resultado es lo que evita que un código de barras se lea como un genoma."
       ]
     },
@@ -392,7 +397,7 @@ export const es: Dict = {
     "homeLink": "Volver al inicio"
   },
   "footer": {
-    "tagline": "Ejemplares documentados. Genomas reutilizables. Preguntas neotropicales.",
+    "tagline": "Una red latinoamericana que construye genomas de referencia para las mariposas y polillas del Neotrópico.",
     "rights": "Caligo",
     "contact": "Contacto",
     "navHeading": "Explora",

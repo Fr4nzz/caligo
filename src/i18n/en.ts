@@ -75,6 +75,11 @@ export const en = {
     "howToTakePart": "Ways to take part",
     "readVision": "Read about Caligo"
   },
+  "committee": {
+    "heading": "Join a committee",
+    "body": "Committees are where the day-to-day organising happens — sampling and permits, sequencing, analysis, training and communication. The sheet lists the ones that exist and who is already on them.",
+    "cta": "Open the committee sheet"
+  },
   "join": {
     "title": "Join the network",
     "body": "The registration form asks for your country, institution, taxonomic groups of interest, and your experience with genomes or sequencing. It takes a few minutes and is open now.",
@@ -207,7 +212,7 @@ export const en = {
     "evidence": {
       "heading": "What different genetic evidence can show",
       "body": [
-        "Not all genetic data answers the same question, and the difference matters more than it sounds. A DNA barcode is a short standard fragment: useful for flagging that two specimens differ, silent on how their genomes are organised. Short-read sequencing across many individuals shows how variation is distributed through a population. A chromosome-scale reference genome shows structure — where genes sit, what stays linked to what, where a chromosome has broken or fused.",
+        "Not all genetic data answers the same question, and the difference matters more than it sounds. A DNA barcode is a short standard fragment, usually read on Sanger or Oxford Nanopore: useful for flagging that two specimens differ, silent on how their genomes are organised. Short-read sequencing across many individuals — Illumina, typically — shows how variation is distributed through a population. A chromosome-scale reference genome, which needs long reads from Oxford Nanopore or PacBio, shows structure: where genes sit, what stays linked to what, where a chromosome has broken or fused.",
         "The cost and effort differ by orders of magnitude, and so does what you can conclude. Saying which kind of evidence a result came from is what keeps a barcode from being read as a genome."
       ]
     },
@@ -395,7 +400,7 @@ export const en = {
     "homeLink": "Back to the home page"
   },
   "footer": {
-    "tagline": "Documented specimens. Reusable genomes. Neotropical questions.",
+    "tagline": "A Latin American network building reference genomes for the butterflies and moths of the Neotropics.",
     "rights": "Caligo",
     "contact": "Contact",
     "navHeading": "Explore",

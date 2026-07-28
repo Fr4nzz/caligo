@@ -159,7 +159,7 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
                   return (
                     <>
                       {i > 0 && ' · '}
-                      <a href={src.url} rel="external noopener">{src.citation}</a>
+                      <a href={src.url} rel="external noopener">{src.shortLabel ?? src.citation}</a>
                     </>
                   );
                 })}

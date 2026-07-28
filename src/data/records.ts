@@ -39,6 +39,12 @@ export interface Bilingual {
 
 export interface Source {
   readonly id: string;
+  /**
+   * Short author-year form for inline source lines. `citation` is the full
+   * reference; printing that inline gave each pilot three wrapped lines of
+   * link text. Science already used short labels — this makes Projects match.
+   */
+  readonly shortLabel?: string;
   readonly kind: 'paper' | 'preprint' | 'database' | 'standard' | 'institutional';
   readonly citation: string;
   readonly url: string;
@@ -98,6 +104,7 @@ export interface Media {
 export const SOURCES: readonly Source[] = [
   {
     id: 'rueda-2024',
+    shortLabel: 'Rueda-M et al. 2024',
     kind: 'paper',
     // Title and date corrected against Crossref, 2026-07-27. The record
     // previously read "Chromosome evolution in Heliconius" dated
@@ -111,6 +118,7 @@ export const SOURCES: readonly Source[] = [
   },
   {
     id: 'mackay-smith-2026',
+    shortLabel: 'Mackay-Smith et al. 2026',
     kind: 'paper',
     citation:
       'Mackay-Smith et al. de novo assembly of 5 highly contiguous Heliconius butterfly genomes with long-read sequencing alone. Genome Biology and Evolution, published 11 July 2026.',
@@ -121,6 +129,7 @@ export const SOURCES: readonly Source[] = [
   },
   {
     id: 'iucn-parides-2018',
+    shortLabel: 'IUCN Red List, 2018',
     kind: 'institutional',
     citation:
       'IUCN Red List global assessment of Parides ascanius (Vulnerable, 2018).',
@@ -131,6 +140,7 @@ export const SOURCES: readonly Source[] = [
   },
   {
     id: 'icmbio-parides-2021',
+    shortLabel: 'ICMBio, 2021',
     kind: 'institutional',
     citation:
       'Official Brazilian national assessment (ICMBio, 2021): Parides ascanius listed as Endangered.',
@@ -139,7 +149,19 @@ export const SOURCES: readonly Source[] = [
     checkedDate: '2026-07-17',
   },
   {
+    id: 'batesia-2025',
+    shortLabel: 'Pham et al. 2025',
+    kind: 'paper',
+    citation:
+      'Pham et al. 2025. A high-quality draft genome assembly of the Neotropical butterfly, Batesia hypochlora (Nymphalidae: Biblidinae). BMC Genomics 27:31. Co-authored by Geoff Gallice and Vicencio Oostra, who also lead Caligo work.',
+    url: 'https://doi.org/10.1186/s12864-025-12394-z',
+    publicationDate: '2025-12-06',
+    checkedDate: '2026-07-27',
+    doi: '10.1186/s12864-025-12394-z',
+  },
+  {
     id: 'gallice-2020',
+    shortLabel: 'Gallice et al. 2020 (preprint)',
     kind: 'preprint',
     citation:
       'Gallice et al. 2020. A seasonal mass movement of Panacea prola in south-eastern Peru. bioRxiv preprint.',
@@ -150,6 +172,7 @@ export const SOURCES: readonly Source[] = [
   },
   {
     id: 'ukri-soybean',
+    shortLabel: 'UKRI project UKRI2955',
     kind: 'institutional',
     citation:
       'UK Research and Innovation, project UKRI2955, Population genomic monitoring of soybean pests. Independent scientific context for the proposed Caligo pilot project.',
@@ -158,6 +181,7 @@ export const SOURCES: readonly Source[] = [
   },
   {
     id: 'seraphim-2016',
+    shortLabel: 'Seraphim et al. 2016',
     kind: 'paper',
     citation:
       'Seraphim et al. Genetic diversity of Parides ascanius (Lepidoptera: Papilionidae: Troidini): implications for the conservation of Brazil’s most iconic endangered invertebrate species. Conservation Genetics 17:533–546 (2016).',
@@ -168,6 +192,7 @@ export const SOURCES: readonly Source[] = [
   },
   {
     id: 'horikoshi-2021',
+    shortLabel: 'Horikoshi et al. 2021',
     kind: 'paper',
     citation:
       'Horikoshi et al. Resistance status of lepidopteran soybean pests following large-scale use of MON 87701 × MON 89788 soybean in Brazil. Scientific Reports 11:21323 (2021).',
@@ -178,6 +203,7 @@ export const SOURCES: readonly Source[] = [
   },
   {
     id: 'braga-2024',
+    shortLabel: 'Braga et al. 2024',
     kind: 'paper',
     citation:
       'Braga et al. Characterizing the differential susceptibility and resistance to insecticides in populations of Chrysodeixis includens and Rachiplusia nu (Lepidoptera: Noctuidae) in Brazil. Pest Management Science 80:4853–4862 (2024).',
@@ -341,8 +367,8 @@ export const PILOTS: readonly Pilot[] = [
     },
     taxon: 'Panacea prola',
     publishedContext: {
-      en: 'A 2020 preprint reported a seasonal mass movement of Panacea prola in south-eastern Peru, and presented it as the first evidence of an Amazonian insect migration. It leaves the map unfinished: where the butterflies came from, whether one population or several contributed, and whether the pattern repeats between years. A reference genome plus samples across seasons and sites could compare ancestry and connectivity. The report has not been peer reviewed.',
-      es: 'Un preprint de 2020 reportó un movimiento masivo estacional de Panacea prola en el sureste de Perú y lo presentó como la primera evidencia de una migración de insectos amazónica. El mapa queda incompleto: de dónde venían las mariposas, si contribuyó una población o varias, y si el patrón se repite entre años. Un genoma de referencia junto con muestras de distintas estaciones y sitios permitiría comparar ancestría y conectividad. El reporte no ha pasado por revisión por pares.',
+      en: 'A 2020 preprint reported a seasonal mass movement of Panacea prola in south-eastern Peru, and presented it as the first evidence of an Amazonian insect migration. The subfamily is not unsequenced: Batesia hypochlora, published in 2025, was the first reference genome for Biblidinae, and it is the closest precedent for what a Panacea assembly would involve. It leaves the map unfinished: where the butterflies came from, whether one population or several contributed, and whether the pattern repeats between years. A reference genome plus samples across seasons and sites could compare ancestry and connectivity. The report has not been peer reviewed.',
+      es: 'Un preprint de 2020 reportó un movimiento masivo estacional de Panacea prola en el sureste de Perú y lo presentó como la primera evidencia de una migración de insectos amazónica. La subfamilia no está sin secuenciar: Batesia hypochlora, publicado en 2025, fue el primer genoma de referencia de Biblidinae y es el precedente más cercano a lo que implicaría un ensamblaje de Panacea. El mapa queda incompleto: de dónde venían las mariposas, si contribuyó una población o varias, y si el patrón se repite entre años. Un genoma de referencia junto con muestras de distintas estaciones y sitios permitiría comparar ancestría y conectividad. El reporte no ha pasado por revisión por pares.',
     },
     proposedQuestion: {
       en: 'The proposed Caligo pilot project would combine a documented reference genome with repeated population sampling to test the origins, connections and seasonal consistency of the observed movement.',
@@ -368,7 +394,7 @@ export const PILOTS: readonly Pilot[] = [
       en: 'Public evidence: Gallice et al. 2020, a preprint checked on 16 July 2026. No unpublished isotope result or wider route is stated.',
       es: 'Evidencia pública: Gallice et al. 2020, preprint revisado el 16 de julio de 2026. No se mencionan resultados isotópicos no publicados ni rutas más amplias.',
     },
-    sourceIds: ['gallice-2020'],
+    sourceIds: ['gallice-2020', 'batesia-2025'],
     mediaIds: [],
     status: 'proposed-caligo-work',
     publish: true,
