@@ -161,13 +161,30 @@ const ssrThemeColor = MODE_COLORS[DEFAULT_PALETTE][DEFAULT_MODE];
            palette/mode do not flash to default. Auto-respects
            reduced-motion via ClientRouter's built-in gate.
 
-        2. Scroll preservation across language switches AND flash-free
-           scroll restoration. Astro's ClientRouter calls
-           scrollTo({top:0, behavior:'instant'}) inside moveToLocation()
-           BEFORE astro:after-swap fires (see withastro/astro#10615,
-           node_modules/astro/dist/transitions/router.js:130-132), so
-           restoring in astro:page-load would happen AFTER the browser
-           painted the top-frame — a visible flash. The correct sequence:
+        2. Scroll preservation across LANGUAGE SWITCHES ONLY.
+
+           This handler used to restore a per-URL scroll position on every
+           cross-page navigation, which broke two things a reader expects:
+
+             - clicking a question on Home that links to /science/#gene-flow
+               landed wherever you had last been on Science, because the
+               restore ignored location.hash;
+             - switching tabs resumed mid-page instead of starting at the
+               top, because a fresh click was treated like Back.
+
+           Astro's router already does the right thing in all three cases
+           (router.js:130-150): historyState → restore for Back/Forward,
+           to.hash → jump to the anchor, otherwise → top. The old code
+           fought it deliberately, re-applying its own scroll on the next
+           animation frame specifically to beat Astro's. So the fix is to
+           stop: capture and restore ONLY when the path is the same page in
+           the other locale, and let Astro own everything else.
+
+           Astro calls scrollTo({top:0, behavior:'instant'}) inside
+           moveToLocation() BEFORE astro:after-swap fires (see
+           withastro/astro#10615), so restoring in astro:page-load would
+           happen AFTER the browser painted the top-frame — a visible
+           flash. Hence the sequence:
 
              astro:before-swap
                - capture scrollY (and nearest section-id anchor above
@@ -193,7 +210,6 @@ const ssrThemeColor = MODE_COLORS[DEFAULT_PALETTE][DEFAULT_MODE];
 
         var savedX = 0;
         var savedY = 0;
-        var savedSuffix = '';
         var savedSectionId = '';
         var savedSectionOffset = 0;
         var restoreQueued = false;
@@ -203,7 +219,17 @@ const ssrThemeColor = MODE_COLORS[DEFAULT_PALETTE][DEFAULT_MODE];
         }
 
         function nearestSectionAbove() {
-          var candidates = document.querySelectorAll('section[id], article[id], main [id]');
+          /*
+            Only real content blocks are valid scroll anchors. This used to
+            be `main [id]`, which matched anything carrying an id — figure
+            captions, and worse, elements *inside* the inline SVGs. A
+            language switch would anchor to something like
+            `concept-science-introgression-butterfly`, whose position has
+            nothing to do with where the reader was.
+          */
+          var candidates = document.querySelectorAll(
+            'main section[id], main article[id], main li[id]'
+          );
           var vpTop = window.scrollY;
           var pick = null;
           for (var i = 0; i < candidates.length; i++) {
@@ -232,20 +258,6 @@ const ssrThemeColor = MODE_COLORS[DEFAULT_PALETTE][DEFAULT_MODE];
           return pick;
         }
 
-        function persistCurrentScroll() {
-          try {
-            var scrolls = JSON.parse(sessionStorage.getItem('caligoPageScrolls') || '{}');
-            scrolls[location.pathname] = { x: window.scrollX, y: window.scrollY };
-            sessionStorage.setItem('caligoPageScrolls', JSON.stringify(scrolls));
-          } catch (_) { /* storage unavailable */ }
-        }
-        function lookupPersistedScroll(pathname) {
-          try {
-            var scrolls = JSON.parse(sessionStorage.getItem('caligoPageScrolls') || '{}');
-            return scrolls[pathname] || null;
-          } catch (_) { return null; }
-        }
-
         document.addEventListener('astro:before-swap', function (event) {
           try {
             var p = localStorage.getItem('caligo-palette');
@@ -255,16 +267,21 @@ const ssrThemeColor = MODE_COLORS[DEFAULT_PALETTE][DEFAULT_MODE];
             if (m) el.setAttribute('data-mode', m);
           } catch (_) { /* storage unavailable */ }
 
-          // Persist current scroll for Back/Forward restoration.
-          persistCurrentScroll();
+          // Same page, other locale? Only then do we hold position.
+          // Everything else — a fresh nav, a hash link, Back/Forward — is
+          // Astro's to handle, and it handles it correctly.
+          var sameDoc =
+            event.from && event.to &&
+            localePathSuffix(event.from.pathname) === localePathSuffix(event.to.pathname) &&
+            event.from.pathname !== event.to.pathname;
+          restoreQueued = !!sameDoc;
+          if (!sameDoc) return;
 
           savedX = window.scrollX;
           savedY = window.scrollY;
-          savedSuffix = localePathSuffix(location.pathname);
           var pick = nearestSectionAbove();
           savedSectionId = pick ? pick.id : '';
           savedSectionOffset = pick ? Math.max(0, savedY - pick.top) : 0;
-          restoreQueued = true;
 
           // Shim min-height on the incoming document so the restored scroll
           // position is representable even if the new page is shorter than
@@ -275,44 +292,43 @@ const ssrThemeColor = MODE_COLORS[DEFAULT_PALETTE][DEFAULT_MODE];
           } catch (_) { /* ignore */ }
         });
 
-        document.addEventListener('astro:after-swap', function () {
-          if (!restoreQueued) return;
-          var newSuffix = localePathSuffix(location.pathname);
-          // Same-suffix locale swap: restore captured scroll (with section anchoring).
-          if (savedSuffix === newSuffix) {
-            if (savedSectionId) {
-              var target = document.getElementById(savedSectionId);
-              if (target) {
-                var rect = target.getBoundingClientRect();
-                var elTop = rect.top + window.scrollY;
-                window.scrollTo({
-                  left: 0,
-                  top: elTop + savedSectionOffset,
-                  behavior: 'instant',
-                });
-                return;
-              }
+        /*
+          Scroll so the captured section sits where it sat before the swap.
+          Called twice on purpose:
+
+            astro:after-swap  — synchronous, right after Astro's own
+              scrollTo(0,0), so the reader never sees the top of the page.
+              Layout has not settled yet, so the position can be off.
+            astro:page-load   — fonts and figures have resolved and the
+              section has moved (measured: 565px on /science/ ES). Re-apply
+              to correct it. No flash, because the first call already put us
+              in the right neighbourhood.
+        */
+        function applyAnchor() {
+          if (savedSectionId) {
+            var target = document.getElementById(savedSectionId);
+            if (target) {
+              var elTop = target.getBoundingClientRect().top + window.scrollY;
+              window.scrollTo({ left: 0, top: elTop + savedSectionOffset, behavior: 'instant' });
+              return;
             }
-            window.scrollTo({ left: savedX, top: savedY, behavior: 'instant' });
-            return;
           }
-          // Cross-page nav (Back/Forward or fresh nav): check per-URL persisted
-          // scroll so Home → Science → Back returns to Home's previous position.
-          // Applied on both current and next rAF because Astro's historyState
-          // scroll (router.js L134-135) can override the first call.
-          var persisted = lookupPersistedScroll(location.pathname);
-          if (persisted) {
-            window.scrollTo({ left: persisted.x || 0, top: persisted.y || 0, behavior: 'instant' });
-            requestAnimationFrame(function () {
-              window.scrollTo({ left: persisted.x || 0, top: persisted.y || 0, behavior: 'instant' });
-            });
-          }
+          window.scrollTo({ left: savedX, top: savedY, behavior: 'instant' });
+        }
+
+        document.addEventListener('astro:after-swap', function () {
+          if (restoreQueued) applyAnchor();
         });
 
         document.addEventListener('astro:page-load', function () {
           try {
             document.documentElement.style.minHeight = '';
           } catch (_) { /* ignore */ }
+          if (restoreQueued) {
+            applyAnchor();
+            // Fonts can settle a frame later still.
+            requestAnimationFrame(applyAnchor);
+          }
           restoreQueued = false;
         });
       })();
