@@ -44,6 +44,7 @@
 ## Visual language
 
 - Color: Caligo’s warm neutral palette with a burnt-orange accent; hero copy uses fixed ivory on a matte near-black field
+- Brand emblem: the extracted mark is transparent on light surfaces; dark mode supplies the logo’s original ivory matte so its negative-space wing markings keep the same colour in both modes
 - Typography: Space Grotesk for display, Inter for prose and UI, JetBrains Mono for labels and provenance
 - Spacing/layout rhythm: wide specimen-plate compositions followed by restrained content sections
 - Shape/radius/elevation: hairlines, small radii, and minimal elevation
@@ -53,7 +54,7 @@
 ## Components
 
 - Existing components to reuse: `Base`, `Header`, `HeroMedia`, `CommunityStats`, `PrincipleGrid`, `MediaCandidateViewer`, and shared CTA/button styles
-- New/changed components: About includes a compact three-priority grid and six-step specimen-to-shared-evidence workflow; Participate includes a concise participation-outcomes list; the Home hero may change its internal CSS geometry without creating a parallel hero component
+- New/changed components: About includes a compact three-priority grid and six-step specimen-to-shared-evidence workflow; Participate includes a concise participation-outcomes list; the Home hero may change its internal CSS geometry without creating a parallel hero component; Header and Footer share the transparent, text-free emblem, and the Header uses a responsive brand lockup
 - Variants and states: desktop split composition; mobile stacked composition; light/dark page modes do not alter hero contrast
 - Token/component ownership: global tokens remain in `src/styles/tokens.css`; page-specific hero geometry stays in `HomePage.astro`
 
@@ -70,6 +71,7 @@
 - Supported breakpoints/devices: approximately 390 px mobile through wide desktop; the critical narrow-desktop boundary is immediately above 60 rem
 - Desktop layout above 60 rem: the landscape photograph remains full bleed at its original brightness and composition; copy occupies a stable right-side column over the image’s own dark field, and hero height follows the photograph’s ratio until its wide-screen cap
 - Mobile layout at or below 60 rem: the same landscape composition appears first at its intrinsic aspect ratio, followed by a dedicated dark copy field; no alternate crop, overlay, or copy obscures the specimen
+- Header lockup: on desktop, the descriptor sits to the right of “Caligo” to keep the sticky header shallow; below the desktop-navigation breakpoint it stacks beneath the name, and at the narrowest mobile width it may be hidden to preserve room for controls
 - Intermediate widths: title, body, actions, and attribution may wrap or increase hero height, but they must not cross into the specimen territory
 - Validation widths: 390, 960, 961, 1024, 1280, 1440, and 1920 CSS pixels
 - Touch/hover differences: full-width mobile CTAs; hover styling is supplemental and never the only state cue

@@ -44,10 +44,10 @@ const isCurrent = (path: string) => path === page;
     <a class="brand" href={localePath(locale, '/')} aria-label="Caligo">
       <span class="brand-mark" aria-hidden="true">
         <img
-          src={`${base}media/brand/caligo-emblem-square-144.png`}
+          src={`${base}media/brand/caligo-emblem-transparent.png`}
           alt=""
-          width="40"
-          height="40"
+          width="163"
+          height="131"
           loading="eager"
           decoding="async"
         />
@@ -137,27 +137,24 @@ const isCurrent = (path: string) => path === page;
     flex: none;
   }
 
-  /*
-    Emblem clarity: larger source (144px) rendered with object-fit:contain
-    so the mark reads fully instead of being cropped by the square frame.
-  */
+  /* The transparent source lets the butterfly sit directly in the lockup. */
   .brand-mark {
     display: grid;
     place-items: center;
     width: 2.5rem;
     height: 2.5rem;
-    padding: 0.15rem;
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--bg-inset);
-    border: 1px solid var(--hairline-strong);
     flex: none;
   }
   .brand-mark img {
     width: 100%;
     height: 100%;
+    padding: 0.12rem;
+    border-radius: var(--radius);
     object-fit: contain;
     display: block;
+  }
+  :global(html[data-mode='dark']) .brand-mark img {
+    background: var(--c-warm-050);
   }
 
   .brand-text {
@@ -172,9 +169,6 @@ const isCurrent = (path: string) => path === page;
     letter-spacing: -0.024em;
     color: var(--text-strong);
   }
-  @media (min-width: 62rem) {
-    .brand-name { font-size: 1.55rem; }
-  }
   .brand-sub {
     font-family: var(--font-mono);
     font-size: var(--step--2);
@@ -183,6 +177,24 @@ const isCurrent = (path: string) => path === page;
     color: var(--text-faint);
     max-width: 28ch;
     margin-top: 2px;
+  }
+  @media (min-width: 70rem) {
+    .brand-text {
+      flex-direction: row;
+      align-items: center;
+    }
+    .brand-name {
+      font-size: 1.55rem;
+      line-height: 1;
+    }
+    .brand-sub {
+      max-width: 29ch;
+      margin-top: 0;
+      margin-left: 0.75rem;
+      padding-left: 0.75rem;
+      border-left: 1px solid var(--hairline-strong);
+      line-height: 1.15;
+    }
   }
 
   .primary-nav {
@@ -299,7 +311,7 @@ const isCurrent = (path: string) => path === page;
     color: var(--accent-strong);
   }
 
-  @media (min-width: 62rem) {
+  @media (min-width: 70rem) {
     .primary-nav {
       display: block;
     }

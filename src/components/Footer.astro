@@ -27,11 +27,11 @@ const items = [
     <div class="footer-brand">
       <img
         class="footer-emblem"
-        src={`${base}media/brand/caligo-emblem-192.png`}
+        src={`${base}media/brand/caligo-emblem-transparent.png`}
         alt=""
         aria-hidden="true"
-        width="96"
-        height="96"
+        width="163"
+        height="131"
         loading="lazy"
         decoding="async"
       />
@@ -93,10 +93,9 @@ const items = [
   }
 
   /*
-    Footer brand — horizontal lockup: emblem sits at the left, name and
-    tagline stack on the right beside it (72–96 px mark, wordmark and
-    descriptor beside emblem, not underneath). aria-hidden on the emblem
-    keeps screen readers from double-announcing "Caligo".
+    Footer brand — horizontal lockup: the transparent emblem sits at the
+    left, while the name and tagline stack beside it. aria-hidden on the
+    emblem keeps screen readers from double-announcing "Caligo".
   */
   .footer-brand {
     display: flex;
@@ -108,14 +107,13 @@ const items = [
     display: block;
     width: clamp(72px, 8vw, 96px);
     height: auto;
-    aspect-ratio: 1 / 1;
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--bg-inset);
-    border: 1px solid var(--hairline-strong);
     padding: 0.35rem;
+    border-radius: var(--radius);
     object-fit: contain;
     flex: 0 0 auto;
+  }
+  :global(html[data-mode='dark']) .footer-emblem {
+    background: var(--c-warm-050);
   }
   .footer-brand-text {
     display: flex;
