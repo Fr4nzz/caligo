@@ -23,23 +23,23 @@ export const OBJECTIVES: Bilingual[] = [
   },
   {
     en: 'Anchor every project in taxonomy: each genome tied to a vouchered, identified specimen and to accountable specialist expertise.',
-    es: 'Anclar cada proyecto en la taxonomía: cada genoma ligado a un espécimen identificado y con voucher, y a experiencia especializada responsable.',
+    es: 'Vincular cada proyecto con la taxonomía: cada genoma debe corresponder a un ejemplar identificado y depositado en una colección, con especialistas responsables de confirmar su identidad.',
   },
   {
     en: 'Build regional sequencing partnerships, sample-banking infrastructure, and bioinformatics capacity so that sequencing and analysis happen in Latin America or with researchers from the region.',
-    es: 'Construir alianzas regionales de secuenciación, infraestructura de bancos de muestras y capacidad bioinformática, para que la secuenciación y el análisis ocurran en América Latina o con investigadores de la región.',
+    es: 'Construir alianzas regionales de secuenciación, bancos de muestras y capacidad bioinformática para que la secuenciación y el análisis se realicen en América Latina o con investigadores de la región.',
   },
   {
     en: 'Train early-career researchers through workshops, exchanges, joint supervision, and shared publications.',
-    es: 'Formar a investigadores en etapas tempranas mediante talleres, intercambios, cosupervisión y publicaciones compartidas.',
+    es: 'Formar a investigadores al inicio de su carrera mediante talleres, intercambios, cosupervisión y publicaciones conjuntas.',
   },
   {
     en: 'Make data and methods open by default while governing authorship, embargoes, credit, and benefit-sharing transparently and fairly.',
-    es: 'Hacer los datos y métodos abiertos por defecto, gobernando la autoría, los embargos, el crédito y el reparto de beneficios de forma transparente y justa.',
+    es: 'Mantener abiertos los datos y métodos por defecto, con reglas transparentes y justas para la autoría, los embargos, el crédito y la distribución de beneficios.',
   },
   {
     en: 'Coordinate national, regional, and international funding as a single initiative.',
-    es: 'Coordinar la financiación nacional, regional e internacional como una sola iniciativa.',
+    es: 'Coordinar el financiamiento nacional, regional e internacional como una sola iniciativa.',
   },
 ];
 
@@ -49,21 +49,21 @@ export const PRINCIPLES: { title: Bilingual; body: Bilingual }[] = [
     title: { en: 'Latin American leadership', es: 'Liderazgo latinoamericano' },
     body: {
       en: 'Researchers in Latin America help choose the questions and lead sampling, analysis and publication.',
-      es: 'Los investigadores de América Latina ayudan a elegir las preguntas y lideran el muestreo, el análisis y la publicación.',
+      es: 'Los investigadores radicados en América Latina ayudan a definir las preguntas y lideran el muestreo, el análisis y la publicación.',
     },
   },
   {
     title: { en: 'Taxonomy first', es: 'La taxonomía primero' },
     body: {
       en: 'Specimens are identified before sequencing, and genomic results are returned to taxonomic research.',
-      es: 'Los ejemplares se identifican antes de la secuenciación, y los resultados genómicos vuelven a la investigación taxonómica.',
+      es: 'Los ejemplares se identifican antes de la secuenciación, y los resultados genómicos también contribuyen a resolver preguntas taxonómicas.',
     },
   },
   {
     title: { en: 'Inclusive and democratic', es: 'Inclusiva y democrática' },
     body: {
       en: 'Decisions span countries, languages, institution types, and career stages.',
-      es: 'Las decisiones abarcan países, idiomas, tipos de institución y etapas de carrera.',
+      es: 'Las decisiones incorporan voces de distintos países, idiomas, instituciones y etapas profesionales.',
     },
   },
   {
@@ -74,10 +74,10 @@ export const PRINCIPLES: { title: Bilingual; body: Bilingual }[] = [
     },
   },
   {
-    title: { en: 'Patient and pragmatic', es: 'Con paciencia y sentido práctico' },
+    title: { en: 'Patient and pragmatic', es: 'Avanzar paso a paso' },
     body: {
       en: 'Begin with available capacity in protocols, tissue banking, training and a white paper, then scale with funding and partnerships.',
-      es: 'Comenzar con la capacidad disponible en protocolos, bancos de tejidos, formación y un documento marco, y crecer con financiación y alianzas.',
+      es: 'Comenzar con la capacidad disponible en protocolos, bancos de tejidos, formación y un documento marco, y crecer con financiamiento y alianzas.',
     },
   },
   {
@@ -94,14 +94,14 @@ export const PRINCIPLES: { title: Bilingual; body: Bilingual }[] = [
     title: { en: 'Sampling in social context', es: 'Muestreo en contexto social' },
     body: {
       en: 'Include and benefit local and Indigenous communities, and recognise informal naturalists and traditional ecological knowledge.',
-      es: 'Incluir y beneficiar a las comunidades locales e indígenas, y reconocer a los naturalistas informales y el conocimiento ecológico tradicional.',
+      es: 'Incluir y beneficiar a las comunidades locales e indígenas, y reconocer a los naturalistas independientes y el conocimiento ecológico tradicional.',
     },
   },
   {
-    title: { en: 'Cultural implications', es: 'Implicaciones culturales' },
+    title: { en: 'Cultural implications', es: 'Ciencia y cultura' },
     body: {
       en: 'Invite artists and people outside biology to explore what biodiversity genomics means for the region.',
-      es: 'Invitar a artistas y personas ajenas a la biología a explorar qué significa la genómica de la biodiversidad para la región.',
+      es: 'Invitar a artistas y personas de otras disciplinas a explorar qué significa la genómica de la biodiversidad para la región.',
     },
   },
 ];
@@ -180,7 +180,7 @@ export const PROJECTS: Project[] = [
     },
     goal: {
       en: 'Generate chromosome-level genomes across Heliconius. Most species retain 21 chromosomes while some reach as many as 60, giving a system to study why rearrangements occur and how they affect adaptation, speciation, gene loss, and sex-chromosome evolution. The W chromosome carries its own set of questions: where it came from, how W–autosome fusions behave once they happen, whether it is degenerating and at what rate, and which genes are still on it.',
-      es: 'Generar genomas a nivel cromosómico en Heliconius. La mayoría de las especies conserva 21 cromosomas, mientras algunas llegan a 60, lo que ofrece un sistema para estudiar por qué ocurren los reordenamientos y cómo afectan a la adaptación, la especiación, la pérdida de genes y la evolución de los cromosomas sexuales. El cromosoma W plantea sus propias preguntas: de dónde viene, cómo se comportan las fusiones entre el W y los autosomas una vez ocurren, si está degenerando y a qué ritmo, y qué genes siguen en él.',
+      es: 'Generar genomas a escala cromosómica en Heliconius. La mayoría de las especies conserva 21 cromosomas, mientras que algunas llegan a 60. Esto permite estudiar por qué ocurren los reordenamientos y cómo afectan la adaptación, la especiación, la pérdida de genes y la evolución de los cromosomas sexuales. El cromosoma W plantea sus propias preguntas: cuál es su origen, cómo se comportan las fusiones entre el W y los autosomas una vez formadas, si está degenerando y a qué ritmo, y qué genes conserva.',
     },
     resources: {
       en: 'The project already has contributors with samples, genomic data and expertise in analysis, ecology and behaviour.',
@@ -232,11 +232,11 @@ export const PROJECTS: Project[] = [
     leads: 'Karina Brandão, André Freitas, Gilberto Almeida',
     goal: {
       en: 'Assemble a reference genome in Brazil using Nanopore sequencing, and assess genetic diversity in surviving populations of this coastal Brazilian endemic to support its conservation. The species depends on Aristolochia trilobata and is threatened by urbanisation and habitat loss.',
-      es: 'Ensamblar un genoma de referencia en Brasil con secuenciación Nanopore y evaluar la diversidad genética de las poblaciones sobrevivientes de este endemismo costero brasileño para apoyar su conservación. La especie depende de Aristolochia trilobata y está amenazada por la urbanización y la pérdida de hábitat.',
+      es: 'Ensamblar en Brasil un genoma de referencia con secuenciación Nanopore y evaluar la diversidad genética de las poblaciones restantes de esta especie endémica de la costa brasileña. Parides ascanius depende de Aristolochia trilobata y está amenazada por la urbanización y la pérdida de hábitat.',
     },
     resources: {
       en: 'Frozen material and DNA are available, and new field collection is planned.',
-      es: 'Se dispone de material congelado y ADN, y se planea nueva recolección de campo.',
+      es: 'Ya se dispone de material congelado y ADN, y se planea una nueva recolección en campo.',
     },
     openToCollaborators: false,
   },
@@ -245,22 +245,22 @@ export const PROJECTS: Project[] = [
     species: '',
     title: {
       en: 'Population genomic monitoring of soybean pests',
-      es: 'Monitoreo genómico poblacional de plagas de la soya',
+      es: 'Monitoreo genómico de poblaciones de plagas de la soja',
     },
     leads: 'Chris Jiggins, Diogo Cavalcante Cabral de Mello, Alberto Soares Corrêa, Henry North',
     goal: {
       en: 'Study a guild of Brazilian lepidopteran soybean pests relevant to food security, using a collection from roughly 800 sites sampled over five years. Planned work includes reference genomes for five species, population histories for eight, landscape connectivity, associations with climate and crop type, and an amplicon panel for pest and insecticide-resistance monitoring.',
-      es: 'Estudiar un gremio de plagas lepidópteras de la soya en Brasil, relevantes para la seguridad alimentaria, con una colección de unos 800 sitios muestreados durante cinco años. El trabajo previsto incluye genomas de referencia para cinco especies, historias poblacionales para ocho, conectividad del paisaje, asociaciones con el clima y el tipo de cultivo, y un panel de amplicones para el monitoreo de plagas y de resistencia a insecticidas.',
+      es: 'Estudiar un grupo de plagas lepidópteras de la soja relevantes para la seguridad alimentaria en Brasil, a partir de material recolectado durante cinco años en cerca de 800 sitios. El trabajo previsto incluye genomas de referencia para cinco especies, historias poblacionales para ocho, conectividad del paisaje, asociaciones con el clima y el tipo de cultivo, y un panel de amplicones para monitorear las plagas y la resistencia a insecticidas.',
     },
     resources: {
       en: 'Funding exists for several new reference genomes, and the work could expand to other pests.',
-      es: 'Existe financiación para varios genomas de referencia nuevos, y el trabajo podría ampliarse a otras plagas.',
+      es: 'Existe financiamiento para varios genomas de referencia nuevos, y el trabajo podría ampliarse a otras plagas.',
     },
     openToCollaborators: false,
     soyObjectives: [
       {
         en: 'Generate reference genomes for five soybean-associated Lepidoptera species, three of which are already partially sequenced.',
-        es: 'Generar genomas de referencia para cinco especies de lepidópteros asociados a la soya, tres de las cuales ya están parcialmente secuenciadas.',
+        es: 'Generar genomas de referencia para cinco especies de lepidópteros asociados con la soja, tres de las cuales ya están parcialmente secuenciadas.',
       },
       {
         en: 'Study population genomics of eight species, including isolation-by-distance patterns and landscape connectivity.',
@@ -286,7 +286,7 @@ export const PROJECTS: Project[] = [
     leads: 'Vicencio Oostra, Jennifer Stewart, Blanca Huertas, Geoff Gallice',
     goal: {
       en: 'Generate a Latin American reference genome with Oxford Nanopore, potentially using a portable PromethION P2 at Finca Las Piedras in southern Peru. The species may be migratory in southern Peru and possibly Colombia. Analysis and publication should ideally be led by a Latin American researcher.',
-      es: 'Generar un genoma de referencia latinoamericano con Oxford Nanopore, potencialmente con un PromethION P2 portátil en la Finca Las Piedras, en el sur de Perú. La especie podría ser migratoria en el sur de Perú y posiblemente en Colombia. El análisis y la publicación deberían, idealmente, ser liderados por un investigador latinoamericano.',
+      es: 'Generar un genoma de referencia latinoamericano con Oxford Nanopore, posiblemente con un PromethION P2 portátil en la Finca Las Piedras, en el sur de Perú. La especie podría ser migratoria en el sur de Perú y quizá también en Colombia. Sería preferible que un investigador latinoamericano liderara el análisis y la publicación.',
     },
     resources: {
       en: 'The project can draw on existing population genomic data and high-coverage Illumina data from museum holotypes of two subspecies and Panacea procilla.',

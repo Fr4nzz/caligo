@@ -277,7 +277,7 @@ export const PILOTS: readonly Pilot[] = [
     slug: 'heliconius',
     heading: {
       en: 'When chromosomes split, fuse and reshape a lineage',
-      es: 'Cuando los cromosomas se dividen, se fusionan y reordenan un linaje',
+      es: 'Cómo las fisiones y fusiones cromosómicas transforman un linaje',
     },
     hook: {
       en: 'Most Heliconius have 21 chromosomes in each haploid set. Five species in the sapho group have between 21 and 60.',
@@ -286,11 +286,11 @@ export const PILOTS: readonly Pilot[] = [
     taxon: 'Heliconius',
     publishedContext: {
       en: 'Across 210 butterfly and moth genomes, Wright and colleagues reconstructed 32 ancestral chromosomal units that remained largely intact for about 250 million years. Most Heliconius have 21 haploid chromosomes. In five species from the sapho group, repeated chromosome fissions increased that number to as many as 60. Researchers have also identified three independent fusions between autosomes and the female-specific W chromosome. Comparisons among these species can show how chromosome rearrangements alter recombination and sex-chromosome evolution. Existing genomes do not explain why the rearrangements spread.',
-      es: 'A partir de 210 genomas de mariposas y polillas, Wright y sus colegas reconstruyeron 32 unidades cromosómicas ancestrales que se mantuvieron en gran parte intactas durante unos 250 millones de años. La mayoría de las especies de Heliconius tiene 21 cromosomas haploides. En cinco especies del grupo sapho, las fisiones cromosómicas repetidas elevaron ese número hasta 60. Los investigadores también identificaron tres fusiones independientes entre autosomas y el cromosoma W, exclusivo de las hembras. Las comparaciones entre estas especies permiten estudiar cómo los reordenamientos cromosómicos alteran la recombinación y la evolución de los cromosomas sexuales. Los genomas existentes no explican por qué se propagaron los reordenamientos.',
+      es: 'A partir de 210 genomas de mariposas y polillas, Wright y sus colegas reconstruyeron 32 unidades cromosómicas ancestrales que se mantuvieron en gran parte intactas durante unos 250 millones de años. La mayoría de las especies de Heliconius tiene 21 cromosomas haploides. En cinco especies del grupo sapho, las fisiones cromosómicas repetidas aumentaron ese número hasta 60. Los investigadores también identificaron tres fusiones independientes entre autosomas y el cromosoma W, exclusivo de las hembras. Las comparaciones entre estas especies permiten estudiar cómo los reordenamientos cromosómicos alteran la recombinación y la evolución de los cromosomas sexuales. Los genomas disponibles todavía no explican por qué esos reordenamientos se extendieron en las poblaciones.',
     },
     proposedQuestion: {
       en: 'The pilot project would compare chromosome-scale genomes to locate the fissions and fusions and test how they changed gene order and recombination.',
-      es: 'El proyecto piloto compararía genomas a escala cromosómica para localizar las fisiones y fusiones y estudiar cómo cambiaron el orden de los genes y la recombinación.',
+      es: 'El proyecto piloto compararía genomas a escala cromosómica para determinar dónde ocurrieron las fisiones y fusiones y estudiar cómo cambiaron el orden de los genes y la recombinación.',
     },
     evidenceNeeded: {
       en: 'Chromosome-scale assemblies from the focal and closely related species; verified specimens; chromosome counts where available; robust phylogenetic comparisons; and trait, recombination or breeding evidence.',
@@ -302,11 +302,11 @@ export const PILOTS: readonly Pilot[] = [
     },
     limits: {
       en: 'The comparisons cannot show that a rearrangement caused adaptation or speciation without experiments, population data and organismal evidence.',
-      es: 'Las comparaciones no demuestran que un reordenamiento causó adaptación o especiación sin experimentos, datos poblacionales y evidencia del organismo.',
+      es: 'Sin experimentos, datos poblacionales e información sobre los organismos y sus rasgos, las comparaciones no pueden demostrar que un reordenamiento causó adaptación o especiación.',
     },
     closing: {
       en: 'Why did these rearrangements spread, and what did they change for the species that carry them?',
-      es: '¿Por qué se extendieron estos reordenamientos y qué cambiaron para las especies que los llevan?',
+      es: '¿Por qué se extendieron estos reordenamientos y cómo afectaron a las especies que los heredaron?',
     },
     sourceNote: {
       en: 'Published context: Rueda-M et al. 2024; Mackay-Smith et al. 2026. The 2026 paper is a published accepted manuscript and may receive typesetting changes while retaining its DOI.',
@@ -322,7 +322,7 @@ export const PILOTS: readonly Pilot[] = [
     slug: 'parides-ascanius',
     heading: {
       en: 'Can a threatened coastal butterfly stay connected?',
-      es: '¿Puede una mariposa costera amenazada seguir conectada?',
+      es: '¿Pueden seguir conectadas las poblaciones de una mariposa costera amenazada?',
     },
     hook: {
       en: 'Parides ascanius is restricted to coastal restinga and wetlands in south-eastern Brazil, where urbanisation and drainage have reduced its habitat.',
@@ -331,11 +331,11 @@ export const PILOTS: readonly Pilot[] = [
     taxon: 'Parides ascanius',
     publishedContext: {
       en: 'The IUCN assessed Parides ascanius as Vulnerable globally in 2018, while Brazil’s national assessment listed it as Endangered in 2021. A 2016 study used mitochondrial COI sequences and eight microsatellite markers to compare the remaining populations. It found little population structure and inferred substantial migration among most sites. Those results do not show whether the populations remain connected today. Habitat loss and drainage can alter movement before populations become genetically distinct.',
-      es: 'La UICN evaluó a Parides ascanius como Vulnerable a nivel global en 2018, mientras que la evaluación nacional de Brasil la clasificó En Peligro en 2021. Un estudio de 2016 usó secuencias mitocondriales de COI y ocho marcadores microsatélites para comparar las poblaciones restantes. Encontró poca estructura poblacional e infirió una migración considerable entre la mayoría de los sitios. Esos resultados no muestran si las poblaciones siguen conectadas hoy. La pérdida de hábitat y el drenaje pueden alterar el movimiento antes de que las poblaciones se diferencien genéticamente.',
+      es: 'La UICN evaluó a Parides ascanius como Vulnerable a nivel global en 2018, mientras que la evaluación nacional de Brasil la clasificó En Peligro en 2021. Un estudio de 2016 usó secuencias mitocondriales de COI y ocho marcadores microsatélites para comparar las poblaciones restantes. Encontró poca estructura poblacional e infirió una migración considerable entre la mayoría de las poblaciones estudiadas. Esos resultados no muestran si las poblaciones siguen conectadas hoy. La pérdida de hábitat y el drenaje pueden interrumpir la conectividad antes de que las poblaciones acumulen diferencias genéticas detectables.',
     },
     proposedQuestion: {
       en: 'The pilot project would build a reference genome from a documented specimen and compare newly sampled populations with the 2016 results. This would test whether gene flow or genetic diversity has changed.',
-      es: 'El proyecto piloto construiría un genoma de referencia a partir de un ejemplar documentado y compararía nuevas muestras poblacionales con los resultados de 2016. Así se podría evaluar si cambiaron el flujo génico o la diversidad genética.',
+      es: 'El proyecto piloto construiría un genoma de referencia a partir de un ejemplar documentado y compararía nuevas muestras de las poblaciones con los resultados de 2016. Así se podría evaluar si cambiaron el flujo génico o la diversidad genética.',
     },
     evidenceNeeded: {
       en: 'A documented reference specimen; appropriately permitted samples from a planned, non-public set of populations; habitat and time metadata; and analyses designed to compare current structure with earlier results.',
@@ -351,7 +351,7 @@ export const PILOTS: readonly Pilot[] = [
     },
     closing: {
       en: 'Do the populations sampled in 2016 still exchange individuals across today’s coast?',
-      es: '¿Las poblaciones muestreadas en 2016 todavía intercambian individuos en la costa actual?',
+      es: '¿Las poblaciones estudiadas en 2016 todavía intercambian individuos a lo largo de la costa?',
     },
     sourceNote: {
       en: 'Published context: Seraphim et al. 2016; IUCN global assessment 2018; ICMBio national assessment 2021. Sensitive localities remain omitted.',
@@ -367,32 +367,32 @@ export const PILOTS: readonly Pilot[] = [
     slug: 'soybean-lepidoptera',
     heading: {
       en: 'Following movement and resistance across soybean landscapes',
-      es: 'Seguir el movimiento y la resistencia en paisajes sojeros',
+      es: 'Movimiento y resistencia en los paisajes sojeros',
     },
     hook: {
       en: 'Several similar-looking moth species occur in Brazilian soybean fields. Monitoring their movement or insecticide resistance begins with knowing which species was collected.',
-      es: 'Varias especies de polillas de aspecto parecido aparecen en los cultivos de soja de Brasil. Para monitorear su movimiento o su resistencia a insecticidas, primero hay que saber qué especie se recolectó.',
+      es: 'En los cultivos de soja de Brasil se encuentran varias especies de polillas difíciles de distinguir a simple vista. Para monitorear su movimiento o resistencia a insecticidas, primero hay que saber qué especie se recolectó.',
     },
     taxon: '',
     publishedContext: {
       en: 'Brazilian studies have found closely related species confused during monitoring. They have also detected changes in susceptibility to insecticidal proteins that require repeated, species-specific testing. Genomic data can distinguish the species, compare movement among populations and identify variants associated with resistance. Field trials, agronomy and growers’ observations are still needed to choose a management response.',
-      es: 'Estudios realizados en Brasil han encontrado especies cercanas confundidas durante el monitoreo. También han detectado cambios en la susceptibilidad a proteínas insecticidas que requieren pruebas repetidas y específicas para cada especie. Los datos genómicos permiten distinguir las especies, comparar el movimiento entre poblaciones e identificar variantes asociadas con la resistencia. Todavía se necesitan ensayos de campo, agronomía y observaciones de los productores para elegir una respuesta de manejo.',
+      es: 'Estudios realizados en Brasil han mostrado que algunas especies cercanas pueden confundirse durante el monitoreo. También han detectado cambios en la susceptibilidad a proteínas insecticidas que requieren pruebas repetidas y específicas para cada especie. Los datos genómicos permiten distinguir las especies, comparar el movimiento entre poblaciones e identificar variantes asociadas con la resistencia. Todavía se necesitan ensayos de campo, conocimientos agronómicos y observaciones de los productores para elegir una respuesta de manejo.',
     },
     proposedQuestion: {
       en: 'The pilot project would identify the species in existing collections, compare their movement across agricultural regions and test which resistance markers are reliable enough for monitoring.',
-      es: 'El proyecto piloto identificaría las especies en las colecciones existentes, compararía su movimiento entre regiones agrícolas y evaluaría qué marcadores de resistencia son suficientemente confiables para el monitoreo.',
+      es: 'El proyecto piloto identificaría las especies en las colecciones existentes, compararía su movimiento entre regiones agrícolas y evaluaría qué marcadores de resistencia son lo bastante confiables para el monitoreo.',
     },
     evidenceNeeded: {
       en: 'Confirmed species identifications; documented reference specimens; repeated and geographically designed population sampling; resistance phenotypes or bioassays; crop and management context; and validated marker panels.',
-      es: 'Identificaciones de especie confirmadas; ejemplares de referencia documentados; muestreo poblacional repetido y diseñado geográficamente; fenotipos o bioensayos de resistencia; contexto de cultivo y manejo; y paneles de marcadores validados.',
+      es: 'Identificación confirmada de cada especie; ejemplares de referencia documentados; muestreo poblacional repetido y diseñado geográficamente; fenotipos o bioensayos de resistencia; contexto de cultivo y manejo; y paneles de marcadores validados.',
     },
     genomesCan: {
       en: 'Improve identification, reveal population structure and movement, locate candidate resistance-associated variation and support the design of monitoring markers.',
-      es: 'Mejorar la identificación, revelar estructura y movimiento poblacional, localizar variación candidata asociada con resistencia y apoyar el diseño de marcadores de monitoreo.',
+      es: 'Mejorar la identificación, describir la estructura de las poblaciones y sus desplazamientos, localizar variantes posiblemente asociadas con la resistencia y apoyar el diseño de marcadores de monitoreo.',
     },
     limits: {
       en: 'Genomes cannot determine crop damage, prove that a variant causes resistance or choose a management response without field, experimental, agronomic and socioeconomic evidence.',
-      es: 'Los genomas no determinan el daño al cultivo, no prueban que una variante cause resistencia ni eligen una respuesta de manejo sin evidencia de campo, experimental, agronómica y socioeconómica.',
+      es: 'Los genomas no determinan el daño al cultivo, no prueban que una variante cause resistencia ni permiten elegir una respuesta de manejo sin datos de campo, experimentos, criterios agronómicos e información socioeconómica.',
     },
     closing: {
       en: 'Which markers are reliable enough that a monitoring result can change a management decision?',
@@ -412,20 +412,20 @@ export const PILOTS: readonly Pilot[] = [
     slug: 'panacea-prola',
     heading: {
       en: 'Where does a seasonal wave of Panacea prola begin and end?',
-      es: '¿Dónde empieza y termina una oleada estacional de Panacea prola?',
+      es: '¿De dónde viene y hasta dónde llega la oleada estacional de Panacea prola?',
     },
     hook: {
       en: 'In south-eastern Peru, thousands of Panacea prola have been observed flying north-east during the same season.',
-      es: 'En el sureste de Perú se han observado miles de Panacea prola volando hacia el noreste durante la misma temporada.',
+      es: 'En el sureste de Perú se han observado miles de Panacea prola volando hacia el noreste durante una misma temporada.',
     },
     taxon: 'Panacea prola',
     publishedContext: {
       en: 'In 2020, Gallice and colleagues recorded 2,509 Panacea prola during fifty one-hour observations in south-eastern Peru. Only 19 flew in another direction. The authors presented this as the first evidence of an Amazonian insect migration. Pham and colleagues published the first Biblidinae reference genome, for Batesia hypochlora, in 2026. It provides the closest genomic reference for Panacea but cannot explain where the moving butterflies came from, whether they belonged to one or several populations or whether the movement repeats each year.',
-      es: 'En 2020, Gallice y sus colegas registraron 2.509 individuos de Panacea prola durante cincuenta observaciones de una hora en el sureste de Perú. Solo 19 volaron en otra dirección. Los autores presentaron el hallazgo como la primera evidencia de una migración de insectos amazónica. Pham y sus colegas publicaron en 2026 el primer genoma de referencia de Biblidinae, correspondiente a Batesia hypochlora. Es la referencia genómica más cercana para Panacea, pero no explica de dónde vinieron las mariposas en movimiento, si pertenecían a una o varias poblaciones ni si el movimiento se repite cada año.',
+      es: 'En 2020, Gallice y sus colegas registraron 2.509 individuos de Panacea prola durante cincuenta observaciones de una hora en el sureste de Perú. Solo 19 volaron en otra dirección. Los autores presentaron el hallazgo como la primera evidencia de una migración de insectos en la Amazonía. Pham y sus colegas publicaron en 2026 el primer genoma de referencia de una especie de Biblidinae: Batesia hypochlora. Es la referencia genómica más cercana para Panacea, pero no explica de dónde procedían esas mariposas, si pertenecían a una o varias poblaciones ni si el movimiento se repite cada año.',
     },
     proposedQuestion: {
       en: 'The pilot project would compare samples collected in different places and seasons. The analysis would test where the moving butterflies came from, whether they belonged to one or several populations and whether the same movement occurs in different years.',
-      es: 'El proyecto piloto compararía muestras recolectadas en distintos lugares y temporadas. El análisis evaluaría de dónde vinieron las mariposas en movimiento, si pertenecían a una o varias poblaciones y si el mismo movimiento ocurre en años diferentes.',
+      es: 'El proyecto piloto compararía muestras recolectadas en distintos lugares y temporadas. El análisis permitiría determinar de dónde procedían esas mariposas, si pertenecían a una o varias poblaciones y si el mismo movimiento ocurre en años diferentes.',
     },
     evidenceNeeded: {
       en: 'A verified reference specimen; repeated, responsibly permitted sampling across seasons and broad regions; environmental and host-plant context; and independent movement evidence such as observations, tracking or stable isotopes.',
@@ -433,11 +433,11 @@ export const PILOTS: readonly Pilot[] = [
     },
     genomesCan: {
       en: 'Compare ancestry among sampled groups, estimate connectivity and test whether moving aggregations draw from one or several populations.',
-      es: 'Comparar ascendencia entre grupos muestreados, estimar conectividad y probar si las agregaciones en movimiento reúnen una o varias poblaciones.',
+      es: 'Comparar la ascendencia de los grupos muestreados, estimar su conectividad y probar si los grupos observados en vuelo reúnen una o varias poblaciones.',
     },
     limits: {
       en: 'Genomes cannot reconstruct individual flight paths, identify the environmental trigger or define the full geographic range of the phenomenon by themselves.',
-      es: 'Los genomas no reconstruyen trayectorias individuales de vuelo, no identifican el disparador ambiental ni definen por sí solos el alcance geográfico completo del fenómeno.',
+      es: 'Los genomas no reconstruyen trayectorias individuales de vuelo, no identifican el factor ambiental que desencadena el movimiento ni definen por sí solos el alcance geográfico completo del fenómeno.',
     },
     closing: {
       en: 'Did the butterflies in that wave come from one population or from several?',
@@ -481,7 +481,7 @@ export const MEDIA: readonly Media[] = [
     ],
     alt: {
       en: 'Close-up of a Caligo owl butterfly photographed at night near Tambopata Research Centre, Peru. The large round compound eye sits at the centre of the frame; wing scale patterns fill the left side.',
-      es: 'Primer plano de una mariposa búho del género Caligo, fotografiada de noche cerca del Centro de Investigación de Tambopata, Perú. El gran ojo compuesto redondo ocupa el centro; los patrones de escamas del ala llenan la parte izquierda.',
+      es: 'Primer plano de una mariposa búho del género Caligo, fotografiada de noche cerca del Centro de Investigación de Tambopata, Perú. El gran ojo compuesto ocupa el centro y los patrones formados por las escamas del ala llenan el lado izquierdo.',
     },
     caption: {
       en: 'Caligo sp., near Tambopata Research Centre, Peru. The bright round feature is the butterfly’s compound eye.',
@@ -590,7 +590,7 @@ export const MODULES: readonly MediaModule[] = [
         },
         caption: {
           en: 'Heliconius erato, a longwing butterfly from the Neotropics.',
-          es: 'Heliconius erato, una mariposa longwing del Neotrópico.',
+          es: 'Heliconius erato, una mariposa neotropical de alas largas.',
         },
         credit: {
           en: 'Photograph: Philipp Weigell / Wikimedia Commons.',
@@ -626,7 +626,7 @@ export const MODULES: readonly MediaModule[] = [
         },
         caption: {
           en: 'A living Parides ascanius resting on vegetation during a field observation in Brazil. Its precise locality is omitted because this threatened species requires sensitive-location handling.',
-          es: 'Un Parides ascanius vivo posado sobre vegetación durante una observación de campo en Brasil. Se omite la localidad precisa porque esta especie amenazada requiere un manejo sensible de la ubicación.',
+          es: 'Un Parides ascanius vivo posado sobre vegetación durante una observación de campo en Brasil. Se omite la localidad precisa para proteger a esta especie amenazada.',
         },
         credit: {
           en: 'Photograph: Lucas Lopes / iNaturalist, CC BY 4.0. Field-observation record indexed by GBIF.',
@@ -657,7 +657,7 @@ export const MODULES: readonly MediaModule[] = [
         },
         caption: {
           en: 'A soybean field in Novo Barreiro, Rio Grande do Sul, Brazil. The proposed pilot project follows lepidopteran populations across Brazilian soybean landscapes.',
-          es: 'Un campo de soja en Novo Barreiro, Rio Grande do Sul, Brasil. El proyecto piloto propuesto sigue poblaciones de lepidópteros en paisajes sojeros de Brasil.',
+          es: 'Un campo de soja en Novo Barreiro, Rio Grande do Sul, Brasil. El proyecto piloto estudiaría poblaciones de lepidópteros en los paisajes sojeros del país.',
         },
         credit: {
           en: 'Photograph: Lucas Friederich / Wikimedia Commons.',
@@ -749,11 +749,11 @@ export const MODULES: readonly MediaModule[] = [
         changes: ['downloaded from Wikimedia Commons; no re-encode or crop applied locally'],
         alt: {
           en: 'A close-up of specimen labels stacked in canonical order beneath a pinned butterfly, showing collector, locality, date, and determinavit lines.',
-          es: 'Primer plano de etiquetas de espécimen apiladas en orden canónico bajo una mariposa alfilerada, mostrando líneas de colector, localidad, fecha y determinavit.',
+          es: 'Primer plano de las etiquetas apiladas bajo una mariposa montada con alfileres. Las etiquetas registran el colector, la localidad, la fecha y la identificación taxonómica.',
         },
         caption: {
           en: 'Voucher labels preserve collector, locality, date and identification details in a standard order. This is the documentary record a reusable genomic reference needs.',
-          es: 'Las etiquetas de voucher conservan los datos de colector, localidad, fecha e identificación en un orden estándar. Este es el registro documental que necesita una referencia genómica reutilizable.',
+          es: 'Las etiquetas del ejemplar conservan los datos del colector, la localidad, la fecha y la identificación. Ese registro permite comprobar el origen del material secuenciado y volver a examinar el ejemplar.',
         },
         credit: {
           en: 'Photograph: Kristy Hoath / Museums Victoria Collections / Wikimedia Commons.',
@@ -788,7 +788,7 @@ export const MODULES: readonly MediaModule[] = [
         ],
         alt: {
           en: 'Close-up of a Caligo owl butterfly photographed at night. The large round compound eye sits at the centre of the frame; wing scale patterns fill the left side.',
-          es: 'Primer plano de una mariposa búho del género Caligo, fotografiada de noche. El gran ojo compuesto redondo ocupa el centro; los patrones de escamas del ala llenan la parte izquierda.',
+          es: 'Primer plano de una mariposa búho del género Caligo, fotografiada de noche. El gran ojo compuesto ocupa el centro y los patrones formados por las escamas del ala llenan el lado izquierdo.',
         },
         caption: {
           en: 'Caligo sp., near Tambopata Research Centre, Peru. The bright round feature is the butterfly’s compound eye.',

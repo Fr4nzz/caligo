@@ -71,7 +71,7 @@ export const LEADERS: Person[] = [
     },
     bio: {
       en: 'Her research examines the diversity, genetics, physiology, ecology and behaviour of Neotropical butterflies, alongside broader work in entomology and insect monitoring.',
-      es: 'Su investigación estudia la diversidad, genética, fisiología, ecología y conducta de las mariposas neotropicales, junto con temas más amplios de entomología y monitoreo de insectos.',
+      es: 'Gyanpriya estudia la diversidad, la genética, la fisiología, la ecología y la conducta de las mariposas neotropicales, además de otros temas de entomología y monitoreo de insectos.',
     },
     affiliation: 'University of Guyana',
     regionalTies: { en: 'Guyana', es: 'Guyana' },
@@ -196,7 +196,7 @@ export const EVENTS: InitiativeEvent[] = [
     },
     summary: {
       en: 'First initiative activity in Latin America; sequencing of the first four Heliconius species.',
-      es: 'Primera actividad de la iniciativa en América Latina; secuenciación de las primeras cuatro especies de Heliconius.',
+      es: 'Primera actividad de la iniciativa en América Latina. Durante el taller se secuenciaron las primeras cuatro especies de Heliconius.',
     },
   },
   {
@@ -215,7 +215,7 @@ export const EVENTS: InitiativeEvent[] = [
     },
     summary: {
       en: 'Hackathon at the Neotropical Lepidoptera / Biology of Butterflies congress; dates to be confirmed.',
-      es: 'Hackathon en el congreso Lepidópteros Neotropicales / Biología de las Mariposas; fechas por confirmar.',
+      es: 'Hackathon durante el congreso Lepidópteros Neotropicales / Biología de las Mariposas. Las fechas están por confirmar.',
     },
   },
 ];

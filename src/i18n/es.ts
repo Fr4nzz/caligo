@@ -31,16 +31,16 @@ export const es: Dict = {
   },
   "status": {
     "publishedEvidence": "Evidencia publicada",
-    "databaseSnapshot": "Consulta fechada de base de datos",
+    "databaseSnapshot": "Consulta de base de datos con fecha",
     "proposedCaligoWork": "Proyecto piloto propuesto",
     "proposedPilot": "Proyecto piloto propuesto",
     "preprint": "Preprint",
     "externalContext": "Contexto externo relacionado"
   },
   "mediaViewer": {
-    "previousImage": "Visual anterior",
-    "nextImage": "Visual siguiente",
-    "imageOfLabel": "Visual {n} de {total}",
+    "previousImage": "Imagen anterior",
+    "nextImage": "Imagen siguiente",
+    "imageOfLabel": "Imagen {n} de {total}",
     "documentaryType": "Imagen documental",
     "aiConceptType": "Ilustración conceptual",
     "codeNativeType": "Gráfico explicativo",
@@ -79,7 +79,7 @@ export const es: Dict = {
   },
   "join": {
     "title": "Únete a la red",
-    "body": "El formulario de inscripción pregunta por tu país, institución, grupos taxonómicos de interés y tu experiencia con genomas o secuenciación. Toma unos minutos y está abierto.",
+    "body": "El formulario de inscripción pregunta por tu país, institución, grupos taxonómicos de interés y experiencia en genómica o secuenciación. Completarlo toma pocos minutos.",
     "cta": "Abrir el formulario de inscripción",
     "privacyNote": "Las respuestas se recopilan mediante Google Forms y llegan al equipo organizador de Caligo.",
     "ctaSecondary": "Únete a la red"
@@ -89,12 +89,12 @@ export const es: Dict = {
     "metaDescription": "Un esfuerzo liderado desde América Latina que desarrolla genomas de referencia vinculados a ejemplares documentados de mariposas y polillas neotropicales.",
     "hero": {
       "kicker": "Genómica liderada desde América Latina",
-      "title": "El Neotrópico es rico en especies, pero aún tiene pocos genomas de referencia.",
-      "body": "Caligo conecta a investigadores, colecciones e instalaciones de secuenciación para cambiarlo."
+      "title": "El Neotrópico alberga una enorme diversidad de especies, pero aún tiene pocos genomas de referencia.",
+      "body": "Caligo reúne a investigadores, colecciones e instalaciones de secuenciación para cubrir ese vacío."
     },
     "questions": {
-      "heading": "Cuatro preguntas que la evidencia genética puede ayudar a responder",
-      "intro": "Cada descubrimiento cambia lo que podemos preguntar después."
+      "heading": "Cuatro preguntas que la genética puede ayudar a responder",
+      "intro": "Cada hallazgo abre nuevas preguntas."
     },
     "pilotsTeaser": {
       "heading": "Cuatro proyectos piloto propuestos",
@@ -102,19 +102,19 @@ export const es: Dict = {
     },
     "intro": {
       "eyebrow": "Por qué mariposas y polillas",
-      "title": "Una fauna rica en preguntas genómicas todavía abiertas",
+      "title": "Una fauna diversa, muchas preguntas genómicas por responder",
       "body": [
-        "Las mariposas permiten ver el cambio evolutivo con una claridad poco común. Los patrones alares pueden mantener barreras reproductivas. El ADN heredado de otro linaje puede contribuir a formar una especie híbrida, y el número de cromosomas puede cambiar mucho entre especies cercanas.",
-        "Todavía faltan genomas de referencia para gran parte de la diversidad de lepidópteros neotropicales. Caligo vincula cada ensamblaje a un ejemplar documentado para que sea posible comprobar qué organismo se secuenció y de dónde provino."
+        "Las mariposas permiten observar la evolución con una claridad poco común. Los patrones de color de sus alas pueden mantener barreras reproductivas. El ADN heredado de otro linaje puede contribuir al origen de una especie híbrida, y el número de cromosomas puede cambiar drásticamente entre especies cercanas.",
+        "Gran parte de la diversidad de lepidópteros neotropicales todavía carece de genomas de referencia. En Caligo, cada ensamblaje queda vinculado a un ejemplar documentado. Así se puede comprobar qué organismo fue secuenciado y cuál es su procedencia."
       ]
     },
     "pillars": {
       "eyebrow": "Cómo se orienta el trabajo",
-      "title": "Principios rectores para una genómica regional"
+      "title": "Principios para una genómica hecha desde la región"
     },
     "closing": {
-      "title": "Trae una pregunta, un organismo o una perspectiva",
-      "body": "Puedes aportar ejemplares, capacidad de secuenciación, conocimiento taxonómico o una pregunta de investigación. Escríbenos por correo o únete a la conversación en Discord."
+      "title": "Súmate con una pregunta, un organismo o una perspectiva",
+      "body": "Puedes aportar ejemplares, capacidad de secuenciación, experiencia taxonómica o una pregunta de investigación. Escríbenos por correo o únete a la conversación en Discord."
     },
     "stats": {
       "participants": "participantes",
@@ -127,9 +127,9 @@ export const es: Dict = {
   "science": {
     "metaTitle": "Ciencia | Caligo",
     "metaDescription": "Lo que la evidencia genética de mariposas y polillas neotropicales revela sobre cromosomas, especies híbridas, líneas de base para la conservación y colecciones de museo.",
-    "title": "Cuatro preguntas que la evidencia genética puede ayudar a responder",
-    "intro": "Un marcador genético corto permite comparar poblaciones. Cientos de genes capturados pueden ubicar un ejemplar antiguo de museo en un árbol filogenético. Un ensamblaje a escala cromosómica permite ver dónde se partieron o fusionaron los cromosomas. Los cuatro estudios siguientes explican qué resolvió cada conjunto de datos y qué preguntas todavía requieren ejemplares, trabajo de campo o experimentos.",
-    "questionsHeading": "Cuatro preguntas que la evidencia genética puede ayudar a responder",
+    "title": "Cuatro preguntas que la genética puede ayudar a responder",
+    "intro": "Un marcador genético corto permite comparar poblaciones. Cientos de genes recuperados de un ejemplar antiguo de museo pueden ubicarlo en un árbol filogenético. Un ensamblaje a escala cromosómica permite identificar fisiones y fusiones. Los cuatro estudios siguientes muestran qué resolvió cada tipo de dato y qué preguntas aún exigen nuevos ejemplares, trabajo de campo o experimentos.",
+    "questionsHeading": "Cuatro preguntas que la genética puede ayudar a responder",
     "chromosomeFigure": {
       "src": "media/figures-published/rueda-2024-fig1-chromosome-counts.jpg",
       "citation": "Rueda-M et al. 2024, PLOS Genetics, Fig 1",
@@ -139,7 +139,7 @@ export const es: Dict = {
       "width": 1600,
       "height": 1187,
       "alt": "Filogenia del clado sara/sapho de Heliconius. Las cajas grises dan los conteos de cromosomas haploides a lo largo del árbol, de 21 a 56–60. Tres flechas punteadas señalan fusiones independientes entre el cromosoma W y un autosoma, rotuladas W+4, W+9 y W+14. A la derecha aparecen mapas de distribución y fotografías de las alas de cada subespecie.",
-      "caption": "La evidencia publicada detrás de esta sección. Fíjate en las cajas grises: los conteos de cromosomas haploides van de 21 en la mayor parte del clado a entre 56 y 60 en los linajes sapho y eleuchia. Las tres flechas punteadas marcan las ocasiones independientes en que un autosoma se fusionó con el W."
+      "caption": "Esta figura resume la evidencia que sustenta la sección. Los recuadros grises muestran que el número de cromosomas haploides va de 21 en la mayor parte del clado a entre 56 y 60 en los linajes sapho y eleuchia. Las tres flechas punteadas marcan las fusiones independientes entre un autosoma y el cromosoma W."
     },
     "hybridOriginFigure": {
       "src": "media/figures-published/rosser-2024-fig1e-hybrid-origin.png",
@@ -155,49 +155,49 @@ export const es: Dict = {
     },
     "questions": [
       {
-        "heading": "¿Por qué pueden dividirse los cromosomas de las mariposas y qué cambia cuando se fusiona el W?",
+        "heading": "¿Cómo pueden dividirse los cromosomas de una mariposa y qué ocurre cuando el W se fusiona con un autosoma?",
         "answer": [
-          "El número de cromosomas se mantiene estable durante millones de años en muchos linajes animales. Algunas mariposas y polillas son distintas. La mayoría de las especies de Heliconius tiene 21 cromosomas en el juego haploide, pero cinco especies del grupo sapho tienen entre 21 y 60 después de fisiones repetidas.",
-          "Los cromosomas de los lepidópteros son holocéntricos. Durante la división celular, la maquinaria que los mueve puede unirse a lo largo de gran parte del cromosoma en vez de hacerlo en un centrómero localizado. Por eso, un fragmento roto puede conservar la maquinaria necesaria para pasar a una célula hija. Esto puede ayudar a que las fisiones cromosómicas persistan, pero no explica por qué se propagan en una población.",
-          "En el grupo sapho de Heliconius, los estudios genómicos identificaron tres eventos de fusión entre el cromosoma W y autosomas. El W se fusionó con el cromosoma 4 en el ancestro común del grupo, seguido por fusiones independientes con los cromosomas 9 y 14 en dos linajes descendientes."
+          "El número de cromosomas se mantiene estable durante millones de años en muchos linajes animales. En algunas mariposas y polillas ocurre algo distinto. La mayoría de las especies de Heliconius tiene 21 cromosomas en el juego haploide, pero cinco especies del grupo sapho tienen entre 21 y 60 después de fisiones repetidas.",
+          "Los cromosomas de los lepidópteros son holocéntricos. Durante la división celular, la maquinaria que separa los cromosomas puede unirse a gran parte de su longitud, en lugar de hacerlo en un único centrómero. Por eso, un fragmento roto puede conservar esa maquinaria y pasar a una célula hija. Esto puede ayudar a que las fisiones cromosómicas persistan, pero no explica por qué se propagan en una población.",
+          "En el grupo sapho de Heliconius, los estudios genómicos identificaron tres fusiones entre el cromosoma W y autosomas. El W se fusionó con el cromosoma 4 en el ancestro común del grupo. Más tarde ocurrieron dos fusiones independientes, una con el cromosoma 9 y otra con el cromosoma 14, en dos linajes descendientes."
         ]
       },
       {
         "heading": "¿Cómo ayudó cerca del 1 % de un genoma a formar una especie híbrida?",
         "answer": [
-          "El flujo génico es el movimiento de variantes heredadas entre poblaciones a través de la reproducción. Cuando la hibridación va seguida de generaciones de retrocruzamiento, parte del ADN de un linaje puede quedar de forma permanente en otro. La biología llama a eso introgresión.",
-          "Heliconius elevatus se formó mediante hibridación y ha persistido como un linaje distinto durante al menos 180.000 años. El flujo génico continuo con H. pardalinus mantiene cerca del 99 % de sus genomas similares. Cerca del 1 % del genoma de H. elevatus provino de H. melpomene. Estas regiones están distribuidas en varios cromosomas y se asocian con el patrón de color, la forma del ala, la preferencia de planta hospedera y las feromonas sexuales.",
-          "Las comparaciones genómicas localizaron las regiones heredadas de H. melpomene. El mapeo de rasgos, los experimentos de cruzamiento y las observaciones de campo conectaron después esas regiones con diferencias entre las especies."
+          "El flujo génico es el movimiento de variantes heredadas entre poblaciones a través de la reproducción. Cuando la hibridación va seguida de generaciones de retrocruzamiento, parte del ADN de un linaje puede quedar de forma permanente en otro. Este proceso se conoce como introgresión.",
+          "Heliconius elevatus se formó mediante hibridación y ha persistido como un linaje distinto durante al menos 180.000 años. El flujo génico continuo con H. pardalinus hace que cerca del 99 % de ambos genomas siga siendo muy similar. Cerca del 1 % del genoma de H. elevatus provino de H. melpomene. Estas regiones están distribuidas en varios cromosomas y se asocian con el patrón de color, la forma del ala, la preferencia de planta hospedera y las feromonas sexuales.",
+          "Las comparaciones genómicas permitieron localizar las regiones heredadas de H. melpomene. El mapeo de rasgos, los cruzamientos y las observaciones de campo permitieron relacionarlas con diferencias entre las especies."
         ]
       },
       {
-        "heading": "¿Sigue vigente una línea de base para la conservación medida hace una década?",
+        "heading": "¿Siguen conectadas las poblaciones estudiadas hace una década?",
         "answer": [
           "Parides ascanius está restringida a restingas costeras y humedales del sureste de Brasil. La UICN la evaluó como Vulnerable a nivel global en 2018. La evaluación nacional de Brasil la clasificó En Peligro en 2021.",
-          "Seraphim y sus colegas compararon las poblaciones supervivientes mediante secuencias mitocondriales de COI y ocho marcadores microsatélites. El estudio de 2016 encontró poca estructura genética, ninguna señal de endogamia y una migración alta entre la mayoría de los sitios muestreados, aunque una población estaba más aislada por la matriz metropolitana.",
-          "El resultado de 2016 ofrece una línea de base, pero no muestra si las poblaciones siguen conectadas hoy. Un genoma de referencia a escala cromosómica y un nuevo muestreo poblacional permitirían medir cuánta diversidad queda y si la pérdida de hábitat, el drenaje o la fragmentación han interrumpido el flujo génico. Las localidades precisas deben mantenerse fuera de la comunicación pública."
+          "Seraphim y sus colegas compararon las poblaciones supervivientes mediante secuencias mitocondriales de COI y ocho marcadores microsatélites. El estudio de 2016 encontró poca estructura genética, ninguna señal de endogamia y una migración alta entre la mayoría de los sitios muestreados, aunque una población estaba más aislada por el entorno metropolitano.",
+          "El resultado de 2016 ofrece una línea de base, pero no muestra si las poblaciones siguen conectadas hoy. Un genoma de referencia a escala cromosómica y nuevas muestras de sus poblaciones permitirían medir cuánta diversidad queda y si la pérdida de hábitat, el drenaje o la fragmentación han interrumpido el flujo génico. Las localidades precisas deben mantenerse fuera de la comunicación pública."
         ]
       },
       {
-        "heading": "¿Puede un ejemplar de museo de hace un siglo cambiar el árbol familiar de las polillas?",
+        "heading": "¿Puede un ejemplar de museo de hace un siglo cambiar el árbol evolutivo de una familia de polillas?",
         "answer": [
-          "Las colecciones de historia natural conservan especies que quizá sean difíciles de recolectar de nuevo, pero la edad y el almacenamiento fragmentan su ADN. La captura dirigida puede recuperar cientos de genes seleccionados de esos fragmentos.",
-          "St Laurent y sus colegas recuperaron en promedio más de 400 de 515 loci objetivo de 19 ejemplares secos de museo. Junto con material reciente, esas secuencias representaron 47 especies y 32 de los 36 géneros reconocidos de Mimallonidae, y respaldaron una clasificación revisada con seis subfamilias, ocho tribus y tres géneros recién descritos.",
-          "Mayer y sus colegas aplicaron después el método a 37 mariposas y polillas montadas, recolectadas entre 1892 y 2017, y recuperaron cientos o miles de loci nucleares. Estas secuencias permiten ubicar un ejemplar de museo en un árbol evolutivo y ayudan a revisar su clasificación. Como abarcan genes seleccionados y no el genoma completo, no muestran la estructura de los cromosomas, el orden de los genes ni los grandes reordenamientos. Un genoma de referencia a escala cromosómica obtenido de material fresco o bien preservado aportaría esa información complementaria."
+          "Las colecciones de historia natural conservan especies que hoy sería difícil volver a recolectar, pero la edad y el almacenamiento fragmentan su ADN. La captura dirigida puede recuperar cientos de genes seleccionados de esos fragmentos.",
+          "St Laurent y sus colegas recuperaron en promedio más de 400 de 515 loci objetivo de 19 ejemplares de museo conservados en seco. Junto con material reciente, esas secuencias representaron 47 especies y 32 de los 36 géneros reconocidos de Mimallonidae, y respaldaron una clasificación revisada con seis subfamilias, ocho tribus y tres géneros recién descritos.",
+          "Mayer y sus colegas aplicaron después el método a 37 mariposas y polillas montadas, recolectadas entre 1892 y 2017, y recuperaron cientos o miles de loci nucleares. Estas secuencias permiten ubicar un ejemplar de museo en un árbol evolutivo y ayudan a revisar su clasificación. Como abarcan genes seleccionados y no el genoma completo, no muestran la estructura de los cromosomas, el orden de los genes ni los grandes reordenamientos. Un genoma de referencia a escala cromosómica obtenido de material fresco o bien conservado aportaría esa información complementaria."
         ]
       }
     ],
     "evidence": {
       "heading": "Qué puede mostrar cada tipo de evidencia genética",
       "body": [
-        "Los códigos de barras de ADN ayudan a identificar ejemplares y comparar especies cercanas. Los datos de todo el genoma obtenidos de muchos individuos permiten estimar la diversidad genética, la estructura poblacional, el flujo génico y la endogamia. Un genoma de referencia a escala cromosómica muestra cómo se organiza el ADN en cromosomas, incluidos el orden de los genes, las fusiones, las fisiones y otros cambios estructurales.",
-        "Estos conjuntos de datos requieren muestras, equipos y análisis distintos, y responden preguntas biológicas diferentes."
+        "Los códigos de barras de ADN ayudan a identificar ejemplares y comparar especies cercanas. Los datos genómicos de muchos individuos permiten estimar la diversidad genética, la estructura poblacional, el flujo génico y la endogamia. Un genoma de referencia a escala cromosómica muestra cómo se organiza el ADN y permite estudiar el orden de los genes, las fusiones, las fisiones y otros cambios estructurales.",
+        "Cada tipo de dato requiere muestras, equipos y análisis propios, y responde preguntas biológicas diferentes."
       ]
     },
     "ethics": {
       "heading": "Planificar un muestreo responsable",
       "body": [
-        "Los planes de muestreo necesitan permisos, registros de ejemplares, acuerdos sobre cómo se compartirán los resultados, la formación y otros beneficios, y un plan para gestionar los datos. Los requisitos cambian entre países, por lo que los colaboradores locales deben participar desde el inicio."
+        "Todo plan de muestreo debe definir desde el inicio los permisos, el registro de los ejemplares, la gestión de los datos y la forma de compartir los resultados, la formación y otros beneficios. Como los requisitos varían entre países, la participación de colaboradores locales es indispensable desde el comienzo."
       ]
     }
   },
@@ -205,9 +205,9 @@ export const es: Dict = {
     "metaTitle": "Proyectos piloto propuestos | Caligo",
     "metaDescription": "Cuatro investigaciones propuestas que conectan evolución cromosómica, conectividad de poblaciones amenazadas, agricultura sostenible y movimiento estacional con evidencia genómica documentada.",
     "title": "Proyectos piloto propuestos",
-    "opening": "Estos cuatro proyectos piloto retoman preguntas que los estudios anteriores dejaron abiertas. Cada uno plantea qué podrían revelar nuevas muestras y datos genómicos.",
+    "opening": "Estos cuatro proyectos piloto retoman preguntas que estudios anteriores dejaron abiertas. Cada uno explora qué podrían revelar nuevas muestras y datos genómicos.",
     "fieldLabels": {
-      "proposedQuestion": "Lo que pondría a prueba el proyecto piloto propuesto de Caligo"
+      "proposedQuestion": "Qué busca responder el proyecto piloto"
     }
   },
   "caligo": {
@@ -221,11 +221,11 @@ export const es: Dict = {
     "compoundEye": {
       "eyebrow": "Mira la estructura correcta",
       "heading": "Ojo compuesto, no ocelo alar",
-      "body": "El elemento redondo y brillante de la fotografía es el ojo compuesto de la mariposa, un órgano visual formado por muchas unidades pequeñas llamadas omatidios. Las grandes marcas anilladas de las alas son ocelos: patrones construidos con escamas. En una foto pueden parecer ojos, pero son estructuras distintas y cumplen funciones diferentes. Mantener esa diferencia clara es el primer paso antes de preguntar qué hace cada una."
+      "body": "La estructura redonda y brillante de la fotografía es el ojo compuesto de la mariposa, un órgano visual formado por muchas unidades pequeñas llamadas omatidios. Las grandes marcas anilladas de las alas son ocelos construidos con escamas. En una foto pueden parecer ojos, pero son estructuras distintas y cumplen funciones diferentes. Distinguirlas es esencial antes de preguntar qué función cumple cada una."
     },
     "hypotheses": {
       "heading": "¿Qué podría hacer un ocelo alar?",
-      "intro": "Un ocelo puede parecernos obvio y aun así admitir varias explicaciones biológicas. Cada hipótesis predice algo distinto y su importancia puede cambiar con el depredador, la luz, la conducta y la especie.",
+      "intro": "Aunque a nosotros nos parezca un ojo, un ocelo puede cumplir varias funciones biológicas. Cada hipótesis predice algo distinto y su importancia puede cambiar con el depredador, la luz, la conducta y la especie.",
       "labels": {
         "prediction": "Qué esperaríamos observar",
         "limitation": "Qué no resuelve esta hipótesis"
@@ -233,7 +233,7 @@ export const es: Dict = {
       "rows": [
         {
           "hypothesis": "Parecerse al ojo de un animal más grande",
-          "prediction": "Algunos depredadores deberían vacilar o evitar el ataque cuando el patrón está visible.",
+          "prediction": "Algunos depredadores deberían vacilar o evitar el ataque cuando pueden ver el ocelo.",
           "limitation": "La evitación debe compararse con efectos más simples de tamaño, contraste y novedad. Que a una persona le parezca “un ojo” no basta."
         },
         {
@@ -247,8 +247,8 @@ export const es: Dict = {
           "limitation": "Ser llamativo no indica por sí solo si el efecto beneficia a la mariposa, la perjudica o cambia según el contexto."
         },
         {
-          "hypothesis": "Participar en señales entre mariposas",
-          "prediction": "Las respuestas deberían variar con el sexo, el cortejo, la territorialidad o el ambiente de luz en que las mariposas se observan.",
+          "hypothesis": "Intervenir en la comunicación entre mariposas",
+          "prediction": "Las respuestas deberían variar con el sexo, el cortejo, la territorialidad o las condiciones de luz en las que las mariposas interactúan.",
           "limitation": "La evidencia debe separar la comunicación entre mariposas de los efectos relacionados con depredadores."
         }
       ],
@@ -256,12 +256,12 @@ export const es: Dict = {
       "sourceNote": "Fuente primaria: Iserhard et al. 2024 [S18]."
     },
     "scales": {
-      "heading": "Un patrón alar se construye con miles de escamas",
-      "body": "Las escamas de las mariposas son estructuras diminutas que se superponen sobre el ala. Los pigmentos absorben ciertas longitudes de onda. La arquitectura microscópica puede dispersar, reflejar o suprimir la luz. Un estudio de una región oscura del ocelo de Caligo memnon describió nanoestructuras asociadas con su apariencia negra. En otro sistema neotropical, la mariposa de cristal Greta oto logra transparencia con una densidad de escamas mucho menor, escamas estrechas semejantes a cerdas y nanopilares irregulares de cera que reducen el reflejo. Efectos visuales parecidos pueden surgir de arreglos físicos muy distintos. Esta es otra razón para conectar los rasgos visibles con microscopía, desarrollo y genómica comparada. [S19][S12]"
+      "heading": "El patrón de un ala se forma con miles de escamas",
+      "body": "Las escamas de las mariposas son estructuras diminutas que se superponen sobre el ala. Los pigmentos absorben ciertas longitudes de onda. La arquitectura microscópica puede dispersar, reflejar o suprimir la luz. Un estudio de una región oscura del ocelo de Caligo memnon describió nanoestructuras asociadas con su apariencia negra. En otro sistema neotropical, la mariposa de cristal Greta oto logra transparencia con una densidad de escamas mucho menor, escamas estrechas semejantes a cerdas y nanopilares irregulares de cera que reducen el reflejo. Efectos visuales parecidos pueden surgir de estructuras físicas muy distintas. Por eso, comprender un rasgo visible exige combinar microscopía, biología del desarrollo y genómica comparada. [S19][S12]"
     },
     "genomicsCould": {
       "heading": "Del organismo visible a la información heredada",
-      "body": "Un genoma añade otra capa de evidencia bajo el organismo visible. Permite comparar genes y regiones reguladoras relacionados con el desarrollo de las escamas, la pigmentación, la visión o la conducta entre especies emparentadas, e investigar cuándo cambiaron esas regiones, pasaron entre linajes o evolucionaron bajo presiones distintas. Los experimentos, la microscopía, la historia natural y la biología sensorial siguen siendo esenciales para comprender la percepción y la conducta."
+      "body": "El genoma permite investigar cómo se originan esos rasgos visibles. Al comparar especies emparentadas, los investigadores pueden estudiar genes y regiones reguladoras relacionados con el desarrollo de las escamas, la pigmentación, la visión o la conducta, y determinar cuándo cambiaron, pasaron entre linajes o evolucionaron bajo presiones distintas. Los experimentos, la microscopía, la historia natural y la biología sensorial siguen siendo esenciales para comprender la percepción y la conducta."
     }
   },
   "projects": {
@@ -275,9 +275,9 @@ export const es: Dict = {
     "metaTitle": "Proyectos piloto propuestos | Caligo",
     "metaDescription": "Cuatro proyectos piloto propuestos que conectan evidencia publicada con preguntas comprobables de genómica neotropical.",
     "title": "Proyectos piloto propuestos",
-    "intro": "Estos cuatro proyectos piloto retoman preguntas que los estudios anteriores dejaron abiertas. Cada uno plantea qué podrían revelar nuevas muestras y datos genómicos.",
+    "intro": "Estos cuatro proyectos piloto retoman preguntas que estudios anteriores dejaron abiertas. Cada uno explora qué podrían revelar nuevas muestras y datos genómicos.",
     "pilotProposal": {
-      "heading": "El proyecto piloto propuesto de Caligo",
+      "heading": "El proyecto piloto de Caligo",
       "leadsLabel": "Quienes lideran el proyecto piloto",
       "resourcesLabel": "Material y capacidad disponibles"
     }
@@ -286,15 +286,15 @@ export const es: Dict = {
     "metaTitle": "Acerca de | Caligo",
     "metaDescription": "El propósito de Caligo, su postura científica y su lugar en el panorama más amplio de la genómica de biodiversidad.",
     "title": "Acerca de Caligo",
-    "body": "Caligo es un esfuerzo liderado desde América Latina para construir genomas de referencia de mariposas y polillas neotropicales. Cada genoma está vinculado a un ejemplar identificado y a la experiencia taxonómica necesaria para verificarlo. Los investigadores pueden usar después estos genomas para estudiar preguntas definidas en la región.",
+    "body": "Caligo es una iniciativa liderada desde América Latina para construir genomas de referencia de mariposas y polillas neotropicales. Cada genoma queda vinculado a un ejemplar identificado y al conocimiento taxonómico necesario para confirmar su identidad. Estos genomas pueden usarse para estudiar preguntas surgidas en la región.",
     "name": {
       "heading": "Por qué Caligo",
       "body": [
-        "Caligo significa oscuridad o penumbra en latín. También es un género neotropical de mariposas búho, reconocibles por los grandes ocelos de sus alas. El nombre proviene de una mariposa familiar en la región, pero Caligo abarca la diversidad mucho mayor de mariposas y polillas neotropicales."
+        "Caligo significa oscuridad o penumbra en latín. También es un género neotropical de mariposas búho, reconocibles por los grandes ocelos de sus alas. El nombre proviene de una mariposa muy conocida en la región, pero Caligo abarca una diversidad mucho mayor de mariposas y polillas neotropicales."
       ]
     },
     "building": {
-      "heading": "Lo que Caligo está construyendo",
+      "heading": "Qué está construyendo Caligo",
       "items": [
         {
           "title": "Secuenciar grupos poco representados",
@@ -311,13 +311,13 @@ export const es: Dict = {
       ]
     },
     "workflow": {
-      "eyebrow": "Del ejemplar a la evidencia compartida",
+      "eyebrow": "Del ejemplar al genoma compartido",
       "heading": "Mantener cada genoma vinculado a su ejemplar",
       "projectName": "Project Psyche",
       "introAfter": " coordina la secuenciación de mariposas y polillas en Europa mediante centros de muestreo, estándares compartidos y genomas de acceso abierto. Caligo toma ese modelo como referencia para un programa neotropical liderado desde América Latina.",
       "steps": [
         "Identificar el organismo y conservar un ejemplar de referencia",
-        "Acordar permisos, funciones, crédito y reparto de beneficios",
+        "Acordar permisos, responsabilidades, autoría y cómo se compartirán los beneficios",
         "Secuenciar el material en una instalación regional adecuada",
         "Ensamblar el genoma y comprobar su calidad e identidad",
         "Depositar la secuencia y conectarla con los metadatos del ejemplar",
@@ -326,11 +326,11 @@ export const es: Dict = {
     },
     "leadership": {
       "heading": "Liderazgo",
-      "intro": "La iniciativa está coordinada por investigadores de instituciones en América Latina y en el extranjero."
+      "intro": "La iniciativa está coordinada por investigadores de instituciones latinoamericanas y de otros países."
     },
     "facilities": {
       "heading": "Instalaciones asociadas",
-      "intro": "Siete instituciones asociadas en Colombia, Panamá, Brasil, Ecuador y Chile ofrecen plataformas de secuenciación para los proyectos de Caligo."
+      "intro": "Caligo cuenta con siete instituciones asociadas en Colombia, Panamá, Brasil, Ecuador y Chile que aportan plataformas de secuenciación a sus proyectos."
     },
     "events": {
       "heading": "Eventos",
@@ -345,38 +345,38 @@ export const es: Dict = {
     "metaTitle": "Participa | Caligo",
     "metaDescription": "Formas para que investigadores, estudiantes, colecciones, educadores, naturalistas, instituciones y personas interesadas inicien una conversación con Caligo.",
     "title": "Participa",
-    "intro": "Caligo la construyen personas que conocen los organismos, las colecciones y los lugares donde ocurre el trabajo. Cuéntanos qué estudias y qué te gustaría investigar. La mayoría de las colaboraciones comienza con una conversación.",
+    "intro": "Caligo crece gracias a personas que conocen las especies, las colecciones y los territorios donde se investiga. Cuéntanos qué estudias y qué te gustaría investigar. La mayoría de las colaboraciones comienza con una conversación.",
     "contact": {
       "heading": "Inicia una conversación",
-      "body": "Escribe a Caligo con tus intereses de investigación, tu vínculo con las mariposas o polillas neotropicales y el aporte que te gustaría conversar.",
+      "body": "Escribe a Caligo y cuéntanos qué investigas, cuál es tu vínculo con las mariposas o polillas neotropicales y cómo te gustaría contribuir.",
       "email": "genomica.neotropical@gmail.com",
       "ariaLabel": "Enviar un correo a Caligo a genomica.neotropical@gmail.com"
     },
     "audiences": {
       "heading": "Para quién es la red",
       "items": [
-        "Investigadores y colecciones con experiencia taxonómica, ecológica, de ejemplares o genómica",
-        "Estudiantes y personas al inicio de su carrera que quieran aprender, aportar o conectar una pregunta de investigación",
+        "Investigadores y colecciones con experiencia en taxonomía, ecología, colecciones biológicas o genómica",
+        "Estudiantes y personas al inicio de su carrera que quieran aprender, aportar o dar forma a una pregunta de investigación",
         "Educadores y comunicadores que desarrollen recursos rigurosos y atractivos sobre ciencia neotropical",
-        "Naturalistas con observaciones documentadas y conocimiento profundo de organismos o lugares",
-        "Instituciones y personas interesadas en apoyar una genómica regional de biodiversidad responsable"
+        "Naturalistas con observaciones documentadas y conocimiento profundo de las especies o los territorios",
+        "Instituciones y personas interesadas en apoyar una genómica de la biodiversidad responsable y arraigada en la región"
       ]
     },
     "benefits": {
-      "heading": "A qué puede llevar la participación",
-      "intro": "Según el proyecto y la financiación disponible, quienes participen podrán formar parte de:",
+      "heading": "Qué puede surgir de la participación",
+      "intro": "Según el proyecto y el financiamiento disponible, la participación puede abrir oportunidades para:",
       "items": [
         "Nuevas colaboraciones en torno a organismos, colecciones, métodos o preguntas de investigación",
-        "Formación, intercambios y experiencia técnica compartida",
-        "Proyectos conjuntos de investigación y financiación",
-        "Publicaciones compartidas que reconozcan la experiencia regional"
+        "Formación e intercambio de conocimientos y experiencia técnica",
+        "Proyectos conjuntos de investigación y financiamiento",
+        "Publicaciones conjuntas que reconozcan la experiencia regional"
       ]
     },
     "discord": {
       "heading": "Conoce a la comunidad de Caligo",
       "body": "Discord es un espacio informal para presentaciones, preguntas y recursos compartidos entre países y disciplinas.",
       "active": {
-        "button": "Únete al Discord",
+        "button": "Únete al servidor de Discord",
         "ariaLabel": "Unirse a la comunidad de Caligo en Discord; abre un sitio externo"
       },
       "pending": {
@@ -387,7 +387,7 @@ export const es: Dict = {
     },
     "beforeSubmitting": {
       "heading": "Una breve presentación es suficiente",
-      "body": "Cuéntanos quién eres, qué estudias y qué te gustaría explorar. Después podremos acordar cómo compartir registros de ejemplares, permisos u otros archivos del proyecto."
+      "body": "Cuéntanos quién eres, qué estudias y qué te gustaría explorar. Después acordaremos la mejor forma de compartir registros de ejemplares, permisos u otros archivos del proyecto."
     },
     "languagePolicy": {
       "heading": "Idiomas de trabajo",
@@ -409,8 +409,8 @@ export const es: Dict = {
     "mutableData": "Base de datos o registro institucional cambiante. Se indica la fecha de consulta."
   },
   "notFound": {
-    "title": "Esta página todavía no ha sido ensamblada",
-    "body": "Puede que la dirección haya cambiado o que la página nunca haya existido. Por aquí se vuelve.",
+    "title": "No encontramos esta página",
+    "body": "Puede que la dirección haya cambiado o sea incorrecta. Puedes volver al inicio desde aquí.",
     "homeLink": "Volver al inicio"
   },
   "footer": {
