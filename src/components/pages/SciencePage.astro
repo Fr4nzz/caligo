@@ -45,6 +45,7 @@ import MediaCandidateViewer from '../MediaCandidateViewer.astro';
 import PublishedFigure from '../PublishedFigure.astro';
 import ConceptDiagram from '../ConceptDiagram.astro';
 import { getDict, type Locale } from '../../i18n';
+import { getSource } from '../../data/records';
 
 interface Props {
   locale: Locale;
@@ -58,6 +59,11 @@ const s = t.science;
   the teaser links into this page.
 */
 const anchors = ['chromosomes', 'gene-flow', 'connectivity'] as const;
+const questionSourceIds = {
+  chromosomes: ['rueda-2024', 'mackay-smith-2026'],
+  'gene-flow': ['rosser-2024'],
+  connectivity: ['seraphim-2016', 'iucn-parides-2018', 'icmbio-parides-2021'],
+} as const;
 
 /** The image beside the prose. */
 const questionAside: Record<string, { photo?: string; figure?: 'hybridOriginFigure' }> = {
@@ -106,7 +112,7 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
 
 <Base locale={locale} title={s.metaTitle} description={s.metaDescription} page="/science">
 
-  <PageHeader eyebrow={t.nav.science} title={s.title} intro={s.intro} />
+  <PageHeader title={s.title} intro={s.intro} />
 
   <section class="section" aria-labelledby="questions-heading">
     <div class="container-wide">
@@ -117,6 +123,9 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
         const aside = questionAside[anchor];
         const wide = questionWideFigure[anchor];
         const wideDiagram = questionWideDiagram[anchor];
+        const sources = questionSourceIds[anchor]
+          .map((sourceId) => getSource(sourceId))
+          .filter((source) => source !== undefined);
         return (
           <article id={anchor} class="question">
             <h3 class="question-heading">{q.heading}</h3>
@@ -126,10 +135,12 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
                 {q.answer.map((para) => <p>{para}</p>)}
                 <p class="question-sources">
                   <span class="question-sources-label">{sourcesLabel}: </span>
-                  {q.sources.map((src, n) => (
+                  {sources.map((src, n) => (
                     <>
                       {n > 0 && ' · '}
-                      <a href={src.url} rel="external noopener">{src.label}</a>
+                      <a href={src.url} rel="external noopener">
+                        {src.inlineLabel?.[locale] ?? src.shortLabel ?? src.citation}
+                      </a>
                     </>
                   ))}
                 </p>

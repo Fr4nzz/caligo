@@ -96,19 +96,19 @@ export const en = {
       "body": "Caligo is a collaborative network building reference genomes for Neotropical butterflies and moths, led by researchers based in the region."
     },
     "questions": {
-      "heading": "Three questions genomes can help answer",
+      "heading": "Three questions genetic evidence can help answer",
       "intro": "Each links to what has already been published, and what it would take to go further."
     },
     "pilotsTeaser": {
       "heading": "Four proposed pilot projects",
-      "intro": "Each begins from a biological puzzle that regional collections and sequencing could address."
+      "intro": "They focus on chromosome change, a threatened butterfly's population connectivity, crop pests and seasonal migration."
     },
     "intro": {
       "eyebrow": "Why butterflies and moths",
       "title": "A rich fauna with many unanswered genomic questions",
       "body": [
-        "Butterflies and moths make some of evolution’s boldest experiments visible to the naked eye: mimicry, transparency, chemical defence, migration.",
-        "Most Neotropical species have never been sequenced. Caligo keeps each genome tied to a documented specimen, so a result can always be traced back to the animal it came from."
+        "Butterflies make evolution visible: mimetic wing patterns can maintain reproductive barriers, inherited DNA from another lineage can assemble the traits of a hybrid species, and chromosome numbers can change dramatically within one radiation.",
+        "Reference genomes are still missing across much of Neotropical Lepidoptera diversity. Caligo keeps each new assembly tied to a documented specimen, so its identity and origin can be checked as comparisons accumulate."
       ]
     },
     "pillars": {
@@ -129,14 +129,14 @@ export const en = {
   },
   "science": {
     "metaTitle": "Science | Caligo",
-    "metaDescription": "Three questions that reference genomes of Neotropical butterflies and moths can help answer, and what it would take to answer them.",
-    "title": "Science",
-    "intro": "A reference genome is a map. What it can tell you depends entirely on the organisms, collections and observations placed around it. Here are three questions where that combination is already producing answers in the Neotropics.",
-    "questionsHeading": "Three questions genomes can help investigate",
+    "metaDescription": "What genetic evidence from Neotropical butterflies reveals about chromosome change, hybrid species and conservation baselines.",
+    "title": "Three questions reference genomes can answer",
+    "intro": "A reference genome anchors one specimen’s DNA sequence to chromosome-scale coordinates. By itself it shows structure; paired with specimens, collections and field observations, it can test chromosome change, hybrid ancestry and population connectivity in Neotropical butterflies.",
+    "questionsHeading": "Three questions reference genomes can help answer",
     "chromosomeFigure": {
       "src": "media/figures-published/rueda-2024-fig1-chromosome-counts.jpg",
       "citation": "Rueda-M et al. 2024, PLOS Genetics, Fig 1",
-      "citationUrl": "https://doi.org/10.1371/journal.pgen.1011318",
+      "sourceId": "rueda-2024",
       "licence": "CC0 1.0",
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "width": 1600,
@@ -147,7 +147,7 @@ export const en = {
     "hybridOriginFigure": {
       "src": "media/figures-published/rosser-2024-fig1e-hybrid-origin.png",
       "citation": "Rosser et al. 2024, Nature, Fig 1e",
-      "citationUrl": "https://doi.org/10.1038/s41586-024-07263-w",
+      "sourceId": "rosser-2024",
       "licence": "CC BY 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
       "width": 900,
@@ -158,54 +158,27 @@ export const en = {
     },
     "questions": [
       {
-        "heading": "How can chromosomes split and fuse while a lineage keeps evolving?",
+        "heading": "Why can butterfly chromosomes split, and what changes when the W chromosome fuses?",
         "answer": [
-          "Chromosomes are long packages of DNA, and in most animals their number stays stable for millions of years. In butterflies and moths it does not. Most Heliconius species carry 21 chromosomes in the haploid set, but five species in one lineage carry anywhere from 21 to 60 — the result of repeated fissions, in which a single ancestral chromosome breaks into two.",
-          "That is possible because lepidopteran chromosomes are holocentric. The spindle that pulls chromosomes apart during cell division attaches along the whole length rather than at one point. In most animals, a fragment that breaks off without that attachment point is simply lost at the next division. In a butterfly, both halves keep their attachment, and both are inherited.",
-          "Genomic work has also identified three separate occasions on which an ordinary chromosome fused to the W — the chromosome only females carry. Once fused, that copy stops being inherited like the others and passes only from mother to daughter.",
-          "What the numbers do not tell us is why any of it persisted. That needs comparison across species, traits and evolutionary histories."
-        ],
-        "sources": [
-          {
-            "label": "Rueda-M et al. 2024",
-            "url": "https://doi.org/10.1371/journal.pgen.1011318"
-          },
-          {
-            "label": "Mackay-Smith et al. 2026",
-            "url": "https://doi.org/10.1093/gbe/evaf012"
-          }
+          "Chromosome number stays stable for millions of years in many animal lineages, but some butterflies and moths depart dramatically from that pattern. Most Heliconius species carry 21 chromosomes in the haploid set; five species in the sapho lineage carry from 21 to 60 after repeated fissions, in which one ancestral chromosome became two.",
+          "Lepidopteran chromosomes are holocentric: the machinery that moves a chromosome during cell division can attach along much of its length rather than at one localised centromere. A broken fragment is therefore not automatically left without attachment machinery. That architecture may make fissions easier to establish, but it does not explain why a rearrangement spread.",
+          "Genomic work has also identified three separate occasions on which an autosome fused to the W — the chromosome only females carry. Once fused, that copy stops being inherited like the other autosomes and passes from mother to daughter."
         ]
       },
       {
-        "heading": "When does DNA cross the boundary between lineages?",
+        "heading": "How did about 1% of a genome help form a hybrid species?",
         "answer": [
           "Gene flow is the movement of inherited variants between populations through reproduction. Where hybridisation is followed by generations of backcrossing, some DNA from one lineage can become a permanent part of another. Biologists call that introgression.",
-          "Heliconius elevatus is the clearest Neotropical case. Genomic, behavioural and crossing evidence supports it as a hybrid species that has persisted as its own lineage for more than 720,000 generations. Continuing gene flow with H. pardalinus keeps roughly 99% of their genomes very similar. The remaining fraction is the interesting part: a scattered set of regions inherited from H. melpomene, sitting on chromosomes right across the karyotype, associated with colour pattern, wing shape, host-plant preference and sex pheromones.",
+          "Heliconius elevatus is the clearest Neotropical case. Genomic, behavioural and crossing evidence supports it as a hybrid species that has persisted as its own lineage for at least 180,000 years. Continuing gene flow with H. pardalinus keeps roughly 99% of their genomes very similar. The remaining fraction is the interesting part: a scattered set of regions inherited from H. melpomene, sitting on chromosomes right across the karyotype, associated with colour pattern, wing shape, host-plant preference and sex pheromones.",
           "The genome showed where the two histories differ. The case only became persuasive once those regions were matched to mapped traits, crossing experiments and behaviour in the field."
-        ],
-        "sources": [
-          {
-            "label": "Rosser et al. 2024",
-            "url": "https://doi.org/10.1038/s41586-024-07263-w"
-          }
         ]
       },
       {
-        "heading": "Which populations remain connected, and which are becoming isolated?",
+        "heading": "Is a decade-old conservation baseline still true?",
         "answer": [
-          "Connectivity means individuals — and so the variants they carry — still move between populations often enough to leave a genetic signal. It is one of the few things a genome can say about a species' future rather than its past.",
-          "Parides ascanius lives in the coastal restinga and wetlands of south-eastern Brazil. The IUCN listed it as Vulnerable globally in 2018; Brazil's national assessment listed it as Endangered in 2021. A genetic study published in 2016 found little population structure and inferred substantial migration between the sites it sampled.",
-          "That is a baseline, not a current reading. Habitat loss, drainage and fragmentation can cut movement long before populations look any different in the field, and those samples are now a decade old. Repeating the work against a reference genome would show how much diversity remains and whether these populations are still exchanging individuals — which is the question that bears on protecting them."
-        ],
-        "sources": [
-          {
-            "label": "Seraphim et al. 2016",
-            "url": "https://doi.org/10.1007/s10592-016-0849-y"
-          },
-          {
-            "label": "IUCN Red List assessment, 2018",
-            "url": "https://www.iucnredlist.org/species/15992/121728821"
-          }
+          "Parides ascanius is restricted to coastal restinga and wetlands in south-eastern Brazil. The IUCN assessed it as Vulnerable globally in 2018; Brazil's national assessment listed it as Endangered in 2021.",
+          "Seraphim and colleagues used mitochondrial COI sequences and eight microsatellite markers to compare the surviving populations. Their 2016 study found little genetic structure, no evidence of inbreeding and high migration among most sampled sites, although one population was more isolated by the metropolitan landscape.",
+          "That result is a historical baseline, not a current diagnosis. A chromosome-scale reference plus genome-wide sampling from documented specimens could test how much diversity remains and whether habitat loss, drainage and fragmentation have since interrupted movement. Precise localities should remain out of public communication."
         ]
       }
     ],
@@ -217,10 +190,9 @@ export const en = {
       ]
     },
     "ethics": {
-      "heading": "Before anyone catches a butterfly",
+      "heading": "Planning responsible sampling",
       "body": [
-        "Sampling in the Neotropics involves national permits, access and benefit-sharing agreements under the Nagoya Protocol, the rights of Indigenous peoples and local communities, and decisions about what should not be published at all — for a threatened species, a precise locality can be a risk rather than a contribution.",
-        "Caligo works to the FAIR principles for data and the CARE principles for Indigenous data governance, and expects each project to meet what its own jurisdiction requires."
+        "Good sampling starts with local collaboration. Caligo helps teams consider permits, specimen records, benefit sharing and data management from the beginning, following the requirements of each country and project."
       ]
     }
   },
@@ -228,7 +200,7 @@ export const en = {
     "metaTitle": "Proposed pilot projects | Caligo",
     "metaDescription": "Four proposed investigations linking chromosome evolution, threatened-population connectivity, sustainable agriculture and seasonal movement to documented genomic evidence.",
     "title": "Proposed pilot projects",
-    "opening": "These four pilot project directions pair published evidence with questions designed for Caligo. Each sets out the organisms, observations, samples and comparisons needed to turn a biological puzzle into testable work.",
+    "opening": "Four proposed projects ask where Heliconius chromosomes changed, whether Parides populations remain connected, how soybean-pest populations respond to selection, and whether Panacea migration leaves a genomic signature. Each begins with published evidence and identifies what Caligo would need to test next.",
     "fieldLabels": {
       "proposedQuestion": "What the proposed Caligo pilot project would test"
     }

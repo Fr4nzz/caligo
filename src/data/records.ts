@@ -45,6 +45,7 @@ export interface Source {
    * link text. Science already used short labels — this makes Projects match.
    */
   readonly shortLabel?: string;
+  readonly inlineLabel?: Bilingual;
   readonly kind: 'paper' | 'preprint' | 'database' | 'standard' | 'institutional';
   readonly citation: string;
   readonly url: string;
@@ -128,8 +129,23 @@ export const SOURCES: readonly Source[] = [
     doi: '10.1093/gbe/evag171',
   },
   {
+    id: 'rosser-2024',
+    shortLabel: 'Rosser et al. 2024',
+    kind: 'paper',
+    citation:
+      'Rosser et al. 2024. Hybrid speciation driven by multilocus introgression of ecological traits. Nature 628:811–817.',
+    url: 'https://doi.org/10.1038/s41586-024-07263-w',
+    publicationDate: '2024-04-17',
+    checkedDate: '2026-07-29',
+    doi: '10.1038/s41586-024-07263-w',
+  },
+  {
     id: 'iucn-parides-2018',
     shortLabel: 'IUCN Red List, 2018',
+    inlineLabel: {
+      en: 'IUCN Red List, 2018',
+      es: 'Lista Roja de la UICN, 2018',
+    },
     kind: 'institutional',
     citation:
       'IUCN Red List global assessment of Parides ascanius (Vulnerable, 2018).',
@@ -141,6 +157,10 @@ export const SOURCES: readonly Source[] = [
   {
     id: 'icmbio-parides-2021',
     shortLabel: 'ICMBio, 2021',
+    inlineLabel: {
+      en: 'ICMBio, 2021',
+      es: 'ICMBio, 2021',
+    },
     kind: 'institutional',
     citation:
       'Official Brazilian national assessment (ICMBio, 2021): Parides ascanius listed as Endangered.',

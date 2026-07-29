@@ -85,7 +85,7 @@ shape(en, 'en', es, 'es');
 if (failures === before) pass('English and Spanish dictionaries have identical structure');
 
 // 1b. Guiding principles come from PRINCIPLES (src/data/content.ts — Nicol's
-// eight, bilingual) and render via <PrincipleGrid /> on Home and About. The
+// eight, bilingual) and render once via <PrincipleGrid /> on About. The
 // old i18n list (four invented items) was removed in the content inversion.
 // Guard: 8 fully-bilingual items, and both pages render the grid.
 // (Loaded via Node's native type-stripping import — the importTs regex loader
@@ -110,14 +110,14 @@ if (Array.isArray(PRINCIPLES) && PRINCIPLES.length === 8 && principlesBilingual)
   );
 }
 if (
-  /<PrincipleGrid/.test(homePageSrc) &&
+  !/<PrincipleGrid/.test(homePageSrc) &&
   /<PrincipleGrid/.test(aboutPageSrc) &&
   !/pillars\.items/.test(homePageSrc) &&
   !/pillars\.items/.test(aboutPageSrc)
 ) {
-  pass('Guiding principles: Home and About render <PrincipleGrid /> (no legacy i18n list)');
+  pass('Guiding principles render once on About (no duplicate Home grid or legacy i18n list)');
 } else {
-  fail('Guiding principles: Home and About must both render <PrincipleGrid /> and never pillars.items');
+  fail('Guiding principles must render once on About and never use pillars.items');
 }
 
 // 2. Structured data files carry both locales for every entry.
@@ -131,8 +131,27 @@ else fail(`data/content.ts bilingual imbalance: ${enCount} en vs ${esCount} es`)
 //    data files (content.ts legacy + records.ts new).
 const recordsSrc = readFileSync(resolve(root, 'src/data/records.ts'), 'utf8');
 const allText = [...strings(en), ...strings(es), dataSrc, recordsSrc].join('\n');
+const recordsMod = await import(pathToFileURL(resolve(root, 'src/data/records.ts')).href);
+const sourceIds = recordsMod.SOURCES.map((source) => source.id);
+const duplicateSourceIds = sourceIds.filter((id, index) => sourceIds.indexOf(id) !== index);
+const noncanonicalDoiUrls = recordsMod.SOURCES.filter(
+  (source) => source.doi && source.url.toLowerCase() !== `https://doi.org/${source.doi}`.toLowerCase(),
+);
+if (duplicateSourceIds.length === 0 && noncanonicalDoiUrls.length === 0) {
+  pass('scientific source records have unique IDs and canonical DOI URLs');
+} else {
+  if (duplicateSourceIds.length) {
+    fail(`duplicate scientific source IDs: ${[...new Set(duplicateSourceIds)].join(', ')}`);
+  }
+  if (noncanonicalDoiUrls.length) {
+    fail(`noncanonical DOI source URLs: ${noncanonicalDoiUrls.map((source) => source.id).join(', ')}`);
+  }
+}
 
 const banned = [
+  { pattern: /10\.1093\/gbe\/evaf012/i, why: 'wrong Mackay-Smith DOI must not return (it resolves to an unrelated whitefly paper)' },
+  { pattern: /10\.1007\/s10592-016-0849-y/i, why: 'wrong Seraphim DOI must not return (it resolves to an unrelated mangrove paper)' },
+  { pattern: /iucnredlist\.org\/species\/15992\/121728821/i, why: 'wrong Parides IUCN species/assessment URL must not return' },
   { pattern: /discord\.gg\//i, why: 'expired Discord invite must not be published' },
   { pattern: /\bsister initiative\b/i, why: '"sister initiative" implies a formal relationship not verified (brief §2.2)' },
   { pattern: /\bn\s*=\s*7\b/, why: 'faux sample-size "n = 7" is a dressed-up page counter (brief §5)' },

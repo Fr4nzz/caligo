@@ -14,13 +14,14 @@
  * which is not the same thing.
  */
 import type { Locale } from '../i18n';
+import { getSource } from '../data/records';
 
 interface Props {
   readonly src: string;
   readonly alt: string;
   readonly caption: string;
   readonly citation: string;
-  readonly citationUrl: string;
+  readonly sourceId: string;
   readonly licence: string;
   readonly licenceUrl: string;
   /**
@@ -35,8 +36,12 @@ interface Props {
 }
 
 const {
-  src, alt, caption, citation, citationUrl, licence, licenceUrl, changes, width, height, locale,
+  src, alt, caption, citation, sourceId, licence, licenceUrl, changes, width, height, locale,
 } = Astro.props;
+const source = getSource(sourceId);
+if (!source) {
+  throw new Error(`PublishedFigure: unknown source '${sourceId}'.`);
+}
 
 const base = import.meta.env.BASE_URL;
 const fromLabel = locale === 'es' ? 'Figura de' : 'Figure from';
@@ -55,7 +60,7 @@ const fromLabel = locale === 'es' ? 'Figura de' : 'Figure from';
     <p class="pf-caption">{caption}</p>
     <p class="pf-credit mono">
       <span class="pf-from">{fromLabel}</span>{' '}
-      <a href={citationUrl} rel="external noopener">{citation}</a>
+      <a href={source.url} rel="external noopener">{citation}</a>
       {' · '}
       <a href={licenceUrl} rel="license external noopener">{licence}</a>
       {changes && <span class="pf-changes">{' · '}{changes}</span>}

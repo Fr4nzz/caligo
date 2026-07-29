@@ -6,10 +6,9 @@
  *   H1  Cinematic hero (full-bleed photo + overlay copy).
  *   —   Stat bar — the cheapest credibility on the page.
  *   H2  Why butterflies and moths.
- *   H3  How the work is shaped — guiding principles.
- *   H4  Three questions — teaser links to /science#.
- *   H5  Four proposed pilots — 2×2 cards.
- *   H6  Participate.
+ *   H3  Three questions — teaser links to /science#.
+ *   H4  Four proposed pilots — 2×2 cards.
+ *   H5  Participate.
  *
  * The six-step "From organism to genome" section used to sit between the
  * principles and the questions. It was ~390 words — a third of the page —
@@ -24,8 +23,6 @@ import Base from '../../layouts/Base.astro';
 import HeroMedia from '../HeroMedia.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
 import Icon from '../Icon.astro';
-import JoinCTA from '../JoinCTA.astro';
-import PrincipleGrid from '../PrincipleGrid.astro';
 import CommunityStats from '../CommunityStats.astro';
 import { getDict, localePath, type Locale } from '../../i18n';
 import { PILOTS, getMedia } from '../../data/records';
@@ -121,17 +118,7 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     </div>
   </section>
 
-  <!-- ====================== H3 — Guiding principles ====================== -->
-  <section id="snapshot" class="section section--panel" aria-labelledby="h2-title">
-    <span id="h2" hidden aria-hidden="true" data-legacy-anchor="h2" />
-    <div class="container-wide">
-      <p class="section-eyebrow mono">{h.pillars.eyebrow}</p>
-      <h2 id="h2-title">{h.pillars.title}</h2>
-      <PrincipleGrid locale={locale}/>
-    </div>
-  </section>
-
-  <!-- ====================== H4 — Questions worth following ======================
+  <!-- ====================== H3 — Questions worth following ======================
        Home renders the question headings only; the answers live on Science.
        We iterate `t.science.questions` so the two pages stay in lockstep by
        construction — no duplicated question copy.
@@ -161,7 +148,7 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     </div>
   </section>
 
-  <!-- ====================== H5 — Four proposed pilots (2×2 compact cards) ====================== -->
+  <!-- ====================== H4 — Four proposed pilots (2×2 compact cards) ====================== -->
   <section id="proposed-pilots" class="section section--panel" aria-labelledby="h5-title">
     <span id="h5" hidden aria-hidden="true" data-legacy-anchor="h5" />
     <div class="container-wide">
@@ -209,7 +196,7 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     </div>
   </section>
 
-  <!-- ====================== H6 — Participate + brand close ====================== -->
+  <!-- ====================== H5 — Participate + brand close ====================== -->
   <section id="discover-caligo" class="section section--close" aria-labelledby="h6-title">
     <span id="h6" hidden aria-hidden="true" data-legacy-anchor="h6" />
     <div class="container-wide close-layout">
@@ -224,7 +211,6 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
             {t.cta.howToTakePart}<Icon name="arrow-right" />
           </a>
         </div>
-        <JoinCTA variant="compact" locale={locale} />
       </div>
     </div>
   </section>
@@ -232,7 +218,7 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
 
 <style>
   /* ---- Scroll margins for semantic + legacy anchors ---- */
-  #overview, #snapshot, #from-organism-to-genome,
+  #overview, #from-organism-to-genome,
   #questions, #proposed-pilots, #discover-caligo,
   #h1, #h2, #h3, #h4, #h5, #h6 { scroll-margin-top: 5rem; }
 
@@ -658,16 +644,7 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     border-top: 1px solid var(--hairline);
   }
   .close-layout {
-    display: grid;
-    gap: var(--space-xl);
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-  @media (min-width: 56rem) {
-    .close-layout {
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      align-items: center;
-    }
+    display: block;
   }
   /* This block sits inside .close-layout, not directly in .container-wide,
      so the global section rhythm does not reach it. Restate it locally

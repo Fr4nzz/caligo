@@ -3,7 +3,7 @@
 ## Source of truth
 
 - Status: Active
-- Last refreshed: 2026-07-24
+- Last refreshed: 2026-07-29
 - Primary product surfaces: bilingual public website at `/en/` and `/es/`
 - Evidence reviewed: `README.md`, `src/styles/tokens.css`, `src/styles/global.css`, `src/components/pages/HomePage.astro`, `src/components/HeroMedia.astro`, `refs/plan-mejora/04_DIRECCION_VISUAL.md`, and desktop/mobile screenshots supplied during review
 
@@ -17,7 +17,7 @@
 
 - Goals: invite researchers and institutions to understand, trust, and join Caligo
 - Non-goals: present unapproved governance as final, imply commitments that do not exist, or turn the site into a publication database
-- Success signals: users can understand the initiative, proposed pilot projects, scientific workflow, leadership, and participation routes without losing source context
+- Success signals: users can understand the initiative, proposed pilot projects, selected scientific questions, leadership, and participation routes without losing source context
 
 ## Personas and jobs
 
@@ -27,9 +27,9 @@
 
 ## Information architecture
 
-- Primary navigation: Home, Science, Pilot projects, Network, About, Participate
-- Core routes/screens: `/`, `/science`, `/projects`, `/network`, `/about`, `/participate`, and `/caligo`
-- Content hierarchy: initiative thesis, scientific approach, proposed work, network capacity, leadership, governance, and participation
+- Primary navigation: Home, Science, Pilot projects, About, Participate
+- Core routes/screens: `/`, `/science`, `/projects`, `/about`, and `/participate`
+- Content hierarchy: initiative thesis, selected published findings, proposed work, network capacity, leadership, governance, and participation
 
 ## Design principles
 
@@ -37,6 +37,8 @@
 - Keep provenance visible: sources, credits, licences, and proposal status remain readable
 - Separate content territories: image focal subjects, copy, controls, and attribution must not compete for the same space
 - Preserve bilingual parity: English and Spanish use the same hierarchy and equivalent layout quality
+- Remove ornamental repetition: navigation already supplies page context, so a page label must not repeat the H1; complete content modules belong on one canonical page
+- Make every paragraph earn its place by stating a result, mechanism, question, evidence requirement, or action
 - Tradeoff: preserve a clear subject/copy boundary before maximizing image area or headline width
 
 ## Visual language
@@ -50,7 +52,7 @@
 
 ## Components
 
-- Existing components to reuse: `Base`, `Header`, `HeroMedia`, `CommunityStats`, `PrincipleGrid`, `MediaConceptViewer`, and shared CTA/button styles
+- Existing components to reuse: `Base`, `Header`, `HeroMedia`, `CommunityStats`, `PrincipleGrid`, `MediaCandidateViewer`, and shared CTA/button styles
 - New/changed components: the Home hero may change its internal CSS geometry without creating a parallel hero component
 - Variants and states: desktop split composition; mobile stacked composition; light/dark page modes do not alter hero contrast
 - Token/component ownership: global tokens remain in `src/styles/tokens.css`; page-specific hero geometry stays in `HomePage.astro`
@@ -66,7 +68,7 @@
 ## Responsive behavior
 
 - Supported breakpoints/devices: approximately 390 px mobile through wide desktop; the critical narrow-desktop boundary is immediately above 60 rem
-- Desktop layout above 60 rem: the landscape photograph remains full bleed at its original brightness and composition; copy begins at 64 vw over the image’s own dark field, and hero height follows the photograph’s ratio until its wide-screen cap
+- Desktop layout above 60 rem: the landscape photograph remains full bleed at its original brightness and composition; copy occupies a stable right-side column over the image’s own dark field, and hero height follows the photograph’s ratio until its wide-screen cap
 - Mobile layout at or below 60 rem: the same landscape composition appears first at its intrinsic aspect ratio, followed by a dedicated dark copy field; no alternate crop, overlay, or copy obscures the specimen
 - Intermediate widths: title, body, actions, and attribution may wrap or increase hero height, but they must not cross into the specimen territory
 - Validation widths: 390, 960, 961, 1024, 1280, 1440, and 1920 CSS pixels
@@ -85,7 +87,8 @@
 
 - Tone: direct, concise, scientifically literate, and inviting
 - Terminology: use “pilot project” in English and “proyecto piloto” in Spanish
-- Microcopy rules: no em dashes, no internal editorial language, no defensive disclaimers that weaken the public presentation, and no facts without a documented source
+- Microcopy rules: no internal editorial language, no defensive disclaimers that weaken the public presentation, and no facts without a documented source
+- Scientific copy: prefer a measured result or named biological mechanism over metaphors about genomes as maps, blueprints, instructions, or books
 
 ## Implementation constraints
 

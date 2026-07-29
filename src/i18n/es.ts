@@ -93,19 +93,19 @@ export const es: Dict = {
       "body": "Caligo es una red colaborativa que construye genomas de referencia para las mariposas y polillas neotropicales, liderada por investigadores de la región."
     },
     "questions": {
-      "heading": "Tres preguntas que los genomas ayudan a responder",
+      "heading": "Tres preguntas que la evidencia genética puede ayudar a responder",
       "intro": "Cada una enlaza con lo que ya se ha publicado y con lo que haría falta para ir más lejos."
     },
     "pilotsTeaser": {
       "heading": "Cuatro proyectos piloto propuestos",
-      "intro": "Cada uno parte de un enigma biológico que las colecciones y la secuenciación regionales podrían abordar."
+      "intro": "Se enfocan en cambios cromosómicos, la conectividad de una mariposa amenazada, plagas de cultivos y migración estacional."
     },
     "intro": {
       "eyebrow": "Por qué mariposas y polillas",
       "title": "Una fauna rica en preguntas genómicas todavía abiertas",
       "body": [
-        "Las mariposas y polillas hacen visibles a simple vista algunos de los experimentos más audaces de la evolución: mimetismo, transparencia, defensa química, migración.",
-        "La mayoría de las especies neotropicales nunca se han secuenciado. Caligo mantiene cada genoma unido a un ejemplar documentado, para que un resultado siempre pueda rastrearse hasta el animal del que salió."
+        "Las mariposas hacen visible la evolución: los patrones alares miméticos pueden mantener barreras reproductivas, el ADN heredado de otro linaje puede reunir los rasgos de una especie híbrida y el número de cromosomas puede cambiar drásticamente dentro de una radiación.",
+        "Todavía faltan genomas de referencia para gran parte de la diversidad de lepidópteros neotropicales. Caligo mantiene cada nuevo ensamblaje vinculado a un ejemplar documentado, para que su identidad y procedencia puedan comprobarse a medida que crecen las comparaciones."
       ]
     },
     "pillars": {
@@ -126,14 +126,14 @@ export const es: Dict = {
   },
   "science": {
     "metaTitle": "Ciencia | Caligo",
-    "metaDescription": "Tres preguntas que los genomas de referencia de mariposas y polillas neotropicales pueden ayudar a responder, y qué haría falta para responderlas.",
-    "title": "Ciencia",
-    "intro": "Un genoma de referencia es un mapa. Lo que puede decirte depende por completo de los organismos, las colecciones y las observaciones que lo rodean. Estas son tres preguntas donde esa combinación ya está dando respuestas en el Neotrópico.",
-    "questionsHeading": "Tres preguntas que los genomas pueden ayudar a investigar",
+    "metaDescription": "Lo que la evidencia genética de mariposas neotropicales revela sobre cambios cromosómicos, especies híbridas y líneas de base para la conservación.",
+    "title": "Tres preguntas que pueden responder los genomas de referencia",
+    "intro": "Un genoma de referencia fija la secuencia de ADN de un ejemplar en coordenadas a escala cromosómica. Por sí solo muestra estructura; junto con ejemplares, colecciones y observaciones de campo, permite poner a prueba cambios cromosómicos, ascendencia híbrida y conectividad poblacional en mariposas neotropicales.",
+    "questionsHeading": "Tres preguntas que pueden responder los genomas de referencia",
     "chromosomeFigure": {
       "src": "media/figures-published/rueda-2024-fig1-chromosome-counts.jpg",
       "citation": "Rueda-M et al. 2024, PLOS Genetics, Fig 1",
-      "citationUrl": "https://doi.org/10.1371/journal.pgen.1011318",
+      "sourceId": "rueda-2024",
       "licence": "CC0 1.0",
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "width": 1600,
@@ -144,7 +144,7 @@ export const es: Dict = {
     "hybridOriginFigure": {
       "src": "media/figures-published/rosser-2024-fig1e-hybrid-origin.png",
       "citation": "Rosser et al. 2024, Nature, Fig 1e",
-      "citationUrl": "https://doi.org/10.1038/s41586-024-07263-w",
+      "sourceId": "rosser-2024",
       "licence": "CC BY 4.0",
       "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
       "width": 900,
@@ -155,54 +155,27 @@ export const es: Dict = {
     },
     "questions": [
       {
-        "heading": "¿Cómo pueden dividirse y fusionarse los cromosomas mientras un linaje sigue evolucionando?",
+        "heading": "¿Por qué pueden dividirse los cromosomas de las mariposas y qué cambia cuando se fusiona el W?",
         "answer": [
-          "Los cromosomas son grandes paquetes de ADN y, en la mayoría de los animales, su número se mantiene estable durante millones de años. En las mariposas y polillas no. La mayoría de las especies de Heliconius llevan 21 cromosomas en el juego haploide, pero cinco especies de un mismo linaje llevan entre 21 y 60, resultado de fisiones repetidas en las que un cromosoma ancestral se parte en dos.",
-          "Esto es posible porque los cromosomas de los lepidópteros son holocéntricos. El huso que separa los cromosomas durante la división celular se ancla a lo largo de toda su longitud, no en un solo punto. En la mayoría de los animales, un fragmento que se desprende sin ese punto de anclaje simplemente se pierde en la siguiente división. En una mariposa, las dos mitades conservan anclaje y las dos se heredan.",
-          "El trabajo genómico también ha identificado tres ocasiones independientes en las que un cromosoma corriente se fusionó con el W, el cromosoma que solo llevan las hembras. Una vez fusionada, esa copia deja de heredarse como las demás y pasa solo de madre a hija.",
-          "Lo que los números no dicen es por qué nada de esto persistió. Eso exige comparar entre especies, rasgos e historias evolutivas."
-        ],
-        "sources": [
-          {
-            "label": "Rueda-M et al. 2024",
-            "url": "https://doi.org/10.1371/journal.pgen.1011318"
-          },
-          {
-            "label": "Mackay-Smith et al. 2026",
-            "url": "https://doi.org/10.1093/gbe/evaf012"
-          }
+          "El número de cromosomas se mantiene estable durante millones de años en muchos linajes animales, pero algunas mariposas y polillas se apartan drásticamente de ese patrón. La mayoría de las especies de Heliconius tiene 21 cromosomas en el juego haploide; cinco especies del linaje sapho tienen entre 21 y 60 tras fisiones repetidas, en las que un cromosoma ancestral se convirtió en dos.",
+          "Los cromosomas de los lepidópteros son holocéntricos: la maquinaria que mueve un cromosoma durante la división celular puede unirse a lo largo de gran parte de su longitud, en vez de hacerlo en un centrómero localizado. Por eso, un fragmento roto no queda automáticamente sin maquinaria de unión. Esta arquitectura puede facilitar que una fisión se establezca, pero no explica por qué se extendió el reordenamiento.",
+          "El trabajo genómico también ha identificado tres ocasiones independientes en las que un autosoma se fusionó con el W, el cromosoma que solo llevan las hembras. Una vez fusionada, esa copia deja de heredarse como los demás autosomas y pasa de madre a hija."
         ]
       },
       {
-        "heading": "¿Cuándo cruza el ADN la frontera entre linajes?",
+        "heading": "¿Cómo ayudó cerca del 1 % de un genoma a formar una especie híbrida?",
         "answer": [
           "El flujo génico es el movimiento de variantes heredadas entre poblaciones a través de la reproducción. Cuando la hibridación va seguida de generaciones de retrocruzamiento, parte del ADN de un linaje puede quedar de forma permanente en otro. La biología llama a eso introgresión.",
-          "Heliconius elevatus es el caso neotropical más claro. La evidencia genómica, conductual y de cruzamientos lo respalda como una especie híbrida que ha persistido como linaje propio durante más de 720.000 generaciones. El flujo génico continuo con H. pardalinus mantiene cerca del 99% de sus genomas muy parecidos. Lo interesante está en la fracción restante: un conjunto disperso de regiones heredadas de H. melpomene, repartidas por cromosomas de todo el cariotipo y asociadas al patrón de color, la forma del ala, la preferencia de planta hospedera y las feromonas sexuales.",
+          "Heliconius elevatus es el caso neotropical más claro. La evidencia genómica, conductual y de cruzamientos lo respalda como una especie híbrida que ha persistido como linaje propio durante al menos 180.000 años. El flujo génico continuo con H. pardalinus mantiene cerca del 99 % de sus genomas muy parecidos. Lo interesante está en la fracción restante: un conjunto disperso de regiones heredadas de H. melpomene, repartidas por cromosomas de todo el cariotipo y asociadas al patrón de color, la forma del ala, la preferencia de planta hospedera y las feromonas sexuales.",
           "El genoma mostró dónde difieren las dos historias. El caso solo resultó convincente cuando esas regiones se conectaron con rasgos mapeados, experimentos de cruzamiento y conducta en campo."
-        ],
-        "sources": [
-          {
-            "label": "Rosser et al. 2024",
-            "url": "https://doi.org/10.1038/s41586-024-07263-w"
-          }
         ]
       },
       {
-        "heading": "¿Qué poblaciones siguen conectadas y cuáles se están aislando?",
+        "heading": "¿Sigue vigente una línea de base para la conservación medida hace una década?",
         "answer": [
-          "La conectividad significa que los individuos, y por tanto las variantes que llevan, todavía se mueven entre poblaciones con frecuencia suficiente para dejar una señal genética. Es una de las pocas cosas que un genoma puede decir sobre el futuro de una especie y no solo sobre su pasado.",
-          "Parides ascanius vive en las restingas costeras y los humedales del sureste de Brasil. La UICN lo listó como Vulnerable a nivel global en 2018; la evaluación nacional de Brasil lo listó como En Peligro en 2021. Un estudio genético publicado en 2016 encontró poca estructura poblacional e infirió una migración considerable entre los sitios muestreados.",
-          "Eso es una línea de base, no una lectura actual. La pérdida de hábitat, el drenaje y la fragmentación pueden cortar el movimiento mucho antes de que las poblaciones se vean distintas en campo, y esas muestras ya tienen una década. Repetir el trabajo con un genoma de referencia mostraría cuánta diversidad queda y si esas poblaciones siguen intercambiando individuos, que es la pregunta que importa para protegerlas."
-        ],
-        "sources": [
-          {
-            "label": "Seraphim et al. 2016",
-            "url": "https://doi.org/10.1007/s10592-016-0849-y"
-          },
-          {
-            "label": "Evaluación de la Lista Roja de la UICN, 2018",
-            "url": "https://www.iucnredlist.org/species/15992/121728821"
-          }
+          "Parides ascanius está restringida a restingas costeras y humedales del sureste de Brasil. La UICN la evaluó como Vulnerable a nivel global en 2018; la evaluación nacional de Brasil la clasificó En Peligro en 2021.",
+          "Seraphim y sus colegas compararon las poblaciones supervivientes mediante secuencias mitocondriales de COI y ocho marcadores microsatélites. El estudio de 2016 encontró poca estructura genética, ninguna señal de endogamia y una migración alta entre la mayoría de los sitios muestreados, aunque una población estaba más aislada por la matriz metropolitana.",
+          "Ese resultado es una línea de base histórica, no un diagnóstico actual. Un genoma de referencia a escala cromosómica y un nuevo muestreo genómico de ejemplares documentados permitirían evaluar cuánta diversidad queda y si la pérdida de hábitat, el drenaje y la fragmentación ya interrumpieron el movimiento. Las localidades precisas deben mantenerse fuera de la comunicación pública."
         ]
       }
     ],
@@ -214,10 +187,9 @@ export const es: Dict = {
       ]
     },
     "ethics": {
-      "heading": "Antes de que alguien capture una mariposa",
+      "heading": "Planificar un muestreo responsable",
       "body": [
-        "Muestrear en el Neotrópico implica permisos nacionales, acuerdos de acceso y reparto de beneficios bajo el Protocolo de Nagoya, los derechos de los pueblos indígenas y las comunidades locales, y decisiones sobre qué no debería publicarse: para una especie amenazada, una localidad precisa puede ser un riesgo más que un aporte.",
-        "Caligo trabaja con los principios FAIR para los datos y los principios CARE para la gobernanza de datos indígenas, y espera que cada proyecto cumpla lo que exija su propia jurisdicción."
+        "Un buen muestreo comienza con la colaboración local. Caligo ayuda a los equipos a considerar desde el inicio los permisos, los registros de especímenes, el reparto de beneficios y la gestión de datos, de acuerdo con los requisitos de cada país y proyecto."
       ]
     }
   },
@@ -225,7 +197,7 @@ export const es: Dict = {
     "metaTitle": "Proyectos piloto propuestos | Caligo",
     "metaDescription": "Cuatro investigaciones propuestas que conectan evolución cromosómica, conectividad de poblaciones amenazadas, agricultura sostenible y movimiento estacional con evidencia genómica documentada.",
     "title": "Proyectos piloto propuestos",
-    "opening": "Estas cuatro líneas combinan evidencia publicada con preguntas diseñadas para Caligo. Cada una define los organismos, observaciones, muestras y comparaciones necesarios para convertir un enigma biológico en trabajo comprobable.",
+    "opening": "Cuatro proyectos propuestos preguntan dónde cambiaron los cromosomas de Heliconius, si las poblaciones de Parides siguen conectadas, cómo responden a la selección las plagas de la soja y si la migración de Panacea deja una señal genómica. Cada uno parte de evidencia publicada e identifica qué necesitaría Caligo para poner a prueba el siguiente paso.",
     "fieldLabels": {
       "proposedQuestion": "Lo que pondría a prueba el proyecto piloto propuesto de Caligo"
     }
