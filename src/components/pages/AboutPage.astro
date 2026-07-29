@@ -16,12 +16,13 @@
  * Sections:
  *   A1  PageHeader — about.title / about.body
  *   A2  Why Caligo — the name, once, on the one page that should carry it
- *   A3  Principles — how the work is shaped
- *   A4  Leadership
- *   A5  Partner facilities
- *   A6  Events
- *   A7  Connections and context
- *   A8  Governance
+ *   A3  What Caligo is building
+ *   A4  Specimen-to-genome workflow and Project Psyche context
+ *   A5  Principles — how the work is shaped
+ *   A6  Leadership
+ *   A7  Partner facilities
+ *   A8  Events
+ *   A9  Connections and context
  */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
@@ -29,6 +30,7 @@ import PrincipleGrid from '../PrincipleGrid.astro';
 import LeadershipGrid from '../LeadershipGrid.astro';
 import FacilityTable from '../FacilityTable.astro';
 import Timeline from '../Timeline.astro';
+import { LINKS } from '../../data/content';
 import { getDict, type Locale } from '../../i18n';
 
 interface Props {
@@ -57,7 +59,42 @@ const h = t.home;
     </div>
   </section>
 
-  <!-- A3 — Principles -->
+  <!-- A3 — A compact public statement of the initiative's priorities -->
+  <section class="section" aria-labelledby="about-building">
+    <div class="container-wide">
+      <h2 id="about-building" class="section-heading">{a.building.heading}</h2>
+      <ol class="building-grid" role="list">
+        {a.building.items.map((item, i) => (
+          <li class="building-item">
+            <span class="item-index mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- A4 — Project Psyche as an organisational model, not a partnership claim -->
+  <section class="section section--panel" aria-labelledby="about-workflow">
+    <div class="container-wide">
+      <p class="section-eyebrow mono">{a.workflow.eyebrow}</p>
+      <h2 id="about-workflow" class="section-heading workflow-heading">{a.workflow.heading}</h2>
+      <p class="workflow-intro">
+        <a href={LINKS.projectPsyche} rel="external noopener">{a.workflow.projectName}</a>{a.workflow.introAfter}
+      </p>
+      <ol class="workflow-steps" role="list">
+        {a.workflow.steps.map((step, i) => (
+          <li>
+            <span class="item-index mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span>{step}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- A5 — Principles -->
   <section class="section" aria-labelledby="about-principles">
     <div class="container-wide visual-section">
       <p class="section-eyebrow mono">{h.pillars.eyebrow}</p>
@@ -66,7 +103,7 @@ const h = t.home;
     </div>
   </section>
 
-  <!-- A4 — Leadership -->
+  <!-- A6 — Leadership -->
   <section class="section section--panel" aria-labelledby="about-leadership">
     <div class="container-wide visual-section">
       <h2 id="about-leadership" class="section-heading">{a.leadership.heading}</h2>
@@ -75,7 +112,7 @@ const h = t.home;
     </div>
   </section>
 
-  <!-- A5 — Partner facilities (from the former /network/) -->
+  <!-- A7 — Partner facilities (from the former /network/) -->
   <section class="section" aria-labelledby="about-facilities">
     <div class="container-wide visual-section">
       <h2 id="about-facilities" class="section-heading">{a.facilities.heading}</h2>
@@ -84,7 +121,7 @@ const h = t.home;
     </div>
   </section>
 
-  <!-- A6 — Events (from the former /network/) -->
+  <!-- A8 — Events (from the former /network/) -->
   <section class="section section--panel" aria-labelledby="about-events">
     <div class="container-wide prose-column">
       <h2 id="about-events" class="section-heading">{a.events.heading}</h2>
@@ -93,19 +130,11 @@ const h = t.home;
     </div>
   </section>
 
-  <!-- A7 — Connections and context (from the former /network/) -->
+  <!-- A9 — Connections and context (from the former /network/) -->
   <section class="section" aria-labelledby="about-positioning">
     <div class="container-wide prose-column">
       <h2 id="about-positioning" class="section-heading">{a.positioning.heading}</h2>
       <p class="prose-para">{a.positioning.body}</p>
-    </div>
-  </section>
-
-  <!-- A8 — Governance -->
-  <section class="section section--panel" aria-labelledby="about-governance">
-    <div class="container-wide prose-column">
-      <h2 id="about-governance" class="section-heading">{a.governance.heading}</h2>
-      <p class="prose-para">{a.governance.intro}</p>
     </div>
   </section>
 
@@ -148,5 +177,77 @@ const h = t.home;
   }
   .prose-block .prose-para {
     margin-bottom: 0;
+  }
+
+  .building-grid {
+    list-style: none;
+    margin: var(--space-l) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--hairline-strong);
+  }
+  .building-item {
+    padding: var(--space-m) var(--space-m) var(--space-m) 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .building-item + .building-item {
+    padding-left: var(--space-m);
+    border-left: 1px solid var(--hairline);
+  }
+  .item-index {
+    display: block;
+    margin-bottom: var(--space-s);
+    color: var(--accent-strong);
+    font-size: var(--step--1);
+    letter-spacing: 0.08em;
+  }
+  .building-item h3 {
+    margin: 0 0 var(--space-s);
+    font-size: var(--step-0);
+  }
+  .building-item p,
+  .workflow-intro {
+    margin: 0;
+    max-width: var(--measure);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .workflow-heading { max-width: 30ch; }
+  .workflow-steps {
+    list-style: none;
+    margin: var(--space-l) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--hairline-strong);
+  }
+  .workflow-steps li {
+    display: grid;
+    grid-template-columns: 2.4rem 1fr;
+    gap: var(--space-xs);
+    padding: var(--space-m) var(--space-m) var(--space-m) 0;
+    border-bottom: 1px solid var(--hairline);
+    line-height: 1.5;
+  }
+  .workflow-steps li:nth-child(3n + 2),
+  .workflow-steps li:nth-child(3n + 3) {
+    padding-left: var(--space-m);
+    border-left: 1px solid var(--hairline);
+  }
+  .workflow-steps .item-index { margin: 0; }
+  @media (max-width: 54rem) {
+    .building-grid,
+    .workflow-steps {
+      grid-template-columns: 1fr;
+    }
+    .building-item,
+    .building-item + .building-item,
+    .workflow-steps li,
+    .workflow-steps li:nth-child(3n + 2),
+    .workflow-steps li:nth-child(3n + 3) {
+      padding-inline: 0;
+      border-left: 0;
+    }
   }
 </style>

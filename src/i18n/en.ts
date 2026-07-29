@@ -10,7 +10,7 @@ export const en = {
   "site": {
     "name": "Caligo",
     "descriptor": "Genomes of Neotropical butterflies and moths",
-    "proposition": "A Latin American-led effort developing reference genomes connected to documented biological specimens, so every sequence can be traced back to an organism and examined again."
+    "proposition": "Caligo is a Latin American-led network building reference genomes for Neotropical butterflies and moths. Each genome is linked to a documented specimen."
   },
   "common": {
     "skipToContent": "Skip to content",
@@ -77,27 +77,27 @@ export const en = {
   },
   "committee": {
     "heading": "Join a committee",
-    "body": "Committees are where the day-to-day organising happens — sampling and permits, sequencing, analysis, training and communication. The sheet lists the ones that exist and who is already on them.",
+    "body": "Committees organise sampling and permits, sequencing, analysis, training and communication. The committee sheet lists each group and its current members.",
     "cta": "Open the committee sheet"
   },
   "join": {
     "title": "Join the network",
     "body": "The registration form asks for your country, institution, taxonomic groups of interest, and your experience with genomes or sequencing. It takes a few minutes and is open now.",
     "cta": "Open the registration form",
-    "privacyNote": "Hosted on Google Forms; opens in a new tab. Your answers go to the Caligo organising team.",
+    "privacyNote": "Responses are collected through Google Forms and sent to the Caligo organising team.",
     "ctaSecondary": "Join the network"
   },
   "home": {
     "metaTitle": "Caligo | Genomes of Neotropical butterflies and moths",
     "metaDescription": "A Latin American-led effort developing reference genomes connected to documented specimens of Neotropical butterflies and moths.",
     "hero": {
-      "kicker": "Neotropical butterfly and moth genomics",
-      "title": "Latin America has one of the richest Lepidoptera faunas on Earth, and one of the least-sequenced",
-      "body": "Caligo is a collaborative network building reference genomes for Neotropical butterflies and moths, led by researchers based in the region."
+      "kicker": "Latin American-led genomics",
+      "title": "The Neotropics are rich in species but short on reference genomes.",
+      "body": "Caligo connects researchers, collections and sequencing facilities to change that."
     },
     "questions": {
-      "heading": "Three questions genetic evidence can help answer",
-      "intro": "Each links to what has already been published, and what it would take to go further."
+      "heading": "Four questions genetic evidence can help answer",
+      "intro": "Each discovery changes what we can ask next."
     },
     "pilotsTeaser": {
       "heading": "Four proposed pilot projects",
@@ -107,8 +107,8 @@ export const en = {
       "eyebrow": "Why butterflies and moths",
       "title": "A rich fauna with many unanswered genomic questions",
       "body": [
-        "Butterflies make evolution visible: mimetic wing patterns can maintain reproductive barriers, inherited DNA from another lineage can assemble the traits of a hybrid species, and chromosome numbers can change dramatically within one radiation.",
-        "Reference genomes are still missing across much of Neotropical Lepidoptera diversity. Caligo keeps each new assembly tied to a documented specimen, so its identity and origin can be checked as comparisons accumulate."
+        "Butterflies make evolutionary change unusually easy to see. Wing patterns can maintain reproductive barriers. DNA inherited from another lineage can help form a hybrid species, and chromosome numbers can change sharply among close relatives.",
+        "Reference genomes are still missing across much of Neotropical Lepidoptera diversity. Caligo links each assembly to a documented specimen so researchers can check which organism was sequenced and where it came from."
       ]
     },
     "pillars": {
@@ -117,7 +117,7 @@ export const en = {
     },
     "closing": {
       "title": "Bring a question, an organism or a perspective",
-      "body": "Whether you hold the specimens, the sequencing capacity, the taxonomic expertise or the question, there is a way into this network. Start with an email."
+      "body": "You can contribute specimens, sequencing capacity, taxonomic knowledge or a research question. Send us an email or join the conversation on Discord."
     },
     "stats": {
       "participants": "participants",
@@ -129,10 +129,10 @@ export const en = {
   },
   "science": {
     "metaTitle": "Science | Caligo",
-    "metaDescription": "What genetic evidence from Neotropical butterflies reveals about chromosome change, hybrid species and conservation baselines.",
-    "title": "Three questions reference genomes can answer",
-    "intro": "A reference genome anchors one specimen’s DNA sequence to chromosome-scale coordinates. By itself it shows structure; paired with specimens, collections and field observations, it can test chromosome change, hybrid ancestry and population connectivity in Neotropical butterflies.",
-    "questionsHeading": "Three questions reference genomes can help answer",
+    "metaDescription": "What genetic evidence from Neotropical butterflies and moths reveals about chromosomes, hybrid species, conservation baselines and museum collections.",
+    "title": "Four questions genetic evidence can help answer",
+    "intro": "A short genetic marker can compare populations. Hundreds of captured genes can place an old museum specimen on a family tree. A chromosome-scale assembly can show where chromosomes split or fused. The four studies below explain what each dataset resolved and which questions still need specimens, fieldwork or experiments.",
+    "questionsHeading": "Four questions genetic evidence can help answer",
     "chromosomeFigure": {
       "src": "media/figures-published/rueda-2024-fig1-chromosome-counts.jpg",
       "citation": "Rueda-M et al. 2024, PLOS Genetics, Fig 1",
@@ -153,46 +153,54 @@ export const en = {
       "width": 900,
       "height": 764,
       "alt": "A three-branch tree. Heliconius melpomene (Amazon) on the left, Heliconius elevatus (Guianas) in the middle, Heliconius pardalinus (Andes) on the right, with a wing photograph under each name. Two arrows converge on the H. elevatus branch: one from the melpomene lineage labelled 0.7 per cent, one from the pardalinus lineage labelled 99.3 per cent. A time axis on the left runs from 813 thousand years ago at the top to 180 thousand years ago at the branch point.",
-      "caption": "How H. elevatus came to have two ancestors. The two arrows are the whole argument: 99.3% of its genome traces to H. pardalinus and 0.7% to H. melpomene, meeting around 180,000 years ago. Note the wings — the hybrid does not look like a blend of its parents.",
+      "caption": "How H. elevatus came to have two ancestors. The two arrows show that 99.3% of its genome traces to H. pardalinus and 0.7% to H. melpomene, with the lineages meeting around 180,000 years ago. The hybrid does not look like a blend of its parents.",
       "changes": "cropped to panel e"
     },
     "questions": [
       {
         "heading": "Why can butterfly chromosomes split, and what changes when the W chromosome fuses?",
         "answer": [
-          "Chromosome number stays stable for millions of years in many animal lineages, but some butterflies and moths depart dramatically from that pattern. Most Heliconius species carry 21 chromosomes in the haploid set; five species in the sapho lineage carry from 21 to 60 after repeated fissions, in which one ancestral chromosome became two.",
-          "Lepidopteran chromosomes are holocentric: the machinery that moves a chromosome during cell division can attach along much of its length rather than at one localised centromere. A broken fragment is therefore not automatically left without attachment machinery. That architecture may make fissions easier to establish, but it does not explain why a rearrangement spread.",
-          "Genomic work has also identified three separate occasions on which an autosome fused to the W — the chromosome only females carry. Once fused, that copy stops being inherited like the other autosomes and passes from mother to daughter."
+          "Chromosome number remains stable for millions of years in many animal lineages. Some butterflies and moths are different. Most Heliconius species carry 21 chromosomes in the haploid set, but five species in the sapho group have between 21 and 60 after repeated fissions.",
+          "Lepidopteran chromosomes are holocentric. During cell division, the machinery that moves them can attach along much of the chromosome instead of at one localised centromere. A broken fragment can therefore retain the machinery needed to move into a daughter cell. This may help chromosome fissions persist, but it does not explain why they spread through a population.",
+          "In the Heliconius sapho group, genomic studies identified three W-autosome fusion events. The W fused with chromosome 4 in their common ancestor, followed by separate fusions with chromosomes 9 and 14 in two descendant lineages."
         ]
       },
       {
         "heading": "How did about 1% of a genome help form a hybrid species?",
         "answer": [
           "Gene flow is the movement of inherited variants between populations through reproduction. Where hybridisation is followed by generations of backcrossing, some DNA from one lineage can become a permanent part of another. Biologists call that introgression.",
-          "Heliconius elevatus is the clearest Neotropical case. Genomic, behavioural and crossing evidence supports it as a hybrid species that has persisted as its own lineage for at least 180,000 years. Continuing gene flow with H. pardalinus keeps roughly 99% of their genomes very similar. The remaining fraction is the interesting part: a scattered set of regions inherited from H. melpomene, sitting on chromosomes right across the karyotype, associated with colour pattern, wing shape, host-plant preference and sex pheromones.",
-          "The genome showed where the two histories differ. The case only became persuasive once those regions were matched to mapped traits, crossing experiments and behaviour in the field."
+          "Heliconius elevatus formed through hybridisation and has persisted as a distinct lineage for at least 180,000 years. Continuing gene flow with H. pardalinus keeps about 99% of their genomes similar. About 1% of the H. elevatus genome came from H. melpomene. These regions occur across several chromosomes and are associated with colour pattern, wing shape, host-plant preference and sex pheromones.",
+          "Genomic comparisons located the regions inherited from H. melpomene. Trait mapping, crossing experiments and field observations then connected those regions to differences between the species."
         ]
       },
       {
         "heading": "Is a decade-old conservation baseline still true?",
         "answer": [
-          "Parides ascanius is restricted to coastal restinga and wetlands in south-eastern Brazil. The IUCN assessed it as Vulnerable globally in 2018; Brazil's national assessment listed it as Endangered in 2021.",
+          "Parides ascanius is restricted to coastal restinga and wetlands in south-eastern Brazil. The IUCN assessed it as Vulnerable globally in 2018. Brazil's national assessment listed it as Endangered in 2021.",
           "Seraphim and colleagues used mitochondrial COI sequences and eight microsatellite markers to compare the surviving populations. Their 2016 study found little genetic structure, no evidence of inbreeding and high migration among most sampled sites, although one population was more isolated by the metropolitan landscape.",
-          "That result is a historical baseline, not a current diagnosis. A chromosome-scale reference plus genome-wide sampling from documented specimens could test how much diversity remains and whether habitat loss, drainage and fragmentation have since interrupted movement. Precise localities should remain out of public communication."
+          "The 2016 result provides a baseline but does not show whether the populations remain connected today. A chromosome-scale reference and new population sampling could measure how much diversity remains and whether habitat loss, drainage or fragmentation has interrupted gene flow. Precise localities should remain out of public communication."
+        ]
+      },
+      {
+        "heading": "Can a century-old museum specimen change the moth family tree?",
+        "answer": [
+          "Natural-history collections preserve species that may be difficult to collect again, but age and storage break their DNA into short fragments. Target enrichment can recover hundreds of selected genes from those fragments.",
+          "St Laurent and colleagues recovered an average of more than 400 of 515 targeted loci from 19 dry museum specimens. Together with recently collected material, those sequences represented 47 species and 32 of the 36 recognised genera of Mimallonidae, supporting a revised classification with six subfamilies, eight tribes and three newly described genera.",
+          "Mayer and colleagues later applied the approach to 37 pinned butterflies and moths collected between 1892 and 2017, recovering hundreds to thousands of nuclear loci. These sequences can place a museum specimen on an evolutionary tree and help revise its classification. Because they cover selected genes rather than the complete genome, they cannot show chromosome structure, gene order or large rearrangements. A chromosome-scale reference from fresh or well-preserved material would provide that complementary information."
         ]
       }
     ],
     "evidence": {
       "heading": "What different genetic evidence can show",
       "body": [
-        "Not all genetic data answers the same question, and the difference matters more than it sounds. A DNA barcode is a short standard fragment, usually read on Sanger or Oxford Nanopore: useful for flagging that two specimens differ, silent on how their genomes are organised. Short-read sequencing across many individuals — Illumina, typically — shows how variation is distributed through a population. A chromosome-scale reference genome, which needs long reads from Oxford Nanopore or PacBio, shows structure: where genes sit, what stays linked to what, where a chromosome has broken or fused.",
-        "The cost and effort differ by orders of magnitude, and so does what you can conclude. Saying which kind of evidence a result came from is what keeps a barcode from being read as a genome."
+        "DNA barcodes help identify specimens and compare closely related species. Genome-wide data from many individuals can estimate genetic diversity, population structure, gene flow and inbreeding. A chromosome-scale reference shows how DNA is arranged into chromosomes, including gene order, fusions, fissions and other structural changes.",
+        "These datasets require different samples, equipment and analyses, and they answer different biological questions."
       ]
     },
     "ethics": {
       "heading": "Planning responsible sampling",
       "body": [
-        "Good sampling starts with local collaboration. Caligo helps teams consider permits, specimen records, benefit sharing and data management from the beginning, following the requirements of each country and project."
+        "Sampling plans need permits, specimen records, agreements on how research results, training and other benefits will be shared, and a plan for managing data. Requirements differ among countries, so local collaborators need to be involved from the start."
       ]
     }
   },
@@ -200,7 +208,7 @@ export const en = {
     "metaTitle": "Proposed pilot projects | Caligo",
     "metaDescription": "Four proposed investigations linking chromosome evolution, threatened-population connectivity, sustainable agriculture and seasonal movement to documented genomic evidence.",
     "title": "Proposed pilot projects",
-    "opening": "Four proposed projects ask where Heliconius chromosomes changed, whether Parides populations remain connected, how soybean-pest populations respond to selection, and whether Panacea migration leaves a genomic signature. Each begins with published evidence and identifies what Caligo would need to test next.",
+    "opening": "These four pilot projects begin where earlier studies leave off. Each asks what new samples and genomic data could reveal.",
     "fieldLabels": {
       "proposedQuestion": "What the proposed Caligo pilot project would test"
     }
@@ -229,7 +237,7 @@ export const en = {
         {
           "hypothesis": "Resemble the eye of a larger animal",
           "prediction": "Some predators should hesitate or avoid attacking when the pattern is visible.",
-          "limitation": "Avoidance must be tested against simpler effects of size, contrast and novelty; a human impression of “an eye” is not enough."
+          "limitation": "Avoidance must be tested against simpler effects of size, contrast and novelty. A human impression of “an eye” is not enough."
         },
         {
           "hypothesis": "Redirect an attack toward the wing",
@@ -247,12 +255,12 @@ export const en = {
           "limitation": "Evidence must separate communication between butterflies from predator-related effects."
         }
       ],
-      "resultNarrow": "In a 2024 field experiment with Caligo martia, damage patterns were consistent with attacks being redirected toward the wings, but the eyespots did not reduce overall attack risk. That supports deflection in this system; it does not establish one universal function for every Caligo species. [S18]",
+      "resultNarrow": "In a 2024 field experiment with Caligo martia, damage patterns were consistent with attacks being redirected toward the wings, but the eyespots did not reduce overall attack risk. That supports deflection in this system. It does not establish one universal function for every Caligo species. [S18]",
       "sourceNote": "Primary source: Iserhard et al. 2024 [S18]."
     },
     "scales": {
       "heading": "A wing pattern is built from thousands of scales",
-      "body": "Butterfly scales are tiny structures that overlap across the wing. Pigments absorb some wavelengths; microscopic architecture can scatter, reflect or suppress light. A study of a dark eyespot region in Caligo memnon described nanoscale structures associated with its black appearance. Elsewhere in the Neotropics, the glasswing Greta oto achieves transparency through much lower scale density, narrow bristle-like scales and irregular wax nanopillars that reduce reflection. Similar-looking effects can arise from very different physical arrangements. That is another reason to connect visible traits with microscopy, development and comparative genomics. [S19][S12]"
+      "body": "Butterfly scales are tiny structures that overlap across the wing. Pigments absorb some wavelengths. Microscopic architecture can scatter, reflect or suppress light. A study of a dark eyespot region in Caligo memnon described nanoscale structures associated with its black appearance. Elsewhere in the Neotropics, the glasswing Greta oto achieves transparency through much lower scale density, narrow bristle-like scales and irregular wax nanopillars that reduce reflection. Similar-looking effects can arise from very different physical arrangements. That is another reason to connect visible traits with microscopy, development and comparative genomics. [S19][S12]"
     },
     "genomicsCould": {
       "heading": "From the visible butterfly to inherited information",
@@ -270,22 +278,53 @@ export const en = {
     "metaTitle": "Proposed pilot projects | Caligo",
     "metaDescription": "Four proposed pilot projects linking published evidence to testable Neotropical genomics questions.",
     "title": "Proposed pilot projects",
-    "intro": "Each proposed pilot project begins with published evidence and a question that demands more. Follow the organism, the observations and samples the work would need, the contribution of genomics and the evidence supplied by ecology, taxonomy or experiment.",
+    "intro": "These four pilot projects begin where earlier studies leave off. Each asks what new samples and genomic data could reveal.",
     "pilotProposal": {
       "heading": "The proposed Caligo pilot project",
       "leadsLabel": "Pilot project leads",
-      "goalLabel": "What the pilot project would do"
+      "resourcesLabel": "Starting material and capacity"
     }
   },
   "about": {
     "metaTitle": "About | Caligo",
     "metaDescription": "Caligo’s purpose, scientific stance and place in the wider biodiversity-genomics landscape.",
     "title": "About Caligo",
-    "body": "Caligo is a Latin American-led effort focused on reference genomes for Neotropical butterflies and moths. It brings together organisms, documented specimens, taxonomy and comparative genomics so regional questions can be investigated with evidence that remains traceable and reusable.",
+    "body": "Caligo is a Latin American-led effort to build reference genomes for Neotropical butterflies and moths. Each genome is linked to an identified specimen and the taxonomic expertise needed to verify it. Researchers can then use these genomes to study questions defined in the region.",
     "name": {
       "heading": "Why Caligo",
       "body": [
-        "Caligo is a Neotropical genus of owl butterflies, named for the large eyespots on their wings. They are common, widely recognised across the region, and have never had a reference genome — which is roughly the situation the network exists to change."
+        "Caligo is Latin for darkness or dimness. It is also a Neotropical genus of owl butterflies, recognisable by the large eyespots on their wings. The name comes from a familiar regional butterfly, but Caligo covers the much wider diversity of Neotropical butterflies and moths."
+      ]
+    },
+    "building": {
+      "heading": "What Caligo is building",
+      "items": [
+        {
+          "title": "Sequence undersampled groups",
+          "body": "Produce DNA barcodes, population data and reference assemblies for Neotropical families and subfamilies that remain poorly represented."
+        },
+        {
+          "title": "Build regional capacity",
+          "body": "Expand sequencing, sample banking and bioinformatics in Latin America."
+        },
+        {
+          "title": "Training and fair credit",
+          "body": "Support training, open data and shared publications while recognising everyone who contributes specimens, knowledge or analysis."
+        }
+      ]
+    },
+    "workflow": {
+      "eyebrow": "From specimen to shared evidence",
+      "heading": "Keep every genome linked to its specimen",
+      "projectName": "Project Psyche",
+      "introAfter": " coordinates butterfly and moth sequencing across Europe through sampling hubs, shared standards and openly released genomes. Caligo draws on that model for a Latin American-led programme focused on Neotropical species.",
+      "steps": [
+        "Identify the organism and preserve a voucher specimen",
+        "Agree permissions, roles, credit and benefit sharing",
+        "Sequence the material with an appropriate regional facility",
+        "Assemble the genome and check its quality and identity",
+        "Deposit the sequence and connect it to specimen metadata",
+        "Use the genome in comparative studies and update it when better data become available"
       ]
     },
     "leadership": {
@@ -294,29 +333,25 @@ export const en = {
     },
     "facilities": {
       "heading": "Partner facilities",
-      "intro": "Seven institutions in Colombia, Panama, Brazil, Ecuador and Chile provide the sequencing platforms the network can currently draw on."
+      "intro": "Seven partner institutions in Colombia, Panama, Brazil, Ecuador and Chile provide sequencing platforms for Caligo projects."
     },
     "events": {
       "heading": "Events",
-      "intro": "Where the network has met, and what is planned next."
+      "intro": "Caligo held its first sequencing workshop in 2026 and is planning a hackathon for 2027."
     },
     "positioning": {
       "heading": "Connections and context",
       "body": "Caligo is engaged with EBP Latin America, the Earth BioGenome Project's regional initiative, and with Genotropics, a network working on the genomic diversity of tropical organisms."
-    },
-    "governance": {
-      "heading": "Governance",
-      "intro": "Decisions are made by an organising committee drawn from the participating institutions. The model is still a draft and the committee can change it."
     }
   },
   "participate": {
     "metaTitle": "Participate | Caligo",
     "metaDescription": "Ways for researchers, students, collections, educators, naturalists, institutions and supporters to begin a conversation with Caligo.",
     "title": "Participate",
-    "intro": "Caligo is built by people who know the organisms, the collections and the landscapes. Tell us what you work on and what you would like to investigate — that conversation is where most collaborations start.",
+    "intro": "Caligo is built by people who know the organisms, collections and places where the work happens. Tell us what you study and what you would like to investigate. Most collaborations start with a conversation.",
     "contact": {
       "heading": "Start a conversation",
-      "body": "Write with a short introduction, your connection to Neotropical butterflies or moths, and the question or kind of contribution you would like to discuss.",
+      "body": "Email Caligo with your research interests, your connection to Neotropical butterflies or moths and the contribution you would like to discuss.",
       "email": "genomica.neotropical@gmail.com",
       "ariaLabel": "Email Caligo at genomica.neotropical@gmail.com"
     },
@@ -330,9 +365,19 @@ export const en = {
         "Institutions and supporters interested in responsible regional biodiversity genomics"
       ]
     },
+    "benefits": {
+      "heading": "What participation can lead to",
+      "intro": "Depending on the project and available funding, participants may take part in:",
+      "items": [
+        "New collaborations around organisms, collections, methods or research questions",
+        "Training, exchanges and shared technical experience",
+        "Joint research and funding proposals",
+        "Shared publications that recognise regional expertise"
+      ]
+    },
     "discord": {
       "heading": "Meet the Caligo community",
-      "body": "Discord offers an informal space for questions, introductions, shared resources and conversation across countries and disciplines. Email remains the route for formal or sensitive enquiries.",
+      "body": "Discord is an informal space for introductions, questions and shared resources across countries and disciplines.",
       "active": {
         "button": "Join the Discord",
         "ariaLabel": "Join the Caligo Discord community; opens an external site"
@@ -344,8 +389,8 @@ export const en = {
       }
     },
     "beforeSubmitting": {
-      "heading": "Begin safely",
-      "body": "A first email is not the place for precise localities of threatened species, unpublished specimen records, biological material, permit files or personal data. Describe the topic in general terms and we will agree a secure route for the rest."
+      "heading": "A short introduction is enough",
+      "body": "Tell us who you are, what you study and what you would like to explore. We can arrange how to share specimen records, permits or other project files later."
     },
     "languagePolicy": {
       "heading": "Working languages",
@@ -362,9 +407,9 @@ export const en = {
     "limitsLabel": "Limits and exclusions",
     "methodNote": "Method note",
     "externalContext": "Related external context",
-    "preprint": "Preprint; not peer reviewed at the time of checking.",
+    "preprint": "Preprint. A peer-reviewed journal version was not found when this source was checked.",
     "sensitiveLocalities": "Precise sensitive-species localities are not shown.",
-    "mutableData": "Mutable database or institutional record; access date shown."
+    "mutableData": "Mutable database or institutional record. The access date is shown."
   },
   "notFound": {
     "title": "This page has not been assembled yet",

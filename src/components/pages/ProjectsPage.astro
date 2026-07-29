@@ -137,8 +137,8 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
 
               {project && (
                 <div class="pilot-field">
-                  <p class="pilot-field-label">{pp.goalLabel}</p>
-                  <p class="pilot-field-value">{project.goal[locale]}</p>
+                  <p class="pilot-field-label">{pp.resourcesLabel}</p>
+                  <p class="pilot-field-value">{project.resources?.[locale]}</p>
                 </div>
               )}
 

@@ -2,17 +2,16 @@
 /**
  * ParticipatePage — how to join, and what to send.
  *
- * The membership-tier section is gone. It described two tiers whose
- * stated privileges were working groups, network publications, regular
- * meetings and votes — none of which exist yet. /about/ is honest that
- * the governance model is a draft; this page was selling that draft as
- * a benefits package.
+ * The membership-tier section is gone. It described fixed privileges
+ * that the source material does not yet establish. This page instead
+ * explains the practical ways people can contribute and make contact.
  *
  * Section order:
  *   P1  PageHeader — title + intro.
  *   P2  Ways to contribute — audience types.
+ *   P-Benefits — practical outcomes participation can open.
  *   P-LangPolicy — working-languages policy.
- *   P-Actions — JoinCTA and DiscordCTA in one responsive group.
+ *   P-Actions — registration and Discord routes.
  *   P3  Email CTA + safe-sharing advisory.
  */
 import Base from '../../layouts/Base.astro';
@@ -50,6 +49,17 @@ const p = t.participate;
           </li>
         ))}
       </ol>
+    </div>
+  </section>
+
+  <!-- P-Benefits — concrete but non-contractual participation outcomes -->
+  <section class="section" aria-labelledby="benefits-heading">
+    <div class="container-wide prose-column">
+      <h2 id="benefits-heading">{p.benefits.heading}</h2>
+      <p class="benefits-intro">{p.benefits.intro}</p>
+      <ul class="benefits-list">
+        {p.benefits.items.map((item) => <li>{item}</li>)}
+      </ul>
     </div>
   </section>
 
@@ -148,6 +158,22 @@ const p = t.participate;
   }
   .way-text { max-width: var(--measure); }
 
+  /* ---- P-Benefits ---- */
+  .benefits-intro {
+    margin: var(--space-s) 0 var(--space-m);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .benefits-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--text);
+  }
+  .benefits-list li {
+    padding-block: var(--space-2xs);
+    line-height: 1.55;
+  }
+
   /* ---- P-Committee ---- */
   .committee-body {
     margin: var(--space-s) 0 var(--space-m);
@@ -171,7 +197,7 @@ const p = t.participate;
     line-height: 1.6;
   }
 
-  /* ---- P-Actions: one shared decision point ---- */
+  /* ---- P-Actions: registration and community routes ---- */
   .participation-actions {
     display: grid;
     grid-template-columns: 1fr;
@@ -187,7 +213,6 @@ const p = t.participate;
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
-
   /* ---- P3 Contact layout ---- */
   .contact-layout {
     display: grid;

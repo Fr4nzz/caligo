@@ -48,10 +48,13 @@ export type Person = {
 export const LEADERS: Person[] = [
   {
     name: 'Caroline Bacquet',
-    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    role: {
+      en: 'Butterfly ecology and environmental response',
+      es: 'Ecología de mariposas y respuesta ambiental',
+    },
     bio: {
-      en: 'Her work at Ikiam’s Scientific Insectary connects Amazonian Lepidoptera with genetics, molecular evolution, behaviour and butterfly responses to environmental change.',
-      es: 'Su trabajo en el Insectario Científico de Ikiam vincula los lepidópteros amazónicos con la genética, la evolución molecular, el comportamiento y las respuestas de las mariposas al cambio ambiental.',
+      en: 'At Ikiam’s Scientific Insectary, Caroline studies the genetics, molecular evolution and behaviour of Amazonian Lepidoptera, including their responses to environmental change.',
+      es: 'En el Insectario Científico de Ikiam, Caroline estudia la genética, la evolución molecular y el comportamiento de los lepidópteros amazónicos, incluidas sus respuestas al cambio ambiental.',
     },
     affiliation: 'Universidad Regional Amazónica Ikiam',
     regionalTies: { en: 'Ecuador', es: 'Ecuador' },
@@ -62,7 +65,10 @@ export const LEADERS: Person[] = [
   },
   {
     name: 'Gyanpriya Maharaj',
-    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    role: {
+      en: 'Butterfly ecology and biodiversity monitoring',
+      es: 'Ecología de mariposas y monitoreo de biodiversidad',
+    },
     bio: {
       en: 'Her research examines the diversity, genetics, physiology, ecology and behaviour of Neotropical butterflies, alongside broader work in entomology and insect monitoring.',
       es: 'Su investigación estudia la diversidad, genética, fisiología, ecología y conducta de las mariposas neotropicales, junto con temas más amplios de entomología y monitoreo de insectos.',
@@ -76,7 +82,10 @@ export const LEADERS: Person[] = [
   },
   {
     name: 'Carmen Barragán',
-    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    role: {
+      en: 'Conservation and population genetics',
+      es: 'Genética de la conservación y de poblaciones',
+    },
     bio: {
       en: 'Her research combines molecular ecology and conservation genetics to study Neotropical species, population history and biodiversity conservation.',
       es: 'Su investigación combina la ecología molecular y la genética de la conservación para estudiar especies neotropicales, historia poblacional y conservación de la biodiversidad.',
@@ -90,10 +99,13 @@ export const LEADERS: Person[] = [
   },
   {
     name: 'Carlos Arias',
-    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    role: {
+      en: 'Evolutionary genomics and speciation',
+      es: 'Genómica evolutiva y especiación',
+    },
     bio: {
-      en: 'He combines computational approaches with Heliconius research to investigate the evolutionary processes that drive or constrain the origin of species in nature.',
-      es: 'Combina métodos computacionales con investigación en Heliconius para estudiar los procesos evolutivos que impulsan o limitan el origen de las especies en la naturaleza.',
+      en: 'Carlos uses computational methods and research on Heliconius to study how species form and what limits their divergence.',
+      es: 'Carlos usa métodos computacionales e investigación en Heliconius para estudiar cómo se forman las especies y qué limita su divergencia.',
     },
     affiliation: 'Smithsonian Tropical Research Institute',
     regionalTies: { en: 'Panama', es: 'Panamá' },
@@ -104,7 +116,7 @@ export const LEADERS: Person[] = [
   },
   {
     name: 'Nicol Rueda',
-    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    role: { en: 'Chromosome evolution', es: 'Evolución cromosómica' },
     bio: {
       en: 'She studies chromosome structure and sex chromosome-autosome fusions in Heliconius, using reference genomes to investigate Lepidoptera evolution.',
       es: 'Estudia la estructura cromosómica y las fusiones entre cromosomas sexuales y autosomas en Heliconius mediante genomas de referencia para investigar la evolución de los lepidópteros.',
@@ -118,7 +130,10 @@ export const LEADERS: Person[] = [
   },
   {
     name: 'Joana Meier',
-    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    role: {
+      en: 'Speciation and comparative genomics',
+      es: 'Especiación y genómica comparativa',
+    },
     bio: {
       en: 'Her research in speciation and evolutionary genomics examines how interbreeding and chromosomal rearrangements contribute to rapid adaptation and the formation of new species.',
       es: 'Su investigación en especiación y genómica evolutiva estudia cómo la hibridación y los reordenamientos cromosómicos contribuyen a la adaptación rápida y la formación de nuevas especies.',
@@ -132,7 +147,10 @@ export const LEADERS: Person[] = [
   },
   {
     name: 'Vicencio Oostra',
-    role: { en: 'Initiative leader', es: 'Líder de la iniciativa' },
+    role: {
+      en: 'Tropical adaptation and genome resources',
+      es: 'Adaptación tropical y recursos genómicos',
+    },
     bio: {
       en: 'He combines development, genomics, evolutionary biology and ecology to study how tropical butterflies adapt to environmental change.',
       es: 'Combina desarrollo, genómica, biología evolutiva y ecología para estudiar cómo las mariposas tropicales se adaptan al cambio ambiental.',

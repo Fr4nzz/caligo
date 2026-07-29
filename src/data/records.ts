@@ -140,6 +140,39 @@ export const SOURCES: readonly Source[] = [
     doi: '10.1038/s41586-024-07263-w',
   },
   {
+    id: 'wright-2024-chromosomes',
+    shortLabel: 'Wright et al. 2024',
+    kind: 'paper',
+    citation:
+      'Wright et al. 2024. Comparative genomics reveals the dynamics of chromosome evolution in Lepidoptera. Nature Ecology & Evolution 8:777–790.',
+    url: 'https://doi.org/10.1038/s41559-024-02329-4',
+    publicationDate: '2024-03-04',
+    checkedDate: '2026-07-29',
+    doi: '10.1038/s41559-024-02329-4',
+  },
+  {
+    id: 'st-laurent-2018',
+    shortLabel: 'St Laurent et al. 2018',
+    kind: 'paper',
+    citation:
+      'St Laurent et al. 2018. Resolving the tribe- and genus-level classification of the Mimallonidae with a novel phylogeny based on 515 loci. Systematic Entomology 43:729–757.',
+    url: 'https://doi.org/10.1111/syen.12301',
+    publicationDate: '2018-10-01',
+    checkedDate: '2026-07-29',
+    doi: '10.1111/syen.12301',
+  },
+  {
+    id: 'mayer-2021',
+    shortLabel: 'Mayer et al. 2021',
+    kind: 'paper',
+    citation:
+      'Mayer et al. 2021. Adding leaves to the Lepidoptera tree: capturing hundreds of nuclear genes from old museum specimens. Systematic Entomology 46:649–671.',
+    url: 'https://doi.org/10.1111/syen.12481',
+    publicationDate: '2021-07-01',
+    checkedDate: '2026-07-29',
+    doi: '10.1111/syen.12481',
+  },
+  {
     id: 'iucn-parides-2018',
     shortLabel: 'IUCN Red List, 2018',
     inlineLabel: {
@@ -169,11 +202,11 @@ export const SOURCES: readonly Source[] = [
     checkedDate: '2026-07-17',
   },
   {
-    id: 'batesia-2025',
-    shortLabel: 'Pham et al. 2025',
+    id: 'batesia-2026',
+    shortLabel: 'Pham et al. 2026',
     kind: 'paper',
     citation:
-      'Pham et al. 2025. A high-quality draft genome assembly of the Neotropical butterfly, Batesia hypochlora (Nymphalidae: Biblidinae). BMC Genomics 27:31. Co-authored by Geoff Gallice and Vicencio Oostra, who also lead Caligo work.',
+      'Pham et al. 2026. A high-quality draft genome assembly of the Neotropical butterfly, Batesia hypochlora (Nymphalidae: Biblidinae). BMC Genomics 27:31. Co-authored by Geoff Gallice and Vicencio Oostra, who also lead Caligo work.',
     url: 'https://doi.org/10.1186/s12864-025-12394-z',
     publicationDate: '2025-12-06',
     checkedDate: '2026-07-27',
@@ -247,17 +280,17 @@ export const PILOTS: readonly Pilot[] = [
       es: 'Cuando los cromosomas se dividen, se fusionan y reordenan un linaje',
     },
     hook: {
-      en: 'Most Heliconius carry 21 chromosomes in each haploid set. In one branch of the genus, that familiar number has been dramatically rearranged.',
-      es: 'La mayoría de Heliconius tiene 21 cromosomas en cada conjunto haploide. En una rama del género, ese número conocido cambió de manera extraordinaria.',
+      en: 'Most Heliconius have 21 chromosomes in each haploid set. Five species in the sapho group have between 21 and 60.',
+      es: 'La mayoría de las especies de Heliconius tiene 21 cromosomas en cada juego haploide. Cinco especies del grupo sapho tienen entre 21 y 60.',
     },
     taxon: 'Heliconius',
     publishedContext: {
-      en: 'Most Heliconius species have 21 haploid chromosomes. Five species in the sapho subclade range from 21 to 60, after repeated fissions in which one ancestral chromosome became two. Three separate fusions between the female-specific W chromosome and autosomes have also been identified. That makes the group a natural experiment in how genome structure affects recombination and sex-chromosome evolution — though the published genomes do not say why the rearrangements spread.',
-      es: 'La mayoría de las especies de Heliconius tienen 21 cromosomas haploides. Cinco especies del subclado sapho van de 21 a 60, tras fisiones repetidas en las que un cromosoma ancestral se convirtió en dos. También se han identificado tres fusiones independientes entre el cromosoma W, exclusivo de las hembras, y autosomas. El grupo es así un experimento natural sobre cómo la estructura del genoma afecta la recombinación y la evolución de los cromosomas sexuales, aunque los genomas publicados no dicen por qué se extendieron los reordenamientos.',
+      en: 'Across 210 butterfly and moth genomes, Wright and colleagues reconstructed 32 ancestral chromosomal units that remained largely intact for about 250 million years. Most Heliconius have 21 haploid chromosomes. In five species from the sapho group, repeated chromosome fissions increased that number to as many as 60. Researchers have also identified three independent fusions between autosomes and the female-specific W chromosome. Comparisons among these species can show how chromosome rearrangements alter recombination and sex-chromosome evolution. Existing genomes do not explain why the rearrangements spread.',
+      es: 'A partir de 210 genomas de mariposas y polillas, Wright y sus colegas reconstruyeron 32 unidades cromosómicas ancestrales que se mantuvieron en gran parte intactas durante unos 250 millones de años. La mayoría de las especies de Heliconius tiene 21 cromosomas haploides. En cinco especies del grupo sapho, las fisiones cromosómicas repetidas elevaron ese número hasta 60. Los investigadores también identificaron tres fusiones independientes entre autosomas y el cromosoma W, exclusivo de las hembras. Las comparaciones entre estas especies permiten estudiar cómo los reordenamientos cromosómicos alteran la recombinación y la evolución de los cromosomas sexuales. Los genomas existentes no explican por qué se propagaron los reordenamientos.',
     },
     proposedQuestion: {
-      en: 'The proposed Caligo pilot project would compare selected chromosome-scale genomes to test where fissions and fusions occurred, how they changed genomic organisation and which evolutionary hypotheses deserve deeper study.',
-      es: 'El proyecto piloto propuesto de Caligo compararía genomas seleccionados a escala cromosómica para ubicar fisiones y fusiones, estudiar cómo reorganizaron el genoma y reconocer qué hipótesis evolutivas merecen una investigación más profunda.',
+      en: 'The pilot project would compare chromosome-scale genomes to locate the fissions and fusions and test how they changed gene order and recombination.',
+      es: 'El proyecto piloto compararía genomas a escala cromosómica para localizar las fisiones y fusiones y estudiar cómo cambiaron el orden de los genes y la recombinación.',
     },
     evidenceNeeded: {
       en: 'Chromosome-scale assemblies from the focal and closely related species; verified specimens; chromosome counts where available; robust phylogenetic comparisons; and trait, recombination or breeding evidence.',
@@ -279,7 +312,7 @@ export const PILOTS: readonly Pilot[] = [
       en: 'Published context: Rueda-M et al. 2024; Mackay-Smith et al. 2026. The 2026 paper is a published accepted manuscript and may receive typesetting changes while retaining its DOI.',
       es: 'Contexto publicado: Rueda-M et al. 2024; Mackay-Smith et al. 2026. El artículo de 2026 es un manuscrito aceptado ya publicado y puede recibir cambios de edición sin modificar su DOI.',
     },
-    sourceIds: ['rueda-2024', 'mackay-smith-2026'],
+    sourceIds: ['wright-2024-chromosomes', 'rueda-2024', 'mackay-smith-2026'],
     mediaIds: [],
     status: 'proposed-caligo-work',
     publish: true,
@@ -292,17 +325,17 @@ export const PILOTS: readonly Pilot[] = [
       es: '¿Puede una mariposa costera amenazada seguir conectada?',
     },
     hook: {
-      en: 'Parides ascanius lives in a narrow coastal world where wetlands, restinga vegetation and urban pressure meet.',
-      es: 'Parides ascanius vive en un mundo costero estrecho donde se encuentran humedales, vegetación de restinga y presión urbana.',
+      en: 'Parides ascanius is restricted to coastal restinga and wetlands in south-eastern Brazil, where urbanisation and drainage have reduced its habitat.',
+      es: 'Parides ascanius está restringida a restingas costeras y humedales del sureste de Brasil, donde la urbanización y el drenaje han reducido su hábitat.',
     },
     taxon: 'Parides ascanius',
     publishedContext: {
-      en: 'The IUCN classified Parides ascanius as Vulnerable globally in 2018; Brazil’s national assessment classified it as Endangered in 2021. It lives in lowland coastal restinga and wetland habitats. A 2016 genetic study found low population structure and inferred substantial migration between the populations it sampled — a historical baseline rather than evidence that those connections survive today. Habitat loss and drainage can change movement long before populations look different. Precise localities stay out of public communication.',
-      es: 'La UICN clasificó a Parides ascanius como Vulnerable a nivel global en 2018; la evaluación nacional de Brasil lo clasificó como En Peligro en 2021. Habita restingas costeras de tierras bajas y humedales. Un estudio genético de 2016 encontró poca estructura poblacional e infirió una migración considerable entre las poblaciones muestreadas: una línea de base histórica, no una prueba de que esas conexiones sigan existiendo. La pérdida de hábitat y el drenaje pueden alterar el movimiento mucho antes de que las poblaciones se vean distintas. Las localidades precisas se mantienen fuera de la comunicación pública.',
+      en: 'The IUCN assessed Parides ascanius as Vulnerable globally in 2018, while Brazil’s national assessment listed it as Endangered in 2021. A 2016 study used mitochondrial COI sequences and eight microsatellite markers to compare the remaining populations. It found little population structure and inferred substantial migration among most sites. Those results do not show whether the populations remain connected today. Habitat loss and drainage can alter movement before populations become genetically distinct.',
+      es: 'La UICN evaluó a Parides ascanius como Vulnerable a nivel global en 2018, mientras que la evaluación nacional de Brasil la clasificó En Peligro en 2021. Un estudio de 2016 usó secuencias mitocondriales de COI y ocho marcadores microsatélites para comparar las poblaciones restantes. Encontró poca estructura poblacional e infirió una migración considerable entre la mayoría de los sitios. Esos resultados no muestran si las poblaciones siguen conectadas hoy. La pérdida de hábitat y el drenaje pueden alterar el movimiento antes de que las poblaciones se diferencien genéticamente.',
     },
     proposedQuestion: {
-      en: 'The proposed Caligo pilot project would build a documented reference genome and compare responsibly sampled populations to test whether connectivity and genetic diversity have changed since the earlier baseline.',
-      es: 'El proyecto piloto propuesto de Caligo construiría un genoma de referencia vinculado a un ejemplar documentado y compararía poblaciones muestreadas de manera responsable para saber si la conectividad y la diversidad genética cambiaron desde la línea de base anterior.',
+      en: 'The pilot project would build a reference genome from a documented specimen and compare newly sampled populations with the 2016 results. This would test whether gene flow or genetic diversity has changed.',
+      es: 'El proyecto piloto construiría un genoma de referencia a partir de un ejemplar documentado y compararía nuevas muestras poblacionales con los resultados de 2016. Así se podría evaluar si cambiaron el flujo génico o la diversidad genética.',
     },
     evidenceNeeded: {
       en: 'A documented reference specimen; appropriately permitted samples from a planned, non-public set of populations; habitat and time metadata; and analyses designed to compare current structure with earlier results.',
@@ -337,17 +370,17 @@ export const PILOTS: readonly Pilot[] = [
       es: 'Seguir el movimiento y la resistencia en paisajes sojeros',
     },
     hook: {
-      en: 'A moth is not a "pest" everywhere. In agriculture, that word describes a management problem created under particular ecological and economic conditions.',
-      es: 'Una polilla no es una «plaga» en todas partes. En agricultura, esa palabra describe un problema de manejo que aparece bajo condiciones ecológicas y económicas concretas.',
+      en: 'Several similar-looking moth species occur in Brazilian soybean fields. Monitoring their movement or insecticide resistance begins with knowing which species was collected.',
+      es: 'Varias especies de polillas de aspecto parecido aparecen en los cultivos de soja de Brasil. Para monitorear su movimiento o su resistencia a insecticidas, primero hay que saber qué especie se recolectó.',
     },
     taxon: '',
     publishedContext: {
-      en: 'Several Lepidoptera species share soybean landscapes, which turns three practical problems into one: identifying the organism correctly, understanding how populations move, and detecting whether management is selecting for resistance. Work in Brazil shows closely related species being confused in monitoring, and susceptibility to insecticidal proteins shifting in ways only repeated species-specific testing can catch. Genomics can separate the lineages and track inherited variants; the management decisions still rest with agronomy and growers.',
-      es: 'Varias especies de lepidópteros comparten los paisajes de soya, lo que junta tres problemas prácticos en uno: identificar bien al organismo, entender cómo se mueven las poblaciones y detectar si el manejo está seleccionando resistencia. El trabajo en Brasil muestra especies cercanas que se confunden en el monitoreo, y cambios de susceptibilidad a proteínas insecticidas que solo se detectan con pruebas repetidas y específicas por especie. La genómica puede separar los linajes y rastrear variantes heredadas; las decisiones de manejo siguen dependiendo de la agronomía y de quienes cultivan.',
+      en: 'Brazilian studies have found closely related species confused during monitoring. They have also detected changes in susceptibility to insecticidal proteins that require repeated, species-specific testing. Genomic data can distinguish the species, compare movement among populations and identify variants associated with resistance. Field trials, agronomy and growers’ observations are still needed to choose a management response.',
+      es: 'Estudios realizados en Brasil han encontrado especies cercanas confundidas durante el monitoreo. También han detectado cambios en la susceptibilidad a proteínas insecticidas que requieren pruebas repetidas y específicas para cada especie. Los datos genómicos permiten distinguir las especies, comparar el movimiento entre poblaciones e identificar variantes asociadas con la resistencia. Todavía se necesitan ensayos de campo, agronomía y observaciones de los productores para elegir una respuesta de manejo.',
     },
     proposedQuestion: {
-      en: 'The proposed Caligo pilot project would ask how confirmed soybean-associated species move across changing agricultural mosaics, how resistance-related variants are distributed and which genomic markers are reliable enough for monitoring.',
-      es: 'El proyecto piloto propuesto de Caligo preguntaría cómo se desplazan especies confirmadas asociadas con la soja a través de mosaicos agrícolas cambiantes, cómo se distribuyen variantes relacionadas con resistencia y qué marcadores genómicos son suficientemente confiables para el monitoreo.',
+      en: 'The pilot project would identify the species in existing collections, compare their movement across agricultural regions and test which resistance markers are reliable enough for monitoring.',
+      es: 'El proyecto piloto identificaría las especies en las colecciones existentes, compararía su movimiento entre regiones agrícolas y evaluaría qué marcadores de resistencia son suficientemente confiables para el monitoreo.',
     },
     evidenceNeeded: {
       en: 'Confirmed species identifications; documented reference specimens; repeated and geographically designed population sampling; resistance phenotypes or bioassays; crop and management context; and validated marker panels.',
@@ -382,17 +415,17 @@ export const PILOTS: readonly Pilot[] = [
       es: '¿Dónde empieza y termina una oleada estacional de Panacea prola?',
     },
     hook: {
-      en: 'At certain moments, Panacea prola can turn a forest route into a moving ribbon of dark wings and sudden red flashes.',
-      es: 'En ciertos momentos, Panacea prola puede convertir una ruta del bosque en una cinta móvil de alas oscuras y destellos rojos.',
+      en: 'In south-eastern Peru, thousands of Panacea prola have been observed flying north-east during the same season.',
+      es: 'En el sureste de Perú se han observado miles de Panacea prola volando hacia el noreste durante la misma temporada.',
     },
     taxon: 'Panacea prola',
     publishedContext: {
-      en: 'A 2020 preprint reported a seasonal mass movement of Panacea prola in south-eastern Peru, and presented it as the first evidence of an Amazonian insect migration. The subfamily is not unsequenced: Batesia hypochlora, published in 2025, was the first reference genome for Biblidinae, and it is the closest precedent for what a Panacea assembly would involve. It leaves the map unfinished: where the butterflies came from, whether one population or several contributed, and whether the pattern repeats between years. A reference genome plus samples across seasons and sites could compare ancestry and connectivity. The report has not been peer reviewed.',
-      es: 'Un preprint de 2020 reportó un movimiento masivo estacional de Panacea prola en el sureste de Perú y lo presentó como la primera evidencia de una migración de insectos amazónica. La subfamilia no está sin secuenciar: Batesia hypochlora, publicado en 2025, fue el primer genoma de referencia de Biblidinae y es el precedente más cercano a lo que implicaría un ensamblaje de Panacea. El mapa queda incompleto: de dónde venían las mariposas, si contribuyó una población o varias, y si el patrón se repite entre años. Un genoma de referencia junto con muestras de distintas estaciones y sitios permitiría comparar ancestría y conectividad. El reporte no ha pasado por revisión por pares.',
+      en: 'In 2020, Gallice and colleagues recorded 2,509 Panacea prola during fifty one-hour observations in south-eastern Peru. Only 19 flew in another direction. The authors presented this as the first evidence of an Amazonian insect migration. Pham and colleagues published the first Biblidinae reference genome, for Batesia hypochlora, in 2026. It provides the closest genomic reference for Panacea but cannot explain where the moving butterflies came from, whether they belonged to one or several populations or whether the movement repeats each year.',
+      es: 'En 2020, Gallice y sus colegas registraron 2.509 individuos de Panacea prola durante cincuenta observaciones de una hora en el sureste de Perú. Solo 19 volaron en otra dirección. Los autores presentaron el hallazgo como la primera evidencia de una migración de insectos amazónica. Pham y sus colegas publicaron en 2026 el primer genoma de referencia de Biblidinae, correspondiente a Batesia hypochlora. Es la referencia genómica más cercana para Panacea, pero no explica de dónde vinieron las mariposas en movimiento, si pertenecían a una o varias poblaciones ni si el movimiento se repite cada año.',
     },
     proposedQuestion: {
-      en: 'The proposed Caligo pilot project would combine a documented reference genome with repeated population sampling to test the origins, connections and seasonal consistency of the observed movement.',
-      es: 'El proyecto piloto propuesto de Caligo combinaría un genoma de referencia vinculado a un ejemplar documentado con muestreo poblacional repetido para estudiar el origen, las conexiones y la constancia estacional del movimiento observado.',
+      en: 'The pilot project would compare samples collected in different places and seasons. The analysis would test where the moving butterflies came from, whether they belonged to one or several populations and whether the same movement occurs in different years.',
+      es: 'El proyecto piloto compararía muestras recolectadas en distintos lugares y temporadas. El análisis evaluaría de dónde vinieron las mariposas en movimiento, si pertenecían a una o varias poblaciones y si el mismo movimiento ocurre en años diferentes.',
     },
     evidenceNeeded: {
       en: 'A verified reference specimen; repeated, responsibly permitted sampling across seasons and broad regions; environmental and host-plant context; and independent movement evidence such as observations, tracking or stable isotopes.',
@@ -414,7 +447,7 @@ export const PILOTS: readonly Pilot[] = [
       en: 'Public evidence: Gallice et al. 2020, a preprint checked on 16 July 2026. No unpublished isotope result or wider route is stated.',
       es: 'Evidencia pública: Gallice et al. 2020, preprint revisado el 16 de julio de 2026. No se mencionan resultados isotópicos no publicados ni rutas más amplias.',
     },
-    sourceIds: ['gallice-2020', 'batesia-2025'],
+    sourceIds: ['gallice-2020', 'batesia-2026'],
     mediaIds: [],
     status: 'proposed-caligo-work',
     publish: true,
@@ -688,8 +721,8 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Una investigadora con guantes usa una pipeta para tomar ADN de un microtubo en un laboratorio de genómica.',
         },
         caption: {
-          en: 'Extracting DNA in the laboratory. What you do next with it — a short barcode, reads from many individuals, or a full reference genome — decides which questions the result can answer.',
-          es: 'Extracción de ADN en el laboratorio. Lo que se haga después con él —un código de barras corto, lecturas de muchos individuos o un genoma de referencia completo— decide qué preguntas puede responder el resultado.',
+          en: 'Extracting DNA in the laboratory. The next step might be a short barcode, reads from many individuals or a full reference genome. That choice determines which questions the result can answer.',
+          es: 'Extracción de ADN en el laboratorio. El siguiente paso puede ser un código de barras corto, lecturas de muchos individuos o un genoma de referencia completo. Esa elección determina qué preguntas puede responder el resultado.',
         },
         credit: {
           en: 'Photograph: Maggie Bartlett / National Human Genome Research Institute (NHGRI). Public domain (US Government work).',

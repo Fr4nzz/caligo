@@ -29,7 +29,7 @@
 
 - Primary navigation: Home, Science, Pilot projects, About, Participate
 - Core routes/screens: `/`, `/science`, `/projects`, `/about`, and `/participate`
-- Content hierarchy: initiative thesis, selected published findings, proposed work, network capacity, leadership, governance, and participation
+- Content hierarchy: initiative thesis, four selected published findings, proposed work, network priorities and specimen-to-genome workflow, capacity, leadership, and participation
 
 ## Design principles
 
@@ -53,7 +53,7 @@
 ## Components
 
 - Existing components to reuse: `Base`, `Header`, `HeroMedia`, `CommunityStats`, `PrincipleGrid`, `MediaCandidateViewer`, and shared CTA/button styles
-- New/changed components: the Home hero may change its internal CSS geometry without creating a parallel hero component
+- New/changed components: About includes a compact three-priority grid and six-step specimen-to-shared-evidence workflow; Participate includes a concise participation-outcomes list; the Home hero may change its internal CSS geometry without creating a parallel hero component
 - Variants and states: desktop split composition; mobile stacked composition; light/dark page modes do not alter hero contrast
 - Token/component ownership: global tokens remain in `src/styles/tokens.css`; page-specific hero geometry stays in `HomePage.astro`
 
@@ -87,7 +87,7 @@
 
 - Tone: direct, concise, scientifically literate, and inviting
 - Terminology: use “pilot project” in English and “proyecto piloto” in Spanish
-- Microcopy rules: no internal editorial language, no defensive disclaimers that weaken the public presentation, and no facts without a documented source
+- Microcopy rules: no internal editorial language, no defensive disclaimers that weaken the public presentation, and no facts without a documented source; distinguish current capacity from aspirational outcomes without presenting either as a guarantee
 - Scientific copy: prefer a measured result or named biological mechanism over metaphors about genomes as maps, blueprints, instructions, or books
 
 ## Implementation constraints

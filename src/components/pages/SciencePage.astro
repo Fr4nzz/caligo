@@ -1,6 +1,6 @@
 ---
 /**
- * SciencePage — three questions, in prose, each paired with an image.
+ * SciencePage — four questions, in prose, each paired with evidence or a specimen image.
  *
  * This page was 3,536 words, 13 <details> elements, 36 citation
  * superscripts, a 15-entry bibliography, a sticky sidebar and five
@@ -43,7 +43,6 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
 import PublishedFigure from '../PublishedFigure.astro';
-import ConceptDiagram from '../ConceptDiagram.astro';
 import { getDict, type Locale } from '../../i18n';
 import { getSource } from '../../data/records';
 
@@ -58,11 +57,12 @@ const s = t.science;
   Anchors must match `questionAnchors` in HomePage.astro, which renders
   the teaser links into this page.
 */
-const anchors = ['chromosomes', 'gene-flow', 'connectivity'] as const;
+const anchors = ['chromosomes', 'gene-flow', 'connectivity', 'museum-collections'] as const;
 const questionSourceIds = {
   chromosomes: ['rueda-2024', 'mackay-smith-2026'],
   'gene-flow': ['rosser-2024'],
   connectivity: ['seraphim-2016', 'iucn-parides-2018', 'icmbio-parides-2021'],
+  'museum-collections': ['st-laurent-2018', 'mayer-2021'],
 } as const;
 
 /** The image beside the prose. */
@@ -70,6 +70,7 @@ const questionAside: Record<string, { photo?: string; figure?: 'hybridOriginFigu
   chromosomes: { photo: 'pilot-heliconius' },
   'gene-flow': { figure: 'hybridOriginFigure' },
   connectivity: { photo: 'pilot-parides' },
+  'museum-collections': { photo: 'journey-2-provenance' },
 };
 
 /*
@@ -84,27 +85,7 @@ const questionWideFigure: Record<string, 'chromosomeFigure' | undefined> = {
   chromosomes: 'chromosomeFigure',
   'gene-flow': undefined,
   connectivity: undefined,
-};
-
-/*
-  Where the paper's own figure is a research figure rather than an
-  explanatory one, we draw it instead. Rosser Fig 3 shows the same claim
-  as this diagram and shows it measured — but it is four F_ST tracks, an
-  eight-item legend and a species-tree/introgression-tree key, and this
-  page exists to pull people toward research rather than to gate it.
-
-  What the diagram takes from Fig 3 is its one transferable idea: put
-  each trait AT its chromosome, in a labelled row, instead of listing
-  chromosome numbers in a caption the reader has to map back by hand.
-
-  Full width, like the published figures — a wide karyotype in a narrow
-  column is unreadable, and a half-width block in a full-width row reads
-  as something failing to load.
-*/
-const questionWideDiagram: Record<string, 'introgression' | undefined> = {
-  chromosomes: undefined,
-  'gene-flow': 'introgression',
-  connectivity: undefined,
+  'museum-collections': undefined,
 };
 
 const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
@@ -122,7 +103,6 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
         const anchor = anchors[i];
         const aside = questionAside[anchor];
         const wide = questionWideFigure[anchor];
-        const wideDiagram = questionWideDiagram[anchor];
         const sources = questionSourceIds[anchor]
           .map((sourceId) => getSource(sourceId))
           .filter((source) => source !== undefined);
@@ -160,11 +140,6 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
               </div>
             )}
 
-            {wideDiagram && (
-              <div class="wide-figure">
-                <ConceptDiagram locale={locale} kind={wideDiagram} context="science" />
-              </div>
-            )}
           </article>
         );
       })}
@@ -184,14 +159,9 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
   </section>
 
   <section class="section" aria-labelledby="ethics-heading">
-    <div class="container-wide split">
-      <div class="split-prose">
-        <h2 id="ethics-heading" class="section-heading">{s.ethics.heading}</h2>
-        {s.ethics.body.map((para) => <p class="prose-para">{para}</p>)}
-      </div>
-      <div class="split-figure">
-        <MediaCandidateViewer moduleId="journey-2-provenance" locale={locale} aspectRatio="4 / 3" />
-      </div>
+    <div class="container-wide prose-column">
+      <h2 id="ethics-heading" class="section-heading">{s.ethics.heading}</h2>
+      {s.ethics.body.map((para) => <p class="prose-para">{para}</p>)}
     </div>
   </section>
 

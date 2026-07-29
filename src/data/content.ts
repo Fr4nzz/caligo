@@ -48,15 +48,15 @@ export const PRINCIPLES: { title: Bilingual; body: Bilingual }[] = [
   {
     title: { en: 'Latin American leadership', es: 'Liderazgo latinoamericano' },
     body: {
-      en: 'Regional researchers co-design and co-lead the work, with roles extending far beyond sample provision.',
-      es: 'Quienes investigan en la región codiseñan y colideran el trabajo, con funciones que van mucho más allá de aportar muestras.',
+      en: 'Researchers in Latin America help choose the questions and lead sampling, analysis and publication.',
+      es: 'Los investigadores de América Latina ayudan a elegir las preguntas y lideran el muestreo, el análisis y la publicación.',
     },
   },
   {
     title: { en: 'Taxonomy first', es: 'La taxonomía primero' },
     body: {
-      en: 'Sequencing follows identification, and genomics gives back to systematics.',
-      es: 'La secuenciación sigue a la identificación, y la genómica retribuye a la sistemática.',
+      en: 'Specimens are identified before sequencing, and genomic results are returned to taxonomic research.',
+      es: 'Los ejemplares se identifican antes de la secuenciación, y los resultados genómicos vuelven a la investigación taxonómica.',
     },
   },
   {
@@ -67,7 +67,7 @@ export const PRINCIPLES: { title: Bilingual; body: Bilingual }[] = [
     },
   },
   {
-    title: { en: 'Open by default, fair by design', es: 'Abierta por defecto, justa por diseño' },
+    title: { en: 'Open data and fair credit', es: 'Datos abiertos y crédito justo' },
     body: {
       en: 'Data are shared openly and contributions credited transparently.',
       es: 'Los datos se comparten de forma abierta y las contribuciones se acreditan con transparencia.',
@@ -86,8 +86,8 @@ export const PRINCIPLES: { title: Bilingual; body: Bilingual }[] = [
       es: 'Respetar los permisos, las leyes nacionales y la distribución justa de beneficios',
     },
     body: {
-      en: 'Address Access and Benefit-Sharing, Digital Sequence Information, Indigenous Peoples’ rights, and requirements beyond the legal minimum.',
-      es: 'Atender el Acceso y Reparto de Beneficios, la Información Digital de Secuencias, los derechos de los pueblos indígenas y requisitos que van más allá del mínimo legal.',
+      en: 'Agree how research results, training and other benefits will be shared. Follow national requirements for genetic resources and involve Indigenous peoples and local communities where the work affects them.',
+      es: 'Acordar cómo se compartirán los resultados, la formación y otros beneficios. Cumplir los requisitos nacionales sobre recursos genéticos e involucrar a los pueblos indígenas y las comunidades locales cuando el trabajo les afecte.',
     },
   },
   {
@@ -100,8 +100,8 @@ export const PRINCIPLES: { title: Bilingual; body: Bilingual }[] = [
   {
     title: { en: 'Cultural implications', es: 'Implicaciones culturales' },
     body: {
-      en: 'Make room for artists and non-biologists to interpret and contextualise biodiversity genomics.',
-      es: 'Dar espacio a artistas y a personas fuera de la biología para interpretar y contextualizar la genómica de la biodiversidad.',
+      en: 'Invite artists and people outside biology to explore what biodiversity genomics means for the region.',
+      es: 'Invitar a artistas y personas ajenas a la biología a explorar qué significa la genómica de la biodiversidad para la región.',
     },
   },
 ];
@@ -183,8 +183,8 @@ export const PROJECTS: Project[] = [
       es: 'Generar genomas a nivel cromosómico en Heliconius. La mayoría de las especies conserva 21 cromosomas, mientras algunas llegan a 60, lo que ofrece un sistema para estudiar por qué ocurren los reordenamientos y cómo afectan a la adaptación, la especiación, la pérdida de genes y la evolución de los cromosomas sexuales. El cromosoma W plantea sus propias preguntas: de dónde viene, cómo se comportan las fusiones entre el W y los autosomas una vez ocurren, si está degenerando y a qué ritmo, y qué genes siguen en él.',
     },
     resources: {
-      en: 'Contributors already identified with genomic data, samples, and expertise in analysis, ecology, and behaviour.',
-      es: 'Ya se han identificado colaboradores con datos genómicos, muestras y experiencia en análisis, ecología y comportamiento.',
+      en: 'The project already has contributors with samples, genomic data and expertise in analysis, ecology and behaviour.',
+      es: 'El proyecto ya cuenta con colaboradores que aportan muestras, datos genómicos y experiencia en análisis, ecología y comportamiento.',
     },
     openToCollaborators: true,
     heliconiusQuestions: [
@@ -289,8 +289,8 @@ export const PROJECTS: Project[] = [
       es: 'Generar un genoma de referencia latinoamericano con Oxford Nanopore, potencialmente con un PromethION P2 portátil en la Finca Las Piedras, en el sur de Perú. La especie podría ser migratoria en el sur de Perú y posiblemente en Colombia. El análisis y la publicación deberían, idealmente, ser liderados por un investigador latinoamericano.',
     },
     resources: {
-      en: 'Existing population genomic data and high-coverage Illumina data from museum holotypes of two subspecies and Panacea procilla.',
-      es: 'Datos genómicos poblacionales existentes y datos Illumina de alta cobertura de holotipos de museo de dos subespecies y de Panacea procilla.',
+      en: 'The project can draw on existing population genomic data and high-coverage Illumina data from museum holotypes of two subspecies and Panacea procilla.',
+      es: 'El proyecto puede usar datos genómicos poblacionales existentes y datos Illumina de alta cobertura de holotipos de museo de dos subespecies y de Panacea procilla.',
     },
     openToCollaborators: false,
   },

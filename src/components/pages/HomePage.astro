@@ -6,7 +6,7 @@
  *   H1  Cinematic hero (full-bleed photo + overlay copy).
  *   —   Stat bar — the cheapest credibility on the page.
  *   H2  Why butterflies and moths.
- *   H3  Three questions — teaser links to /science#.
+ *   H3  Four questions — teaser links to /science#.
  *   H4  Four proposed pilots — 2×2 cards.
  *   H5  Participate.
  *
@@ -26,6 +26,7 @@ import Icon from '../Icon.astro';
 import CommunityStats from '../CommunityStats.astro';
 import { getDict, localePath, type Locale } from '../../i18n';
 import { PILOTS, getMedia } from '../../data/records';
+import { discordInviteUrl } from '../../config/site';
 
 /**
  * Science-page anchors for the question teasers, in the same order as
@@ -33,7 +34,7 @@ import { PILOTS, getMedia } from '../../data/records';
  * also what Home renders, so adding a question on Science does not
  * silently add an unanchored row here.
  */
-const questionAnchors = ['chromosomes', 'gene-flow', 'connectivity'] as const;
+const questionAnchors = ['chromosomes', 'gene-flow', 'connectivity', 'museum-collections'] as const;
 
 interface Props {
   locale: Locale;
@@ -207,6 +208,17 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
           <a class="btn btn--primary" href={`mailto:${t.participate.contact.email}`}>
             {t.cta.contact}<Icon name="mail" />
           </a>
+          {discordInviteUrl && (
+            <a
+              class="btn"
+              href={discordInviteUrl}
+              target="_blank"
+              rel="noopener noreferrer external"
+              aria-label={t.participate.discord.active.ariaLabel}
+            >
+              {t.participate.discord.active.button}
+            </a>
+          )}
           <a class="text-link" href={localePath(locale, '/participate')}>
             {t.cta.howToTakePart}<Icon name="arrow-right" />
           </a>
