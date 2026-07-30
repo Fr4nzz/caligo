@@ -97,12 +97,34 @@ export const en = {
       "body": "Caligo connects researchers, collections and sequencing facilities to change that."
     },
     "questions": {
-      "heading": "Four questions genetic evidence can help answer",
-      "intro": "Each discovery changes what we can ask next."
+      "heading": "Four questions genomes can help answer",
+      "intro": "Each discovery reveals what to ask next."
     },
+    "researchCards": [
+      {
+        "question": "How can butterfly chromosomes split and fuse, yet still work?",
+        "scienceLink": "Read how the chromosomes changed",
+        "projectLink": "See the proposed Heliconius study"
+      },
+      {
+        "question": "Are threatened butterfly populations still connected a decade later?",
+        "scienceLink": "Read what the 2016 population study found",
+        "projectLink": "See how Caligo would revisit connectivity"
+      },
+      {
+        "question": "How do crop pests move and evolve resistance across soybean landscapes?",
+        "scienceLink": "Read what genomics reveals about movement and resistance",
+        "projectLink": "See the proposed soybean landscape study"
+      },
+      {
+        "question": "Thousands of Panacea prola fly north-east. Where do they come from?",
+        "scienceLink": "Read the evidence for seasonal movement",
+        "projectLink": "See how Caligo would trace the migration wave"
+      }
+    ],
     "pilotsTeaser": {
-      "heading": "Four proposed pilot projects",
-      "intro": "They focus on chromosome change, a threatened butterfly's population connectivity, crop pests and seasonal migration."
+      "heading": "From questions to pilot projects",
+      "intro": "Caligo is shaping four projects on chromosome change, threatened-population connectivity, crop pests and seasonal migration."
     },
     "intro": {
       "eyebrow": "Why butterflies and moths",
@@ -130,10 +152,10 @@ export const en = {
   },
   "science": {
     "metaTitle": "Science | Caligo",
-    "metaDescription": "What genetic evidence from Neotropical butterflies and moths reveals about chromosomes, hybrid species, conservation baselines and museum collections.",
-    "title": "Four questions genetic evidence can help answer",
-    "intro": "A short genetic marker can compare populations. Hundreds of captured genes can place an old museum specimen on a family tree. A chromosome-scale assembly can show where chromosomes split or fused. The four studies below explain what each dataset resolved and which questions still need specimens, fieldwork or experiments.",
-    "questionsHeading": "Four questions genetic evidence can help answer",
+    "metaDescription": "What genetic evidence from Neotropical butterflies and moths reveals about chromosomes, hybrid species, conservation, museum collections, crop pests and seasonal movement.",
+    "title": "Questions genomes can help answer",
+    "intro": "A short genetic marker can compare populations. Hundreds of captured genes can place an old museum specimen on a family tree. A chromosome-scale assembly can show where chromosomes split or fused. The studies below explain what each dataset resolved and which questions still need specimens, fieldwork or experiments.",
+    "questionsHeading": "Questions genomes can help answer",
     "chromosomeFigure": {
       "src": "media/figures-published/rueda-2024-fig1-chromosome-counts.jpg",
       "citation": "Rueda-M et al. 2024, PLOS Genetics, Fig 1",
@@ -159,7 +181,7 @@ export const en = {
     },
     "questions": [
       {
-        "heading": "Why can butterfly chromosomes split, and what changes when the W chromosome fuses?",
+        "heading": "How can butterfly chromosomes split and fuse, yet still work?",
         "answer": [
           "Chromosome number remains stable for millions of years in many animal lineages. Some butterflies and moths are different. Most Heliconius species carry 21 chromosomes in the haploid set, but five species in the sapho group have between 21 and 60 after repeated fissions.",
           "Lepidopteran chromosomes are holocentric. During cell division, the machinery that moves them can attach along much of the chromosome instead of at one localised centromere. A broken fragment can therefore retain the machinery needed to move into a daughter cell. This may help chromosome fissions persist, but it does not explain why they spread through a population.",
@@ -167,7 +189,7 @@ export const en = {
         ]
       },
       {
-        "heading": "How did about 1% of a genome help form a hybrid species?",
+        "heading": "How did just 1% of a genome help form a hybrid species?",
         "answer": [
           "Gene flow is the movement of inherited variants between populations through reproduction. Where hybridisation is followed by generations of backcrossing, some DNA from one lineage can become a permanent part of another. Biologists call that introgression.",
           "Heliconius elevatus formed through hybridisation and has persisted as a distinct lineage for at least 180,000 years. Continuing gene flow with H. pardalinus keeps about 99% of their genomes similar. About 1% of the H. elevatus genome came from H. melpomene. These regions occur across several chromosomes and are associated with colour pattern, wing shape, host-plant preference and sex pheromones.",
@@ -175,7 +197,7 @@ export const en = {
         ]
       },
       {
-        "heading": "Is a decade-old conservation baseline still true?",
+        "heading": "Are threatened butterfly populations still connected a decade later?",
         "answer": [
           "Parides ascanius is restricted to coastal restinga and wetlands in south-eastern Brazil. The IUCN assessed it as Vulnerable globally in 2018. Brazil's national assessment listed it as Endangered in 2021.",
           "Seraphim and colleagues used mitochondrial COI sequences and eight microsatellite markers to compare the surviving populations. Their 2016 study found little genetic structure, no evidence of inbreeding and high migration among most sampled sites, although one population was more isolated by the metropolitan landscape.",
@@ -183,11 +205,27 @@ export const en = {
         ]
       },
       {
-        "heading": "Can a century-old museum specimen change the moth family tree?",
+        "heading": "Can DNA from a century-old museum specimen redraw the moth family tree?",
         "answer": [
           "Natural-history collections preserve species that may be difficult to collect again, but age and storage break their DNA into short fragments. Target enrichment can recover hundreds of selected genes from those fragments.",
           "St Laurent and colleagues recovered an average of more than 400 of 515 targeted loci from 19 dry museum specimens. Together with recently collected material, those sequences represented 47 species and 32 of the 36 recognised genera of Mimallonidae, supporting a revised classification with six subfamilies, eight tribes and three newly described genera.",
           "Mayer and colleagues later applied the approach to 37 pinned butterflies and moths collected between 1892 and 2017, recovering hundreds to thousands of nuclear loci. These sequences can place a museum specimen on an evolutionary tree and help revise its classification. Because they cover selected genes rather than the complete genome, they cannot show chromosome structure, gene order or large rearrangements. A chromosome-scale reference from fresh or well-preserved material would provide that complementary information."
+        ]
+      },
+      {
+        "heading": "How do crop pests move and evolve resistance across soybean landscapes?",
+        "answer": [
+          "Several closely related moth species occur in Brazilian soybean fields and can be difficult to distinguish during monitoring. Reliable identification matters because movement and resistance can differ among species.",
+          "Brazilian studies have found changes in susceptibility to insecticidal proteins that require repeated, species-specific testing. Genomic data can distinguish the species, compare movement among populations and identify variants associated with resistance.",
+          "Genomes do not measure crop damage or prove that a variant causes resistance by themselves. Field trials, bioassays, agronomy and growers’ observations are still needed to choose a management response."
+        ]
+      },
+      {
+        "heading": "Thousands of Panacea prola fly north-east. Where do they come from?",
+        "answer": [
+          "In 2020, Gallice and colleagues recorded 2,509 Panacea prola during fifty one-hour observations in south-eastern Peru. Only 19 flew in another direction. They presented the observation as the first evidence of an Amazonian insect migration.",
+          "The closest available genomic reference is from another member of the same subfamily, Batesia hypochlora. It cannot reveal where the moving Panacea came from, whether they belonged to one population or several, or whether the movement repeats each year.",
+          "Comparing samples from different places, seasons and years could estimate ancestry and connectivity. Genomes would still need to be combined with field observations, environmental data or other movement evidence."
         ]
       }
     ],

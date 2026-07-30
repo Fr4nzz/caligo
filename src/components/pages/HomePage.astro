@@ -6,9 +6,9 @@
  *   H1  Cinematic hero (full-bleed photo + overlay copy).
  *   —   Stat bar — the cheapest credibility on the page.
  *   H2  Why butterflies and moths.
- *   H3  Four questions — teaser links to /science#.
- *   H4  Four proposed pilots — 2×2 cards.
- *   H5  Participate.
+ *   H3  Four evidence-to-pilot cards, with one link to the published
+ *       science and one to the proposed work.
+ *   H4  Participate.
  *
  * The six-step "From organism to genome" section used to sit between the
  * principles and the questions. It was ~390 words — a third of the page —
@@ -28,13 +28,12 @@ import { getDict, localePath, type Locale } from '../../i18n';
 import { PILOTS, getMedia } from '../../data/records';
 import { discordInviteUrl } from '../../config/site';
 
-/**
- * Science-page anchors for the question teasers, in the same order as
- * `t.science.questions[]` (single source of truth). The array length is
- * also what Home renders, so adding a question on Science does not
- * silently add an unanchored row here.
- */
-const questionAnchors = ['chromosomes', 'gene-flow', 'connectivity', 'museum-collections'] as const;
+const pilotScienceAnchors = [
+  'chromosomes',
+  'connectivity',
+  'soybean-movement-resistance',
+  'panacea-migration',
+] as const;
 
 interface Props {
   locale: Locale;
@@ -55,8 +54,10 @@ const desktopSrcset = [
   { width: 1600, height: 902,  path: `${base}media/hero/caligo-tambopata-1600w.jpg` },
   { width: 2400, height: 1354, path: `${base}media/hero/caligo-tambopata-2400w.jpg` },
 ] as const;
-const publishedPilots = PILOTS.filter((p) => p.publish);
-
+const publishedPilots = PILOTS.filter((pilot) => pilot.publish);
+if (publishedPilots.length !== h.researchCards.length) {
+  throw new Error('HomePage: each published pilot needs one evidence-to-pilot card.');
+}
 ---
 
 <Base locale={locale} title={h.metaTitle} description={h.metaDescription} page="/">
@@ -121,81 +122,47 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     </div>
   </section>
 
-  <!-- ====================== H3 — Questions worth following ======================
-       Home renders the question headings only; the answers live on Science.
-       We iterate `t.science.questions` so the two pages stay in lockstep by
-       construction — no duplicated question copy.
-  -->
+  <!-- ====================== H3 — Published evidence → proposed work ====================== -->
   <section id="questions" class="section" aria-labelledby="h4-title">
     <span id="h4" hidden aria-hidden="true" data-legacy-anchor="h4" />
+    <span id="proposed-pilots" hidden aria-hidden="true" />
+    <span id="h5" hidden aria-hidden="true" data-legacy-anchor="h5" />
     <div class="container-wide">
       <h2 id="h4-title">{h.questions.heading}</h2>
       <p class="lead">{h.questions.intro}</p>
-      <ol class="question-teasers" role="list">
-        {t.science.questions.slice(0, questionAnchors.length).map((q, i) => (
-          <li class="question-teaser">
-            <a
-              class="question-teaser-link"
-              href={`${localePath(locale, '/science')}#${questionAnchors[i] ?? ''}`}
-            >
-              <span class="question-teaser-index mono" aria-hidden="true">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span class="question-teaser-text">{q.heading}</span>
-              <span class="question-teaser-cta mono">{t.common.exploreQuestion ?? (locale === 'es' ? 'Explora esta pregunta' : 'Explore this question')}</span>
-              <Icon name="arrow-right" />
-            </a>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <!-- ====================== H4 — Four proposed pilots (2×2 compact cards) ====================== -->
-  <section id="proposed-pilots" class="section section--panel" aria-labelledby="h5-title">
-    <span id="h5" hidden aria-hidden="true" data-legacy-anchor="h5" />
-    <div class="container-wide">
-      <h2 id="h5-title">{h.pilotsTeaser.heading}</h2>
-      <p class="lead">{h.pilotsTeaser.intro}</p>
-
-      <!--
-        Home pilot cards are hooks: image, heading, taxon. The status pill
-        ("Proposed pilot project") repeated a phrase already in the section
-        heading and in the page title, and the separate "Explore this pilot
-        project →" line duplicated the heading link directly above it.
-      -->
-      <ol class="pilot-cards" aria-label={h.pilotsTeaser.heading}>
-        {publishedPilots.map((pilot) => (
-          <li class="pilot-card" id={`preview-${pilot.slug}`}>
-            <div class="pilot-card-media">
+      <ol class="research-cards" role="list">
+        {publishedPilots.map((pilot, i) => {
+          const card = h.researchCards[i];
+          return (
+            <li class="research-card">
               <MediaCandidateViewer
                 moduleId={pilot.id}
                 locale={locale}
                 aspectRatio="4 / 3"
+                class="research-card-media"
               />
-            </div>
-            <div class="pilot-card-content">
-              <h3 class="pilot-card-heading">
-                <a
-                  class="pilot-card-heading-link"
-                  href={`${localePath(locale, '/projects')}#${pilot.slug}`}
-                >
-                  {pilot.heading[locale]}
-                </a>
-              </h3>
-              {pilot.taxon && (
-                <p class="pilot-card-taxon mono"><em>{pilot.taxon}</em></p>
-              )}
-            </div>
-          </li>
-        ))}
-      </ol>
+              <div class="research-card-content">
+                <h3>{card.question}</h3>
 
-      <p class="pilots-cta">
-        <a class="text-link" href={localePath(locale, '/projects')}>
-          {t.cta.seeProposedPilots}<Icon name="arrow-right" />
-        </a>
-      </p>
+                <div class="research-card-links">
+                  <a
+                    class="text-link"
+                    href={`${localePath(locale, '/science')}#${pilotScienceAnchors[i]}`}
+                  >
+                    {card.scienceLink}<Icon name="arrow-right" />
+                  </a>
+                  <a
+                    class="text-link"
+                    href={`${localePath(locale, '/projects')}#${pilot.slug}`}
+                  >
+                    {card.projectLink}<Icon name="arrow-right" />
+                  </a>
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
     </div>
   </section>
 
@@ -518,149 +485,75 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
     max-width: 28ch;
   }
 
-  /* ---- H4 Question teasers ---- */
-  .question-teasers {
-    list-style: none;
-    padding: 0;
-    margin: var(--space-l) 0 0;
-    border-top: 1px solid var(--hairline-strong);
-  }
-  .question-teaser {
-    border-bottom: 1px solid var(--hairline);
-  }
-  .question-teaser-link {
-    display: grid;
-    grid-template-columns: 3rem 1fr auto auto;
-    gap: var(--space-s);
-    align-items: center;
-    padding-block: var(--space-m);
-    text-decoration: none;
-    color: var(--text);
-    transition: color var(--transition);
-  }
-  .question-teaser-link:hover,
-  .question-teaser-link:focus-visible {
-    color: var(--text-strong);
-  }
-  .question-teaser-link:hover .question-teaser-index,
-  .question-teaser-link:focus-visible .question-teaser-index {
-    color: var(--accent);
-  }
-  .question-teaser-link :global(svg) {
-    flex: none;
-    width: 1rem;
-    height: 1rem;
-    color: var(--text-faint);
-    transition: transform var(--transition), color var(--transition);
-  }
-  .question-teaser-link:hover :global(svg),
-  .question-teaser-link:focus-visible :global(svg) {
-    color: var(--accent);
-    transform: translateX(3px);
-  }
-  .question-teaser-index {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    color: var(--text-faint);
-    transition: color var(--transition);
-  }
-  .question-teaser-text {
-    font-size: var(--step-0);
-    font-weight: 560;
-    line-height: 1.35;
-    letter-spacing: -0.004em;
-    color: inherit;
-    max-width: 56ch;
-  }
-  .question-teaser-cta {
-    font-size: var(--step--1);
-    color: var(--accent);
-    letter-spacing: 0.02em;
-    font-weight: 500;
-    opacity: 0.85;
-    transition: opacity var(--transition);
-  }
-  .question-teaser-link:hover .question-teaser-cta,
-  .question-teaser-link:focus-visible .question-teaser-cta {
-    opacity: 1;
-  }
-
-  /* ---- H5 Pilot cards (2×2 on desktop) ---- */
-  .pilot-cards {
+  /* ---- Published evidence → proposed project cards ---- */
+  .research-cards {
     list-style: none;
     padding: 0;
     margin: var(--space-l) 0 0;
     display: grid;
-    gap: var(--space-l);
     grid-template-columns: 1fr;
+    gap: var(--space-l);
   }
+  /*
+    Match the original pilot-card layout: two columns as soon as there is
+    enough room for readable cards. Waiting until 58rem made each item
+    become an oversized full-width panel on common laptop/zoomed views.
+  */
   @media (min-width: 44rem) {
-    .pilot-cards { grid-template-columns: repeat(2, 1fr); }
+    .research-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
-  .pilot-card {
+  .research-card {
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-s);
-    padding: 0;
+    overflow: hidden;
     border: 1px solid var(--hairline);
     border-radius: var(--radius-lg);
-    overflow: hidden;
     background: linear-gradient(145deg, var(--bg-panel), var(--bg-inset));
     transition: border-color var(--transition), box-shadow var(--transition);
   }
-  .pilot-card:focus-within {
+  .research-card:focus-within {
     border-color: color-mix(in oklab, var(--accent) 48%, var(--hairline));
     box-shadow: inset 3px 0 0 var(--accent);
   }
-  .pilot-card-media { flex: none; }
-  .pilot-card-media :global(.mcv-caption) {
+  .research-card :global(.media-candidate-viewer) {
+    margin: 0;
+  }
+  .research-card :global(.mcv-stage) {
+    border-radius: 0;
+  }
+  .research-card :global(.mcv-caption) {
     padding-inline: var(--space-m);
   }
-  .pilot-card-content {
+  .research-card-content {
+    flex: 1;
+    padding: var(--space-m);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding: var(--space-m);
-    flex: 1;
   }
-  .pilot-card-heading {
+  .research-card h3 {
     margin: 0;
-    font-family: var(--font-body);
-    font-size: var(--step-0);
-    font-weight: 620;
+    max-width: 30ch;
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    line-height: 1.2;
     color: var(--text-strong);
-    line-height: 1.3;
-    letter-spacing: -0.006em;
   }
-  /* v7.4: heading itself is the primary click target for the pilot card,
-     matching the H4 question-teaser pattern (one clear affordance per hook). */
-  .pilot-card-heading-link {
-    color: inherit;
-    text-decoration: none;
-    background-image: linear-gradient(currentColor, currentColor);
-    background-size: 0% 1px;
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    transition: background-size var(--transition), color var(--transition);
+  .research-card-links {
+    margin-top: var(--space-s);
+    display: grid;
+    gap: var(--space-xs);
   }
-  .pilot-card-heading-link:hover,
-  .pilot-card-heading-link:focus-visible {
-    color: var(--accent);
-    background-size: 100% 1px;
-    outline: none;
+  .research-card-links .text-link {
+    width: fit-content;
+    line-height: 1.35;
   }
-  .pilot-card-taxon {
-    margin: 0;
-    font-size: var(--step--1);
-    color: var(--text-muted);
+  .research-card-links :global(svg) {
+    flex: none;
   }
-  .pilot-card-taxon em { color: var(--highlight-strong); font-style: italic; }
-  /* v7.4: single, explicit "Explore this pilot →" affordance replaces the
-     verbose one-sentence hook prose that used to fill the card. The full
-     published context lives on the Pilots page. */
-  .pilots-cta { margin-top: var(--space-m); }
 
   /* ---- H6 Participate + brand close ---- */
   .section--close {

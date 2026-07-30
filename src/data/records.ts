@@ -411,8 +411,8 @@ export const PILOTS: readonly Pilot[] = [
     id: 'pilot-panacea',
     slug: 'panacea-prola',
     heading: {
-      en: 'Where does a seasonal wave of Panacea prola begin and end?',
-      es: '¿De dónde viene y hasta dónde llega la oleada estacional de Panacea prola?',
+      en: 'Thousands of Panacea prola fly north-east. Where do they come from?',
+      es: 'Miles de Panacea prola vuelan hacia el noreste. ¿De dónde vienen?',
     },
     hook: {
       en: 'In south-eastern Peru, thousands of Panacea prola have been observed flying north-east during the same season.',
@@ -795,6 +795,36 @@ export const MODULES: readonly MediaModule[] = [
     id: 'pilot-panacea',
     publish: true,
     candidates: [
+      {
+        kind: 'documentary',
+        path: 'media/documentary/panacea-prola-dorsal-desertnaturalist.jpg',
+        width: 1757,
+        height: 1131,
+        creator: 'desertnaturalist',
+        licence: CC_BY_4.name,
+        licenceUrl: CC_BY_4.url,
+        sourceItemPage: 'https://www.gbif.org/occurrence/3947651393',
+        taxon: 'Panacea prola',
+        taxonConfidence: 'species',
+        dateTaken: '2022-09-30',
+        location: 'Peru',
+        changes: [
+          'selected from GBIF occurrence 3947651393: HUMAN_OBSERVATION, occurrenceStatus PRESENT',
+          'downloaded from iNaturalist Open Data; orientation normalised, metadata stripped and JPEG re-encoded at quality 88; no crop applied',
+        ],
+        alt: {
+          en: 'A living Panacea prola with its wings fully open, showing iridescent blue dorsal wings with broad pale bands.',
+          es: 'Un Panacea prola vivo con las alas completamente abiertas, mostrando el dorso azul iridiscente con bandas claras anchas.',
+        },
+        caption: {
+          en: 'Dorsal view of Panacea prola during a field observation in Peru.',
+          es: 'Vista dorsal de Panacea prola durante una observación de campo en Perú.',
+        },
+        credit: {
+          en: 'Photograph: iNaturalist user desertnaturalist. Field-observation record indexed by GBIF.',
+          es: 'Fotografía: usuario desertnaturalist de iNaturalist. Registro de observación de campo indexado por GBIF.',
+        },
+      },
       {
         kind: 'documentary',
         path: 'media/documentary/panacea-prola-field-laura-gaudette.jpg',

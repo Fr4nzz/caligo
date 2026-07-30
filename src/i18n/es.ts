@@ -94,12 +94,34 @@ export const es: Dict = {
       "body": "Caligo reúne a investigadores, colecciones e instalaciones de secuenciación para cubrir ese vacío."
     },
     "questions": {
-      "heading": "Cuatro preguntas que la genética puede ayudar a responder",
-      "intro": "Cada hallazgo abre nuevas preguntas."
+      "heading": "Cuatro preguntas que los genomas ayudan a responder",
+      "intro": "Cada hallazgo abre la siguiente pregunta."
     },
+    "researchCards": [
+      {
+        "question": "¿Cómo pueden dividirse y fusionarse los cromosomas de las mariposas sin dejar de funcionar?",
+        "scienceLink": "Descubre cómo cambiaron los cromosomas",
+        "projectLink": "Conoce el estudio propuesto sobre Heliconius"
+      },
+      {
+        "question": "¿Siguen conectadas las poblaciones de una mariposa amenazada una década después?",
+        "scienceLink": "Lee qué encontró el estudio poblacional de 2016",
+        "projectLink": "Descubre cómo Caligo reevaluaría la conectividad"
+      },
+      {
+        "question": "¿Cómo se desplazan las plagas y evoluciona la resistencia en los paisajes sojeros?",
+        "scienceLink": "Lee qué revela la genómica sobre movimiento y resistencia",
+        "projectLink": "Conoce el estudio propuesto en paisajes sojeros"
+      },
+      {
+        "question": "Miles de Panacea prola vuelan hacia el noreste. ¿De dónde vienen?",
+        "scienceLink": "Lee la evidencia sobre el movimiento estacional",
+        "projectLink": "Descubre cómo Caligo seguiría la oleada migratoria"
+      }
+    ],
     "pilotsTeaser": {
-      "heading": "Cuatro proyectos piloto propuestos",
-      "intro": "Se enfocan en cambios cromosómicos, la conectividad de una mariposa amenazada, plagas de cultivos y migración estacional."
+      "heading": "De las preguntas a los proyectos piloto",
+      "intro": "Caligo está desarrollando cuatro proyectos sobre cambios cromosómicos, conectividad de poblaciones amenazadas, plagas agrícolas y migración estacional."
     },
     "intro": {
       "eyebrow": "Por qué mariposas y polillas",
@@ -127,10 +149,10 @@ export const es: Dict = {
   },
   "science": {
     "metaTitle": "Ciencia | Caligo",
-    "metaDescription": "Lo que la evidencia genética de mariposas y polillas neotropicales revela sobre cromosomas, especies híbridas, líneas de base para la conservación y colecciones de museo.",
-    "title": "Cuatro preguntas que la genética puede ayudar a responder",
-    "intro": "Un marcador genético corto permite comparar poblaciones. Cientos de genes recuperados de un ejemplar antiguo de museo pueden ubicarlo en un árbol filogenético. Un ensamblaje a escala cromosómica permite identificar fisiones y fusiones. Los cuatro estudios siguientes muestran qué resolvió cada tipo de dato y qué preguntas aún exigen nuevos ejemplares, trabajo de campo o experimentos.",
-    "questionsHeading": "Cuatro preguntas que la genética puede ayudar a responder",
+    "metaDescription": "Lo que la evidencia genética de mariposas y polillas neotropicales revela sobre cromosomas, especies híbridas, conservación, colecciones de museo, plagas agrícolas y movimiento estacional.",
+    "title": "Preguntas que los genomas ayudan a responder",
+    "intro": "Un marcador genético corto permite comparar poblaciones. Cientos de genes recuperados de un ejemplar antiguo de museo pueden ubicarlo en un árbol filogenético. Un ensamblaje a escala cromosómica permite identificar fisiones y fusiones. Los estudios siguientes muestran qué resolvió cada tipo de dato y qué preguntas aún exigen nuevos ejemplares, trabajo de campo o experimentos.",
+    "questionsHeading": "Preguntas que los genomas ayudan a responder",
     "chromosomeFigure": {
       "src": "media/figures-published/rueda-2024-fig1-chromosome-counts.jpg",
       "citation": "Rueda-M et al. 2024, PLOS Genetics, Fig 1",
@@ -156,7 +178,7 @@ export const es: Dict = {
     },
     "questions": [
       {
-        "heading": "¿Cómo pueden dividirse los cromosomas de una mariposa y qué ocurre cuando el W se fusiona con un autosoma?",
+        "heading": "¿Cómo pueden los cromosomas de las mariposas dividirse y fusionarse sin dejar de funcionar?",
         "answer": [
           "El número de cromosomas se mantiene estable durante millones de años en muchos linajes animales. En algunas mariposas y polillas ocurre algo distinto. La mayoría de las especies de Heliconius tiene 21 cromosomas en el juego haploide, pero cinco especies del grupo sapho tienen entre 21 y 60 después de fisiones repetidas.",
           "Los cromosomas de los lepidópteros son holocéntricos. Durante la división celular, la maquinaria que separa los cromosomas puede unirse a gran parte de su longitud, en lugar de hacerlo en un único centrómero. Por eso, un fragmento roto puede conservar esa maquinaria y pasar a una célula hija. Esto puede ayudar a que las fisiones cromosómicas persistan, pero no explica por qué se propagan en una población.",
@@ -164,7 +186,7 @@ export const es: Dict = {
         ]
       },
       {
-        "heading": "¿Cómo ayudó cerca del 1 % de un genoma a formar una especie híbrida?",
+        "heading": "¿Cómo ayudó apenas el 1 % de un genoma a formar una especie híbrida?",
         "answer": [
           "El flujo génico es el movimiento de variantes heredadas entre poblaciones a través de la reproducción. Cuando la hibridación va seguida de generaciones de retrocruzamiento, parte del ADN de un linaje puede quedar de forma permanente en otro. Este proceso se conoce como introgresión.",
           "Heliconius elevatus se formó mediante hibridación y ha persistido como un linaje distinto durante al menos 180.000 años. El flujo génico continuo con H. pardalinus hace que cerca del 99 % de ambos genomas siga siendo muy similar. Cerca del 1 % del genoma de H. elevatus provino de H. melpomene. Estas regiones están distribuidas en varios cromosomas y se asocian con el patrón de color, la forma del ala, la preferencia de planta hospedera y las feromonas sexuales.",
@@ -172,7 +194,7 @@ export const es: Dict = {
         ]
       },
       {
-        "heading": "¿Siguen conectadas las poblaciones estudiadas hace una década?",
+        "heading": "¿Siguen conectadas las poblaciones de una mariposa amenazada una década después?",
         "answer": [
           "Parides ascanius está restringida a restingas costeras y humedales del sureste de Brasil. La UICN la evaluó como Vulnerable a nivel global en 2018. La evaluación nacional de Brasil la clasificó En Peligro en 2021.",
           "Seraphim y sus colegas compararon las poblaciones supervivientes mediante secuencias mitocondriales de COI y ocho marcadores microsatélites. El estudio de 2016 encontró poca estructura genética, ninguna señal de endogamia y una migración alta entre la mayoría de los sitios muestreados, aunque una población estaba más aislada por el entorno metropolitano.",
@@ -180,11 +202,27 @@ export const es: Dict = {
         ]
       },
       {
-        "heading": "¿Puede un ejemplar de museo de hace un siglo cambiar el árbol evolutivo de una familia de polillas?",
+        "heading": "¿Puede el ADN de un ejemplar de museo de hace un siglo redibujar el árbol evolutivo de una familia de polillas?",
         "answer": [
           "Las colecciones de historia natural conservan especies que hoy sería difícil volver a recolectar, pero la edad y el almacenamiento fragmentan su ADN. La captura dirigida puede recuperar cientos de genes seleccionados de esos fragmentos.",
           "St Laurent y sus colegas recuperaron en promedio más de 400 de 515 loci objetivo de 19 ejemplares de museo conservados en seco. Junto con material reciente, esas secuencias representaron 47 especies y 32 de los 36 géneros reconocidos de Mimallonidae, y respaldaron una clasificación revisada con seis subfamilias, ocho tribus y tres géneros recién descritos.",
           "Mayer y sus colegas aplicaron después el método a 37 mariposas y polillas montadas, recolectadas entre 1892 y 2017, y recuperaron cientos o miles de loci nucleares. Estas secuencias permiten ubicar un ejemplar de museo en un árbol evolutivo y ayudan a revisar su clasificación. Como abarcan genes seleccionados y no el genoma completo, no muestran la estructura de los cromosomas, el orden de los genes ni los grandes reordenamientos. Un genoma de referencia a escala cromosómica obtenido de material fresco o bien conservado aportaría esa información complementaria."
+        ]
+      },
+      {
+        "heading": "¿Cómo se desplazan las plagas y evoluciona la resistencia en los paisajes sojeros?",
+        "answer": [
+          "En los cultivos de soja de Brasil conviven varias especies cercanas de polillas que pueden ser difíciles de distinguir durante el monitoreo. Identificarlas bien es importante porque su movimiento y su resistencia pueden diferir.",
+          "Estudios brasileños han detectado cambios en la susceptibilidad a proteínas insecticidas que exigen pruebas repetidas y específicas para cada especie. Los datos genómicos permiten distinguir las especies, comparar el movimiento entre poblaciones e identificar variantes asociadas con la resistencia.",
+          "Por sí solos, los genomas no miden el daño al cultivo ni demuestran que una variante cause resistencia. Para elegir una respuesta de manejo también se necesitan ensayos de campo, bioensayos, conocimientos agronómicos y observaciones de los productores."
+        ]
+      },
+      {
+        "heading": "Miles de Panacea prola vuelan hacia el noreste. ¿De dónde vienen?",
+        "answer": [
+          "En 2020, Gallice y sus colegas registraron 2.509 individuos de Panacea prola durante cincuenta observaciones de una hora en el sureste de Perú. Solo 19 volaron en otra dirección. Los autores presentaron el hallazgo como la primera evidencia de una migración de insectos en la Amazonía.",
+          "La referencia genómica más cercana disponible pertenece a otra especie de la misma subfamilia, Batesia hypochlora. No permite saber de dónde venían las Panacea, si pertenecían a una o varias poblaciones ni si el movimiento se repite cada año.",
+          "La comparación de muestras de distintos lugares, temporadas y años permitiría estimar su ascendencia y conectividad. Aun así, los genomas tendrían que combinarse con observaciones de campo, datos ambientales u otras formas de estudiar el movimiento."
         ]
       }
     ],

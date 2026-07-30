@@ -1,6 +1,6 @@
 ---
 /**
- * SciencePage — four questions, in prose, each paired with evidence or a specimen image.
+ * SciencePage — research questions in prose, each paired with evidence or a specimen image.
  *
  * This page was 3,536 words, 13 <details> elements, 36 citation
  * superscripts, a 15-entry bibliography, a sticky sidebar and five
@@ -53,16 +53,21 @@ const { locale } = Astro.props;
 const t = getDict(locale);
 const s = t.science;
 
-/*
-  Anchors must match `questionAnchors` in HomePage.astro, which renders
-  the teaser links into this page.
-*/
-const anchors = ['chromosomes', 'gene-flow', 'connectivity', 'museum-collections'] as const;
+const anchors = [
+  'chromosomes',
+  'gene-flow',
+  'connectivity',
+  'museum-collections',
+  'soybean-movement-resistance',
+  'panacea-migration',
+] as const;
 const questionSourceIds = {
   chromosomes: ['rueda-2024', 'mackay-smith-2026'],
   'gene-flow': ['rosser-2024'],
   connectivity: ['seraphim-2016', 'iucn-parides-2018', 'icmbio-parides-2021'],
   'museum-collections': ['st-laurent-2018', 'mayer-2021'],
+  'soybean-movement-resistance': ['horikoshi-2021', 'braga-2024'],
+  'panacea-migration': ['gallice-2020', 'batesia-2026'],
 } as const;
 
 /** The image beside the prose. */
@@ -71,6 +76,8 @@ const questionAside: Record<string, { photo?: string; figure?: 'hybridOriginFigu
   'gene-flow': { figure: 'hybridOriginFigure' },
   connectivity: { photo: 'pilot-parides' },
   'museum-collections': { photo: 'journey-2-provenance' },
+  'soybean-movement-resistance': { photo: 'pilot-soybean' },
+  'panacea-migration': { photo: 'pilot-panacea' },
 };
 
 /*
@@ -86,6 +93,8 @@ const questionWideFigure: Record<string, 'chromosomeFigure' | undefined> = {
   'gene-flow': undefined,
   connectivity: undefined,
   'museum-collections': undefined,
+  'soybean-movement-resistance': undefined,
+  'panacea-migration': undefined,
 };
 
 const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
