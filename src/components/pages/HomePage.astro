@@ -94,7 +94,9 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
 
     <p class="hero-attribution mono">
       {heroMedia.credit[locale]}
-      {' '}
+      {' · '}
+      <a href={heroMedia.sourceItemPage} rel="external noopener">{t.mediaViewer.sourceLinkLabel}</a>
+      {' · '}
       <a href={heroMedia.licenceUrl} rel="license external noopener">{heroMedia.licence}</a>
     </p>
   </section>

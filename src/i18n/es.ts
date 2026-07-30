@@ -44,6 +44,7 @@ export const es: Dict = {
     "documentaryType": "Imagen documental",
     "aiConceptType": "Ilustración conceptual",
     "codeNativeType": "Gráfico explicativo",
+    "sourceLinkLabel": "Fuente",
     "aiGeneratedCredit": "Generada con IA para Caligo",
     "caveats": {
       "fieldSite": "Escena ilustrativa de campo",

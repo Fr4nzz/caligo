@@ -47,6 +47,7 @@ export const en = {
     "documentaryType": "Documentary image",
     "aiConceptType": "Concept illustration",
     "codeNativeType": "Explanatory graphic",
+    "sourceLinkLabel": "Source",
     "aiGeneratedCredit": "Generated with AI for Caligo",
     "caveats": {
       "fieldSite": "Illustrative field scene",

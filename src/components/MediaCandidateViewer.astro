@@ -200,6 +200,16 @@ const clientCandidates = sorted.map((c) => ({
     */}
     <p class="mcv-credit mono">
       <span data-mcv-credit>{initial.credit[locale]}</span>
+      <span data-mcv-source-wrap>
+        {initial.sourceItemPage && (
+          <>
+            {' · '}
+            <a href={initial.sourceItemPage} rel="external noopener" data-mcv-source-link>
+              {labels.sourceLinkLabel}
+            </a>
+          </>
+        )}
+      </span>
       <span data-mcv-licence-wrap>
         {initial.licence && initial.licenceUrl && (
           <>
@@ -239,6 +249,8 @@ const clientCandidates = sorted.map((c) => ({
         const typeEl = root.querySelector('[data-mcv-type]');
         const capEl = root.querySelector('[data-mcv-caption]');
         const credEl = root.querySelector('[data-mcv-credit]');
+        const sourceWrap = root.querySelector('[data-mcv-source-wrap]');
+        const sourceLink = root.querySelector('[data-mcv-source-link]');
         const licenceWrap = root.querySelector('[data-mcv-licence-wrap]');
         const licenceLink = root.querySelector('[data-mcv-licence-link]');
         const licenceTextEl = root.querySelector('[data-mcv-licence-text]');
@@ -264,6 +276,17 @@ const clientCandidates = sorted.map((c) => ({
           if (typeEl) typeEl.textContent = c.kindLabel;
           if (capEl) capEl.textContent = c.caption;
           if (credEl) credEl.textContent = c.credit;
+
+          if (sourceWrap) {
+            if (c.sourceItemPage && sourceLink) {
+              sourceLink.setAttribute('href', c.sourceItemPage);
+              sourceWrap.textContent = '';
+              sourceWrap.appendChild(document.createTextNode(' · '));
+              sourceWrap.appendChild(sourceLink);
+            } else {
+              sourceWrap.textContent = '';
+            }
+          }
 
           if (licenceWrap) {
             if (c.licence && c.licenceUrl && licenceLink && licenceTextEl) {

@@ -488,8 +488,8 @@ export const MEDIA: readonly Media[] = [
       es: 'Caligo sp., cerca del Centro de Investigación de Tambopata, Perú. El elemento redondo brillante es el ojo compuesto de la mariposa.',
     },
     credit: {
-      en: 'Photograph: Wikimedia Commons user “Polygonia c-album” / CC BY-SA 4.0. Cropped and resized.',
-      es: 'Fotografía: usuario de Wikimedia Commons «Polygonia c-album» / CC BY-SA 4.0. Recortada y redimensionada.',
+      en: 'Photograph: Wikimedia Commons user “Polygonia c-album”. Cropped and resized.',
+      es: 'Fotografía: usuario de Wikimedia Commons «Polygonia c-album». Recortada y redimensionada.',
     },
     publish: true,
   },
@@ -558,7 +558,7 @@ export interface MediaModule {
 
 const CC_BY_SA_4 = { name: 'CC BY-SA 4.0', url: 'https://creativecommons.org/licenses/by-sa/4.0/' };
 const CC_BY_4 = { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' };
-const CC_BY_3 = { name: 'CC BY 3.0', url: 'https://creativecommons.org/licenses/by/3.0/' };
+const CC0_1 = { name: 'CC0 1.0', url: 'https://creativecommons.org/publicdomain/zero/1.0/' };
 
 const PD_US = { name: 'Public domain (US Government work)', url: 'https://www.usa.gov/government-works' };
 
@@ -574,27 +574,62 @@ export const MODULES: readonly MediaModule[] = [
     candidates: [
       {
         kind: 'documentary',
-        path: 'media/documentary/a3-heliconius-erato.jpg',
-        width: 1024,
-        height: 768,
-        creator: 'Philipp Weigell (Wikimedia: Morray)',
-        licence: CC_BY_3.name,
-        licenceUrl: CC_BY_3.url,
-        sourceItemPage: 'https://commons.wikimedia.org/wiki/File:Heliconius.erato.JPG',
-        taxon: 'Heliconius erato',
+        path: 'media/documentary/heliconius-sapho-colombia-desertnaturalist.jpg',
+        width: 997,
+        height: 669,
+        creator: 'iNaturalist user desertnaturalist',
+        licence: CC_BY_4.name,
+        licenceUrl: CC_BY_4.url,
+        sourceItemPage: 'https://www.gbif.org/occurrence/3915600613',
+        taxon: 'Heliconius sapho',
         taxonConfidence: 'species',
-        changes: ['downloaded from Wikimedia Commons; no re-encode or crop applied locally'],
+        dateTaken: '2021-03-18',
+        location: 'Colombia',
+        changes: [
+          'selected from GBIF occurrence 3915600613: HUMAN_OBSERVATION, occurrenceStatus PRESENT',
+          'downloaded from iNaturalist Open Data; orientation normalised, metadata stripped and JPEG re-encoded at quality 88; no crop applied',
+        ],
         alt: {
-          en: 'A Heliconius erato butterfly with black wings crossed by red and yellow bands, resting with wings partly open.',
-          es: 'Una mariposa Heliconius erato con alas negras cruzadas por bandas rojas y amarillas, posada con las alas parcialmente abiertas.',
+          en: 'A Heliconius sapho butterfly resting with its blue-black wings open, revealing broad white bands.',
+          es: 'Una mariposa Heliconius sapho posada con las alas negro azuladas abiertas, atravesadas por anchas bandas blancas.',
         },
         caption: {
-          en: 'Heliconius erato, a longwing butterfly from the Neotropics.',
-          es: 'Heliconius erato, una mariposa neotropical de alas largas.',
+          en: 'Dorsal view of Heliconius sapho during a field observation in Colombia. This species belongs to the chromosome-variable sapho group.',
+          es: 'Vista dorsal de Heliconius sapho durante una observación de campo en Colombia. Esta especie pertenece al grupo sapho, que presenta variación cromosómica.',
         },
         credit: {
-          en: 'Photograph: Philipp Weigell / Wikimedia Commons.',
-          es: 'Fotografía: Philipp Weigell / Wikimedia Commons.',
+          en: 'Photograph: iNaturalist user desertnaturalist. Field-observation record indexed by GBIF.',
+          es: 'Fotografía: usuario de iNaturalist desertnaturalist. Registro de observación de campo indexado por GBIF.',
+        },
+      },
+      {
+        kind: 'documentary',
+        path: 'media/documentary/heliconius-sapho-ventral-roger-rittmaster.jpg',
+        width: 2048,
+        height: 1638,
+        creator: 'Roger Rittmaster',
+        licence: CC_BY_4.name,
+        licenceUrl: CC_BY_4.url,
+        sourceItemPage: 'https://www.gbif.org/occurrence/2862358322',
+        taxon: 'Heliconius sapho sapho',
+        taxonConfidence: 'species',
+        dateTaken: '2014-01-26',
+        location: 'Panama',
+        changes: [
+          'selected from GBIF occurrence 2862358322: HUMAN_OBSERVATION, occurrenceStatus PRESENT',
+          'downloaded from iNaturalist Open Data; orientation normalised, metadata stripped, resized proportionally to 2048 × 1638 and JPEG re-encoded at quality 88; no crop applied',
+        ],
+        alt: {
+          en: 'A Heliconius sapho butterfly resting side-on on purple flowers, showing the black, white and red pattern on the underside of its closed wings.',
+          es: 'Una mariposa Heliconius sapho posada de lado sobre flores moradas, mostrando el patrón negro, blanco y rojo del reverso de sus alas cerradas.',
+        },
+        caption: {
+          en: 'Ventral view of Heliconius sapho during a field observation in Panama.',
+          es: 'Vista ventral de Heliconius sapho durante una observación de campo en Panamá.',
+        },
+        credit: {
+          en: 'Photograph: Roger Rittmaster / iNaturalist. Field-observation record indexed by GBIF.',
+          es: 'Fotografía: Roger Rittmaster / iNaturalist. Registro de observación de campo indexado por GBIF.',
         },
       },
     ],
@@ -605,13 +640,43 @@ export const MODULES: readonly MediaModule[] = [
     candidates: [
       {
         kind: 'documentary',
+        path: 'media/documentary/parides-ascanius-dorsal-pablo-toledo.jpg',
+        width: 2048,
+        height: 1536,
+        creator: 'Pablo Cauã da Silva Toledo',
+        licence: CC_BY_4.name,
+        licenceUrl: CC_BY_4.url,
+        sourceItemPage: 'https://www.gbif.org/occurrence/5932772077',
+        taxon: 'Parides ascanius',
+        taxonConfidence: 'species',
+        dateTaken: '2025-12-06',
+        location: 'Brazil (precise locality omitted)',
+        changes: [
+          'selected from GBIF occurrence 5932772077: HUMAN_OBSERVATION, occurrenceStatus PRESENT',
+          'downloaded from iNaturalist Open Data; orientation normalised, metadata stripped, resized proportionally to 2048 × 1536 and JPEG re-encoded at quality 88; no crop applied',
+        ],
+        alt: {
+          en: 'A living Parides ascanius resting with its wings open on green foliage, showing broad white and pink-red bands.',
+          es: 'Un Parides ascanius vivo posado con las alas abiertas sobre follaje verde, mostrando anchas bandas blancas y rosadas.',
+        },
+        caption: {
+          en: 'A living Parides ascanius showing its dorsal wing pattern during a field observation in Brazil. Its precise locality is omitted to protect this threatened species.',
+          es: 'Un Parides ascanius vivo muestra el patrón dorsal de sus alas durante una observación de campo en Brasil. Se omite la localidad precisa para proteger a esta especie amenazada.',
+        },
+        credit: {
+          en: 'Photograph: Pablo Cauã da Silva Toledo / iNaturalist. Field-observation record indexed by GBIF.',
+          es: 'Fotografía: Pablo Cauã da Silva Toledo / iNaturalist. Registro de observación de campo indexado por GBIF.',
+        },
+      },
+      {
+        kind: 'documentary',
         path: 'media/documentary/parides-ascanius-field-lucas-lopes.jpg',
         width: 2048,
         height: 1140,
         creator: 'Lucas Lopes',
         licence: CC_BY_4.name,
         licenceUrl: CC_BY_4.url,
-        sourceItemPage: 'https://www.inaturalist.org/observations/259283729',
+        sourceItemPage: 'https://www.gbif.org/occurrence/5063288543',
         taxon: 'Parides ascanius',
         taxonConfidence: 'species',
         dateTaken: '2025-01-19',
@@ -621,16 +686,16 @@ export const MODULES: readonly MediaModule[] = [
           'downloaded from iNaturalist Open Data; metadata stripped and JPEG re-encoded at quality 88; no crop applied',
         ],
         alt: {
-          en: 'A living Parides ascanius with black wings and vivid pink-red markings, resting side-on on a broad green leaf.',
-          es: 'Un Parides ascanius vivo, de alas negras con marcas rosadas y rojas intensas, posado de lado sobre una hoja verde ancha.',
+          en: 'A living Parides ascanius resting side-on on a broad green leaf, showing the pale and vivid pink-red markings on the underside of its wings.',
+          es: 'Un Parides ascanius vivo posado de lado sobre una hoja verde ancha, mostrando las marcas claras y rosadas del reverso de sus alas.',
         },
         caption: {
-          en: 'A living Parides ascanius resting on vegetation during a field observation in Brazil. Its precise locality is omitted because this threatened species requires sensitive-location handling.',
-          es: 'Un Parides ascanius vivo posado sobre vegetación durante una observación de campo en Brasil. Se omite la localidad precisa para proteger a esta especie amenazada.',
+          en: 'Ventral view of Parides ascanius during a field observation in Brazil. Its precise locality is omitted to protect this threatened species.',
+          es: 'Vista ventral de Parides ascanius durante una observación de campo en Brasil. Se omite la localidad precisa para proteger a esta especie amenazada.',
         },
         credit: {
-          en: 'Photograph: Lucas Lopes / iNaturalist, CC BY 4.0. Field-observation record indexed by GBIF.',
-          es: 'Fotografía: Lucas Lopes / iNaturalist, CC BY 4.0. Registro de observación de campo indexado por GBIF.',
+          en: 'Photograph: Lucas Lopes / iNaturalist. Field-observation record indexed by GBIF.',
+          es: 'Fotografía: Lucas Lopes / iNaturalist. Registro de observación de campo indexado por GBIF.',
         },
       },
     ],
@@ -664,6 +729,66 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Fotografía: Lucas Friederich / Wikimedia Commons.',
         },
       },
+      {
+        kind: 'documentary',
+        path: 'media/documentary/chrysodeixis-includens-fernando-sessegolo.jpg',
+        width: 2048,
+        height: 1363,
+        creator: 'Fernando Sessegolo',
+        licence: CC0_1.name,
+        licenceUrl: CC0_1.url,
+        sourceItemPage: 'https://www.gbif.org/occurrence/3335324399',
+        taxon: 'Chrysodeixis includens',
+        taxonConfidence: 'species',
+        dateTaken: '2021-03-18',
+        location: 'Brazil',
+        changes: [
+          'selected from GBIF occurrence 3335324399: HUMAN_OBSERVATION, occurrenceStatus PRESENT',
+          'downloaded from iNaturalist Open Data; orientation normalised, metadata stripped, resized proportionally to 2048 × 1363 and JPEG re-encoded at quality 88; no crop applied',
+        ],
+        alt: {
+          en: 'An adult Chrysodeixis includens moth resting on a glossy green leaf in Brazil.',
+          es: 'Una polilla adulta Chrysodeixis includens posada sobre una hoja verde brillante en Brasil.',
+        },
+        caption: {
+          en: 'Chrysodeixis includens during a field observation in Brazil. It is one of the similar-looking moths found in soybean-producing regions.',
+          es: 'Chrysodeixis includens durante una observación de campo en Brasil. Es una de las polillas de aspecto similar presentes en las regiones productoras de soja.',
+        },
+        credit: {
+          en: 'Photograph: Fernando Sessegolo / iNaturalist. Field-observation record indexed by GBIF.',
+          es: 'Fotografía: Fernando Sessegolo / iNaturalist. Registro de observación de campo indexado por GBIF.',
+        },
+      },
+      {
+        kind: 'documentary',
+        path: 'media/documentary/rachiplusia-nu-frank-sautter.jpg',
+        width: 2048,
+        height: 2048,
+        creator: 'Frank Thomas Sautter',
+        licence: CC0_1.name,
+        licenceUrl: CC0_1.url,
+        sourceItemPage: 'https://www.gbif.org/occurrence/3902680776',
+        taxon: 'Rachiplusia nu',
+        taxonConfidence: 'species',
+        dateTaken: '2022-08-25',
+        location: 'Brazil',
+        changes: [
+          'selected from GBIF occurrence 3902680776: HUMAN_OBSERVATION, occurrenceStatus PRESENT',
+          'downloaded from iNaturalist Open Data; orientation normalised, metadata stripped, resized proportionally to 2048 × 2048 and JPEG re-encoded at quality 88; no crop applied',
+        ],
+        alt: {
+          en: 'An adult Rachiplusia nu moth resting among green leaves in Brazil.',
+          es: 'Una polilla adulta Rachiplusia nu posada entre hojas verdes en Brasil.',
+        },
+        caption: {
+          en: 'Rachiplusia nu during a field observation in Brazil. Distinguishing it from related soybean moths matters when monitoring movement and resistance.',
+          es: 'Rachiplusia nu durante una observación de campo en Brasil. Distinguirla de otras polillas asociadas a la soja es importante para monitorear su movimiento y resistencia.',
+        },
+        credit: {
+          en: 'Photograph: Frank Thomas Sautter / iNaturalist. Field-observation record indexed by GBIF.',
+          es: 'Fotografía: Frank Thomas Sautter / iNaturalist. Registro de observación de campo indexado por GBIF.',
+        },
+      },
     ],
   },
   {
@@ -678,7 +803,7 @@ export const MODULES: readonly MediaModule[] = [
         creator: 'Laura Gaudette',
         licence: CC_BY_4.name,
         licenceUrl: CC_BY_4.url,
-        sourceItemPage: 'https://www.inaturalist.org/observations/289632513',
+        sourceItemPage: 'https://www.gbif.org/occurrence/5199225308',
         taxon: 'Panacea prola',
         taxonConfidence: 'species',
         dateTaken: '2025-06-13',
@@ -696,8 +821,8 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Un Panacea prola vivo posado sobre vegetación durante una observación de campo en Brasil.',
         },
         credit: {
-          en: 'Photograph: Laura Gaudette / iNaturalist, CC BY 4.0. Field-observation record indexed by GBIF.',
-          es: 'Fotografía: Laura Gaudette / iNaturalist, CC BY 4.0. Registro de observación de campo indexado por GBIF.',
+          en: 'Photograph: Laura Gaudette / iNaturalist. Field-observation record indexed by GBIF.',
+          es: 'Fotografía: Laura Gaudette / iNaturalist. Registro de observación de campo indexado por GBIF.',
         },
       },
     ],
