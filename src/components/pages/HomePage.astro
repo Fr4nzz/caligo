@@ -236,6 +236,16 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
   #questions, #proposed-pilots, #discover-caligo,
   #h1, #h2, #h3, #h4, #h5, #h6 { scroll-margin-top: 5rem; }
 
+  /*
+    Adjacent homepage sections should share one transition gap. Without
+    this, the previous section's bottom padding stacks with the next
+    section's top padding, leaving 6.5–8rem of empty space.
+  */
+  .stat-bar-section,
+  #why-lepidoptera {
+    padding-bottom: 0;
+  }
+
   /* ---- H1 Cinematic hero ---- */
   .hero-cinematic {
     position: relative;
@@ -655,7 +665,6 @@ const publishedPilots = PILOTS.filter((p) => p.publish);
   /* ---- H6 Participate + brand close ---- */
   .section--close {
     background: var(--bg-inset);
-    border-top: 1px solid var(--hairline);
   }
   .close-layout {
     display: block;

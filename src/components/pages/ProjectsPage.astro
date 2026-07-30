@@ -85,7 +85,7 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
     took the page's left and right margins with it, so the images and
     diagrams sat flush against the viewport edge.
   */}
-  <div class="projects-layout container-wide section--tight">
+  <div class="projects-layout container-wide">
     <ol class="pilots" aria-label={pageTitle}>
       {
         publishedPilots.map((pilot) => {
@@ -175,7 +175,6 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
     list-style: none;
     padding: 0;
     margin: 0;
-    padding-bottom: var(--space-2xl);
     display: grid;
     gap: 0;
     min-width: 0;
@@ -189,8 +188,8 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
     border-top: 1px solid var(--hairline);
     scroll-margin-top: var(--scroll-margin-top);
   }
-  .pilot:last-child {
-    border-bottom: 1px solid var(--hairline);
+  .pilot:first-child {
+    border-top: 0;
   }
 
   /* Desktop: 5 media / 7 text grid */

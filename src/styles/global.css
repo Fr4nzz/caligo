@@ -230,6 +230,9 @@ kbd,
   background: var(--bg-raised);
   border-block: 1px solid var(--hairline);
 }
+#main > .page-header + .section--panel {
+  border-top: 0;
+}
 .section > .container-wide > * + *,
 .section > .container-narrow > * + * {
   margin-top: var(--space-m);
