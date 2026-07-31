@@ -47,6 +47,7 @@ export const en = {
     "documentaryType": "Documentary image",
     "aiConceptType": "Concept illustration",
     "codeNativeType": "Explanatory graphic",
+    "imageDetailsLabel": "Image details",
     "sourceLinkLabel": "Source",
     "aiGeneratedCredit": "Generated with AI for Caligo",
     "caveats": {
@@ -156,6 +157,7 @@ export const en = {
     "title": "Questions genomes can help answer",
     "intro": "A short genetic marker can compare populations. Hundreds of captured genes can place an old museum specimen on a family tree. A chromosome-scale assembly can show where chromosomes split or fused. The studies below explain what each dataset resolved and which questions still need specimens, fieldwork or experiments.",
     "questionsHeading": "Questions genomes can help answer",
+    "pilotContinuationLabel": "What Caligo proposes next",
     "chromosomeFigure": {
       "src": "media/figures-published/rueda-2024-fig1-chromosome-counts.jpg",
       "citation": "Rueda-M et al. 2024, PLOS Genetics, Fig 1",

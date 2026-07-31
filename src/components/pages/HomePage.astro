@@ -138,8 +138,9 @@ if (publishedPilots.length !== h.researchCards.length) {
               <MediaCandidateViewer
                 moduleId={pilot.id}
                 locale={locale}
-                aspectRatio="4 / 3"
+                aspectRatio="3 / 2"
                 class="research-card-media"
+                captionMode="compact"
               />
               <div class="research-card-content">
                 <h3>{card.question}</h3>
@@ -440,8 +441,15 @@ if (publishedPilots.length !== h.researchCards.length) {
   }
 
   /* ---- Common section rhythm ---- */
-  .section h2 { max-width: 32ch; }
-  .section .lead { max-width: var(--measure); }
+  .section h2 {
+    max-width: 32ch;
+    font-size: clamp(1.75rem, 1.55rem + 0.8vw, 2.25rem);
+  }
+  .section .lead {
+    max-width: var(--measure);
+    font-size: clamp(1rem, 0.96rem + 0.16vw, 1.125rem);
+    line-height: 1.55;
+  }
   .section-eyebrow {
     margin: 0;
     font-size: var(--step--2);
@@ -489,10 +497,11 @@ if (publishedPilots.length !== h.researchCards.length) {
   .research-cards {
     list-style: none;
     padding: 0;
-    margin: var(--space-l) 0 0;
+    max-width: 74rem;
+    margin: var(--space-l) auto 0;
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-l);
+    gap: var(--space-m);
   }
   /*
     Match the original pilot-card layout: two columns as soon as there is
@@ -524,12 +533,9 @@ if (publishedPilots.length !== h.researchCards.length) {
   .research-card :global(.mcv-stage) {
     border-radius: 0;
   }
-  .research-card :global(.mcv-caption) {
-    padding-inline: var(--space-m);
-  }
   .research-card-content {
     flex: 1;
-    padding: var(--space-m);
+    padding: var(--space-s) var(--space-m) var(--space-m);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -538,7 +544,7 @@ if (publishedPilots.length !== h.researchCards.length) {
     margin: 0;
     max-width: 30ch;
     font-family: var(--font-display);
-    font-size: var(--step-1);
+    font-size: clamp(1.04rem, 0.98rem + 0.3vw, 1.22rem);
     line-height: 1.2;
     color: var(--text-strong);
   }

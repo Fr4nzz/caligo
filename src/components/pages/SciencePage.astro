@@ -23,27 +23,28 @@
  * landed on an unnumbered row, and 10–15, 18 and 19 appeared nowhere on
  * the page. It had never worked in production.
  *
- * LAYOUT CONTRACT — every block on this page is one of two shapes:
+ * LAYOUT CONTRACT — every block on this page is one of three shapes:
  *
  *   1. prose | image     a text column beside a portrait-ish figure
- *   2. full-width figure  a wide figure spanning the whole container
+ *   2. evidence pair      a concept diagram beside the published figure
+ *   3. concept | evidence  our explanatory diagram beside the paper figure
  *
  * There is deliberately no third shape. The page previously rendered
  * hand-drawn concept diagrams constrained to 46rem, which left a third
  * of the row empty beside them — a half-width block in a full-width row
  * reads as something failing to load.
  *
- * The concept diagrams themselves are gone from this page. Where the
- * source paper had already drawn the thing, we reproduce the paper's own
- * figure: it is the real measurement rather than our paraphrase of it,
- * and both papers are licensed for reuse. ConceptDiagram still serves
- * the Heliconius pilot on /projects/.
+ * Concept diagrams and published figures are paired rather than treated as
+ * substitutes. The first explains the mechanism in plain visual language;
+ * the second shows the actual result reported in the paper.
  */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
 import PublishedFigure from '../PublishedFigure.astro';
-import { getDict, type Locale } from '../../i18n';
+import ConceptDiagram from '../ConceptDiagram.astro';
+import Icon from '../Icon.astro';
+import { getDict, localePath, type Locale } from '../../i18n';
 import { getSource } from '../../data/records';
 
 interface Props {
@@ -71,9 +72,9 @@ const questionSourceIds = {
 } as const;
 
 /** The image beside the prose. */
-const questionAside: Record<string, { photo?: string; figure?: 'hybridOriginFigure' }> = {
+const questionAside: Record<string, { photo?: string }> = {
   chromosomes: { photo: 'pilot-heliconius' },
-  'gene-flow': { figure: 'hybridOriginFigure' },
+  'gene-flow': {},
   connectivity: { photo: 'pilot-parides' },
   'museum-collections': { photo: 'journey-2-provenance' },
   'soybean-movement-resistance': { photo: 'pilot-soybean' },
@@ -81,23 +82,38 @@ const questionAside: Record<string, { photo?: string; figure?: 'hybridOriginFigu
 };
 
 /*
-  The wide figure below the prose, where one exists. Both licences were
+  The paired figures below the prose, where they exist. Both licences were
   verified against Crossref before use — CC0 for Rueda-M, CC BY 4.0 for
   Rosser — and full provenance sits in the .LICENSE.md beside each image.
 
   Being readable on PMC is not a licence: Edelman 2019 and Seraphim 2016,
   both cited on this site, are free to read and cannot be reproduced.
 */
-const questionWideFigure: Record<string, 'chromosomeFigure' | undefined> = {
-  chromosomes: 'chromosomeFigure',
-  'gene-flow': undefined,
+const questionEvidencePair: Record<string, {
+  concept: 'chromosome' | 'introgression';
+  figure: 'chromosomeFigure' | 'hybridOriginFigure';
+} | undefined> = {
+  chromosomes: { concept: 'chromosome', figure: 'chromosomeFigure' },
+  'gene-flow': { concept: 'introgression', figure: 'hybridOriginFigure' },
   connectivity: undefined,
   'museum-collections': undefined,
   'soybean-movement-resistance': undefined,
   'panacea-migration': undefined,
 };
 
+const pilotContinuation: Record<string, { cardIndex: number; slug: string } | undefined> = {
+  chromosomes: { cardIndex: 0, slug: 'heliconius' },
+  'gene-flow': undefined,
+  connectivity: { cardIndex: 1, slug: 'parides-ascanius' },
+  'museum-collections': undefined,
+  'soybean-movement-resistance': { cardIndex: 2, slug: 'soybean-lepidoptera' },
+  'panacea-migration': { cardIndex: 3, slug: 'panacea-prola' },
+};
+
 const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
+const evidencePairLabel = locale === 'es'
+  ? 'Explicación conceptual y evidencia publicada'
+  : 'Concept explanation and published evidence';
 ---
 
 <Base locale={locale} title={s.metaTitle} description={s.metaDescription} page="/science">
@@ -111,7 +127,8 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
       {s.questions.map((q, i) => {
         const anchor = anchors[i];
         const aside = questionAside[anchor];
-        const wide = questionWideFigure[anchor];
+        const evidencePair = questionEvidencePair[anchor];
+        const continuation = pilotContinuation[anchor];
         const sources = questionSourceIds[anchor]
           .map((sourceId) => getSource(sourceId))
           .filter((source) => source !== undefined);
@@ -119,7 +136,7 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
           <article id={anchor} class="question">
             <h3 class="question-heading">{q.heading}</h3>
 
-            <div class="split">
+            <div class:list={['split', { 'split--prose-only': !aside.photo }]}>
               <div class="split-prose">
                 {q.answer.map((para) => <p>{para}</p>)}
                 <p class="question-sources">
@@ -133,19 +150,35 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
                     </>
                   ))}
                 </p>
+                {continuation && (
+                  <aside class="pilot-continuation">
+                    <p class="pilot-continuation-label mono">{s.pilotContinuationLabel}</p>
+                    <a
+                      class="text-link"
+                      href={`${localePath(locale, '/projects')}#${continuation.slug}`}
+                    >
+                      {t.home.researchCards[continuation.cardIndex].projectLink}
+                      <Icon name="arrow-right" />
+                    </a>
+                  </aside>
+                )}
               </div>
 
-              <div class="split-figure">
-                {aside.photo && (
+              {aside.photo && (
+                <div class="split-figure">
                   <MediaCandidateViewer moduleId={aside.photo} locale={locale} aspectRatio="4 / 3" />
-                )}
-                {aside.figure && <PublishedFigure locale={locale} {...s[aside.figure]} />}
-              </div>
+                </div>
+              )}
             </div>
 
-            {wide && (
-              <div class="wide-figure">
-                <PublishedFigure locale={locale} {...s[wide]} />
+            {evidencePair && (
+              <div class="evidence-pair" role="group" aria-label={evidencePairLabel}>
+                <div class="evidence-pair-concept">
+                  <ConceptDiagram locale={locale} kind={evidencePair.concept} context="science" />
+                </div>
+                <div class="evidence-pair-published">
+                  <PublishedFigure locale={locale} {...s[evidencePair.figure]} />
+                </div>
               </div>
             )}
 
@@ -216,13 +249,39 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
   .split-prose > p:last-child { margin-bottom: 0; }
   .split-figure { min-width: 0; }
 
-  /* ---- Shape 2: a wide figure on its own row ----
-     Full container width, deliberately. These are dense research figures
-     with chromosome-scale labels; below roughly 900px they stop being
-     readable and become decoration. */
-  .wide-figure {
+  .split--prose-only {
+    display: block;
+  }
+
+  /* ---- Shape 3: interpretation beside evidence ----
+     Pair only when both columns remain readable. The published plate gets
+     slightly more width because its labels are fixed inside a raster image. */
+  .evidence-pair {
     margin-top: var(--space-l);
-    max-width: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-m);
+    align-items: start;
+  }
+  .evidence-pair-concept {
+    width: 100%;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  .evidence-pair-published {
+    width: 100%;
+    max-width: 64rem;
+    margin-inline: auto;
+  }
+  @media (min-width: 68rem) {
+    .evidence-pair {
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    }
+    .evidence-pair-concept,
+    .evidence-pair-published {
+      max-width: none;
+      margin-inline: 0;
+    }
   }
 
   /* ---- Questions ---- */
@@ -264,4 +323,21 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
     text-decoration-color: var(--hairline-strong);
   }
   .question-sources a:hover { text-decoration-color: currentColor; }
+  .pilot-continuation {
+    margin-top: var(--space-m);
+    padding: var(--space-s) var(--space-m);
+    border-left: 2px solid var(--accent);
+    background: var(--accent-dim);
+  }
+  .pilot-continuation-label {
+    margin: 0 0 var(--space-xs);
+    color: var(--text-faint);
+    font-size: var(--step--2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .pilot-continuation .text-link {
+    width: fit-content;
+    line-height: 1.4;
+  }
 </style>

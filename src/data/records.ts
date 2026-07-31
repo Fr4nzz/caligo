@@ -594,12 +594,12 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Una mariposa Heliconius sapho posada con las alas negro azuladas abiertas, atravesadas por anchas bandas blancas.',
         },
         caption: {
-          en: 'Dorsal view of Heliconius sapho during a field observation in Colombia. This species belongs to the chromosome-variable sapho group.',
-          es: 'Vista dorsal de Heliconius sapho durante una observación de campo en Colombia. Esta especie pertenece al grupo sapho, que presenta variación cromosómica.',
+          en: 'Heliconius sapho, dorsal view, Colombia. This species belongs to the chromosome-variable sapho group.',
+          es: 'Heliconius sapho, vista dorsal, Colombia. Esta especie pertenece al grupo sapho, que presenta variación cromosómica.',
         },
         credit: {
-          en: 'Photograph: iNaturalist user desertnaturalist. Field-observation record indexed by GBIF.',
-          es: 'Fotografía: usuario de iNaturalist desertnaturalist. Registro de observación de campo indexado por GBIF.',
+          en: 'Photo: desertnaturalist / iNaturalist, via GBIF.',
+          es: 'Foto: desertnaturalist / iNaturalist, vía GBIF.',
         },
       },
       {
@@ -624,12 +624,12 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Una mariposa Heliconius sapho posada de lado sobre flores moradas, mostrando el patrón negro, blanco y rojo del reverso de sus alas cerradas.',
         },
         caption: {
-          en: 'Ventral view of Heliconius sapho during a field observation in Panama.',
-          es: 'Vista ventral de Heliconius sapho durante una observación de campo en Panamá.',
+          en: 'Heliconius sapho, ventral view, Panama.',
+          es: 'Heliconius sapho, vista ventral, Panamá.',
         },
         credit: {
-          en: 'Photograph: Roger Rittmaster / iNaturalist. Field-observation record indexed by GBIF.',
-          es: 'Fotografía: Roger Rittmaster / iNaturalist. Registro de observación de campo indexado por GBIF.',
+          en: 'Photo: Roger Rittmaster / iNaturalist, via GBIF.',
+          es: 'Foto: Roger Rittmaster / iNaturalist, vía GBIF.',
         },
       },
     ],
@@ -650,7 +650,7 @@ export const MODULES: readonly MediaModule[] = [
         taxon: 'Parides ascanius',
         taxonConfidence: 'species',
         dateTaken: '2025-12-06',
-        location: 'Brazil (precise locality omitted)',
+        location: 'Brazil',
         changes: [
           'selected from GBIF occurrence 5932772077: HUMAN_OBSERVATION, occurrenceStatus PRESENT',
           'downloaded from iNaturalist Open Data; orientation normalised, metadata stripped, resized proportionally to 2048 × 1536 and JPEG re-encoded at quality 88; no crop applied',
@@ -660,12 +660,12 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Un Parides ascanius vivo posado con las alas abiertas sobre follaje verde, mostrando anchas bandas blancas y rosadas.',
         },
         caption: {
-          en: 'A living Parides ascanius showing its dorsal wing pattern during a field observation in Brazil. Its precise locality is omitted to protect this threatened species.',
-          es: 'Un Parides ascanius vivo muestra el patrón dorsal de sus alas durante una observación de campo en Brasil. Se omite la localidad precisa para proteger a esta especie amenazada.',
+          en: 'Parides ascanius, dorsal view, Brazil.',
+          es: 'Parides ascanius, vista dorsal, Brasil.',
         },
         credit: {
-          en: 'Photograph: Pablo Cauã da Silva Toledo / iNaturalist. Field-observation record indexed by GBIF.',
-          es: 'Fotografía: Pablo Cauã da Silva Toledo / iNaturalist. Registro de observación de campo indexado por GBIF.',
+          en: 'Photo: Pablo Cauã da Silva Toledo / iNaturalist, via GBIF.',
+          es: 'Foto: Pablo Cauã da Silva Toledo / iNaturalist, vía GBIF.',
         },
       },
       {
@@ -680,7 +680,7 @@ export const MODULES: readonly MediaModule[] = [
         taxon: 'Parides ascanius',
         taxonConfidence: 'species',
         dateTaken: '2025-01-19',
-        location: 'Brazil (precise locality omitted)',
+        location: 'Brazil',
         changes: [
           'selected from GBIF occurrence 5063288543: HUMAN_OBSERVATION, occurrenceStatus PRESENT',
           'downloaded from iNaturalist Open Data; metadata stripped and JPEG re-encoded at quality 88; no crop applied',
@@ -690,12 +690,12 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Un Parides ascanius vivo posado de lado sobre una hoja verde ancha, mostrando las marcas claras y rosadas del reverso de sus alas.',
         },
         caption: {
-          en: 'Ventral view of Parides ascanius during a field observation in Brazil. Its precise locality is omitted to protect this threatened species.',
-          es: 'Vista ventral de Parides ascanius durante una observación de campo en Brasil. Se omite la localidad precisa para proteger a esta especie amenazada.',
+          en: 'Parides ascanius, ventral view, Brazil.',
+          es: 'Parides ascanius, vista ventral, Brasil.',
         },
         credit: {
-          en: 'Photograph: Lucas Lopes / iNaturalist. Field-observation record indexed by GBIF.',
-          es: 'Fotografía: Lucas Lopes / iNaturalist. Registro de observación de campo indexado por GBIF.',
+          en: 'Photo: Lucas Lopes / iNaturalist, via GBIF.',
+          es: 'Foto: Lucas Lopes / iNaturalist, vía GBIF.',
         },
       },
     ],
@@ -721,12 +721,12 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Hileras de plantas verdes de soja llenan un campo rodeado de árboles en Novo Barreiro, al sur de Brasil.',
         },
         caption: {
-          en: 'A soybean field in Novo Barreiro, Rio Grande do Sul, Brazil. The proposed pilot project follows lepidopteran populations across Brazilian soybean landscapes.',
-          es: 'Un campo de soja en Novo Barreiro, Rio Grande do Sul, Brasil. El proyecto piloto estudiaría poblaciones de lepidópteros en los paisajes sojeros del país.',
+          en: 'Soybean field in Novo Barreiro, Rio Grande do Sul, Brazil.',
+          es: 'Campo de soja en Novo Barreiro, Rio Grande do Sul, Brasil.',
         },
         credit: {
-          en: 'Photograph: Lucas Friederich / Wikimedia Commons.',
-          es: 'Fotografía: Lucas Friederich / Wikimedia Commons.',
+          en: 'Photo: Lucas Friederich / Wikimedia Commons.',
+          es: 'Foto: Lucas Friederich / Wikimedia Commons.',
         },
       },
       {
@@ -751,12 +751,12 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Una polilla adulta Chrysodeixis includens posada sobre una hoja verde brillante en Brasil.',
         },
         caption: {
-          en: 'Chrysodeixis includens during a field observation in Brazil. It is one of the similar-looking moths found in soybean-producing regions.',
-          es: 'Chrysodeixis includens durante una observación de campo en Brasil. Es una de las polillas de aspecto similar presentes en las regiones productoras de soja.',
+          en: 'Chrysodeixis includens, Brazil.',
+          es: 'Chrysodeixis includens, Brasil.',
         },
         credit: {
-          en: 'Photograph: Fernando Sessegolo / iNaturalist. Field-observation record indexed by GBIF.',
-          es: 'Fotografía: Fernando Sessegolo / iNaturalist. Registro de observación de campo indexado por GBIF.',
+          en: 'Photo: Fernando Sessegolo / iNaturalist, via GBIF.',
+          es: 'Foto: Fernando Sessegolo / iNaturalist, vía GBIF.',
         },
       },
       {
@@ -781,12 +781,12 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Una polilla adulta Rachiplusia nu posada entre hojas verdes en Brasil.',
         },
         caption: {
-          en: 'Rachiplusia nu during a field observation in Brazil. Distinguishing it from related soybean moths matters when monitoring movement and resistance.',
-          es: 'Rachiplusia nu durante una observación de campo en Brasil. Distinguirla de otras polillas asociadas a la soja es importante para monitorear su movimiento y resistencia.',
+          en: 'Rachiplusia nu, Brazil.',
+          es: 'Rachiplusia nu, Brasil.',
         },
         credit: {
-          en: 'Photograph: Frank Thomas Sautter / iNaturalist. Field-observation record indexed by GBIF.',
-          es: 'Fotografía: Frank Thomas Sautter / iNaturalist. Registro de observación de campo indexado por GBIF.',
+          en: 'Photo: Frank Thomas Sautter / iNaturalist, via GBIF.',
+          es: 'Foto: Frank Thomas Sautter / iNaturalist, vía GBIF.',
         },
       },
     ],
@@ -817,12 +817,12 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Un Panacea prola vivo con las alas completamente abiertas, mostrando el dorso azul iridiscente con bandas claras anchas.',
         },
         caption: {
-          en: 'Dorsal view of Panacea prola during a field observation in Peru.',
-          es: 'Vista dorsal de Panacea prola durante una observación de campo en Perú.',
+          en: 'Panacea prola, dorsal view, Peru.',
+          es: 'Panacea prola, vista dorsal, Perú.',
         },
         credit: {
-          en: 'Photograph: iNaturalist user desertnaturalist. Field-observation record indexed by GBIF.',
-          es: 'Fotografía: usuario desertnaturalist de iNaturalist. Registro de observación de campo indexado por GBIF.',
+          en: 'Photo: desertnaturalist / iNaturalist, via GBIF.',
+          es: 'Foto: desertnaturalist / iNaturalist, vía GBIF.',
         },
       },
       {
@@ -847,12 +847,12 @@ export const MODULES: readonly MediaModule[] = [
           es: 'Un Panacea prola vivo posado sobre una hoja verde cubierta de rocío, con alas anteriores negras y blancas y alas posteriores de un rojo anaranjado intenso.',
         },
         caption: {
-          en: 'A living Panacea prola resting on vegetation during a field observation in Brazil.',
-          es: 'Un Panacea prola vivo posado sobre vegetación durante una observación de campo en Brasil.',
+          en: 'Panacea prola, ventral view, Brazil.',
+          es: 'Panacea prola, vista ventral, Brasil.',
         },
         credit: {
-          en: 'Photograph: Laura Gaudette / iNaturalist. Field-observation record indexed by GBIF.',
-          es: 'Fotografía: Laura Gaudette / iNaturalist. Registro de observación de campo indexado por GBIF.',
+          en: 'Photo: Laura Gaudette / iNaturalist, via GBIF.',
+          es: 'Foto: Laura Gaudette / iNaturalist, vía GBIF.',
         },
       },
     ],

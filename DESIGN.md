@@ -3,9 +3,9 @@
 ## Source of truth
 
 - Status: Active
-- Last refreshed: 2026-07-29
+- Last refreshed: 2026-07-31
 - Primary product surfaces: bilingual public website at `/en/` and `/es/`
-- Evidence reviewed: `README.md`, `src/styles/tokens.css`, `src/styles/global.css`, `src/components/pages/HomePage.astro`, `src/components/HeroMedia.astro`, `refs/plan-mejora/04_DIRECCION_VISUAL.md`, and desktop/mobile screenshots supplied during review
+- Evidence reviewed: `README.md`, `src/styles/tokens.css`, `src/styles/global.css`, `src/components/pages/HomePage.astro`, `src/components/HeroMedia.astro`, `src/components/MediaCandidateViewer.astro`, `refs/plan-mejora/04_DIRECCION_VISUAL.md`, and desktop/mobile screenshots supplied during review
 
 ## Brand
 
@@ -39,29 +39,30 @@
 - Preserve bilingual parity: English and Spanish use the same hierarchy and equivalent layout quality
 - Remove ornamental repetition: navigation already supplies page context, so a page label must not repeat the H1; complete content modules belong on one canonical page
 - Make every paragraph earn its place by stating a result, mechanism, question, evidence requirement, or action
+- Keep card metadata subordinate: concise image details may collapse when the scientific question and next actions are the primary task
 - Tradeoff: preserve a clear subject/copy boundary before maximizing image area or headline width
 
 ## Visual language
 
 - Color: Caligo’s warm neutral palette with a burnt-orange accent; hero copy uses fixed ivory on a matte near-black field
 - Brand emblem: the extracted mark is transparent on light surfaces; dark mode supplies the logo’s original ivory matte so its negative-space wing markings keep the same colour in both modes
-- Typography: Space Grotesk for display, Inter for prose and UI, JetBrains Mono for labels and provenance
+- Typography: Space Grotesk for display, Inter for prose and UI, JetBrains Mono for labels and provenance; Home editorial sections use a restrained local scale so ordinary laptop viewports do not feel browser-zoomed
 - Spacing/layout rhythm: wide specimen-plate compositions followed by restrained content sections
 - Shape/radius/elevation: hairlines, small radii, and minimal elevation
-- Motion: user-controlled when explanatory; no generic entrance animation
+- Motion: user-controlled only when sequence matters; final-state comparison diagrams remain static; no generic entrance animation
 - Imagery/iconography: credited documentary imagery and code-native diagrams; icons must encode a recognizable concept
 
 ## Components
 
 - Existing components to reuse: `Base`, `Header`, `HeroMedia`, `CommunityStats`, `PrincipleGrid`, `MediaCandidateViewer`, and shared CTA/button styles
-- New/changed components: About includes a compact three-priority grid and six-step specimen-to-shared-evidence workflow; Participate includes a concise participation-outcomes list; the Home hero may change its internal CSS geometry without creating a parallel hero component; Header and Footer share the transparent, text-free emblem, and the Header uses a responsive brand lockup
+- New/changed components: About includes a compact three-priority grid and six-step specimen-to-shared-evidence workflow; Participate includes a concise participation-outcomes list; Home research cards use the compact `MediaCandidateViewer` disclosure so image provenance remains available without competing with the scientific hook; Science pairs Caligo concept diagrams with the corresponding published figures, side by side only when both remain legible; the Home hero may change its internal CSS geometry without creating a parallel hero component; Header and Footer share the transparent, text-free emblem, and the Header uses a responsive brand lockup
 - Variants and states: desktop split composition; mobile stacked composition; light/dark page modes do not alter hero contrast
 - Token/component ownership: global tokens remain in `src/styles/tokens.css`; page-specific hero geometry stays in `HomePage.astro`
 
 ## Accessibility
 
 - Target standard: WCAG 2.2 AA
-- Keyboard/focus behavior: every CTA and source link remains keyboard reachable with visible focus
+- Keyboard/focus behavior: every CTA, source link, image selector, and image-details disclosure remains keyboard reachable with visible focus
 - Contrast/readability: hero text uses the photograph’s naturally dark right side, never the butterfly’s head or eye; no overlay, filter, clipping edge, or added panel may alter the specimen
 - Screen-reader semantics: one page `h1`, meaningful photo alternative text, and visible attribution
 - Reduced motion and sensory considerations: the hero remains static; explanatory motion respects `prefers-reduced-motion`

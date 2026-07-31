@@ -44,6 +44,7 @@ export const es: Dict = {
     "documentaryType": "Imagen documental",
     "aiConceptType": "Ilustración conceptual",
     "codeNativeType": "Gráfico explicativo",
+    "imageDetailsLabel": "Detalles de la imagen",
     "sourceLinkLabel": "Fuente",
     "aiGeneratedCredit": "Generada con IA para Caligo",
     "caveats": {
@@ -153,6 +154,7 @@ export const es: Dict = {
     "title": "Preguntas que los genomas ayudan a responder",
     "intro": "Un marcador genético corto permite comparar poblaciones. Cientos de genes recuperados de un ejemplar antiguo de museo pueden ubicarlo en un árbol filogenético. Un ensamblaje a escala cromosómica permite identificar fisiones y fusiones. Los estudios siguientes muestran qué resolvió cada tipo de dato y qué preguntas aún exigen nuevos ejemplares, trabajo de campo o experimentos.",
     "questionsHeading": "Preguntas que los genomas ayudan a responder",
+    "pilotContinuationLabel": "Lo que Caligo propone investigar",
     "chromosomeFigure": {
       "src": "media/figures-published/rueda-2024-fig1-chromosome-counts.jpg",
       "citation": "Rueda-M et al. 2024, PLOS Genetics, Fig 1",

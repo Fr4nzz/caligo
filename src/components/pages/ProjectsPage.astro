@@ -29,7 +29,6 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
-import ConceptDiagram from '../ConceptDiagram.astro';
 import { getDict, type Locale } from '../../i18n';
 import { PILOTS, getSource, getMediaModule } from '../../data/records';
 import { PROJECTS } from '../../data/content';
@@ -63,14 +62,6 @@ const pilotToProjectId: Record<string, string> = {
   'pilot-panacea':    'panacea',
 };
 
-/*
-  Only the Heliconius pilot keeps a figure. The holocentric-fission
-  contrast teaches something a reader cannot get from the adjacent
-  paragraph; the other three restated their own captions.
-*/
-const pilotDiagramKind = {
-  'pilot-heliconius': 'chromosome',
-} as const;
 const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
 ---
 
@@ -90,7 +81,6 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
       {
         publishedPilots.map((pilot) => {
           const project = projectById.get(pilotToProjectId[pilot.id]);
-          const diagramKind = pilotDiagramKind[pilot.id as keyof typeof pilotDiagramKind];
           return (
             <li id={pilot.slug} class="pilot">
             <!-- Media: 5-column slot on desktop -->
@@ -115,10 +105,6 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
 
               <!-- Published background -->
               <p class="pilot-body-text">{pilot.publishedContext[locale]}</p>
-
-              {diagramKind && (
-                <ConceptDiagram locale={locale} kind={diagramKind} context="pilot" />
-              )}
 
               <!-- What Caligo proposes to test -->
               <div class="pilot-field">
