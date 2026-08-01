@@ -195,8 +195,8 @@ export const EVENTS: InitiativeEvent[] = [
       es: 'Bogotá, Colombia',
     },
     summary: {
-      en: 'First initiative activity in Latin America; sequencing of the first four Heliconius species.',
-      es: 'Primera actividad de la iniciativa en América Latina. Durante el taller se secuenciaron las primeras cuatro especies de Heliconius.',
+      en: 'First initiative activity in Latin America. The initiative plans to sequence its first four Heliconius species following the workshop.',
+      es: 'Primera actividad de la iniciativa en América Latina. Después del taller, la iniciativa planea secuenciar sus primeras cuatro especies de Heliconius.',
     },
   },
   {
