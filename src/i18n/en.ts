@@ -334,7 +334,7 @@ export const en = {
     "name": {
       "heading": "Why Caligo",
       "body": [
-        "Caligo takes its name from a Neotropical genus of owl butterflies, known for their beauty and striking eyespots. Their most remarkable features are visible at a glance; the evolutionary histories that produced them are not. Genomics gives us another way to look closer."
+        "Caligo takes its name from a Neotropical genus of owl butterflies, known for their beauty and striking eyespots. In one species, these false eyes redirect bird attacks toward the wings and away from the body. Look closer and the pattern resolves into thousands of scales, whose pigments and microscopic structures create its colour. The name reflects the curiosity behind Caligo: beginning with the diversity we can see, then using genomes to understand how it evolved."
       ]
     },
     "building": {

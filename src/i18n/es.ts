@@ -331,7 +331,7 @@ export const es: Dict = {
     "name": {
       "heading": "Por qué Caligo",
       "body": [
-        "Caligo toma su nombre de un género neotropical de mariposas búho, conocidas por su belleza y sus llamativos ocelos. Sus rasgos más extraordinarios se ven a simple vista; las historias evolutivas que los produjeron, no. La genómica nos ofrece otra forma de mirar más de cerca."
+        "Caligo toma su nombre de un género neotropical de mariposas búho, conocidas por su belleza y sus llamativos ocelos. En una de sus especies, estos falsos ojos desvían los ataques de las aves hacia las alas y lejos del cuerpo. Al mirar más de cerca, el patrón se revela como miles de escamas cuyos pigmentos y estructuras microscópicas crean el color. El nombre refleja la curiosidad que impulsa a Caligo: partir de la diversidad que podemos ver y usar los genomas para comprender cómo evolucionó."
       ]
     },
     "building": {
