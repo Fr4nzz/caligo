@@ -331,7 +331,7 @@ export const es: Dict = {
     "name": {
       "heading": "Por qué Caligo",
       "body": [
-        "Caligo significa oscuridad o penumbra en latín. También es un género neotropical de mariposas búho, reconocibles por los grandes ocelos de sus alas. El nombre proviene de una mariposa muy conocida en la región, pero Caligo abarca una diversidad mucho mayor de mariposas y polillas neotropicales."
+        "Caligo toma su nombre de un género neotropical de mariposas búho, conocidas por su belleza y sus llamativos ocelos. Sus rasgos más extraordinarios se ven a simple vista; las historias evolutivas que los produjeron, no. La genómica nos ofrece otra forma de mirar más de cerca."
       ]
     },
     "building": {

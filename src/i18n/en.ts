@@ -334,7 +334,7 @@ export const en = {
     "name": {
       "heading": "Why Caligo",
       "body": [
-        "Caligo is Latin for darkness or dimness. It is also a Neotropical genus of owl butterflies, recognisable by the large eyespots on their wings. The name comes from a familiar regional butterfly, but Caligo covers the much wider diversity of Neotropical butterflies and moths."
+        "Caligo takes its name from a Neotropical genus of owl butterflies, known for their beauty and striking eyespots. Their most remarkable features are visible at a glance; the evolutionary histories that produced them are not. Genomics gives us another way to look closer."
       ]
     },
     "building": {
