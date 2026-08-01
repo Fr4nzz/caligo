@@ -150,9 +150,9 @@ export const es: Dict = {
   },
   "science": {
     "metaTitle": "Ciencia | Caligo",
-    "metaDescription": "Lo que la evidencia genética de mariposas y polillas neotropicales revela sobre cromosomas, especies híbridas, conservación, colecciones de museo, plagas agrícolas y movimiento estacional.",
+    "metaDescription": "Cuatro hallazgos previos que conducen a los proyectos propuestos por Caligo sobre evolución cromosómica, conservación, plagas agrícolas y movimiento estacional.",
     "title": "Preguntas que los genomas ayudan a responder",
-    "intro": "Un marcador genético corto permite comparar poblaciones. Cientos de genes recuperados de un ejemplar antiguo de museo pueden ubicarlo en un árbol filogenético. Un ensamblaje a escala cromosómica permite identificar fisiones y fusiones. Los estudios siguientes muestran qué resolvió cada tipo de dato y qué preguntas aún exigen nuevos ejemplares, trabajo de campo o experimentos.",
+    "intro": "Estos cuatro hallazgos conducen directamente a los proyectos piloto propuestos por Caligo. Cada uno muestra qué resolvió la evidencia previa y qué podrían revelar nuevas muestras o datos genómicos.",
     "questionsHeading": "Preguntas que los genomas ayudan a responder",
     "pilotContinuationLabel": "Lo que Caligo propone investigar",
     "chromosomeFigure": {
@@ -166,18 +166,6 @@ export const es: Dict = {
       "alt": "Filogenia del clado sara/sapho de Heliconius. Las cajas grises dan los conteos de cromosomas haploides a lo largo del árbol, de 21 a 56–60. Tres flechas punteadas señalan fusiones independientes entre el cromosoma W y un autosoma, rotuladas W+4, W+9 y W+14. A la derecha aparecen mapas de distribución y fotografías de las alas de cada subespecie.",
       "caption": "Esta figura resume la evidencia que sustenta la sección. Los recuadros grises muestran que el número de cromosomas haploides va de 21 en la mayor parte del clado a entre 56 y 60 en los linajes sapho y eleuchia. Las tres flechas punteadas marcan las fusiones independientes entre un autosoma y el cromosoma W."
     },
-    "hybridOriginFigure": {
-      "src": "media/figures-published/rosser-2024-fig1e-hybrid-origin.png",
-      "citation": "Rosser et al. 2024, Nature, Fig 1e",
-      "sourceId": "rosser-2024",
-      "licence": "CC BY 4.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
-      "width": 900,
-      "height": 764,
-      "alt": "Un árbol de tres ramas. Heliconius melpomene (Amazonía) a la izquierda, Heliconius elevatus (Guayanas) en el centro y Heliconius pardalinus (Andes) a la derecha, con una fotografía de las alas bajo cada nombre. Dos flechas convergen en la rama de H. elevatus: una desde el linaje de melpomene rotulada 0,7 por ciento y otra desde el linaje de pardalinus rotulada 99,3 por ciento. Un eje temporal a la izquierda va de 813 mil años atrás en la parte superior a 180 mil años atrás en el punto de unión.",
-      "caption": "Cómo H. elevatus llegó a tener dos ancestros. Las dos flechas muestran que el 99,3 % de su genoma viene de H. pardalinus y el 0,7 % de H. melpomene, con los linajes uniéndose hace unos 180.000 años. La especie híbrida no parece una mezcla de sus progenitores.",
-      "changes": "recortada al panel e"
-    },
     "questions": [
       {
         "heading": "¿Cómo pueden los cromosomas de las mariposas dividirse y fusionarse sin dejar de funcionar?",
@@ -188,27 +176,11 @@ export const es: Dict = {
         ]
       },
       {
-        "heading": "¿Cómo ayudó apenas el 1 % de un genoma a formar una especie híbrida?",
-        "answer": [
-          "El flujo génico es el movimiento de variantes heredadas entre poblaciones a través de la reproducción. Cuando la hibridación va seguida de generaciones de retrocruzamiento, parte del ADN de un linaje puede quedar de forma permanente en otro. Este proceso se conoce como introgresión.",
-          "Heliconius elevatus se formó mediante hibridación y ha persistido como un linaje distinto durante al menos 180.000 años. El flujo génico continuo con H. pardalinus hace que cerca del 99 % de ambos genomas siga siendo muy similar. Cerca del 1 % del genoma de H. elevatus provino de H. melpomene. Estas regiones están distribuidas en varios cromosomas y se asocian con el patrón de color, la forma del ala, la preferencia de planta hospedera y las feromonas sexuales.",
-          "Las comparaciones genómicas permitieron localizar las regiones heredadas de H. melpomene. El mapeo de rasgos, los cruzamientos y las observaciones de campo permitieron relacionarlas con diferencias entre las especies."
-        ]
-      },
-      {
         "heading": "¿Siguen conectadas las poblaciones de una mariposa amenazada una década después?",
         "answer": [
           "Parides ascanius está restringida a restingas costeras y humedales del sureste de Brasil. La UICN la evaluó como Vulnerable a nivel global en 2018. La evaluación nacional de Brasil la clasificó En Peligro en 2021.",
           "Seraphim y sus colegas compararon las poblaciones supervivientes mediante secuencias mitocondriales de COI y ocho marcadores microsatélites. El estudio de 2016 encontró poca estructura genética, ninguna señal de endogamia y una migración alta entre la mayoría de los sitios muestreados, aunque una población estaba más aislada por el entorno metropolitano.",
           "El resultado de 2016 ofrece una línea de base, pero no muestra si las poblaciones siguen conectadas hoy. Un genoma de referencia a escala cromosómica y nuevas muestras de sus poblaciones permitirían medir cuánta diversidad queda y si la pérdida de hábitat, el drenaje o la fragmentación han interrumpido el flujo génico. Las localidades precisas deben mantenerse fuera de la comunicación pública."
-        ]
-      },
-      {
-        "heading": "¿Puede el ADN de un ejemplar de museo de hace un siglo redibujar el árbol evolutivo de una familia de polillas?",
-        "answer": [
-          "Las colecciones de historia natural conservan especies que hoy sería difícil volver a recolectar, pero la edad y el almacenamiento fragmentan su ADN. La captura dirigida puede recuperar cientos de genes seleccionados de esos fragmentos.",
-          "St Laurent y sus colegas recuperaron en promedio más de 400 de 515 loci objetivo de 19 ejemplares de museo conservados en seco. Junto con material reciente, esas secuencias representaron 47 especies y 32 de los 36 géneros reconocidos de Mimallonidae, y respaldaron una clasificación revisada con seis subfamilias, ocho tribus y tres géneros recién descritos.",
-          "Mayer y sus colegas aplicaron después el método a 37 mariposas y polillas montadas, recolectadas entre 1892 y 2017, y recuperaron cientos o miles de loci nucleares. Estas secuencias permiten ubicar un ejemplar de museo en un árbol evolutivo y ayudan a revisar su clasificación. Como abarcan genes seleccionados y no el genoma completo, no muestran la estructura de los cromosomas, el orden de los genes ni los grandes reordenamientos. Un genoma de referencia a escala cromosómica obtenido de material fresco o bien conservado aportaría esa información complementaria."
         ]
       },
       {
@@ -228,13 +200,6 @@ export const es: Dict = {
         ]
       }
     ],
-    "evidence": {
-      "heading": "Qué puede mostrar cada tipo de evidencia genética",
-      "body": [
-        "Los códigos de barras de ADN ayudan a identificar ejemplares y comparar especies cercanas. Los datos genómicos de muchos individuos permiten estimar la diversidad genética, la estructura poblacional, el flujo génico y la endogamia. Un genoma de referencia a escala cromosómica muestra cómo se organiza el ADN y permite estudiar el orden de los genes, las fusiones, las fisiones y otros cambios estructurales.",
-        "Cada tipo de dato requiere muestras, equipos y análisis propios, y responde preguntas biológicas diferentes."
-      ]
-    },
     "ethics": {
       "heading": "Planificar un muestreo responsable",
       "body": [

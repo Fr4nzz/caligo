@@ -56,17 +56,13 @@ const s = t.science;
 
 const anchors = [
   'chromosomes',
-  'gene-flow',
   'connectivity',
-  'museum-collections',
   'soybean-movement-resistance',
   'panacea-migration',
 ] as const;
 const questionSourceIds = {
   chromosomes: ['rueda-2024', 'mackay-smith-2026'],
-  'gene-flow': ['rosser-2024'],
   connectivity: ['seraphim-2016', 'iucn-parides-2018', 'icmbio-parides-2021'],
-  'museum-collections': ['st-laurent-2018', 'mayer-2021'],
   'soybean-movement-resistance': ['horikoshi-2021', 'braga-2024'],
   'panacea-migration': ['gallice-2020', 'batesia-2026'],
 } as const;
@@ -74,9 +70,7 @@ const questionSourceIds = {
 /** The image beside the prose. */
 const questionAside: Record<string, { photo?: string }> = {
   chromosomes: { photo: 'pilot-heliconius' },
-  'gene-flow': {},
   connectivity: { photo: 'pilot-parides' },
-  'museum-collections': { photo: 'journey-2-provenance' },
   'soybean-movement-resistance': { photo: 'pilot-soybean' },
   'panacea-migration': { photo: 'pilot-panacea' },
 };
@@ -90,22 +84,18 @@ const questionAside: Record<string, { photo?: string }> = {
   both cited on this site, are free to read and cannot be reproduced.
 */
 const questionEvidencePair: Record<string, {
-  concept: 'chromosome' | 'introgression';
-  figure: 'chromosomeFigure' | 'hybridOriginFigure';
+  concept: 'chromosome';
+  figure: 'chromosomeFigure';
 } | undefined> = {
   chromosomes: { concept: 'chromosome', figure: 'chromosomeFigure' },
-  'gene-flow': { concept: 'introgression', figure: 'hybridOriginFigure' },
   connectivity: undefined,
-  'museum-collections': undefined,
   'soybean-movement-resistance': undefined,
   'panacea-migration': undefined,
 };
 
 const pilotContinuation: Record<string, { cardIndex: number; slug: string } | undefined> = {
   chromosomes: { cardIndex: 0, slug: 'heliconius' },
-  'gene-flow': undefined,
   connectivity: { cardIndex: 1, slug: 'parides-ascanius' },
-  'museum-collections': undefined,
   'soybean-movement-resistance': { cardIndex: 2, slug: 'soybean-lepidoptera' },
   'panacea-migration': { cardIndex: 3, slug: 'panacea-prola' },
 };
@@ -134,13 +124,13 @@ const evidencePairLabel = locale === 'es'
           .filter((source) => source !== undefined);
         return (
           <article id={anchor} class="question">
-            <h3 class="question-heading">{q.heading}</h3>
+            <h3 class="question-heading content-heading">{q.heading}</h3>
 
             <div class:list={['split', { 'split--prose-only': !aside.photo }]}>
               <div class="split-prose">
-                {q.answer.map((para) => <p>{para}</p>)}
-                <p class="question-sources">
-                  <span class="question-sources-label">{sourcesLabel}: </span>
+                {q.answer.map((para) => <p class="content-body">{para}</p>)}
+                <p class="question-sources content-meta">
+                  <span class="question-sources-label content-label">{sourcesLabel}: </span>
                   {sources.map((src, n) => (
                     <>
                       {n > 0 && ' · '}
@@ -152,7 +142,7 @@ const evidencePairLabel = locale === 'es'
                 </p>
                 {continuation && (
                   <aside class="pilot-continuation">
-                    <p class="pilot-continuation-label mono">{s.pilotContinuationLabel}</p>
+                    <p class="pilot-continuation-label content-label">{s.pilotContinuationLabel}</p>
                     <a
                       class="text-link"
                       href={`${localePath(locale, '/projects')}#${continuation.slug}`}
@@ -188,22 +178,10 @@ const evidencePairLabel = locale === 'es'
     </div>
   </section>
 
-  <section class="section section--panel" aria-labelledby="evidence-heading">
-    <div class="container-wide split">
-      <div class="split-prose">
-        <h2 id="evidence-heading" class="section-heading">{s.evidence.heading}</h2>
-        {s.evidence.body.map((para) => <p class="prose-para">{para}</p>)}
-      </div>
-      <div class="split-figure">
-        <MediaCandidateViewer moduleId="journey-4-sequence" locale={locale} aspectRatio="4 / 3" />
-      </div>
-    </div>
-  </section>
-
   <section class="section" aria-labelledby="ethics-heading">
     <div class="container-wide prose-column">
-      <h2 id="ethics-heading" class="section-heading">{s.ethics.heading}</h2>
-      {s.ethics.body.map((para) => <p class="prose-para">{para}</p>)}
+      <h2 id="ethics-heading" class="section-heading content-heading">{s.ethics.heading}</h2>
+      {s.ethics.body.map((para) => <p class="prose-para content-body">{para}</p>)}
     </div>
   </section>
 
@@ -211,19 +189,11 @@ const evidencePairLabel = locale === 'es'
 
 <style>
   .section-heading {
-    margin: 0 0 var(--space-m);
-    font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-weight: 560;
-    line-height: 1.15;
-    letter-spacing: -0.012em;
-    color: var(--text-strong);
+    margin-bottom: var(--space-m);
     max-width: 28ch;
   }
   .prose-para {
-    margin: 0 0 var(--space-m);
-    color: var(--text);
-    line-height: 1.65;
+    margin-bottom: var(--space-m);
     max-width: var(--measure);
   }
   .prose-para:last-child { margin-bottom: 0; }
@@ -241,9 +211,7 @@ const evidencePairLabel = locale === 'es'
     .split { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
   }
   .split-prose > p {
-    margin: 0 0 var(--space-m);
-    color: var(--text);
-    line-height: 1.65;
+    margin-bottom: var(--space-m);
     max-width: var(--measure);
   }
   .split-prose > p:last-child { margin-bottom: 0; }
@@ -293,28 +261,15 @@ const evidencePairLabel = locale === 'es'
     border-top: 1px solid var(--hairline);
   }
   .question-heading {
-    margin: 0 0 var(--space-m);
-    font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-weight: 560;
-    line-height: 1.2;
-    letter-spacing: -0.012em;
-    color: var(--text-strong);
+    margin-bottom: var(--space-m);
     max-width: 34ch;
   }
 
   .question-sources {
     margin-top: var(--space-m);
-    font-size: var(--step--1);
-    color: var(--text-muted);
-    line-height: 1.5;
   }
   .question-sources-label {
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-faint);
+    display: inline;
   }
   .question-sources a {
     color: var(--accent-strong);
@@ -330,11 +285,7 @@ const evidencePairLabel = locale === 'es'
     background: var(--accent-dim);
   }
   .pilot-continuation-label {
-    margin: 0 0 var(--space-xs);
-    color: var(--text-faint);
-    font-size: var(--step--2);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    margin-bottom: var(--space-xs);
   }
   .pilot-continuation .text-link {
     width: fit-content;

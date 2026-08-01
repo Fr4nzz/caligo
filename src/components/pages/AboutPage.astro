@@ -50,10 +50,10 @@ const h = t.home;
   <!-- A2 — The name. The former /caligo/ page said this in 667 words. -->
   <section class="section section--panel" aria-labelledby="about-name">
     <div class="container-wide prose-column">
-      <h2 id="about-name" class="section-heading">{a.name.heading}</h2>
+      <h2 id="about-name" class="section-heading content-heading">{a.name.heading}</h2>
       <div class="prose-block">
         {a.name.body.map((para) => (
-          <p class="prose-para">{para}</p>
+          <p class="prose-para content-body">{para}</p>
         ))}
       </div>
     </div>
@@ -62,7 +62,7 @@ const h = t.home;
   <!-- A3 — A compact public statement of the initiative's priorities -->
   <section class="section" aria-labelledby="about-building">
     <div class="container-wide">
-      <h2 id="about-building" class="section-heading">{a.building.heading}</h2>
+      <h2 id="about-building" class="section-heading content-heading">{a.building.heading}</h2>
       <ol class="building-grid" role="list">
         {a.building.items.map((item, i) => (
           <li class="building-item">
@@ -78,8 +78,8 @@ const h = t.home;
   <!-- A4 — Project Psyche as an organisational model, not a partnership claim -->
   <section class="section section--panel" aria-labelledby="about-workflow">
     <div class="container-wide">
-      <p class="section-eyebrow mono">{a.workflow.eyebrow}</p>
-      <h2 id="about-workflow" class="section-heading workflow-heading">{a.workflow.heading}</h2>
+      <p class="section-eyebrow content-label">{a.workflow.eyebrow}</p>
+      <h2 id="about-workflow" class="section-heading content-heading workflow-heading">{a.workflow.heading}</h2>
       <p class="workflow-intro">
         <a href={LINKS.projectPsyche} rel="external noopener">{a.workflow.projectName}</a>{a.workflow.introAfter}
       </p>
@@ -97,8 +97,8 @@ const h = t.home;
   <!-- A5 — Principles -->
   <section class="section" aria-labelledby="about-principles">
     <div class="container-wide visual-section">
-      <p class="section-eyebrow mono">{h.pillars.eyebrow}</p>
-      <h2 id="about-principles" class="section-heading">{h.pillars.title}</h2>
+      <p class="section-eyebrow content-label">{h.pillars.eyebrow}</p>
+      <h2 id="about-principles" class="section-heading content-heading">{h.pillars.title}</h2>
       <PrincipleGrid locale={locale} />
     </div>
   </section>
@@ -106,8 +106,8 @@ const h = t.home;
   <!-- A6 — Leadership -->
   <section class="section section--panel" aria-labelledby="about-leadership">
     <div class="container-wide visual-section">
-      <h2 id="about-leadership" class="section-heading">{a.leadership.heading}</h2>
-      <p class="prose-para">{a.leadership.intro}</p>
+      <h2 id="about-leadership" class="section-heading content-heading">{a.leadership.heading}</h2>
+      <p class="prose-para content-body">{a.leadership.intro}</p>
       <LeadershipGrid locale={locale} />
     </div>
   </section>
@@ -115,8 +115,8 @@ const h = t.home;
   <!-- A7 — Partner facilities (from the former /network/) -->
   <section class="section" aria-labelledby="about-facilities">
     <div class="container-wide visual-section">
-      <h2 id="about-facilities" class="section-heading">{a.facilities.heading}</h2>
-      <p class="prose-para">{a.facilities.intro}</p>
+      <h2 id="about-facilities" class="section-heading content-heading">{a.facilities.heading}</h2>
+      <p class="prose-para content-body">{a.facilities.intro}</p>
       <FacilityTable locale={locale} />
     </div>
   </section>
@@ -124,8 +124,8 @@ const h = t.home;
   <!-- A8 — Events (from the former /network/) -->
   <section class="section section--panel" aria-labelledby="about-events">
     <div class="container-wide prose-column">
-      <h2 id="about-events" class="section-heading">{a.events.heading}</h2>
-      <p class="prose-para">{a.events.intro}</p>
+      <h2 id="about-events" class="section-heading content-heading">{a.events.heading}</h2>
+      <p class="prose-para content-body">{a.events.intro}</p>
       <Timeline locale={locale} />
     </div>
   </section>
@@ -133,8 +133,8 @@ const h = t.home;
   <!-- A9 — Connections and context (from the former /network/) -->
   <section class="section" aria-labelledby="about-positioning">
     <div class="container-wide prose-column">
-      <h2 id="about-positioning" class="section-heading">{a.positioning.heading}</h2>
-      <p class="prose-para">{a.positioning.body}</p>
+      <h2 id="about-positioning" class="section-heading content-heading">{a.positioning.heading}</h2>
+      <p class="prose-para content-body">{a.positioning.body}</p>
     </div>
   </section>
 
@@ -149,20 +149,10 @@ const h = t.home;
 
   /* ---- Section rhythm ---- */
   .section-eyebrow {
-    margin: 0 0 var(--space-s);
-    font-size: var(--step--2);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--text-faint);
+    margin-bottom: var(--space-s);
   }
   .section-heading {
-    margin: 0 0 var(--space-m);
-    font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-weight: 560;
-    line-height: 1.15;
-    letter-spacing: -0.012em;
-    color: var(--text-strong);
+    margin-bottom: var(--space-m);
   }
 
   .prose-block {
@@ -171,9 +161,7 @@ const h = t.home;
     gap: var(--space-s);
   }
   .prose-para {
-    margin: 0 0 var(--space-m);
-    color: var(--text);
-    line-height: 1.65;
+    margin-bottom: var(--space-m);
   }
   .prose-block .prose-para {
     margin-bottom: 0;

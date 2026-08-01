@@ -304,6 +304,56 @@ kbd,
   color: var(--text-muted);
 }
 
+/* ============================ Editorial type roles ============================
+   Reusable hierarchy for evidence-led page content. Components own layout,
+   spacing exceptions and colour accents; these roles own type size, face,
+   weight and line height. This keeps Science, Pilot Projects and future
+   editorial modules on the same scale. */
+.content-heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 560;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  color: var(--text-strong);
+  text-wrap: balance;
+}
+
+.content-lead {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--text-strong);
+}
+
+.content-body {
+  margin: 0;
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.content-label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.content-meta {
+  margin: 0;
+  font-size: var(--step--1);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
 /* ============================ Buttons ============================ */
 .btn {
   --btn-bg: var(--accent);

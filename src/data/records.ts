@@ -129,17 +129,6 @@ export const SOURCES: readonly Source[] = [
     doi: '10.1093/gbe/evag171',
   },
   {
-    id: 'rosser-2024',
-    shortLabel: 'Rosser et al. 2024',
-    kind: 'paper',
-    citation:
-      'Rosser et al. 2024. Hybrid speciation driven by multilocus introgression of ecological traits. Nature 628:811–817.',
-    url: 'https://doi.org/10.1038/s41586-024-07263-w',
-    publicationDate: '2024-04-17',
-    checkedDate: '2026-07-29',
-    doi: '10.1038/s41586-024-07263-w',
-  },
-  {
     id: 'wright-2024-chromosomes',
     shortLabel: 'Wright et al. 2024',
     kind: 'paper',
@@ -149,28 +138,6 @@ export const SOURCES: readonly Source[] = [
     publicationDate: '2024-03-04',
     checkedDate: '2026-07-29',
     doi: '10.1038/s41559-024-02329-4',
-  },
-  {
-    id: 'st-laurent-2018',
-    shortLabel: 'St Laurent et al. 2018',
-    kind: 'paper',
-    citation:
-      'St Laurent et al. 2018. Resolving the tribe- and genus-level classification of the Mimallonidae with a novel phylogeny based on 515 loci. Systematic Entomology 43:729–757.',
-    url: 'https://doi.org/10.1111/syen.12301',
-    publicationDate: '2018-10-01',
-    checkedDate: '2026-07-29',
-    doi: '10.1111/syen.12301',
-  },
-  {
-    id: 'mayer-2021',
-    shortLabel: 'Mayer et al. 2021',
-    kind: 'paper',
-    citation:
-      'Mayer et al. 2021. Adding leaves to the Lepidoptera tree: capturing hundreds of nuclear genes from old museum specimens. Systematic Entomology 46:649–671.',
-    url: 'https://doi.org/10.1111/syen.12481',
-    publicationDate: '2021-07-01',
-    checkedDate: '2026-07-29',
-    doi: '10.1111/syen.12481',
   },
   {
     id: 'iucn-parides-2018',
@@ -560,13 +527,6 @@ const CC_BY_SA_4 = { name: 'CC BY-SA 4.0', url: 'https://creativecommons.org/lic
 const CC_BY_4 = { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' };
 const CC0_1 = { name: 'CC0 1.0', url: 'https://creativecommons.org/publicdomain/zero/1.0/' };
 
-const PD_US = { name: 'Public domain (US Government work)', url: 'https://www.usa.gov/government-works' };
-
-const AI_CAVEAT: Bilingual = {
-  en: 'AI concept illustration.',
-  es: 'Ilustración conceptual generada con IA.',
-};
-
 export const MODULES: readonly MediaModule[] = [
   {
     id: 'pilot-heliconius',
@@ -853,35 +813,6 @@ export const MODULES: readonly MediaModule[] = [
         credit: {
           en: 'Photo: Laura Gaudette / iNaturalist, via GBIF.',
           es: 'Foto: Laura Gaudette / iNaturalist, vía GBIF.',
-        },
-      },
-    ],
-  },
-  {
-    id: 'journey-4-sequence',
-    publish: true,
-    candidates: [
-      {
-        kind: 'documentary',
-        path: 'media/journey/journey-04-nhgri-pipette.webp',
-        width: 1600,
-        height: 1043,
-        creator: 'Maggie Bartlett / National Human Genome Research Institute',
-        licence: PD_US.name,
-        licenceUrl: PD_US.url,
-        sourceItemPage: 'https://commons.wikimedia.org/wiki/File:NHGRI_researcher_uses_a_pipette_to_remove_DNA_from_a_micro_test_tube.jpg',
-        changes: ['downloaded from Wikimedia Commons; no re-encode or crop applied locally'],
-        alt: {
-          en: 'A gloved researcher uses a pipette to remove DNA from a micro test tube in a genomics laboratory.',
-          es: 'Una investigadora con guantes usa una pipeta para tomar ADN de un microtubo en un laboratorio de genómica.',
-        },
-        caption: {
-          en: 'Extracting DNA in the laboratory. The next step might be a short barcode, reads from many individuals or a full reference genome. That choice determines which questions the result can answer.',
-          es: 'Extracción de ADN en el laboratorio. El siguiente paso puede ser un código de barras corto, lecturas de muchos individuos o un genoma de referencia completo. Esa elección determina qué preguntas puede responder el resultado.',
-        },
-        credit: {
-          en: 'Photograph: Maggie Bartlett / National Human Genome Research Institute (NHGRI). Public domain (US Government work).',
-          es: 'Fotografía: Maggie Bartlett / National Human Genome Research Institute (NHGRI). Dominio público (obra del gobierno de EE.UU.).',
         },
       },
     ],

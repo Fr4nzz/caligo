@@ -153,9 +153,9 @@ export const en = {
   },
   "science": {
     "metaTitle": "Science | Caligo",
-    "metaDescription": "What genetic evidence from Neotropical butterflies and moths reveals about chromosomes, hybrid species, conservation, museum collections, crop pests and seasonal movement.",
+    "metaDescription": "Four research findings that lead into Caligo's proposed projects on chromosome evolution, conservation, crop pests and seasonal movement.",
     "title": "Questions genomes can help answer",
-    "intro": "A short genetic marker can compare populations. Hundreds of captured genes can place an old museum specimen on a family tree. A chromosome-scale assembly can show where chromosomes split or fused. The studies below explain what each dataset resolved and which questions still need specimens, fieldwork or experiments.",
+    "intro": "These four research findings lead directly to Caligo's proposed pilot projects. Each shows what earlier evidence resolved and what new samples or genomic data could reveal next.",
     "questionsHeading": "Questions genomes can help answer",
     "pilotContinuationLabel": "What Caligo proposes next",
     "chromosomeFigure": {
@@ -169,18 +169,6 @@ export const en = {
       "alt": "Phylogeny of the Heliconius sara/sapho clade. Grey boxes give haploid chromosome counts along the tree, ranging from 21 to 56–60. Three dashed arrows mark separate W–autosome fusion events, labelled W+4, W+9 and W+14. Range maps and wing photographs of each subspecies sit to the right.",
       "caption": "The published evidence behind this section. Read the grey boxes: haploid chromosome counts run from 21 in most of the clade to between 56 and 60 in the sapho and eleuchia lineages. The three dashed arrows mark the separate occasions on which an autosome fused to the W."
     },
-    "hybridOriginFigure": {
-      "src": "media/figures-published/rosser-2024-fig1e-hybrid-origin.png",
-      "citation": "Rosser et al. 2024, Nature, Fig 1e",
-      "sourceId": "rosser-2024",
-      "licence": "CC BY 4.0",
-      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
-      "width": 900,
-      "height": 764,
-      "alt": "A three-branch tree. Heliconius melpomene (Amazon) on the left, Heliconius elevatus (Guianas) in the middle, Heliconius pardalinus (Andes) on the right, with a wing photograph under each name. Two arrows converge on the H. elevatus branch: one from the melpomene lineage labelled 0.7 per cent, one from the pardalinus lineage labelled 99.3 per cent. A time axis on the left runs from 813 thousand years ago at the top to 180 thousand years ago at the branch point.",
-      "caption": "How H. elevatus came to have two ancestors. The two arrows show that 99.3% of its genome traces to H. pardalinus and 0.7% to H. melpomene, with the lineages meeting around 180,000 years ago. The hybrid does not look like a blend of its parents.",
-      "changes": "cropped to panel e"
-    },
     "questions": [
       {
         "heading": "How can butterfly chromosomes split and fuse, yet still work?",
@@ -191,27 +179,11 @@ export const en = {
         ]
       },
       {
-        "heading": "How did just 1% of a genome help form a hybrid species?",
-        "answer": [
-          "Gene flow is the movement of inherited variants between populations through reproduction. Where hybridisation is followed by generations of backcrossing, some DNA from one lineage can become a permanent part of another. Biologists call that introgression.",
-          "Heliconius elevatus formed through hybridisation and has persisted as a distinct lineage for at least 180,000 years. Continuing gene flow with H. pardalinus keeps about 99% of their genomes similar. About 1% of the H. elevatus genome came from H. melpomene. These regions occur across several chromosomes and are associated with colour pattern, wing shape, host-plant preference and sex pheromones.",
-          "Genomic comparisons located the regions inherited from H. melpomene. Trait mapping, crossing experiments and field observations then connected those regions to differences between the species."
-        ]
-      },
-      {
         "heading": "Are threatened butterfly populations still connected a decade later?",
         "answer": [
           "Parides ascanius is restricted to coastal restinga and wetlands in south-eastern Brazil. The IUCN assessed it as Vulnerable globally in 2018. Brazil's national assessment listed it as Endangered in 2021.",
           "Seraphim and colleagues used mitochondrial COI sequences and eight microsatellite markers to compare the surviving populations. Their 2016 study found little genetic structure, no evidence of inbreeding and high migration among most sampled sites, although one population was more isolated by the metropolitan landscape.",
           "The 2016 result provides a baseline but does not show whether the populations remain connected today. A chromosome-scale reference and new population sampling could measure how much diversity remains and whether habitat loss, drainage or fragmentation has interrupted gene flow. Precise localities should remain out of public communication."
-        ]
-      },
-      {
-        "heading": "Can DNA from a century-old museum specimen redraw the moth family tree?",
-        "answer": [
-          "Natural-history collections preserve species that may be difficult to collect again, but age and storage break their DNA into short fragments. Target enrichment can recover hundreds of selected genes from those fragments.",
-          "St Laurent and colleagues recovered an average of more than 400 of 515 targeted loci from 19 dry museum specimens. Together with recently collected material, those sequences represented 47 species and 32 of the 36 recognised genera of Mimallonidae, supporting a revised classification with six subfamilies, eight tribes and three newly described genera.",
-          "Mayer and colleagues later applied the approach to 37 pinned butterflies and moths collected between 1892 and 2017, recovering hundreds to thousands of nuclear loci. These sequences can place a museum specimen on an evolutionary tree and help revise its classification. Because they cover selected genes rather than the complete genome, they cannot show chromosome structure, gene order or large rearrangements. A chromosome-scale reference from fresh or well-preserved material would provide that complementary information."
         ]
       },
       {
@@ -231,13 +203,6 @@ export const en = {
         ]
       }
     ],
-    "evidence": {
-      "heading": "What different genetic evidence can show",
-      "body": [
-        "DNA barcodes help identify specimens and compare closely related species. Genome-wide data from many individuals can estimate genetic diversity, population structure, gene flow and inbreeding. A chromosome-scale reference shows how DNA is arranged into chromosomes, including gene order, fusions, fissions and other structural changes.",
-        "These datasets require different samples, equipment and analyses, and they answer different biological questions."
-      ]
-    },
     "ethics": {
       "heading": "Planning responsible sampling",
       "body": [

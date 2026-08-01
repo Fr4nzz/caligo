@@ -46,7 +46,7 @@
 
 - Color: Caligo’s warm neutral palette with a burnt-orange accent; hero copy uses fixed ivory on a matte near-black field
 - Brand emblem: the extracted mark is transparent on light surfaces; dark mode supplies the logo’s original ivory matte so its negative-space wing markings keep the same colour in both modes
-- Typography: Space Grotesk for display, Inter for prose and UI, JetBrains Mono for labels and provenance; Home editorial sections use a restrained local scale so ordinary laptop viewports do not feel browser-zoomed
+- Typography: Space Grotesk for display, Inter for prose and UI, JetBrains Mono for labels and provenance. Shared editorial roles in `global.css` define one cross-page hierarchy: heading (`--step-2`), lead and body (`--step-0`), metadata (`--step--1`), and uppercase labels (`--step--2`). Page components own layout and emphasis, not independent type scales. Home editorial sections remain an intentional restrained local exception so ordinary laptop viewports do not feel browser-zoomed.
 - Spacing/layout rhythm: wide specimen-plate compositions followed by restrained content sections
 - Shape/radius/elevation: hairlines, small radii, and minimal elevation
 - Motion: user-controlled only when sequence matters; final-state comparison diagrams remain static; no generic entrance animation
@@ -57,7 +57,7 @@
 - Existing components to reuse: `Base`, `Header`, `HeroMedia`, `CommunityStats`, `PrincipleGrid`, `MediaCandidateViewer`, and shared CTA/button styles
 - New/changed components: About includes a compact three-priority grid and six-step specimen-to-shared-evidence workflow; Participate includes a concise participation-outcomes list; Home research cards use the compact `MediaCandidateViewer` disclosure so image provenance remains available without competing with the scientific hook; Science pairs Caligo concept diagrams with the corresponding published figures, side by side only when both remain legible; the Home hero may change its internal CSS geometry without creating a parallel hero component; Header and Footer share the transparent, text-free emblem, and the Header uses a responsive brand lockup
 - Variants and states: desktop split composition; mobile stacked composition; light/dark page modes do not alter hero contrast
-- Token/component ownership: global tokens remain in `src/styles/tokens.css`; page-specific hero geometry stays in `HomePage.astro`
+- Token/component ownership: global tokens remain in `src/styles/tokens.css`; reusable editorial type roles remain in `src/styles/global.css`; page-specific CSS owns geometry, spacing exceptions, and accents; hero geometry stays in `HomePage.astro`
 
 ## Accessibility
 

@@ -11,7 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "test": "node scripts/check-content.mjs && node scripts/verify-palette-engine.mjs && node scripts/verify-contrast.mjs",
+    "test": "node scripts/check-content.mjs && node scripts/verify-editorial-type.mjs && node scripts/verify-palette-engine.mjs && node scripts/verify-contrast.mjs",
     "test:nav": "node scripts/verify-nav.mjs && node scripts/verify-no-pilots-links.mjs && node scripts/verify-internal-links.mjs"
   },
   "dependencies": {
