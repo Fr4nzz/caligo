@@ -172,7 +172,13 @@ const h = t.home;
   .workflow-steps .item-index { margin: 0; }
   .network-section {
     display: grid;
-    gap: var(--space-xl);
+    gap: var(--space-l);
+  }
+  .network-section > .section-heading {
+    margin-bottom: 0;
+  }
+  .network-section > * + * {
+    margin-top: 0;
   }
   .network-block {
     display: grid;
