@@ -235,14 +235,14 @@ if (publishedPilots.length !== h.researchCards.length) {
   #questions, #proposed-pilots, #activity, #discover-caligo,
   #h1, #h2, #h3, #h4, #h5, #h6 { scroll-margin-top: 5rem; }
 
-  /*
-    Adjacent homepage sections should share one transition gap. Without
-    this, the previous section's bottom padding stacks with the next
-    section's top padding, leaving 6.5–8rem of empty space.
-  */
-  .stat-bar-section,
-  #why-lepidoptera {
+  /* The stat bar and the introduction share one background, so they need
+     only the introduction's top gap. The following priority panel changes
+     colour, so retain a smaller closing gap before that visible boundary. */
+  .stat-bar-section {
     padding-bottom: 0;
+  }
+  #why-lepidoptera {
+    padding-bottom: var(--space-l);
   }
 
   /* ---- H1 Cinematic hero ---- */
