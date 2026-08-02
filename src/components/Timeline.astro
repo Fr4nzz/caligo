@@ -4,12 +4,13 @@ import type { Locale } from '../i18n';
 
 interface Props {
   readonly locale: Locale;
+  readonly compact?: boolean;
 }
 
-const { locale } = Astro.props;
+const { locale, compact = false } = Astro.props;
 ---
 
-<ol class="timeline-list" role="list">
+<ol class:list={['timeline-list', { 'timeline-list--compact': compact }]} role="list">
   {EVENTS.map((event) => (
     <li class="timeline-item" id={`event-${event.id}`}>
       <div class="timeline-header">
@@ -77,5 +78,31 @@ const { locale } = Astro.props;
     color: var(--text);
     line-height: 1.55;
     max-width: var(--measure);
+  }
+  .timeline-list--compact {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .timeline-list--compact .timeline-item {
+    padding: var(--space-m);
+    border-bottom: 0;
+  }
+  .timeline-list--compact .timeline-item + .timeline-item {
+    border-left: 1px solid var(--hairline);
+  }
+  @media (max-width: 42rem) {
+    .timeline-list--compact {
+      grid-template-columns: 1fr;
+    }
+    .timeline-list--compact .timeline-item {
+      padding-inline: 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .timeline-list--compact .timeline-item + .timeline-item {
+      border-left: 0;
+    }
+    .timeline-list--compact .timeline-item:last-child {
+      border-bottom: 0;
+    }
   }
 </style>

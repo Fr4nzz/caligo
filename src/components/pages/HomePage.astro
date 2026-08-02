@@ -6,9 +6,11 @@
  *   H1  Cinematic hero (full-bleed photo + overlay copy).
  *   —   Stat bar — the cheapest credibility on the page.
  *   H2  Why butterflies and moths.
- *   H3  Four evidence-to-pilot cards, with one link to the published
+ *   H3  What Caligo is building.
+ *   H4  Four evidence-to-pilot cards, with one link to the published
  *       science and one to the proposed work.
- *   H4  Participate.
+ *   H5  Recent and upcoming activity.
+ *   H6  Participate.
  *
  * The six-step "From organism to genome" section used to sit between the
  * principles and the questions. It was ~390 words — a third of the page —
@@ -24,6 +26,7 @@ import HeroMedia from '../HeroMedia.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
 import Icon from '../Icon.astro';
 import CommunityStats from '../CommunityStats.astro';
+import Timeline from '../Timeline.astro';
 import { getDict, localePath, type Locale } from '../../i18n';
 import { PILOTS, getMedia } from '../../data/records';
 import { discordInviteUrl } from '../../config/site';
@@ -122,7 +125,23 @@ if (publishedPilots.length !== h.researchCards.length) {
     </div>
   </section>
 
-  <!-- ====================== H3 — Published evidence → proposed work ====================== -->
+  <!-- ====================== H3 — What Caligo is building ====================== -->
+  <section id="building" class="section section--panel" aria-labelledby="building-title">
+    <div class="container-wide">
+      <h2 id="building-title">{h.building.heading}</h2>
+      <ol class="building-grid" role="list">
+        {h.building.items.map((item, i) => (
+          <li class="building-item">
+            <span class="item-index mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ====================== H4 — Published evidence → proposed work ====================== -->
   <section id="questions" class="section" aria-labelledby="h4-title">
     <span id="h4" hidden aria-hidden="true" data-legacy-anchor="h4" />
     <span id="proposed-pilots" hidden aria-hidden="true" />
@@ -167,7 +186,19 @@ if (publishedPilots.length !== h.researchCards.length) {
     </div>
   </section>
 
-  <!-- ====================== H5 — Participate + brand close ====================== -->
+  <!-- ====================== H5 — Recent and upcoming activity ====================== -->
+  <section id="activity" class="section section--panel" aria-labelledby="activity-title">
+    <div class="container-wide activity-layout">
+      <div class="activity-intro">
+        <p class="section-eyebrow mono">{h.activity.eyebrow}</p>
+        <h2 id="activity-title">{h.activity.heading}</h2>
+        <p class="lead">{h.activity.intro}</p>
+      </div>
+      <Timeline locale={locale} compact />
+    </div>
+  </section>
+
+  <!-- ====================== H6 — Participate + brand close ====================== -->
   <section id="discover-caligo" class="section section--close" aria-labelledby="h6-title">
     <span id="h6" hidden aria-hidden="true" data-legacy-anchor="h6" />
     <div class="container-wide close-layout">
@@ -200,8 +231,8 @@ if (publishedPilots.length !== h.researchCards.length) {
 
 <style>
   /* ---- Scroll margins for semantic + legacy anchors ---- */
-  #overview, #from-organism-to-genome,
-  #questions, #proposed-pilots, #discover-caligo,
+  #overview, #from-organism-to-genome, #building,
+  #questions, #proposed-pilots, #activity, #discover-caligo,
   #h1, #h2, #h3, #h4, #h5, #h6 { scroll-margin-top: 5rem; }
 
   /*
@@ -458,39 +489,58 @@ if (publishedPilots.length !== h.researchCards.length) {
     color: var(--text-faint);
   }
 
-  /* ---- H2 Guiding principles ---- */
-  .why-list {
+  /* ---- H3 Initiative priorities ---- */
+  .building-grid {
     list-style: none;
     padding: 0;
     margin: var(--space-l) 0 0;
     display: grid;
-    gap: var(--space-l);
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--hairline-strong);
   }
-  @media (min-width: 48rem) {
-    .why-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .building-item {
+    min-width: 0;
+    padding: var(--space-m) var(--space-m) 0 0;
   }
-  @media (min-width: 75rem) {
-    .why-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .building-item + .building-item {
+    padding-left: var(--space-m);
+    border-left: 1px solid var(--hairline);
   }
-  .why-item {
-    padding-top: var(--space-m);
-    border-top: 2px solid var(--accent);
+  .item-index {
+    display: block;
+    margin-bottom: var(--space-s);
+    color: var(--accent-strong);
+    font-size: var(--step--1);
+    letter-spacing: 0.08em;
   }
-  .why-item-title {
-    margin: 0 0 0.4rem;
+  .building-item h3 {
+    margin: 0;
     font-family: var(--font-body);
     font-size: var(--step-0);
     font-weight: 620;
     color: var(--text-strong);
     letter-spacing: -0.006em;
   }
-  .why-item-body {
-    margin: 0;
+  .building-item p {
+    margin: var(--space-xs) 0 0;
     color: var(--text-muted);
     font-size: var(--step--1);
     line-height: 1.55;
-    max-width: 28ch;
+  }
+  @media (max-width: 48rem) {
+    .building-grid {
+      grid-template-columns: 1fr;
+    }
+    .building-item,
+    .building-item + .building-item {
+      padding: var(--space-m) 0;
+      border-left: 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .building-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
   }
 
   /* ---- Published evidence → proposed project cards ---- */
@@ -559,6 +609,26 @@ if (publishedPilots.length !== h.researchCards.length) {
   }
   .research-card-links :global(svg) {
     flex: none;
+  }
+
+  /* ---- H5 Current activity ---- */
+  .activity-layout {
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1.6fr);
+    gap: clamp(var(--space-l), 5vw, var(--space-2xl));
+    align-items: start;
+  }
+  .activity-intro > * + * {
+    margin-top: var(--space-m);
+  }
+  .activity-intro .section-eyebrow + h2 {
+    margin-top: var(--space-s);
+  }
+  @media (max-width: 48rem) {
+    .activity-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-l);
+    }
   }
 
   /* ---- H6 Participate + brand close ---- */

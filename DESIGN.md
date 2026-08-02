@@ -29,7 +29,7 @@
 
 - Primary navigation: Home, Science, Pilot projects, About, Participate
 - Core routes/screens: `/`, `/science`, `/projects`, `/about`, and `/participate`
-- Content hierarchy: initiative thesis, four selected published findings, proposed work, network priorities and specimen-to-genome workflow, capacity, leadership, and participation
+- Content hierarchy: Home presents the initiative thesis, priorities, four selected published findings linked to proposed work, and current activity; About explains the name, workflow, principles, leadership, facilities, and wider network context; Science, Pilot projects, and Participate carry their named tasks
 
 ## Design principles
 
@@ -55,7 +55,7 @@
 ## Components
 
 - Existing components to reuse: `Base`, `Header`, `HeroMedia`, `CommunityStats`, `PrincipleGrid`, `MediaCandidateViewer`, and shared CTA/button styles
-- New/changed components: About includes a compact three-priority grid and six-step specimen-to-shared-evidence workflow; Participate includes a concise participation-outcomes list; Home research cards use the compact `MediaCandidateViewer` disclosure so image provenance remains available without competing with the scientific hook; Science pairs Caligo concept diagrams with the corresponding published figures, side by side only when both remain legible; the Home hero may change its internal CSS geometry without creating a parallel hero component; Header and Footer share the transparent, text-free emblem, and the Header uses a responsive brand lockup
+- New/changed components: Home includes a compact three-priority grid, four evidence-to-pilot cards, and a restrained recent/upcoming activity timeline; About retains the six-step specimen-to-shared-evidence workflow and consolidates leadership, facilities, and external context under one Caligo network section; Participate includes a concise participation-outcomes list; Home research cards use the compact `MediaCandidateViewer` disclosure so image provenance remains available without competing with the scientific hook; Science pairs Caligo concept diagrams with the corresponding published figures, side by side only when both remain legible; the Home hero may change its internal CSS geometry without creating a parallel hero component; Header and Footer share the transparent, text-free emblem, and the Header uses a responsive brand lockup
 - Variants and states: desktop split composition; mobile stacked composition; light/dark page modes do not alter hero contrast
 - Token/component ownership: global tokens remain in `src/styles/tokens.css`; reusable editorial type roles remain in `src/styles/global.css`; page-specific CSS owns geometry, spacing exceptions, and accents; hero geometry stays in `HomePage.astro`
 

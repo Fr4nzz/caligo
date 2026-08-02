@@ -4,9 +4,8 @@
  *
  * Absorbed the former /network/ page, which was 236 words of which a
  * quarter re-rendered Home's stats bar and this page's own leadership
- * grid. What was genuinely unique there — the facilities table, the
- * events timeline and the EBP-LatAm note — now sits below Leadership,
- * where a reader looking up "who are these people" already is.
+ * grid. What was genuinely unique there — the facilities table and the
+ * EBP-LatAm note — now sits with Leadership in one network section.
  *
  * Removed rather than moved: Vision and Mission (90 words restating
  * `about.body`'s 45), Strategic objectives (an internal charter), and
@@ -16,20 +15,15 @@
  * Sections:
  *   A1  PageHeader — about.title / about.body
  *   A2  Why Caligo — the name, once, on the one page that should carry it
- *   A3  What Caligo is building
- *   A4  Specimen-to-genome workflow and Project Psyche context
- *   A5  Principles — how the work is shaped
- *   A6  Leadership
- *   A7  Partner facilities
- *   A8  Events
- *   A9  Connections and context
+ *   A3  Specimen-to-genome workflow and Project Psyche context
+ *   A4  Principles — how the work is shaped
+ *   A5  The Caligo network: leadership, facilities and wider connections
  */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
 import PrincipleGrid from '../PrincipleGrid.astro';
 import LeadershipGrid from '../LeadershipGrid.astro';
 import FacilityTable from '../FacilityTable.astro';
-import Timeline from '../Timeline.astro';
 import { LINKS } from '../../data/content';
 import { getDict, type Locale } from '../../i18n';
 
@@ -59,24 +53,8 @@ const h = t.home;
     </div>
   </section>
 
-  <!-- A3 — A compact public statement of the initiative's priorities -->
-  <section class="section" aria-labelledby="about-building">
-    <div class="container-wide">
-      <h2 id="about-building" class="section-heading content-heading">{a.building.heading}</h2>
-      <ol class="building-grid" role="list">
-        {a.building.items.map((item, i) => (
-          <li class="building-item">
-            <span class="item-index mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <!-- A4 — Project Psyche as an organisational model, not a partnership claim -->
-  <section class="section section--panel" aria-labelledby="about-workflow">
+  <!-- A3 — Project Psyche as an organisational model, not a partnership claim -->
+  <section class="section" aria-labelledby="about-workflow">
     <div class="container-wide">
       <p class="section-eyebrow content-label">{a.workflow.eyebrow}</p>
       <h2 id="about-workflow" class="section-heading content-heading workflow-heading">{a.workflow.heading}</h2>
@@ -94,8 +72,8 @@ const h = t.home;
     </div>
   </section>
 
-  <!-- A5 — Principles -->
-  <section class="section" aria-labelledby="about-principles">
+  <!-- A4 — Principles -->
+  <section class="section section--panel" aria-labelledby="about-principles">
     <div class="container-wide visual-section">
       <p class="section-eyebrow content-label">{h.pillars.eyebrow}</p>
       <h2 id="about-principles" class="section-heading content-heading">{h.pillars.title}</h2>
@@ -103,38 +81,27 @@ const h = t.home;
     </div>
   </section>
 
-  <!-- A6 — Leadership -->
-  <section class="section section--panel" aria-labelledby="about-leadership">
-    <div class="container-wide visual-section">
-      <h2 id="about-leadership" class="section-heading content-heading">{a.leadership.heading}</h2>
-      <p class="prose-para content-body">{a.leadership.intro}</p>
-      <LeadershipGrid locale={locale} />
-    </div>
-  </section>
+  <!-- A5 — People, facilities and wider network context -->
+  <section class="section" aria-labelledby="about-network">
+    <div class="container-wide visual-section network-section">
+      <h2 id="about-network" class="section-heading content-heading">{a.network.heading}</h2>
 
-  <!-- A7 — Partner facilities (from the former /network/) -->
-  <section class="section" aria-labelledby="about-facilities">
-    <div class="container-wide visual-section">
-      <h2 id="about-facilities" class="section-heading content-heading">{a.facilities.heading}</h2>
-      <p class="prose-para content-body">{a.facilities.intro}</p>
-      <FacilityTable locale={locale} />
-    </div>
-  </section>
+      <div class="network-block" aria-labelledby="about-leadership">
+        <h3 id="about-leadership" class="subsection-heading content-heading">{a.leadership.heading}</h3>
+        <p class="prose-para content-body">{a.leadership.intro}</p>
+        <LeadershipGrid locale={locale} />
+      </div>
 
-  <!-- A8 — Events (from the former /network/) -->
-  <section class="section section--panel" aria-labelledby="about-events">
-    <div class="container-wide prose-column">
-      <h2 id="about-events" class="section-heading content-heading">{a.events.heading}</h2>
-      <p class="prose-para content-body">{a.events.intro}</p>
-      <Timeline locale={locale} />
-    </div>
-  </section>
+      <div class="network-block" aria-labelledby="about-facilities">
+        <h3 id="about-facilities" class="subsection-heading content-heading">{a.facilities.heading}</h3>
+        <p class="prose-para content-body">{a.facilities.intro}</p>
+        <FacilityTable locale={locale} />
+      </div>
 
-  <!-- A9 — Connections and context (from the former /network/) -->
-  <section class="section" aria-labelledby="about-positioning">
-    <div class="container-wide prose-column">
-      <h2 id="about-positioning" class="section-heading content-heading">{a.positioning.heading}</h2>
-      <p class="prose-para content-body">{a.positioning.body}</p>
+      <div class="network-block network-block--prose" aria-labelledby="about-positioning">
+        <h3 id="about-positioning" class="subsection-heading content-heading">{a.positioning.heading}</h3>
+        <p class="prose-para content-body">{a.positioning.body}</p>
+      </div>
     </div>
   </section>
 
@@ -167,22 +134,6 @@ const h = t.home;
     margin-bottom: 0;
   }
 
-  .building-grid {
-    list-style: none;
-    margin: var(--space-l) 0 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    border-top: 1px solid var(--hairline-strong);
-  }
-  .building-item {
-    padding: var(--space-m) var(--space-m) var(--space-m) 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-  .building-item + .building-item {
-    padding-left: var(--space-m);
-    border-left: 1px solid var(--hairline);
-  }
   .item-index {
     display: block;
     margin-bottom: var(--space-s);
@@ -190,11 +141,6 @@ const h = t.home;
     font-size: var(--step--1);
     letter-spacing: 0.08em;
   }
-  .building-item h3 {
-    margin: 0 0 var(--space-s);
-    font-size: var(--step-0);
-  }
-  .building-item p,
   .workflow-intro {
     margin: 0;
     max-width: var(--measure);
@@ -224,13 +170,28 @@ const h = t.home;
     border-left: 1px solid var(--hairline);
   }
   .workflow-steps .item-index { margin: 0; }
+  .network-section {
+    display: grid;
+    gap: var(--space-xl);
+  }
+  .network-block {
+    display: grid;
+    gap: var(--space-m);
+  }
+  .network-block--prose {
+    max-width: var(--measure);
+  }
+  .subsection-heading {
+    font-size: var(--step-1);
+    margin-bottom: 0;
+  }
+  .network-block .prose-para {
+    margin-bottom: 0;
+  }
   @media (max-width: 54rem) {
-    .building-grid,
     .workflow-steps {
       grid-template-columns: 1fr;
     }
-    .building-item,
-    .building-item + .building-item,
     .workflow-steps li,
     .workflow-steps li:nth-child(3n + 2),
     .workflow-steps li:nth-child(3n + 3) {

@@ -135,6 +135,28 @@ export const en = {
         "Reference genomes are still missing across much of Neotropical Lepidoptera diversity. Caligo links each assembly to a documented specimen so researchers can check which organism was sequenced and where it came from."
       ]
     },
+    "building": {
+      "heading": "What Caligo is building",
+      "items": [
+        {
+          "title": "Sequence undersampled groups",
+          "body": "Produce DNA barcodes, population data and reference assemblies for Neotropical families and subfamilies that remain poorly represented."
+        },
+        {
+          "title": "Build regional capacity",
+          "body": "Expand sequencing, sample banking and bioinformatics in Latin America."
+        },
+        {
+          "title": "Training and fair credit",
+          "body": "Support training, open data and shared publications while recognising everyone who contributes specimens, knowledge or analysis."
+        }
+      ]
+    },
+    "activity": {
+      "eyebrow": "Recent and upcoming",
+      "heading": "Caligo in action",
+      "intro": "Caligo held its first sequencing workshop in 2026 and is planning a hackathon for 2027."
+    },
     "pillars": {
       "eyebrow": "How the work is shaped",
       "title": "Guiding principles for regional genomics"
@@ -302,23 +324,6 @@ export const en = {
         "Caligo takes its name from a Neotropical genus of owl butterflies, known for their beauty and striking eyespots. In one species, these false eyes redirect bird attacks toward the wings and away from the body. Look closer and the pattern resolves into thousands of scales, whose pigments and microscopic structures create its colour. The name reflects the curiosity behind Caligo: beginning with the diversity we can see, then using genomes to understand how it evolved."
       ]
     },
-    "building": {
-      "heading": "What Caligo is building",
-      "items": [
-        {
-          "title": "Sequence undersampled groups",
-          "body": "Produce DNA barcodes, population data and reference assemblies for Neotropical families and subfamilies that remain poorly represented."
-        },
-        {
-          "title": "Build regional capacity",
-          "body": "Expand sequencing, sample banking and bioinformatics in Latin America."
-        },
-        {
-          "title": "Training and fair credit",
-          "body": "Support training, open data and shared publications while recognising everyone who contributes specimens, knowledge or analysis."
-        }
-      ]
-    },
     "workflow": {
       "eyebrow": "From specimen to shared evidence",
       "heading": "Keep every genome linked to its specimen",
@@ -337,13 +342,12 @@ export const en = {
       "heading": "Leadership",
       "intro": "The initiative is coordinated by researchers from institutions in Latin America and internationally."
     },
+    "network": {
+      "heading": "The Caligo network"
+    },
     "facilities": {
       "heading": "Partner facilities",
       "intro": "Seven partner institutions in Colombia, Panama, Brazil, Ecuador and Chile provide sequencing platforms for Caligo projects."
-    },
-    "events": {
-      "heading": "Events",
-      "intro": "Caligo held its first sequencing workshop in 2026 and is planning a hackathon for 2027."
     },
     "positioning": {
       "heading": "Connections and context",

@@ -132,6 +132,28 @@ export const es: Dict = {
         "Gran parte de la diversidad de lepidópteros neotropicales todavía carece de genomas de referencia. En Caligo, cada ensamblaje queda vinculado a un ejemplar documentado. Así se puede comprobar qué organismo fue secuenciado y cuál es su procedencia."
       ]
     },
+    "building": {
+      "heading": "Qué está construyendo Caligo",
+      "items": [
+        {
+          "title": "Secuenciar grupos poco representados",
+          "body": "Producir códigos de barras de ADN, datos poblacionales y ensamblajes de referencia para familias y subfamilias neotropicales todavía poco representadas."
+        },
+        {
+          "title": "Fortalecer la capacidad regional",
+          "body": "Ampliar la secuenciación, los bancos de muestras y la bioinformática en América Latina."
+        },
+        {
+          "title": "Formación y crédito justo",
+          "body": "Apoyar la formación, los datos abiertos y las publicaciones compartidas, con reconocimiento para quienes aporten ejemplares, conocimiento o análisis."
+        }
+      ]
+    },
+    "activity": {
+      "eyebrow": "Actividad reciente y próxima",
+      "heading": "Caligo en acción",
+      "intro": "Caligo realizó su primer taller de secuenciación en 2026 y planea un hackathon para 2027."
+    },
     "pillars": {
       "eyebrow": "Cómo se orienta el trabajo",
       "title": "Principios para una genómica hecha desde la región"
@@ -299,23 +321,6 @@ export const es: Dict = {
         "Caligo toma su nombre de un género neotropical de mariposas búho, conocidas por su belleza y sus llamativos ocelos. En una de sus especies, estos falsos ojos desvían los ataques de las aves hacia las alas y lejos del cuerpo. Al mirar más de cerca, el patrón se revela como miles de escamas cuyos pigmentos y estructuras microscópicas crean el color. El nombre refleja la curiosidad que impulsa a Caligo: partir de la diversidad que podemos ver y usar los genomas para comprender cómo evolucionó."
       ]
     },
-    "building": {
-      "heading": "Qué está construyendo Caligo",
-      "items": [
-        {
-          "title": "Secuenciar grupos poco representados",
-          "body": "Producir códigos de barras de ADN, datos poblacionales y ensamblajes de referencia para familias y subfamilias neotropicales todavía poco representadas."
-        },
-        {
-          "title": "Fortalecer la capacidad regional",
-          "body": "Ampliar la secuenciación, los bancos de muestras y la bioinformática en América Latina."
-        },
-        {
-          "title": "Formación y crédito justo",
-          "body": "Apoyar la formación, los datos abiertos y las publicaciones compartidas, con reconocimiento para quienes aporten ejemplares, conocimiento o análisis."
-        }
-      ]
-    },
     "workflow": {
       "eyebrow": "Del ejemplar al genoma compartido",
       "heading": "Mantener cada genoma vinculado a su ejemplar",
@@ -334,13 +339,12 @@ export const es: Dict = {
       "heading": "Liderazgo",
       "intro": "La iniciativa está coordinada por investigadores de instituciones latinoamericanas y de otros países."
     },
+    "network": {
+      "heading": "La red Caligo"
+    },
     "facilities": {
       "heading": "Instalaciones asociadas",
       "intro": "Caligo cuenta con siete instituciones asociadas en Colombia, Panamá, Brasil, Ecuador y Chile que aportan plataformas de secuenciación a sus proyectos."
-    },
-    "events": {
-      "heading": "Eventos",
-      "intro": "Caligo realizó su primer taller de secuenciación en 2026 y planea un hackathon para 2027."
     },
     "positioning": {
       "heading": "Conexiones y contexto",
