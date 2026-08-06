@@ -46,6 +46,7 @@
 
 - Color: Caligo’s warm neutral palette with a burnt-orange accent; hero copy uses fixed ivory on a matte near-black field
 - Brand emblem: the extracted mark is transparent on light surfaces; dark mode supplies the logo’s original ivory matte so its negative-space wing markings keep the same colour in both modes
+- Social previews: use the dedicated 1200 x 630 text-free share card, with the complete emblem centred inside a square crop-safe area; never rely on a favicon, touch icon, or full logo lockup as a platform fallback
 - Typography: Space Grotesk for display, Inter for prose and UI, JetBrains Mono for labels and provenance. Shared editorial roles in `global.css` define one cross-page hierarchy: heading (`--step-2`), lead and body (`--step-0`), metadata (`--step--1`), and uppercase labels (`--step--2`). Page components own layout and emphasis, not independent type scales. Home editorial sections remain an intentional restrained local exception so ordinary laptop viewports do not feel browser-zoomed.
 - Spacing/layout rhythm: wide specimen-plate compositions followed by restrained content sections
 - Shape/radius/elevation: hairlines, small radii, and minimal elevation
