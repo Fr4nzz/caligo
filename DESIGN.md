@@ -50,7 +50,7 @@
 - Spacing/layout rhythm: wide specimen-plate compositions followed by restrained content sections
 - Shape/radius/elevation: hairlines, small radii, and minimal elevation
 - Motion: user-controlled only when sequence matters; final-state comparison diagrams remain static; no generic entrance animation
-- Imagery/iconography: credited documentary imagery and code-native diagrams; icons must encode a recognizable concept
+- Imagery/iconography: credited documentary imagery and code-native diagrams; icons must encode a recognizable concept or action, not merely repeat a type already established by the surrounding heading and content
 
 ## Components
 

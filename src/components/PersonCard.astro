@@ -1,7 +1,6 @@
 ---
 import { pick, type Person } from '../data/initiative';
 import type { Locale } from '../i18n';
-import CardIcon from './CardIcon.astro';
 
 interface Props {
   readonly person: Person;
@@ -13,10 +12,7 @@ const regionalTiesLabel = locale === 'en' ? 'Regional ties' : 'Vínculos regiona
 ---
 
 <article class="person-card">
-  <div class="person-heading">
-    <strong class="person-name">{person.name}</strong>
-    <CardIcon name="person" />
-  </div>
+  <strong class="person-name">{person.name}</strong>
   <p class="person-role">{pick(person.role, locale)}</p>
   <p class="person-bio">{pick(person.bio, locale)}</p>
   <p class="person-affil mono">{person.affiliation}</p>
@@ -43,15 +39,9 @@ const regionalTiesLabel = locale === 'en' ? 'Regional ties' : 'Vínculos regiona
     flex-direction: column;
     gap: 0.35rem;
   }
-  .person-heading {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    gap: var(--space-s);
-    margin-bottom: 0.15rem;
-  }
   .person-name {
     display: block;
+    margin-bottom: 0.15rem;
     font-family: var(--font-display);
     font-size: var(--step-1);
     font-weight: 560;
