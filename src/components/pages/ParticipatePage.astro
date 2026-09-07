@@ -1,22 +1,8 @@
 ---
-/**
- * ParticipatePage — how to join, and what to send.
- *
- * The membership-tier section is gone. It described fixed privileges
- * that the source material does not yet establish. This page instead
- * explains the practical ways people can contribute and make contact.
- *
- * Section order:
- *   P1  PageHeader — title + intro.
- *   P2  Ways to contribute — audience types.
- *   P-Benefits — practical outcomes participation can open.
- *   P-LangPolicy — working-languages policy.
- *   P-Actions — registration and Discord routes.
- *   P3  Email CTA + safe-sharing advisory.
- */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
 import Icon from '../Icon.astro';
+import CopyEmail from '../CopyEmail.astro';
 import JoinCTA from '../JoinCTA.astro';
 import DiscordCTA from '../DiscordCTA.astro';
 import { LINKS } from '../../data/content';
@@ -34,6 +20,14 @@ const p = t.participate;
 
   <!-- P1 — Header -->
   <PageHeader title={p.title} intro={p.intro} />
+
+  <!-- P-Actions — Registration and community routes -->
+  <section class="section">
+    <div class="container-wide participation-actions">
+      <JoinCTA variant="full" locale={locale} class="participation-action" />
+      <DiscordCTA locale={locale} class="participation-action" />
+    </div>
+  </section>
 
   <!-- P2 — Ways to contribute (audience types) -->
   <section class="section section--panel" aria-labelledby="ways-heading">
@@ -71,14 +65,6 @@ const p = t.participate;
     </div>
   </section>
 
-  <!-- P-Actions — Registration and community routes -->
-  <section class="section">
-    <div class="container-wide participation-actions">
-      <JoinCTA variant="full" locale={locale} class="participation-action" />
-      <DiscordCTA locale={locale} class="participation-action" />
-    </div>
-  </section>
-
   <!--
     P-Committee — the second of the three links Nicol listed on 2026-07-14
     as ones that "deben estar ahí". The registration form and Discord were
@@ -108,10 +94,7 @@ const p = t.participate;
       <header class="contact-head">
         <span class="tick" aria-hidden="true"></span>
         <h2 id="contact">{p.contact.heading}</h2>
-        <a class="contact-mail" href={`mailto:${p.contact.email}`}>
-          <Icon name="mail" />
-          <span class="contact-mail-addr mono">{p.contact.email}</span>
-        </a>
+        <CopyEmail locale={locale} />
       </header>
       <div class="contact-body">
         <p class="contact-lede">{p.contact.body}</p>
@@ -249,46 +232,6 @@ const p = t.participate;
     max-width: var(--measure);
   }
 
-  /* Email chip */
-  .contact-mail {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    margin-top: var(--space-s);
-    padding: 0.7rem 0.9rem;
-    max-width: 100%;
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius);
-    background: var(--bg-inset);
-    color: var(--text);
-    text-decoration: none;
-    transition:
-      background var(--transition),
-      border-color var(--transition),
-      color var(--transition);
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-  .contact-mail:hover,
-  .contact-mail:focus-visible {
-    background: var(--bg-panel-hover);
-    border-color: var(--accent);
-    color: var(--text-strong);
-  }
-  .contact-mail :global(svg) {
-    width: 1rem;
-    height: 1rem;
-    flex: none;
-    color: var(--accent);
-  }
-  .contact-mail-addr {
-    font-size: var(--step--1);
-    letter-spacing: 0;
-    min-width: 0;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-
   /* Advisory callout — inline below email CTA */
   .advisory {
     margin-top: var(--space-m);
@@ -323,9 +266,4 @@ const p = t.participate;
     line-height: 1.55;
   }
 
-  /* Mobile safety */
-  @media (max-width: 26rem) {
-    .contact-mail { align-items: flex-start; }
-    .contact-mail :global(svg) { margin-top: 0.15rem; }
-  }
 </style>

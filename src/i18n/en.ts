@@ -94,9 +94,11 @@ export const en = {
     "metaDescription": "A Latin American-led effort developing reference genomes connected to documented specimens of Neotropical butterflies and moths.",
     "hero": {
       "kicker": "Latin American-led genomics",
-      "title": "The Neotropics are rich in species but short on reference genomes.",
-      "body": "Caligo connects researchers, collections and sequencing facilities to change that."
+      "title": "Rich in species.",
+      "body": "Caligo brings researchers, collections and sequencing facilities together to build reference genomes for Neotropical butterflies and moths.",
+      "focus": "Much left to sequence."
     },
+    "researchLabels": ["Chromosome evolution", "Population connectivity", "Movement and resistance", "Seasonal migration"],
     "questions": {
       "heading": "Four questions genomes can help answer",
       "intro": "Each discovery reveals what to ask next."
@@ -163,7 +165,7 @@ export const en = {
     },
     "closing": {
       "title": "Bring a question, an organism or a perspective",
-      "body": "You can contribute specimens, sequencing capacity, taxonomic knowledge or a research question. Send us an email or join the conversation on Discord."
+      "body": "You can contribute specimens, sequencing capacity, taxonomic knowledge or a research question. Register with the network, join the conversation on Discord or contact us by email."
     },
     "stats": {
       "participants": "participants",

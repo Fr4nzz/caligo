@@ -91,9 +91,11 @@ export const es: Dict = {
     "metaDescription": "Un esfuerzo liderado desde América Latina que desarrolla genomas de referencia vinculados a ejemplares documentados de mariposas y polillas neotropicales.",
     "hero": {
       "kicker": "Genómica liderada desde América Latina",
-      "title": "El Neotrópico es rico en especies, pero pobre en genomas de referencia.",
-      "body": "Caligo reúne a investigadores, colecciones e instalaciones de secuenciación para cubrir ese vacío."
+      "title": "Una riqueza de especies.",
+      "body": "Caligo reúne a investigadores, colecciones y centros de secuenciación para generar genomas de referencia de mariposas y polillas del Neotrópico.",
+      "focus": "Mucho por secuenciar."
     },
+    "researchLabels": ["Evolución cromosómica", "Conectividad poblacional", "Movimiento y resistencia", "Migración estacional"],
     "questions": {
       "heading": "Cuatro preguntas que los genomas ayudan a responder",
       "intro": "Cada hallazgo abre la siguiente pregunta."
@@ -160,7 +162,7 @@ export const es: Dict = {
     },
     "closing": {
       "title": "Súmate con una pregunta, un organismo o una perspectiva",
-      "body": "Puedes aportar ejemplares, capacidad de secuenciación, experiencia taxonómica o una pregunta de investigación. Escríbenos por correo o únete a la conversación en Discord."
+      "body": "Puedes aportar ejemplares, capacidad de secuenciación, experiencia taxonómica o una pregunta de investigación. Inscríbete en la red, participa en Discord o escríbenos por correo."
     },
     "stats": {
       "participants": "participantes",

@@ -1,0 +1,58 @@
+---
+import { getDict, type Locale } from '../i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const email = getDict(locale).participate.contact.email;
+const es = locale === 'es';
+---
+<div class="email-contact" data-copy-email data-email={email} data-success={es ? 'Correo copiado' : 'Email copied'} data-failure={es ? 'Selecciona y copia el correo manualmente.' : 'Select and copy the email manually.'}>
+  <span class="email-address">{email}</span>
+  <button type="button" hidden aria-label={es ? `Copiar ${email}` : `Copy ${email}`}>{es ? 'Copiar' : 'Copy'}</button>
+  <span class="email-status" role="status" aria-live="polite"></span>
+</div>
+<script>
+  function initCopyEmail() {
+    document.querySelectorAll<HTMLElement>('[data-copy-email]').forEach(root => {
+      if (root.dataset.ready) return;
+      const button = root.querySelector<HTMLButtonElement>('button');
+      const status = root.querySelector<HTMLElement>('[role="status"]');
+      const email = root.dataset.email;
+      if (!button || !status || !email) return;
+      root.dataset.ready = 'true';
+      button.hidden = false;
+      button.addEventListener('click', async () => {
+        let copied = false;
+        try {
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(email);
+            copied = true;
+          }
+        } catch { /* Use the selection fallback when clipboard access is denied. */ }
+        if (!copied) {
+          // HTTP previews lack the Clipboard API. Copy a temporary selection
+          // during the click, then restore focus to the original button.
+          const selection = document.createElement('textarea');
+          selection.value = email;
+          selection.readOnly = true;
+          selection.style.cssText = 'position:fixed;left:-9999px;top:0;';
+          document.body.append(selection);
+          selection.select();
+          try { copied = document.execCommand('copy'); } catch { copied = false; }
+          selection.remove();
+          button.focus({ preventScroll: true });
+        }
+        status.textContent = (copied ? root.dataset.success : root.dataset.failure) ?? '';
+      });
+    });
+  }
+  initCopyEmail();
+  document.addEventListener('astro:page-load', initCopyEmail);
+</script>
+<style>
+  .email-contact { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .6rem; max-width: 100%; font-size: .85rem; color: var(--text-muted); }
+  .email-address { min-width: 0; overflow-wrap: anywhere; user-select: all; }
+  button { flex: none; min-height: 36px; padding: .35rem .65rem; border: 1px solid var(--hairline); border-radius: var(--radius-xs); background: transparent; color: var(--text); font: inherit; cursor: pointer; }
+  button[hidden] { display: none; }
+  button:hover { background: var(--bg-panel-hover); border-color: var(--accent); }
+  .email-status:not(:empty) { flex-basis: 100%; font-size: .8rem; color: var(--text-muted); }
+</style>
