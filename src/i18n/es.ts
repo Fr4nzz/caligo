@@ -135,7 +135,7 @@ export const es: Dict = {
     },
     "intro": {
       "eyebrow": "Por qué mariposas y polillas",
-      "title": "La fauna más rica del mundo, muchas preguntas por responder",
+      "title": "¿Por qué mariposas y polillas?",
       "body": [
         "Las mariposas y polillas habitan casi todos los ecosistemas terrestres y son especialmente diversas en el Neotrópico. Son un grupo ideal para estudiar ecología, evolución y conservación, si se cuenta con la información necesaria.",
         "La mayoría de las especies de la región aún carece de genomas de referencia y marcadores genéticos. Caligo reúne investigadores y recursos de América Latina para responder preguntas sobre identificación, descubrimiento de especies y especiación."

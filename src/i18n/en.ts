@@ -138,7 +138,7 @@ export const en = {
     },
     "intro": {
       "eyebrow": "Why butterflies and moths",
-      "title": "The world’s richest fauna, many unanswered questions",
+      "title": "Why butterflies and moths?",
       "body": [
         "Butterflies and moths live in nearly every terrestrial ecosystem and are especially diverse in the Neotropics. They are an ideal group for studying ecology, evolution and conservation, if the right information is available.",
         "Reference genomes and genetic markers are still missing for most species in this region. Caligo brings researchers and resources together across Latin America to answer questions about species identification, discovery and speciation."
