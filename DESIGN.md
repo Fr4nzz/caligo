@@ -113,3 +113,5 @@ The homepage uses the accepted shorter bilingual headline and serif accents, a w
 ## September Science review
 
 Use a single meaningful heading rather than an eyebrow repeating it. Training copy follows its heading in one reading column. Show the 1,000 target once across its number and heading. External web links open new tabs; external action icons differ from internal horizontal arrows. Science questions use single photographs and omit the chromosome concept diagram and duplicate Rueda figure, per the user's latest review.
+
+Pilot project cards also use one photograph. About omits the goals/principles/network eyebrow labels and repeated supplied-photo captions, and keeps the leadership heading close to its parent section heading. The visible etymology source link is omitted at the user's request; provenance remains in source data.

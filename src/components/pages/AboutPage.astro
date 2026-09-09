@@ -42,7 +42,6 @@ const facilityIntro = locale === 'en'
 
   <section class="section" aria-labelledby="about-goals">
     <div class="container-wide prose-column">
-      <p class="section-eyebrow content-label">{pick(page.goals.eyebrow, locale)}</p>
       <h2 id="about-goals" class="section-heading content-heading">{pick(page.goals.heading, locale)}</h2>
       <div class="prose-block">
         {page.goals.body.map((paragraph) => (
@@ -60,20 +59,11 @@ const facilityIntro = locale === 'en'
           <p class="prose-para content-body">{pick(paragraph, locale)}</p>
         ))}
       </div>
-      <a
-        class="source-link mono"
-        href={page.name.etymologySource.href}
-        target="_blank"
-        rel="noopener noreferrer external"
-      >
-        {pick(page.name.etymologySource.label, locale)} <span aria-hidden="true">↗</span>
-      </a>
     </div>
   </section>
 
   <section class="section" aria-labelledby="about-principles">
     <div class="container-wide visual-section">
-      <p class="section-eyebrow content-label">{pick(page.principles.eyebrow, locale)}</p>
       <h2 id="about-principles" class="section-heading content-heading">{pick(page.principles.heading, locale)}</h2>
       <PrincipleGrid locale={locale} />
     </div>
@@ -82,7 +72,6 @@ const facilityIntro = locale === 'en'
   <section class="section section--panel" aria-labelledby="about-network">
     <div class="container-wide visual-section network-section">
       <div>
-        <p class="section-eyebrow content-label">{pick(page.network.eyebrow, locale)}</p>
         <h2 id="about-network" class="section-heading content-heading">{pick(page.network.heading, locale)}</h2>
       </div>
 
@@ -166,17 +155,11 @@ const facilityIntro = locale === 'en'
     font-size: var(--step-3);
     line-height: 1;
   }
-  .source-link {
-    display: inline-block;
-    margin-top: var(--space-s);
-    color: var(--accent-strong);
-    font-size: var(--step--2);
-    text-underline-offset: 0.18em;
-  }
   .network-section {
     display: grid;
-    gap: var(--space-xl);
+    gap: var(--space-l);
   }
+  .network-section > div:first-child .section-heading { margin-bottom: 0; }
   .network-block {
     display: grid;
     gap: var(--space-m);

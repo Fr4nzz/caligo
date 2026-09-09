@@ -86,7 +86,7 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
             <!-- Media: 5-column slot on desktop -->
             <div class="pilot-media">
               {getMediaModule(pilot.id) && (
-                <MediaCandidateViewer moduleId={pilot.id} locale={locale} aspectRatio="4 / 3" />
+                <MediaCandidateViewer moduleId={pilot.id} locale={locale} aspectRatio="4 / 3" singleImage />
               )}
             </div>
 

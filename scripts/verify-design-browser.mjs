@@ -89,7 +89,7 @@ try {
         assert.equal(await page.locator('.facility-table tbody tr').count(), 8);
         assert.equal(await page.locator('.facility-table tbody a').count(), 9);
       }
-      if (route === 'projects') assert.ok(await page.locator('[data-mcv-next]').count() > 0);
+      if (route === 'projects') assert.equal(await page.locator('[data-mcv-next]').count(), 0);
       results.push(`${locale}/${route}: mobile page and controls passed`);
     }
   }
@@ -102,7 +102,7 @@ try {
     await page.goto(`${base}/${locale}/`);
     const closing = page.locator('#discover-caligo');
     assert.equal(await closing.locator('a[href*="docs.google.com/forms"]').count(), 1);
-    assert.equal(await closing.locator('a[href*="discord.gg"]').count(), 1);
+    assert.equal(await closing.locator('a[href="https://discord.gg/gYjjx2FWW"]').count(), 1);
     assert.equal(await closing.locator('.discord-button .discord-icon').count(), 1);
     assert.equal(await closing.locator('a[href^="mailto:"]').count(), 0);
     await page.locator('.research-card a').first().focus();
