@@ -21,7 +21,11 @@ const es = locale === 'es';
   const copyTimers = new Map<HTMLElement, number>();
   function hideToast(root: HTMLElement) {
     const toast = root.querySelector<HTMLElement>('[data-email-toast]');
-    if (toast) toast.hidden = true;
+    if (toast) {
+      const restoreFocus = toast.contains(document.activeElement);
+      toast.hidden = true;
+      if (restoreFocus) root.querySelector<HTMLButtonElement>('.email-copy-button')?.focus({ preventScroll: true });
+    }
     const timer = copyTimers.get(root);
     if (timer !== undefined) window.clearTimeout(timer);
     copyTimers.delete(root);
@@ -82,10 +86,12 @@ const es = locale === 'es';
   .email-address { color: var(--text-muted); overflow-wrap: anywhere; user-select: all; }
   [data-ready] > .email-address { display: none; }
   .email-copy-button { max-width: 100%; min-height: 44px; }
+  .email-copy-button[hidden] { display: none; }
   .email-copy-button :global(svg) { flex: 0 0 auto; }
   .email-copy-button span { min-width: 0; overflow-wrap: anywhere; }
   .email-toast { position: fixed; z-index: 300; right: max(var(--space-m), env(safe-area-inset-right)); bottom: max(var(--space-m), env(safe-area-inset-bottom)); display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: start; gap: var(--space-s); width: min(26rem, calc(100vw - 2 * var(--space-m))); padding: var(--space-s); color: var(--text); background: var(--bg-panel); border: 1px solid var(--hairline-strong); border-radius: var(--radius); box-shadow: 0 .5rem 1.5rem color-mix(in oklab, #000 22%, transparent); animation: toast-in 180ms cubic-bezier(.16, 1, .3, 1) both; }
   .email-toast[hidden] { display: none; }
+  .email-toast[data-result='failure'] { grid-template-columns: minmax(0, 1fr) auto; }
   .email-toast[data-result='failure'] .toast-icon { display: none; }
   .toast-icon { display: grid; place-items: center; width: 1.5rem; height: 1.5rem; color: var(--accent-strong); }
   .toast-icon :global(svg) { width: 1.1rem; height: 1.1rem; }

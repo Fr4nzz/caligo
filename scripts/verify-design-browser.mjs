@@ -115,16 +115,19 @@ try {
     await copyButton.click();
     assert.equal(await page.evaluate(() => navigator.clipboard.readText()), 'genomica.neotropical@gmail.com');
     assert.equal(await copyToast.isVisible(), true);
+    await page.waitForFunction(() => /clipboard|portapapeles/.test(document.querySelector('[data-email-toast]:not([hidden])')?.textContent || ''));
     assert.match(await copyToast.innerText(), /clipboard|portapapeles/);
     await page.keyboard.press('Escape');
     assert.equal(await copyToast.isVisible(), false);
     await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: undefined }));
     await copyButton.click();
+    await page.waitForFunction(() => /copied|copiado/.test(document.querySelector('[data-email-toast]:not([hidden])')?.textContent || ''));
     assert.match(await copyToast.innerText(), /copied|copiado/);
     await copyEmail.locator('[data-email-dismiss]').click();
     assert.equal(await copyToast.isVisible(), false);
     await page.evaluate(() => { document.execCommand = () => false; });
     await copyButton.click();
+    await page.waitForFunction(() => /manually|manualmente/.test(document.querySelector('[data-email-toast]:not([hidden])')?.textContent || ''));
     assert.match(await copyToast.innerText(), /manually|manualmente/);
     assert.equal(await copyEmail.locator('[data-email-fallback]').innerText(), 'genomica.neotropical@gmail.com');
     assert.equal(await copyEmail.locator('[data-email-fallback]').isVisible(), true);
@@ -156,7 +159,7 @@ try {
   const noJS = await browser.newContext({ javaScriptEnabled: false });
   const staticPage = await noJS.newPage();
   await staticPage.goto(`${base}/en/`);
-  assert.equal(await staticPage.locator('[data-copy-email] button').isVisible(), false);
+  assert.equal(await staticPage.locator('[data-copy-email] .email-copy-button').isVisible(), false);
   assert.ok(await staticPage.locator('[data-copy-email]').innerText());
   await staticPage.goto(`${base}/en/science/`);
   assert.ok(await staticPage.locator('.concept-diagram').count() > 0);
