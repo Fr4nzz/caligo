@@ -60,9 +60,9 @@ const fromLabel = locale === 'es' ? 'Figura de' : 'Figure from';
     <p class="pf-caption">{caption}</p>
     <p class="pf-credit mono">
       <span class="pf-from">{fromLabel}</span>{' '}
-      <a href={source.url} rel="external noopener">{citation}</a>
+      <a target="_blank" href={source.url} rel="external noopener">{citation}</a>
       {' · '}
-      <a href={licenceUrl} rel="license external noopener">{licence}</a>
+      <a target="_blank" href={licenceUrl} rel="license external noopener">{licence}</a>
       {changes && <span class="pf-changes">{' · '}{changes}</span>}
     </p>
   </figcaption>

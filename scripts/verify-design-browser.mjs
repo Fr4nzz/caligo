@@ -78,9 +78,10 @@ try {
           return image.height <= frame.height && image.width <= frame.width;
         })), 'Publication images must fit without clipping');
         assert.equal(await page.locator('a[href="https://www.earthbiogenome.org/report-on-assembly-standards"]').count(), 1);
-        await page.locator('[data-concept-play]').first().click();
-        assert.equal(await page.locator('.concept-diagram.is-playing').count(), 0);
-        assert.match(await page.locator('[data-concept-play-label]').first().innerText(), /Replay|Repetir/);
+        assert.equal(await page.locator('.concept-diagram, .evidence-pair, [data-mcv-next]').count(), 0);
+        assert.equal(await page.locator('.standards-link').getAttribute('target'), '_blank');
+        assert.ok(await page.locator('.standards-link').evaluate(el => el.classList.contains('btn')));
+        assert.ok(await page.locator('.publication-title').evaluateAll(links => links.every(link => link.target === '_blank')));
       }
       if (route === 'about') {
         assert.equal(await page.locator('.person-card').count(), 8);
@@ -140,14 +141,7 @@ try {
   await page.waitForURL(/\/en\/$/);
   await page.locator('.primary-nav a').filter({ hasText: /^Science$/ }).click();
   await page.waitForURL(/\/en\/science\/$/);
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.locator('[data-concept-play]').first().click();
-  assert.equal(await page.locator('.concept-diagram.is-playing').count(), 1);
-  await page.waitForFunction(() => !document.querySelector('.concept-diagram.is-playing'), { }, { timeout: 7000 });
-  assert.equal(await page.locator('[data-concept-play-label]').first().innerText(), 'Replay');
-  await page.locator('[data-concept-play]').first().click();
-  assert.equal(await page.locator('.concept-diagram.is-playing').count(), 1);
-  await page.locator('.concept-diagram').first().screenshot({ path: `${output}/science-original.png` });
+  assert.equal(await page.locator('.concept-diagram').count(), 0);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(`${base}/en/`);
   const menu = page.locator('[data-menu-toggle]');
@@ -162,7 +156,8 @@ try {
   assert.equal(await staticPage.locator('[data-copy-email] .email-copy-button').isVisible(), false);
   assert.ok(await staticPage.locator('[data-copy-email]').innerText());
   await staticPage.goto(`${base}/en/science/`);
-  assert.ok(await staticPage.locator('.concept-diagram').count() > 0);
+  assert.equal(await staticPage.locator('.concept-diagram').count(), 0);
+  assert.equal(await staticPage.locator('.publication-card').count(), 3);
   assert.equal(await staticPage.locator('[data-concept-step]').count(), 0);
   await noJS.close();
   results.push('No-JavaScript email and static science content passed');

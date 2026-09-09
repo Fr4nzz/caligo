@@ -109,3 +109,7 @@
 ## Homepage and participation update, 7 September 2026
 
 The homepage uses the accepted shorter bilingual headline and serif accents, a wider desktop copy column, and mobile gutters on a black background matching the photograph. Statistics use framed cards and desktop icons. Research cards combine topic labels with light framing. Introductory and priority body text share a size and line height; the desktop introduction uses a narrow column gap and divider. Registration and community actions lead the Join page and appear directly on Home alongside copyable email. The original concept diagram and timed Play/Replay behavior are preserved. See `docs/design-experiment.md` for the final design and validation commands.
+
+## September Science review
+
+Use a single meaningful heading rather than an eyebrow repeating it. Training copy follows its heading in one reading column. Show the 1,000 target once across its number and heading. External web links open new tabs; external action icons differ from internal horizontal arrows. Science questions use single photographs and omit the chromosome concept diagram and duplicate Rueda figure, per the user's latest review.

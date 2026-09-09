@@ -63,9 +63,9 @@ export const scienceFeedback: Record<Locale, ScienceFeedbackContent> = {
         'Reference genomes support research in conservation, ecology, evolution, taxonomy, behaviour, agriculture and forestry. A reference genome is an assembled representation of an individual’s DNA, used as a reference for its species.',
         'Researchers can compare it with other species to see how genes and chromosomes have changed. They can also map lower-cost short-read data from many individuals to the reference, then study relationships, population size and connectivity, natural selection and gene exchange.',
       ],
-      goalHeading: '1,000 species at chromosome scale',
+      goalHeading: 'species at chromosome scale',
       goalBody: 'Caligo aims to generate 1,000 reference genomes of Neotropical butterflies and moths in and for Latin America. Chromosome-scale assembly means placing the genome into one sequence for each chromosome, rather than leaving it as many disconnected fragments.',
-      standardsLink: 'Read the Earth BioGenome Project assembly standards',
+      standardsLink: 'EBP assembly standards',
     },
     analysis: {
       eyebrow: 'Analysis and training',
@@ -105,9 +105,9 @@ export const scienceFeedback: Record<Locale, ScienceFeedbackContent> = {
         'Los genomas de referencia sirven para investigar la conservación, la ecología, la evolución, la taxonomía, el comportamiento, la agricultura y la silvicultura. Un genoma de referencia es una representación ensamblada del ADN de un individuo, que se usa como referencia para su especie.',
         'Se puede comparar con los genomas de otras especies para estudiar cambios en sus genes y cromosomas. También permite alinear datos de lecturas cortas, más económicos, de muchos individuos y analizar parentesco, tamaño y conectividad de las poblaciones, selección natural e intercambio genético.',
       ],
-      goalHeading: '1.000 especies a escala cromosómica',
+      goalHeading: 'especies a escala cromosómica',
       goalBody: 'Caligo busca generar 1.000 genomas de referencia de mariposas y polillas neotropicales en y para América Latina. Ensamblar a escala cromosómica significa organizar el genoma en una secuencia por cromosoma, en vez de dejarlo en muchos fragmentos desconectados.',
-      standardsLink: 'Consulta los estándares de ensamblaje del Earth BioGenome Project',
+      standardsLink: 'Estándares de ensamblaje del EBP',
     },
     analysis: {
       eyebrow: 'Análisis y formación',

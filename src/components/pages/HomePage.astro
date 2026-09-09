@@ -79,9 +79,9 @@ if (publishedPilots.length !== h.researchCards.length) {
     <p class="hero-attribution mono">
       {heroMedia.credit[locale]}
       {' · '}
-      <a href={heroMedia.sourceItemPage} rel="external noopener">{t.mediaViewer.sourceLinkLabel}</a>
+      <a target="_blank" href={heroMedia.sourceItemPage} rel="external noopener">{t.mediaViewer.sourceLinkLabel}</a>
       {' · '}
-      <a href={heroMedia.licenceUrl} rel="license external noopener">{heroMedia.licence}</a>
+      <a target="_blank" href={heroMedia.licenceUrl} rel="license external noopener">{heroMedia.licence}</a>
     </p>
   </section>
 
@@ -192,7 +192,7 @@ if (publishedPilots.length !== h.researchCards.length) {
         <p class="lead close-body">{h.closing.body}</p>
         <div class="close-actions">
           <a class="btn btn--primary" href={LINKS.joinForm} target="_blank" rel="noopener noreferrer">
-            {t.join.cta}<Icon name="arrow-right" />
+            {t.join.cta}<Icon name="external" />
           </a>
           <DiscordButton locale={locale} />
           <CopyEmail locale={locale} />

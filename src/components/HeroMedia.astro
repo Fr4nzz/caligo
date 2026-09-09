@@ -216,9 +216,9 @@ const altText: string = decorative ? '' : media.alt[locale];
       <span class="hero-media-credit">
         {media.credit[locale]}
         {' '}
-        <a href={media.licenceUrl} rel="license external noopener">{media.licence}</a>
+        <a target="_blank" href={media.licenceUrl} rel="license external noopener">{media.licence}</a>
         {' · '}
-        <a href={media.sourceItemPage} rel="external noopener">{SOURCE_LABEL[locale]}</a>
+        <a target="_blank" href={media.sourceItemPage} rel="external noopener">{SOURCE_LABEL[locale]}</a>
       </span>
     </figcaption>
   )}

@@ -2,14 +2,11 @@
 /**
  * SciencePage introduces the shared reference-genome programme, then moves
  * from published examples into the four research questions that motivate
- * Caligo's proposed pilot projects. Concept diagrams remain paired with
- * published evidence so explanation and result stay distinct.
+ * Caligo's proposed pilot projects. Publication figures appear once, above the research questions.
  */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
-import PublishedFigure from '../PublishedFigure.astro';
-import ConceptDiagram from '../ConceptDiagram.astro';
 import Icon from '../Icon.astro';
 import { getDict, localePath, type Locale } from '../../i18n';
 import { getSource } from '../../data/records';
@@ -45,24 +42,6 @@ const questionAside: Record<string, { photo?: string }> = {
   'panacea-migration': { photo: 'pilot-panacea' },
 };
 
-/*
-  The paired figures below the prose, where they exist. Both licences were
-  verified against Crossref before use — CC0 for Rueda-M, CC BY 4.0 for
-  Rosser — and full provenance sits in the .LICENSE.md beside each image.
-
-  Being readable on PMC is not a licence: Edelman 2019 and Seraphim 2016,
-  both cited on this site, are free to read and cannot be reproduced.
-*/
-const questionEvidencePair: Record<string, {
-  concept: 'chromosome';
-  figure: 'chromosomeFigure';
-} | undefined> = {
-  chromosomes: { concept: 'chromosome', figure: 'chromosomeFigure' },
-  connectivity: undefined,
-  'soybean-movement-resistance': undefined,
-  'panacea-migration': undefined,
-};
-
 const pilotContinuation: Record<string, { cardIndex: number; slug: string } | undefined> = {
   chromosomes: { cardIndex: 0, slug: 'heliconius' },
   connectivity: { cardIndex: 1, slug: 'parides-ascanius' },
@@ -71,9 +50,6 @@ const pilotContinuation: Record<string, { cardIndex: number; slug: string } | un
 };
 
 const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
-const evidencePairLabel = locale === 'es'
-  ? 'Explicación conceptual y evidencia publicada'
-  : 'Concept explanation and published evidence';
 ---
 
 <Base locale={locale} title={s.metaTitle} description={s.metaDescription} page="/science">
@@ -83,22 +59,21 @@ const evidencePairLabel = locale === 'es'
   <section class="section reference-section" aria-labelledby="reference-heading">
     <div class="container-wide reference-layout">
       <div class="reference-copy">
-        <p class="section-eyebrow content-label">{feedback.reference.eyebrow}</p>
         <h2 id="reference-heading" class="section-heading content-heading">
           {feedback.reference.heading}
         </h2>
         {feedback.reference.body.map((para) => <p class="prose-para content-body">{para}</p>)}
       </div>
       <aside class="genome-goal" aria-labelledby="genome-goal-heading">
-        <p class="goal-number mono" aria-hidden="true">{locale === 'es' ? '1.000' : '1,000'}</p>
+        <p class="goal-number mono">{locale === 'es' ? '1.000' : '1,000'}</p>
         <h3 id="genome-goal-heading" class="goal-heading">{feedback.reference.goalHeading}</h3>
         <p class="content-body">{feedback.reference.goalBody}</p>
-        <a
-          class="text-link standards-link"
+        <a target="_blank"
+          class="btn standards-link"
           href="https://www.earthbiogenome.org/report-on-assembly-standards"
           rel="external noopener"
         >
-          {feedback.reference.standardsLink}<Icon name="arrow-right" />
+          <Icon name="external" />{feedback.reference.standardsLink}
         </a>
       </aside>
     </div>
@@ -107,7 +82,6 @@ const evidencePairLabel = locale === 'es'
   <section class="section analysis-section" aria-labelledby="analysis-heading">
     <div class="container-wide analysis-layout">
       <div class="analysis-heading-group">
-        <p class="section-eyebrow content-label">{feedback.analysis.eyebrow}</p>
         <h2 id="analysis-heading" class="section-heading content-heading">
           {feedback.analysis.heading}
         </h2>
@@ -137,9 +111,9 @@ const evidencePairLabel = locale === 'es'
             <div class="publication-index mono" aria-hidden="true">
               {String(index + 1).padStart(2, '0')}
             </div>
-            <a class="publication-title" href={publication.url} rel="external noopener">
+            <a target="_blank" class="publication-title" href={publication.url} rel="external noopener">
               <h3>{publication.title}</h3>
-              <Icon name="arrow-right" />
+              <Icon name="external" />
             </a>
             <figure>
               <a
@@ -159,9 +133,9 @@ const evidencePairLabel = locale === 'es'
               <figcaption>
                 <p class="publication-caption">{publication.figure.caption[locale]}</p>
                 <p class="publication-credit mono">
-                  <a href={publication.url} rel="external noopener">{publication.citation}</a>
+                  <a target="_blank" href={publication.url} rel="external noopener">{publication.citation}</a>
                   {' · '}
-                  <a href={publication.figure.licenceUrl} rel="license external noopener">
+                  <a target="_blank" href={publication.figure.licenceUrl} rel="license external noopener">
                     {publication.figure.licence}
                   </a>
                   {publication.figure.changes && (
@@ -189,7 +163,6 @@ const evidencePairLabel = locale === 'es'
       {s.questions.map((q, i) => {
         const anchor = anchors[i];
         const aside = questionAside[anchor];
-        const evidencePair = questionEvidencePair[anchor];
         const continuation = pilotContinuation[anchor];
         const sources = questionSourceIds[anchor]
           .map((sourceId) => getSource(sourceId))
@@ -206,7 +179,7 @@ const evidencePairLabel = locale === 'es'
                   {sources.map((src, n) => (
                     <>
                       {n > 0 && ' · '}
-                      <a href={src.url} rel="external noopener">
+                      <a target="_blank" href={src.url} rel="external noopener">
                         {src.inlineLabel?.[locale] ?? src.shortLabel ?? src.citation}
                       </a>
                     </>
@@ -228,21 +201,12 @@ const evidencePairLabel = locale === 'es'
 
               {aside.photo && (
                 <div class="split-figure">
-                  <MediaCandidateViewer moduleId={aside.photo} locale={locale} aspectRatio="4 / 3" />
+                  <MediaCandidateViewer moduleId={aside.photo} locale={locale} aspectRatio="4 / 3" singleImage />
                 </div>
               )}
             </div>
 
-            {evidencePair && (
-              <div class="evidence-pair" role="group" aria-label={evidencePairLabel}>
-                <div class="evidence-pair-concept">
-                  <ConceptDiagram locale={locale} kind={evidencePair.concept} context="science" />
-                </div>
-                <div class="evidence-pair-published">
-                  <PublishedFigure locale={locale} {...s[evidencePair.figure]} />
-                </div>
-              </div>
-            )}
+
 
           </article>
         );
@@ -326,16 +290,9 @@ const evidencePairLabel = locale === 'es'
     margin-top: var(--space-m);
     width: fit-content;
   }
-  @media (min-width: 60rem) {
-    .analysis-layout {
-      grid-template-columns: minmax(16rem, 0.72fr) minmax(0, 1.28fr);
-      gap: clamp(3rem, 7vw, 7rem);
-    }
-    .analysis-heading-group {
-      padding-right: var(--space-l);
-      border-right: 1px solid var(--hairline-strong);
-    }
-  }
+  .analysis-layout { display: block; max-width: min(var(--container-wide), 100% - 2.5rem); }
+  .analysis-heading-group, .analysis-copy { max-width: 70ch; }
+  .analysis-heading-group .section-heading { max-width: none; }
 
   /* ---- Publication examples ---- */
   .publications-section {
@@ -461,37 +418,6 @@ const evidencePairLabel = locale === 'es'
 
   .split--prose-only {
     display: block;
-  }
-
-  /* ---- Shape 3: interpretation beside evidence ----
-     Pair only when both columns remain readable. The published plate gets
-     slightly more width because its labels are fixed inside a raster image. */
-  .evidence-pair {
-    margin-top: var(--space-l);
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-m);
-    align-items: start;
-  }
-  .evidence-pair-concept {
-    width: 100%;
-    max-width: 46rem;
-    margin-inline: auto;
-  }
-  .evidence-pair-published {
-    width: 100%;
-    max-width: 64rem;
-    margin-inline: auto;
-  }
-  @media (min-width: 68rem) {
-    .evidence-pair {
-      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    }
-    .evidence-pair-concept,
-    .evidence-pair-published {
-      max-width: none;
-      margin-inline: 0;
-    }
   }
 
   /* ---- Questions ---- */

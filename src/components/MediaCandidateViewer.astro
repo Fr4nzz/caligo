@@ -208,7 +208,7 @@ const clientCandidates = sorted.map((c) => ({
               {initial.sourceItemPage && (
                 <>
                   {' · '}
-                  <a href={initial.sourceItemPage} rel="external noopener" data-mcv-source-link>
+                  <a target="_blank" href={initial.sourceItemPage} rel="external noopener" data-mcv-source-link>
                     {labels.sourceLinkLabel}
                   </a>
                 </>
@@ -218,7 +218,7 @@ const clientCandidates = sorted.map((c) => ({
               {initial.licence && initial.licenceUrl && (
                 <>
                   {' · '}
-                  <a href={initial.licenceUrl} rel="license external noopener" data-mcv-licence-link>
+                  <a target="_blank" href={initial.licenceUrl} rel="license external noopener" data-mcv-licence-link>
                     <span data-mcv-licence-text>{initial.licence}</span>
                   </a>
                 </>
@@ -246,7 +246,7 @@ const clientCandidates = sorted.map((c) => ({
             {initial.sourceItemPage && (
               <>
                 {' · '}
-                <a href={initial.sourceItemPage} rel="external noopener" data-mcv-source-link>
+                <a target="_blank" href={initial.sourceItemPage} rel="external noopener" data-mcv-source-link>
                   {labels.sourceLinkLabel}
                 </a>
               </>
@@ -256,7 +256,7 @@ const clientCandidates = sorted.map((c) => ({
             {initial.licence && initial.licenceUrl && (
               <>
                 {' · '}
-                <a href={initial.licenceUrl} rel="license external noopener" data-mcv-licence-link>
+                <a target="_blank" href={initial.licenceUrl} rel="license external noopener" data-mcv-licence-link>
                   <span data-mcv-licence-text>{initial.licence}</span>
                 </a>
               </>
