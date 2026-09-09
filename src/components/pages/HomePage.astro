@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CopyEmail from '../CopyEmail.astro';
+import DiscordButton from '../DiscordButton.astro';
 import { LINKS } from '../../data/content';
 import HeroMedia from '../HeroMedia.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
@@ -9,7 +10,6 @@ import CommunityStats from '../CommunityStats.astro';
 import Timeline from '../Timeline.astro';
 import { getDict, localePath, type Locale } from '../../i18n';
 import { PILOTS, getMedia } from '../../data/records';
-import { discordInviteUrl } from '../../config/site';
 
 const pilotScienceAnchors = [
   'chromosomes',
@@ -194,19 +194,7 @@ if (publishedPilots.length !== h.researchCards.length) {
           <a class="btn btn--primary" href={LINKS.joinForm} target="_blank" rel="noopener noreferrer">
             {t.join.cta}<Icon name="arrow-right" />
           </a>
-          {discordInviteUrl ? (
-            <a
-              class="btn"
-              href={discordInviteUrl}
-              target="_blank"
-              rel="noopener noreferrer external"
-              aria-label={t.participate.discord.active.ariaLabel}
-            >
-              {t.participate.discord.active.button}
-            </a>
-          ) : (
-            <span class="discord-pending">{locale === 'es' ? 'Discord: nueva invitación próximamente' : 'Discord: new invite coming soon'}</span>
-          )}
+          <DiscordButton locale={locale} />
           <CopyEmail locale={locale} />
         </div>
       </div>
@@ -621,7 +609,6 @@ if (publishedPilots.length !== h.researchCards.length) {
   .intro-layout { display: grid; grid-template-columns: 1fr; }
   .intro-copy > * + * { margin-top: var(--space-m); }
   .intro-copy h2 { max-width: 25ch; }
-  .discord-pending { color: var(--text-muted); font-size: .85rem; }
   @media (min-width: 60rem) {
     .intro-copy { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); column-gap: clamp(1.5rem, 3vw, 3rem); position: relative; }
     .intro-copy::after { content: ''; position: absolute; inset-block: 0; left: calc((100% - clamp(1.5rem, 3vw, 3rem)) / 2.3 + clamp(1.5rem, 3vw, 3rem) / 2); width: 1px; background: var(--hairline); }

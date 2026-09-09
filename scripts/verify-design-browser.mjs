@@ -102,18 +102,32 @@ try {
     const closing = page.locator('#discover-caligo');
     assert.equal(await closing.locator('a[href*="docs.google.com/forms"]').count(), 1);
     assert.equal(await closing.locator('a[href*="discord.gg"]').count(), 1);
+    assert.equal(await closing.locator('.discord-button .discord-icon').count(), 1);
     assert.equal(await closing.locator('a[href^="mailto:"]').count(), 0);
     await page.locator('.research-card a').first().focus();
     assert.equal(await page.locator('.research-card').first().evaluate(el => getComputedStyle(el).boxShadow), 'none');
     await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
-    await closing.locator('[data-copy-email] button').click();
+    const copyEmail = closing.locator('[data-copy-email]');
+    const copyButton = copyEmail.locator('.email-copy-button');
+    const copyToast = copyEmail.locator('[data-email-toast]');
+    assert.equal(await copyButton.innerText(), 'genomica.neotropical@gmail.com');
+    assert.ok((await copyButton.boundingBox()).height >= 44);
+    await copyButton.click();
     assert.equal(await page.evaluate(() => navigator.clipboard.readText()), 'genomica.neotropical@gmail.com');
+    assert.equal(await copyToast.isVisible(), true);
+    assert.match(await copyToast.innerText(), /clipboard|portapapeles/);
+    await page.keyboard.press('Escape');
+    assert.equal(await copyToast.isVisible(), false);
     await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: undefined }));
-    await closing.locator('[data-copy-email] button').click();
-    assert.match(await closing.locator('[role="status"]').innerText(), /copied|copiado/);
+    await copyButton.click();
+    assert.match(await copyToast.innerText(), /copied|copiado/);
+    await copyEmail.locator('[data-email-dismiss]').click();
+    assert.equal(await copyToast.isVisible(), false);
     await page.evaluate(() => { document.execCommand = () => false; });
-    await closing.locator('[data-copy-email] button').click();
-    assert.match(await closing.locator('[role="status"]').innerText(), /manually|manualmente/);
+    await copyButton.click();
+    assert.match(await copyToast.innerText(), /manually|manualmente/);
+    assert.equal(await copyEmail.locator('[data-email-fallback]').innerText(), 'genomica.neotropical@gmail.com');
+    assert.equal(await copyEmail.locator('[data-email-fallback]').isVisible(), true);
     results.push(`${locale}: Join order, direct Home actions, copy success/fallback/failure and panel focus passed`);
   }
   // ClientRouter navigation must reinitialise controls after leaving Science.

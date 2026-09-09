@@ -16,6 +16,7 @@
  */
 import { getDict, localePath, type Locale } from '../i18n';
 import { LINKS } from '../data/content';
+import Icon from './Icon.astro';
 
 interface Props {
   readonly variant: 'full' | 'compact';
@@ -45,7 +46,7 @@ const participateUrl = `${localePath(locale, '/participate')}#join`;
         target="_blank"
         rel="noopener noreferrer"
       >
-        {j.cta}
+        {j.cta}<Icon name="arrow-right" />
       </a>
     </p>
     <p class="join-note mono">{j.privacyNote}</p>
