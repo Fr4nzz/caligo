@@ -91,14 +91,21 @@ export const en = {
   },
   "home": {
     "metaTitle": "Caligo | Genomes of Neotropical butterflies and moths",
-    "metaDescription": "A Latin American-led effort developing reference genomes connected to documented specimens of Neotropical butterflies and moths.",
+    "metaDescription": "A Latin American-led community connecting researchers, collections and sequencing facilities to study Neotropical butterflies and moths.",
     "hero": {
       "kicker": "Latin American-led genomics",
       "title": "Rich in species.",
-      "body": "Caligo brings researchers, collections and sequencing facilities together to build reference genomes for Neotropical butterflies and moths.",
-      "focus": "Much left to sequence."
+      "body": "Caligo connects researchers, collections and sequencing facilities to close the genetic-data gap for Neotropical butterflies and moths.",
+      "focus": "Much left to sequence.",
+      "scienceAction": "What questions can genomics help us answer?",
+      "projectsAction": "Meet the pilot projects"
     },
-    "researchLabels": ["Chromosome evolution", "Population connectivity", "Movement and resistance", "Seasonal migration"],
+    "researchLabels": [
+      "Chromosome evolution",
+      "Population connectivity",
+      "Movement and resistance",
+      "Seasonal migration"
+    ],
     "questions": {
       "heading": "Four questions genomes can help answer",
       "intro": "Each discovery reveals what to ask next."
@@ -131,10 +138,10 @@ export const en = {
     },
     "intro": {
       "eyebrow": "Why butterflies and moths",
-      "title": "A rich fauna with many unanswered genomic questions",
+      "title": "The world’s richest fauna, many unanswered questions",
       "body": [
-        "Butterflies make evolutionary change unusually easy to see. Wing patterns can maintain reproductive barriers. DNA inherited from another lineage can help form a hybrid species, and chromosome numbers can change sharply among close relatives.",
-        "Reference genomes are still missing across much of Neotropical Lepidoptera diversity. Caligo links each assembly to a documented specimen so researchers can check which organism was sequenced and where it came from."
+        "Butterflies and moths live in nearly every terrestrial ecosystem and are especially diverse in the Neotropics. They are an ideal group for studying ecology, evolution and conservation, if the right information is available.",
+        "Reference genomes and genetic markers are still missing for most species in this region. Caligo brings researchers and resources together across Latin America to answer questions about species identification, discovery and speciation."
       ]
     },
     "building": {
@@ -142,22 +149,26 @@ export const en = {
       "items": [
         {
           "title": "Sequence undersampled groups",
-          "body": "Produce DNA barcodes, population data and reference assemblies for Neotropical families and subfamilies that remain poorly represented."
+          "body": "Produce DNA barcodes, population data and reference assemblies for taxonomic groups that remain poorly represented."
+        },
+        {
+          "title": "Link genetic information with specimens",
+          "body": "Link each sequence or assembly to a documented specimen in a collection so researchers can check which organism was sequenced and where it came from."
         },
         {
           "title": "Build regional capacity",
-          "body": "Expand sequencing, sample banking and bioinformatics in Latin America."
+          "body": "Expand sequencing, sample banking and bioinformatics in Latin America, from country capitals to remote field sites in areas of high biodiversity."
         },
         {
           "title": "Training and fair credit",
-          "body": "Support training, open data and shared publications while recognising everyone who contributes specimens, knowledge or analysis."
+          "body": "Support training, open data and shared publications while recognising everyone who contributes specimens, analysis or knowledge."
         }
       ]
     },
     "activity": {
       "eyebrow": "Recent and upcoming",
       "heading": "Caligo in action",
-      "intro": "Caligo held its first sequencing workshop in 2026 and is planning a hackathon for 2027."
+      "intro": "Workshops, hackathons and other events help us learn together and grow the network."
     },
     "pillars": {
       "eyebrow": "How the work is shaped",
@@ -168,16 +179,16 @@ export const en = {
       "body": "You can contribute specimens, sequencing capacity, taxonomic knowledge or a research question. Register with the network, join the conversation on Discord or contact us by email."
     },
     "stats": {
-      "participants": "participants",
+      "participants": "members",
       "facilities": "sequencing facilities",
-      "countries": "countries",
+      "countries": "countries with facilities",
       "pilots": "proposed pilot projects",
-      "asOf": "as of July 2026"
+      "asOf": "as of September 2026"
     }
   },
   "science": {
     "metaTitle": "Science | Caligo",
-    "metaDescription": "Four research findings that lead into Caligo's proposed projects on chromosome evolution, conservation, crop pests and seasonal movement.",
+    "metaDescription": "Reference genomes, shared analysis and training for Neotropical butterflies and moths, with published examples and Caligo’s research questions.",
     "title": "Questions genomes can help answer",
     "intro": "These four research findings lead directly to Caligo's proposed pilot projects. Each shows what earlier evidence resolved and what new samples or genomic data could reveal next.",
     "questionsHeading": "Questions genomes can help answer",
@@ -317,7 +328,7 @@ export const en = {
   },
   "about": {
     "metaTitle": "About | Caligo",
-    "metaDescription": "Caligo’s purpose, scientific stance and place in the wider biodiversity-genomics landscape.",
+    "metaDescription": "Caligo’s 1,000-genome goal, leadership team, sequencing facilities and principles for research led from Latin America.",
     "title": "About Caligo",
     "body": "Caligo is a Latin American-led effort to build reference genomes for Neotropical butterflies and moths. Each genome is linked to an identified specimen and the taxonomic expertise needed to verify it. Researchers can then use these genomes to study questions defined in the region.",
     "name": {
@@ -359,8 +370,8 @@ export const en = {
   "participate": {
     "metaTitle": "Participate | Caligo",
     "metaDescription": "Ways for researchers, students, collections, educators, naturalists, institutions and supporters to begin a conversation with Caligo.",
-    "title": "Participate",
-    "intro": "Caligo is built by people who know the organisms, collections and places where the work happens. Tell us what you study and what you would like to investigate. Most collaborations start with a conversation.",
+    "title": "Help build Neotropical genomics from Latin America",
+    "intro": "Caligo brings together people who want to understand, document and protect the diversity of Neotropical butterflies and moths.",
     "contact": {
       "heading": "Start a conversation",
       "body": "Email Caligo with your research interests, your connection to Neotropical butterflies or moths and the contribution you would like to discuss.",
@@ -368,14 +379,36 @@ export const en = {
       "ariaLabel": "Email Caligo at genomica.neotropical@gmail.com"
     },
     "audiences": {
-      "heading": "Who the network is for",
+      "heading": "You can join us by bringing",
+      "intro": "Whether you work in taxonomy, ecology, evolution, conservation, genomics, bioinformatics, natural history, collections, sequencing, education or community engagement, there may be a place for you in Caligo.",
       "items": [
-        "Researchers and collections with taxonomic, specimen, ecological or genomic expertise",
-        "Students and early-career scientists looking to learn, contribute or connect a research question",
-        "Educators and communicators developing accurate, engaging Neotropical science resources",
-        "Naturalists with documented observations and deep knowledge of organisms or places",
-        "Institutions and supporters interested in responsible regional biodiversity genomics"
-      ]
+        {
+          "title": "A question",
+          "body": "Have a scientific or conservation question that genomics could help answer? Caligo connects ideas with specimens, expertise and sequencing capacity."
+        },
+        {
+          "title": "An organism",
+          "body": "Work on a butterfly or moth species, collection or taxonomic group that deserves genomic attention? Help us identify priorities for sequencing."
+        },
+        {
+          "title": "Expertise",
+          "body": "Contribute skills in fieldwork, taxonomy, molecular biology, sequencing, bioinformatics, data analysis, computing, conservation or communication."
+        },
+        {
+          "title": "Infrastructure or resources",
+          "body": "Laboratories, collections, computing facilities, field stations and sequencing platforms can become part of the regional network."
+        },
+        {
+          "title": "A training opportunity",
+          "body": "Help organise workshops, exchanges, hackathons, courses and mentoring that build lasting capacity across Latin America."
+        },
+        {
+          "title": "A partnership",
+          "body": "We welcome universities, museums, research institutes, conservation organisations, communities, funders and biodiversity initiatives that share our principles."
+        }
+      ],
+      "closing": "You do not need a genome project already planned. If you have an idea, a specimen, expertise or infrastructure, or simply want to contribute, we would like to hear from you.",
+      "proposalLink": "Suggest a species or a research question"
     },
     "benefits": {
       "heading": "What participation can lead to",

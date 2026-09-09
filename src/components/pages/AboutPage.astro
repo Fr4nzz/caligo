@@ -1,207 +1,204 @@
 ---
-/**
- * AboutPage — who Caligo is, and who is in it.
- *
- * Absorbed the former /network/ page, which was 236 words of which a
- * quarter re-rendered Home's stats bar and this page's own leadership
- * grid. What was genuinely unique there — the facilities table and the
- * EBP-LatAm note — now sits with Leadership in one network section.
- *
- * Removed rather than moved: Vision and Mission (90 words restating
- * `about.body`'s 45), Strategic objectives (an internal charter), and
- * the "citing another project does not imply a partnership" disclaimer
- * (a legal notice answering a question nobody asked).
- *
- * Sections:
- *   A1  PageHeader — about.title / about.body
- *   A2  Why Caligo — the name, once, on the one page that should carry it
- *   A3  Specimen-to-genome workflow and Project Psyche context
- *   A4  Principles — how the work is shaped
- *   A5  The Caligo network: leadership, facilities and wider connections
- */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
 import PrincipleGrid from '../PrincipleGrid.astro';
 import LeadershipGrid from '../LeadershipGrid.astro';
 import FacilityTable from '../FacilityTable.astro';
-import { LINKS } from '../../data/content';
+import { ABOUT_FEEDBACK, ABOUT_LINKS } from '../../data/about-feedback';
+import { PARTICIPANTS, facilityStats, pick } from '../../data/initiative';
 import { getDict, type Locale } from '../../i18n';
 
 interface Props {
   locale: Locale;
 }
+
 const { locale } = Astro.props;
 const t = getDict(locale);
-const a = t.about;
-const h = t.home;
+const page = ABOUT_FEEDBACK;
+const facilityTotals = facilityStats();
+const facilityIntro = locale === 'en'
+  ? `${facilityTotals.facilities} partner facilities in ${facilityTotals.countries} countries provide access to short-read and long-read sequencing, with local expertise for preparing and analysing genomic data.`
+  : `${facilityTotals.facilities} instalaciones asociadas en ${facilityTotals.countries} países ofrecen acceso a secuenciación de lecturas cortas y largas, junto con experiencia local para preparar y analizar datos genómicos.`;
 ---
 
-<Base locale={locale} title={a.metaTitle} description={a.metaDescription} page="/about">
+<Base locale={locale} title={t.about.metaTitle} description={t.about.metaDescription} page="/about">
+  <PageHeader title={pick(page.header.title, locale)} intro={pick(page.header.intro, locale)} />
 
-  <!-- A1 — Header -->
-  <PageHeader title={a.title} intro={a.body} />
+  <section class="section section--panel" aria-labelledby="about-community">
+    <div class="container-wide">
+      <p class="section-eyebrow content-label">{pick(page.community.eyebrow, locale)}</p>
+      <h2 id="about-community" class="section-heading content-heading">{pick(page.community.heading, locale)}</h2>
+      <p class="prose-para content-body community-intro">{pick(page.community.body, locale)}</p>
+      <dl class="community-metrics">
+        {page.community.metrics.map((metric, index) => (
+          <div class="community-metric">
+            <dt>{pick(metric.label, locale)}</dt>
+            <dd>{index === 0 ? PARTICIPANTS.value : metric.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
 
-  <!-- A2 — The name. The former /caligo/ page said this in 667 words. -->
-  <section class="section section--panel" aria-labelledby="about-name">
+  <section class="section" aria-labelledby="about-goals">
     <div class="container-wide prose-column">
-      <h2 id="about-name" class="section-heading content-heading">{a.name.heading}</h2>
+      <p class="section-eyebrow content-label">{pick(page.goals.eyebrow, locale)}</p>
+      <h2 id="about-goals" class="section-heading content-heading">{pick(page.goals.heading, locale)}</h2>
       <div class="prose-block">
-        {a.name.body.map((para) => (
-          <p class="prose-para content-body">{para}</p>
+        {page.goals.body.map((paragraph) => (
+          <p class="prose-para content-body">{pick(paragraph, locale)}</p>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- A3 — Project Psyche as an organisational model, not a partnership claim -->
-  <section class="section" aria-labelledby="about-workflow">
-    <div class="container-wide">
-      <p class="section-eyebrow content-label">{a.workflow.eyebrow}</p>
-      <h2 id="about-workflow" class="section-heading content-heading workflow-heading">{a.workflow.heading}</h2>
-      <p class="workflow-intro">
-        <a href={LINKS.projectPsyche} rel="external noopener">{a.workflow.projectName}</a>{a.workflow.introAfter}
-      </p>
-      <ol class="workflow-steps" role="list">
-        {a.workflow.steps.map((step, i) => (
-          <li>
-            <span class="item-index mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-            <span>{step}</span>
-          </li>
+  <section class="section section--panel" aria-labelledby="about-name">
+    <div class="container-wide prose-column">
+      <h2 id="about-name" class="section-heading content-heading">{pick(page.name.heading, locale)}</h2>
+      <div class="prose-block">
+        {page.name.body.map((paragraph) => (
+          <p class="prose-para content-body">{pick(paragraph, locale)}</p>
         ))}
-      </ol>
+      </div>
+      <a
+        class="source-link mono"
+        href={page.name.etymologySource.href}
+        target="_blank"
+        rel="noopener noreferrer external"
+      >
+        {pick(page.name.etymologySource.label, locale)} <span aria-hidden="true">↗</span>
+      </a>
     </div>
   </section>
 
-  <!-- A4 — Principles -->
-  <section class="section section--panel" aria-labelledby="about-principles">
+  <section class="section" aria-labelledby="about-principles">
     <div class="container-wide visual-section">
-      <p class="section-eyebrow content-label">{h.pillars.eyebrow}</p>
-      <h2 id="about-principles" class="section-heading content-heading">{h.pillars.title}</h2>
+      <p class="section-eyebrow content-label">{pick(page.principles.eyebrow, locale)}</p>
+      <h2 id="about-principles" class="section-heading content-heading">{pick(page.principles.heading, locale)}</h2>
       <PrincipleGrid locale={locale} />
     </div>
   </section>
 
-  <!-- A5 — People, facilities and wider network context -->
-  <section class="section" aria-labelledby="about-network">
+  <section class="section section--panel" aria-labelledby="about-network">
     <div class="container-wide visual-section network-section">
-      <h2 id="about-network" class="section-heading content-heading">{a.network.heading}</h2>
+      <div>
+        <p class="section-eyebrow content-label">{pick(page.network.eyebrow, locale)}</p>
+        <h2 id="about-network" class="section-heading content-heading">{pick(page.network.heading, locale)}</h2>
+      </div>
 
       <div class="network-block" aria-labelledby="about-leadership">
-        <h3 id="about-leadership" class="subsection-heading content-heading">{a.leadership.heading}</h3>
-        <p class="prose-para content-body">{a.leadership.intro}</p>
+        <h3 id="about-leadership" class="subsection-heading content-heading">{pick(page.network.leadershipHeading, locale)}</h3>
+        <p class="prose-para content-body">{pick(page.network.leadershipIntro, locale)}</p>
         <LeadershipGrid locale={locale} />
       </div>
 
       <div class="network-block" aria-labelledby="about-facilities">
-        <h3 id="about-facilities" class="subsection-heading content-heading">{a.facilities.heading}</h3>
-        <p class="prose-para content-body">{a.facilities.intro}</p>
+        <h3 id="about-facilities" class="subsection-heading content-heading">{pick(page.network.facilitiesHeading, locale)}</h3>
+        <p class="prose-para content-body">{facilityIntro}</p>
         <FacilityTable locale={locale} />
       </div>
 
-      <div class="network-block network-block--prose" aria-labelledby="about-positioning">
-        <h3 id="about-positioning" class="subsection-heading content-heading">{a.positioning.heading}</h3>
-        <p class="prose-para content-body">{a.positioning.body}</p>
+      <div class="network-block network-block--prose" aria-labelledby="about-relationships">
+        <h3 id="about-relationships" class="subsection-heading content-heading">{pick(page.network.relationshipsHeading, locale)}</h3>
+        <p class="prose-para content-body">
+          {pick(page.network.relationships.beforeEarth, locale)}
+          <a href={ABOUT_LINKS.earthBioGenome.href} target="_blank" rel="noopener noreferrer external">{ABOUT_LINKS.earthBioGenome.label}</a>
+          {pick(page.network.relationships.betweenEarthAndGeno, locale)}
+          <a href={ABOUT_LINKS.genoTropics.href} target="_blank" rel="noopener noreferrer external">{ABOUT_LINKS.genoTropics.label}</a>
+          {pick(page.network.relationships.afterGeno, locale)}
+          <a href={ABOUT_LINKS.projectPsyche.href} target="_blank" rel="noopener noreferrer external">{ABOUT_LINKS.projectPsyche.label}</a>
+          {pick(page.network.relationships.betweenEuropean, locale)}
+          <a href={ABOUT_LINKS.lepEu.href} target="_blank" rel="noopener noreferrer external">{ABOUT_LINKS.lepEu.label}</a>
+          {pick(page.network.relationships.end, locale)}
+        </p>
       </div>
     </div>
   </section>
-
 </Base>
 
 <style>
-  .visual-section > .section-eyebrow,
-  .visual-section > .section-heading,
-  .visual-section > .prose-para {
-    max-width: var(--measure);
-  }
-
-  /* ---- Section rhythm ---- */
   .section-eyebrow {
     margin-bottom: var(--space-s);
   }
   .section-heading {
     margin-bottom: var(--space-m);
   }
-
+  .prose-column,
+  .community-intro,
+  .network-block--prose {
+    max-width: var(--measure);
+  }
   .prose-block {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: var(--space-s);
   }
   .prose-para {
-    margin-bottom: var(--space-m);
-  }
-  .prose-block .prose-para {
-    margin-bottom: 0;
-  }
-
-  .item-index {
-    display: block;
-    margin-bottom: var(--space-s);
-    color: var(--accent-strong);
-    font-size: var(--step--1);
-    letter-spacing: 0.08em;
-  }
-  .workflow-intro {
     margin: 0;
-    max-width: var(--measure);
-    color: var(--text);
-    line-height: 1.6;
   }
-  .workflow-heading { max-width: 30ch; }
-  .workflow-steps {
-    list-style: none;
-    margin: var(--space-l) 0 0;
-    padding: 0;
+  .community-metrics {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    border-top: 1px solid var(--hairline-strong);
+    margin: var(--space-l) 0 0;
+    border-block: 1px solid var(--hairline-strong);
   }
-  .workflow-steps li {
-    display: grid;
-    grid-template-columns: 2.4rem 1fr;
+  .community-metric {
+    display: flex;
+    min-width: 0;
+    flex-direction: column-reverse;
     gap: var(--space-xs);
-    padding: var(--space-m) var(--space-m) var(--space-m) 0;
-    border-bottom: 1px solid var(--hairline);
-    line-height: 1.5;
+    padding: var(--space-m);
   }
-  .workflow-steps li:nth-child(3n + 2),
-  .workflow-steps li:nth-child(3n + 3) {
-    padding-left: var(--space-m);
+  .community-metric:first-child {
+    padding-left: 0;
+  }
+  .community-metric + .community-metric {
     border-left: 1px solid var(--hairline);
   }
-  .workflow-steps .item-index { margin: 0; }
+  .community-metric dt {
+    color: var(--text-muted);
+    font-size: var(--step--1);
+    line-height: 1.35;
+  }
+  .community-metric dd {
+    margin: 0;
+    color: var(--text-strong);
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    line-height: 1;
+  }
+  .source-link {
+    display: inline-block;
+    margin-top: var(--space-s);
+    color: var(--accent-strong);
+    font-size: var(--step--2);
+    text-underline-offset: 0.18em;
+  }
   .network-section {
     display: grid;
-    gap: var(--space-l);
-  }
-  .network-section > .section-heading {
-    margin-bottom: 0;
-  }
-  .network-section > * + * {
-    margin-top: 0;
+    gap: var(--space-xl);
   }
   .network-block {
     display: grid;
     gap: var(--space-m);
   }
-  .network-block--prose {
-    max-width: var(--measure);
-  }
   .subsection-heading {
+    margin: 0;
     font-size: var(--step-1);
-    margin-bottom: 0;
   }
-  .network-block .prose-para {
-    margin-bottom: 0;
+  .network-block a {
+    color: var(--accent-strong);
+    text-underline-offset: 0.16em;
   }
-  @media (max-width: 54rem) {
-    .workflow-steps {
+  @media (max-width: 44rem) {
+    .community-metrics {
       grid-template-columns: 1fr;
     }
-    .workflow-steps li,
-    .workflow-steps li:nth-child(3n + 2),
-    .workflow-steps li:nth-child(3n + 3) {
+    .community-metric,
+    .community-metric:first-child {
       padding-inline: 0;
+    }
+    .community-metric + .community-metric {
+      border-top: 1px solid var(--hairline);
       border-left: 0;
     }
   }

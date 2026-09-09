@@ -53,10 +53,10 @@ export const PRINCIPLES: { title: Bilingual; body: Bilingual }[] = [
     },
   },
   {
-    title: { en: 'Taxonomy first', es: 'La taxonomía primero' },
+    title: { en: 'Prioritising capacity building', es: 'Prioridad al desarrollo de capacidades' },
     body: {
-      en: 'Specimens are identified before sequencing, and genomic results are returned to taxonomic research.',
-      es: 'Los ejemplares se identifican antes de la secuenciación, y los resultados genómicos también contribuyen a resolver preguntas taxonómicas.',
+      en: 'Invest in people, skills, knowledge and infrastructure so researchers and institutions in the region can lead biodiversity research, conservation and management.',
+      es: 'Invertir en personas, capacidades, conocimiento e infraestructura para que investigadores e instituciones de la región lideren la investigación, conservación y gestión de la biodiversidad.',
     },
   },
   {
@@ -67,41 +67,44 @@ export const PRINCIPLES: { title: Bilingual; body: Bilingual }[] = [
     },
   },
   {
-    title: { en: 'Open data and fair credit', es: 'Datos abiertos y crédito justo' },
+    title: { en: 'Protection of nature', es: 'Protección de la naturaleza' },
     body: {
-      en: 'Data are shared openly and contributions credited transparently.',
-      es: 'Los datos se comparten de forma abierta y las contribuciones se acreditan con transparencia.',
+      en: 'Reduce harm to organisms, habitats and ecosystems through non-lethal or minimally invasive sampling and responsible field practice.',
+      es: 'Reducir el daño a organismos, hábitats y ecosistemas mediante muestreos no letales o mínimamente invasivos y prácticas de campo responsables.',
     },
   },
   {
-    title: { en: 'Patient and pragmatic', es: 'Avanzar paso a paso' },
+    title: { en: 'Taxonomy', es: 'Taxonomía' },
     body: {
-      en: 'Begin with available capacity in protocols, tissue banking, training and a white paper, then scale with funding and partnerships.',
-      es: 'Comenzar con la capacidad disponible en protocolos, bancos de tejidos, formación y un documento marco, y crecer con financiamiento y alianzas.',
+      en: 'Identify specimens before sequencing, and return genomic results to systematics and taxonomic research.',
+      es: 'Identificar los ejemplares antes de secuenciarlos y devolver los resultados genómicos a la sistemática y la investigación taxonómica.',
     },
   },
   {
     title: {
-      en: 'Respect permits, national laws and fair benefit sharing',
-      es: 'Respetar los permisos, las leyes nacionales y la distribución justa de beneficios',
+      en: 'Respect for cultures and people’s rights',
+      es: 'Respeto por las culturas y los derechos de las personas',
     },
     body: {
-      en: 'Agree how research results, training and other benefits will be shared. Follow national requirements for genetic resources and involve Indigenous peoples and local communities where the work affects them.',
-      es: 'Acordar cómo se compartirán los resultados, la formación y otros beneficios. Cumplir los requisitos nacionales sobre recursos genéticos e involucrar a los pueblos indígenas y las comunidades locales cuando el trabajo les afecte.',
-    },
-  },
-  {
-    title: { en: 'Sampling in social context', es: 'Muestreo en contexto social' },
-    body: {
-      en: 'Include and benefit local and Indigenous communities, and recognise informal naturalists and traditional ecological knowledge.',
-      es: 'Incluir y beneficiar a las comunidades locales e indígenas, y reconocer a los naturalistas independientes y el conocimiento ecológico tradicional.',
+      en: 'Respect cultural values, community authority, intellectual and cultural property, privacy and self-determination. Seek free, prior and informed consent where appropriate.',
+      es: 'Respetar los valores culturales, la autoridad comunitaria, la propiedad intelectual y cultural, la privacidad y la autodeterminación. Buscar el consentimiento libre, previo e informado cuando corresponda.',
     },
   },
   {
-    title: { en: 'Cultural implications', es: 'Ciencia y cultura' },
+    title: {
+      en: 'Permits, national laws and fair benefit sharing',
+      es: 'Permisos, leyes nacionales y distribución justa de beneficios',
+    },
     body: {
-      en: 'Invite artists and people outside biology to explore what biodiversity genomics means for the region.',
-      es: 'Invitar a artistas y personas de otras disciplinas a explorar qué significa la genómica de la biodiversidad para la región.',
+      en: 'Follow national requirements for genetic resources and agree how research results, training and other benefits will be shared. Include local and Indigenous communities, independent naturalists and holders of traditional ecological knowledge.',
+      es: 'Cumplir los requisitos nacionales sobre recursos genéticos y acordar cómo se compartirán los resultados, la formación y otros beneficios. Incluir a comunidades locales e indígenas, naturalistas independientes y portadores de conocimiento ecológico tradicional.',
+    },
+  },
+  {
+    title: { en: 'Open data and fair credit', es: 'Datos abiertos y crédito justo' },
+    body: {
+      en: 'Share data openly and credit every contribution transparently and appropriately.',
+      es: 'Compartir los datos de forma abierta y reconocer cada contribución de manera transparente y apropiada.',
     },
   },
 ];
@@ -301,6 +304,7 @@ export type Facility = {
   institution: string;
   country: Bilingual;
   platforms: string; // platform names kept literal in both languages
+  websites: { label: string; href: string }[];
 };
 
 export const FACILITIES: Facility[] = [
@@ -308,36 +312,52 @@ export const FACILITIES: Facility[] = [
     institution: 'Universidad del Rosario',
     country: { en: 'Colombia', es: 'Colombia' },
     platforms: 'NextSeq 2000, Nanopore MinION',
+    websites: [{ label: 'urosario.edu.co', href: 'https://urosario.edu.co/' }],
   },
   {
     institution: 'Universidad Nacional de Colombia',
     country: { en: 'Colombia', es: 'Colombia' },
     platforms: 'Nanopore PromethION',
+    websites: [{ label: 'unal.edu.co', href: 'https://unal.edu.co/' }],
   },
   {
     institution: 'Smithsonian Tropical Research Institute',
     country: { en: 'Panama', es: 'Panamá' },
     platforms: 'NextSeq 2000, MinION, PromethION (Hi-C expertise planned)',
+    websites: [{ label: 'stri.si.edu', href: 'https://stri.si.edu/' }],
   },
   {
     institution: 'Universidade Federal de Goiás',
     country: { en: 'Brazil', es: 'Brasil' },
     platforms: 'NextSeq 2000, MiSeq, MinION, PromethION',
+    websites: [{ label: 'ufg.br', href: 'https://ufg.br/' }],
   },
   {
     institution: 'Universidad Regional Amazónica Ikiam',
     country: { en: 'Ecuador', es: 'Ecuador' },
     platforms: 'PromethION, Hi-C',
+    websites: [{ label: 'ikiam.edu.ec', href: 'https://www.ikiam.edu.ec/' }],
   },
   {
     institution: 'Universidad Austral de Chile',
     country: { en: 'Chile', es: 'Chile' },
     platforms: 'NextSeq 2000, MinION',
+    websites: [{ label: 'uach.cl', href: 'https://www.uach.cl/' }],
   },
   {
     institution: 'Universidade Federal do Pará',
     country: { en: 'Brazil', es: 'Brasil' },
     platforms: 'NextSeq 2000, MinION',
+    websites: [{ label: 'ufpa.br', href: 'https://ufpa.br/' }],
+  },
+  {
+    institution: 'Pontificia Universidad Católica del Perú / Alianza para una Amazonía Sostenible',
+    country: { en: 'Peru', es: 'Perú' },
+    platforms: 'Nanopore MinION',
+    websites: [
+      { label: 'pucp.edu.pe', href: 'https://www.pucp.edu.pe/' },
+      { label: 'sustainableamazon.org', href: 'https://www.sustainableamazon.org/' },
+    ],
   },
 ];
 

@@ -33,16 +33,22 @@ const p = t.participate;
   <section class="section section--panel" aria-labelledby="ways-heading">
     <div class="container-wide">
       <h2 id="ways-heading">{p.audiences.heading}</h2>
+      <p class="ways-intro content-body">{p.audiences.intro}</p>
       <ol class="ways-list" role="list">
         {p.audiences.items.map((item, i) => (
           <li class="way">
             <span class="way-index mono" aria-hidden="true">
               {String(i + 1).padStart(2, '0')}
             </span>
-            <span class="way-text">{item}</span>
+            <div class="way-text">
+              <h3>{item.title}</h3>
+              <p class="content-body">{item.body}</p>
+              {i === 1 && <a class="text-link" href="#contact">{p.audiences.proposalLink}<Icon name="arrow-right" /></a>}
+            </div>
           </li>
         ))}
       </ol>
+      <p class="ways-closing content-body">{p.audiences.closing}</p>
     </div>
   </section>
 
@@ -122,6 +128,9 @@ const p = t.participate;
     padding: 0;
     margin: var(--space-l) 0 0;
     border-top: 1px solid var(--hairline-strong);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-l);
   }
   .way {
     display: grid;
@@ -140,6 +149,13 @@ const p = t.participate;
     color: var(--accent-strong);
   }
   .way-text { max-width: var(--measure); }
+  .way-text h3 { font-size: var(--step-0); margin-bottom: var(--space-xs); }
+  .way-text p { margin: 0; }
+  .way-text .text-link { margin-top: var(--space-s); font-size: var(--step--1); }
+  .ways-intro, .ways-closing { max-width: var(--measure); margin-top: var(--space-m); }
+  @media (max-width: 48rem) {
+    .ways-list { grid-template-columns: 1fr; }
+  }
 
   /* ---- P-Benefits ---- */
   .benefits-intro {

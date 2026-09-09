@@ -88,14 +88,21 @@ export const es: Dict = {
   },
   "home": {
     "metaTitle": "Caligo | Genomas de mariposas y polillas neotropicales",
-    "metaDescription": "Un esfuerzo liderado desde América Latina que desarrolla genomas de referencia vinculados a ejemplares documentados de mariposas y polillas neotropicales.",
+    "metaDescription": "Una comunidad liderada desde América Latina que conecta investigadores, colecciones y centros de secuenciación para estudiar mariposas y polillas neotropicales.",
     "hero": {
       "kicker": "Genómica liderada desde América Latina",
       "title": "Una riqueza de especies.",
-      "body": "Caligo reúne a investigadores, colecciones y centros de secuenciación para generar genomas de referencia de mariposas y polillas del Neotrópico.",
-      "focus": "Mucho por secuenciar."
+      "body": "Caligo conecta investigadores, colecciones y centros de secuenciación para ampliar la información genética disponible sobre las mariposas y polillas neotropicales.",
+      "focus": "Mucho por secuenciar.",
+      "scienceAction": "¿Qué preguntas puede ayudarnos a responder la genómica?",
+      "projectsAction": "Conoce los proyectos piloto"
     },
-    "researchLabels": ["Evolución cromosómica", "Conectividad poblacional", "Movimiento y resistencia", "Migración estacional"],
+    "researchLabels": [
+      "Evolución cromosómica",
+      "Conectividad poblacional",
+      "Movimiento y resistencia",
+      "Migración estacional"
+    ],
     "questions": {
       "heading": "Cuatro preguntas que los genomas ayudan a responder",
       "intro": "Cada hallazgo abre la siguiente pregunta."
@@ -128,33 +135,37 @@ export const es: Dict = {
     },
     "intro": {
       "eyebrow": "Por qué mariposas y polillas",
-      "title": "Una fauna diversa, muchas preguntas genómicas por responder",
+      "title": "La fauna más rica del mundo, muchas preguntas por responder",
       "body": [
-        "Las mariposas permiten observar la evolución con una claridad poco común. Los patrones de color de sus alas pueden mantener barreras reproductivas. El ADN heredado de otro linaje puede contribuir al origen de una especie híbrida, y el número de cromosomas puede cambiar drásticamente entre especies cercanas.",
-        "Gran parte de la diversidad de lepidópteros neotropicales todavía carece de genomas de referencia. En Caligo, cada ensamblaje queda vinculado a un ejemplar documentado. Así se puede comprobar qué organismo fue secuenciado y cuál es su procedencia."
+        "Las mariposas y polillas habitan casi todos los ecosistemas terrestres y son especialmente diversas en el Neotrópico. Son un grupo ideal para estudiar ecología, evolución y conservación, si se cuenta con la información necesaria.",
+        "La mayoría de las especies de la región aún carece de genomas de referencia y marcadores genéticos. Caligo reúne investigadores y recursos de América Latina para responder preguntas sobre identificación, descubrimiento de especies y especiación."
       ]
     },
     "building": {
       "heading": "Qué está construyendo Caligo",
       "items": [
         {
-          "title": "Secuenciar grupos poco representados",
-          "body": "Producir códigos de barras de ADN, datos poblacionales y ensamblajes de referencia para familias y subfamilias neotropicales todavía poco representadas."
+          "title": "Secuenciar grupos poco estudiados",
+          "body": "Producir códigos de barras de ADN, datos poblacionales y ensamblajes de referencia para grupos taxonómicos que siguen poco representados."
         },
         {
-          "title": "Fortalecer la capacidad regional",
-          "body": "Ampliar la secuenciación, los bancos de muestras y la bioinformática en América Latina."
+          "title": "Vincular la información genética con ejemplares",
+          "body": "Vincular cada secuencia o ensamblaje a un ejemplar de colección documentado para comprobar qué organismo se secuenció y cuál es su procedencia."
+        },
+        {
+          "title": "Fortalecer las capacidades regionales",
+          "body": "Ampliar la secuenciación, los bancos de muestras y la bioinformática en América Latina, desde las capitales hasta sitios de campo remotos en áreas de alta biodiversidad."
         },
         {
           "title": "Formación y crédito justo",
-          "body": "Apoyar la formación, los datos abiertos y las publicaciones compartidas, con reconocimiento para quienes aporten ejemplares, conocimiento o análisis."
+          "body": "Apoyar la formación, los datos abiertos y las publicaciones conjuntas, reconociendo a quienes aportan ejemplares, análisis o conocimientos."
         }
       ]
     },
     "activity": {
       "eyebrow": "Actividad reciente y próxima",
       "heading": "Caligo en acción",
-      "intro": "Caligo realizó su primer taller de secuenciación en 2026 y planea un hackathon para 2027."
+      "intro": "Los talleres, hackathones y otros encuentros nos permiten aprender juntos y ampliar la red."
     },
     "pillars": {
       "eyebrow": "Cómo se orienta el trabajo",
@@ -165,16 +176,16 @@ export const es: Dict = {
       "body": "Puedes aportar ejemplares, capacidad de secuenciación, experiencia taxonómica o una pregunta de investigación. Inscríbete en la red, participa en Discord o escríbenos por correo."
     },
     "stats": {
-      "participants": "participantes",
+      "participants": "miembros",
       "facilities": "instalaciones de secuenciación",
-      "countries": "países",
+      "countries": "países con instalaciones",
       "pilots": "proyectos piloto propuestos",
-      "asOf": "a julio de 2026"
+      "asOf": "a septiembre de 2026"
     }
   },
   "science": {
     "metaTitle": "Ciencia | Caligo",
-    "metaDescription": "Cuatro hallazgos previos que conducen a los proyectos propuestos por Caligo sobre evolución cromosómica, conservación, plagas agrícolas y movimiento estacional.",
+    "metaDescription": "Genomas de referencia, análisis conjunto y formación para estudiar mariposas y polillas neotropicales, con ejemplos publicados y preguntas de Caligo.",
     "title": "Preguntas que los genomas ayudan a responder",
     "intro": "Estos cuatro hallazgos conducen directamente a los proyectos piloto propuestos por Caligo. Cada uno muestra qué resolvió la evidencia previa y qué podrían revelar nuevas muestras o datos genómicos.",
     "questionsHeading": "Preguntas que los genomas ayudan a responder",
@@ -314,7 +325,7 @@ export const es: Dict = {
   },
   "about": {
     "metaTitle": "Acerca de | Caligo",
-    "metaDescription": "El propósito de Caligo, su postura científica y su lugar en el panorama más amplio de la genómica de biodiversidad.",
+    "metaDescription": "La meta de 1.000 genomas de Caligo, su equipo de liderazgo, instalaciones de secuenciación y principios para investigar desde América Latina.",
     "title": "Acerca de Caligo",
     "body": "Caligo es una iniciativa liderada desde América Latina para construir genomas de referencia de mariposas y polillas neotropicales. Cada genoma queda vinculado a un ejemplar identificado y al conocimiento taxonómico necesario para confirmar su identidad. Estos genomas pueden usarse para estudiar preguntas surgidas en la región.",
     "name": {
@@ -356,8 +367,8 @@ export const es: Dict = {
   "participate": {
     "metaTitle": "Participa | Caligo",
     "metaDescription": "Formas para que investigadores, estudiantes, colecciones, educadores, naturalistas, instituciones y personas interesadas inicien una conversación con Caligo.",
-    "title": "Participa",
-    "intro": "Caligo crece gracias a personas que conocen las especies, las colecciones y los territorios donde se investiga. Cuéntanos qué estudias y qué te gustaría investigar. La mayoría de las colaboraciones comienza con una conversación.",
+    "title": "Ayuda a construir la genómica del Neotrópico desde América Latina",
+    "intro": "Caligo reúne a personas que quieren comprender, documentar y proteger la diversidad de mariposas y polillas neotropicales.",
     "contact": {
       "heading": "Inicia una conversación",
       "body": "Escribe a Caligo y cuéntanos qué investigas, cuál es tu vínculo con las mariposas o polillas neotropicales y cómo te gustaría contribuir.",
@@ -365,14 +376,36 @@ export const es: Dict = {
       "ariaLabel": "Enviar un correo a Caligo a genomica.neotropical@gmail.com"
     },
     "audiences": {
-      "heading": "Para quién es la red",
+      "heading": "Puedes sumarte aportando",
+      "intro": "Si trabajas en taxonomía, ecología, evolución, conservación, genómica, bioinformática, historia natural, colecciones, secuenciación, educación o participación comunitaria, puedes encontrar un espacio en Caligo.",
       "items": [
-        "Investigadores y colecciones con experiencia en taxonomía, ecología, colecciones biológicas o genómica",
-        "Estudiantes y personas al inicio de su carrera que quieran aprender, aportar o dar forma a una pregunta de investigación",
-        "Educadores y comunicadores que desarrollen recursos rigurosos y atractivos sobre ciencia neotropical",
-        "Naturalistas con observaciones documentadas y conocimiento profundo de las especies o los territorios",
-        "Instituciones y personas interesadas en apoyar una genómica de la biodiversidad responsable y arraigada en la región"
-      ]
+        {
+          "title": "Una pregunta",
+          "body": "¿Tienes una pregunta científica o de conservación que la genómica podría ayudar a responder? Caligo conecta ideas con ejemplares, conocimientos y capacidad de secuenciación."
+        },
+        {
+          "title": "Un organismo",
+          "body": "¿Trabajas con una especie de mariposa o polilla, una colección o un grupo taxonómico que necesita atención genómica? Ayúdanos a definir prioridades de secuenciación."
+        },
+        {
+          "title": "Conocimientos",
+          "body": "Aporta experiencia en trabajo de campo, taxonomía, biología molecular, secuenciación, bioinformática, análisis de datos, computación, conservación o comunicación."
+        },
+        {
+          "title": "Infraestructura o recursos",
+          "body": "Los laboratorios, colecciones, centros de cómputo, estaciones de campo y plataformas de secuenciación pueden formar parte de la red regional."
+        },
+        {
+          "title": "Una oportunidad de formación",
+          "body": "Ayuda a organizar talleres, intercambios, hackathones, cursos y mentorías que fortalezcan las capacidades de América Latina a largo plazo."
+        },
+        {
+          "title": "Una colaboración",
+          "body": "Recibimos a universidades, museos, institutos de investigación, organizaciones de conservación, comunidades, financiadores e iniciativas de biodiversidad que compartan nuestros principios."
+        }
+      ],
+      "closing": "No necesitas tener un proyecto genómico planificado. Si tienes una idea, un ejemplar, conocimientos o infraestructura, o simplemente quieres contribuir, nos gustaría escucharte.",
+      "proposalLink": "Propón una especie o una pregunta de investigación"
     },
     "benefits": {
       "heading": "Qué puede surgir de la participación",

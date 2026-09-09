@@ -30,6 +30,16 @@ export type { Project, Facility } from './content';
 /* ---------- Initiative leaders ---------- */
 export type Person = {
   name: string;
+  photo: {
+    path: string;
+    width: number;
+    height: number;
+    alt: Bilingual;
+    source: {
+      label: Bilingual;
+      href: string;
+    };
+  };
   role: Bilingual;
   bio: Bilingual;
   affiliation: string;
@@ -48,6 +58,16 @@ export type Person = {
 export const LEADERS: Person[] = [
   {
     name: 'Caroline Bacquet',
+    photo: {
+      path: 'media/people/caroline-bacquet-caligo.png',
+      width: 610,
+      height: 604,
+      alt: { en: 'Portrait of Caroline Bacquet.', es: 'Retrato de Caroline Bacquet.' },
+      source: {
+        label: { en: 'Photo supplied by Caligo', es: 'Foto proporcionada por Caligo' },
+        href: 'https://docs.google.com/presentation/d/11_jUsbEc9hDb45DSBlSCiLov8dTWd3_o/edit',
+      },
+    },
     role: {
       en: 'Butterfly ecology and environmental response',
       es: 'Ecología de mariposas y respuesta ambiental',
@@ -65,6 +85,16 @@ export const LEADERS: Person[] = [
   },
   {
     name: 'Gyanpriya Maharaj',
+    photo: {
+      path: 'media/people/gyanpriya-maharaj-caligo.jpg',
+      width: 365,
+      height: 547,
+      alt: { en: 'Portrait of Gyanpriya Maharaj.', es: 'Retrato de Gyanpriya Maharaj.' },
+      source: {
+        label: { en: 'Photo supplied by Caligo', es: 'Foto proporcionada por Caligo' },
+        href: 'https://docs.google.com/presentation/d/11_jUsbEc9hDb45DSBlSCiLov8dTWd3_o/edit',
+      },
+    },
     role: {
       en: 'Butterfly ecology and biodiversity monitoring',
       es: 'Ecología de mariposas y monitoreo de biodiversidad',
@@ -82,6 +112,16 @@ export const LEADERS: Person[] = [
   },
   {
     name: 'Carmen Barragán',
+    photo: {
+      path: 'media/people/carmen-barragan-caligo.png',
+      width: 166,
+      height: 156,
+      alt: { en: 'Portrait of Carmen Barragán.', es: 'Retrato de Carmen Barragán.' },
+      source: {
+        label: { en: 'Photo supplied by Caligo', es: 'Foto proporcionada por Caligo' },
+        href: 'https://docs.google.com/presentation/d/11_jUsbEc9hDb45DSBlSCiLov8dTWd3_o/edit',
+      },
+    },
     role: {
       en: 'Conservation and population genetics',
       es: 'Genética de la conservación y de poblaciones',
@@ -99,6 +139,16 @@ export const LEADERS: Person[] = [
   },
   {
     name: 'Carlos Arias',
+    photo: {
+      path: 'media/people/carlos-arias-caligo.jpg',
+      width: 554,
+      height: 554,
+      alt: { en: 'Portrait of Carlos Arias.', es: 'Retrato de Carlos Arias.' },
+      source: {
+        label: { en: 'Photo supplied by Caligo', es: 'Foto proporcionada por Caligo' },
+        href: 'https://docs.google.com/presentation/d/11_jUsbEc9hDb45DSBlSCiLov8dTWd3_o/edit',
+      },
+    },
     role: {
       en: 'Evolutionary genomics and speciation',
       es: 'Genómica evolutiva y especiación',
@@ -116,6 +166,16 @@ export const LEADERS: Person[] = [
   },
   {
     name: 'Nicol Rueda',
+    photo: {
+      path: 'media/people/nicol-rueda-caligo.jpg',
+      width: 1024,
+      height: 1187,
+      alt: { en: 'Portrait of Nicol Rueda.', es: 'Retrato de Nicol Rueda.' },
+      source: {
+        label: { en: 'Photo supplied by Caligo', es: 'Foto proporcionada por Caligo' },
+        href: 'https://docs.google.com/presentation/d/11_jUsbEc9hDb45DSBlSCiLov8dTWd3_o/edit',
+      },
+    },
     role: { en: 'Chromosome evolution', es: 'Evolución cromosómica' },
     bio: {
       en: 'She studies chromosome structure and sex chromosome-autosome fusions in Heliconius, using reference genomes to investigate Lepidoptera evolution.',
@@ -130,6 +190,16 @@ export const LEADERS: Person[] = [
   },
   {
     name: 'Joana Meier',
+    photo: {
+      path: 'media/people/joana-meier-caligo.jpg',
+      width: 447,
+      height: 447,
+      alt: { en: 'Portrait of Joana Meier.', es: 'Retrato de Joana Meier.' },
+      source: {
+        label: { en: 'Photo supplied by Caligo', es: 'Foto proporcionada por Caligo' },
+        href: 'https://docs.google.com/presentation/d/11_jUsbEc9hDb45DSBlSCiLov8dTWd3_o/edit',
+      },
+    },
     role: {
       en: 'Speciation and comparative genomics',
       es: 'Especiación y genómica comparativa',
@@ -147,6 +217,16 @@ export const LEADERS: Person[] = [
   },
   {
     name: 'Vicencio Oostra',
+    photo: {
+      path: 'media/people/vicencio-oostra-caligo.jpg',
+      width: 300,
+      height: 300,
+      alt: { en: 'Portrait of Vicencio Oostra.', es: 'Retrato de Vicencio Oostra.' },
+      source: {
+        label: { en: 'Photo supplied by Caligo', es: 'Foto proporcionada por Caligo' },
+        href: 'https://docs.google.com/presentation/d/11_jUsbEc9hDb45DSBlSCiLov8dTWd3_o/edit',
+      },
+    },
     role: {
       en: 'Tropical adaptation and genome resources',
       es: 'Adaptación tropical y recursos genómicos',
@@ -162,13 +242,40 @@ export const LEADERS: Person[] = [
       href: 'https://www.seresearch.qmul.ac.uk/cefg/people/voostra/',
     },
   },
+  {
+    name: 'Geoff Gallice',
+    photo: {
+      path: 'media/people/geoff-gallice-caligo.png',
+      width: 564,
+      height: 496,
+      alt: { en: 'Portrait of Geoff Gallice.', es: 'Retrato de Geoff Gallice.' },
+      source: {
+        label: { en: 'Photo supplied by Caligo', es: 'Foto proporcionada por Caligo' },
+        href: 'https://docs.google.com/presentation/d/11_jUsbEc9hDb45DSBlSCiLov8dTWd3_o/edit',
+      },
+    },
+    role: {
+      en: 'Amazonian entomology and conservation',
+      es: 'Entomología y conservación amazónicas',
+    },
+    bio: {
+      en: 'Geoff studies the taxonomy, systematics, ecology and conservation of Amazonian insects. He also teaches and supervises research on sustainable biodiversity management in Peru.',
+      es: 'Geoff estudia la taxonomía, la sistemática, la ecología y la conservación de insectos amazónicos. También enseña y supervisa investigaciones sobre el manejo sostenible de la biodiversidad en Perú.',
+    },
+    affiliation: 'Pontificia Universidad Católica del Perú / Alianza para una Amazonía Sostenible',
+    regionalTies: { en: 'Peru / United States', es: 'Perú / Estados Unidos' },
+    source: {
+      label: { en: 'Profile at PUCP', es: 'Perfil en la PUCP' },
+      href: 'https://www.pucp.edu.pe/profesor/geoffrey-gallice-',
+    },
+  },
 ];
 
 /* ---------- Network size (doc 01 §J1) ---------- */
 export type NetworkMetric = { value: number; asOf: string };
 
-/** 94 people in the network at the time the presentation was prepared (July 2026). */
-export const PARTICIPANTS: NetworkMetric = { value: 94, asOf: '2026-07' };
+/** Membership count supplied in the September 2026 website review. */
+export const PARTICIPANTS: NetworkMetric = { value: 105, asOf: '2026-09' };
 
 /* ---------- Events with dates (doc 01 §L1, §L2) ---------- */
 export type InitiativeEvent = {

@@ -18,6 +18,7 @@ const labels = {
   institution: { en: 'Institution', es: 'Institución' },
   country:     { en: 'Country', es: 'País' },
   platforms:   { en: 'Platforms', es: 'Plataformas' },
+  website:     { en: 'Website', es: 'Sitio web' },
   total:       { en: 'Total', es: 'Total' },
 } as const;
 ---
@@ -30,6 +31,7 @@ const labels = {
         <th scope="col" class="col-institution">{labels.institution[locale]}</th>
         <th scope="col" class="col-country">{labels.country[locale]}</th>
         <th scope="col" class="col-platforms">{labels.platforms[locale]}</th>
+        <th scope="col" class="col-website">{labels.website[locale]}</th>
       </tr>
     </thead>
     <tbody>
@@ -38,12 +40,19 @@ const labels = {
           <td class="cell-institution">{facility.institution}</td>
           <td class="cell-country">{pick(facility.country, locale)}</td>
           <td class="cell-platforms">{facility.platforms}</td>
+          <td class="cell-website">
+            {facility.websites.map((website) => (
+              <a href={website.href} target="_blank" rel="noopener noreferrer external">
+                {website.label} <span aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </td>
         </tr>
       ))}
     </tbody>
     <tfoot>
       <tr class="tfoot-row">
-        <td class="tfoot-agg mono" colspan="3">
+        <td class="tfoot-agg mono" colspan="4">
           {labels.total[locale]}: {stats.facilities} {facilityLabel[locale]} · {stats.countries} {countryLabel[locale]}
         </td>
       </tr>
@@ -109,6 +118,14 @@ const labels = {
   .cell-country {
     white-space: nowrap;
   }
+  .cell-website {
+    display: grid;
+    gap: 0.35rem;
+  }
+  .cell-website a {
+    color: var(--accent-strong);
+    text-underline-offset: 0.16em;
+  }
   .tfoot-row {
     background: var(--bg-inset);
     border-top: 1px solid var(--hairline-strong);
@@ -119,7 +136,8 @@ const labels = {
     color: var(--text-muted);
     letter-spacing: 0.04em;
   }
-  .col-institution { width: 40%; }
-  .col-country     { width: 25%; }
-  .col-platforms   { width: 35%; }
+  .col-institution { width: 34%; }
+  .col-country     { width: 15%; }
+  .col-platforms   { width: 29%; }
+  .col-website     { width: 22%; }
 </style>

@@ -43,6 +43,7 @@ interface Props {
   readonly class?: string;
   readonly loading?: 'eager' | 'lazy';
   readonly captionMode?: 'full' | 'compact';
+  readonly singleImage?: boolean;
 }
 
 const {
@@ -52,6 +53,7 @@ const {
   class: className = '',
   loading = 'lazy',
   captionMode = 'full',
+  singleImage = false,
 } = Astro.props;
 
 const module_ = getMediaModule(moduleId);
@@ -74,14 +76,16 @@ const KIND_ORDER: Readonly<Record<MediaCandidate['kind'], number>> = {
   'ai-concept': 1,
   'code-native': 2,
 };
-const sorted: readonly MediaCandidate[] = [...module_.candidates].sort(
+const ordered: readonly MediaCandidate[] = [...module_.candidates].sort(
   (a, b) => KIND_ORDER[a.kind] - KIND_ORDER[b.kind],
 );
 
-const initialIndex = Math.max(
+const preferredIndex = Math.max(
   0,
-  Math.min(sorted.length - 1, module_.initialIndex ?? 0),
+  Math.min(ordered.length - 1, module_.initialIndex ?? 0),
 );
+const sorted = singleImage ? [ordered[preferredIndex]] : ordered;
+const initialIndex = singleImage ? 0 : preferredIndex;
 const initial = sorted[initialIndex];
 const total = sorted.length;
 const hasControls = total >= 2;

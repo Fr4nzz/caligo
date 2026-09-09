@@ -34,6 +34,9 @@ try {
       assert.equal(geometry.overflow, false, `${locale} ${width}: horizontal overflow`);
       assert.equal(geometry.titles, 1);
       assert.equal(geometry.cards, 4);
+      assert.equal(await page.locator('.building-item').count(), 4);
+      assert.equal(await page.locator('.research-card [data-mcv-next]').count(), 0);
+      assert.equal(await page.locator('.research-card picture').count(), 4);
       assert.ok(geometry.copy.bottom < geometry.credit.top, `${locale} ${width}: credit overlaps copy`);
       if (width <= 960) {
         assert.ok(geometry.copy.top >= geometry.image.bottom, 'Mobile copy covers photograph');
@@ -63,25 +66,44 @@ try {
     for (const route of ['science', 'projects', 'about', 'participate']) {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.goto(`${base}/${locale}/${route}/`);
+      await loadImages();
       assert.equal(await page.locator('h1').count(), 1);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${locale}/${route}: overflow`);
       if (route === 'science') {
+        assert.equal(await page.locator('.publication-card').count(), 3);
+        assert.equal(await page.locator('.publication-card img').count(), 3);
+        assert.ok(await page.locator('.publication-image-wrap').evaluateAll(figures => figures.every(figure => {
+          const frame = figure.getBoundingClientRect();
+          const image = figure.querySelector('img').getBoundingClientRect();
+          return image.height <= frame.height && image.width <= frame.width;
+        })), 'Publication images must fit without clipping');
+        assert.equal(await page.locator('a[href="https://www.earthbiogenome.org/report-on-assembly-standards"]').count(), 1);
         await page.locator('[data-concept-play]').first().click();
         assert.equal(await page.locator('.concept-diagram.is-playing').count(), 0);
         assert.match(await page.locator('[data-concept-play-label]').first().innerText(), /Replay|Repetir/);
       }
+      if (route === 'about') {
+        assert.equal(await page.locator('.person-card').count(), 8);
+        assert.equal(await page.locator('.person-photo').count(), 8);
+        assert.equal(await page.locator('.facility-table tbody tr').count(), 8);
+        assert.equal(await page.locator('.facility-table tbody a').count(), 9);
+      }
+      if (route === 'projects') assert.ok(await page.locator('[data-mcv-next]').count() > 0);
       results.push(`${locale}/${route}: mobile page and controls passed`);
     }
   }
   for (const locale of ['en', 'es']) {
     await page.goto(`${base}/${locale}/participate/`);
+    assert.equal(await page.locator('.way').count(), 6);
+    await page.locator('.way a[href="#contact"]').click();
+    assert.equal(await page.locator('#contact').isVisible(), true);
     assert.ok(await page.evaluate(() => document.querySelector('.participation-actions').getBoundingClientRect().top < document.querySelector('#ways-heading').getBoundingClientRect().top));
     await page.goto(`${base}/${locale}/`);
     const closing = page.locator('#discover-caligo');
     assert.equal(await closing.locator('a[href*="docs.google.com/forms"]').count(), 1);
     assert.equal(await closing.locator('a[href*="discord.gg"]').count(), 1);
     assert.equal(await closing.locator('a[href^="mailto:"]').count(), 0);
-    await page.locator('.research-card [data-mcv-next]').first().focus();
+    await page.locator('.research-card a').first().focus();
     assert.equal(await page.locator('.research-card').first().evaluate(el => getComputedStyle(el).boxShadow), 'none');
     await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
     await closing.locator('[data-copy-email] button').click();

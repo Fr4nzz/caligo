@@ -1,42 +1,9 @@
 ---
 /**
- * SciencePage — research questions in prose, each paired with evidence or a specimen image.
- *
- * This page was 3,536 words, 13 <details> elements, 36 citation
- * superscripts, a 15-entry bibliography, a sticky sidebar and five
- * animated figures — and not one photograph. The only <img> tags in the
- * built HTML were the header and footer emblems.
- *
- * The structural problem was not length. Every question was a record
- * with six fixed fields, four of which rendered as identical cells under
- * mono uppercase labels: A NEOTROPICAL EXAMPLE / WHAT EVIDENCE IS NEEDED
- * / ONE STATED BOUNDARY / EVIDENCE AND SOURCES. Twenty-four labelled
- * boxes in a 6×4 grid. That template is what produced six consecutive
- * "cannot X, Y or Z without W" sentences — the first reads as
- * intellectual honesty, the sixth reads as a form somebody was required
- * to fill in. You cannot edit your way out of that while the renderer
- * exists, so the renderer is gone.
- *
- * Sources are author-year hyperlinks in the prose flow. The old
- * superscript system rendered 1–9, 16, 17, 20, 21 and 22 above a
- * bibliography styled `list-style: none` — so a reader clicking "22"
- * landed on an unnumbered row, and 10–15, 18 and 19 appeared nowhere on
- * the page. It had never worked in production.
- *
- * LAYOUT CONTRACT — every block on this page is one of three shapes:
- *
- *   1. prose | image     a text column beside a portrait-ish figure
- *   2. evidence pair      a concept diagram beside the published figure
- *   3. concept | evidence  our explanatory diagram beside the paper figure
- *
- * There is deliberately no third shape. The page previously rendered
- * hand-drawn concept diagrams constrained to 46rem, which left a third
- * of the row empty beside them — a half-width block in a full-width row
- * reads as something failing to load.
- *
- * Concept diagrams and published figures are paired rather than treated as
- * substitutes. The first explains the mechanism in plain visual language;
- * the second shows the actual result reported in the paper.
+ * SciencePage introduces the shared reference-genome programme, then moves
+ * from published examples into the four research questions that motivate
+ * Caligo's proposed pilot projects. Concept diagrams remain paired with
+ * published evidence so explanation and result stay distinct.
  */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
@@ -46,6 +13,7 @@ import ConceptDiagram from '../ConceptDiagram.astro';
 import Icon from '../Icon.astro';
 import { getDict, localePath, type Locale } from '../../i18n';
 import { getSource } from '../../data/records';
+import { publicationExamples, scienceFeedback } from '../../data/science-feedback';
 
 interface Props {
   locale: Locale;
@@ -53,6 +21,8 @@ interface Props {
 const { locale } = Astro.props;
 const t = getDict(locale);
 const s = t.science;
+const feedback = scienceFeedback[locale];
+const base = import.meta.env.BASE_URL;
 
 const anchors = [
   'chromosomes',
@@ -108,11 +78,113 @@ const evidencePairLabel = locale === 'es'
 
 <Base locale={locale} title={s.metaTitle} description={s.metaDescription} page="/science">
 
-  <PageHeader title={s.title} intro={s.intro} />
+  <PageHeader title={feedback.pageTitle} intro={feedback.pageIntro} />
+
+  <section class="section reference-section" aria-labelledby="reference-heading">
+    <div class="container-wide reference-layout">
+      <div class="reference-copy">
+        <p class="section-eyebrow content-label">{feedback.reference.eyebrow}</p>
+        <h2 id="reference-heading" class="section-heading content-heading">
+          {feedback.reference.heading}
+        </h2>
+        {feedback.reference.body.map((para) => <p class="prose-para content-body">{para}</p>)}
+      </div>
+      <aside class="genome-goal" aria-labelledby="genome-goal-heading">
+        <p class="goal-number mono" aria-hidden="true">{locale === 'es' ? '1.000' : '1,000'}</p>
+        <h3 id="genome-goal-heading" class="goal-heading">{feedback.reference.goalHeading}</h3>
+        <p class="content-body">{feedback.reference.goalBody}</p>
+        <a
+          class="text-link standards-link"
+          href="https://www.earthbiogenome.org/report-on-assembly-standards"
+          rel="external noopener"
+        >
+          {feedback.reference.standardsLink}<Icon name="arrow-right" />
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section analysis-section" aria-labelledby="analysis-heading">
+    <div class="container-wide analysis-layout">
+      <div class="analysis-heading-group">
+        <p class="section-eyebrow content-label">{feedback.analysis.eyebrow}</p>
+        <h2 id="analysis-heading" class="section-heading content-heading">
+          {feedback.analysis.heading}
+        </h2>
+      </div>
+      <div class="analysis-copy">
+        {feedback.analysis.body.map((para) => <p class="prose-para content-body">{para}</p>)}
+        <a class="text-link" href={localePath(locale, '/projects')}>
+          {feedback.analysis.projectsLink}<Icon name="arrow-right" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section publications-section" aria-labelledby="publications-heading">
+    <div class="container-wide">
+      <div class="publications-intro">
+        <p class="section-eyebrow content-label">{feedback.publications.eyebrow}</p>
+        <h2 id="publications-heading" class="section-heading content-heading">
+          {feedback.publications.heading}
+        </h2>
+        <p class="content-body">{feedback.publications.intro}</p>
+      </div>
+
+      <div class="publication-grid">
+        {publicationExamples.map((publication, index) => (
+          <article class="publication-card" data-lift>
+            <div class="publication-index mono" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </div>
+            <a class="publication-title" href={publication.url} rel="external noopener">
+              <h3>{publication.title}</h3>
+              <Icon name="arrow-right" />
+            </a>
+            <figure>
+              <a
+                class="publication-image-wrap"
+                href={`${base}${publication.figure.src}`}
+                aria-label={`${feedback.publications.figureLabel}: ${publication.title}`}
+              >
+                <img
+                  src={`${base}${publication.figure.src}`}
+                  alt={publication.figure.alt[locale]}
+                  width={publication.figure.width}
+                  height={publication.figure.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+              <figcaption>
+                <p class="publication-caption">{publication.figure.caption[locale]}</p>
+                <p class="publication-credit mono">
+                  <a href={publication.url} rel="external noopener">{publication.citation}</a>
+                  {' · '}
+                  <a href={publication.figure.licenceUrl} rel="license external noopener">
+                    {publication.figure.licence}
+                  </a>
+                  {publication.figure.changes && (
+                    <span>{' · '}{publication.figure.changes[locale]}</span>
+                  )}
+                </p>
+              </figcaption>
+            </figure>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <section class="questions-section" aria-labelledby="questions-heading">
     <div class="container-wide">
-      <h2 id="questions-heading" class="sr-only">{s.questionsHeading}</h2>
+      <div class="questions-intro">
+        <p class="section-eyebrow content-label">{feedback.evidence.eyebrow}</p>
+        <h2 id="questions-heading" class="section-heading content-heading">
+          {feedback.evidence.heading}
+        </h2>
+        <p class="content-body">{feedback.evidence.intro}</p>
+      </div>
 
       {s.questions.map((q, i) => {
         const anchor = anchors[i];
@@ -180,14 +252,17 @@ const evidencePairLabel = locale === 'es'
 
   <section class="section" aria-labelledby="ethics-heading">
     <div class="container-wide prose-column">
-      <h2 id="ethics-heading" class="section-heading content-heading">{s.ethics.heading}</h2>
-      {s.ethics.body.map((para) => <p class="prose-para content-body">{para}</p>)}
+      <h2 id="ethics-heading" class="section-heading content-heading">{feedback.ethics.heading}</h2>
+      {feedback.ethics.body.map((para) => <p class="prose-para content-body">{para}</p>)}
     </div>
   </section>
 
 </Base>
 
 <style>
+  .section-eyebrow {
+    margin-bottom: var(--space-s);
+  }
   .section-heading {
     margin-bottom: var(--space-m);
     max-width: 28ch;
@@ -197,6 +272,173 @@ const evidencePairLabel = locale === 'es'
     max-width: var(--measure);
   }
   .prose-para:last-child { margin-bottom: 0; }
+
+  /* ---- Reference genome overview ---- */
+  .reference-section {
+    background: var(--bg-raised);
+  }
+  .reference-layout,
+  .analysis-layout {
+    display: grid;
+    gap: var(--space-l);
+    align-items: start;
+  }
+  .reference-copy {
+    max-width: var(--measure);
+  }
+  .genome-goal {
+    padding: var(--space-l);
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius);
+    background: var(--bg);
+  }
+  .goal-number {
+    margin-bottom: var(--space-xs);
+    color: var(--accent-strong);
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 440;
+    letter-spacing: -0.08em;
+    line-height: 0.9;
+  }
+  .goal-heading {
+    margin-bottom: var(--space-s);
+    max-width: 20ch;
+  }
+  .standards-link {
+    margin-top: var(--space-m);
+    width: fit-content;
+  }
+  @media (min-width: 60rem) {
+    .reference-layout {
+      grid-template-columns: minmax(0, 1.12fr) minmax(20rem, 0.88fr);
+      gap: clamp(3rem, 7vw, 7rem);
+    }
+  }
+
+  /* ---- Shared analysis ---- */
+  .analysis-section {
+    border-block: 1px solid var(--hairline);
+  }
+  .analysis-copy {
+    max-width: var(--measure);
+  }
+  .analysis-copy .text-link {
+    margin-top: var(--space-m);
+    width: fit-content;
+  }
+  @media (min-width: 60rem) {
+    .analysis-layout {
+      grid-template-columns: minmax(16rem, 0.72fr) minmax(0, 1.28fr);
+      gap: clamp(3rem, 7vw, 7rem);
+    }
+    .analysis-heading-group {
+      padding-right: var(--space-l);
+      border-right: 1px solid var(--hairline-strong);
+    }
+  }
+
+  /* ---- Publication examples ---- */
+  .publications-section {
+    background: var(--bg-raised);
+  }
+  .publications-intro {
+    max-width: var(--measure);
+    margin-bottom: var(--space-l);
+  }
+  .publication-grid {
+    display: grid;
+    gap: var(--space-m);
+  }
+  .publication-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: var(--space-m);
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius);
+    background: var(--bg);
+  }
+  .publication-index {
+    margin-bottom: var(--space-s);
+    color: var(--accent-strong);
+    font-size: var(--step--1);
+  }
+  .publication-title {
+    display: flex;
+    gap: var(--space-s);
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: var(--space-m);
+    color: var(--text-strong);
+    text-decoration: none;
+  }
+  .publication-title h3 {
+    font-size: clamp(1.15rem, 1rem + 0.5vw, 1.45rem);
+    line-height: 1.25;
+  }
+  .publication-title :global(svg) {
+    flex: 0 0 auto;
+    margin-top: 0.15em;
+  }
+  .publication-card figure {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 0;
+  }
+  .publication-image-wrap {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    border-radius: calc(var(--radius) - 2px);
+    background: #fff;
+  }
+  .publication-image-wrap img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .publication-card figcaption {
+    margin-top: var(--space-s);
+  }
+  .publication-caption {
+    color: var(--text);
+    font-size: var(--step--1);
+    line-height: 1.5;
+  }
+  .publication-credit {
+    margin-top: var(--space-xs);
+    color: var(--text-faint);
+    font-size: var(--step--2);
+    line-height: 1.5;
+  }
+  .publication-credit a {
+    color: var(--text-muted);
+  }
+  @media (min-width: 48rem) {
+    .publication-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 76rem) {
+    .publication-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .questions-section {
+    padding-block: var(--space-xl);
+  }
+  .questions-intro {
+    max-width: var(--measure);
+    margin-bottom: var(--space-m);
+  }
 
   /* ---- Shape 1: prose beside an image ----
      One rule, used by every block on the page. The image column carries
