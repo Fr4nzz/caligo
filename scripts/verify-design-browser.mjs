@@ -153,8 +153,8 @@ try {
   const noJS = await browser.newContext({ javaScriptEnabled: false });
   const staticPage = await noJS.newPage();
   await staticPage.goto(`${base}/en/`);
-  assert.equal(await staticPage.locator('[data-copy-email] .email-copy-button').isVisible(), false);
-  assert.ok(await staticPage.locator('[data-copy-email]').innerText());
+  assert.equal(await staticPage.locator('[data-copy-email] .email-copy-button').first().isVisible(), false);
+  assert.ok(await staticPage.locator('[data-copy-email]').first().innerText());
   await staticPage.goto(`${base}/en/science/`);
   assert.equal(await staticPage.locator('.concept-diagram').count(), 0);
   assert.equal(await staticPage.locator('.publication-card').count(), 3);

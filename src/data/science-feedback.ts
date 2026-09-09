@@ -64,7 +64,7 @@ export const scienceFeedback: Record<Locale, ScienceFeedbackContent> = {
         'Researchers can compare it with other species to see how genes and chromosomes have changed. They can also map lower-cost short-read data from many individuals to the reference, then study relationships, population size and connectivity, natural selection and gene exchange.',
       ],
       goalHeading: 'species at chromosome scale',
-      goalBody: 'Caligo aims to generate 1,000 reference genomes of Neotropical butterflies and moths in and for Latin America. Chromosome-scale assembly means placing the genome into one sequence for each chromosome, rather than leaving it as many disconnected fragments.',
+      goalBody: 'These reference genomes will represent Neotropical butterflies and moths, with the work led in and for Latin America. Chromosome-scale assembly means placing the genome into one sequence for each chromosome, rather than leaving it as many disconnected fragments.',
       standardsLink: 'EBP assembly standards',
     },
     analysis: {
@@ -106,7 +106,7 @@ export const scienceFeedback: Record<Locale, ScienceFeedbackContent> = {
         'Se puede comparar con los genomas de otras especies para estudiar cambios en sus genes y cromosomas. También permite alinear datos de lecturas cortas, más económicos, de muchos individuos y analizar parentesco, tamaño y conectividad de las poblaciones, selección natural e intercambio genético.',
       ],
       goalHeading: 'especies a escala cromosómica',
-      goalBody: 'Caligo busca generar 1.000 genomas de referencia de mariposas y polillas neotropicales en y para América Latina. Ensamblar a escala cromosómica significa organizar el genoma en una secuencia por cromosoma, en vez de dejarlo en muchos fragmentos desconectados.',
+      goalBody: 'Estos genomas de referencia representarán mariposas y polillas neotropicales, con el trabajo liderado en y para América Latina. Ensamblar a escala cromosómica significa organizar el genoma en una secuencia por cromosoma, en vez de dejarlo en muchos fragmentos desconectados.',
       standardsLink: 'Estándares de ensamblaje del EBP',
     },
     analysis: {

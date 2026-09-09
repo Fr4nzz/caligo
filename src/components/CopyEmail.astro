@@ -35,7 +35,7 @@ const es = locale === 'es';
     const message = root.querySelector<HTMLElement>('[data-email-message]');
     const fallback = root.querySelector<HTMLElement>('[data-email-fallback]');
     if (!toast || !message || !fallback) return;
-    hideToast(root);
+    document.querySelectorAll<HTMLElement>('[data-copy-email]').forEach(hideToast);
     toast.dataset.result = copied ? 'success' : 'failure';
     fallback.hidden = copied;
     message.textContent = '';

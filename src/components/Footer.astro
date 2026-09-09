@@ -1,7 +1,6 @@
 ---
 import { getDict, localePath, switchLocalePath, LOCALES, LOCALE_LABELS, type Locale } from '../i18n';
-import { LINKS } from '../data/content';
-import Icon from './Icon.astro';
+import CopyEmail from './CopyEmail.astro';
 import JoinCTA from './JoinCTA.astro';
 
 interface Props {
@@ -52,9 +51,7 @@ const items = [
       <h2 class="footer-heading">{t.footer.contact}</h2>
       <ul>
         <li>
-          <a href={`mailto:${LINKS.contactEmail}`} class="footer-mail">
-            <Icon name="mail" />{LINKS.contactEmail}
-          </a>
+          <CopyEmail locale={locale} />
         </li>
       </ul>
       <JoinCTA variant="compact" locale={locale} />
@@ -162,18 +159,6 @@ const items = [
   }
   .footer-col a:hover {
     color: var(--link-hover);
-  }
-  .footer-mail {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    overflow-wrap: anywhere;
-  }
-  .footer-mail :global(svg) {
-    width: 1.05rem;
-    height: 1.05rem;
-    flex: none;
-    color: var(--accent);
   }
 
   .footer-base {
