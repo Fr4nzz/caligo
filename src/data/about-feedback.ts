@@ -1,9 +1,14 @@
-import { MEMBER_COUNTRIES } from './initiative';
+import { MEMBER_COUNTRIES, PARTICIPANTS } from './initiative';
 
 export type AboutLink = {
   label: string;
   href: string;
 };
+
+const membershipDate = new Date(`${PARTICIPANTS.asOf}-01T12:00:00Z`);
+const membershipMonth = (locale: string) => new Intl.DateTimeFormat(locale, {
+  month: 'long', year: 'numeric', timeZone: 'UTC',
+}).format(membershipDate);
 
 export const ABOUT_FEEDBACK = {
   header: {
@@ -14,17 +19,10 @@ export const ABOUT_FEEDBACK = {
     },
   },
   community: {
-    eyebrow: { en: 'Who we are', es: 'Quiénes somos' },
-    heading: { en: 'A growing international community', es: 'Una comunidad internacional en crecimiento' },
     body: {
-      en: 'Members span all career stages and work across Latin America and beyond.',
-      es: 'Sus integrantes se encuentran en todas las etapas profesionales y trabajan en América Latina y otras regiones.',
+      en: `As of ${membershipMonth('en')}, Caligo brings together ${PARTICIPANTS.value} members from ${MEMBER_COUNTRIES.latinAmerica} Latin American countries and ${MEMBER_COUNTRIES.outsideRegion} countries outside the region. Members span all career stages.`,
+      es: `A ${membershipMonth('es')}, Caligo reúne a ${PARTICIPANTS.value} integrantes de ${MEMBER_COUNTRIES.latinAmerica} países de América Latina y ${MEMBER_COUNTRIES.outsideRegion} países fuera de la región. Sus integrantes se encuentran en todas las etapas profesionales.`,
     },
-    metrics: [
-      { value: '105', label: { en: 'members', es: 'integrantes' } },
-      { value: String(MEMBER_COUNTRIES.latinAmerica), label: { en: 'Latin American countries', es: 'países de América Latina' } },
-      { value: String(MEMBER_COUNTRIES.outsideRegion), label: { en: 'countries outside the region', es: 'países fuera de la región' } },
-    ],
   },
   goals: {
     eyebrow: { en: 'What we hope to achieve', es: 'Qué queremos lograr' },
@@ -44,12 +42,8 @@ export const ABOUT_FEEDBACK = {
     heading: { en: 'Why the name Caligo?', es: '¿Por qué el nombre Caligo?' },
     body: [
       {
-        en: 'Caligo is a Neotropical genus of owl butterflies, known for the large eyespots on their wings. The Latin word caligo means mist, fog or darkness.',
-        es: 'Caligo es un género neotropical de mariposas búho, conocidas por los grandes ocelos de sus alas. La palabra latina caligo significa niebla, bruma u oscuridad.',
-      },
-      {
-        en: 'These butterflies connect the initiative to tropical forests, conservation, agriculture and research on mimicry. The name keeps the organisms, and the people and institutions closest to their diversity, at the centre of the project.',
-        es: 'Estas mariposas conectan la iniciativa con los bosques tropicales, la conservación, la agricultura y el estudio del mimetismo. El nombre mantiene en el centro del proyecto a los organismos y a las personas e instituciones más cercanas a su diversidad.',
+        en: 'Caligo takes its name from a Neotropical genus of owl butterflies, known for their beauty and striking eyespots. Their beauty is readily visible, but much of the genetic history behind it remains obscure. The Latin meaning of caligo, mist or darkness, echoes that gap. Through research led in Latin America, we aim to bring Neotropical butterfly and moth genomics into the light.',
+        es: 'Caligo toma su nombre de un género neotropical de mariposas búho, conocidas por su belleza y sus llamativos ocelos. Su belleza salta a la vista, pero gran parte de la historia genética que la originó sigue sin conocerse. El significado latino de caligo, niebla u oscuridad, evoca ese vacío de conocimiento. Mediante investigación liderada desde América Latina, buscamos arrojar luz sobre la genómica de las mariposas y polillas neotropicales.',
       },
     ],
     etymologySource: {

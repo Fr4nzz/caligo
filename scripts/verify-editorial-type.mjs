@@ -48,7 +48,9 @@ for (const [pageName, source] of [['Science', science], ['Pilot Projects', proje
 
 expect(about.includes('section-heading content-heading'), 'About must use the shared heading role');
 expect(about.includes('prose-para content-body'), 'About must use the shared body role');
-expect(about.includes('section-eyebrow content-label'), 'About must use the shared label role');
+for (const match of about.matchAll(/class="([^"]*\bsection-eyebrow\b[^"]*)"/g)) {
+  expect(match[1].split(/\s+/).includes('content-label'), 'About labels must use the shared label role');
+}
 
 for (const selector of ['section-heading', 'prose-para', 'section-eyebrow']) {
   const matches = about.matchAll(new RegExp(`\\.${selector}\\s*\\{([^}]*)\\}`, 'g'));

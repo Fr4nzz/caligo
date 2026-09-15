@@ -5,7 +5,7 @@ import PrincipleGrid from '../PrincipleGrid.astro';
 import LeadershipGrid from '../LeadershipGrid.astro';
 import FacilityTable from '../FacilityTable.astro';
 import { ABOUT_FEEDBACK, ABOUT_LINKS } from '../../data/about-feedback';
-import { PARTICIPANTS, facilityStats, pick } from '../../data/initiative';
+import { facilityStats, pick } from '../../data/initiative';
 import { getDict, type Locale } from '../../i18n';
 
 interface Props {
@@ -23,22 +23,6 @@ const facilityIntro = locale === 'en'
 
 <Base locale={locale} title={t.about.metaTitle} description={t.about.metaDescription} page="/about">
   <PageHeader title={pick(page.header.title, locale)} intro={pick(page.header.intro, locale)} />
-
-  <section class="section section--panel" aria-labelledby="about-community">
-    <div class="container-wide">
-      <p class="section-eyebrow content-label">{pick(page.community.eyebrow, locale)}</p>
-      <h2 id="about-community" class="section-heading content-heading">{pick(page.community.heading, locale)}</h2>
-      <p class="prose-para content-body community-intro">{pick(page.community.body, locale)}</p>
-      <dl class="community-metrics">
-        {page.community.metrics.map((metric, index) => (
-          <div class="community-metric">
-            <dt>{pick(metric.label, locale)}</dt>
-            <dd>{index === 0 ? PARTICIPANTS.value : metric.value}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
-  </section>
 
   <section class="section" aria-labelledby="about-goals">
     <div class="container-wide prose-column">
@@ -71,8 +55,9 @@ const facilityIntro = locale === 'en'
 
   <section class="section section--panel" aria-labelledby="about-network">
     <div class="container-wide visual-section network-section">
-      <div>
+      <div class="network-intro">
         <h2 id="about-network" class="section-heading content-heading">{pick(page.network.heading, locale)}</h2>
+        <p id="about-community" class="prose-para content-body community-intro">{pick(page.community.body, locale)}</p>
       </div>
 
       <div class="network-block" aria-labelledby="about-leadership">
@@ -106,13 +91,9 @@ const facilityIntro = locale === 'en'
 </Base>
 
 <style>
-  .section-eyebrow {
-    margin-bottom: var(--space-s);
-  }
   .section-heading {
     margin-bottom: var(--space-m);
   }
-  .prose-column,
   .community-intro,
   .network-block--prose {
     max-width: var(--measure);
@@ -124,42 +105,12 @@ const facilityIntro = locale === 'en'
   .prose-para {
     margin: 0;
   }
-  .community-metrics {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin: var(--space-l) 0 0;
-    border-block: 1px solid var(--hairline-strong);
-  }
-  .community-metric {
-    display: flex;
-    min-width: 0;
-    flex-direction: column-reverse;
-    gap: var(--space-xs);
-    padding: var(--space-m);
-  }
-  .community-metric:first-child {
-    padding-left: 0;
-  }
-  .community-metric + .community-metric {
-    border-left: 1px solid var(--hairline);
-  }
-  .community-metric dt {
-    color: var(--text-muted);
-    font-size: var(--step--1);
-    line-height: 1.35;
-  }
-  .community-metric dd {
-    margin: 0;
-    color: var(--text-strong);
-    font-family: var(--font-display);
-    font-size: var(--step-3);
-    line-height: 1;
-  }
   .network-section {
     display: grid;
     gap: var(--space-l);
   }
-  .network-section > div:first-child .section-heading { margin-bottom: 0; }
+  .network-intro { display: grid; gap: var(--space-m); }
+  .network-intro .section-heading { margin-bottom: 0; }
   .network-block {
     display: grid;
     gap: var(--space-m);
@@ -171,18 +122,5 @@ const facilityIntro = locale === 'en'
   .network-block a {
     color: var(--accent-strong);
     text-underline-offset: 0.16em;
-  }
-  @media (max-width: 44rem) {
-    .community-metrics {
-      grid-template-columns: 1fr;
-    }
-    .community-metric,
-    .community-metric:first-child {
-      padding-inline: 0;
-    }
-    .community-metric + .community-metric {
-      border-top: 1px solid var(--hairline);
-      border-left: 0;
-    }
   }
 </style>
