@@ -72,6 +72,10 @@ try {
       if (route === 'science') {
         assert.equal(await page.locator('.publication-card').count(), 3);
         assert.equal(await page.locator('.publication-card img').count(), 3);
+        assert.equal(await page.locator('#science-reading-guide-heading').count(), 1);
+        assert.equal(await page.locator('.editorial-status-item').count(), 3);
+        assert.equal(await page.locator('.publication-open').count(), 3);
+        assert.ok(await page.locator('.publication-open').evaluateAll(links => links.every(link => !link.hasAttribute('target'))));
         assert.ok(await page.locator('.publication-image-wrap').evaluateAll(figures => figures.every(figure => {
           const frame = figure.getBoundingClientRect();
           const image = figure.querySelector('img').getBoundingClientRect();
@@ -88,14 +92,27 @@ try {
         assert.equal(await page.locator('.person-photo').count(), 8);
         assert.equal(await page.locator('.facility-table tbody tr').count(), 8);
         assert.equal(await page.locator('.facility-table tbody a').count(), 9);
+        assert.equal(await page.locator('.facility-table-wrapper').getAttribute('role'), 'region');
+        assert.equal(await page.locator('.facility-table-wrapper').getAttribute('tabindex'), '0');
+        assert.equal(await page.locator('.facility-scroll-hint').isVisible(), true);
       }
-      if (route === 'projects') assert.equal(await page.locator('[data-mcv-next]').count(), 0);
+      if (route === 'projects') {
+        assert.equal(await page.locator('[data-mcv-next]').count(), 0);
+        assert.equal(await page.locator('#projects-reading-guide-heading').count(), 1);
+        assert.equal(await page.locator('.editorial-status-item').count(), 3);
+      }
       results.push(`${locale}/${route}: mobile page and controls passed`);
     }
   }
   for (const locale of ['en', 'es']) {
     await page.goto(`${base}/${locale}/participate/`);
     assert.equal(await page.locator('.way').count(), 6);
+    assert.equal(
+      await page.locator('.way a[href="#contact"]').innerText(),
+      locale === 'es'
+        ? 'Conversemos sobre una especie o una pregunta de investigación'
+        : 'Discuss a species or research question',
+    );
     await page.locator('.way a[href="#contact"]').click();
     assert.equal(await page.locator('#contact').isVisible(), true);
     assert.ok(await page.evaluate(() => document.querySelector('.participation-actions').getBoundingClientRect().top < document.querySelector('#ways-heading').getBoundingClientRect().top));
@@ -134,6 +151,22 @@ try {
     assert.equal(await copyEmail.locator('[data-email-fallback]').isVisible(), true);
     results.push(`${locale}: Join order, direct Home actions, copy success/fallback/failure and panel focus passed`);
   }
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`${base}/en/about/`);
+  assert.equal(
+    await page.locator('.leadership-grid').evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length),
+    3,
+    'Leadership cards should use three readable columns at 1440px',
+  );
+  await page.setViewportSize({ width: 1600, height: 900 });
+  await page.goto(`${base}/en/about/`);
+  assert.equal(
+    await page.locator('.leadership-grid').evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length),
+    4,
+    'Leadership cards may use four columns on very wide screens',
+  );
+  results.push('Leadership grid readability passed at desktop and wide desktop');
+
   // ClientRouter navigation must reinitialise controls after leaving Science.
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(`${base}/en/science/`);
@@ -158,6 +191,8 @@ try {
   await staticPage.goto(`${base}/en/science/`);
   assert.equal(await staticPage.locator('.concept-diagram').count(), 0);
   assert.equal(await staticPage.locator('.publication-card').count(), 3);
+  assert.equal(await staticPage.locator('#science-reading-guide-heading').count(), 1);
+  assert.equal(await staticPage.locator('.publication-open').count(), 3);
   assert.equal(await staticPage.locator('[data-concept-step]').count(), 0);
   await noJS.close();
   results.push('No-JavaScript email and static science content passed');
