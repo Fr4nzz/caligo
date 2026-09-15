@@ -21,6 +21,11 @@ interface PublicationExample {
 interface ScienceFeedbackContent {
   readonly pageTitle: string;
   readonly pageIntro: string;
+  readonly readingGuide: {
+    readonly heading: string;
+    readonly intro?: string;
+    readonly items: readonly { readonly label: string; readonly body: string }[];
+  };
   readonly reference: {
     readonly eyebrow: string;
     readonly heading: string;
@@ -40,6 +45,7 @@ interface ScienceFeedbackContent {
     readonly heading: string;
     readonly intro: string;
     readonly figureLabel: string;
+    readonly openFigure: string;
   };
   readonly evidence: {
     readonly eyebrow: string;
@@ -56,6 +62,14 @@ export const scienceFeedback: Record<Locale, ScienceFeedbackContent> = {
   en: {
     pageTitle: 'Reference genomes',
     pageIntro: 'A shared scientific resource for understanding and conserving Neotropical butterflies and moths.',
+    readingGuide: {
+      heading: 'How to read this page',
+      items: [
+        { label: 'Published evidence', body: 'Findings reported in the cited studies.' },
+        { label: 'Open question', body: 'What those results do not yet resolve.' },
+        { label: 'Proposed next step', body: 'A Caligo pilot idea, not a completed result.' },
+      ],
+    },
     reference: {
       eyebrow: 'The shared resource',
       heading: 'What is a reference genome?',
@@ -81,6 +95,7 @@ export const scienceFeedback: Record<Locale, ScienceFeedbackContent> = {
       heading: 'What Neotropical genomes already reveal',
       intro: 'These studies show how reference genomes and population data can uncover chromosome change, rapid radiations and hybrid origins.',
       figureLabel: 'Published figure',
+      openFigure: 'Open full-size figure',
     },
     evidence: {
       eyebrow: 'Questions for Caligo',
@@ -98,6 +113,14 @@ export const scienceFeedback: Record<Locale, ScienceFeedbackContent> = {
   es: {
     pageTitle: 'Genomas de referencia',
     pageIntro: 'Un recurso científico compartido para comprender y conservar las mariposas y polillas neotropicales.',
+    readingGuide: {
+      heading: 'Cómo leer esta página',
+      items: [
+        { label: 'Evidencia publicada', body: 'Hallazgos presentados en los estudios citados.' },
+        { label: 'Pregunta abierta', body: 'Lo que esos resultados aún no permiten resolver.' },
+        { label: 'Próximo paso propuesto', body: 'Una idea de proyecto piloto de Caligo, no un resultado concluido.' },
+      ],
+    },
     reference: {
       eyebrow: 'El recurso compartido',
       heading: '¿Qué es un genoma de referencia?',
@@ -123,6 +146,7 @@ export const scienceFeedback: Record<Locale, ScienceFeedbackContent> = {
       heading: 'Lo que ya revelan los genomas neotropicales',
       intro: 'Estos estudios muestran cómo los genomas de referencia y los datos poblacionales revelan cambios cromosómicos, radiaciones rápidas y orígenes híbridos.',
       figureLabel: 'Figura publicada',
+      openFigure: 'Abrir figura a tamaño completo',
     },
     evidence: {
       eyebrow: 'Preguntas para Caligo',

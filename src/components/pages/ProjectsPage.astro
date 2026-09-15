@@ -28,6 +28,7 @@
  */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
+import EditorialStatusGuide from '../EditorialStatusGuide.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
 import { getDict, type Locale } from '../../i18n';
 import { PILOTS, getSource, getMediaModule } from '../../data/records';
@@ -69,6 +70,13 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
   <div id="overview">
     <PageHeader title={pageTitle} intro={p.opening} />
   </div>
+
+  <EditorialStatusGuide
+    id="projects-reading-guide"
+    heading={t.projects.readingGuide.heading}
+    intro={t.projects.readingGuide.intro}
+    items={t.projects.readingGuide.items}
+  />
 
   {/*
     container-wide supplies the gutter and the centring. This used to come

@@ -6,6 +6,7 @@
  */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
+import EditorialStatusGuide from '../EditorialStatusGuide.astro';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
 import Icon from '../Icon.astro';
 import { getDict, localePath, type Locale } from '../../i18n';
@@ -55,6 +56,13 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
 <Base locale={locale} title={s.metaTitle} description={s.metaDescription} page="/science">
 
   <PageHeader title={feedback.pageTitle} intro={feedback.pageIntro} />
+
+  <EditorialStatusGuide
+    id="science-reading-guide"
+    heading={feedback.readingGuide.heading}
+    intro={feedback.readingGuide.intro}
+    items={feedback.readingGuide.items}
+  />
 
   <section class="section reference-section" aria-labelledby="reference-heading">
     <div class="container-wide reference-layout">
@@ -131,6 +139,13 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
               </a>
               <figcaption>
                 <p class="publication-caption">{publication.figure.caption[locale]}</p>
+                <a
+                  class="publication-open text-link"
+                  href={`${base}${publication.figure.src}`}
+                  aria-label={`${feedback.publications.openFigure}: ${publication.title}`}
+                >
+                  {feedback.publications.openFigure}<Icon name="arrow-right" />
+                </a>
                 <p class="publication-credit mono">
                   <a target="_blank" href={publication.url} rel="external noopener">{publication.citation}</a>
                   {' · '}
@@ -366,6 +381,11 @@ const sourcesLabel = locale === 'es' ? 'Fuentes' : 'Sources';
     color: var(--text);
     font-size: var(--step--1);
     line-height: 1.5;
+  }
+  .publication-open {
+    width: fit-content;
+    margin-top: var(--space-xs);
+    font-size: var(--step--1);
   }
   .publication-credit {
     margin-top: var(--space-xs);

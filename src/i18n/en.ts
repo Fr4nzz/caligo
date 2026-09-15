@@ -320,6 +320,24 @@ export const en = {
     "metaDescription": "Four proposed pilot projects linking published evidence to testable Neotropical genomics questions.",
     "title": "Proposed pilot projects",
     "intro": "These four pilot projects begin where earlier studies leave off. Each asks what new samples and genomic data could reveal.",
+    "readingGuide": {
+      "heading": "How to read these proposals",
+      "intro": "These are proposals, not completed projects. Scope, timing and commitments may change after review with project leads and as permits and funding are confirmed.",
+      "items": [
+        {
+          "label": "Published starting point",
+          "body": "Evidence from the cited studies."
+        },
+        {
+          "label": "Proposed Caligo work",
+          "body": "The research question and scope presented for discussion."
+        },
+        {
+          "label": "Reported starting resources",
+          "body": "Material, expertise or sequencing capacity identified by project contributors."
+        }
+      ]
+    },
     "pilotProposal": {
       "heading": "The proposed Caligo pilot project",
       "leadsLabel": "Pilot project leads",
@@ -360,7 +378,7 @@ export const en = {
     },
     "facilities": {
       "heading": "Partner facilities",
-      "intro": "Seven partner institutions in Colombia, Panama, Brazil, Ecuador and Chile provide sequencing platforms for Caligo projects."
+      "intro": "Eight partner facilities in Colombia, Panama, Brazil, Ecuador, Chile and Peru provide sequencing platforms for Caligo projects."
     },
     "positioning": {
       "heading": "Connections and context",
@@ -408,7 +426,7 @@ export const en = {
         }
       ],
       "closing": "You do not need a genome project already planned. If you have an idea, a specimen, expertise or infrastructure, or simply want to contribute, we would like to hear from you.",
-      "proposalLink": "Suggest a species or a research question"
+      "proposalLink": "Discuss a species or research question"
     },
     "benefits": {
       "heading": "What participation can lead to",

@@ -317,6 +317,24 @@ export const es: Dict = {
     "metaDescription": "Cuatro proyectos piloto propuestos que conectan evidencia publicada con preguntas comprobables de genómica neotropical.",
     "title": "Proyectos piloto propuestos",
     "intro": "Estos cuatro proyectos piloto retoman preguntas que estudios anteriores dejaron abiertas. Cada uno explora qué podrían revelar nuevas muestras y datos genómicos.",
+    "readingGuide": {
+      "heading": "Cómo leer estas propuestas",
+      "intro": "Son propuestas, no proyectos concluidos. El alcance, los plazos y los compromisos pueden cambiar después de la revisión con quienes lideran cada proyecto y a medida que se confirmen los permisos y el financiamiento.",
+      "items": [
+        {
+          "label": "Punto de partida publicado",
+          "body": "Evidencia de los estudios citados."
+        },
+        {
+          "label": "Trabajo propuesto por Caligo",
+          "body": "La pregunta de investigación y el alcance presentados para discusión."
+        },
+        {
+          "label": "Recursos iniciales reportados",
+          "body": "Material, experiencia o capacidad de secuenciación identificados por quienes proponen cada proyecto."
+        }
+      ]
+    },
     "pilotProposal": {
       "heading": "El proyecto piloto de Caligo",
       "leadsLabel": "Quienes lideran el proyecto piloto",
@@ -357,7 +375,7 @@ export const es: Dict = {
     },
     "facilities": {
       "heading": "Instalaciones asociadas",
-      "intro": "Caligo cuenta con siete instituciones asociadas en Colombia, Panamá, Brasil, Ecuador y Chile que aportan plataformas de secuenciación a sus proyectos."
+      "intro": "Caligo cuenta con ocho instalaciones asociadas en Colombia, Panamá, Brasil, Ecuador, Chile y Perú que aportan plataformas de secuenciación a sus proyectos."
     },
     "positioning": {
       "heading": "Conexiones y contexto",
@@ -405,7 +423,7 @@ export const es: Dict = {
         }
       ],
       "closing": "No necesitas tener un proyecto genómico planificado. Si tienes una idea, un ejemplar, conocimientos o infraestructura, o simplemente quieres contribuir, nos gustaría escucharte.",
-      "proposalLink": "Propón una especie o una pregunta de investigación"
+      "proposalLink": "Conversemos sobre una especie o una pregunta de investigación"
     },
     "benefits": {
       "heading": "Qué puede surgir de la participación",
