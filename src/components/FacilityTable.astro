@@ -12,6 +12,14 @@ const stats = facilityStats();
 
 const facilityLabel: Record<typeof locale, string> = { en: 'facilities', es: 'instalaciones' };
 const countryLabel: Record<typeof locale, string> = { en: 'countries', es: 'países' };
+const regionLabel: Record<typeof locale, string> = {
+  en: 'Partner facilities table; scroll horizontally to see every column',
+  es: 'Tabla de instalaciones asociadas; desplázate horizontalmente para ver todas las columnas',
+};
+const scrollHint: Record<typeof locale, string> = {
+  en: 'Scroll horizontally to see websites.',
+  es: 'Desplázate horizontalmente para ver los sitios web.',
+};
 
 const labels = {
   caption:     { en: 'Partner facilities', es: 'Instalaciones asociadas' },
@@ -23,7 +31,13 @@ const labels = {
 } as const;
 ---
 
-<div class="facility-table-wrapper">
+<p class="facility-scroll-hint content-meta">{scrollHint[locale]}</p>
+<div
+  class="facility-table-wrapper"
+  role="region"
+  aria-label={regionLabel[locale]}
+  tabindex="0"
+>
   <table class="facility-table">
     <caption class="facility-caption">{labels.caption[locale]}</caption>
     <thead>
@@ -61,6 +75,11 @@ const labels = {
 </div>
 
 <style>
+  .facility-scroll-hint {
+    display: none;
+    margin: 0 0 var(--space-xs);
+    color: var(--text-muted);
+  }
   .facility-table-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -135,6 +154,14 @@ const labels = {
     font-size: var(--step--2);
     color: var(--text-muted);
     letter-spacing: 0.04em;
+  }
+  .facility-table-wrapper:focus-visible {
+    outline: var(--focus-ring) solid var(--accent);
+    outline-offset: 3px;
+  }
+  @media (max-width: 48rem) {
+    .facility-scroll-hint { display: block; }
+    .facility-table { min-width: 48rem; }
   }
   .col-institution { width: 34%; }
   .col-country     { width: 15%; }
