@@ -8,6 +8,7 @@ interface Metric {
   readonly label: string;
   readonly asOf?: string;
   readonly kind?: MetricKind;
+  readonly href?: string;
 }
 
 interface Props {
@@ -23,12 +24,14 @@ const icons: Record<MetricKind, CardIconName> = { participants: 'people', facili
   <ul class="metric-cards" role="list">
     {metrics.map((metric) => (
       <li class:list={['metric-card', { 'metric-card--lead': metric.kind === 'participants' }]}>
+        <a class="metric-card__link" href={metric.href}>
         <strong class="metric-card__value">{metric.value}</strong>
         <span class="metric-card__copy">
           <span class="metric-card__label">{metric.label}</span>
           {metric.asOf && <span class="metric-card__asof">{metric.asOf}</span>}
         </span>
         {metric.kind && <CardIcon name={icons[metric.kind]} class="metric-icon" />}
+        </a>
       </li>
     ))}
   </ul>
@@ -50,13 +53,17 @@ const icons: Record<MetricKind, CardIconName> = { participants: 'people', facili
   .metric-cards {
     display: grid;
     grid-template-columns: 1.3fr repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
     gap: .75rem;
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  .metric-card {
+  .metric-card { min-width: 0; list-style: none; }
+  .metric-card__link {
     display: grid;
+    height: 100%;
+    text-decoration: none;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
     gap: .875rem;
@@ -67,7 +74,7 @@ const icons: Record<MetricKind, CardIconName> = { participants: 'people', facili
     border-radius: var(--radius);
     background: var(--bg-panel);
   }
-  .metric-card--lead { background: color-mix(in oklab, var(--accent) 9%, var(--bg-panel)); border-color: var(--hairline-strong); }
+  .metric-card--lead .metric-card__link { background: color-mix(in oklab, var(--accent) 9%, var(--bg-panel)); border-color: var(--hairline-strong); }
   .metric-card :global(.metric-icon) { width: 1.75rem; height: 1.75rem; }
   .metric-card__value {
     color: var(--text-strong);
@@ -122,12 +129,15 @@ const icons: Record<MetricKind, CardIconName> = { participants: 'people', facili
     letter-spacing: 0.04em;
   }
 
-  @media (max-width: 48rem) {
-    .metric-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.25rem; }
-    .metric-card { padding: 1rem; grid-template-columns: auto minmax(0, 1fr); }
-    .metric-card :global(.metric-icon) { display: none; }
+  .metric-card__link:hover { border-color: var(--accent); background: var(--bg-raised); }
+  .metric-card__link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  @media (max-width: 70rem) {
+    .metric-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .metric-card__link { padding: 1rem; }
   }
-  @media (max-width: 25rem) {
-    .metric-card { grid-template-columns: 1fr; gap: .5rem; }
+  @media (max-width: 36rem) {
+    .metric-cards { grid-template-columns: 1fr; }
+    .metric-card__value { min-width: 3ch; text-align: center; }
   }
 </style>

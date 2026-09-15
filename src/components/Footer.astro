@@ -1,7 +1,6 @@
 ---
-import { getDict, localePath, switchLocalePath, LOCALES, LOCALE_LABELS, type Locale } from '../i18n';
-import CopyEmail from './CopyEmail.astro';
-import JoinCTA from './JoinCTA.astro';
+import { getDict, localePath, type Locale } from '../i18n';
+import Icon from './Icon.astro';
 
 interface Props {
   locale: Locale;
@@ -10,15 +9,6 @@ const { locale } = Astro.props;
 const t = getDict(locale);
 const base = import.meta.env.BASE_URL;
 
-// Footer nav mirrors the primary nav. Keep the two in step: verify-nav
-// fails the build if the footer omits a primary destination.
-const items = [
-  { path: '/', label: t.nav.home },
-  { path: '/science', label: t.nav.science },
-  { path: '/projects', label: t.nav.proposedPilots },
-  { path: '/about', label: t.nav.about },
-  { path: '/participate', label: t.nav.join },
-];
 ---
 
 <footer class="site-footer">
@@ -40,34 +30,9 @@ const items = [
       </div>
     </div>
 
-    <nav class="footer-col" aria-label={t.footer.navHeading}>
-      <h2 class="footer-heading">{t.footer.navHeading}</h2>
-      <ul>
-        {items.map((item) => <li><a href={localePath(locale, item.path)}>{item.label}</a></li>)}
-      </ul>
-    </nav>
-
-    <div class="footer-col">
-      <h2 class="footer-heading">{t.footer.contact}</h2>
-      <ul>
-        <li>
-          <CopyEmail locale={locale} />
-        </li>
-      </ul>
-      <JoinCTA variant="compact" locale={locale} />
-      <h2 class="footer-heading footer-heading--spaced">{t.footer.languageHeading}</h2>
-      <ul>
-        {
-          LOCALES.map((code) => (
-            <li>
-              <a href={switchLocalePath(Astro.url.pathname, code)} lang={code} hreflang={code}>
-                {LOCALE_LABELS[code]}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+    <a class="btn btn--primary footer-join" href={`${localePath(locale, '/participate')}#join`}>
+      {t.join.ctaSecondary}<Icon name="arrow-right" />
+    </a>
   </div>
 
   <div class="container-wide footer-base">
@@ -79,12 +44,13 @@ const items = [
   .site-footer {
     border-top: 1px solid var(--hairline);
     background: var(--bg-raised);
-    padding-block: var(--space-l) var(--space-m);
+    padding-block: var(--space-m);
   }
 
   .footer-grid {
     display: grid;
-    gap: var(--space-l);
+    gap: var(--space-m);
+    align-items: center;
     grid-template-columns: 1fr;
   }
 
@@ -133,40 +99,14 @@ const items = [
     line-height: 1.4;
   }
 
-  .footer-heading {
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    margin-bottom: 0.75rem;
-  }
-  .footer-heading--spaced {
-    margin-top: var(--space-m);
-  }
-
-  .footer-col ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-  }
-  .footer-col a {
-    color: var(--text-muted);
-    text-decoration: none;
-  }
-  .footer-col a:hover {
-    color: var(--link-hover);
-  }
+  .footer-join { justify-self: start; }
 
   .footer-base {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: var(--space-xs);
-    margin-top: var(--space-l);
+    margin-top: var(--space-m);
     padding-top: var(--space-m);
     border-top: 1px solid var(--hairline);
     font-size: var(--step--1);
@@ -177,7 +117,7 @@ const items = [
 
   @media (min-width: 46rem) {
     .footer-grid {
-      grid-template-columns: 2fr 1fr 1.2fr;
+      grid-template-columns: 1fr auto;
     }
   }
 </style>

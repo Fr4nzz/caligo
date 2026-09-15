@@ -275,6 +275,9 @@ export const LEADERS: Person[] = [
 export type NetworkMetric = { value: number; asOf: string };
 
 /** Membership count supplied in the September 2026 website review. */
+// Membership geography from Nicole’s September 2026 document.
+export const MEMBER_COUNTRIES = { latinAmerica: 17, outsideRegion: 12 } as const;
+
 export const PARTICIPANTS: NetworkMetric = { value: 105, asOf: '2026-09' };
 
 /* ---------- Events with dates (doc 01 §L1, §L2) ---------- */

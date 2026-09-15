@@ -7,8 +7,8 @@
  * trains you to edit the test rather than think about the change.
  *
  * What actually matters to a reader:
- *   • the header nav and the footer nav offer the same destinations
- *     (they drifted before — the footer silently dropped a route);
+ *   • the header offers primary navigation and the compact footer retains Join
+ *     without duplicating the entire navigation;
  *   • every nav destination resolves to a page that was really built;
  *   • both locales offer the same routes.
  *
@@ -95,15 +95,9 @@ for (const { path, label } of pages) {
     pass(`${label}: ${headerRoutes.length} primary-nav destinations`);
   }
 
-  // The footer may legitimately carry extra links (contact, language).
-  // What it must not do is omit a primary destination — that is the drift
-  // that previously hid a whole page from half the site's navigation.
-  const missing = headerRoutes.filter((r) => !footerRoutes.includes(r));
-  if (missing.length) {
-    fail(`${label}: footer omits primary destination(s): ${missing.join(', ')}`);
-  } else {
-    pass(`${label}: footer offers every primary destination`);
-  }
+  const joinRoute = headerRoutes.find(r => r.includes('/participate/'));
+  if (!joinRoute || !footerRoutes.includes(joinRoute)) fail(`${label}: footer needs the Join destination`);
+  else pass(`${label}: compact footer retains Join`);
 
   const unbuilt = headerRoutes.filter((r) => !existsSync(builtFile(r)));
   if (unbuilt.length) {

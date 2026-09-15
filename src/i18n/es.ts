@@ -178,7 +178,7 @@ export const es: Dict = {
     "stats": {
       "participants": "miembros",
       "facilities": "instalaciones de secuenciación",
-      "countries": "países con instalaciones",
+      "countries": "países de América Latina",
       "pilots": "proyectos piloto propuestos",
       "asOf": "a septiembre de 2026"
     }

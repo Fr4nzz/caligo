@@ -1,3 +1,5 @@
+import { MEMBER_COUNTRIES } from './initiative';
+
 export type AboutLink = {
   label: string;
   href: string;
@@ -20,8 +22,8 @@ export const ABOUT_FEEDBACK = {
     },
     metrics: [
       { value: '105', label: { en: 'members', es: 'integrantes' } },
-      { value: '17', label: { en: 'Latin American countries', es: 'países de América Latina' } },
-      { value: '12', label: { en: 'countries outside the region', es: 'países fuera de la región' } },
+      { value: String(MEMBER_COUNTRIES.latinAmerica), label: { en: 'Latin American countries', es: 'países de América Latina' } },
+      { value: String(MEMBER_COUNTRIES.outsideRegion), label: { en: 'countries outside the region', es: 'países fuera de la región' } },
     ],
   },
   goals: {

@@ -61,9 +61,8 @@ const enginePayload = JSON.stringify({
 //   (5) persist any valid URL overrides to localStorage
 //   (6) update <meta name="theme-color"> to MODE_COLORS[palette][mode]
 const themeInit = `
-(function(){
+window.caligoApplyTheme = function(d, url){
   var E=${enginePayload};
-  var d=document.documentElement;
   function has(list, v){ return v && list.indexOf(v) !== -1; }
 
   // (1) legacy migration
@@ -81,7 +80,7 @@ const themeInit = `
   // (2) URL params (whitelist-validated independently)
   var urlPalette=null, urlMode=null;
   try {
-    var qs = new URLSearchParams(location.search);
+    var qs = new URLSearchParams(new URL(url).search);
     var p = qs.get('palette'); if (has(E.palettes, p)) urlPalette = p;
     var m = qs.get('mode');    if (has(E.modes,    m)) urlMode    = m;
   } catch(_){}
@@ -111,12 +110,13 @@ const themeInit = `
 
   // (6) theme-color meta
   try {
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','theme-color'); document.head.appendChild(meta); }
+    var meta = d.ownerDocument.querySelector('meta[name="theme-color"]');
+    if (!meta) { meta = d.ownerDocument.createElement('meta'); meta.setAttribute('name','theme-color'); d.ownerDocument.head.appendChild(meta); }
     var c = (E.colors[palette] && E.colors[palette][mode]) || E.colors[E.defaults.palette][E.defaults.mode];
     meta.setAttribute('content', c);
   } catch(_){}
-})();
+};
+window.caligoApplyTheme(document.documentElement, location.href);
 `;
 
 // SSR default matches the pre-paint script's fallback: zero FOUC when the
@@ -173,7 +173,7 @@ const ssrThemeColor = MODE_COLORS[DEFAULT_PALETTE][DEFAULT_MODE];
         1. Theme rehydration. <ClientRouter /> swaps <html>+<head>+<body>
            on navigation; the incoming document carries the SSR default
            palette/mode. On astro:before-swap we re-apply the visitor's
-           stored preference to the new document BEFORE first paint so
+           URL, saved or system preference to the new document BEFORE first paint so
            palette/mode do not flash to default. Auto-respects
            reduced-motion via ClientRouter's built-in gate.
 
@@ -275,13 +275,7 @@ const ssrThemeColor = MODE_COLORS[DEFAULT_PALETTE][DEFAULT_MODE];
         }
 
         document.addEventListener('astro:before-swap', function (event) {
-          try {
-            var p = localStorage.getItem('caligo-palette');
-            var m = localStorage.getItem('caligo-mode');
-            var el = event.newDocument.documentElement;
-            if (p) el.setAttribute('data-palette', p);
-            if (m) el.setAttribute('data-mode', m);
-          } catch (_) { /* storage unavailable */ }
+          window.caligoApplyTheme(event.newDocument.documentElement, event.to.href);
 
           // Same page, other locale? Only then do we hold position.
           // Everything else — a fresh nav, a hash link, Back/Forward — is

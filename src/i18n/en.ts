@@ -181,7 +181,7 @@ export const en = {
     "stats": {
       "participants": "members",
       "facilities": "sequencing facilities",
-      "countries": "countries with facilities",
+      "countries": "Latin American countries",
       "pilots": "proposed pilot projects",
       "asOf": "as of September 2026"
     }
