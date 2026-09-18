@@ -51,10 +51,9 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
       <div class="intro-copy content-body">
         {intro.body.map((paragraph) => <p>{paragraph}</p>)}
       </div>
-      <nav class="project-jumps" aria-label={locale === 'en' ? 'Explore projects and funding' : 'Explora proyectos y financiamiento'}>
+      <div class="project-jumps">
         <a class="btn btn--primary" href={localePath(locale, '/funding')}>{intro.funding}<Icon name="arrow-right" /></a>
-        <a class="text-link" href="#proposed-projects">{intro.browse}<Icon name="arrow-right" /></a>
-      </nav>
+      </div>
       <h2 id="pilot-purpose" class="content-heading">{intro.why}</h2>
       <ul class="pilot-reasons">
         {intro.reasons.map(([title, body]) => (
