@@ -60,6 +60,7 @@ export const en = {
     }
   },
   "nav": {
+    "funding": "Funding opportunities",
     "home": "Home",
     "science": "Science",
     "proposedPilots": "Pilot projects",

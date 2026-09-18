@@ -2,8 +2,8 @@
 /*
   Site header.
 
-  Primary nav — five items:
-    Home · Science · Pilot projects · About · Join
+  Primary navigation:
+    Home · Science · Pilot projects · Funding opportunities · About · Join
 
   "Join" is the /participate/ route. It used to be both a nav item
   ("Participate") and a separate accent button pointing at the same page,
@@ -32,6 +32,7 @@ const items = [
   { path: '/', label: t.nav.home },
   { path: '/science', label: t.nav.science },
   { path: '/projects', label: t.nav.proposedPilots },
+  { path: '/funding', label: t.nav.funding },
   { path: '/about', label: t.nav.about },
   { path: '/participate', label: t.nav.join },
 ];
@@ -178,7 +179,7 @@ const isCurrent = (path: string) => path === page;
     max-width: 28ch;
     margin-top: 2px;
   }
-  @media (min-width: 70rem) {
+  @media (min-width: 82rem) {
     .brand-text {
       flex-direction: row;
       align-items: center;
@@ -299,7 +300,6 @@ const isCurrent = (path: string) => path === page;
     min-height: 0;
     overflow: hidden;
   }
-  .mobile-nav li:last-child { grid-column: 1 / -1; }
   .mobile-nav a {
     display: block;
     padding: .75rem;
@@ -319,7 +319,7 @@ const isCurrent = (path: string) => path === page;
     color: var(--accent-strong);
   }
 
-  @media (min-width: 70rem) {
+  @media (min-width: 82rem) {
     .primary-nav {
       display: block;
     }
@@ -413,7 +413,7 @@ const isCurrent = (path: string) => path === page;
         closeMenu(true);
       }
     });
-    window.matchMedia('(min-width: 62rem)').addEventListener('change', (e) => {
+    window.matchMedia('(min-width: 82rem)').addEventListener('change', (e) => {
       if (e.matches) closeMenu();
     });
   }

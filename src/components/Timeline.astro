@@ -1,6 +1,8 @@
 ---
 import { EVENTS, pick } from '../data/initiative';
-import type { Locale } from '../i18n';
+import { localePath, type Locale } from '../i18n';
+import { PILOT_INTRO } from '../data/pilot-call';
+import Icon from './Icon.astro';
 
 interface Props {
   readonly locale: Locale;
@@ -8,9 +10,19 @@ interface Props {
 }
 
 const { locale, compact = false } = Astro.props;
+const funding = PILOT_INTRO[locale];
 ---
 
 <ol class:list={['timeline-list', { 'timeline-list--compact': compact }]} role="list">
+  <li class="timeline-item" id="event-colombia-funding">
+    <div class="timeline-header">
+      <time class="timeline-dates mono" datetime="2026-09-30">{funding.date}</time>
+      <span class="timeline-name">{funding.call}</span>
+    </div>
+    <p class="timeline-location mono">{funding.deadline} · Colombia</p>
+    <p class="timeline-summary">{funding.description}</p>
+    <a class="text-link timeline-summary" href={localePath(locale, '/funding')}>{funding.funding}<Icon name="arrow-right" /></a>
+  </li>
   {EVENTS.map((event) => (
     <li class="timeline-item" id={`event-${event.id}`}>
       <div class="timeline-header">
@@ -36,6 +48,7 @@ const { locale, compact = false } = Astro.props;
     border-top: 1px solid var(--hairline-strong);
   }
   .timeline-item {
+    min-width: 0;
     padding-block: var(--space-m);
     border-bottom: 1px solid var(--hairline);
     display: flex;
@@ -56,7 +69,7 @@ const { locale, compact = false } = Astro.props;
     font-size: var(--step--1);
     color: var(--accent);
     letter-spacing: 0.04em;
-    white-space: nowrap;
+    white-space: normal;
     flex-shrink: 0;
   }
   .timeline-name {
@@ -81,7 +94,7 @@ const { locale, compact = false } = Astro.props;
   }
   .timeline-list--compact {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .timeline-list--compact .timeline-item {
     padding: var(--space-m);
@@ -90,7 +103,7 @@ const { locale, compact = false } = Astro.props;
   .timeline-list--compact .timeline-item + .timeline-item {
     border-left: 1px solid var(--hairline);
   }
-  @media (max-width: 42rem) {
+  @media (max-width: 64rem) {
     .timeline-list--compact {
       grid-template-columns: 1fr;
     }

@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../PageHeader.astro';
+import Icon from '../Icon.astro';
+import { PILOT_INTRO, PILOT_APPLICATION_URL } from '../../data/pilot-call';
+import { localePath, type Locale } from '../../i18n';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const intro = PILOT_INTRO[locale];
+---
+<Base locale={locale} title={intro.funding + ' | Caligo'} description={intro.description} page="/funding">
+  <PageHeader title={intro.funding} />
+  <section id="funding-opportunities" class="section section--panel" aria-labelledby="funding-call-title">
+    <div class="container-wide">
+      <div class="funding-layout">
+        <div class="funding-summary">
+          <h2 id="funding-call-title" class="content-heading">{intro.call}</h2>
+          <p class="content-body">{intro.description}</p>
+          <p class="content-body">{intro.coverage}</p>
+          <p class="funding-deadline content-body">{intro.deadline}<br /><strong><time datetime="2026-09-30">{intro.date}</time></strong></p>
+          {PILOT_APPLICATION_URL ? (
+            <a class="btn btn--primary" href={PILOT_APPLICATION_URL} target="_blank" rel="external noopener">{intro.apply}<Icon name="external" /></a>
+          ) : (
+            <p class="content-meta">{intro.pending}</p>
+          )}
+          <p class="content-meta">{intro.share}</p>
+        </div>
+        <div class="funding-conditions">
+          <h3 class="content-heading">{intro.eligibility}</h3>
+          <ul class="content-body">{intro.conditions.map((condition) => <li>{condition}</li>)}</ul>
+          <a class="text-link" href={localePath(locale, '/projects') + '#proposed-projects'}>{intro.check}<Icon name="arrow-right" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Base>
+<style>
+  .funding-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-xl); margin-top: var(--space-m); }
+  .funding-summary { display: grid; align-content: start; justify-items: start; gap: var(--space-s); }
+  .funding-deadline { padding-block: var(--space-s); }
+  .funding-deadline strong { color: var(--accent-strong); }
+  .funding-conditions ul { padding-left: 1.25rem; margin-block: var(--space-m); }
+  .funding-conditions li + li { margin-top: var(--space-s); }
+
+  @media (max-width: 48rem) {
+    .funding-layout { grid-template-columns: 1fr; gap: var(--space-l); }
+  }
+</style>

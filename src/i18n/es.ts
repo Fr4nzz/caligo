@@ -57,6 +57,7 @@ export const es: Dict = {
     }
   },
   "nav": {
+    "funding": "Financiamiento",
     "home": "Inicio",
     "science": "Ciencia",
     "proposedPilots": "Proyectos piloto",

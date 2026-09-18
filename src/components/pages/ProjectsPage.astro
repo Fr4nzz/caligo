@@ -1,35 +1,10 @@
 ---
-/**
- * ProjectsPage — four proposed pilots, one section each.
- *
- * This page was 2,861 words and carried twelve <details> elements (some
- * nested inside others), a sidebar table of contents for a four-item
- * list, and the same nine sources printed twice — once inline inside the
- * per-pilot disclosures and again in a footer bibliography with DOIs and
- * access dates. That is 417 words of citation apparatus on work that has
- * not started.
- *
- * What each pilot now renders: image, heading, taxon, the one-sentence
- * question, the published background, what Caligo proposes to test, who
- * would lead it, and a plain source line. Everything a reader needs to
- * decide whether to email us; nothing that performs rigour about work
- * nobody has begun.
- *
- * Removed: the motives block (an internal funding memo — "Demonstrate to
- * funders that the network can generate genomes in Latin America"), the
- * "Evidence, contributions and boundaries" disclosure whose three fields
- * were the same sentence four times with the nouns swapped, the status
- * pills repeating a phrase already in the page title, and the per-pilot
- * research-question and study-objective lists.
- *
- * renderCitations() is gone: it wrapped prose containing zero [S##]
- * tokens (all 78 live in the i18n files, none in records.ts), so it was
- * escapeHtml + set:html for nothing.
- */
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../PageHeader.astro';
+import Icon from '../Icon.astro';
+import { PILOT_INTRO } from '../../data/pilot-call';
 import MediaCandidateViewer from '../MediaCandidateViewer.astro';
-import { getDict, type Locale } from '../../i18n';
+import { getDict, localePath, type Locale } from '../../i18n';
 import { PILOTS, getSource, getMediaModule } from '../../data/records';
 import { PROJECTS } from '../../data/content';
 
@@ -47,6 +22,7 @@ const pageTitle =
 const metaTitle = proj.metaTitle as string;
 const metaDescription = proj.metaDescription as string;
 
+const intro = PILOT_INTRO[locale];
 const p = t.pilots;
 const pp = t.projects.pilotProposal;
 
@@ -67,8 +43,28 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
 
 <Base locale={locale} title={metaTitle} description={metaDescription} page="/projects">
   <div id="overview">
-    <PageHeader title={pageTitle} intro={p.opening} />
+    <PageHeader title={pageTitle} intro={intro.opening} />
   </div>
+
+  <section class="section pilot-introduction" aria-labelledby="pilot-purpose">
+    <div class="container-wide">
+      <div class="intro-copy content-body">
+        {intro.body.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <nav class="project-jumps" aria-label={locale === 'en' ? 'Explore projects and funding' : 'Explora proyectos y financiamiento'}>
+        <a class="btn btn--primary" href={localePath(locale, '/funding')}>{intro.funding}<Icon name="arrow-right" /></a>
+        <a class="text-link" href="#proposed-projects">{intro.browse}<Icon name="arrow-right" /></a>
+      </nav>
+      <h2 id="pilot-purpose" class="content-heading">{intro.why}</h2>
+      <ul class="pilot-reasons">
+        {intro.reasons.map(([title, body]) => (
+          <li class="content-body"><strong>{title}</strong><p>{body}</p></li>
+        ))}
+      </ul>
+      <p class="intro-copy content-body">{intro.closing}</p>
+    </div>
+  </section>
+
 
   {/*
     container-wide supplies the gutter and the centring. This used to come
@@ -77,6 +73,7 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
     diagrams sat flush against the viewport edge.
   */}
   <div class="projects-layout container-wide">
+    <h2 id="proposed-projects" class="content-heading projects-heading">{intro.projects}</h2>
     <ol class="pilots" aria-label={pageTitle}>
       {
         publishedPilots.map((pilot) => {
@@ -157,6 +154,18 @@ const projectById = new Map(PROJECTS.map((pr) => [pr.id, pr]));
 </Base>
 
 <style>
+  .intro-copy { max-width: var(--measure); }
+  .intro-copy p + p { margin-top: var(--space-s); }
+  .project-jumps { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-m); margin-block: var(--space-m) var(--space-l); }
+  .pilot-reasons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-m) var(--space-xl); list-style: none; padding: 0; margin-block: var(--space-m); }
+  .pilot-reasons li { border-top: 1px solid var(--hairline); padding-top: var(--space-s); }
+  .pilot-reasons strong { color: var(--text-strong); }
+  .pilot-reasons p { margin-top: var(--space-xs); }
+  .projects-heading { padding-top: var(--space-l); }
+  @media (max-width: 48rem) {
+    .pilot-reasons { grid-template-columns: 1fr; }
+  }
+
   .pilots {
     list-style: none;
     padding: 0;
