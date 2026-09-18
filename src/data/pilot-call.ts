@@ -1,8 +1,6 @@
-import { LINKS } from './content';
-
 // Source: Nicole's message supplied by Franz on 18 September 2026.
-// Use the existing registration form until Nicole supplies a dedicated call URL.
-export const PILOT_APPLICATION_URL: string = LINKS.joinForm;
+// Dedicated Colombia funding-call form supplied by Nicole.
+export const PILOT_APPLICATION_URL: string = 'https://docs.google.com/forms/d/e/1FAIpQLScCX2XIzecHAMZ8lr4lZE1vYkubZawt4zXKywHD9qnJNLIfaw/viewform';
 
 export const PILOT_INTRO = {
   en: {
